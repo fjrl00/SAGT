@@ -1,0 +1,13 @@
+Hola:
+
+Os comento algunas indicaciones para usar el "plugin" DDL de MagicDraw para el Modelo Físico de datos.
+Dos opciones:
+1- En el tema Proyectos he colocado  dos ficheros (en un zip) que debéis poner en el directorio "profiles" de donde esté instalado el MagicDraw. Estos ficheros corresponden al "profile" de MagicDraw "Generic DDL" donde están los estereotipos que estuvimos viendo en clase.
+Después de esto, indicarle a MagicDraw que lo utilice, seleccionandolo desde: "Archivo/Usa Modulo..." (yo lo tengo en inglés, File/Use Module...).
+A partir de ahí, ya deberíais poder asignarlos a vuestros objetos. Por ejemplo, para construir una tabla, creáis una clase, y le asignáis el estereotipo <<table>> tal y como hicimos el otro día, ...
+ 
+2-Si esto no funciona, la segunda opción es que os defináis directamente "nuevos" estereotipos. Es fácil, por ejemplo, seleccionad una clase, y con el botón derecho se accede a las opciones de estereotipos, allí se selecciona "New", en vez de usar alguno de los existentes, y se crea un nuevo estereotipo con nombre por ejemplo "tabla". De esta manera ya se pueden marcar con este estereotipo todas las "Tablas". La única diferencia es que no queda tan bonito, con otro color, el icono para la tabla, etc.
+De manera análoga podéis pintar una relación de dependencia entre dos clases/tablas.  Botón derecho, estereotipo, nuevo estereotipo, y asignadle nombre "FK", o lo que queráis, por ejemplo "ClaveAjena"...
+Si ahora váis al estereotipo que se acaba de definir (estará en el paquete donde hayáis puesto este nuevo estereotipo), definid los "tags" que nos interesan. Por ejemplo, "FK columns" y "PK Columns", o los nombres que querais... Obviamente esto para poder especificar las columnas de cada relación "foreign key"....
+ 
+Saludos

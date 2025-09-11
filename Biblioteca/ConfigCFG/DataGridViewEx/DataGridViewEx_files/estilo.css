@@ -1,0 +1,225 @@
+/* CSS Document */
+
+.menu {
+	width:190px;
+	padding-left:8px;
+}
+
+.menu .headerbar {
+    font: bold 11px Verdana;
+    color: white;
+    /*background: #003366 url(flechamenu.gif) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+	background: #015992 url(../imagenes/flechamenu.gif) no-repeat 8px 6px;
+	margin-bottom: 0; /*bottom spacing between header and rest of content*/
+    /*text-transform: uppercase;*/
+    padding: 7px 0 7px 31px; /*31px is left indentation of header text*/
+}
+
+.menu .headerbar a {
+	font:bold 11px Verdana, Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.menu .headerbar a:visited {
+	color:#FFFFFF;
+}
+
+.menu .headerbar a:hover {
+	/*color:#FBAF5D;*/
+	color:#FFCC99;
+}
+
+.menu ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0; /*bottom spacing between each UL and rest of content*/
+}
+
+.menu ul li{
+    padding-bottom: 1px; /*bottom spacing between menu items*/
+}
+
+.menu ul li a{
+    font: normal 10px Verdana;
+    color: black;
+    background: #E9E9E9;
+    display: block;
+    padding: 5px 0;
+    line-height: 17px;
+    padding-left: 8px; /*link text is indented 8px*/
+    text-decoration: none;
+}
+
+.menu ul li a:visited{
+    color: black;
+}
+
+.menu ul li a:hover{ /*hover state CSS*/
+    color: white;
+    background: #FBAF5D; /*black;*/
+}
+
+.cuerpo {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	/*padding-left:200px;*/
+	left: 200px;
+	top: 0px;
+}
+
+.tabla {
+	width:100%;
+	border:0;
+}
+
+.tabla .columnamenu {
+	width:200px;
+	vertical-align:top;		
+}
+
+.tabla .columnaseparador {
+	width:10px;
+}
+
+.tabla .columnacuerpo {
+	/*width:200px;*/
+	font: Arial, Verdana, Helvetica, sans-serif;
+	vertical-align:top;
+}
+
+.tabla .columnapublicidad {
+	font:Verdana, Arial, Helvetica, sans-serif;
+	font-size:9px;
+	width:300px;
+	vertical-align:top;		
+}
+
+.division {
+	color:#000000;
+	background-color:#000000;
+	font:normal 8px Arial, Helvetica, sans-serif; 
+}
+
+.titulo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	line-height: 16px;
+	font-weight: bold;
+	font-variant: normal;
+	font-style: normal;
+}
+
+.subtitulo1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.subtitulo2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+} 	
+	
+.contenido {
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}	
+	
+.piepagina {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	font-size:x-small;
+	background:#FFFFFF;
+}
+
+.tablacapitulos {
+	width:100%;
+	border:0;
+	background-color:#FFFFFF;
+}
+
+/*.tablacapitulos .columnacapitulo {
+	width:80px;
+	vertical-align:top;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight: bold;
+	background:#FFFFFF;
+}
+*/
+.tablacapitulos .columnadescripcion {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	vertical-align:top;
+	background:#FFFFFF;
+}
+/*
+.tablacapitulos .columnaicono {
+	width:70px;
+	vertical-align:top;
+	background:#FFFFFF;
+}
+*/
+.enlacetitulo {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:top;
+	background:#E9E9E9;
+}
+
+.enlacetitulo a{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    /*color: #015992;*/
+	color:#000000;
+    display: block;
+    line-height: 17px;
+    /*padding-left: 8px; /*link text is indented 8px*/
+    text-decoration:none;
+	text-shadow:#CCCCCC;
+}
+	
+.enlacetitulo a:visited {
+    /*color: #015992;*/
+	color:#000000;
+}
+
+.enlacetitulo a:hover{ /*hover state CSS*/
+    color: white;
+    background: #FBAF5D; /*black;*/
+}
+
+.codigoprogramacion {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	text-indent: 0px;
+	background-color: #DEFFEF;
+}
+
+.codigosimple {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	text-indent: 0px;
+}
+
+.enlacemini a{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#000000;
+	display:block;
+	font-size:x-small;
+	text-decoration:none;
+	text-shadow:#333333;
+	font-style: normal;
+}
+
+.enlacemini a:visited {
+	color:#000000;
+	text-decoration:none;
+}

@@ -1,0 +1,1729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="EstaRegistrado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contraseña" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstaRegistradoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EstaRegistradoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Obtener_perfil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Obtener_perfilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Obtener_perfilResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Obtener_grupo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Obtener_grupoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Obtener_grupoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="personasGrupo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="grupo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="personasGrupoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="personasGrupoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="personasGrupoAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="grupo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="personasGrupoADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="personasGrupoADResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Lista_PersonasAD_SAGT">
+        <s:complexType />
+      </s:element>
+      <s:element name="Lista_PersonasAD_SAGTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista_PersonasAD_SAGTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dameDatos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dameDatosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dameDatosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnNameUserMenPas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idUser" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnNameUserMenPasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnNameUserMenPasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_SagtUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_SagtUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Add_SagtUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectAllProyects">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectAllProyectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectAllProyectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="project">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_ProjectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectSameProyects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="project">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="nameDirector" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectSameProyectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectSameProyectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectLikeProyects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectLikeProyectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectLikeProyectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectProyectsForUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectProyectsForUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectProyectsForUsersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnPk_project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="grupo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnPk_projectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReturnPk_projectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="project">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SelectNameFilesProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name_file" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_project" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="typeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectNameFilesProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectNameFilesProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_project" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_user" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="typeFile" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelectFilesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_SagtFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsMultiFacetData">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="ldsMeans" type="tns:ArrayOfDataSet" />
+            <s:element minOccurs="0" maxOccurs="1" name="ldsAnalysis" type="tns:ArrayOfDataSet" />
+            <s:element minOccurs="0" maxOccurs="1" name="nameFile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_projects" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_user" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDataSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataSet" nillable="true">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Insert_SagtFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_SagtFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_AnalysisFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrayDataSet" type="tns:ArrayOfDataSet" />
+            <s:element minOccurs="0" maxOccurs="1" name="nameFile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_projects" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_user" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_AnalysisFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_AnalysisFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_MultiFacetsObs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsMultiFacetData">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_MultiFacetsObsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_MultiFacetsObsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ListFacets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dtListFacets">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="dtSkipLevels">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ListFacetsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_ListFacetsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ListMeans">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ldsMeans" type="tns:ArrayOfDataSet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ListMeansResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_ListMeansResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Analysis">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ldsAnalysis" type="tns:ArrayOfDataSet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_AnalysisResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_AnalysisResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnSagtFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pk_file" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnSagtFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnSagtFileResult" type="tns:SagtFileW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SagtFileW">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dsMultiFacetObs">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="listDataSetMeans" type="tns:ArrayOfDataSet" />
+          <s:element minOccurs="0" maxOccurs="1" name="ldsAnalysis" type="tns:ArrayOfDataSet" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Return_AnalysisFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pk_file" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_AnalysisFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_AnalysisFileResult" type="tns:ArrayOfDataSet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_ListSkipLevels">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_facet" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_ListSkipLevelsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_ListSkipLevelsResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Return_ObsTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListFacet">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_multi_facet_obs" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_ObsTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_ObsTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeans">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dtListfacet">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="dtSkipLevels">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="facet_design" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="grand_mean" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="variance" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="std_dev" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeansResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_TableMeansResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeansDiff">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsListFacets">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="facet_design" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="grand_mean" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="variance" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="std_dev" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeansDiffResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_TableMeansDiffResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeansTypScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsListFacets">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="facet_design" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="grand_mean" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="variance" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="std_dev" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Return_TableMeansTypScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Return_TableMeansTypScoreResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_TableMeans">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTbMeans">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_TableMeansResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Insert_TableMeansDif">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTbMeansDif">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_TableMeansDifResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Insert_TableMeansTypScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsTbMeansTypScore">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="fk_means" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_TableMeansTypScoreResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Insert_G_ParametersList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lDataSetG_parameters" type="tns:ArrayOfDataSet" />
+            <s:element minOccurs="1" maxOccurs="1" name="fk_table_analysis_and_g_study" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_G_ParametersListResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EstaRegistradoSoapIn">
+    <wsdl:part name="parameters" element="tns:EstaRegistrado" />
+  </wsdl:message>
+  <wsdl:message name="EstaRegistradoSoapOut">
+    <wsdl:part name="parameters" element="tns:EstaRegistradoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_perfilSoapIn">
+    <wsdl:part name="parameters" element="tns:Obtener_perfil" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_perfilSoapOut">
+    <wsdl:part name="parameters" element="tns:Obtener_perfilResponse" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_grupoSoapIn">
+    <wsdl:part name="parameters" element="tns:Obtener_grupo" />
+  </wsdl:message>
+  <wsdl:message name="Obtener_grupoSoapOut">
+    <wsdl:part name="parameters" element="tns:Obtener_grupoResponse" />
+  </wsdl:message>
+  <wsdl:message name="personasGrupoSoapIn">
+    <wsdl:part name="parameters" element="tns:personasGrupo" />
+  </wsdl:message>
+  <wsdl:message name="personasGrupoSoapOut">
+    <wsdl:part name="parameters" element="tns:personasGrupoResponse" />
+  </wsdl:message>
+  <wsdl:message name="personasGrupoADSoapIn">
+    <wsdl:part name="parameters" element="tns:personasGrupoAD" />
+  </wsdl:message>
+  <wsdl:message name="personasGrupoADSoapOut">
+    <wsdl:part name="parameters" element="tns:personasGrupoADResponse" />
+  </wsdl:message>
+  <wsdl:message name="Lista_PersonasAD_SAGTSoapIn">
+    <wsdl:part name="parameters" element="tns:Lista_PersonasAD_SAGT" />
+  </wsdl:message>
+  <wsdl:message name="Lista_PersonasAD_SAGTSoapOut">
+    <wsdl:part name="parameters" element="tns:Lista_PersonasAD_SAGTResponse" />
+  </wsdl:message>
+  <wsdl:message name="dameDatosSoapIn">
+    <wsdl:part name="parameters" element="tns:dameDatos" />
+  </wsdl:message>
+  <wsdl:message name="dameDatosSoapOut">
+    <wsdl:part name="parameters" element="tns:dameDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnNameUserMenPasSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnNameUserMenPas" />
+  </wsdl:message>
+  <wsdl:message name="ReturnNameUserMenPasSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnNameUserMenPasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Add_SagtUserSoapIn">
+    <wsdl:part name="parameters" element="tns:Add_SagtUser" />
+  </wsdl:message>
+  <wsdl:message name="Add_SagtUserSoapOut">
+    <wsdl:part name="parameters" element="tns:Add_SagtUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllProyectsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectAllProyects" />
+  </wsdl:message>
+  <wsdl:message name="SelectAllProyectsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectAllProyectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Project" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectSameProyectsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectSameProyects" />
+  </wsdl:message>
+  <wsdl:message name="SelectSameProyectsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectSameProyectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectLikeProyectsSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectLikeProyects" />
+  </wsdl:message>
+  <wsdl:message name="SelectLikeProyectsSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectLikeProyectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectProyectsForUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectProyectsForUsers" />
+  </wsdl:message>
+  <wsdl:message name="SelectProyectsForUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectProyectsForUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnPk_projectSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnPk_project" />
+  </wsdl:message>
+  <wsdl:message name="ReturnPk_projectSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnPk_projectResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProject" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectNameFilesProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectNameFilesProject" />
+  </wsdl:message>
+  <wsdl:message name="SelectNameFilesProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectNameFilesProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectFiles" />
+  </wsdl:message>
+  <wsdl:message name="SelectFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_SagtFileSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_SagtFile" />
+  </wsdl:message>
+  <wsdl:message name="Insert_SagtFileSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_SagtFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_AnalysisFileSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_AnalysisFile" />
+  </wsdl:message>
+  <wsdl:message name="Insert_AnalysisFileSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_AnalysisFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_MultiFacetsObsSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_MultiFacetsObs" />
+  </wsdl:message>
+  <wsdl:message name="Insert_MultiFacetsObsSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_MultiFacetsObsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ListFacetsSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_ListFacets" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ListFacetsSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_ListFacetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ListMeansSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_ListMeans" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ListMeansSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_ListMeansResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_AnalysisSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Analysis" />
+  </wsdl:message>
+  <wsdl:message name="Insert_AnalysisSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_AnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnSagtFileSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnSagtFile" />
+  </wsdl:message>
+  <wsdl:message name="ReturnSagtFileSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnSagtFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_AnalysisFileSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_AnalysisFile" />
+  </wsdl:message>
+  <wsdl:message name="Return_AnalysisFileSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_AnalysisFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_ListSkipLevelsSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_ListSkipLevels" />
+  </wsdl:message>
+  <wsdl:message name="Return_ListSkipLevelsSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_ListSkipLevelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_ObsTableSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_ObsTable" />
+  </wsdl:message>
+  <wsdl:message name="Return_ObsTableSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_ObsTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_TableMeans" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_TableMeansResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansDiffSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_TableMeansDiff" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansDiffSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_TableMeansDiffResponse" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansTypScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:Return_TableMeansTypScore" />
+  </wsdl:message>
+  <wsdl:message name="Return_TableMeansTypScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:Return_TableMeansTypScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeans" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeansResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansDifSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeansDif" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansDifSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeansDifResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansTypScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeansTypScore" />
+  </wsdl:message>
+  <wsdl:message name="Insert_TableMeansTypScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_TableMeansTypScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_G_ParametersListSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_G_ParametersList" />
+  </wsdl:message>
+  <wsdl:message name="Insert_G_ParametersListSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_G_ParametersListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SagtWSoap">
+    <wsdl:operation name="EstaRegistrado">
+      <wsdl:input message="tns:EstaRegistradoSoapIn" />
+      <wsdl:output message="tns:EstaRegistradoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_perfil">
+      <wsdl:input message="tns:Obtener_perfilSoapIn" />
+      <wsdl:output message="tns:Obtener_perfilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_grupo">
+      <wsdl:input message="tns:Obtener_grupoSoapIn" />
+      <wsdl:output message="tns:Obtener_grupoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupo">
+      <wsdl:input message="tns:personasGrupoSoapIn" />
+      <wsdl:output message="tns:personasGrupoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupoAD">
+      <wsdl:input message="tns:personasGrupoADSoapIn" />
+      <wsdl:output message="tns:personasGrupoADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Lista_PersonasAD_SAGT">
+      <wsdl:input message="tns:Lista_PersonasAD_SAGTSoapIn" />
+      <wsdl:output message="tns:Lista_PersonasAD_SAGTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="dameDatos">
+      <wsdl:input message="tns:dameDatosSoapIn" />
+      <wsdl:output message="tns:dameDatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnNameUserMenPas">
+      <wsdl:input message="tns:ReturnNameUserMenPasSoapIn" />
+      <wsdl:output message="tns:ReturnNameUserMenPasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Add_SagtUser">
+      <wsdl:input message="tns:Add_SagtUserSoapIn" />
+      <wsdl:output message="tns:Add_SagtUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllProyects">
+      <wsdl:input message="tns:SelectAllProyectsSoapIn" />
+      <wsdl:output message="tns:SelectAllProyectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Project">
+      <wsdl:input message="tns:Insert_ProjectSoapIn" />
+      <wsdl:output message="tns:Insert_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectSameProyects">
+      <wsdl:input message="tns:SelectSameProyectsSoapIn" />
+      <wsdl:output message="tns:SelectSameProyectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectLikeProyects">
+      <wsdl:input message="tns:SelectLikeProyectsSoapIn" />
+      <wsdl:output message="tns:SelectLikeProyectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectProyectsForUsers">
+      <wsdl:input message="tns:SelectProyectsForUsersSoapIn" />
+      <wsdl:output message="tns:SelectProyectsForUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnPk_project">
+      <wsdl:input message="tns:ReturnPk_projectSoapIn" />
+      <wsdl:output message="tns:ReturnPk_projectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdl:input message="tns:UpdateProjectSoapIn" />
+      <wsdl:output message="tns:UpdateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectNameFilesProject">
+      <wsdl:input message="tns:SelectNameFilesProjectSoapIn" />
+      <wsdl:output message="tns:SelectNameFilesProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectFiles">
+      <wsdl:input message="tns:SelectFilesSoapIn" />
+      <wsdl:output message="tns:SelectFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_SagtFile">
+      <wsdl:input message="tns:Insert_SagtFileSoapIn" />
+      <wsdl:output message="tns:Insert_SagtFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_AnalysisFile">
+      <wsdl:input message="tns:Insert_AnalysisFileSoapIn" />
+      <wsdl:output message="tns:Insert_AnalysisFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_MultiFacetsObs">
+      <wsdl:input message="tns:Insert_MultiFacetsObsSoapIn" />
+      <wsdl:output message="tns:Insert_MultiFacetsObsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListFacets">
+      <wsdl:input message="tns:Insert_ListFacetsSoapIn" />
+      <wsdl:output message="tns:Insert_ListFacetsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListMeans">
+      <wsdl:input message="tns:Insert_ListMeansSoapIn" />
+      <wsdl:output message="tns:Insert_ListMeansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Analysis">
+      <wsdl:input message="tns:Insert_AnalysisSoapIn" />
+      <wsdl:output message="tns:Insert_AnalysisSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnSagtFile">
+      <wsdl:input message="tns:ReturnSagtFileSoapIn" />
+      <wsdl:output message="tns:ReturnSagtFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_AnalysisFile">
+      <wsdl:input message="tns:Return_AnalysisFileSoapIn" />
+      <wsdl:output message="tns:Return_AnalysisFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_ListSkipLevels">
+      <wsdl:input message="tns:Return_ListSkipLevelsSoapIn" />
+      <wsdl:output message="tns:Return_ListSkipLevelsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_ObsTable">
+      <wsdl:input message="tns:Return_ObsTableSoapIn" />
+      <wsdl:output message="tns:Return_ObsTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeans">
+      <wsdl:input message="tns:Return_TableMeansSoapIn" />
+      <wsdl:output message="tns:Return_TableMeansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansDiff">
+      <wsdl:input message="tns:Return_TableMeansDiffSoapIn" />
+      <wsdl:output message="tns:Return_TableMeansDiffSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansTypScore">
+      <wsdl:input message="tns:Return_TableMeansTypScoreSoapIn" />
+      <wsdl:output message="tns:Return_TableMeansTypScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeans">
+      <wsdl:input message="tns:Insert_TableMeansSoapIn" />
+      <wsdl:output message="tns:Insert_TableMeansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansDif">
+      <wsdl:input message="tns:Insert_TableMeansDifSoapIn" />
+      <wsdl:output message="tns:Insert_TableMeansDifSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansTypScore">
+      <wsdl:input message="tns:Insert_TableMeansTypScoreSoapIn" />
+      <wsdl:output message="tns:Insert_TableMeansTypScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_G_ParametersList">
+      <wsdl:input message="tns:Insert_G_ParametersListSoapIn" />
+      <wsdl:output message="tns:Insert_G_ParametersListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SagtWSoap" type="tns:SagtWSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EstaRegistrado">
+      <soap:operation soapAction="http://tempuri.org/EstaRegistrado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_perfil">
+      <soap:operation soapAction="http://tempuri.org/Obtener_perfil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_grupo">
+      <soap:operation soapAction="http://tempuri.org/Obtener_grupo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupo">
+      <soap:operation soapAction="http://tempuri.org/personasGrupo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupoAD">
+      <soap:operation soapAction="http://tempuri.org/personasGrupoAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_PersonasAD_SAGT">
+      <soap:operation soapAction="http://tempuri.org/Lista_PersonasAD_SAGT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dameDatos">
+      <soap:operation soapAction="http://tempuri.org/dameDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnNameUserMenPas">
+      <soap:operation soapAction="http://tempuri.org/ReturnNameUserMenPas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_SagtUser">
+      <soap:operation soapAction="http://tempuri.org/Add_SagtUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllProyects">
+      <soap:operation soapAction="http://tempuri.org/SelectAllProyects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Project">
+      <soap:operation soapAction="http://tempuri.org/Insert_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSameProyects">
+      <soap:operation soapAction="http://tempuri.org/SelectSameProyects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectLikeProyects">
+      <soap:operation soapAction="http://tempuri.org/SelectLikeProyects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectProyectsForUsers">
+      <soap:operation soapAction="http://tempuri.org/SelectProyectsForUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnPk_project">
+      <soap:operation soapAction="http://tempuri.org/ReturnPk_project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap:operation soapAction="http://tempuri.org/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectNameFilesProject">
+      <soap:operation soapAction="http://tempuri.org/SelectNameFilesProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectFiles">
+      <soap:operation soapAction="http://tempuri.org/SelectFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_SagtFile">
+      <soap:operation soapAction="http://tempuri.org/Insert_SagtFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_AnalysisFile">
+      <soap:operation soapAction="http://tempuri.org/Insert_AnalysisFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_MultiFacetsObs">
+      <soap:operation soapAction="http://tempuri.org/Insert_MultiFacetsObs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListFacets">
+      <soap:operation soapAction="http://tempuri.org/Insert_ListFacets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListMeans">
+      <soap:operation soapAction="http://tempuri.org/Insert_ListMeans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Analysis">
+      <soap:operation soapAction="http://tempuri.org/Insert_Analysis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnSagtFile">
+      <soap:operation soapAction="http://tempuri.org/ReturnSagtFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_AnalysisFile">
+      <soap:operation soapAction="http://tempuri.org/Return_AnalysisFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_ListSkipLevels">
+      <soap:operation soapAction="http://tempuri.org/Return_ListSkipLevels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_ObsTable">
+      <soap:operation soapAction="http://tempuri.org/Return_ObsTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeans">
+      <soap:operation soapAction="http://tempuri.org/Return_TableMeans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansDiff">
+      <soap:operation soapAction="http://tempuri.org/Return_TableMeansDiff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansTypScore">
+      <soap:operation soapAction="http://tempuri.org/Return_TableMeansTypScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeans">
+      <soap:operation soapAction="http://tempuri.org/Insert_TableMeans" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansDif">
+      <soap:operation soapAction="http://tempuri.org/Insert_TableMeansDif" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansTypScore">
+      <soap:operation soapAction="http://tempuri.org/Insert_TableMeansTypScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_G_ParametersList">
+      <soap:operation soapAction="http://tempuri.org/Insert_G_ParametersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SagtWSoap12" type="tns:SagtWSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EstaRegistrado">
+      <soap12:operation soapAction="http://tempuri.org/EstaRegistrado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_perfil">
+      <soap12:operation soapAction="http://tempuri.org/Obtener_perfil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Obtener_grupo">
+      <soap12:operation soapAction="http://tempuri.org/Obtener_grupo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupo">
+      <soap12:operation soapAction="http://tempuri.org/personasGrupo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="personasGrupoAD">
+      <soap12:operation soapAction="http://tempuri.org/personasGrupoAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Lista_PersonasAD_SAGT">
+      <soap12:operation soapAction="http://tempuri.org/Lista_PersonasAD_SAGT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dameDatos">
+      <soap12:operation soapAction="http://tempuri.org/dameDatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnNameUserMenPas">
+      <soap12:operation soapAction="http://tempuri.org/ReturnNameUserMenPas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_SagtUser">
+      <soap12:operation soapAction="http://tempuri.org/Add_SagtUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectAllProyects">
+      <soap12:operation soapAction="http://tempuri.org/SelectAllProyects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Project">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectSameProyects">
+      <soap12:operation soapAction="http://tempuri.org/SelectSameProyects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectLikeProyects">
+      <soap12:operation soapAction="http://tempuri.org/SelectLikeProyects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectProyectsForUsers">
+      <soap12:operation soapAction="http://tempuri.org/SelectProyectsForUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnPk_project">
+      <soap12:operation soapAction="http://tempuri.org/ReturnPk_project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap12:operation soapAction="http://tempuri.org/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectNameFilesProject">
+      <soap12:operation soapAction="http://tempuri.org/SelectNameFilesProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectFiles">
+      <soap12:operation soapAction="http://tempuri.org/SelectFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_SagtFile">
+      <soap12:operation soapAction="http://tempuri.org/Insert_SagtFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_AnalysisFile">
+      <soap12:operation soapAction="http://tempuri.org/Insert_AnalysisFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_MultiFacetsObs">
+      <soap12:operation soapAction="http://tempuri.org/Insert_MultiFacetsObs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListFacets">
+      <soap12:operation soapAction="http://tempuri.org/Insert_ListFacets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_ListMeans">
+      <soap12:operation soapAction="http://tempuri.org/Insert_ListMeans" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Analysis">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Analysis" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnSagtFile">
+      <soap12:operation soapAction="http://tempuri.org/ReturnSagtFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_AnalysisFile">
+      <soap12:operation soapAction="http://tempuri.org/Return_AnalysisFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_ListSkipLevels">
+      <soap12:operation soapAction="http://tempuri.org/Return_ListSkipLevels" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_ObsTable">
+      <soap12:operation soapAction="http://tempuri.org/Return_ObsTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeans">
+      <soap12:operation soapAction="http://tempuri.org/Return_TableMeans" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansDiff">
+      <soap12:operation soapAction="http://tempuri.org/Return_TableMeansDiff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return_TableMeansTypScore">
+      <soap12:operation soapAction="http://tempuri.org/Return_TableMeansTypScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeans">
+      <soap12:operation soapAction="http://tempuri.org/Insert_TableMeans" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansDif">
+      <soap12:operation soapAction="http://tempuri.org/Insert_TableMeansDif" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_TableMeansTypScore">
+      <soap12:operation soapAction="http://tempuri.org/Insert_TableMeansTypScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_G_ParametersList">
+      <soap12:operation soapAction="http://tempuri.org/Insert_G_ParametersList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SagtW">
+    <wsdl:port name="SagtWSoap" binding="tns:SagtWSoap">
+      <soap:address location="http://svf.espaciowww.net/SagtW.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SagtWSoap12" binding="tns:SagtWSoap12">
+      <soap12:address location="http://svf.espaciowww.net/SagtW.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

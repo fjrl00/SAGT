@@ -1,0 +1,41 @@
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ResolveAssemblyReference.cache
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.dll
+E:\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeansEduG.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\MultiFacetData.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMeans.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectSSQ.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\bin\Debug\ProjectMathCalcGT.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ImportEduG.csproj.AssemblyReference.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ImportEduG.csproj.CoreCompileInputs.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ImportEduG.csproj.CopyComplete
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\obj\Debug\ProjectMeansEduG.pdb

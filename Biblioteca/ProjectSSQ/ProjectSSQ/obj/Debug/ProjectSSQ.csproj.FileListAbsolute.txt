@@ -1,0 +1,224 @@
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.dll
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.pdb
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ResolveAssemblyReference.cache
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+E:\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectSSQ.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\MultiFacetData.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMathCalcGT.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\bin\Debug\ProjectMeans.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.csproj.AssemblyReference.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.csproj.CoreCompileInputs.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.csproj.CopyComplete
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ProjectSSQ\ProjectSSQ\obj\Debug\ProjectSSQ.pdb

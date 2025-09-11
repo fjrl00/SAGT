@@ -1,0 +1,210 @@
+NOTA:  Recuerde que para instalar correctamente la aplicación debe hacerlo desde Setup.exe.
+
+Versión 1.0.209.0.1 Alpha   Fecha: 17:08 12/07/2012
+=======================================================
+- Se ha añadido el botón de "Editar descripción" en la opción "Suma de cuadrados".
+- Se ha ampliado el manual (apartado 7.4).
+- Se ha corregido un bug que se producía al editar las facetas desde la opción de Análisis. El error devolvía una NullReferenceException al ejecutar el Método btActionAcept_Click(). Este se producía cuando existían varios parámetros de optimización, al actualizar los valores provocaba una NullRefenceException que se originaba en el método ReplaceListOfFacet(ListFacets newLf) de la clase Analysis_and_G_Study.
+- Se ha corregido el siguiente bug: al editar facetas se borraban los comentarios de las pestaña de información.
+
+
+
+Versión 1.0.208.0.0 Pre-Alpha   Fecha: 17:51 11/07/2012
+=======================================================
+- Se ha detectado que si al editar las facetas se repite el nombre de esta se lanza una excepción no controlada de tipo ListFacetsException. Se ha solucionado capturándola y mostrando un mensaje de que el nombre de la faceta esta duplicado.
+- Se ha detectado que cuando se edita las facetas de la tabla de frecuencias se permite tener facetas con el nombre duplicado. Debe mostrar un mensaje de error. 
+- Se ha detectado que al comprobar si una faceta esta en la lista la comparación no tiene en cuenta si se trata de mayúsculas o minúsculas. Con lo cual era posible tener una faceta “p” y otra “P” en la misma tabla de frecuencias.  Se ha corregido teniendo en cuenta el nombre de la faceta con independencia de cómo se escriba.
+
+
+Versión 1.0.206.0.0 Pre-Alpha   Fecha: 13:51 10/07/2012
+=======================================================
+- Se ha corregido un bug que se producía al ejecutarse el método ReadColumnOmit y no existir una tabla de frecuencias lo que provocaba una NullReferenceException. Se ha corregido comprobando si existe la tabla de frecuencias.
+- Se ha corregido un error al leer el formato de las fechas en la base de datos.
+- Se ha detectado que se produce errores al leer la fecha cuando la hora solo se compone de un digito.
+Por ejemplo: 
+string sDateTime = "10/07/2012 09:50:15";
+DateTime dateFile = DateTime.ParseExact(sDateTime, "dd/MM/yyyy HH:mm:ss", new CultureInfo("es-ES", true));
+Esto provoca una FormatExceptions. Se ha corregido de la siguiente manera:
+string[] timeFormats = {"d/MM/yyyy HH:mm:ss", "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy H:mm:ss"};
+DateTime dateFile2 = DateTime.ParseExact(sDateTime, timeFormats,
+                                   new CultureInfo("es-ES", true), DateTimeStyles.AssumeLocal);
+- Se produce una InvalidCastException al tratar de convertir un null en string esto es devido a que el campo comentario de un fichero de medias esta a null. Se ha corregido comprovando que es distinto de null antes de realizar el casting.
+- Se ha comprobado que al ejecutar la aplicación en una máquina con Windows XP en inglés la ventana de configuración de gráficos no muestra los textos correctamente ya que se solapan etiquetas y cuadros de textos.
+En consecuencia se ha decidido poner las etiquetas sobre los cuadros en lugar de al lado de estas.
+- Cuando se pulsa analizar una suma de cuadrados y luego se selecciona editar facetas se produce una excepción no controlada de tipo Analysis_and_G_StudyException. Esta se produce porque la clase Analysis_and_G_Study.cs no encuentra el nombre del fichero de procediencia.
+
+
+SAGT Versión 1.0 build 205.0.1 Pre-Alpha
+========================================
+
+- Se le ha añadido la función de modificar el diseñon en la sección de análisis.
+
+- Se ha añadido la pestaña "Datos" en la ventana de representación gráfica del coeficiente G en la que se puede ver con más detalle los valores de los puntos calculados.
+- Se ha actulizado el manual (opción 7.5 Gráfico y 8.6 Cambiar modelo) .pdf y .chm
+- Se ha corregido el siguiente Bugs:
+ 	- Cuando se deja un campo vacio al introducir un nuevo nivel de optimización se produce una NullReferenceExceptions. Por tanto debe controlarse que no halla campos vacios.
+	- Cuando se cancela la operación de introducir un nuevo nivel de optimización se produce una NullReferenceExceptions
+	- Se ha corregido un bug que se producía al importar un fichero .xls y luego almacenarlo en el servicio Web. Se producía una InvalidCastException en el servicio Web debido a que el campo fichero de procedencia estaba a null. Esto era debido a que en la aplicación de escritorio al importar el fichero el campo no se asigna en la variable correspondiente.
+
+
+SAGT Versión 1.0 build 203.0.2 Pre-Alpha
+========================================
+- Se han corregido los siguientes bugs:
+
+	- Se produce una InvalidCastException en el método DataSet2TableG_Study de la clase TableG_Study_Percent (método DataSet2TableG_Study que devuelve un TableG_Study_Percent)  Esto se producía al intentar convertir en double un campo vacío de un dataRow, se a corregido comprobando si esta vacío antes de realizar la conversión.
+	- Se produce una InvalidOperationException con los gráficos cuando hay una valor que no es un número (NeuN). Se ha corregido sustituyéndolo por cero.
+	- Se ha corregido un error al representar los valores en las gráficas debido a que no se actualizaban correctamente los valores de los niveles en cada una de las iteraciones.
+	- Se produce una NullReferenceException al insertar un proyecto en el servidor lo que a su vez provoca una System.Web.Services.Protocols.SoapException. El error es producido porque en la llamada al servidor se le pasa un parámetro incorrecto. Se le pasaba un dataSet con los proyectos con el mismo nombre (este dataSet se crea para comprobar si existe un proyecto con el mismo nombre) en lugar de un dataset con el proyecto que se quiere insertar.
+	- Se ha corregido un error con el paso de parámetros nulos al ejecutar en el servidor el método Insert_SagtFile.
+	- Se ha encontrado un error con los números decimales de la tabla de frecuencias. El tipo double al pasarlo a string usa la coma decimal pero para poder ser introducido en la base de datos tiene que usar el punto decimal, porque sino interpretaría que son dos datos separados por una coma en lugar de un número decimal.
+
+
+SAGT Versión 1.0 build 202.0.2 Pre-Alpha
+========================================
+- Se ha añadido la posibilidad de especificar el espacio de trabajo. Herramientas --> Configuración--> Pestaña conexión --> Botón Seleccionar espacio de trabajo.
+- Se han corregido algunos Bugs:
+	- Error al realizar una consulta sobre proyectos en la base de datos: la tabla devuelta siempre se llamaba "Table". Ahora antes de devolver la tabla se corrige introduciendo el nombre correcto.
+	- Al crear un proyecto los campos director y fecha no deben ser accesibles.
+	- Se ha corregido un error relaccionado con la lectura de números decimales. El error se producía al leer un fichero creado con la versión en español de windows y leido luego con la versión en inglés. En castellano se emplea la coma decimal mientras que en inglés se usa el punto decimal. Se ha corregido mediante una conversión del
+string.
+	- Se ha corregido un fallo que se producía al escribir la fecha en una máquina con sitema operativo en inglés. En ingles la fecha se escribe primero el mes y luego el día. Con lo cual si luego se intentaba leer un fichero en otra maquina con otra referencia cultural se producía un error en el formato de la fecha. Se ha corregido forzando a que se lean y escriban los archivos  en una sola referencia cultural (Se ha empleado la española). El como se escriban los datos en el acrhivo es independiente de como se mostrarán en pantalla. Será siempre en la referencia cultural del frameWork instalado.
+	- Se ha detectado que se puede editar un proyecto poniéndole el nombre de otro proyecto existente, con lo cual tendíamos dos proyectos con el mismo nombre. Esto se impide comprobando que no existen duplicidades antes de guardar los cambios. En caso contrario no se permite guardarlos.
+
+	- Se ha corregido el color del menú proyectos.
+
+
+SAGT Versión 1.0 build 202 Pre-Alpha
+====================================
+- Ya se puede alacenar recuperar datos en el servicio web en periodo de pruebas. La información que allí se guarde será eliminada antes de finalizar el proyecto. Para poder acceder a este servicio es necesario estar registrado en el servicio web Menpas y diponer del perfil administrador restringido o superior.
+- Se incluye un directorio por defecto para abrir y salvar documentos: "\Mis Documentos\SAGT\Workspace".
+- Se ha incluido opciones para abrir y guardar archivos en un servicio web.
+- Se han corregido algunos errores al realizar consultas en las tablas con el formato de las fechas.
+- Se ha actualizado el manual:
+	- Proyectos y todos sus subapartados
+	- Abrir archivo de datos
+	- Guardar tabla de frecuencias
+	- Abrir archivo de medias
+	- Guardar archivo de medias
+	- Abrir suma de cuadrados
+	- Guardar suma de cuadrados
+	- Abrir archivo de análisis
+	- Guardar archivo de análisis
+- Se han corregido los siguientes Bugs:
+	- Se han corregido algunos errores al realizar consultas en las tablas con el formato de las fechas.
+	- Error al guardar un fichero .sagt cuando se cerraba previamente la tabla de frecuencias.
+	- Si no se establece conexión se captura una excepcines de tipo EndpointNotFoundException y InvalidOperationException.
+
+
+SAGT Versión 0.196
+==================
+- Se ha añadido la asociación de archivos .sagt y .anls a la aplicación.
+- Se ha incluido en el manual
+	Bienvenido
+	Requisitos de sistema
+	Instalación de SAGT
+	Desinstalación de SAGT
+	Créditos
+- Se ha actualizado la versión html del manual de la aplicación.
+- Se ha añadido la posibilidad de recordar el nombre de usuario y la contraseña. Esto se hace mediante un archivo encriptado (user.pas) que se almacena junto al archivo de configuración en la carpeta \Mis documentos\SAGT\.
+- Se han corregido los siguientes bugs:
+	- Cuando se importaba un informe de medias .rft de EduG no aparecían las fechas en la ventana de selección de informes.
+	- Se ha corregido un error por el cual al acceder a la ventana de ayuda desde configuración esta ventana quedaba en segundo plano y no era accesible. Ahora es accesible y se abré por el Topic "Configuración".
+	- Al editar facetas se inhabilitaba el menú vertical de Datos en lugar de hacerlo el de Análisis.
+
+
+SAGT Versión 0.195
+==================
+- Se ha incluido la opción para editar facetas y poder modificar su nombre o su comentario. No se puede modificar ni el nivel ni el universo ya que esto afecta a la estimación de nuevos niveles ya calculados.
+- La exportación de cuadrados puede hacerse ahora de manera compatible con EduG 6.0 empleando ficheros .edug.
+- Se ha añadido la importación de los datos de una suma de cuadrados de ficheros exportados por EduG 6.0
+- Se ha añadido la posibilidad de seleccionar el tipo de representación gráfica para representar el Coeficiente G.
+		Tipo de punto,
+		Representación mediante esplín o lineal.
+		Posición de etiqueta de datos.
+- Cambios en el manual:
+		Gráficos
+		Nueva suma de cuadrados
+		Editar cuadrados
+		Exportar cuadrados
+		Pestaña Gráficos
+
+
+
+SAGT Versión 0.193
+==================
+- Incluido una versión del manual en formato PDF.
+- Se ha implementado la edición de suma de cuadrados.
+
+
+SAGT Versión 0.191
+==================
+- Se ha incluido la importación de informes de medias con EduG 6.0.
+- Se ha incluido la importación de informes de análisis de sumas de cuadrados con EduG 6.0.
+- Se ha incluido la importación de ficheros .csv exportados desde el programa de José Antonio López López.
+
+
+SAGT Versión 0.190
+==================
+- Ahora es posible importar los archivos excel previamente exportados desde la aplicación.
+- Se ha revisado la importación de los .ssq, .rsm y .rsa de GT 2.0
+- Es posible elegir el color con el que se representaran los gráficos. Para mostrar la ventana de selección de color basta con hacer doble clic sobre el color.
+
+
+SAGT Versión 0.186
+==================
+- Se emiten informes en formato Word y PDF.
+
+SAGT Versión 0.183
+==================
+- Se ha añadido una columna que permite omitir facetas (opción Datos).
+- Se ha añadido una opción para omitir niveles (menú vertical de la opción datos, botón "Omitir niveles").
+- La omisión tanto de nivel como de faceta se aplican a las tablas de medias y de análisis de varianza.
+- Desde la opción de configuración es posible seleccionar si se interpretaran los valores nulos como ceros o si estos simplemente se excluirán.
+- Se ha añadido una opción para imprimir informes (todavía con algunos errores). Pero desde vista previa podemos tener una visión general de como quedará el informe.
+
+
+SAGT Versión 0.177
+==================
+- Se ha corregido los errores de calculo de la componente de varianza aleatoria en diseños mixtos.
+- Los datos de Tablas de: Frecuencias, Medias y Sumas de cuadrados se almacenan en un mismo fichero con extensión .sagt. Los datos de analisis se guardan en un fichero con extensión .anls.
+- Ahora se pueden almacenar los datos de las frecuencias de un fichero .dat o pueden ser almacenados en uno. Estos ficheros pueden ser importado o exportados a EduG.
+- Idem con el vector de suma de cuadrados.
+
+
+SAGT Versión 0.173
+==================
+- Al seleccionar nuevo desde el menú horizontal de Datos tendremos la opción de elegir entre: Cruzado, Anidado y Mixto. El anidamiento anidado es automático por lo que solo tendremos que introducir el nombre de las facetas y estas se anidarán automáticamente al crear la "tabla de frecuencias observadas" o "tabla de observaciones". En el caso de que elijamos la opción Mixto dispondremos de dos botones uno para realizar anidamientos y otro para eliminarlos. Los anidamientos se realizan uno a uno.
+
+
+SAGT Versión 0.168
+==================
+- Esta versión debería poder desinstalar automaticamente la versión anterior, 0.167. Al menos a mi me ha funcionado.
+- Se han ajustado las columnas de medias, se ha acoratado los nombres de las cabeceras de estas columnas.
+- Se ha aumentado el tamaño de la ventana "Niveles de optimización". Se ha cambiado el color de las columnas editables.
+
+
+SAGT Versión 0.166.0.0
+======================
+- Se ha habilitado en configuración la posibilidad de elegir el tipo de tablas de medias que queremos generar. Tenemos tres opciones:
+	- Por defecto (media, moda y varianza).
+	- Diferencia (además de las columnas originales, diferencia de medias, diferencia de varianzas y de desviación típica)
+	- Puntuación típica (las columnas originales más diferencia de medias y puntuación típica).
+
+Los cálculos no son retroactivos, por lo que deberemos calcular de nuevo la media si queremos que muestre las nuevas columnas.
+
+
+SAGT Versión 0.165.0.5
+======================
+- Ahora en la opción Datos se puede editar las componentes de una faceta (Nombre,  
+Tamaño del universo y Descripción).
+
+NOTA: Se ha creado un nuevo instalador desde cero. Aun no desístala la versión anterior, pero con este, el tener una versión previa no debería ser un impedimento para instalar la nueva.
+
+
+SAGT Versión 0.165.0.1
+======================
+- Se ha cambiado el tipo de lectra de las tablas para que se pueda distinguir el uso del separador decimal, ya sea punto o coma.
+- Se ha añadido la Gran Media, la varianza y la desviación típica en el resultado de las tablas de medias.
+- Se ha añadido una pestaña de información en la que incluir y editar comentarios a las medias.
+- Se pueden Guardar y cargar archivos con las tablas de medias.
+

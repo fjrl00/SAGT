@@ -1,0 +1,128 @@
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.dll
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\ResolveAssemblyReference.cache
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+E:\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\MultiFacetData.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\bin\Debug\ProjectMathCalcGT.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.csproj.AssemblyReference.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.csproj.CoreCompileInputs.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.csproj.CopyComplete
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\MultiFacetData\MultiFacetData\obj\Debug\MultiFacetData.pdb

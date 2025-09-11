@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E628CA3-5C71-4E55-866D-785607FA4343}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GUI_GT</RootNamespace>
+    <AssemblyName>GUI_TG</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>sagt_0.005_solo logo_gimp.ico</ApplicationIcon>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio 9.0\Visual Studio Tools for Office\PIA\Office12\adodb.dll</HintPath>
+    </Reference>
+    <Reference Include="ConnectLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Biblioteca\ProjectConnect\ConnectLibrary\bin\Debug\ConnectLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DataGridViewEx, Version=1.0.0.18025, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Biblioteca\DataGridViewEx\DataGridViewEx.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.1.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Material extra\itextsharp\Tutorial\itextsharp-all-5.1.3\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalysisOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNameFileAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNameFileAnalysis.Designer.cs">
+      <DependentUpon>FormNameFileAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectionOneItemReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectionOneItemReport.Designer.cs">
+      <DependentUpon>FormSelectionOneItemReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectFromDataTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectFromDataTable.Designer.cs">
+      <DependentUpon>FormSelectFromDataTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExcel.cs" />
+    <Compile Include="PdfDocumentReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pdfPage.cs" />
+    <Compile Include="RGBHSL.cs" />
+    <Compile Include="Web References\MenPasWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WordDocumentReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOmitLevelFacet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOmitLevelFacet.Designer.cs">
+      <DependentUpon>FormOmitLevelFacet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectReports.Designer.cs">
+      <DependentUpon>FormSelectReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintAnalysisDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintSagtDocuments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridViewPrinter.cs" />
+    <Compile Include="FormSelectSaves.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectSaves.Designer.cs">
+      <DependentUpon>FormSelectSaves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectsOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CWait.cs" />
+    <Compile Include="ErrorMessages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportExcel.cs" />
+    <Compile Include="FormAddNesting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNesting.Designer.cs">
+      <DependentUpon>FormAddNesting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddSignificanceLevels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSignificanceLevels.Designer.cs">
+      <DependentUpon>FormAddSignificanceLevels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssignNumOfFacets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssignNumOfFacets.Designer.cs">
+      <DependentUpon>FormAssignNumOfFacets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditFileComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditFileComment.Designer.cs">
+      <DependentUpon>FormEditFileComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOptionsForChart_Two.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptionsForChart_Two.Designer.cs">
+      <DependentUpon>FormOptionsForChart_Two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPass.Designer.cs">
+      <DependentUpon>FormPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRemoveNesting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRemoveNesting.Designer.cs">
+      <DependentUpon>FormRemoveNesting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormShowCharts2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShowCharts2.Designer.cs">
+      <DependentUpon>FormShowCharts2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDataImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataImport.Designer.cs">
+      <DependentUpon>FormDataImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMeasurDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMeasurDesign.Designer.cs">
+      <DependentUpon>FormMeasurDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormShowCharts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShowCharts.Designer.cs">
+      <DependentUpon>FormShowCharts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSplashScreen.Designer.cs">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSSQImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSSQImport.Designer.cs">
+      <DependentUpon>FormSSQImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWaiting.Designer.cs">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBoxUtil.cs" />
+    <Compile Include="SSQOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAboutOf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAboutOf.Designer.cs">
+      <DependentUpon>FormAboutOf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMeansImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMeansImport.Designer.cs">
+      <DependentUpon>FormMeansImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListFacets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListFacets.Designer.cs">
+      <DependentUpon>FormListFacets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeansOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAboutOf.resx">
+      <DependentUpon>FormAboutOf.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddNesting.resx">
+      <DependentUpon>FormAddNesting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddSignificanceLevels.resx">
+      <DependentUpon>FormAddSignificanceLevels.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssignNumOfFacets.resx">
+      <DependentUpon>FormAssignNumOfFacets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditFileComment.resx">
+      <DependentUpon>FormEditFileComment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNameFileAnalysis.resx">
+      <DependentUpon>FormNameFileAnalysis.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOmitLevelFacet.resx">
+      <DependentUpon>FormOmitLevelFacet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptionsForChart_Two.resx">
+      <DependentUpon>FormOptionsForChart_Two.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPass.resx">
+      <DependentUpon>FormPass.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRemoveNesting.resx">
+      <DependentUpon>FormRemoveNesting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectionOneItemReport.resx">
+      <DependentUpon>FormSelectionOneItemReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectFromDataTable.resx">
+      <DependentUpon>FormSelectFromDataTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectReports.resx">
+      <DependentUpon>FormSelectReports.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectSaves.resx">
+      <DependentUpon>FormSelectSaves.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShowCharts2.resx">
+      <DependentUpon>FormShowCharts2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataImport.resx">
+      <DependentUpon>FormDataImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMeansImport.resx">
+      <DependentUpon>FormMeansImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListFacets.resx">
+      <DependentUpon>FormListFacets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMeasurDesign.resx">
+      <DependentUpon>FormMeasurDesign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormShowCharts.resx">
+      <DependentUpon>FormShowCharts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSplashScreen.resx">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSSQImport.resx">
+      <DependentUpon>FormSSQImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWaiting.resx">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TabPageMeansEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <None Include="Web References\MenPasWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MenPasWS\SagtFileW.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MenPasWS\SagtW.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\es.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trans_teaser2_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HelpIcon_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X_media_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icono sumatori_x2_v2.5_h48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Connect_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users_gest_v3.1_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\projects_gest_v2.5_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\projects_folder_v1_h48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datos_v1_h48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dossiers lecteurs CD.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Biblioteca\ConfigCFG\ConfigCFG\ConfigCFG.csproj">
+      <Project>{8C4E1D74-BA63-4952-BECA-A0196466556C}</Project>
+      <Name>ConfigCFG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\MultiFacetData\MultiFacetData\MultiFacetData.csproj">
+      <Project>{8C6489E8-6857-4471-8E4B-512D3FA545E5}</Project>
+      <Name>MultiFacetData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectMathCalcGT\ProjectMathCalcGT\AuxMathCalcGT.csproj">
+      <Project>{B39DD8FB-BDF0-4301-8049-0E5919BED85D}</Project>
+      <Name>AuxMathCalcGT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectMeansEduG\ProjectMeansEduG\ImportEduG.csproj">
+      <Project>{B05E5BE7-CA09-4125-A092-A59112850B24}</Project>
+      <Name>ImportEduG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectMeansPY\ProjectMeansPY\ImportPY.csproj">
+      <Project>{20186204-8F2A-4227-8B75-A2F68A375329}</Project>
+      <Name>ImportPY</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectMeans\ProjectMeans\ProjectMeans.csproj">
+      <Project>{355660B0-86ED-4846-BFBB-0DCA87391E5A}</Project>
+      <Name>ProjectMeans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectSSQ\ProjectSSQ\ProjectSSQ.csproj">
+      <Project>{53408ABF-B487-4934-B555-79B98CFB916A}</Project>
+      <Name>ProjectSSQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\Sagt\Sagt\Sagt.csproj">
+      <Project>{A286D159-0F30-45B7-AE47-BFBAEFFBE3C5}</Project>
+      <Name>Sagt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\TransLibrary\TransLibrary\TransLibrary.csproj">
+      <Project>{B01A400A-72DB-4A94-81B2-FEE2CAEC3DC0}</Project>
+      <Name>TransLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AQUA ICONS FILE GENERIC DOCUMENT 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Disquette_v2_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CMS-Indemnity-OD-B-calc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_help_h128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Resources\Barra de about of.png" />
+    <None Include="Resources\Editar_datos_v1_h32.png" />
+    <None Include="Resources\File_close_bt_tumbado_h32.png" />
+    <None Include="Resources\file_x_means_h32.png" />
+    <None Include="Resources\file_x_means_h321.png" />
+    <None Include="Resources\genenerateSSQ_h32.png" />
+    <None Include="Resources\doc_new_h32.png" />
+    <None Include="Resources\File_close_bt_h32.png" />
+    <None Include="Resources\importat_h32.png" />
+    <None Include="Resources\Restart left h32.png" />
+    <None Include="Resources\Restart right h32.png" />
+    <None Include="Resources\x_h32x32.png" />
+    <None Include="Resources\Bar Graph_h32x32.png" />
+    <None Include="Resources\Fondo.jpg" />
+    <None Include="Resources\Clipper System_1 Floppy Disk.png" />
+    <None Include="Resources\Floppy Disk h22x22.png" />
+    <None Include="Resources\button_cancel.ico" />
+    <None Include="Resources\button_cancel h22x22.png" />
+    <None Include="Resources\datos_v1_new h22x22.png" />
+    <None Include="Resources\loading36.gif" />
+    <None Include="Resources\splashScreen3.png" />
+    <None Include="Resources\Excel Document.png" />
+    <None Include="Resources\Excel Document h32.png" />
+    <None Include="Resources\image_16 %282%29.png" />
+    <None Include="Resources\_graph.svg.med_16h.png" />
+    <None Include="Resources\graph.svg_bar.med.png" />
+    <None Include="Resources\graph.svg_bar.med_32h.png" />
+    <None Include="Resources\file_x_means_info_h32.png" />
+    <None Include="Resources\edit h22.png" />
+    <None Include="Resources\Datos_Facets_Pencil_h32.png" />
+    <None Include="Resources\button_ok_h22x22.png" />
+    <None Include="Resources\Sin nombre2.png" />
+    <None Include="Resources\eliminar anidamiento.png" />
+    <None Include="Resources\Recycle_Bin_h22x22.png" />
+    <None Include="Resources\Disconnect_h48.png" />
+    <None Include="Resources\User Card_h40.png" />
+    <None Include="Resources\icon-password_40.png" />
+    <None Include="Resources\add user h40.png" />
+    <None Include="Resources\edit user h40.png" />
+    <None Include="Resources\edit user2 h40.png" />
+    <None Include="Resources\delete_user_h40.png" />
+    <None Include="Resources\user_female_search_h40.png" />
+    <None Include="Resources\AVX_ICONS FOLDER 2_h40.png" />
+    <None Include="Resources\AVX_ICONS APPS FOLDER_h401.png" />
+    <None Include="Resources\AVX_ICONS FOLDER BLUE_h40.png" />
+    <None Include="Resources\AVX_ICONS USERS FOLDER_h40.png" />
+    <None Include="Resources\AVX_ICONS FOLDER ORANGE_h40.png" />
+    <None Include="Resources\circle_green &amp; blue h48.png" />
+    <None Include="Resources\circle_blue h24.png" />
+    <None Include="Resources\circle_green_cross_blue_v2.png" />
+    <None Include="Resources\circle_green_h24.png" />
+    <None Include="Resources\AQUA ICONS FILE GENERIC DOCUMENT 1_dat_h32.png" />
+    <None Include="Resources\importat__data_h20.png" />
+    <None Include="Resources\barra de guardado.png" />
+    <None Include="Resources\SYSTEM PRINTERS_h32.png" />
+    <None Include="Resources\vista preliminar h32.png" />
+    <None Include="Resources\check mark h32.png" />
+    <None Include="Resources\circle_green_cross_blue_v2_h34.png" />
+    <None Include="Resources\circle_green_nested_h34.png" />
+    <None Include="Resources\circle_mixed_v3_h34.png" />
+    <None Include="Resources\circle_mixed_b&amp;n_v3_h34.png" />
+    <None Include="Resources\circle_green_nested_bn_h34.png" />
+    <None Include="Resources\circle_green_cross_blue_bn_v2_h34.png" />
+    <None Include="Resources\word8_h32.png" />
+    <None Include="Resources\Adobe_v2_h32.png" />
+    <None Include="Resources\barra de impresión2.png" />
+    <None Include="Resources\projects_gest_v2.5_32.png" />
+    <None Include="Resources\barra para importar normal.png" />
+    <None Include="Resources\barra para importar obs.png" />
+    <None Include="Resources\barra para importar rsm.png" />
+    <None Include="Resources\barra para importar rsm1.png" />
+    <None Include="Resources\barra para importar ficheros edug.png" />
+    <None Include="Resources\barra para importar ssq.png" />
+    <None Include="Resources\barra para importar rsa.png" />
+    <None Include="Resources\barra para importar excel.png" />
+    <None Include="Resources\HelpIcon_22x22.png" />
+    <None Include="Resources\Configuration Settings 22x22.png" />
+    <None Include="Resources\document and charts 22x22.png" />
+    <None Include="Resources\barra para importar csv.png" />
+    <None Include="Resources\Folder net h128.png" />
+    <None Include="Resources\open folder.png" />
+    <None Include="Resources\open folder_h22.png" />
+    <None Include="Resources\Cambiar Diseño h32.png" />
+    <None Include="Resources\File TextDocument edition h32.png" />
+    <None Include="Resources\File TextDocument edition 2 h32.png" />
+    <Content Include="sagt_0.005_solo logo_gimp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADOX">
+      <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.menpas.com/SagtW.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MenPasWS\</RelPath>
+      <UpdateFromURL>http://www.menpas.com/SagtW.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>GUI_TG_MenPasWS_SagtW</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

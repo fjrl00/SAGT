@@ -1,0 +1,197 @@
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.089\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.091\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.092\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.093\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.094\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.1\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.2\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.3\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.095.4\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.096\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.097\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.098\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.099\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.100\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.101\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.102\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.103\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT v0.104\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+J:\pastrana\Proyectos Fin de Carrera\Teoria de la Generalizabilidad\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build - copia\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ResolveAssemblyReference.cache
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb
+E:\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\System.Windows.Forms.DataVisualization.dll
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ConfigCFG.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\System.Windows.Forms.DataVisualization.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMeans.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\TransLibrary.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\MultiFacetData.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\bin\Debug\ProjectMathCalcGT.pdb
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.csproj.AssemblyReference.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.csproj.CoreCompileInputs.cache
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.csproj.CopyComplete
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.dll
+E:\pastrana\TFG\Teoria de la Generalizabilidad\PFC-SAGT build\Biblioteca\ConfigCFG\ConfigCFG\obj\Debug\ConfigCFG.pdb

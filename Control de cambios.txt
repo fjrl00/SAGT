@@ -1,0 +1,3021 @@
+Versión 1.0.215.0.3 Beta   Fecha: 9:25 17/05/2013
+===================================================
+- Se ha actualizado el manual incluyendo un link al blog de Hoisan (Opción creditos). El archivo Pdf del manual ahora es mucho más ligero solo 1,8 Mbytes.
+
+
+Versión 1.0.215.0.2 Beta   Fecha: 21:39 16/05/2013
+===================================================
+- Se ha detectado el siguiente error. Si en Análisis realizamos un cambio de modelo y luego editamos las facetas se producira un error al pulsar el botón Aceptar (btActionAcept_clic()). El error se produce porque ya no encuentra el nombre del archivo. Se ha corregido actualizado en valor del nombre del archivo tras realizar el cambio de modelo en el metodo tsmiActionChangeModel_Click().
+
+
+Versión 1.0.215.0.1 Beta   Fecha: 22:19 14/05/2013
+===================================================
+- Corregido un error en la representación de los valores de las facetas de optimización. Al introducir un nuevo nivel este no se mostraba en la faceta correspondiente sino que seguia el orden de las tablas del formulario formAddSignificanceLevels. Se ha corregido usando una lista de guarda y llamado a los elementos de la lista de optimización.
+
+
+
+Versión 1.0.210.0.3 Beta   Fecha: 20:33 11/09/2012
+===================================================
+- Se ha generado un nuevo instalador. De el se han quitado la fase de leeme.
+
+
+Versión 1.0.210.0.2 Beta   Fecha: 20:13 11/09/2012
+===================================================
+- Ahora se muestra un mensaje mientras se espera el inicio de conexión
+- Se ha corregido algunos problemas con el mensage de "Cargando..." que impedie mostrar otras ventanas.
+
+
+Versión 1.0.210.0.1 Beta   Fecha: 17:21 11/09/2012
+===================================================
+- Se ha corregido un bug que se producía si se pulsaba "Aceptar" cuando no se tenía ningún informe de media seleccionado en la ventana "Seleccione informe de medias" (Importar informe de medias de EduG). Este Error también se producia al importar un informe de Análisis de EduG.
+- Se ha corregido un bug que se produce cuando se pulsa "Eliminar" en la ventana de "Quitar anidamiento" cuando no se tiene ningún anidamiento seleccionado. Se debe mostrar un mensaje de error indicando que no se ha seleccionado nada.
+
+
+Versión 1.0.210.0.0 Beta   Fecha: 16:30 11/09/2012
+===================================================
+- Se ha corregido el cálculo de tablas de medias para que coincida con la documentación.
+- Se ha corregido la importación de EduG que ahora si realiza la importación a los tres tipos de tablas de medias.
+- Se ha corregido el manual de usuario.
+
+
+Versión 1.0.209.0.2 Alpha   Fecha: 22:17 13/07/2012
+===================================================
+- Añadido en el formulario FormAboutOf.cs el siguiente texto: Asesor Metodológico: Dr. Don Ángel Blanco Villaseñor (Universidad de Barcelona)
+
+
+Versión 1.0.209.0.1 Alpha   Fecha: 16:27 12/07/2012
+===================================================
+- Se ha corregido un bug que se producia al editar las facetas desde Analisis. El error devolvía una NullReferenceException al ejecutar el Método btActionAcept_Click(). Este se producía cuando existian parámetros de optimización, al actualizar los valores probocaba una NullRefenceException que se originaba en el método  ReplaceListOfFacet(ListFacets newLf) de la clase Analysis_and_G_Study.
+- Se ha corregido el siguiente bug: al editar facetas se borraban los comentarios de las pestaña de información.
+
+
+
+Versión 1.0.209.0.0 Alpha   Fecha: 12:05 12/07/2012
+===================================================
+- Añadido el botón para editar la descripción de las facetas desde la opción de suma de cuadrados.
+- Se ha añadido la pestaña de edición de facetas desde la opción suma de cuadrados
+- En el método btActionAcept_Click() capturamos la excepción y mostramos un mensaje de error.
+- Se ha actualizado el proyecto magicDraw.
+- Actualizado el manual pdf y chm.
+
+
+Versión 1.0.208.0.0 Pre-Alpha   Fecha: 17:22 11/07/2012
+=======================================================
+- Se ha detectado que si al editar las facetas se repite el nombre de esta se lanza una excepción no controlada de tipo ListFacetsException. Se ha solucionado capturandola y mostrando un mensaje de que el nombre de la faceta ya existe.
+- Se ha detectado que cuando se edita las faceta de la tabla de frecuencias se permite tener facetas con el nombre duplicado. Debe lanzarse una excepción 
+- Se ha detectado que al comprobar si una faceta esta en la lista la comparación no tiene en cuenta mayúsculas y minusculas. Se ha corregido teniendo esto en cuenta.
+
+
+Versión 1.0.207.0.0 Pre-Alpha   Fecha: 16:58 11/07/2012
+=======================================================
+No se había generado correctamente el instalador y por tanto no se habían actualizado los cambios.
+
+
+Versión 1.0.206.0.1 Pre-Alpha   Fecha: 18:59 10/07/2012
+=======================================================
+- Se ha corregido un bug que se producía al ejecutarse el método ReadColumnOmit y no existir una tabla de frecuencias lo que provocaba una NullReferenceException. Se ha corregido comprobando si existe la tabla de frecuencias.
+- Se ha corregido un error al leer el formato de las fechas en la base de datos.
+
+
+Versión 1.0.206.0.0 Pre-Alpha   Fecha: 15:26 10/07/2012
+=======================================================
+- Nueva versión del instalador
+
+
+Versión 1.0.205.0.2 Pre-Alpha   Fecha: 10:43 10/07/2012
+=======================================================
+- Se ha detectado que se produce errores al leer la fecha cuando la hora solo se compone de un digito.
+Por ejemplo: 
+string sDateTime = "10/07/2012 09:50:15";
+DateTime dateFile = DateTime.ParseExact(sDateTime, "dd/MM/yyyy HH:mm:ss", new CultureInfo("es-ES", true));
+Esto provoca una FormatExceptions. Se ha corregido de la siguiente manera:
+string[] timeFormats = {"d/MM/yyyy HH:mm:ss", "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy H:mm:ss"};
+DateTime dateFile2 = DateTime.ParseExact(sDateTime, timeFormats,
+                                   new CultureInfo("es-ES", true), DateTimeStyles.AssumeLocal);
+- Se produce una InvalidCastException al tratar de convertir un null en string esto es devido a que el campo comentario de un fichero de medias esta a null. Se ha corregido comprovando que es distinto de null antes de realizar el casting.
+- Se ha comprobado que al ejecutar la aplicación en una máquina con Windows XP en inglés la ventana de configuración de gráficos no muestra los textos correctamente ya que se solapan etiquetas y cuadros de textos.
+En consecuencia se ha decidido poner las etiquetas sobre los cuadros en lugar de al lado de estas.
+- Cuando se pulsa analizar una suma de cuadrados y luego se selecciona editar facetas se produce una excepción no controlada de tipo Analysis_and_G_StudyException. Esta se produce porque la clase Analysis_and_G_Study.cs no encuentra el nombre del fichero de procediencia.
+
+
+Versión 1.0.205.0.1 Pre-Alpha   Fecha: 19:11 09/07/2012
+=======================================================
+- Se ha corregido un bug que se producia al importar un fichero .xls y luego almacenarlo en el servicio web.Se producía una InvalidCastException en el servicio web debido a que el campo fichero de procedencia estaba a null. Esto era debido a que en la aplicación de escitorio al importar el fichero el campo no se asigna en la variable correspondiente.
+- Se ha hecho un nuevo instalador.
+
+Versión 1.0.204.0.3 Pre-Alpha   Fecha: 17:45 09/07/2012
+=======================================================
+- Se ha añadido la pestaña "Datos" en la ventana de representación gráfica del coeficiente G en la que se puede ver con más detalle los valores de los puntos calculados.
+- Actualizado el apartado 7.5 Gráfico del manual.
+
+
+Versión 1.0.204.0.2 Pre-Alpha   Fecha: 15:43 09/07/2012
+=======================================================
+- Se ha actulizado el manual (opción 8.6 Cambiar modelo) .pdf y .chm
+- Se ha corregido el siguiente Bugs:
+ 	- Cuando se deja un campo vacio al introducir un nuevo nivel de optimización se produce una NullReferenceExceptions. Por tanto debe controlarse que no halla campos vacios.
+	- Cuando se cancela la operación de introducir un nuevo nivel de optimización se produce una NullReferenceExceptions
+
+
+Versión 1.0.204.0.1 Pre-Alpha   Fecha: 13:15 09/07/2012
+=======================================================
+- Se le ha añadido la fucnicón de modificar el diseñon en la sección de análisis.
+
+
+Versión 1.0.204.0.0 Pre-Alpha   Fecha: 17:30 03/07/2012
+=======================================================
+- Nueva instalador.
+
+
+Versión 1.0.203.0.1 Pre-Alpha   Fecha: 16:40 03/07/2012
+=======================================================
+- Se han corregido los siguientes bugs:
+
+	- Se produce una InvalidCastException en el método DataSet2TableG_Study de la clase TableG_Study_Percent (método DataSet2TableG_Study que devuelve un TableG_Study_Percent)  Esto se producía al intentar convertir en double un campo vacío de un dataRow, se a corregido comprobando si esta vacío antes de realizar la conversión.
+	- Se produce una InvalidOperationException con los gráficos cuando hay una valor que no es un número (NeuN). Se ha corregido sustituyéndolo por cero.
+	- Se ha corregido un error al representar los valores en las gráficas debido a que no se actualizaban correctamente los valores de los niveles en cada una de las iteraciones. 
+
+
+
+Versión 1.0.203.0.0 Pre-Alpha   Fecha: 18:55 02/07/2012
+=======================================================
+- Nueva versión del instalador
+
+
+Versión 1.0.202.0.3 Pre-Alpha   Fecha: 17:55 02/07/2012
+=======================================================
+- Se ha corregido un fallo que se producía al escribir la fecha en una máquina con sitema operativo en inglés. En ingles la fecha se escribe primero el mes y luego el día. Con lo cual si luego se intentaba leer un fichero en otra maquina con otra referencia cultural se producía un error en el formato de la fecha. Se ha corregido forzando a que se lean y escriban los archivos  en una sola referencia cultural (Se ha empleado la española). El como se escriban los datos en el acrhivo es independiente de como se mostrarán en pantalla. Será siempre en la referencia cultural del frameWork instalado.
+- Se ha detectado que se puede editar un proyecto poniéndole el nombre de otro proyecto existente, con lo cual tendíamos dos proyectos con el mismo nombre. Esto se impide comprobando que no existen duplicidades antes de guardar los cambios. En caso contrario no se permite guardarlos.
+- Nueva versión del instalador.
+
+
+Versión 1.0.202.0.2 Pre-Alpha   Fecha: 13:28 02/07/2012
+=======================================================
+- Se ha añadido la posibilidad de asignar un espacio de trabajo por parte del usuario. Si este no se encuentra se usará el directorio de trabajo por defecto.
+- Se ha actualizado la clase de configuración.
+- Se ha actualizado el manual y el proyecto MagicDraw.
+
+
+Versión 1.0.202 Pre-Alpha   Fecha: 12:35 28/06/2012
+===================================================
+- Nueva Versión del instalador. Se necesita de los archivos xml para el correcto funcionamiento de la aplicación. Por ello se ha debido generar una nueva versión.
+
+
+Versión 0.201.0.4   Fecha: 12:49 27/06/2012
+===========================================
+- Se ha actualizado el Projecto MagicDraw: Diagrama de clases.
+- Se ha actualizado el manual pdf y chm. En el archivo word del manual (carpeta documentación) se ha cambiado el indice como una referencia a tabla (esto es para actualizar la numeración de tabla facilmente)
+- Corregido un bug cuando se asignaba director de proyecto sin tener un proyecto activo.
+
+
+Versión 0.201.0.3   Fecha: 11:01 27/06/2012
+===========================================
+Se han corregido los siguientes Bugs:
+	- Se ha corregido mostrar el director de proyecto, si lo había, al cargarlo como proyecto activo.
+	- Cuando se edita el nombre de un proyecto el campo es inaccesible.
+	- Cuando se editaba un proyecto los datos no se actualizaban en la base de datos.
+- Se ha actualizado el MagicDraw: Diagrama de interfaz y Estructura física.
+
+
+Versión 0.201.0.2   Fecha: 10:29 26/06/2012
+===========================================
+- Se han incorporado métodos a la interfaz InterfaceConnectDB.cs
+- Actualizado el manual.
+- Se incluye el .hnd con el manual para "HTML Help Workshop".
+- Se ha actualizado el proyecto MagicDraw.
+- Se ha eliminado la opción tsmiRemoveProject del Menú mStripProjects.
+
+
+
+Versión 0.201.0.1   Fecha: 10:31 25/06/2012
+===========================================
+- Se ha sustuido la herramienta de desarrollo Visual Studio 2008 por Visual Studio 2010. Para el proceso se ha creado una copia de seguridad en la carpeta Backup del proyecto.
+- Se ha eliminado la opción usuarios del menú principal y el tabPage de usuarios del TabControlOptions. También se han eliminado la clase parcial userOptions.cs.
+
+
+Versión 0.201.0.0   Fecha: 11:37 21/06/2012
+===========================================
+- Nuevo instalador.
+- Se ha corregido el siguiente bug:
+	- Si no se establece conexión se captura una excepciones de tipo EndpointNotFoundException y InvalidOperationException.
+
+
+Versión 0.200.0.4   Fecha: 17:10 20/06/2012
+===========================================
+- El programa guada y reupera los datos en el servicio web.
+
+
+Versión 0.200.0.3   Fecha: 12:33 20/06/2012
+===========================================
+- Se ha arreglado los problemas de serialización con el servicio web.
+
+
+Versión 0.200.0.2   Fecha: 17:04 19/06/2012
+===========================================
+- Añadida la coversión de DataSet de las tablas de análisis para proporcionar comunicación entre la aplicación de escritorio y el servicio Web.
+
+Versión 0.200.0.1   Fecha: 17:46 18/06/2012
+===========================================
+- Añadida la coversión de DataSet a lista de medias para proporcionar comunicación entre la aplicación de escritorio y el servicio Web.
+
+
+Versión 0.200.0.0   Fecha: 11:45 18/06/2012
+===========================================
+- Actualización del instalador.
+- Se ha corregido un bug que se producia al guardar un fichero sagt desde medias teniendo la tabla de frecuencias cerrada.
+- Se han añadido metodos para poder realizar conversiones de objeto MultiFacetData a DataSet. Esto es porque DataSet es serializable y así es posible pasale estee objeto a la aplicación web.
+
+
+Versión 0.199.0.3   Fecha: 12:18 12/06/2012
+===========================================
+- De la misma forma que en la subversión anterior se producia un error en el formato de las fechas en el método SelectProject del formulario FormSelectDataTable.
+- Añadida el guardar y abrir un archivo de análisis en el servicio web.
+
+
+Versión 0.199.0.2   Fecha: 10:02 12/06/2012
+===========================================
+- Se ha cambiado los DataTable de retorno de los métodos de la interfaz por DataSet (para que sea serializable). En consesuencia se ha corregido el proyecto MagicDraw.
+- Se ha corregido un bug que se producia al leer la fecha de la base de datos. Se ha corregido haciendo un casting.
+	El error se producia en la línea:
+		DateTime date_file = DateTime.ParseExact(dt.Rows[0]["date_file"].ToString(), "dd/MM/yyyy HH:mm:ss", new CultureInfo("es-ES", false));
+	Lo que provocaba un errores de formato por ejemplo al leer las 9:35:15 en lugar de las 09:35:15;
+	se ha corregido sustituyendola por:
+		DateTime date_file = (DateTime)dt.Rows[0]["date_file"]; 
+
+
+Versión 0.199.0.1   Fecha: 12:40 11/06/2012
+===========================================
+- Se ha creado la interfaz InterfaceConnectDB.cs en la libreria ConnectLibrary para controlar la base de datos.
+- Se ha actualizado el proyecto MagicDraw.
+
+
+Versión 0.199.0.0   Fecha: 20:34 10/06/2012
+===========================================
+- Se ha creado la interfaz InterfaceObsTable.cs en la libreria MultiFacetData para controlar la tabla de frecuencias.
+- Se ha creado la interfaz InterfaceTableSSQ.cs en la libreria ProjectSSq para controlar el calulo de cuadrados.
+- Se ha actualizado el manual en los siguientes apartados:
+	- Abrir archivo de datos
+	- Guardar tabla de frecuencias
+	- Abrir archivo de medias
+	- Guardar archivo de medias
+	- Abrir suma de cuadrados
+	- Guardar suma de cuadrados
+	- Abrir archivo de análisis
+	- Guardar archivo de análisis
+
+
+Versión 0.198.0.2   Fecha: 13:49 08/06/2012
+===========================================
+- Ahora se puede guardar y salvar en servicio wed desde la opción Suma de cuadrados.
+
+Versión 0.198.0.1   Fecha: 13:38 08/06/2012
+===========================================
+- Ahora se puede guardar y salvar en servicio wed desde la opción medias.
+
+
+Versión 0.198.0.0   Fecha: 13:15 08/06/2012
+===========================================
+- Ahora se comprueba si hay un archivo con el mismo nombre en la base de datos antes de guardarse.
+- Podemos elegir los elementos de un archivo sagt que deseamos almacenar en la base de datos.
+- Completado Abrir y Guardar en servicio web desde la opción Datos.
+
+
+Versión 0.197.1.3   Fecha: 18:22 07/06/2012
+===========================================
+- Se ha corregido el nombre de la tabla TbDiffentiationVar por TbDifferentiationVar.
+- Recupera los elementos de un análisis de varianza como parte de un fichero sagt almacenado en la base de datos.
+
+
+Versión 0.197.1.2   Fecha: 13:37 07/06/2012
+===========================================
+- Se ha reducido el tiempo de recuperación de una tabla de frecuencias sobre la base de datos realizando los select sobre un dataTable en lugar de hacelo directamente sobre la base de datos (usando un bucle for) , lo que reduce el tiempo perdido en conexión/desconexión de las consultas.
+- Se ha corregido un bug. Cuando se intentaba elgir un elemento en el formulario FormSelectFromDataTable si el dataTable esta vacío el botón aceptar esta deshabilitado ya que no podemos elegir ningún elemento.
+- "Position" es una palabra reservada por lo que se ha modificado como nombre de columna en la base de datos. Esto ya se había hecho en la tabla TbPosFacets pero ahora se ha tenido que hacer en la tabla.
+- Guarda y recupera los tres tipos de tablas de medias en la base de datos.
+
+NOTA
+====
+Se ha detectado un problema con la recuperación de la hora de la tabla projectos. Parece que la hora no la reconoce como un formato valido.
+
+
+Versión 0.197.1.1   Fecha: 16:22 05/06/2012
+===========================================
+- Para guardar un archivo o recuperarlo debe estar activo un proyecto.
+- Siempre se crea el directorio \Mis documentos\SAGT\Workspace al entrar en la aplicación.
+- Se pide confirmación antes de guardar en el servicio web.
+- Se ha corregido un problema con la inserciñon de atributos booleanos. Esto van sin comillas para poder ser insertados.
+
+
+Versión 0.197.1.0   Fecha: 12:17 05/06/2012
+===========================================
+- Se ha modificado los menús verticales de Datos, Medias, Sumas de cuadrados y Análisis para que se distinga entre Abrir (localmente un archivo) y Abrir desde servicio Web.
+
+
+Versión 0.197.0.6   Fecha: 18:50 04/06/2012
+===========================================
+- Se ha completado la inserción de un SagtFile en la base de datos.
+- Se ha actulizado la base de datos y el projecto MagicDraw.
+
+
+Versión 0.197.0.5   Fecha: 17:35 04/06/2012
+===========================================
+- Se incluye un directorio por defecto para abrir y salvar documentos: "\Mis Documentos\SAGT\Workspace". Esto se hace con la propiedad InitialDirectory.
+- Se ha cambiado el nombre de algunas columnas da la base de datos ya que por ejemplo la palabra source esta reservada.
+- Se ha añadido la inserción de la tabla G-Study en la base de datos.
+
+
+Versión 0.197.0.4   Fecha: 13:39 01/06/2012
+===========================================
+- Se ha corregido la base de datos. Donde la tabla TbMeans necesitaba del atributo fk_list_facets para hacer referencia a la lista de facetas.
+- La clase DecimalSetting.cs ha desaparecido del proyecto principal GUI_GT y se ha integrado dentro de la clase CoverNum.cs, proyecto AuxMathCalcGT.
+- Se ha añadido la inserción de los datos de la tablas de medias.
+
+
+Versión 0.197.0.3   Fecha: 16:28 31/05/2012
+===========================================
+- Se ha añadido la inserción de las tablas de frecuencias en la base de datos, falta
+las tablas de medias y las tablas de análisis.
+
+
+Versión 0.197.0.2   Fecha: 13:19 30/05/2012
+===========================================
+- Se ha incluido en la aplicación Editar proyecto.
+- Se ha actualizado el manual: Editar proyecto, Asignar Director y Eliminar Proyecto.
+- Se ha corregido un bug con la seleccion de proyectos. Cuando no encontraba ningún registro mostraba una tabla vacía en lugar de preguntar al usuario que hacer.
+- Al introducir un proyecto en la base de datos se actuliza la clave primaria del proyecto activo.
+
+
+Versión 0.197.0.1   Fecha: 15:38 29/05/2012
+===========================================
+- Se ha introducido la busqueda de proyectos.
+- Se ha actualizado el manual incluyendo Crear Proyectos y Buscar Proyectos.
+
+
+Versión 0.197.0.0   Fecha: 14:01 28/05/2012
+===========================================
+- Se han arreglado los siguientes bugs:
+	Al editar facetas se inhabilitaba el menú vertical de Datos en lugar de hacerlo el de Anállisis.
+- Se ha bloqueado el acceso a la conexión desconexión si nos encontramos editando algún elemento.
+- Se ha actualizado la inserción de proyectos.
+
+
+Versión 0.196.0.4   Fecha: 11:23 28/05/2012
+===========================================
+- Nueva versión del instalador que incorpora la asociación de archivos .sagt y .anls.
+- Actualizado el manual en formato .PDF y .chm que incluye la instalación y desinstalación de la aplicación.
+
+
+Versión 0.196.0.3   Fecha: 12:49 25/05/2012
+===========================================
+- Se ha incluido la comprobación de si un proyecto con el mismo nombre a sido ya creado o no.
+- Incluido un el form FormSelectFromDataTable.cs
+- Se ha actualizado el proyecto de MagicDraw.
+
+
+
+Versión 0.196.0.2   Fecha: 11:11 25/05/2012
+===========================================
+- Se ha actualizado los diagramas de MagicDraw incluyendo el tabPage Proyectos.
+- Se ha incluido la clase SagtUser el proyecto "ConnectLibrary".
+- Se ha actulizado el proyecto MagicDraw (Dominio del problema).
+
+
+Versión 0.196.0.1   Fecha: 14:57 24/05/2012
+===========================================
+- Añadido el aviso de desconexión.
+- Incluida la clase SagtProject en el proyecto "ConnectLibrary".
+- Se ha añadido la habilitación deshabilitación de las opciones de usuarios y poryectos.
+
+
+Versión 0.196.0.0   Fecha: 12:55 24/05/2012
+===========================================
+- Se ha modificado la opción guardar de los cuatro menús (datos, medias, suma de cuadrados y análisis). Ahora el menú se despliega en dos opciones. Guardar (Guardado local) y Guardado en servicio Web.
+- Se ha actualizado el diagrama de interfaz.
+
+Versión 0.195.0.6   Fecha: 17:47 23/05/2012
+===========================================
+- Se ha añadido la clase que encripta los datos de ususario (PassUsers.cs). 
+- Se ha añadido el guardado de el nombre de usuario y la contraseña en un fichero encriptado (\Mis documentos\SAGT\user.pas).
+- Se le ha añadido funcionalidad al botón "Eliminar contraseñas".
+
+
+Versión 0.195.0.5   Fecha: 12:38 16/05/2012
+===========================================
+- Se ha corregido un bug la generación de documentos pdf. El pie de página quedaba alto y a veces era sobre escrito por el documento. Se ha corregido bajandolo.
+- Se ha añadido link para recordar la contraseña que enlaza con la plataforma MenPas.
+- Se han renombrado variables del menú principal.
+
+
+Versión 0.195.0.4   Fecha: 16:59 15/05/2012
+===========================================
+- Se ha corregido un bug por el cual al pulsar el botón de ayuda desde la ventana de conficuración la ayuda quedaba en un segundo plano por debajo de la ventana de configuración. Quedando inaccesible.
+
+
+Versión 0.195.0.3   Fecha: 18:54 08/05/2012
+===========================================
+- Se incluye en la documentación los primeros diagramas con MagicDraw 17.
+- Se han hecho modificaciones para que ahora si queremos insertar un nuevo idioma ademas de añadir las traduciones a los archivos en el codigo solo debamos "tocar" la clase enumerado "Language.cs" y un array de string de etiquetas en la clase "ReadFileTrans.cs".
+
+
+Versión 0.195.0.2   Fecha: 11:56 07/05/2012
+===========================================
+- Se ha cambiado un texto de información a importar ficheros csv. El texto: "Ficheros .csv exportados por la aplicación de José Antonio López López." se ha sustituido por "Ficheros .csv (comma-separated values) que usen como separador ';' y que los valores vengan entre comillas. No puede tener tuplas repetidas.".
+- Se ha detectado que cuando se importa un informe de medias (Edug .rtf) no aparecen las fechas del informe. Esto se ha corregido.
+
+
+Versión 0.195.0.1   Fecha: 13:15 04/05/2012
+===========================================
+- Actualizado el manual chm y pdf.
+- La ubicación y el nombre del fichero de ayuda a cambiado. Ha pasado de estar en el archivo de la aplicación a estar en la carpeta "Manual" y de llamarse "Proyecto ayuda de prueba.chm" a "Ayuda SAGT"
+- Se ha vuelto a actualizar el instalador
+- Para que aparezca un icono en el Panel de control --> Instalar/Desinstalar programas. El icono tiene que tener un tamaño máximo de 128bits si tiene un tamañoo mayor, por ejemplo 256bits nos sale.
+
+
+Versión 0.195.0.0   Fecha: 12:10 04/05/2012
+===========================================
+- Actualizado el instalador
+
+
+Versión 0.194.1.3   Fecha: 12:42 03/05/2012
+===========================================
+- Se ha ampliado el manual y se a actualizado la versión PDF.
+- Se ha añadido la capacidad de exportar los gráficos en png.
+
+
+Versión 0.194.1.2   Fecha: 18:53 02/05/2012
+===========================================
+- Se ha corregido el bug de las etiquetas de la gráfica de coeficiente G.
+- Se ha corregido un Bug en la representación de coeficiente G absoluto por el cual siempre se representaba el mismo intervalo de puntos. Simplemente se ha tenido que corregir los parámetros que se pasan a la función.
+- Se ha ampliado el manual (opciones gráficas).
+- Se ha puesto un tamaño minimo de 400x400 a las ventanas de gráficos.
+- Se ha añadido bordes a los gráficos de barras.
+- Se ha añadido efecto gradiente a las gráficas, para ello se ha empleado la clase RGBHSL.cs para poder incrementar el brillo en el segundo color.
+
+
+Versión 0.194.1.1   Fecha: 12:10 30/04/2012
+===========================================
+- Se ha corregido el siguiente Bug	
+	Error grabe al seleccionar "None" como posición de la etiqueta de valores en la representación gráfica del coeficiente G. Simplemente la hemos corregido con una sentecia 'if', si la etiquetas es "None" entoces IsValueShownAsLabel para la serie igual a false.
+- Se ha añadido el atributo de configuración (enum) MarkerStyle. Indica el tipo de símbolo que se empleará para representar el punto en la gráfica.
+- Se ha añadido la opción de seleccionar el tipo de marca para los gráficos desde la ventana de opciones.
+
+
+Versión 0.194.1.0   Fecha: 11:59 30/04/2012
+===========================================
+- Se ha añadido al proyecto ConfigCFG una clase enumerada LabelAlignmentStyles.cs que indica la posición de la etiqueta con respecto al punto.
+- Se ha añadido la posibilidad de asignar la posición de la etiqueta de valores en las Gráficas de Coeficiente G.
+
+
+Versión 0.194.0.5   Fecha: 12:18 27/04/2012
+===========================================
+- Se ha añadido a la clase de configuración un parámetros para indicar el tipo de gráfica con el que se representa el Coeficiente G.
+- Se ha incluido la asignanción del tipo de gráfica de coeficiente de generalizabilidad (lineal o esplin) desde la ventana de configuración.
+
+
+Versión 0.194.0.4   Fecha: 18:40 26/04/2012
+===========================================
+- Se ha introducido el rango del intervalo para los gráficos de Coeficiente de Generalizabilida y el tamaño del intervalo.
+- Se ha rescrito el codigo del FormShowCharts2.cs.
+
+
+Versión 0.194.0.3   Fecha: 13:06 26/04/2012
+===========================================
+- Añadida la generación de gráficos a la opción de Análisis.
+- Se ha corregido los siguientes Bug:
+	Al seleccionar Gráfico Optimización sin tener ninguna tabla de suma de cuadrados devuelve un error.
+
+
+
+Versión 0.194.0.2   Fecha: 12:30 26/04/2012
+===========================================
+- Ajuste en las traducciones y en la interfazgráfica. Añadidos los textBox para introducir en rango con el que se representarán los gráficos.
+- Renombrado los métodos gráficos.
+- Añadido etiqueta de resumen al gráfico de barras de optimización.
+
+
+Versión 0.194.0.1   Fecha: 17:47 24/04/2012
+===========================================
+Se han corregido los siguientes Bugs:
+- NullReferenceException al importar un fichero de suma de cuadrados (.dat) durante la creación de un fichero de analisis de suma de cuadrados.
+- Cuando se recupera las sumas de cuadrados de un fichero .dat tenía problemas
+con el separador decimal ','.
+
+
+Versión 0.194.0.0   Fecha: 12:04 24/04/2012
+===========================================
+Se han corregido los siguientes Bugs
+- Cuando se desborda el número de filas de la tabla de observaciones. Ahora el programa avisa de que la tabla de observaciones es demasiado grande para ser creadas.
+- Se ha detectado el siguiente bug, tras editar las facetas y hacer clic en guardar, el campo descripción del tabPage Facetas de la opción datos sigue siendo editable.
+- Se ha detectado que al editar las facetas el campo descripción no se actualiza.
+
+
+
+Versión 0.193.0.4   Fecha: 13:05 23/04/2012
+===========================================
+- Se ha añadido la importación de ficheros de suma de cuadrados exportados desde la aplicación EduG 6.0 (ficheros .edug).
+- Se ha ampliado y corregido el manual.
+
+
+Versión 0.193.0.3   Fecha: 13:00 20/04/2012
+===========================================
+- Se ha puesto en modo de sólo lectura las columnas de nivel y tamaño del universo para la tabla de facetas cuando se esta editando la tabla de facetas de un análisis.
+- Se ha incluido el método (en la clase AnalysisSsqEduF.cs):
+ public static Dictionary<string, double?> ImportSsq_File(string pathFile)
+que lee los ficheros exportados por EduG de Sumas de cuadrados.
+Los ficheros tienen el formato de un fichero separado por comas (un csv) donde el separador es el caracter ';'. El fichero se compone de tres columnas: 1º diseño de
+facetam, 2º suma de cuadrados, 3º grado de libertad.
+Ejemplo:
+
+P;6,777778;2
+O;0,5;2
+C;140,111111;2
+PO;0,333333;4
+PC;0,555556;4
+OC;0,333333;4
+POC;0,333333;8
+
+- Incluido un método (en la clase AnalysisSsqEduF.cs):
+public static bool WritingFileExportEduG_Ssq(TableAnalysisOfVariance tbAnalysis , string pathFile)
+ 
+Exporta las sumas de cuadrados para que pueda ser leido por EduG 6.0. El formato es el mismo que el descrito en el apartado anterior.
+
+- Incluida la exportación de suma de cuadrados siguiendo el formato de EduG 6.0. Para que sea compatible las facetas debe estar identificadas por una sola letra.
+
+
+Versión 0.193.0.2   Fecha: 12:54 19/04/2012
+===========================================
+- Se ha corregido un bug que se producia al cancelar la operación de introducir suma de cuadrados cuando se creaba desde análisis. El error se producía al intentar recuperar la tabla de análisis anterior a la creación y encontrase esta a null. Se ha corregido cargado en la variable que guarda la tabla de análisis antigua anl_tAnalysis_G_study_opt_Old el valor de this.anl_tAnalysis_G_study_opt (Método tsmiActionNewFileAnalysisSSQ_Click de AnalysisOptions.cs).
+- Incluido el nuevo método en la clase ListFacets2.cs (clase parcial de ListFacets):
+	public ListFacets RemplaceListFacets(ListFacets lf)
+que remplaza los nombres y los comentarios de las facetas por los de la nueva lista que se pasa por parámetros.
+NOTA: Los nombres se sustituyen, los diseños se mantienen.
+- Se ha incluido la edición de facetas de análisis.
+- Se ha ampliado el manual, Opción: "Exportar cuadrados".
+
+
+Versión 0.193.0.1   Fecha: 16:05 17/04/2012
+===========================================
+- Nueva versión del instalador que incluye una primera versión del manual en PDF.
+
+
+
+Versión 0.193.0.0   Fecha: 12:26 11/04/2012
+===========================================
+- Ahora al cancelar la opecación de editar la suma de cuadrados desde la opción análisis nos devuelve los datos originales. Para ello hemos crado la variable global anl_tAnalysis_G_study_opt_Old; que almacenara los datos hasta que lo modifiquemos.
+- Se ha detectado y corregido el siguiente bug:
+	Cuando se edita la suma de cuadrados no se entra en modo edición, es decir, podemos seguir pulsando otras opciones del menú.En vez de eso inhabilita
+el menú de datos.
+	
+
+
+Versión 0.192.0.2   Fecha: 18:27 10/04/2012
+===========================================
+- Añadida la operación de edición de suma de cuadrados en la opción de análisis.
+- Se ha corregido varios bugs entre ellos uno en el método: public G_ParametersOptimization Calc_G_ParametersOptimización(ListFacets newLf). Era debido a que las listas de facetas de intrumentación y diferenciación no estaban en el orden correcto.
+- Se ha corregido un bug grave que se producía al leer un fichero que tiene varios niveles de optimización estimados. El error era producido por que se pasaba el datagridView dGridViewExOptimizationResum, dataGrid que pertenece a suma de cuadrados. Se ha corregido sutituyendolo por una variable que contiene el dataGrid de resumen de optimización (ya sea el de suma de cuadrados o el de análisis).
+ Hemos sustituidos:
+	AddColunmToDGVOptimization(gp_aux, this.dGridViewExOptimizationResum);
+ por:
+        AddColunmToDGVOptimization(gp_aux, dgvEx);
+ en el método:
+	private void LoadDataGridViewExOptimizationResum(Analysis_and_G_Study analysis_G_Study_Opt,
+            DataGridViewEx.DataGridViewEx dgvEx)
+ del fichero SSQOptions.cs
+
+
+Versión 0.192.0.1   Fecha: 11:49 10/04/2012
+===========================================
+- Añadido el método que actualiza los datos de análisis tras introducir una nueva suma de cuadrados.
+
+
+Versión 0.192.0.0   Fecha: 14:06 28/03/2012
+===========================================
+- Se ha corregido un bug que se producia al cancelar la edición de suma de cuadrados. Tras introducir el diseño de medida si se cancelaba la operación se seguia mostrando el diseño de medida antiguo introducido. Se ha corregido haciendo una llamada al método cleanerAllTabPageAnalysis desde la operación btActionCancelEditSsq_Click.
+
+
+Versión 0.191.1.1   Fecha: 14:13 27/03/2012
+===========================================
+- Generado un nuevo instalador que incluye un leeme con los cambios recientes.
+
+
+Versión 0.191.1.0   Fecha: 13:42 27/03/2012
+===========================================
+- Ahora se muestra la fecha de emisión de informe en la ventana de selección. Opción de importar informes de medias o análisis de EduG 6.0.
+
+
+Versión 0.191.0.5   Fecha: 18:48 26/03/2012
+===========================================
+- Añadida descripción de los archivos en la ventana de importación.
+
+
+Versión 0.191.0.4   Fecha: 12:48 26/03/2012
+===========================================
+- Añadida la importación de fichero .csv que contiene tablas de frecuencias. Estos ficheros pertenecen al proyecto realizado por José Antonio López López. Para realizar la importación se ha creado la clase ImportCSV.cs en la libreria MultiFacetData.
+
+
+Versión 0.191.0.3   Fecha: 12:52 22/03/2012
+===========================================
+- Se ha simplificado el método AddSignificanceLevel. Para ello se ha creado el método Calc_G_ParametersOptimización en la clase Analytsisi_and_G_Study.
+Nota: Se necesita revisar dicho método para verificar el calculo de los G_Parametros para la estimación de nuevos niveles de optimización con faceta fija y finita aleatoria.
+
+
+Versión 0.191.0.2   Fecha: 18:41 20/03/2012
+===========================================
+- Añadido la importación de informes de suma de cuadrados producidos por EduG 6.0 (txt, rtf) desde la opción de análisis.
+
+
+Versión 0.191.0.1   Fecha: 18:41 20/03/2012
+===========================================
+- Añadido el evento para que al editar las facetas (desde la opción datos) solo se permitan pulsar las teclas correctas al escribir el tamaño del universo.
+- Añadido los eventos para controlar la pulsación de las teclas validas al editar una tabla de frecuencias o una suma de cuadrados.
+
+
+Versión 0.191.0.0   Fecha: 17:04 20/03/2012
+===========================================
+- Se ha añadido un nuevo constructor a la clase MultiFacetsObs.
+- Se ha añadido nuevos métodos para representar la lista de facetas en un dataGrid (en función de si queremos mostrar el nombre de la faceta o su diseño).
+- Se ha corregido un Bug que se producia al editar la lista de las facetas desde la opción datos.
+- Se ha añadido iconos a algunas ventanas y botones.
+
+
+Versión 0.190.0.8   Fecha: 11:45 20/03/2012
+===========================================
+- Se ha corregido un bug cuando se deja el campo descripción de la tabla de facetas en un informe de suma de cuadrados de EduG 6.0. El Error era debido a que al partir la línea se eliminaban las cadenas vacías.
+- Ahora se puede seleccionar un informe entre un documento que contiene distintos informes de análisis con independencia de que se trate de un informe txt o rtf.
+
+
+Versión 0.190.0.7   Fecha: 13:07 19/03/2012
+===========================================
+- Se ha modificado la clase AnalysisSsqEduG para que pueda leer los informes de suma de cuadrados en frances.
+- Se han corregido algunos bugs al leer dichos informes.
+- Ya se pueden leer informes de suma de cuadrados con formato txt emitidos por EduG 6.0.
+
+
+Versión 0.190.0.6   Fecha: 13:19 15/03/2012
+===========================================
+- Se ha corregido un bug que se producia al leer informes de suma de cuadrados de EduG 6.0 cuando las fuentes de variavilidad contenian anidamientos. Se ha corregido normalizando dichas fuentes.
+- Se ha incluido en la clase AnalysisSsqEduG los métodos para leer el informes de suma de cuadrados de EduG 6.0 para los ficheros con extensión txt.
+
+
+Versión 0.190.0.5   Fecha: 13:58 14/03/2012
+===========================================
+- Se ha remodelado completamente la clase AnalysisSsqEduG. 
+- Ahora se pueden leer informes (.rtf) de sumas de cuadrados desde la opción importar de la opción suma de cuadrados. Los informes de sumas de cuadrados en txt aun no se han implementado.
+
+
+Versión 0.190.0.4   Fecha: 13:15 09/03/2012
+===========================================
+- Se ha modificado la clase ListMeansEduG para que pueda leer un fichero que contiene varios informes de medias tanto para .txt como .rtf.
+- Ahora es posible seleccionar un informe de media de los presentes en el fichero de informes de EduG 6.0. Ya sea un fichero .txt o .rtf.
+
+
+Versión 0.190.0.3   Fecha: 13:15 09/03/2012
+===========================================
+- Se ha modificado y simplicado el código de la clase ListMeansEduG para la lectura de informes de mendias.
+
+
+Versión 0.190.0.2   Fecha: 13:12 08/03/2012
+===========================================
+- Se ha corregido un bug que se producia al maximizar la ventana, aparecian lineas vericales y horizontales. Se ha corregido refrescando la ventana con el evento de cambiar tamaño del formulario.
+- Ahora se pueden leer los informes de medias de EduG 6.0 en formato .rtf
+
+
+Versión 0.190.0.1   Fecha: 12:21 08/03/2012
+===========================================
+- Se han añadido los botones de "Editar facetas" y "Editar cuadrados" en la opción Análisis.
+
+
+Versión 0.190.0.0   Fecha: 20:19 07/03/2012
+============================================
+
+- Una nueva Se ha generado una nueva versión del instalador.
+
+
+
+Versión 0.189.0.10   Fecha: 18:03 07/03/2012
+============================================
+- Se ha incluido la importación de Excel desde la opción Análisis.
+
+
+Versión 0.189.0.9   Fecha: 17:50 07/03/2012
+===========================================
+- Se ha incluido la importación de Excel desde la opción suma de cuadrados.
+
+
+Versión 0.189.0.8   Fecha: 17:54 06/03/2012
+===========================================
+- Se ha modificado los parámetros de los métodos de traducción.
+
+
+Versión 0.189.0.7   Fecha: 15:14 06/03/2012
+===========================================
+- Se ha corregido un bug que se producia al exportar en Excel, el error era debido al separador decimal punto que en excel es interpretado como separador de millar. Se ha corregido exportando los datos númericos simplemente como double en lugar de como string.
+
+
+Versión 0.189.0.6   Fecha: 11:11 06/03/2012
+===========================================
+- Ahora es posible importar los tres tipos de formatos de medias (media por defecto, diferencia de medias y puntuación típica) desde un archivo excel exportado desde la propia aplicación.
+
+
+Versión 0.189.0.5   Fecha: 10:52 02/03/2012
+===========================================
+- Ahora se puede importar los ficheros excel de tabla de frecuencias, exportados desde la propia aplicación.
+
+
+Versión 0.189.0.4   Fecha: 12:40 01/03/2012
+===========================================
+- Añadida las opciones de importar en Excel en los formularios de importar archivos.
+
+
+Versión 0.189.0.3   Fecha: 18:54 29/02/2012
+===========================================
+- Se ha corregido un bug que se producía cuando se importaba los datos de un informe de medias de Edug 6.0 erroneo. Si no contiene ninguna tabla de medias el método ReadFileTextEduGAux de la clase ListMeansEduG devolverá null en lugar de devolver una lista vacia.
+- Se ha añadido la opción de importar informes de suma de cuadrados de EduG.
+
+
+Versión 0.189.0.2   Fecha: 15:29 29/02/2012
+===========================================
+- Se han fusionado los proyectos MultiFactPY, ProjectMeansPY y ProjectSsqPY en el proyecto ProjectImportPY. Se ha renombrado namespaces. El número actual de proyectos es once. Los proyectos fusionados han sido eliminados de la carpeta biblioteca.
+
+
+Versión 0.189.0.1   Fecha: 14:52 29/02/2012
+===========================================
+- Se han fusiaonado los proyectos: ProjectMeansEduG, y ProjectSsqEduG en uno solo llamado ProjectImportEduG. Se han renombrado los nameSpace.
+
+
+Versión 0.189.0.0   Fecha: 14:40 29/02/2012
+===========================================
+- Arregalado por el cual al pulsar el botón de cargar los valores por defecto no se actualizaban los valores de la fuentes en los comboBox.
+
+
+Versión 0.188.0.4   Fecha: 13:37 29/02/2012
+===========================================
+- Ahora los colores elegidos son mostrados al mostrar los gráficos de barras.
+- Se ha añadido ToolTip sobre los cuadros de selección de color del formulario de configuración. Indican que haciendo doble clic se puede seleccionar el color.
+- Añadida la pestaña de conexión y el botón de cargar los valores por defecto.
+
+
+Versión 0.188.0.3   Fecha: 12:13 29/02/2012
+===========================================
+- Se ha modificado la clase de configuración para que se pueda almacenar los colores con los que se representaran los gráficos (colores para los coeficientes de generalizabilidad, Error standar y Varianza).
+- Se ha añadido a la ventana de configuración paneles que muestran el color activo para cada variable. Haciendo doble click sobre el color podremos seleccionar el color activo.
+
+
+Versión 0.188.0.2   Fecha: 18:42 23/02/2012
+===========================================
+- Se ha corregido algunos fallos.
+- Se ha traducido algunos mesages de error y ventanas de dialogos.
+- Se ha puesto todos los archivos de tradución dentro de la carpeta "lang" en el directorio de intalación. Con lo cual se ha creado una constante con la nueva ruta de acceso para los archivos de traducción.
+
+
+Versión 0.188.0.1   Fecha: 12:26 23/02/2012
+===========================================
+- Añadida la cabecera de las ventanas de importar medias y suma de cuadrados.
+
+
+Versión 0.188.0.0   Fecha: 16:28 22/02/2012
+===========================================
+- Corregida la fecha/Hora nombre del fichero de procedencia al importar un archivo de medias de EduG 6.0.
+- Añadida cabecera a la ventana de importar tablas de frecuencias.
+
+
+Versión 0.187.0.6   Fecha: 15:53 22/02/2012
+===========================================
+- Corregida la lectura de los ficheros .rsa de GT E 2.0
+
+
+Versión 0.187.0.5   Fecha: 12:57 22/02/2012
+===========================================
+- Se ha corregido pequeños errores.
+
+
+Versión 0.187.0.4   Fecha: 11:03 22/02/2012
+===========================================
+- Se ha corregido un bug por el cual no se actualizaba correctamente la variable de tabla de analisis al importarla.
+- Se ha corregido un bug al leer ficheros. El error se producia al leer valores null que en el fichero aparece. Se ha corregido haciendo la comparación: !s.ToUpper().Equals(STRING_NULL) en el método: public static double? String2Double(string s) de la clase CovertNum de el proyecto: ProjectMarhCalcGT.
+
+
+Versión 0.187.0.3   Fecha: 18:26 21/02/2012
+===========================================
+- Se ha corregido el problema de la importación de ficheros de sumas de cuadrados de ficheros .ssq del programa GT E 2.0. Se ha resuelto incluyendo un parametro en el método LoadAllDataInDataGridViewEx_SSQOptions.
+
+
+Versión 0.187.0.2   Fecha: 17:56 21/02/2012
+===========================================
+- Se ha arreglado un problema al importar ficheros de medias de GT E 2.0 (ficheros .rsm). El error se porduce porque en algunos casos en la segunda línea unas veces inserta un comentario y otras no. Se ha corregido saltando las líneas hasta encontrar la que contiene solamente "N". A esta línea le siguen dos líneas que contienen enteros. Desconozco la primera, la segúnda indica el número de facetas.
+- Se ha corregido el problema que se producía cuando se daba un error al leer un archivo y no se podía quitar la ventana de carga.
+
+
+Versión 0.187.0.1   Fecha: 16:06 21/02/2012
+===========================================
+- Implementada la interface Cloeable en las siguientes Clases del Proyecto ProjectSSQ:
+	- ErrorVar
+	- G_ParametersOptimization
+	- TableG_Study
+	- TableG_Study_Percent
+	- TableAnalysisOfVariance
+	- Analysis_and_G_Study
+- Añadido el método CopyTablesOfAnalysis que devuelve una copia en profundidad de las tablas de analisis de suma de cuadrados (Analysis_and_G_Study).
+- Se le ha dado funcionalidad al botón Analizar del menú suma de cuadrados.
+
+
+Versión 0.187.0.0   Fecha: 10:56 21/02/2012
+===========================================
+- Añadido botón de Analizar en el menú de suma de cuadrados. 
+
+
+Versión 0.186.0.6   Fecha: 12:49 20/02/2012
+===========================================
+- Añadida la clase pdfPage que hereda iTextSharp.text.pdf.PdfPageEventHelper. Su cometido es permitir introducir encabezados y pie de páginas de manera sencilla en los documentos pdf.
+- Ahora es posible elegir el tipo de fuente para los informes pdf. Esto se consigue mediante el método:
+iTextSharp.text.FontFactory.GetFont.
+- Se ha detectado un error al elegir la fuente en la ventana de configuración. El error se producia porque al cargar la ventana no se asignaba correctamente el valor de la fuente de texto, (tomaba el valor de la fuente de la tabla).
+- Añadido un encabezado y pie de página al documento pdf.
+
+
+Versión 0.186.0.5   Fecha: 13:42 16/02/2012
+===========================================
+- Se ha corregido el fallo que se producía con la numeración de las páginas de los informes word. Aunque se propuso resolverlo mediante el uso de una plantilla esta se descarto porque los textos del pie de página aparecerían fijos en lugar de aparecer en el idioma correspondite, otra solución podía haber sido tener una plantilla para cada idioma. Finalmete se encontró la forma de numerar las páginas (método wordDocumentFootersWithPageNumber).
+- Se ha corregido un bug por el cual, en los informes word, la útima filas de las tablas no se sobreaba.
+- Se ha corregido los textos en negrita de los informes word.
+
+
+Versión 0.186.0.4   Fecha: 17:15 15/02/2012
+===========================================
+- Se ha añadido la fecha de emisión en los informes PDF.
+- Se ha generado una nueva versión del instalador.
+
+
+Versión 0.186.0.3   Fecha: 17:15 15/02/2012
+===========================================
+- Se ha corregido un fallo al generar el fichero Pdf. Cuando se sobrescribia un archivo este quedaba inutilizable esto se ha corregido usando FileMode.Create en lugar FileMode.OpenOrCreate.
+- Ya se pueden emitir informes Pdf desde la sección de análisis.
+- Se ha corregido algunos fallos cuando se leía de un richTextBox vació (devolvía null).
+
+
+Versión 0.186.0.4   Fecha: 16:49 15/02/2012
+===========================================
+- Se ha incluido una ventan de dialogo para salvar el fichero pdf.
+- Ahora se Guarda una versión pdf del informe de SAGT.
+
+Versión 0.186.0.1   Fecha: 13:26 15/02/2012
+===========================================
+- Tras realizar algunos tutoriales y ejemplos se ha cambiado la libreria PDFSharp.dll por iTextSharp.dll ya que se dispone de mucha más documentación para trabajar con ella.
+
+
+Versión 0.186.0.0   Fecha: 11:36 13/02/2012
+===========================================
+- Se ha incluido la libreria PDFSharp.dll para la generación de informes PDF en el proyecto.
+	http://www.pdfsharp.com/PDFsharp/
+Documentación y ejemplos:
+ 	http://www.pdfsharp.net/wiki/MainPage.ashx
+
+
+Versión 0.185.0.6   Fecha: 12:39 10/02/2012
+===========================================
+- Incluido al informe word de la opción análisis las tablas de análisis de sumas de cuadrados.
+
+
+Versión 0.185.0.5   Fecha: 12:13 10/02/2012
+===========================================
+- Incluido al informe word las tablas de análisis de sumas de cuadrados.
+
+
+Versión 0.185.0.4   Fecha: 11:23 10/02/2012
+===========================================
+- Añadido al informe de word las tablas de medias.
+
+
+Versión 0.185.0.3   Fecha: 18:43 09/02/2012
+===========================================
+- Ya se muestra la ventana de selección de elementos antes de generar un documento word con los informes.
+- El informe word ya muestra varias tablas correctamente.
+- Se ha cambiado la imagen de la ventana de selección de elementos.
+
+
+Versión 0.185.0.2   Fecha: 13:27 09/02/2012
+===========================================
+- Se actualizado los informes para que texto y tablas se impriman con letras distintas.
+
+
+Versión 0.185.0.1   Fecha: 12:57 09/02/2012
+===========================================
+- Se ha modificado la clase ConfigCFG para que almacene tanto las fuentes de las tablas como la de los textos y que estas puedan tener tipos y tamaños distintos.
+- Introducidos en la ventana de configuración las opciones para manipular tanto la fuente de los textos como de las tablas.
+
+
+Versión 0.185.0.0   Fecha: 10:25 09/02/2012
+===========================================
+- Se ha insertado las opciones en los menús de Word y PDF para la opción de Informes.
+- Se ha incluido la clase parcial WordDocumentReports.cs para generar informes en Word mediante el uso de las librerias de interoperabilidad.
+- Ya se muestra un pequeño informe con algunos datos como la tabla de facetas.
+
+
+Versión 0.184.0.5   Fecha: 14:36 06/02/2012
+===========================================
+- Se han eliminado cuatro variables booleanas y se ha simplificado el codigo de printSagtDocument_PrintPage.
+- Se han añadido los datos de información (origen de datos, fecha de creación y comentarios) al final del informe.
+- Se ha corregido un bug. Cuando se cerraba desde la opción de análisis si mostraba un mensaje preguntado al usario ante la perdida de las medias. Logicamente se pueden perder datos y no medias. Así que el mensaje ha sido cambiado. Pero además ahora al cerrar se pone a null la variable global de análisis y si cerramos y volvemos a abrir un elemento no se nos mostrará ningún mensaje ya que no tiene sentido.
+- Se ha modificado el informe de análisis.
+
+
+Versión 0.184.0.4   Fecha: 13:07 06/02/2012
+===========================================
+- Se ha añadido los textos de comentarios de Suma de cuadrados al informe.
+- Se ha corregido un Bug que se producía en el método PrintDataGridView, este no indicaba correctamente cuando se habían imprimido todas las filas de la tabla.
+- Se ha cambiado el tipo y tamaño de letra del richTextBox richTextBoxSsqComment para que coincida con el resto de richTextBox de la aplicación.
+
+
+Versión 0.184.0.3   Fecha: 11:47 06/02/2012
+===========================================
+- Se ha modificado el método printSagtDocument_PrintPage para que imprimima los textos de comentarios de tabla de frecuencias y medias usando el método PrintComment.
+
+
+Versión 0.184.0.2   Fecha: 12:43 03/02/2012
+===========================================
+- Areglado un bug que se producía al crear un elemento de análisis desde la opción nuevo de análisis. Era debiada a que el string de comentarios tenía valor nulo al estar el richTextBox vacio.
+- Se ha corregido en la mediad de lo posible el ajuste de las tablas de frecuencias y medias en  la emisión de informes. Estos mostraban textos entre cotrado si se aumentaba ligermente el tamaño de la fuente.
+- Se ha arreglado un fallo que se producía cuando en las tablas de análisis aparecía un dato (double) que no era un número (NeuN). En las tablas aparecia NeuN seguido de un número de cero decimales dependiendo de la configuración. Se ha corregido comprobando que no sea NeuN antes de realizar el ajuste de decimales en el método DecimalToString de la clase Decimalsetting.
+
+NOTA IMPORTANTE:
+================
+El uso NeuN puede acarrear problemas con las referencias culturales al leer escribir un archivo en máquinas con distintos idiomas.
+
+
+Versión 0.184.0.1   Fecha: 18:37 02/02/2012
+===========================================
+- Se ha corregido un bug al imprimir los comentarios en los informes. Si una palabra no cabía en una línea esta era eliminada del informe. Para corregirlo la hemos añadido a la siguiente.
+- Se ha añadido los comentarios en el informe de tabla de frecuencias.
+- Se han ajustado los margenes para imprimir los comentarios del informe.
+
+
+Versión 0.184.0.0   Fecha: 19:04 01/02/2012
+===========================================
+- Se han añadido mejoras gráficas en los formuarios de Importar datos, medias y sumas de cuadrados y en la ventana de asignar el número de facetas.
+
+
+Versión 0.183.0.4   Fecha: 17:09 01/02/2012
+===========================================
+- Nuevo instaldor que incopora todos los cambios así como un contrato de licencia.
+
+
+Versión 0.183.0.3   Fecha: 15:01 01/02/2012
+===========================================
+- se ha renombrado el método (de la clase ObsTable)
+		internal void SkipLevelIndex(int skipLevel, int col)
+	por 
+		internal void SkipLevelAndRestoreIndex(int skipLevel, int col)
+- se ha incluido el método: "internal void SkipLevelIndex(ListFacets lf)" que elimina las filas que contiengan algún indice marcado como omitido en su correspondiente faceta. La eliminación de la fila no altera los indices de las restantes filas como si pasa en el método SkipLevelAndRestoreIndex.
+- Se ha renombrado el método (de la clase MultiFacetData)
+		public MultiFacetsObs SkipIndexLevelFacetInDataTable()
+	por
+		public MultiFacetsObs SkipAndRestoreIndexLevelFacetInDataTable()
+- Se ha creado el método public MultiFacetsObs SkipIndexLevelFacetInDataTable() quu devuelve un objeto multifaceta al que se han eliminado las filas donde aparece un indice marcado para omitir, el resto de filas no sean alterado los indices.
+- La omisión de facetas ya se aplica correctamente a las medias.
+
+
+Versión 0.183.0.2   Fecha: 13:21 01/02/2012
+===========================================
+- Se ha introducido el método: "public bool HasSkipLevels()" en la clase Facet del proyecto MultiFacetData, que devuelve true si omite algun nivel.
+- Se ha introducido el método: public bool HasSkipLevels() en la clase parcial ListFacets2 del proyecto MultiFacetData, que devuelve true si alguna faceta omite algún nivel, false en caso contrario.
+- Se ha introducido el método "private void SkipLevel(ListFacets lf)" en la clases TableMeans, TableMeansDif y TableMeansTypScore, proyecto ProjectMean, que elimina las filas de la tabla que contiene algún indice omitido.
+- Se realiza la omisión de niveles en las tablas de medias, pero aun hay que omitirlas de la tabla de 
+frecuencias para que los calculos se realizen de manera correcta.
+
+
+
+Versión 0.183.0.1   Fecha: 10:55 01/02/2012
+===========================================
+- Se ha eliminado los atributos rows y cols de la clase TableMeans. El número de filas y de columnas se
+obtiene aplicando la propiedad Count al atributo meansMatrix.
+- Se ha eliminado los atributos rows y cols de la clase TableMeansDif. El número de filas y de columnas se obtiene aplicando la propiedad Count al atributo meansMatrix.
+- Se ha eliminado los atributos rows y cols de la clase TableMeansTypScore.
+- Se ha limpiado el codigo de las tres clases anteriores de codigo comentado en desuso.
+
+
+Versión 0.183.0.0   Fecha: 17:09 31/01/2012
+===========================================
+- Se ha introducido un nuevo método en la clase facetas que devuelve el número de niveles en uso (Nivel original menos el número de niveles omitidos).
+- Se ha eliminado los atributos de la clase ObsTable.cs
+- El calculo de suma de cuadrados se realiza correctamente omitiendo los niveles correspondientes
+
+
+Versión 0.182.1.1   Fecha: 12:34 30/01/2012
+===========================================
+- Se ha incluido en la clase TableAnalysisOfVariance.cs del proyecto ProjectSSQ el método  PartialSumOfSquaresByMeans que calcula una suma de cuadrados parcial mediante la media al cuadrado, tal como viene en la tesis doctoral de Joann Lynn Moore. Esto es útil para obtener resultados considerando los valores nulos de las tablas.
+- Se aplica el calculo de suma de cuadrados sustituyendo los valores nulos por ceros dependiendo del valor seleccionado en la configuración de la aplicación.
+
+
+Versión 0.182.1.0   Fecha: 10:36 30/01/2012
+===========================================
+- Se ha cambiado el atributo ssqMatrix de un array bidimensional a un List<List<double?>> en la clase TableSSQ.
+
+
+Versión 0.182.0.7   Fecha: 14:17 26/01/2012
+===========================================
+- Se ha modificado los métodos de las clases de tablas de medias para que puedan efectuar los calculos
+interpretando los nulos como ceros u omitiendolos de los calculos según el valor de un parámetro boleano.
+
+
+Versión 0.182.0.6   Fecha: 15:34 25/01/2012
+===========================================
+- Se ha eliminado uno de los constructores de la clase MultiFacetObs por incluir un parámetro de tipo List<Facet>, existe otro  constructor que realiza la misma operación pero con parámetro ListFacet. Las lineas de código que hace referencia al contructor eliminado han sido modificadas sustituyendo un constructor por otro.
+- Se ha incluido un nuevo parámetro (comment) en la clase MultiFacetObs, por tanto se ha añadido un constructor, se han añadido métodos de instanciación y consulta y se han modificado los métodos redefinidos.
+- Es posible incluir comentarios y guardarlos en un fichero desde el programa.
+
+
+Versión 0.182.0.5   Fecha: 14:47 25/01/2012
+===========================================
+- Se ha incluido un nuevo tabPageDataInfo en la opción de datos.
+
+
+Versión 0.182.0.4   Fecha: 12:58 25/01/2012
+===========================================
+- Se ha implementado la interface ICloneable en la clase Lisfacets.cs del proyecto MultifacetData.
+- Ya se pueden omitir los niveles desde la ventana FormOmitLevelFacet, aun no se aplica a los cálculos
+pero estos pueden ser guardados y recuperados correctamente en los archivos.
+
+
+Versión 0.182.0.3   Fecha: 14:26 24/01/2012
+===========================================
+- Se ha actualizado la clase Facet.cs con un nuevo atributo que almacena la lista de niveles que se omiten en el estudio de la generalizabilidad.
+- Se ha eliminado algunos métodos que estaban como comentarios en la clase Facet.cs.
+
+
+Versión 0.182.0.2   Fecha: 11:34 24/01/2012
+===========================================
+- Ahora se inicializan correctamente tanto el comboBox como el checkedListBox de la ventana FormOmitLevelFacet.
+
+
+Versión 0.182.0.1   Fecha: 17:58 23/01/2012
+===========================================
+- Se ha incluido la ventana para seleccionar los niveles de las facetas que se omitiran en el estudio de la generalizabilidad.
+
+
+Versión 0.182.0.0   Fecha: 12:42 23/01/2012
+===========================================
+- Se ha modificado la clase ConfigCFG.cs para que albergue una nueva variable booleana (null_to_zero) que determina si se interpretarán los valores null como zero. dicho parámetro aun no es seleccionable en la ventana de configuración y no actua sobre los calculos todavía.
+
+
+Versión 0.181.1.2   Fecha: 11:34 23/01/2012
+===========================================
+- Se han cambiado los métodos de escritura y lectura de las tablas de media (clase TableMeans.cs), ahora se almacena toda la tabla en lugar de solamente las últimas columnas (media, varianza y desviación típica). Además se ha añadido un nuevo constructor.
+- Se han cambiado los métodos de escritura y lectura de las tablas de media con puntuación típica (clase TableMeansTypScore.cs), ahora se almacena toda la tabla en lugar de solamente las últimas columnas (media, varianza, desviación típica, diferencia de medias y puntuación típica). Además se ha añadido un nuevo constructor.
+- Se han cambiado los métodos de escritura y lectura de las tablas de diferencia de media (clase TableMeansDif.cs), ahora se almacena toda la tabla en lugar de solamente las últimas columnas (media, varianza, desviación típica, diferencia de medias, diferencia de varianzas y diferencia de desviaciones típicas). Además se ha añadido un nuevo constructor.
+
+
+Versión 0.181.1.1   Fecha: 17:53 19/01/2012
+===========================================
+- Se ha cambiado el atributo meansMatrix de un array bidimensional a un List<List<double?>> en la clase TableMeans.
+- Se ha cambiado el atributo meansMatrix de un array bidimensional a un List<List<double?>> en la clase TableMeansDif.
+- Se ha cambiado el atributo meansMatrix de un array bidimensional a un List<List<double?>> en la clase TableMeansTypePoint.
+
+
+Versión 0.181.1.0   Fecha: 17:05 19/01/2012
+===========================================
+- Se ha incluido la generación de un suma de cuadrados a partir de una tabla de frecuencias con facetas marcadas como omitidas.
+
+
+Versión 0.181.0.5   Fecha: 16:31 19/01/2012
+
+===========================================
+- Ya se puede generar medias con facetas omitidas correctamente.
+
+
+Versión 0.181.0.4   Fecha: 13:07 19/01/2012
+
+===========================================
+- Se ha cambiado las tabla de observaciones, esta en lugar de representarse con un array se representa con List<List<double?>>.
+- Cuando se almacena la tabla de observaciones en el fichero, se alamacena toda la tabla en lugar de solamente el vertor de frecuencias.
+
+
+Versión 0.181.0.3   Fecha: 16:32 18/01/2012
+===========================================
+- Ahora lee las casillas de omision de facetas en el datagridViewExFacet del tabPage de datos y las facetas actualizan su vaiable de omisión. Los datos se almacenan correctamente en los archivos.
+- Se ha corregido un bug que se producia al recupera los datos del fichero. La variable omit de las facetas siempre estaba puesto a false.
+- se recupera la variable omit y se muestra correctamente.
+
+
+Versión 0.181.0.2   Fecha: 14:34 18/01/2012
+===========================================
+- Se ha incluido un nuevo método en la clase parcial ListFacet2.cs. ListFacetWithoutOmit() que devuelve una lista de facetas en la que todos sus elementos esten sin omitir.
+ 
+
+Versión 0.181.0.1   Fecha: 14:02 18/01/2012
+===========================================
+- Se he modificado la clase Facet para dar soporte a un nuevo atributo: bool omit, que indica si la faceta se omitirá o no en el estudio. En consecuencia los archivos generados con las versiones anteriores ya no son compatibles.
+
+
+Versión 0.181.0.0   Fecha: 13:13 18/01/2012
+===========================================
+- Se ha creado el método LoadListFacetWithOmitInDataGridView(ListFacets lf, DataGridViewEx.DataGridViewEx dgv, bool columnOmit)
+Con los siguiente parámetros:
+         ListFacets lf: Lista de facetas
+         DataGridViewEx.DataGridViewEx dgv: datagridView donde se meten los los
+         bool columnOmit: variable booleana que indica si se muestran la columna de omitir facetas
+
+Dicho metedo se emplea para mostrar la columna de omisión de facetas.
+
+
+Versión 0.180.0.5   Fecha: 18:10 17/01/2012
+===========================================
+- Incluidos los comentarios en el informe de medias.
+
+
+Versión 0.180.0.4   Fecha: 17:27 17/01/2012
+===========================================
+- Añadido los métodos que permiten la impresión de los comentarios.
+
+
+Versión 0.180.0.3   Fecha: 13:10 16/01/2012
+===========================================
+- Se ha corregido el siguiente bug: cuando se cambiaban los parametros de configuración tales como el numero de decimales o la coma decimal no se actualizaba los datos de la sección de análisis. Se ha corregido intruduciendo el comando correspondiente en el método de refrescar todos los datos.
+- Se estan introduciendo cambios para que el cambio de tamaño de letra no afecte lo minimo posible a la emisión de informes.
+
+
+Versión 0.180.0.2   Fecha: 11:01 13/01/2012
+===========================================
+- Se ha corregido un bug en el sobreado de las filas alternativas de las tablas. El error se producia porque tomaba la altura de la cabecera y no de la fila. Se ha corregido cambiando el parámetro iHeaderHeight por iCellHeight.
+- Se ha hecho una primera versión del informe de análisis que se puede consultar desde el menú informes de análisis.
+
+
+Versión 0.180.0.1   Fecha: 14:32 12/01/2012
+===========================================
+- Se ha corregido un bug en la escritura de archivos. En concreto cuando se almacenaban los comentarios. Lo que probocaba que se perdiera el salto de linea (retorno de carro) para corregirlo se ha añadido un mátodo auxiliar que escribe linea a linea los comentarios (writeString).
+
+
+Versión 0.180.0.0   Fecha: 12:16 12/01/2012
+===========================================
+- Añadida la clase parcial del formPrincipal PrintAnalysisDocuments.cs. Se encarga de los métodos para imprimir el informe de análisis.
+- Se ha solucionado el problema que había al escribir comentarios. No se podía escribir varias lineas pues al pulsar el retorno de carro (enter) se ejecutaba el botón donde se encuetra el foco. Esto se ha corregido garcias a que José Luis Pastrana, quien nos ha indicado la solución. La propiedad AcepTab del richTextBox a true.
+- Se ha cambiado el nombre del botó btSave por btOk en el FormEditFileComment.cs, también se ha cambiado el icono de dicho botón y los textos (traducción).
+
+
+Versión 0.179.0.1   Fecha: 18:17 11/01/2012
+===========================================
+- Se ha añadido la capacidad de elegir el tipo de letra en los informes. Esto se hace desde la ventana de configuración (formSetting). El tipo de letra se almacena en la clase de configuración (configCFG).
+
+
+Versión 0.179.0.0   Fecha: 12:53 11/01/2012
+===========================================
+- Se ha añadido una nueva variable de tipo int para indicar el tamaño de la fuente en la clase de parametros de configuración.
+- En la ventana de configuración (formSetting) es posible indicar el tamaño de las fuentes de los informes.
+
+
+Versión 0.178.0.16   Fecha: 11:35 11/01/2012
+============================================
+- Se le ha añadido un nuevo parámetro booleano a la función PrintDataGridViewEx que indica si esta sombreará alternativamente las filas de las tablas.
+- Se ha añadido en la ventana de configuración (formSetting.cs ) una opción que permite inidicar si se quiere sobrear alternavimente las filas de los informes.
+
+
+Versión 0.178.0.15   Fecha: 18:48 10/01/2012
+============================================
+- Se sombrean las filas impares de las tablas de los informes para facilitar la legibilidad.
+- Se ha añadido a la clase de configuración (ConfigCFG.cs) una nueva variable booleana (ShadingRows) que indica que se sobrearan alternativamente las filas de las tablas de los informes si esta a true. En caso contrario no se sombrearan las filas. Nota: El encabezado es independiente de este valor y siempre se sombrea.
+
+
+Versión 0.178.0.14   Fecha: 17:32 10/01/2012
+============================================
+- Añadida la tabla de G-Parámetros al informe.
+
+
+Versión 0.178.0.13   Fecha: 13:38 10/01/2012
+============================================
+- Corregida la traducción de "Imformes" por "Informes" en los tabPages de Medias, suma de cuadrados y análisis.
+- Añadidos las opciones y los iconos de "Imprimir" y "Vista previa" en los menús de suma de cuadrados y análisis.
+- Corregido un bug el diseño de medida se mostraba de forma erronea en el textBox de suma de cuadrados esto era porque en el método LoadAllDataInDataGridViewEx_SSQOptions() se hacía una llamada al método
+ShowMeDessingInTextBoxs(ListFacets sourceOfDifferentiation,ListFacets  sourceOfVarInstrumentation); con los parámetros invertidos.
+
+
+Versión 0.178.0.12   Fecha: 17:53 09/01/2012
+============================================
+- Ahora al editar un comentario ya sea desde medias, suma de cuadrados o análisis, no se fuerza a guardar los datos en un archivo es necesario hacerlo con posterioridad.
+
+
+Versión 0.178.0.11   Fecha: 17:00 09/01/2012
+============================================
+- Antes si al editar los comentarios de medias le damos a guardar y luego cancelamos perdiamos la información modificada. Ahora podremos seguir modificandola o cancelarla sin realizar las modificaciones.
+
+
+Versión 0.178.0.10   Fecha: 14:04 09/01/2012
+============================================
+- Si se cancelaba al seleccionar los informes se producia un error en tiempo de ejecución. Para solucionarlo la selección de informes se hace en los métodos: tsmiDataPrintPreview_Click y tsmiDataPrinter_Click en vez del método printSagtDocument_BeginPrint.
+- Se ha cambiado los botones cerrar por cancelar en los form: FormSelectReports.cs y FormSelectSaves.cs
+
+
+Versión 0.178.0.9   Fecha: 13:11 09/01/2012
+===========================================
+- Se ha incluido en las traducciones el título del informe (Informe SAGT).
+- Se ha solucionado un bug con el indice de la tabla de medias cuando la tabla continua en una nueva página.
+- Se ha solucionando un bug con la ausencia de la linea que muestra la gran media de la tabla una vez escrita esta.
+- Se ha solucionado un bug por el cual si se imprimia por segunda vez el informe no se completaba la tabla de observaciones. Para ello hemos incluido la sentencia "isFinishTableObs = false;" en el método
+printSagtDocument_BeginPrint.
+
+
+
+Versión 0.178.0.8   Fecha: 10:39 09/01/2012
+===========================================
+- El titulo del informe de medias solo se imprime en la primera página de dicho informe.
+- Se habilitan las opcines "Imprimir" y "Vista previa" del menú vertical de medias.
+- Ahora la selección de elementos del informe se realiza desde el método printSagtDocument_BeginPrint en lugar de tsmiDataPrintPreview_Click. Esto es para que la selección de informes se realice con independencia de que le demos a imprimir o a vista previa.
+
+
+Versión 0.178.0.7   Fecha: 14:07 08/01/2012
+===========================================
+- Se imprimime una primera versión del informe de medias que no incluye los datos del tabPage de información.
+- Se ha modificado los parámetros del método PrintDataGridViewEx, ahora iTopMargin es una variable global que alamcena el margen superior de impresión del elemento que se escribe.
+
+
+Versión 0.178.0.6   Fecha: 0:39 07/01/2012
+===========================================
+- Se ha corregido un bug detectado en el nombre de los tabPage de tabla de medias que no se correspondian en ocasiones con la tabla de medias generada que si era correcta. Esto era debido a que en la función createMeansOfListOfListFacets se pasaba como segundo parámetro todas las listas de diseños en lugar de solo las seleccionadas.
+
+
+Versión 0.178.0.5   Fecha: 13:20 05/01/2012
+===========================================
+- Se han renombrado métodos e incluido nuevos comentarios.
+- Incluida una ventana de selección de elementos del informe. La ventana se muestra pero el único elemento hábil en el informe es la tabla de frecuencias.
+
+
+Versión 0.178.0.4   Fecha: 0:52 04/01/2012
+===========================================
+- El informe de facetas pemite mostrar dos tablas consecutivas.
+- Se ha añadido traducción al informe de table de frecuencias.
+- Desde imprimir se puede elegir entre imprimir directamente o seleccionar la vista preliminar.
+
+
+Versión 0.178.0.3   Fecha: 20:15 01/01/2012
+===========================================
+- Se incluye una versión de informe preliminar.
+
+
+Versión 0.178.0.2   Fecha: 14:06 29/12/2011
+===========================================
+- Se ha incluido la clase DataGridViewPrinter.cs para permitir la generación de dataGridView pertenciente a: Salan Al-Ani. Extraido de la pagina CodeProject: 
+	http://www.codeproject.com/KB/printing/datagridviewprinter.aspx
+- Se ha incluido la clase parcial PrintSagtDocuments.cs para la gestión de los informes.
+
+
+Versión 0.178.0.1   Fecha: 18:39 28/12/2011
+===========================================
+- Se ha cambiado el paso de parametros de FormSetting para un uso más eficiente de la memoria (ahora no se pasa el formPrincipal como parametro).
+- Se ha corregido un error con la exportación de los datos de la tabla de frecuencias.
+
+
+Versión 0.178.0.0   Fecha: 11:16 22/12/2011
+===========================================
+- Se ha especificado "c:\USER\[Nombre de usuario]\Documents\SAGT\" como el lugar donde se guardará el fichero de configuración del usuario. El directorio SAGT contendrá a su vez un directorio llamado WorkSpace (espacio de trabajo).
+- Se ha modificado algunos métodos de la clase ConfigCFG.cs introduciendo un parámetro de tipo string que será la ubicación del archivo de configuración. Solo se introduce el path no el nombre del fichero
+. El path
+será "c:\USER\[Nombre de usuario]\Documents\SAGT\". El nombre del fichero de configuración no se introduce ya que es una constante de clase.
+- Se ha generado un nuevo proyecto de instalación.
+
+
+NOTA:
+Para conseguir el path de la carpeta de documentos usamos el siguiente comando: 
+string pathDocuments = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
+
+
+Versión 0.177.0.3   Fecha: 13:00 20/12/2011
+===========================================
+- Se ha añadido el botón de importar suma de cuadrados en la edición de sumas de cuadrados de la opción Análisis, con sun funcionlidad correspondiente. (Nota: para ello usa el metodo de lectura del vectro de datos de la clase MultiFacetObs.cs que es un método estático).
+
+
+Versión 0.177.0.2   Fecha: 11:29 20/12/2011
+===========================================
+- Se ha corregido un bug en la exportación de los datos de la tabla de frecuencia simplemente se ha sustituido la línea
+	bool res = this.sagtElements.WritingSagtFile(saveDialog.FileName);
+por 
+	MultiFacetsObs multiFacetData = this.sagtElements.GetMultiFacetsObs();
+        bool res = multiFacetData.WritingFileDataScore(saveDialog.FileName);
+- Se ha agregado funcionalidad al botón Exportar suma de cuadrados de la opción análisis.
+
+
+Versión 0.177.0.1   Fecha: 11:38 16/12/2011
+===========================================
+- Se han incluido botones de informes en las opciones de datos, medias, sumas de cuadrados y análisis.
+
+
+Versión 0.177.0.0   Fecha: 18:31 15/12/2011
+===========================================
+- Nueva versión del instalador con todos los cambios hasta ahora.
+
+
+Versión 0.176.0.6   Fecha: 17:12 15/12/2011
+===========================================
+- Se ha modificado los parámetors del método ClearTabPageMeans(ListMeans listMeans) --> ClearTabPageMeans().
+- Se ha creado el método auxiliar:
+	 private void SaveFileSagt(SagtFile sagtElements)
+que se encarga de guardar los datos en un fichero  este sera llamadado a traves de las opciones de guardado de los menú verticales de Datos, Medias y Suma de cuadrados.
+
+
+Versión 0.176.0.5   Fecha: 13:10 15/12/2011
+===========================================
+- Se ha corregido un bug por el cual al cerrar el fichero de suma de cuadrados o de análisis no se limpiaba el tabPage de información.
+- Al cargar un fichero desde la opción Datos ahora se acragan todos los datos presentes en el archivo y no solo los de la opción datos, es decir, se cargaran tablas de medias y las tablas de análisis de varianza si estan presente en el fichero.
+
+
+Versión 0.176.0.4   Fecha: 11:43 15/12/2011
+===========================================
+- Se ha modificado la clase parcial SsqOptions.cs para emplear la clase sagtFile al almacenar los datos de las tabla de análisis de varianza (Analysis_and_G_Study.cs). Ahora los datos de las tablas de frecuencias y tablas de medias y tablas de análisis de varianzas se guardan en el mismo archivo.
+
+
+Versión 0.176.0.3   Fecha: 18:08 14/12/2011
+===========================================
+- Se ha modificado la clase parcial MeansOptions.cs para emplear la clase sagtFile al almacenar los datos de las tabla de medias (ListMeans.cs). Ahora los datos de las tablas de frecuencias y tablas de medias se guardan en el mismo archivo.
+
+
+Versión 0.176.0.2   Fecha: 17:01 14/12/2011
+===========================================
+- Se ha modificado la clase parcial DataOptions.cs para emplear la clase sagtFile al almacenar los datos de la tabla de fecuencias (MultiFacetsObs.cs).
+
+
+Versión 0.176.0.1   Fecha: 12:27 14/12/2011
+===========================================
+- Se ha corregido y modificado los métodos algunos metodos de la libreria SagtFile.
+
+
+Versión 0.176.0.0   Fecha: 18:57 13/12/2011
+===========================================
+- Se ha añadido la libreria SagtFile que en un mismo fichero guarda los datos de las tablas de observaciones, tablas de medias y tablas de análisis de varianza.
+
+
+Versión 0.175.1.0   Fecha: 13:35 13/12/2011
+===========================================
+- Se ha corregido un bug que se producia al guardar el fichero de Análisis de suma de cuadrados ya que no se almacenaba el nombre del fichero.
+- Se ha corregido un bug con los nombres y las fechas de los ficheros de importación en la pestaña de información de la opción Suma de cuadrados.
+
+
+Versión 0.175.0.9   Fecha: 12:18 13/12/2011
+===========================================
+- Se ha corregido un bug con la fecha de creación de Suma de Cuadrados en la opción homónima, ahora se muestra la hora.
+- Se han añadido comentarios (descripción para el método: tsmiActionAnalysis_AddLevelSign_Click).
+- Se muestran la fecha de creación y el nombre el tabPage Información de la opción Análisis.
+- Se ha añadido la edición de comentarios en la opción de Análisis.
+- Arreglado un bug al cancelar desde el FormAssignNumOfFacets en la opción Análisis.
+
+
+Versión 0.175.0.8   Fecha: 11:29 13/12/2011
+===========================================
+- Se ha corregido un bug que se producia cuando no estaba presente ninguna tabla de suma de cuadrados (ya sea desde la opción Suma de Cuadrdados o desde Análisis) y pulsabamos la opción cerrar. Se producia un error al devolverse un valor null.
+
+
+Versión 0.175.0.7   Fecha: 18:25 12/12/2011
+===========================================
+- Se ha modificado los metodos para introducir un nuevo nivel de optimización.
+- Ya se puede añadir nuevos niveles de optimización desde la opción de análisis.
+
+
+Versión 0.175.0.6   Fecha: 13:27 12/12/2011
+===========================================
+- Se ha corregido un bug que se producia al introducir un nuevo nivel de optimización, se ha corregido ordenando la lista de facetas con los nuevos niveles en el mismo orden que la original.
+
+
+Versión 0.175.0.5   Fecha: 12:14 12/12/2011
+===========================================
+- Se ha incluido un modificado los métodos: "importSSqFile(string path)", "void loadListTableSSqOfFileSsq(string path)" que pasa a ser: "Analysis_and_G_Study Aux_loadListTableSSqOfFileSsq(string path)", "void loadListTableSSqOfFileRsa(string path)" que pasa a ser: Analysis_and_G_Study Aux_loadListTableSSqOfFileRsa(string path)".
+- Se ha añadido la funcionalidad de importar ficheros en lo opción de análisis.
+
+
+Versión 0.175.0.4   Fecha: 17:27 11/12/2011
+===========================================
+- Se ha añadido funcionalidad al botón guardar del menú vertical de análisis.
+
+
+Versión 0.175.0.3   Fecha: 17:12 11/12/2011
+===========================================
+- Se ha corregido un error, al efectuar los Análisis no se mostraba el diseño en los textBox.
+- Se ha cambiado el la extensión de los ficheros de análisis de .tssq a .anls.
+- Se ha añadido comentarios para describir el paso de parámetros en algunos métodos.
+
+
+Versión 0.175.0.2   Fecha: 17:56 01/12/2011
+===========================================
+- Se ha corregido algunos bugs.
+- Se han añadido y modificado comenarios.
+- Se han implementados las operaciones de los botones: Anidar faceta y Quitar anidamiento de la opción de analisis.
+
+
+Versión 0.175.0.1   Fecha: 18:32 30/11/2011
+===========================================
+- Se han añadido los botones de "Niveles de optimización" y "Gráficos" en la opción de Ánalisis.
+
+
+Versión 0.175.0.0   Fecha: 13:56 30/11/2011
+===========================================
+- Se ha incluido el bóton de guardar en la opción de Análisis.
+- Se ha añadido la ventana para seleccionar los elementos que deseamos guardar: La tabla de observaciones, las tablas de medias y las tablas de analisis de varianza, G-Parametros y Optimización.
+
+
+Versión 0.174.1.14   Fecha: 11:39 30/11/2011
+============================================
+- Se ha rescrito y corregido el algoritmo de cálculo de la Componente de varianza aleatoria (Método CalcRandomComp()). Se ha corregido introduciendo la condiciones de parada descritas en el algoritmo del libro "Elements of Generalizability Theory" de Robert L. Brennan. La condiciones de parada son si el último termino que se suma o resta es único, finaliza.
+
+
+Versión 0.174.1.13   Fecha: 13:27 25/11/2011
+============================================
+- Se ha corregido un bug que se procia con una variable a null. Se ha corregido inicializando devidamente la variable "anl_tAnalysis_G_study_opt" de tipo "Analysis_and_G_Study".
+- Se ha añadido un evento que controla la escritura del tamaño del universo del dataGridViewEx de edición de facetas en la opción de análisis.
+- Se han añadido los botones de Anidar faceta y quitar anidamiento en la opción de Análisis.
+- Se ha corregido el nombre del tabPageAnalysisInf.
+
+
+Versión 0.174.1.12   Fecha: 17:32 23/11/2011
+============================================
+- Se ha corregido algunos problemas al importar un fichero de resumen de suma de cuadrados creado con GT 2.0E.
+
+Versión 0.174.1.11   Fecha: 12:56 23/11/2011
+============================================
+- Se ha eliminado "sourceOfDifferentiation" y "sourceOfInstrumentation" (ambas de tipo ListFacets) como variables globales lo que ha obligado a modificar algunos métodos.
+- Se ha corregido un bug por el cual al cargar un fichero de sumas de cuadrados no se actualizaban los textbox de diseño de medida.
+
+
+Versión 0.174.1.10   Fecha: 11:59 23/11/2011
+============================================
+- Se ha corregido un bug en uno de los constructores de TableAnalysisOfVariance respecto del calculo del grado de libertad.
+- Se ha introducido eventos en el form FormAddSignificanceLevels para controlar la escritura del "Tamaño del universo" que solo admite un número entero
+o escribe "INF" tras pulsar la tecla 'i'.
+
+
+Versión 0.174.1.9   Fecha: 11:26 23/11/2011
+===========================================
+- Se ha corregido un bug en el método "AddSignificanceLevel" debido a que no se indicaba correctamente el diseño de las facetas. Tabien se ha ccambiado los parámetros de dicho método. Ahora se le pasa un parámetro "tablesOfAnalysisG" de tipo "Analysis_and_G_Study" que contiene las tablas de sumas de cuadrados: Tabla de análisis, G-Parametros y optización.
+
+
+Versión 0.174.1.8   Fecha: 18:46 22/11/2011
+===========================================
+- Se ha corregido diversos errores al recuperar datos de un archivo de suma de cuadrados
+
+
+Versión 0.174.1.7   Fecha: 17:45 22/11/2011
+===========================================
+- Se ha corregido un bug en uno de los constructores de la clase TableMeansDif que impedia recuperar correctamente los datos de un archivo. Se ha corregido sustituyento la variable i por la j en un bucle for.
+- Se ha corregido varios bug's en la clase TableMeans. En el método ReadingStreamTableMeans no se leia el diseño de la tabla, lo que probocaba un error al leer el fichero de medias. Se ha corregido un error con un indice en uno de los constructores de esta misma clase.
+- Se ha corregido bug's en la clase TableMeansTypScore: el método WritingStreamTableMeans no almacenaba correctamente los datos. Tabién se ha modificado el indice de uno de los constructores.
+
+
+Versión 0.174.1.6   Fecha: 14:41 21/11/2011
+===========================================
+- Introducida la función Importar los datos de un fichero de puntuaciones compatible con EduG.
+- Se han corregido algunos errores con las traducciones.
+- Se ha corregido un bug con el punto decimal al leer los datos de la tabla de observaciones.
+
+
+Versión 0.174.1.5   Fecha: 11:48 21/11/2011
+===========================================
+- Introducida la función de exportar suma de cuadrados de la tabla de análisis.
+- Se ha corregido algunos errores con las traducciones.
+
+
+Versión 0.174.1.4   Fecha: 13:05 18/11/2011
+===========================================
+- Introducida la función de exportar los datos de la tabla de observaciones.
+
+
+Versión 0.174.1.3   Fecha: 18:33 17/11/2011
+===========================================
+- Añadido en los menú de datos, suma de cuadrados y Análisis el botón de Exportar suma de cuadrados.
+
+
+Versión 0.174.1.2   Fecha: 17:04 16/11/2011
+===========================================
+- Corregido un error en el calculo de la componente de varianza corregida.
+
+
+Versión 0.174.1.1   Fecha: 14:16 16/11/2011
+===========================================
+- Se han añadido las clases Term y ListOfTerm en la libreria ProjectSSQ.
+- Se han corregido un bug el el método DegreeOfFreedom de la clase ListFacets, el error provocaba que siempre devolviese 1. Para corregirlo se ha modificado la cabecerá del bucle inicializado a 1 que pasa a inicializarse a cero. Y se ha modificado una senetencia condicional.
+En la clase TableAnalysisOfVariance se ha eliminado el método CalcSSQ y se han modificado los métodos: PartialSumOfSquares y CalcResidue. Además se a añadido la variable:
+ private Dictionary<string, double> df; // Degree of freedom
+que almacena el grado de libertad de un diseño de facetas establecido como clave.
+
+
+
+Versión 0.174.1.0   Fecha: 12:25 07/11/2011
+===========================================
+- Se ha hecho un gran cambio empeando string en lugar de listas de facetas como clave en la libreria ProjectSSQ.
+
+
+Versión 0.174.0.0   Fecha: 14:10 03/11/2011
+===========================================
+- Corregido el Bug que se producía al importar un fichero .rsm (resumen de medias) de GT 2.0E. El error se producia cuando había previamente tablas de medias calculadas. Al importar por segunda vez las pestañas se unian a continuación de las anteriores. Para corregirlo se a llamado al metodo que limpia las pestañas.
+
+
+Versión 0.173.0.10  Fecha: 12:45 03/11/2011
+
+===========================================
+- Se ha corregido el nombre de las pestañas de medias para que aparezcan los diseños.
+- Se ha realizado cambios en las cases que contienen las tablas de medias para almacenar el diseño de las facetas.
+- Se han introducido cambios en los métodos de lectura y escritura de ficheros para leer los disechos de las Facetas.
+
+
+Versión 0.173.0.9   Fecha: 17:59 02/11/2011
+
+===========================================
+- Se ha corregido un bug al leer los ficheros de resumen de medias de GT 2.0E.
+
+
+Versión 0.173.0.8   Fecha: 16:06 02/11/2011
+
+===========================================
+- Se ha corregido algunos bugs que se producian al importar el fichero de observaciones de GT 2.0E y al generar las listas de facetas.
+
+
+Versión 0.173.0.7   Fecha: 14:11 02/11/2011
+
+===========================================
+- Se ha corregido el método que anidaba todas las facetas de una lista de facetas.
+
+
+Versión 0.173.0.6   Fecha: 13:46 02/11/2011
+
+===========================================
+- Ahora se genera correctamente la listas de facetas de el formListFacets.cs
+
+
+Versión 0.173.0.5   Fecha: 13:27 28/10/2011
+===========================================
+- Se ha arreglado fallos traduciones, y se permite elegir operación al establecer una diseño de una faceta.
+
+
+Versión 0.173.0.4   Fecha: 16:57 27/10/2011
+===========================================
+- Se ha modificado el FormAddNesting con nuevos elementos y traducciones.
+
+
+Versión 0.173.0.3   Fecha: 14:17 27/10/2011
+===========================================
+- Se ha modificado la clase facetas para que ahora los anidamientos sea un atributo de tipo string en lugar de una lista de facetas.
+- se ha modificado el evento KeyPressEditorCelda del dataGridViewExFacets para que ahora al introducir el tamaño del universo si pulsamos 'i' automaticamente se escriba "INF";
+
+
+Versión 0.173.0.2   Fecha: 12:30 25/10/2011
+===========================================
+- Ahora se controla los caracteres que se usará al introducir el nombre de una faceta. Solo pueden ser usados: Letras, números y el espacio.
+- Se ha corregido un bug referente a la lectura de los ficheros de datos de GT 2.0E (.dat). Cuando los datos son decimales estos aparecen consecutivos, sin espacio entre ellos lo que al leerlo provocaba un error de overflow. Para corregilo se detectó en el fichero de observaciones (.obs) que existe una línea de código que indica el formato señalado con el caracter #. Si es un número decimal esta entre 0 y 9 se representará con una "#" pero si tiene mas de un dígito usará varias # (###). Si emplerá  decimales entonces usará el separador decimal (#.#). Depediendo del formato tendrá más o menos #. 
+- Se ha observado que GT también es capaz de trabajar con diseños anidados. Es por ello necesario estudiarlo y corregirlo.
+
+
+Versión 0.173.0.1   Fecha: 16:42 20/10/2011
+===========================================
+- Se han corregido algunos bugs:
+	- Cuando se redimensionavan las ventanas de anidar facetas, eliminar anidamiento y configuración. En el primer y último caso se ha optado por evitar que se modifiquen su tamaño prientras que en el segundo se ha introducido un tamaño mínimo para que la ventana no se deforme.
+	- Cuando se leia un fichero de datos si era incorrecto lanzaba una excepción ahora dira que el fichero no esta en el formato correcto.
+- Se ha incluido iconos en la ventana Anidar faceta para facilitar su uso y distinguir las facetas anidada de la anidante.
+- Incluye la nueva versión del instalador version v0.173
+
+
+Versión 0.173.0.0   Fecha: 11:19 19/10/2011
+===========================================
+- Se ha incluido los menús etiquetas y textBox asi como las traduciones de estos para las opciones de menú usuarios y proyectos.
+
+
+Versión 0.172.0.0   Fecha: 12:40 14/10/2011
+===========================================
+- Acceso a los tabPage de usuarios y proyectos desde menú principal y mensaje de advertencia de no conexión.
+
+
+Versión 0.171.2.1   Fecha: 11:49 14/10/2011
+===========================================
+- Se ha incluido la traducción del formulario FormPass, ademas de incluir nuevos elementos ha dicho formulario.
+
+
+Versión 0.171.2.0   Fecha: 18:18 13/10/2011
+===========================================
+- Se ha incluido en el menú prinicipal de opciones el boton desconectar.
+
+
+Versión 0.171.1.8   Fecha: 14:53 05/10/2011
+===========================================
+- La tabla de facetas muestra los anidamientos y se actualiza a medida que los vamos creando.
+- Si seleccionamos el anidamiento anidado, solo tendremos que indicar las facetas, el anidamiento se produce automaticamente.
+
+
+Versión 0.171.1.7   Fecha: 14:53 05/10/2011
+===========================================
+- Ya se puede quitar los anidamientos de la lista de facetas.
+
+
+Versión 0.171.1.6   Fecha: 13:05 05/10/2011
+===========================================
+- Se ha añadido un mensage de error si tratamos de quitar un anidamiento sin tener facetas anidas.
+
+
+Versión 0.171.1.5   Fecha: 12:25 05/10/2011
+===========================================
+- Se ha añadido confirmación antes de empezar a anidar las facetas ya que despues no podremos editar las facetas hasta que el proceso finalice.
+
+
+Versión 0.171.1.4   Fecha: 11:17 05/10/2011
+===========================================
+- Se ha corregido un bug por el cual solo se guardaba el último anidamiento. Se ha corregido mediante el uso de una variable local lista de facetas (lf_global).
+
+
+Versión 0.171.1.3   Fecha: 19:13 04/10/2011
+===========================================
+- Se ha corregido un error que impedia escribir en un archivo las facetas anidadas. Para corregirlo hemos corregido el metodo IsNesting de la clase facet.
+
+
+Versión 0.171.1.2   Fecha: 18:32 04/10/2011
+===========================================
+- Añadido a la clase facet el método StringDesing()  que devuelve un string con el disposición de facetas para esa faceta.        
+
+
+Versión 0.171.1.1   Fecha: 17:30 04/10/2011
+===========================================
+- Se ha corregido un bug con el botón quitar anidamiento porducido por la propiedad Anchor = {left,Top}. Se ha corregido Anchor = {right, button}
+- Ya se pueden anidar las facetas.
+
+
+Versión 0.171.1.0   Fecha: 14:15 04/10/2011
+===========================================
+- El método validateFacetTable ha cambiado, ya no devuelve un booleano si no una lista de facetas si los datos del dataGrid que se pasa como argumento contiene las facetas de manera correcta. En caso contrario mostrará un mensaje de error y devolvedrá null. Tampoco inicializa el Objeto multifacetá definido como variable global. Este será inicializado desde el método llamante.
+
+
+Versión 0.171.0.9   Fecha: 13:20 04/10/2011
+===========================================
+- La opción de datos aparece marcada en el menú al inicio. Al generar una media, la opción medias de menu se marca sola, e idem con la opción generar suma de cuadrados.
+
+
+Versión 0.171.0.8   Fecha: 12:33 04/10/2011
+===========================================
+- Se ha corregido un bug el cual permitia cambiar de opción cuando nos encontrabamos en un estado en que no se debería permitir como por ejemplo en la edición de un elemento. Se ha corregido removiendo los tabPages del tabControl e incluyendo solamente aquel que es accesible en cada estado.
+
+
+Versión 0.171.0.7b   Fecha: 18:32 03/10/2011
+============================================
+- Aparentemente se ha solucionado el problema que se daba cuando se daba a nuevo por segunda vez y daba un error de indice fuera de rango. se ha solucionado usando la propiedad readOnly de las columnas en lugar de la tabla, esto es solo para el datagridViewEx de facetas. Y también antes de hacer clear() al dataGrid se ha puesto la propiedad NumeroFilas a 0 para inicializarlo.
+
+
+Versión 0.171.0.7   Fecha: 14:47 03/10/2011
+===========================================
+- Añadido la ventana FormRemoveNesting.cs para elminar anidamientos.
+
+
+Versión 0.171.0.6   Fecha: 13:51 03/10/2011
+===========================================
+- Añadido el botón de eliminar anidamiento.
+
+
+Versión 0.171.0.5   Fecha: 11:50 30/09/2011
+===========================================
+- Añadidas las traducciones del FormAddNesting.cs y FormAssignNumOfFacets.cs.
+
+
+Versión 0.171.0.4   Fecha: 16:40 28/09/2011
+===========================================
+- Añadido en el diseño en el fomulario FormAssignNumOfFacets.cs la selección de la disposición de facetas como un groupBox con tres radioButton (Cruzada, anidada y mixta).
+
+
+Versión 0.171.0.3   Fecha: 14:58 28/09/2011
+===========================================
+- Creado el diseño de la ventana para la inserción de anidamientos.
+
+
+Versión 0.171.0.2   Fecha: 14:16 28/09/2011
+===========================================
+- Se ha modificado la clase Facet para que una faceta tenga más de un anidamiento, es decir una faceta puede estar anidada en más de una faceta. En consecuencia se han modificado los metodos de instancia y de consulta y tambien an variado la escritura y lectura de archivos multifaceta. 
+
+NOTA: No se han realizado modificaciones para las tablas de medias y las sumas de cuadrados.
+
+
+Versión 0.171.0.1   Fecha: 11:01 28/09/2011
+===========================================
+- Hemos introducido cambios en la inicialización de componetes del programa principal para que en el título de la ventana aparezca la versión del programa.
+- Aparentemente la clase MultiFacetData es capaz de guardar los datos en un fichero y recuperarlo aunque la lista de facetas este anidada. Falta probarlo en profundidad ya que aun no se pueden realizar anidamientos desde la interfaz gráfica.
+
+
+Versión 0.171.0.0   Fecha: 13:44 27/09/2011
+===========================================
+- Se han eliminado comentarios de los métodos: ReadingFileObsData y WritingFileObsData de la clase MultiFacetObs.
+- A la clase Facet se le a añadido un nuevo atributo: nesting para indicar cuando una faceta esta anidada dentro de otra. En principio al crear una faceta esta no esta anidada, por tanto nesting = null.
+- Se han añadido a la clase Facet los métodos de asignanción y consulta de la varible nesting además de haberse incluido el método IsNesting que indica si una faceta es anidada o no.
+- Se ha redefinido el método ToString de la clase Facet para incluir el parámetro nesting.
+- Se han añadido comentarios a los métodos de la clase Facet.
+
+
+Versión 0.170.0.2   Fecha: 11:40 27/09/2011
+===========================================
+- Se ha renombrado la clase MultiFacetException a MultiFacetObsException.
+- Se esta editando y modificando la libreria de elementos multifacetas.
+- Se han cambiado los metodos de lectura y escritura de archivos para elementos multifaceta (Libreria MultiFacetData).
+
+
+Versión 0.170.0.1   Fecha: 14:19 26/09/2011
+===========================================
+- Ya se guarda y recupera correctamente de una archivo los datos de las tablas de suma de cuadrados (Analisis de varianza, G_Study y lista de parámetros de optimización)
+
+
+Versión 0.170.0.0   Fecha: 11:29 26/09/2011
+===========================================
+- Se ha incorporado la fecha/hora y el nombre del fichero de datos de la creación de suma de cuadrados.
+- Se esta trabajando en corregir los errores al guardar los datos de la tablas de suma de cuadrados en un fichero.
+
+
+Versión 0.169.0.4   Fecha: 19:20 20/09/2011
+===========================================
+- Se han empaquetado las variables de sumas de cuadrados como paso previo para la lectura escritura de archivos.
+
+
+Versión 0.169.0.3   Fecha: 17:33 20/09/2011
+===========================================
+- Cambios profundos en la estructuras de datos para el analisis de suma de cuadrados y la obtención de la tabla G_Study y los Coeficientes de Generalizabilidad. Ahorrando memoria.
+- Desaparecen las variables:
+ 	List<TableG_Study_Percent> listG_Parameters;
+	List<TableAnalysisOfVariance> listOfListTableSSQ;
+  Como solo necesitamos una tabla de análisis y una tabla de G_Parámetros son sustituidas respectivamente por:
+	TableAnalysisOfVariance tableAnalysis; // Tabla de Análisis de Varianza
+        TableG_Study_Percent tableG_Study; // Tabla G_Study
+  Como necesitamos almacenar los valores obtenidos tras la optimización hemos creado
+la siguiente variable: List<G_ParametersOptimization> listG_ParametersOpt;
+
+
+Versión 0.169.0.2   Fecha: 13:07 20/09/2011
+
+===========================================
+- Se han añadido comentarios.
+
+Versión 0.169.0.1   Fecha: 12:43 20/09/2011
+
+===========================================
+- Se ha eliminado la variable List<TableAnalysisOfVariance> listOfListTableSSQ; de la clase parcial SSQOptions.cs.
+- Algunos método ha variado sus parámetros de entrada como consecuencia de eliminar la variable anterior.
+- Se ha renombrado la variable "lSSQ" de tipo TableAnalysisOfVariance, por tableAnalysis.
+
+
+
+Versión 0.169.0.0   Fecha: 11:09 19/09/2011
+===========================================
+- Se ha corregido un Bug: la etiqueta de G-Parametros "lbStandDev" al cambiar de idioma mostraba el texto "Desviación típica" en el idioma correspondiente en lugar de permanecer vacía si las tablas no contiene datos se ha corregido comentando la línea de código "lbStandDev.Text = stdv;" en la clase parcial MeansOption.cs.
+
+
+Versión 0.168.0.1   Fecha: 14:09 19/09/2011
+===========================================
+- Se ha modificado el ancho de las columnas de la tabla suma de cuadrados.
+- Se ha introducido la varible standardError en la clase TableAnalysisOfVariance de la libreria ProjectSSQ. En consecuencia se han creado nuevos métodos de cálculo de error estándar, de consulta, etc.
+- Añadida la traducción de error estándar.
+
+
+Versión 0.168.0.0   Fecha: 18:33 14/09/2011
+===========================================
+- Incorpora una nueva versión del instalador.
+
+
+Versión 0.167.0.3   Fecha: 16:42 14/09/2011
+===========================================
+- Se han ajustado las columnas de medias acortando los nombres de algunas columnas.
+- Se ha introducido color de fondo para los menú verticales de datos, medias, suma de cuadrados y análisis.
+
+
+Versión 0.167.0.2   Fecha: 16:23 14/09/2011
+===========================================
+- Se ha modificado el tamaño de la ventana FormAddSignificanceLevels.cs para hacerlo más grande. se ha cambiado el color de las columnas que se pueden editar a color "Gold". Se han ajustado el tamaño del encabezado de las columnas.
+
+
+Versión 0.167.0.1   Fecha: 19:00 12/09/2011
+===========================================
+- Añadido el icono de slavar en el menú de acciones de suma de cuadrados.
+
+
+Versión 0.167.0.0   Fecha: 13:35 12/09/2011
+===========================================
+- Ya guarda recupera correctamente cualquier tipo de lista de tabla de medias.
+
+
+Versión 0.166.1.4   Fecha: 12:58 12/09/2011
+===========================================
+ - Ya se muestras las distintos tipos de tablas de medias (la tabla normal por defecto con media, varianza y desviación típica. La tabla de diferencias que contiene lo lismo que la tabla por defecto pero que incluye tres nuevas columnas, diferencia de medias, diferencia de desviación típica, diferencia de desviaciones típicas. Y la tabla de puntuación típica que contiene lo mismo que la tabla por defecto y además la columna de diferencia de medias y la columna de desviación típica.)
+- Falta corregir guardar y leer las nuevas tablas de medias ya que por ahora solo salva y recupera correctamente la tabla de medias por defecto.
+
+
+Versión 0.166.1.3   Fecha: 10:55 12/09/2011
+===========================================
+ - Se ha eliminado el método "loadDataInTabPageFacets" de la calse parcial MeansOptions.cs ya que el método "SetTableMeans" de TabPageMeansEx.cs realiza esta función.
+
+        
+Versión 0.166.1.2   Fecha: 19:50 11/09/2011
+===========================================
+- Se ha renombrado clases, constantes y variables.
+	TableMeansTypePoint  --> TableMeansTypScore.cs 
+	TableMeansTypePointException.cs  --> TableMeansTypScoreException.cs 
+
+
+Versión 0.166.1.1   Fecha: 13:53 09/09/2011
+===========================================
+- Se ha modicicado y corregido las librerias de traducción.
+- Se ha añadido traducción para las nuevas columnas de las tablas de medias (Diferencia de medias y puntuación típica).
+
+
+Versión 0.166.1.0   Fecha: 17:37 07/09/2011
+===========================================
+- Se ha añadido la clase de Tabla de diferencia de medias: en el proyecto ProjectMeans.
+
+
+Versión 0.166.0.4   Fecha: 15:36 07/09/2011
+===========================================
+- Se ha añadido la interface que define las operaciones de una tabla de medias.
+- Se ha modificado ListTableMeans para que en lugar de portar una lista de Tablas de medias, sea una "lista de interfaces de tablas de medias". Es un paso previo para incluir las nuevas tablas de medias: Diferencia de medias y Puntuación Típica.
+
+
+Versión 0.166.0.3   Fecha: 14:01 07/09/2011
+===========================================
+- Se ha arreglado un Bug. Cuando se importaba un informe de medias de EduG 6.0, no aparecia la Gran Media. Se ha corregido haciendo público el método para el cálculo de la Gran media, la varianza y la desviación típica de la tabla, y llamando a este método desde la clase ListMeansEduG.cs.
+
+
+Versión 0.166.0.2   Fecha: 12:54 07/09/2011
+===========================================
+- Muestra correctamente la configuración actual de el tipo de tabla de medias.
+- En el FormAboutOf.cs hemos cambiado la etiqueta "Alumno" por "Realizado por". Logicamente esto ha afectado a las traducciones.
+
+
+Versión 0.166.0.1   Fecha: 10:31 07/09/2011
+===========================================
+- Añadido la traducción de los texto de la opción de configuración: "Tipo de tabla de media".
+
+
+Versión 0.166.0.0   Fecha: 13:17 06/09/2011
+===========================================
+- Se ha modificado el proyecto de configuración para que guarde un nuevo tipo de dato: El tipo de tabla de media: (Tabla por defecto, Diferencia, Puntuación típica)
+
+
+Versión 0.165.0.7   Fecha: 11:06 06/09/2011
+===========================================
+- Se ha corregido el nombre de Antonio Hernández Mendo. Aparecia sin acento en todo el codigo.
+
+
+Versión 0.165.0.6   Fecha: 11:52 05/09/2011
+===========================================
+- Se ha corregido el error con la propiedad anchor de algunos label de la mestañas de medias. También se ha umentado el tamaño de la letra de estos label.
+
+
+Versión 0.165.0.5   Fecha: 12:30 03/09/2011
+===========================================
+- Se ha coregido un bug de la traducción de la tabla de variables observadas. No se cambiaba de idioma la cabecera de la columna "Variable de medida". Esto era debido a que la traducción se hacia sobre la propiedad name en lugar de sobre la propiedad HeaderText.
+- Ya se puede guardar las modificaciones de las facetas
+
+
+Versión 0.165.0.4   Fecha: 19:51 02/09/2011
+===========================================
+- Se ha modificado el nombre de un tabPage y un tabControls de la opción Datos.
+- Se ha añadido tradución al tabPage de Editar Facetas.
+
+
+Versión 0.165.0.3   Fecha: 14:19 01/09/2011
+===========================================
+- Anañdida una pestaña para editar las facetas.
+
+
+Versión 0.165.0.2   Fecha: 14:19 01/09/2011
+===========================================
+- Se ha añadido el boton de "Editar facetas" a la opción Datos. Ahora es necesario desglosar la acción de "Editar datos".
+
+
+Versión 0.165.0.1   Fecha: 23:26 31/08/2011
+===========================================
+- Se ha corregido los siguientes Bugs:
+ 	- Cuando se abria una fichero de medias y existian tablas habiertas las nuevas se acoplaban a las antiguas. Ahora primero las cierra antiguas y luego muestra las nuevas.
+	- Si editamos un comentario al finalizar nos preguntará si queremos guardar el fichero para no perder esta información.
+
+
+Versión 0.165.0.0   Fecha: 22:59 31/08/2011
+===========================================
+- Ya se puede guardar y recuperar los datos de las tablas de medias.
+
+
+Versión 0.164.0.0   Fecha: 20:37 30/08/2011
+===========================================
+- Ahora se pueden guardar las tablas de medias como ficheros de texto.
+
+
+Versión 0.163.0.1   Fecha: 17:29 30/08/2011
+===========================================
+- Se ha corregido un error en el calculo de la Gran Media.
+
+
+Versión 0.163.0.0   Fecha: 18:57 26/08/2011
+===========================================
+- Se ha añadido el boton de guardar en el menú de la opción medias.
+
+
+Versión 0.162.0.6   Fecha: 13:33 26/08/2011
+===========================================
+- Se ha corregido un bug al editar los comentarios de la pestaña info en la opción Medias.
+- Se ha añadido un nuevo tabPage en la Opción de Análisis (pestaña de información).
+
+
+Versión 0.162.0.4   Fecha: 20:18 24/08/2011
+===========================================
+- Se ha añadido un nuevo tabPage en la Opción de suma de cuadrados (pestaña de información).
+
+
+Versión 0.162.0.3   Fecha: 20:05 24/08/2011
+===========================================
+- Se ha añadido el boton editar a la pestaña de información.
+
+
+Versión 0.162.0.2   Fecha: 21:09 22/08/2011
+===========================================
+- Se ha añadido en el menú de medias una opción para acceder directamente a la pestaña de información.
+
+
+Versión 0.162.0.1   Fecha: 20:21 22/08/2011
+===========================================
+- Se ha añadido un tabPage de información a medias que contiene la fecha y el nombre del fichero de datos a partir del cual se optiene las medias.
+- Se han añadido dos nuevas variables de instancia a la clase ListMeans: el nombre del fichero de datos, fecha de la optención de las tablas de medias.
+- Se ha añadido traducciones y ahora se muestra la fecha de creación y el fichero del
+cual proceden las medias. Falta añadir estos datos de los ficheros de información.
+
+
+Versión 0.161.0.5   Fecha: 22:13 21/08/2011
+===========================================
+- Ahora la traducción funciona correctamente.
+
+
+Versión 0.161.0.4   Fecha: 19:32 21/08/2011
+===========================================
+- Se esta modificando la traducción de la opción de Medias como consecuencia de las transformaciones efectuadas.
+
+
+Versión 0.161.0.3   Fecha: 20:51 19/08/2011
+===========================================
+- Se Muestra la Gran media, varianza y desviación típica en los TabPage de medias. Para
+mostrar estas etiquetas de manera correcta ha sido necesario poner la propiedad AutoSize el control label a true.
+
+
+Versión 0.161.0.2   Fecha: 22:39 18/08/2011
+===========================================
+- Se ha creado nuevas clases:
+	TabPageMeansEx que hereda de TabPage se encarga de crear el tabPage con la tabla de medias.
+	DecimalSetting que contiene los métodos para transformar números en string según el número de decimales y el punto decimal.
+- Se han introducido parámetros nuevos en algunos métodos.
+
+
+
+Versión 0.161.0.1   Fecha: 18:41 16/08/2011
+===========================================
+- Se ha eliminado el método createTabPagesMeans.
+
+
+Versión 0.161.0.0   Fecha: 17:45 16/08/2011
+===========================================
+- Se ha cambiado los parámetros de formListFacets que ya no usa el formPrincipal con lo que se hace uso más eficiente de la memoria. Esta se ha combertido en una ventana de dialogo.
+- Algunas traducciones se han movido de fichero de tradución.
+- Se ha limpiado codigo, y añadido comentarios.
+
+
+Versión 0.160.1.5   Fecha: 21:05 15/08/2011
+
+===========================================
+- Se ha establecido un tamaño fijo para el menú horizontal de datos y se ha eliminado el splitPanel de la opción Análisis.
+
+
+Versión 0.160.1.4   Fecha: 20:53 15/08/2011
+
+===========================================
+- Se ha establecido un tamaño fijo para el menú horizontal de datos y se ha eliminado el splitPanel de la opción suma de cuadrados.
+
+
+Versión 0.160.1.3   Fecha: 20:31 15/08/2011
+===========================================
+- Se ha establecido un tamaño fijo para el menú horizontal de datos y se ha eliminado el splitPanel de la opción medias.
+- Se ha corregido el error por el cual algunos botones habían dejado de funcionar.
+
+
+Versión 0.160.1.2   Fecha: 20:14 15/08/2011
+===========================================
+- Se ha establecido un tamaño fijo para el menú horizontal de datos y se ha eliminado el splitPanel de la opción datos.
+
+
+Versión 0.160.1.1   Fecha: 19:16 15/08/2011
+===========================================
+- Se ha corregido un bug que impedia disminuir el tamaño de la ventana arrastrandola. Para ello se ha cambiado la propiedad de la ventana principal Autosize a False.
+
+
+Versión 0.160.0.5   Fecha: 18:31 11/08/2011
+===========================================
+- Se ha cambiado el tipo de letra de las etiquetas que muestran números de Microsoft Sans Serif a Verdana. El prinicipal motivo por el que se hace esto es poder distinguir cuando se escribe los números usando un separador decilmal que sea punto o coma.
+- Se ha cambiado las fuentes de las celdas de los dataGridViewEx a verdana por el mismo motivo.
+
+
+Versión 0.160.0.4   Fecha: 13:29 09/08/2011
+===========================================
+- Se ha detectado un error en la ventana de configuración con respecto al caracter de separación decimal. Ahora estos se guardan correctamente en el archivo de configuración. Pero aun no se ha corregido en las tablas del programa que deben ser revisadas.
+- Se ha modificado el método DecimalSetting para que hacete los parámetros número de decimales (int) y separador decimal (string).
+
+
+
+Versión 0.160.0.2   Fecha: 16:54 04/08/2011
+===========================================
+- Se ha corregido el error que se producia al mostrar los gráficos añadiendo el archivo
+System.Windows.Forms.DataVisualization.dll al proyecto.
+- Se ha añadido la opción de desistalar desde la carpeta del programa. También se puede desistalar desde Panel de Control --> Programas y Caracteristicas.
+
+
+Versión 0.160.0.1   Fecha: 0:12 02/08/2011
+===========================================
+- Se ha introducido una ventana antes de los gráficos lineales que muestra los cofietes G relativos y absolutos. En esta ventana es posible seleccionar que facetas queremos mostrar en la gráfica.
+
+
+Versión 0.159.1.2   Fecha: 21:04 28/07/2011
+===========================================
+- Se ha hecho los cambios en el resto del programa para que sustituya la clase TableG_Study_Percent a TableG_Study.
+
+
+Versión 0.159.1.1   Fecha: 20:34 28/07/2011
+===========================================
+- Se ha añadido la clase TableG_Study_Percent que hereda de TableG_Study y que incorpora los porcentajes de las varianzas de error.
+
+
+Versión 0.159.1.0   Fecha: 14:24 28/07/2011
+===========================================
+- Renombradas las siguientes clases:
+	TableG_Parameters --> TableG_Study
+	TableG_ParametersException --> TableG_StudyException
+- Se ha añadido una clase heredera de TableG_Study que incorpora las operaciones para calcular los porcentajes de error.
+- Se ha añadido el método Concatenate, que devuelve una lista con las facetas de las lista implicita y explicita, en la clase parceial ListFacets2.cs.
+- Se ha eliminado el método concatena de la clase TableG_Study.cs.
+- En la clase parcial SSQOptions.cs se ha cambiado el nombre de la variable target por diff_var. También se ha cambiado el texto de "Objetivo de la varianza" a "Varianza de diferenciación".
+
+
+Versión 0.159.0.4   Fecha: 20:15 26/07/2011
+===========================================
+- Se han eliminado métodos de la clase ListFacets.
+- Se ha cambiado el método CombinationWithoutRepetition por uno más sencillo y eficiente.
+- La clase parcial ListFacets2.cs contiene las operaciones sobre listas de facetas.
+
+
+Versión 0.159.0.3   Fecha: 13:40 26/07/2011
+===========================================
+- Se han renombrado las siguentes clases:
+		G_Parameters --> TableG_Parameters 
+		G_ParametersException --> TableG_ParametersException
+- Se han renombrado métodos.
+- Se ha limpiado codigo, y añadido comentarios.
+- Se ha corregido un bug con el calculo de la desviación típica de la varianza del error relativo. El error era que daba igual que la desviación típica de la varianza del error absoluto. Se ha corregido sustituyendo la variable constructor de la clase G_ParametersOptimization.
+
+
+Versión 0.159   Fecha: 13:56 25/07/2011
+=======================================
+- Se ha realizado los siguientes cambios en la libreria de suma de cuadrados.
+- Inslusión de las nuevas clases: G_ParametersOptimization y G_ParametersOptimizationException. Se ha modificado la clase G_Parameters para aceptar dicha clase.
+
+
+Versión 0.158   Fecha: 20:08 20/07/2011
+=======================================
+- Se estan análizado ficheros del GT 2.0E que tienen problemas.
+- Se ha corregido un bug con el scroll lateral de la tabla de observaciones.
+- Se ha corregido un bug que se producía cuando se cambiaba el número de decimales y había tablas de medías abiertas.
+- Se ha corregido un bug con la columna "Desviación típica" de las tablas de medias estas no se mostraban cuando se sobrepasaba la longitud de la tabla incluso con el uso del scrollbar. Se ha solucionado con una sentencia condicional.
+
+if (l_total < dgvAnalysisResumOpt.Size.Width)
+                {
+                    dgvExMeans.Columns[n - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+                else
+                {
+                    dgvExMeans.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+                }
+De esta manera la coluna se llenara hasta el final de la tabla y sino se mostrará todo con el scrollbar.
+
+
+Versión 0.157   Fecha: 19:42 18/07/2011
+=======================================
+
+- Se ha cambiado los textos de cabecera de la ventana suma de cuadrados, y se ha ajustado su tamaño para reducirlo.
+- Se han corregido los siguientes bugs:
+	- Error fantasma al abrir la ventana de añadir nuevos niveles de optimización (TargetInvocationException). Se ha corregido cambiando el icono que aparece en la esquina superior derecha a uno más pequeño, Concretamente se ha pasado de 256k a 32kb
+	- Se ha corregido un bug al cambiar el número de decimales.
+
+
+Versión 0.156   Fecha: 6:05 18/07/2011
+=======================================
+- Se muestran gráficos de coefiente de genralizabilidad.
+
+
+Versión 0.155   Fecha: 2:43 18/07/2011
+=======================================
+- Se ha añadido el método AtLeastOneIsFixed() y EqualsSizeOfUniverse() a la clase ListFacets que respectivamente: devuelve true cuando al menos una faceta de la lista es fija y devuelve true cuando los universos de las facetas que se pasa como parametro implicito y explicito coinciden.
+
+
+Versión 0.154   Fecha: 23:19 17/07/2011
+=======================================
+- Se han corregido los siguientes bugs:
+
+	- Al introducir el nuevo nivel de optimización ahora se puede poner infinito como uniferso de las facetas de diferenciación.
+	- Al mostrar los resultados de la tabla resumen en la opción de suma de cuadrados, pestaña de optimización, se muestran dos datos correctamente. El error se corrigio con una compilación completa del proyecto.
+	- Ahora se pueden hacer optimizaciones cuando todas las facetas son finitas.
+
+- Se ha modificado los métodos: 
+	AddSignificanceLevel() de SSQoptions.cs 
+y el constuctor;
+	 G_Parameters(ListFacets differentiation, ListFacets instrumentation, TableAnalysisOfVariance lTSSQ):this(differentiation,instrumentation)
+
+
+Versión 0.153   Fecha: 16:51 14/07/2011
+=======================================
+- Se ha renombrado el formulario FormCharts2 por formShowCharts2. Y se le ha añadido la traducción a los elementos del formulario mediante el archivo formShowCharts2.txt.
+- Se ha modificado los colores de representación para la gráfica 1 (gráfica de barras).
+- Se ha añadido el valor como etiqueta sobre las barras de las gráfica 1.
+
+
+Versión 0.152   Fecha: 19:40 13/07/2011
+=======================================
+- Se ha corregido un bug al mostrar las facetas en la tabla resumen de los análisis.
+- Se ha añadido un método para ordenar una lista en el mismo orden que otra. Para ello ambas las facetas de amabas listas tienen que tener los mismo nombres, aunque no conincidan en el resto de sus propiedades (nivel, tamaño del universo, etc.).
+- Se ha corregido un bug que se producia cuando se seleccionaba añadir una optimización y aun no se había creado una tabla de análisis.
+- Se ha añadido un submenú a la opción de gráficos para las opciones de gráfico de barras y representación lineal.
+- Añadida la ventana FormCharts2.
+
+
+Versión 0.151   Fecha: 19:04 07/07/2011
+=======================================
+- Se ha modificado el diseño de la ventana Añadir nivel de optimización añadiendose un dataGridViewEx para las facetas de diferenciación. Además ahora se puede indicar el tamaño del universo para el nuevo nivel de optimización.
+Se han renombrado variables y métodos.
+El procedimiento AddG_Parameters(ListFacets newLevelListFacets) de la clase parcial SSQ_Options.cs se ha eliminado.
+
+
+Versión 0.150   Fecha: 23:40 04/07/2011
+=======================================
+- Se ha renombrado algunas variables en la clase G_Parameters.cs.
+- Coregido el cálculo de G-Parametros cuando tenemos facetas fijas y aleatorias finitas.
+
+
+Versión 0.149   Fecha: 12:40 04/07/2011
+=======================================
+- Se han cambiado traduciones en los textos de la ventana Diseño de medida para el calculo de suma de cuadrados.
+
+	OBJETOS RENOMBRADOS:
+	====================
+
+FormMeasurDesign.cs (Diseño)
+----------------------------
+
+lbDepend --> lbDiff_Facets
+lbIndepend --> lbIntr_Facets
+listBoxSourceLeft --> listBoxSourceDiff
+listBoxSourceRight --> listBoxSourceInst
+
+FormMeasurDesign.cs (Fuente)
+----------------------------
+
+lfLeft --> lfDiff
+lfRight --> lfInst
+txtMessageNoLeftSource --> txtMessageNoSourceOfDiff
+txtMessageNoRightSource --> txtMessageNoSourceOfInst
+
+FormPrincipal.cs (Fuente)
+-------------------------
+sourceOfVarDepend --> sourceOfDifferentiation
+sourceOfVarIndepend --> sourceOfInstrumentation
+
+
+Versión 0.148   Fecha: 19:21 20/06/2011
+=======================================
+- Se le ha añadido los siguentes métodos a la clase Facet:
+	IsInfinite(): Devuelve true si la faceta si la faceta es aleatoria infinita.
+- Se han añadido los siguientes métodos a la clase ListFacets:
+	hasAllFacetsSizeInfinite(): Devuelve true si todas las faceta son aletoria infinita.
+	MultSizeOfUniverse(): Devuelve el producto de los tamaños del universo
+- Se han añadido los siguientes métodos a la clase TableAnalysisOfVariance:
+	CalcMixComp(): Calcula la Componente de Varianza Mixta.
+	CalcCorrecComp(): Calcula la Componente de Varianza Corregida.
+
+Fixed:
+	- Cuando se leia el dataGridViewEx de facetas de la opción datos siempre se almacenaban las facetas con tamaño del universo finito. Se ha corregido 
+cambiando el constructor usado para cambiar facetas por otro que incluye el tamaño del universo.
+
+
+Versión 0.147   Fecha: 22:41 16/06/2011
+=======================================
+- Ahora ya se exporta correctamente en excel las tablas de la sección datos.
+- Se corrigio un error cuando los valores del dataGrid son nulos. Se ha corregido con una sentencia condicional, si es null salto a la celda siguiente.
+- Se ha añadido la exportación a excel de los datos de los dataGrid de la opción Suma de Cuadrados.
+- Se ha añadido la exportación a excel de los datos de los dataGrid de la opción Análisis.
+- Se ha añadido la exportación a excel de los datos de los dataGrid de la opción Medias.
+
+
+Versión 0.146   Fecha: 12:00 13/06/2011
+=======================================
+- Se ha arreglado un error al cancelar la operación de generar sumad de cuadrados desde la opción datos.
+- Se ha agregado la referencia a la libreria: Microsoft.Office.Interop.Excel
+- Se han añadido los botones para importar datos a Excel. Aún sin implementar.
+- Se ha corregido un error producido al no encontrar como clave una lista de facetas en un diccionario. Esta lista coincida en los elementos pero no en el orden. Se ha solucionado redefiniendo el método equals de la clase ListFacets. Ahora dos listas de facetas si contienen las mismas facetas aunque sea en distino orden. Dos facetas son iguales si tienen el mismo nombre.
+
+
+Versión 0.145   Fecha: 14:14 27/05/2011
+=======================================
+- Se ha añadido los metodos para calcular el porcentaje en la clase TableAnalysisOfVariance.cs
+- Añadido los porcentajes a las tablas de Análisis de Varianza.
+- Corregido un error al añadir un nuevo nivel de optimización. Este error provocaba que se modificara los niveles de las facetas originales con lo cual afectaba cuando se asignaba un nuevo diseño de medida. Se asolucionado eliminado esta linea de codigo.
+- Se ha modificado el método AddColunmToDGVOptimization se ha corregido y eliminado un parámetro.
+
+
+Versión 0.144   Fecha: 13:16 24/05/2011
+=======================================
+- El número "Total niveles de observación" pasa a ser "Total de observaciones" (la suma de las fuentes de varición pasa a ser el producto de estas).
+
+
+Versión 0.143   Fecha: 11:55 15/05/2011
+=======================================
+- Añadido la función de cerrar con confirmación para la opción de Análisis.
+
+
+Versión 0.142   Fecha: 20:12 13/05/2011
+=======================================
+- Añadido la función de cerrar con confirmación para la opción de suma de cuadrados.
+- Se han arreglado algunos bug con la visibilidad del encabezado de la tabla.
+- Se han cambiado el método de dialogo, de algunos mensages de error de la opción Datos, para que aparezca la etiqueta de los botones en el idioma correspondiente.
+
+
+Versión 0.141   Fecha: 12:20 11/05/2011
+=======================================
+- Se ha añadido el método LoadAnalysisTotalG_Parameters para mostrar los datos en las etiquetas del tabPage G-Parámetros de la opción análisis.
+- Corregido un bug del boton btSaveAnalysisSsq con la propiedad Anchor.
+- Se muestra el resumen de datos en la pestaña de optimización de la opción de análisis.
+
+
+Versión 0.140   Fecha: 19:53 10/05/2011
+=======================================
+- Se ha modificado el método LoadSSQ_InDataGridView para que hacete como parámetros, la tabla de analisis de varianza de donde se extraen los datos y el dataGridView donde se mostrará.
+- Añadido el método LoadAnalysisTotalSSQ_TableComp que carga los totales en los label del tabPage suma de cuadrados.
+
+- Se ha modificado el método LoadG_ParametersInDataGridView para que hacete como parámetros, la tabla de analisis de varianza y tabla de G-Parámetros de donde se extraen los datos y el dataGridView donde se mostrará.
+
+
+Versión 0.139   Fecha: 12:29 09/05/2011
+=======================================
+- Tras crear una tabla de observaciones al salvarla la tabla de observaciones pasaba a estar completamente en modo de solo lectura con lo que no era posible modificarla al pulsar en la opción de editar datos. Esto se ha solucionado, poniendo cada columna en el modo de solo lectura.
+- Ahora se cargan los datos de las tablas de facetas en los tabPage de analisis.
+
+
+Versión 0.138   Fecha: 13:51 08/05/2011
+=======================================
+- Corregido un error en las traducciones de FormMesurementDesign.
+- Arreglado un bug cuando se procedia editar los datos de una tabla de observaciones y esta permanecia en modo de solo lectura.
+
+
+Versión 0.137   Fecha: 20:31 07/05/2011
+=======================================
+- Se ha convertido en ventana de dialog el FormMesurementDesign.
+- Se ha añadido el diseño de medida al introducir los datos en el analysis.
+
+
+Versión 0.136   Fecha: 20:12 04/05/2011
+=======================================
+- Se han cambiado alguno iconos como el de nuevo y abrir que no se correspondian con su función.
+- Se ha cambiado el método CleanerDataGridViewExFacets para que acepte como parémetro el dataGridView que vamos a inicializar para la introducción de facetas.
+- Corregidos algunos errores que se producian el el posicionamiento de algunos botones y dataGridViewEx al maximizar la ventana.
+- Se ha corregido el problema de las filas vacias al cargar una lista de facetas.
+- Añadido el tabPage de edición de suma de cuadrados.
+
+
+Versión 0.135   Fecha: 13:56 04/05/2011
+
+=======================================
+- Ya no se pasa el formPrincipal como parámetro en el constructor de FormSsqImport. Unicamente se pasan los parámetros estrictos mejorando el uso de la memoria.
+- Pequeños arreglos en la traducción del mensage de error cuando no se ha seleccionado un archivo en la importación de datos de otra aplicación.
+
+
+Versión 0.134   Fecha: 14:04 03/05/2011
+=======================================
+- Se ha modificado tabPage de Facetas, y añadido los tabPage Analisis: Suma de cuadrados, G-Parámetros y Optimización a la opción Analysis.
+
+
+Versión 0.133   Fecha: 21:47 01/05/2011
+=======================================
+- Ya no se pasa el formPrincipal como parámetro en el constructor de FormAddSignicateLevel. Unicamente se pasan los parámetros estrictos mejorando el uso de la memoria.
+- Fix en las traduciones del mensage de error del método addSignicateLevel.
+
+
+Versión 0.132   Fecha: 13:43 01/05/2011
+=======================================
+- Ahora el mensage de carga del FormWaiting se muestra en el idioma seleccionado en la configuración.
+
+
+Versión 0.131   Fecha: 16:03 29/04/2011
+=======================================
+- Ya no se pasa el formPrincipal como parámetro en el constructor de FormDataImport. Unicamente se pasan los parámetros estrictos mejorando el uso de la memoria.
+
+
+Versión 0.130   Fecha: 15:43 29/04/2011
+=======================================
+- Ya no se pasa el formPrincipal como parámetro en el constructor de FormMeansImport. Unicamente se pasan los parámetros estrictos mejorando el uso de la memoria.
+
+
+Versión 0.129   Fecha: 13:35 29/04/2011
+=======================================
+- Se ha corregido el método tsmiActionNewMultiFacetData_Click.
+- Ya no se pasa el formPrincipal como parámetro en el constructor de FormAssignNumOfFacets. Unicamente se pasan los parámetros estrictos mejorando el uso de la memoria.
+
+
+Versión 0.128   Fecha: 19:36 27/04/2011
+=======================================
+- Se ha añadido el Projecto: ProjectSSqEduG que permite obtener la tabla de análisis de varianza y tabla de G-Parametros a partir de un informe en ingles generado mediante EduG 6.0.
+- Se ha eliminado el Projecto ProjectImportEduGMeans al no ser necesario.
+- Se ha añadido ha modificado la importación de datos para añadir el mensaje de "cargado".
+
+
+Versión 0.127   Fecha: 13:43 20/04/2011
+=======================================
+- Se ha corregido el error que se producia al ejecutar la aplicación en Windows xp. El error se producia al cambiar el path tras leer un archivo. La aplicación no encontraba los ficheros de traducción que se encuentra en el directorio de instalación ya que los buscaba en el path del último acceso a disco. La solución propuesta por el profeso fue: System.IO.Directory.GetCurrentDirectory() + "\\" + <nombre des fichero> pero esto no solucionaba el problema ya que System.IO.Directory.GetCurrentDirectory() propociona el directorio de trabajo actual. En vez de eso se ha empleado Application.StartupPath que devuelve el directorio de la aplicación principal.
+
+
+Versión 0.126   Fecha: 19:37 18/04/2011
+=======================================
+- Añadido ventana de inicio (splashScreen).
+
+
+Versión 0.125   Fecha: 20:06 13/04/2011
+=======================================
+- Se cambiado el método que caturaba el evento de cerrar la ventana principal y pedía la confirmación.
+
+
+Versión 0.124   Fecha: 14:20 07/04/2011
+=======================================
+- Fix los nombres de las facetas en la lectura de ficheros de medias para .txt.
+- Se han alineado a la derecha las columnas de media, varianza y desviación tipica de las tablas de medias.
+- Arreglada la traducción de la columna tamaño del universo y comentario en los dataGridViewEx.
+
+
+Versión 0.123   Fecha: 11:48 07/04/2011
+=======================================
+- Incluida la lectura de informes .rtf
+
+
+Versión 0.122   Fecha: 20:42 05/04/2011
+=======================================
+- Añadido el proyecto para leer las medias de un fichero .txt, informe de medias generado por el programa EduG 6.0
+- Ahora pueden leerse informes de medias EduG 6.0 (.txt) ya sea los emitidos por la versión francesa o inglesa, los archivos .rtf aun no se pueden leer.
+
+
+Versión 0.121   Fecha: 0:56 04/04/2011
+=======================================
+- Ahora funciona el boton cerrar del menú vertical medias.
+- Al generar una media si existe una anterior se pide confirmación.
+
+
+Versión 0.120   Fecha: 19:18 31/03/2011
+=======================================
+- Fix en la clase ListMeansPY.cs se habia detectado un error al leer números decimales negativos.
+- Añadido un nuevo constructor a la clase SsqPY.cs.
+- Se ha detectado un error al calcular al añadir un nuevo nivel de observacion.
+- Se ha cambiado el nombre de la clase ListTableSSQ.cs por TableAnalysisOfVariance.cs en la libreria ProyectSSQ.
+- Ya se pueden leer correctamente los archivos resultado de analisis de suma de cuadrados .rsa del GT E 2.0.
+
+
+Versión 0.119   Fecha: 13:01 30/03/2011
+=======================================
+- Se ha modificado el método para calcular el cuadrado medio ya que si el grado de libertad era cero no podíamos dividir la suma de los cuadrados por dicho valor. Para solucionarlo se ha adoptado la misma solución que el GT E 2.0 (de momento, a falta de confirmación), si el grado de libertad es cero el cuadrado medio también es cero. Falta saber como afectará esto al calculo de las componentes.
+- Se ha limpiado y corregido el codigo de la clase ListTableSSQ.cs y ListFacets.
+
+
+Versión 0.118   Fecha: 0:51 30/03/2011
+=======================================
+- Ahora ya se pueden leer los fichero .rsa parcialmente ya que aun no lee los nuevos niveles de observación.
+
+
+
+Versión 0.117   Fecha: 23:08 28/03/2011
+=======================================
+- Se ha añadido el porjecto ProjectSSqPY que permite leer los ficheros de suma de cuadrados .ssq de GT E 2.0.
+- Ahora se puede leer los ficheros .ssq.
+- Se ha detectado un error cuando el nivel de una faceta es 1 ya que el grado de libertad sería cero y no se puede dividir por cero. En el GT lo que hace cuando el grado de libertad es cero es devolver cero tambien en los demás calculos como por ejemplo en el cuadrado medio. 
+
+
+Versión 0.116   Fecha: 17:33 27/03/2011
+=======================================
+- Se ha añadido la ventana de importar suma de cuadrados aunque aun no se ha añadido la libreria que los importa.
+- Se ha limpiado un poco el codigo de ProjectSSQ
+
+
+Versión 0.115   Fecha: 13:58 23/03/2011
+=======================================
+- Ya se pueden importar archivos de medias (.rms, GT E 2.0), desde la opción importar del menú vertical de medias.
+
+
+Versión 0.114   Fecha: 12:06 23/03/2011
+=======================================
+- Ahora se pueden importar archivos .obs y .rms desde la ventana importar del menu vertical de datos.
+
+
+Versión 0.113   Fecha: 17:51 22/03/2011
+=======================================
+- Se ha añadido traducción a la ventana importar datos.
+- Se le ha añadido selección al comboBox.
+- Se han hecho públicos los métodos para manipular el path de la clase formPrincipal.
+
+
+Versión 0.112   Fecha: 13:20 22/03/2011
+=======================================
+- Se le ha añadadido el nuevo proyecto para importar datos desde un fichero de resultado de medias del programa GT_E 2.0 (Pierre Ysewijn, 1996).
+- Añadido el boton de importar y la ventana de importar para la opción datos, aun sin implementar.
+
+
+Versión 0.111   Fecha: 17:08 17/03/2011
+=======================================
+- Se ha corregido los fallos que se producian al salvar. editar, generar medias o plan de estimacion cuando no había ningún elemento multifaceta abierto.
+
+
+Versión 0.110   Fecha: 13:24 16/03/2011
+=======================================
+- Se ha añadido iconos a algunos botones
+
+
+Versión 0.109   Fecha: 1:18 14/03/2011
+=======================================
+- Se ha corregido errores en la creación y edición de un objeto multifaceta.
+
+
+Versión 0.108   Fecha: 20:21 10/03/2011
+=======================================
+- Se ha corregido varios bug entre ellos guardar los datos de la tabla de observaciones correctamente y el cálculo de medias.
+
+
+Versión 0.107   Fecha: 11:49 08/03/2011
+=======================================
+- Se ha corregido un bug con el filtro de los archivos. El string filter no estaba bien construido tras la traducción. Se ha corregido eliminamdo los espacios en blanco tras el caracter '|'.
+- Se ha corregido un bug al introducir los nuevos niveles para la variable observada. Ahora solo se puede introducir un número entero.
+
+
+Versión 0.106   Fecha: 19:58 07/03/2011
+=======================================
+- Se ha añadido un boton para guardar el gráfico como imagen en la ventana de gráficos.
+- El método para traducir los elementos de la ventana de gráficos se ha hecho publico.
+- Ahora se traducen los elementos de la ventana de gráficos dinámicamente.
+- Se puede almacenar los gráficos como imagen *.jpg o *.gif.
+- Se han introducido filtros para archivos *.sagt y *.obs, ademas de traduciones para los filtros.
+
+
+Versión 0.105   Fecha: 14:14 04/03/2011
+=======================================
+- Se ha cambiado la estructura de directorios para mantener la referencias de ensamblado y que por tanto se pueda realizar la depuración.
+
+
+Versión 0.104   Fecha: 13:57 04/03/2011
+=======================================
+- Se ha corregido un bug en la validación de facetas ya que no evaluava la última fila. Se ha corregido cambiando la variable de control de valor (n-1) a n.
+- Se ha cambiado la propiedade ShowInTaskbar de FormListFacets.cs a false para que no aparezca en la barra de tareas.
+- Ahora se filtran los datos al guardar la tabla de facetas, y en la pestaña de tipo de archivos aparece la extensión de .SAGT.
+- Se ha corregido un bug por el cual al cancelar la operación de nuevo (desde la ventana de indicar el número de facetas) el menú de acciones de la opción datos quedaba desactivado. Se ha corredido llamado a la operación CancelAcciónEditionOfFacet(), esta operación es nueva.
+
+
+Versión 0.103   Fecha: 2:29 04/03/2011
+=======================================
+- Ahora al introducir el número de facetas se crea la tabla de facetas con el mismo número de filas.
+- Se ha corregido algunos pequeños bugs.
+- Se ha añadido traducción para los mensage de error de la ventana introducir número de facetas.
+
+
+Versión 0.102   Fecha: 12:27 03/03/2011
+=======================================
+- Se ha cambiado la propidad de solo lectura a true para los textBox de diseño de medida la opción suma de cuadrados. Además se ha puesto el fondo a blanco. Tambien se ha hecho esto en el textBox de la ventana de diseño de medida.
+- Se ha corregido sendos bug con los ficheros: formAddSignificanceLevels.txt y formAssignNumOfFacets.txt. El problema era que no estaban en formato Unicode y en consecuencia no podian mostrar caracteres con acento o la ñ.
+- Ahora los dataGridViewEx que no muestran facetas son todos de solo lectura.
+- Las fuentes de variación se encuentra alineadas a la izquierda mientras que los valores numéricos se encuentra alineada a la derecha en las tablas que no son de facetas en la opción de suma de cuadrados.
+
+
+Versión 0.101   Fecha: 23:50 02/03/2011
+=======================================
+- se ha arreglado el bug que se producia al cambiar el numero de decimales o el idioma por el cual desaparecián los nuevos niveles calculados.
+- Se ha modificado la clase multifacet (v1.2) para que ahora guarde el nivel del universo al escribir un archivo.
+- Ahora el dataGridViewEx del tabPage datos muestra el tamaño del universo. 
+
+
+Versión 0.100   Fecha: 17:43 02/03/2011
+=======================================
+- Se ha traducido la cabecerá de las columnas del dataGridViewEx en el que se muestran las facetas de optimización.
+
+
+Versión 0.099   Fecha: 16:54 02/03/2011
+=======================================
+- Añadida la tradución del dataGridViewEx G-Paametros.
+
+
+Versión 0.098   Fecha: 14:07 02/03/2011
+=======================================
+- Se ha traducido la cabecera del dataGridViewEx suma de cuadrados.
+
+
+Versión 0.097   Fecha: 12:41 02/03/2011
+=======================================
+- Se ha traducido las etiquetas de SSQOptions
+
+
+Versión 0.096   Fecha: 10:27 02/03/2011
+=======================================
+- Se ha cambiado el dataGridView de la ventana FormAddSignificanceLevels por un dataGridViewEx. Se le ha añadido icono a la ventana además de la traducción.
+
+
+Versión 0.095   Fecha: 20:00 01/03/2011
+=======================================
+- Arreglado un bug con la traducción del tabPageTableObs ya que la pestaña se llama realmente tabPageObsTable, tras modificar la linea traduce correctamente.
+- Se ha incluido la ayuda tanto en el menú principal como en la ventana de configuración.
+- se ha sustituido los siguientes dataGridView por dataGridViewEx:
+ 	- El que muestra las facetas en la opción suma de cuadrados.
+	- El que se muestra en la pestaña G-Parmetros de la opción suma de cuadrados
+	- Los dos que se muestran en la pestaña de optimización de la opción suma de cuadrados
+- Se ha cambiado el color de fondo de todos los tabPage por el color de sistema control.
+
+
+Versión 0.094   Fecha: 18:05 24/02/2011
+=======================================
+- Ahora cambian los textos del menú contextual del boton derecho sobre el datagridviewex de medias en función del idioma.
+
+
+Versión 0.093   Fecha: 23:59 23/02/2011
+=======================================
+- Se ha cambiado el dataGridView de medias por un dataGridViewEx.
+- Se ha modificado el fichero de traducciones de medias para que contenga la cabecera de las columnas: media, varianza y desviación típica.
+- Se ha modificado el nombre de algunos métodos.
+
+
+Versión 0.092   Fecha: 16:55 23/02/2011
+=======================================
+- Ahora es posible cambiar el texto de los botones de las ventanas de dialogo mediante la clase MsgBoxUtil.cs.
+
+
+Versión 0.091   Fecha: 13:35 23/02/2011
+=======================================
+- Se ha añadido dos nuevos método para que quede marcada la opción del menú principal que se esta usando
+
+
+Versión 0.09   Fecha: 23:29 22/02/2011
+=======================================
+- Se ha introducido la ventana para indicar el numero de facetas en el boton del menú nuevo de la opción datos.
+
+
+Versión 0.089   Fecha: 18:02 22/02/2011
+=======================================
+- A partir de ahora las copias de seguridad contarán con una copia de las librerias.
+
+
+Versión 0.088   Fecha: 1:47 17/02/2011
+=======================================
+- Se han cambiado las propiedades de los dataGridView de facetas y tabla de observaciones.
+
+
+Versión 0.087   Fecha: 20:16 15/02/2011
+=======================================
+- Se han cambiado algunas traducciones.
+- Se ha introducido un dataGridView y un boton en el tabPageAnalysisFacets.
+
+
+Versión 0.086   Fecha: 0:51 15/02/2011
+=======================================
+- Se añadido la posibilidad de selecciónar los parámetros que queremos que muestre los gráficos.
+- Inclusión de nuevos parámetros de configuración.
+
+
+Versión 0.085   Fecha: 18:27 14/02/2011
+=======================================
+- Se le ha añadido la posibilidad de elegir el separador decimal, y la actulización de los datos en las tablas tanto al cambiar el numero de decimales como el del separador decimal.
+
+
+Versión 0.083   Fecha: 11:49 14/02/2011
+=======================================
+- Se ha cambiado el nombre de la clase FormShowGraphcs por FormShowCharts.
+- Se ha añadido la traducción de la ventana FormShowCharts.
+- Se ha añadido el número de decimales como parámetro de conficuración.
+- Se ha añadido la opción de Configuración en el menú de Herramientas.
+- Se ha añadido la ventana de configuración con las pestañas Informes y Gráficos.
+- Se ha corregido un bug en la ventana Generar medias, ahora se puede seleccionar una media con tan solo un click. Esto se consigue con la propiedad CheckOnClick a true.
+- Se ha corregido un bug al generar la ventana de Acerca de, ya que antes aparecia en la barra de tareas sin icono, ahora ya no aparece.Esto se consigue poniendo la propiedad ShowInTaskbar a false.
+- Se ha hecho que el comboBox no editable: mediante la propiedad DropDownStyle -> DropDownList.
+
+
+Versión 0.082   Fecha: 14:34 08/02/2011
+=======================================
+
+--------------------------------------------------
+NoTA:
+Se produjo un error grabe y fue necesario restaurar a partir de la versión 0.081. Los siguientes cambios se tendran que introducir uno ha uno en las versiones posteriores
+--------------------------------------------------
+
+- Se ha añadido el número de decimales como parámetro de conficuración.
+- Se ha añadido la opción de Configuración en el menú de Herramientas.
+- Se ha añadido la ventana de configuración con las pestañas Informes y Gráficos.
+- Se ha corregido un bug al generar la ventana de Acerca de, ya que antes aparecia en la barra de tareas sin icono, ahora ya no aparece.Esto se consigue poniendo la propiedad ShowInTaskbar a false.
+- Se ha corregido un bug en la ventana Generar medias, ahora se puede seleccionar una media con tan solo un click. Esto se consigue con la propiedad CheckOnClick a true.
+- Se ha añadido la traducción de la ventana que muestra los gráficos de barras.
+- Se ha hecho que el comboBox no editable: mediante la propiedad DropDownStyle -> DropDownList.
+
+
+Versión 0.081   Fecha: 20:29 06/02/2011
+=======================================
+- Añadida la ventana con los graficos del resumen, aunque aun no se actuliza dinamicamente.
+
+
+Versión 0.080   Fecha: 14:16 06/02/2011
+=======================================
+- Añadido el boton de Gráficos en el tabPageSSQ, con su traducción.
+
+Versión 0.079   Fecha: 13:23 06/02/2011
+=======================================
+- Se ha añadido la imagen al boton añadir nivel.
+
+
+Versión 0.078   Fecha: 20:46 02/02/2011
+=======================================
+- Ahora ya se incluyen el scrollBar de medias tras indicar la propiedad del datagridview Dock = DockStyle.Fill (Gracias Pastrana).
+- Se ha quitado la última fila de la tabla (vacía): propiedad AllowUserToAddRows = false.
+- Se ha añadido el nivel de las facetas en la tabla resumen de G_parameters.
+
+
+Versión 0.077   Fecha: 3:06 02/02/2011
+=======================================
+- Añadido los resultados tras introducir nuevos niveles para los objetivos.
+
+
+Versión 0.076   Fecha: 1:14 30/01/2011
+=======================================
+- Se han modificado la clase G_parameters añadiendo nuevas variables y métodos.
+- Se ha cambiado el nombre del boton "Añadir nivel de significación" por "Niveles de optimizción".
+
+
+Versión 0.075   Fecha: 3:27 24/01/2011
+=======================================
+- Añadida la ventana para introducir los nuevos niveles de significación.
+
+
+Versión 0.074   Fecha: 2:19 24/01/2011
+=======================================
+- Añadido el resumen de datos en el tabPageOptimizations.
+
+
+Versión 0.073   Fecha: 0:22 24/01/2011
+=======================================
+- Se ha modificado las propiedades de los dataGridView para que no se puedan añadir nuevas columnas.
+- Se ha corregido bug's a la hora de calular el total de la suma de los cuadrados y del grado de libertad en el tabPageG_parameters.
+- Se ha añadido la carga de las facetas en el tabPageOptimizations.
+
+
+Versión 0.072   Fecha: 17:31 23/01/2011
+=======================================
+- Se ha añadido las sumas total en el tabPageG_Parameters y tapPageSSQ.
+- Se ha añadido el diseño de medida en el tabPageG_Parameters y en el tabPage de optimización
+
+
+Versión 0.071   Fecha: 20:43 22/01/2011
+=======================================
+- Se ha hañadido el calculo de las desviaciones típicas en G_parameters.
+
+
+Versión 0.070   Fecha: 20:21 21/01/2011
+=======================================
+- Se ha simplificado el codigo del método LoadSSQ_InDataGridView() mediante el uso de PropertyColumnDGV(DataGridView dgv, int pos,int lg,string label).
+- Se han añadidos la etiquetas de total en el tabPageG-Parameters y las etiquetas de los coefientes G.
+
+
+Versión 0.069   Fecha: 20:57 12/01/2011
+=======================================
+- Se ha corregido el error al calcular el coeficiente de varianza aleatorio.
+- Se ha corregido un error al calcular los G-Parametros.
+
+
+Versión 0.068   Fecha: 20:57 12/01/2011
+=======================================
+- Modificadas las propiedades de los dataGridView de medias.
+
+
+Versión 0.067   Fecha: 1:19 11/01/2011
+
+=======================================
+_ Añadido el tabPageOptimization con dos dataGridView: dGridViewOptimization y dGridViewOptimiResum.
+
+
+Versión 0.066   Fecha: 1:01 11/01/2011
+=======================================
+- Añadida la carga de los datos el el dataGridView dGridViewG_Parameters.
+
+
+Versión 0.065   Fecha: 14:45 10/01/2011
+=======================================
+- Añadida la tradución para el formMeasurDesign.
+
+
+Versión 0.064   Fecha: 14:45 10/01/2011
+=======================================
+- Añadida la funcionalida de la ventana medida de diseño, falta la traducción de esta ventana.
+
+
+Versión 0.063   Fecha: 0:58 10/01/2011
+=======================================
+- Realizados cambios en la ventana de diseño de medida como la inclusión de iconos.
+
+
+Versión 0.062   Fecha: 20:06 02/01/2011
+=======================================
+- Añadido el tabPageG_Parameters y el dataGridView dGridViewG_Parameters.
+
+
+Versión 0.061   Fecha: 23:14 01/01/2011
+=======================================
+- Añadidas las comlumnas de componente de varianza mixtos y corregidos en el datagridView de analisis de varianza.
+
+
+Versión 0.060   Fecha: 18:06 31/12/2010
+=======================================
+- Nuevo metodo para caragar los datos de una lista de facetas en un dataGridView "LoadListFacetInDataGridView".
+- Ahora se muestra la lista de facetas en el dataGridView del tabControlSSQ.
+
+
+Versión 0.059   Fecha: 14:11 31/12/2010
+=======================================
+- Se ha añadido la columna de componentes de varianza aleatorios en la opción suma de cuadrados.
+
+
+Versión 0.058   Fecha: 2:04 23/12/2010
+=======================================
+- Añadidos los iconos del menu Analysis.
+
+
+Versión 0.057   Fecha: 1:30 23/12/2010
+=======================================
+- Añadidos los iconos de abrir y cerrar en el menú mStripSSQ.
+- Añadido el menú de análisis.
+- Añadido el fichero de traduciones del menú de análisis.
+
+
+Versión 0.056   Fecha: 23:27 22/12/2010
+=======================================
+- Añadido el icono de documeto abrir, importar y de cerrar en el menú medias.
+- Ahora accedos al tabPageAnalysis al pulasar en la opción analisis del menú vertical.
+- Añadido el menú mStripSSQ. De momento solo con los botones abrir y cerrar. Sin iconos y sin funionalidad
+
+
+Versión 0.055   Fecha: 20:53 22/12/2010
+=======================================
+- Ahora el boton suma de cuadrados del menú vertical de datos muestra la tabla analisis de vaianza y desviaciones, falta mostrar los datos de las facetas.
+
+
+Versión 0.054   Fecha: 18:35 22/12/2010
+=======================================
+- Se ha añadido el boton de suma de cuadrados en el menu vertical de lo opcion datos.
+
+
+Versión 0.053   Fecha: 18:04 22/12/2010
+=======================================
+- Se le ha añadido la clase parcial SSQOpcions.cs que contendrá los métodos de la opción suma de cuadrados.
+- Se le ha añadido el fichero "ssqStrings.txt" que contiene las traducciones para los elementos del tabPageSSQ.
+- Se le ha añadido el método TranslationSSQElements para traducir las etiquetas del TabPageSSQ.
+
+
+Versión 0.052   Fecha: 17:23 22/12/2010
+=======================================
+- Se le ha añadido un tabControl para mostrar la suma de cuadrados.
+
+
+Versión 0.051   Fecha: 14:22 22/12/2010
+=======================================
+- Añadido ProjectSSQ que calcula la suma de los cuadrados de las desviaciones.
+
+
+Versión 0.050   Fecha: 14:19 13/12/2010
+=======================================
+- Añadido el acceso a la ventana de Importar medias desde el menú.
+- Se ha corregido un bug que permitia modificar el tamaño de las ventanas con el ratón en ventanas que
+debían no ser redimensionables (FormImport, FormAboutOf). Se ha corregido cambiando la propiedad FormBorderStyle a FixedSingle.
+
+
+Versión 0.049   Fecha: 13:35 13/12/2010
+=======================================
+- Añadida la ventana de importación, aunque aun no es accesible desde el boton importar.
+
+
+Versión 0.048   Fecha: 20:41 12/12/2010
+=======================================
+- Añadida los boton de importar archivo de medias.
+- Añadida la traducción del menú vertical de medias.
+
+
+Versión 0.047   Fecha: 17:34 12/12/2010
+=======================================
+- Añadida la operación de calculo de grado de libertad a una lista de facetas.
+
+
+Versión 0.046   Fecha: 3:26 01/12/2010
+=======================================
+- Ahora se muestran correctamente las tablas de las medias seleccionadas.
+
+
+Versión 0.045   Fecha: 17:37 30/11/2010
+=======================================
+- Cambiadas las propiedades del TabControlMeans y el dataGridViewMeans para que estos se expandan con la ventana principal.
+- Añadido el boton "Seleccionar todo/deselecionar todo" al FormListMeans, con sus traducciones y su funcionalidad de seleccionar/deseleccionar.
+
+
+Versión 0.044   Fecha: 9:15 25/11/2010
+=======================================
+- Añadida funcionalidad al boton cerrar del tabPageData.
+
+
+Versión 0.043   Fecha: 8:35 25/11/2010
+=======================================
+- Arreglado el metodo para escribir la tabla de medias en el datagridview de el tabPage Means.
+
+
+Versión 0.042   Fecha: 8:35 25/11/2010
+=======================================
+- Ahora se muestra las medias de la primera lista seleccionada en el FOrmListMeans. Es necesario revisisar el metodo para mostrar medias y añadir un sitema para mostrar todas las listas seleccionadas
+
+
+Versión 0.041   Fecha: 14:25 23/11/2010
+=======================================
+- Agregados los proyectos: projectMeans y projectMathCalcGt.
+
+
+Versión 0.040   Fecha: 14:21 23/11/2010
+=======================================
+- Corregido un bug al cambiar de idioma el indice de la última columna de la tabla de observaciones.
+- Se ha añadido la función de cambio de idioma del FormListFacets para generar las medias de un objeto multifaceta.
+
+
+Versión 0.039   Fecha: 1:41 23/11/2010
+=======================================
+- Añadida la lista de combinaciones sin repetición al CheckBoxListFacets. Esta lista nos servira luego para generar las medias.
+
+
+Versión 0.038   Fecha: 0:27 18/11/2010
+=======================================
+- Añadidos un tabPage para cada opción seleccionable: tabPageSSQ, tabPageAnalysis, tabPageUsers, tabPageProjects.
+
+
+Versión 0.037   Fecha: 14:11 06/11/2010
+=======================================
+- Se le ha dado acesibilidad a la ventana de generar medias.
+
+
+Versión 0.036   Fecha: 13:58 06/11/2010
+=======================================
+- Se ha incluido la ventana de generar medias, aunque aun no es accesible.
+
+
+Versión 0.035   Fecha: 13:19 06/11/2010
+=======================================
+- Se ha creado el boton de generar medias.
+
+
+Versión 0.034   Fecha: 14:19 05/11/2010
+=======================================
+- Se ha incluido los iconos para los botones de cerrar y editar del tabPage Datos.
+
+
+Versión 0.033   Fecha: 0:52 05/11/2010
+=======================================
+- Se ha corregido un bug en la libreria de traducción de idioma.(versión 1.001)
+- Se ha incluido los botones de Cerrar y Editar datos en el menú de acciones del tabPage datos, con sus respectivas traducciones. Estos botones no tienen iconos aun.
+
+
+
+
+Versión 0.032   Fecha: 23:26 04/11/2010
+=======================================
+- Se ha añadido botones de aceptar y cancelar para editar la tabla de observaciones. Con sus traducciones.
+- Se le ha dado funcionalidad al boton "generar tabla de observaciones". Primero comprueba las facetas y luego genera la tabla.
+
+
+
+
+Versión 0.031   Fecha: 17:58 02/11/2010
+=======================================
+- Se ha cambiado el nombre de la clase parcial que contiene los métodos del TabPage Datos de Class1.cs a DataOptions.cs
+- Se han cambiado las propiedas de los DataGridView FacetsTable y ObsTable para que no puedan ser reordenados al pulsar la cabecera.
+- Se ha incluido un boton para cancelar en tabPageMultiFacets con sus respectivas traducciones en el fichero dicionario para el tabPage Data.
+- Añadida la desactivación del menú acciones al pulsar Nuevo, y la reactivación al pulsar cancelar.
+- Las etiquetas de las tablas de facetas y observaciones cambian con el idioma.
+
+
+Versión 0.030   Fecha: 17:47 30/10/2010
+=======================================
+- El form principal se ha hecho parcial y se han divido los métodos entre aquellos que pertenecen al menú principipal, configuración y cambio de idioma (FormPrincipal.cs); y aquellos que pertenecena la opción de Datos (Class1.cs de momento). Lo siguiente es cambiarle el nombre a esta clase y comprobar que los métodos siguien funcionando.
+
+
+
+
+Versión 0.029   Fecha: 0:44 30/10/2010
+======================================
+- Ahora carga los datos del archivo de configuración y si no existe lo crea con los valores
+por defecto. Por lo tanto podemos guardar el idioma al salir y recuperarlo al volver a entrar.
+
+
+
+
+
+Versión 0.028   Fecha: 22:49 29/10/2010
+=======================================
+- Añadido el proyecto de TransLibrary (como proyecto no como librería). Que permite la traducción de la aplicación en distintos idiomas. Con lo que es posíble editarlo y modificarlo desde el proyecto principal.
+- Añadido el proyecto ConfigCFG para guardar los datos de configuración en un fichero y poder consultarlos y cargarlos al abrir el programa.
+
+
+Versión 0.027   Fecha: 9:52 26/10/2010
+=======================================
+- Añadida la traducción de el boto "Generar tabla de observaciones".
+
+
+Versión 0.026   Fecha: 3:52 26/10/2010
+=======================================
+- El boton nuevo oculta la tabla de datos del tabPageData.
+- Añadido el boton para generar la tabla de datos. Muestea el tabPageData.
+- Se han modificado el nombre de componentes y por tanto se ha tenido que actualizar los ficheros de diccionario.
+
+
+Versión 0.025   Fecha: 2:06 26/10/2010
+=======================================
+- Se ha añadido funcionalidad para almacenar las observaciones multifaceta.
+- Se ha solucionado el problema con la confirmación al salir ya que el evento no estaba bien ubicado. Se ha corregido añadiendo el evento en el procedimiento FormPrincipal().
+
+
+Versión 0.024   Fecha: 0:38 26/10/2010
+=======================================
+- Ahora puede leer archivo del programa antiguo TG de 1996.
+
+
+Versión 0.023   Fecha: 19:26 25/10/2010
+=======================================
+- Se añadieron las etiquetas y los campos de texto al FormAboutOf.
+- Se incluyeron las traducciones del FormAbout en el fichero string_message0.004.txt
+- Incluida la variable de versión en el formulario principal.
+- Se ha puesto el textBox de fichero en el TabPage data como solo lectura.
+
+
+Versión 0.022   Fecha: 22:31 24/10/2010
+=======================================
+- Se muestra el logo de la aplicación y la marca de la uma en la ventana FormAboutOf.
+
+
+Versión 0.021   Fecha: 18:31 24/10/2010
+=======================================
+- Añadida la ventana AboutOf, con la traducción de su título.
+- Corregido en el menú la opción "Acerca de la Aplicación GT" por "Acerca de SAGT", se ha corregido también el fichero de traducciónes idioma_menu_0.008.txt
+- Se añadido una variable que contiene el idioma actual.
+- Se ha corregido un bug con la aparición de la confirmación al salir. Faltaba una linea en FormPrincipal.Designer.cs
+- Ahora se muestra el nombre del fichero en lugar de todo el path en el textBox fichero de Datos.
+
+
+Versión 0.020   Fecha: 13:41 23/10/2010
+=======================================
+- Se ha añadido confirmación para salir de la aplicación, así como la traducción de esta ventana modal a los distintos idiomas.
+- Se han traducido la cabecera de los nombre de las columnas de las tablas de datos (Facetas y tabla de observaciones).
+
+
+Versión 0.019   Fecha: 20:13 17/10/2010
+=======================================
+- Se ha cambiado el icono de la aplicación (el que aparece por defecto) por uno nuevo diseñado con AAA Logo. 
+
+NOTA:
+=====
+El procedimiento para cambiar icono desde visual studio es el siguiente:
+	- En el menú principal elegimos Proyecto --> Propiedades de proyecto --> Pestaña aplicación --> Icono y manifiesto elegimos la ubicación del icono.
+
+
+Versión 0.018   Fecha: 20:10 17/10/2010
+=======================================
+- Añadido la opción calculadora en el menu herramientas con sus respectivas traducciones en el fichero de dicionario de menú principal.- Se puede arracar la calculadora de windows desde la aplicación (menú herramientas)
+- Añadido icono de calculadora en el menú Herramientas.
+- Añadido icono de indice de ayuda en el menu Ayuda
+
+
+Versión 0.017   Fecha: 13:08 16/10/2010
+=======================================
+- Se han añadido los botones Nuevo y Guardar en el menú lateral de la opción Datos. Sus traducciónes en los archivos de diccionario y sus respectivos iconos 
+
+
+Versión 0.016	Fecha: 20:58 11/10/2010
+=======================================
+- Se ha implementado el método de lectura de archivo de datos.
+
+
+Versión 0.015	Fecha: 19:11 11/10/2010
+=======================================
+- Se han añadido los proyectos con sus repectivas referencias: MultiFacetsData y MutiFacetPY
+
+
+Versión 0.014	Fecha: 19:01 11/10/2010
+=======================================
+- Se han añadido dataGridView en el TabPage de Facetas y Tabla de observaciones.
+
+
+Versión 0.013	Fecha: 18:10 11/10/2010
+=======================================
+- Se ha arregaldo el problema del cambio de tamaño de los tabPage.
+- Se ha introducido el menú lateral de la opción Datos.
+- Se han introducido constantes para designar a los archivos de traducción.
+- Se ha agregado el método TraslationDataElements para traducir los elementos de la opción Datos.
+
+
+Versión 0.012	Fecha: 13:36 10/10/2010
+=======================================
+
+- Se ha arreglado el problema con los separadores del menu principal y el cambio de idioma.
+- Se ha cambiado el nombre de la aplicación por S.A.G.T. (acrónimo de: software application of generalizability theory, en castellano aplicación software de teoría de la generalizabilidad).
+- Se ha decidido eliminar los userControl para sustituirlos en la proxima versión por tabPage para evitar problemas al redimensionar la ventana.
+
+Versión 0.006	Fecha: 13:45 17/09/2010
+=======================================
+
+- Se ha incluido las opciones de Usuarios y Proyectos en el menú principal.
+- Se han puesto iconos con la bandera de cada país en el submenú Idioma del menú Herramientas.
+- Se han colocados todos los iconos del menú principal

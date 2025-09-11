@@ -1,0 +1,5 @@
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Test\TestConfigCFG\TestConfigCFG\bin\Debug\TestConfigCFG.exe
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Test\TestConfigCFG\TestConfigCFG\bin\Debug\TestConfigCFG.pdb
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Test\TestConfigCFG\TestConfigCFG\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Test\TestConfigCFG\TestConfigCFG\obj\x86\Debug\TestConfigCFG.exe
+C:\Users\Francis\Documents\PFC-TG\PFC-SAGT build\Test\TestConfigCFG\TestConfigCFG\obj\x86\Debug\TestConfigCFG.pdb

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B31CE65A-C8B1-43C9-87D1-239332347716}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConnectLibrary</RootNamespace>
+    <AssemblyName>ConnectLibrary</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectDB.cs" />
+    <Compile Include="ConnectDB_Exception.cs" />
+    <Compile Include="ConnectDB_WS.cs" />
+    <Compile Include="ConnectDB_WS_Exception.cs" />
+    <Compile Include="DBLibrary.cs" />
+    <Compile Include="InterfaceConnectDB.cs">
+    </Compile>
+    <Compile Include="InterfaceConnectDB_WS.cs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SagtProject.cs" />
+    <Compile Include="SagtProjectException.cs" />
+    <Compile Include="SagtUser.cs" />
+    <Compile Include="SagtUser_Exception.cs" />
+    <Compile Include="TypeFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ConfigCFG\ConfigCFG\ConfigCFG.csproj">
+      <Project>{8C4E1D74-BA63-4952-BECA-A0196466556C}</Project>
+      <Name>ConfigCFG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MultiFacetData\MultiFacetData\MultiFacetData.csproj">
+      <Project>{8C6489E8-6857-4471-8E4B-512D3FA545E5}</Project>
+      <Name>MultiFacetData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProjectMathCalcGT\ProjectMathCalcGT\AuxMathCalcGT.csproj">
+      <Project>{B39DD8FB-BDF0-4301-8049-0E5919BED85D}</Project>
+      <Name>AuxMathCalcGT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProjectMeans\ProjectMeans\ProjectMeans.csproj">
+      <Project>{355660B0-86ED-4846-BFBB-0DCA87391E5A}</Project>
+      <Name>ProjectMeans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProjectSSQ\ProjectSSQ\ProjectSSQ.csproj">
+      <Project>{53408ABF-B487-4934-B555-79B98CFB916A}</Project>
+      <Name>ProjectSSQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sagt\Sagt\Sagt.csproj">
+      <Project>{A286D159-0F30-45B7-AE47-BFBAEFFBE3C5}</Project>
+      <Name>Sagt</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
