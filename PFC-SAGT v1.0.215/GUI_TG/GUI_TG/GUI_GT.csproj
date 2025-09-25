@@ -12,7 +12,7 @@
     <AssemblyName>GUI_TG</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>sagt_0.005_solo logo_gimp.ico</ApplicationIcon>
+    <ApplicationIcon>icons\sagt_0.005_solo logo_gimp.ico</ApplicationIcon>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -603,7 +603,6 @@
     <None Include="Resources\Cambiar Diseño h32.png" />
     <None Include="Resources\File TextDocument edition h32.png" />
     <None Include="Resources\File TextDocument edition 2 h32.png" />
-    <Content Include="sagt_0.005_solo logo_gimp.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cambios recientes.rtf">
