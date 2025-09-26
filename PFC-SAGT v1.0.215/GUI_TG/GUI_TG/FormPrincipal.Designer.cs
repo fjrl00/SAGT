@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -82,6 +79,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.mStripMain = new System.Windows.Forms.MenuStrip();
             this.tsmiConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDisconnect = new System.Windows.Forms.ToolStripMenuItem();
@@ -413,7 +414,8 @@
             // 
             // mStripMain
             // 
-            this.mStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripMain.BackgroundImage")));
+            this.mStripMain.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiConnect,
             this.tsmiDisconnect,
@@ -429,36 +431,36 @@
             this.mStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.mStripMain.Location = new System.Drawing.Point(0, 0);
             this.mStripMain.Name = "mStripMain";
-            this.mStripMain.Size = new System.Drawing.Size(784, 71);
+            this.mStripMain.Size = new System.Drawing.Size(1045, 76);
             this.mStripMain.TabIndex = 0;
             this.mStripMain.Text = "menuStrip1";
             // 
             // tsmiConnect
             // 
-            this.tsmiConnect.Image = ((System.Drawing.Image)(resources.GetObject("tsmiConnect.Image")));
+            this.tsmiConnect.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiConnect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiConnect.Name = "tsmiConnect";
-            this.tsmiConnect.Size = new System.Drawing.Size(67, 67);
+            this.tsmiConnect.Size = new System.Drawing.Size(82, 72);
             this.tsmiConnect.Text = "Conectar";
             this.tsmiConnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiConnect.Click += new System.EventHandler(this.tsmiConnect_Click);
             // 
             // tsmiDisconnect
             // 
-            this.tsmiDisconnect.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDisconnect.Image")));
+            this.tsmiDisconnect.Image = global::GUI_GT.Properties.Resources.Disconnect_h48;
             this.tsmiDisconnect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDisconnect.Name = "tsmiDisconnect";
-            this.tsmiDisconnect.Size = new System.Drawing.Size(84, 67);
+            this.tsmiDisconnect.Size = new System.Drawing.Size(105, 72);
             this.tsmiDisconnect.Text = "Desconectar";
             this.tsmiDisconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiDisconnect.Click += new System.EventHandler(this.tsmiDisconnect_Click);
             // 
             // tsmiProjects
             // 
-            this.tsmiProjects.Image = ((System.Drawing.Image)(resources.GetObject("tsmiProjects.Image")));
+            this.tsmiProjects.Image = global::GUI_GT.Properties.Resources.projects_folder_v1_h48;
             this.tsmiProjects.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiProjects.Name = "tsmiProjects";
-            this.tsmiProjects.Size = new System.Drawing.Size(71, 67);
+            this.tsmiProjects.Size = new System.Drawing.Size(87, 72);
             this.tsmiProjects.Text = "Proyectos";
             this.tsmiProjects.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiProjects.Click += new System.EventHandler(this.tsmiProjects_Click);
@@ -466,44 +468,44 @@
             // tsSeparator1
             // 
             this.tsSeparator1.Name = "tsSeparator1";
-            this.tsSeparator1.Size = new System.Drawing.Size(6, 67);
+            this.tsSeparator1.Size = new System.Drawing.Size(6, 72);
             // 
             // tsmiDat
             // 
-            this.tsmiDat.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDat.Image")));
+            this.tsmiDat.Image = global::GUI_GT.Properties.Resources.datos_v1_h48;
             this.tsmiDat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDat.Name = "tsmiDat";
-            this.tsmiDat.Size = new System.Drawing.Size(60, 67);
+            this.tsmiDat.Size = new System.Drawing.Size(62, 72);
             this.tsmiDat.Text = "Datos";
             this.tsmiDat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiDat.Click += new System.EventHandler(this.tsmiDat_Click);
             // 
             // tsmiMeans
             // 
-            this.tsmiMeans.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeans.Image")));
+            this.tsmiMeans.Image = global::GUI_GT.Properties.Resources.X_media_x48;
             this.tsmiMeans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeans.Name = "tsmiMeans";
-            this.tsmiMeans.Size = new System.Drawing.Size(63, 67);
+            this.tsmiMeans.Size = new System.Drawing.Size(71, 72);
             this.tsmiMeans.Text = "Medias";
             this.tsmiMeans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiMeans.Click += new System.EventHandler(this.tsmiMeans_Click);
             // 
             // tsmiSSQ
             // 
-            this.tsmiSSQ.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSQ.Image")));
+            this.tsmiSSQ.Image = global::GUI_GT.Properties.Resources.Icono_sumatori_x2_v2_5_h48;
             this.tsmiSSQ.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSQ.Name = "tsmiSSQ";
-            this.tsmiSSQ.Size = new System.Drawing.Size(123, 67);
+            this.tsmiSSQ.Size = new System.Drawing.Size(154, 72);
             this.tsmiSSQ.Text = "Suma de cuadrados";
             this.tsmiSSQ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiSSQ.Click += new System.EventHandler(this.tsmiSSQ_Click);
             // 
             // tsmiAnalysis
             // 
-            this.tsmiAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysis.Image")));
+            this.tsmiAnalysis.Image = global::GUI_GT.Properties.Resources.projects_gest_v2_5_48;
             this.tsmiAnalysis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis.Name = "tsmiAnalysis";
-            this.tsmiAnalysis.Size = new System.Drawing.Size(60, 67);
+            this.tsmiAnalysis.Size = new System.Drawing.Size(73, 72);
             this.tsmiAnalysis.Text = "Análisis";
             this.tsmiAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmiAnalysis.Click += new System.EventHandler(this.tsmiAnalyses_Click);
@@ -511,7 +513,7 @@
             // tsSeparator2
             // 
             this.tsSeparator2.Name = "tsSeparator2";
-            this.tsSeparator2.Size = new System.Drawing.Size(6, 67);
+            this.tsSeparator2.Size = new System.Drawing.Size(6, 72);
             // 
             // tsmiTools
             // 
@@ -519,10 +521,10 @@
             this.tsmiLanguage,
             this.tsmiCalc,
             this.tsmiSettings});
-            this.tsmiTools.Image = ((System.Drawing.Image)(resources.GetObject("tsmiTools.Image")));
+            this.tsmiTools.Image = global::GUI_GT.Properties.Resources.trans_teaser2_48x48;
             this.tsmiTools.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiTools.Name = "tsmiTools";
-            this.tsmiTools.Size = new System.Drawing.Size(90, 67);
+            this.tsmiTools.Size = new System.Drawing.Size(112, 72);
             this.tsmiTools.Text = "Herramientas";
             this.tsmiTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -534,53 +536,53 @@
             this.tsmiEnglish,
             this.tsmiPortuguese});
             this.tsmiLanguage.Name = "tsmiLanguage";
-            this.tsmiLanguage.Size = new System.Drawing.Size(150, 22);
+            this.tsmiLanguage.Size = new System.Drawing.Size(224, 26);
             this.tsmiLanguage.Text = "Idioma";
             // 
             // tsmiSpanish
             // 
-            this.tsmiSpanish.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSpanish.Image")));
+            this.tsmiSpanish.Image = global::GUI_GT.Properties.Resources.es;
             this.tsmiSpanish.Name = "tsmiSpanish";
-            this.tsmiSpanish.Size = new System.Drawing.Size(128, 22);
+            this.tsmiSpanish.Size = new System.Drawing.Size(224, 26);
             this.tsmiSpanish.Text = "Español";
             this.tsmiSpanish.Click += new System.EventHandler(this.tsmiSpanish_Click);
             // 
             // tsmiFrench
             // 
-            this.tsmiFrench.Image = ((System.Drawing.Image)(resources.GetObject("tsmiFrench.Image")));
+            this.tsmiFrench.Image = global::GUI_GT.Properties.Resources.fr;
             this.tsmiFrench.Name = "tsmiFrench";
-            this.tsmiFrench.Size = new System.Drawing.Size(128, 22);
+            this.tsmiFrench.Size = new System.Drawing.Size(224, 26);
             this.tsmiFrench.Text = "Francés";
             this.tsmiFrench.Click += new System.EventHandler(this.tsmiFrench_Click);
             // 
             // tsmiEnglish
             // 
-            this.tsmiEnglish.Image = ((System.Drawing.Image)(resources.GetObject("tsmiEnglish.Image")));
+            this.tsmiEnglish.Image = global::GUI_GT.Properties.Resources.gb;
             this.tsmiEnglish.Name = "tsmiEnglish";
-            this.tsmiEnglish.Size = new System.Drawing.Size(128, 22);
+            this.tsmiEnglish.Size = new System.Drawing.Size(224, 26);
             this.tsmiEnglish.Text = "Inglés";
             this.tsmiEnglish.Click += new System.EventHandler(this.tsmiEnglish_Click);
             // 
             // tsmiPortuguese
             // 
-            this.tsmiPortuguese.Image = ((System.Drawing.Image)(resources.GetObject("tsmiPortuguese.Image")));
+            this.tsmiPortuguese.Image = global::GUI_GT.Properties.Resources.pt;
             this.tsmiPortuguese.Name = "tsmiPortuguese";
-            this.tsmiPortuguese.Size = new System.Drawing.Size(128, 22);
+            this.tsmiPortuguese.Size = new System.Drawing.Size(224, 26);
             this.tsmiPortuguese.Text = "Portugués";
             this.tsmiPortuguese.Click += new System.EventHandler(this.tsmiPortuguese_Click);
             // 
             // tsmiCalc
             // 
-            this.tsmiCalc.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCalc.Image")));
+            this.tsmiCalc.Image = global::GUI_GT.Properties.Resources.CMS_Indemnity_OD_B_calc;
             this.tsmiCalc.Name = "tsmiCalc";
-            this.tsmiCalc.Size = new System.Drawing.Size(150, 22);
+            this.tsmiCalc.Size = new System.Drawing.Size(224, 26);
             this.tsmiCalc.Text = "Calculadora";
             this.tsmiCalc.Click += new System.EventHandler(this.tsmiCalc_Click);
             // 
             // tsmiSettings
             // 
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(150, 22);
+            this.tsmiSettings.Size = new System.Drawing.Size(224, 26);
             this.tsmiSettings.Text = "Configuración";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -589,26 +591,26 @@
             this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiIndex,
             this.tsmiAboutOf});
-            this.tsmiHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsmiHelp.Image")));
+            this.tsmiHelp.Image = global::GUI_GT.Properties.Resources.HelpIcon_48x48;
             this.tsmiHelp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiHelp.Name = "tsmiHelp";
-            this.tsmiHelp.Size = new System.Drawing.Size(63, 67);
+            this.tsmiHelp.Size = new System.Drawing.Size(65, 72);
             this.tsmiHelp.Text = "Ayuda";
             this.tsmiHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsmiIndex
             // 
-            this.tsmiIndex.Image = ((System.Drawing.Image)(resources.GetObject("tsmiIndex.Image")));
+            this.tsmiIndex.Image = global::GUI_GT.Properties.Resources.file_help_h128;
             this.tsmiIndex.Name = "tsmiIndex";
             this.tsmiIndex.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.tsmiIndex.Size = new System.Drawing.Size(158, 22);
+            this.tsmiIndex.Size = new System.Drawing.Size(224, 26);
             this.tsmiIndex.Text = "Índice";
             this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
             // 
             // tsmiAboutOf
             // 
             this.tsmiAboutOf.Name = "tsmiAboutOf";
-            this.tsmiAboutOf.Size = new System.Drawing.Size(158, 22);
+            this.tsmiAboutOf.Size = new System.Drawing.Size(224, 26);
             this.tsmiAboutOf.Text = "Acerca de SAGT";
             this.tsmiAboutOf.Click += new System.EventHandler(this.tsmiAboutOf_Click);
             // 
@@ -622,29 +624,32 @@
             this.tabControlOptions.Controls.Add(this.tabPageSSQ);
             this.tabControlOptions.Controls.Add(this.tabPageAnalysis);
             this.tabControlOptions.Controls.Add(this.tabPageProjects);
-            this.tabControlOptions.Location = new System.Drawing.Point(0, 50);
+            this.tabControlOptions.Location = new System.Drawing.Point(0, 62);
+            this.tabControlOptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlOptions.Name = "tabControlOptions";
             this.tabControlOptions.SelectedIndex = 0;
-            this.tabControlOptions.Size = new System.Drawing.Size(785, 510);
+            this.tabControlOptions.Size = new System.Drawing.Size(1257, 750);
             this.tabControlOptions.TabIndex = 1;
             // 
             // tabPageData
             // 
             this.tabPageData.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageData.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageData.BackgroundImage")));
+            this.tabPageData.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageData.Controls.Add(this.mStripData);
             this.tabPageData.Controls.Add(this.tabControlData);
-            this.tabPageData.Location = new System.Drawing.Point(4, 22);
+            this.tabPageData.Location = new System.Drawing.Point(4, 25);
+            this.tabPageData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageData.Name = "tabPageData";
-            this.tabPageData.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.tabPageData.Size = new System.Drawing.Size(777, 484);
+            this.tabPageData.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
+            this.tabPageData.Size = new System.Drawing.Size(1249, 721);
             this.tabPageData.TabIndex = 0;
             this.tabPageData.Text = "tabPageData";
             this.tabPageData.UseVisualStyleBackColor = true;
             // 
             // mStripData
             // 
-            this.mStripData.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripData.BackgroundImage")));
+            this.mStripData.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripData.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripData.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewMultiFacetData,
             this.tsmiOpenFileData,
@@ -660,20 +665,20 @@
             this.tsmiDataReports,
             this.tsmiDataClose});
             this.mStripData.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.mStripData.Location = new System.Drawing.Point(3, 3);
-            this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
+            this.mStripData.Location = new System.Drawing.Point(4, 4);
+            this.mStripData.MaximumSize = new System.Drawing.Size(233, 0);
             this.mStripData.Name = "mStripData";
-            this.mStripData.Size = new System.Drawing.Size(175, 476);
+            this.mStripData.Size = new System.Drawing.Size(233, 492);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
             // tsmiNewMultiFacetData
             // 
-            this.tsmiNewMultiFacetData.Image = ((System.Drawing.Image)(resources.GetObject("tsmiNewMultiFacetData.Image")));
+            this.tsmiNewMultiFacetData.Image = global::GUI_GT.Properties.Resources.doc_new_h32;
             this.tsmiNewMultiFacetData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiNewMultiFacetData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiNewMultiFacetData.Name = "tsmiNewMultiFacetData";
-            this.tsmiNewMultiFacetData.Size = new System.Drawing.Size(168, 36);
+            this.tsmiNewMultiFacetData.Size = new System.Drawing.Size(224, 36);
             this.tsmiNewMultiFacetData.Text = "Nuevo";
             this.tsmiNewMultiFacetData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiNewMultiFacetData.Click += new System.EventHandler(this.tsmiNewMultiFacetData_Click);
@@ -683,37 +688,37 @@
             this.tsmiOpenFileData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiDataOpenLocal,
             this.tsmiDataOpenWebService});
-            this.tsmiOpenFileData.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpenFileData.Image")));
+            this.tsmiOpenFileData.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiOpenFileData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiOpenFileData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenFileData.Name = "tsmiOpenFileData";
-            this.tsmiOpenFileData.Size = new System.Drawing.Size(168, 36);
+            this.tsmiOpenFileData.Size = new System.Drawing.Size(224, 52);
             this.tsmiOpenFileData.Text = "Abrir archivo de datos";
             this.tsmiOpenFileData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiDataOpenLocal
             // 
-            this.tsmiDataOpenLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataOpenLocal.Image")));
+            this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(257, 26);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
             // tsmiDataOpenWebService
             // 
-            this.tsmiDataOpenWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataOpenWebService.Image")));
+            this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(257, 26);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
             // tsmiDataImport
             // 
-            this.tsmiDataImport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataImport.Image")));
+            this.tsmiDataImport.Image = global::GUI_GT.Properties.Resources.importat_h32;
             this.tsmiDataImport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataImport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataImport.Name = "tsmiDataImport";
-            this.tsmiDataImport.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataImport.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataImport.Text = "Importar";
             this.tsmiDataImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataImport.Click += new System.EventHandler(this.tsmiDataImport_Click);
@@ -723,103 +728,103 @@
             this.tsmiSaveMultiFacetData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiDataSavedLocal,
             this.tsmiDataSavedWebService});
-            this.tsmiSaveMultiFacetData.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSaveMultiFacetData.Image")));
+            this.tsmiSaveMultiFacetData.Image = global::GUI_GT.Properties.Resources.Disquette_v2_32x32;
             this.tsmiSaveMultiFacetData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSaveMultiFacetData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSaveMultiFacetData.Name = "tsmiSaveMultiFacetData";
-            this.tsmiSaveMultiFacetData.Size = new System.Drawing.Size(168, 36);
+            this.tsmiSaveMultiFacetData.Size = new System.Drawing.Size(224, 36);
             this.tsmiSaveMultiFacetData.Text = "Guardar";
             this.tsmiSaveMultiFacetData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiDataSavedLocal
             // 
-            this.tsmiDataSavedLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataSavedLocal.Image")));
+            this.tsmiDataSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiDataSavedLocal.Name = "tsmiDataSavedLocal";
-            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(129, 22);
+            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataSavedLocal.Text = "Guardar";
             this.tsmiDataSavedLocal.Click += new System.EventHandler(this.tsmiDataSavedLocal_Click);
             // 
             // tsmiDataSavedWebService
             // 
-            this.tsmiDataSavedWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataSavedWebService.Image")));
+            this.tsmiDataSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiDataSavedWebService.Name = "tsmiDataSavedWebService";
-            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(129, 22);
+            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataSavedWebService.Text = "Guardado ";
             this.tsmiDataSavedWebService.Click += new System.EventHandler(this.tsmiDataSavedWebService_Click);
             // 
             // tsmiData_EditFacets
             // 
-            this.tsmiData_EditFacets.Image = ((System.Drawing.Image)(resources.GetObject("tsmiData_EditFacets.Image")));
+            this.tsmiData_EditFacets.Image = global::GUI_GT.Properties.Resources.Datos_Facets_Pencil_h32;
             this.tsmiData_EditFacets.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiData_EditFacets.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiData_EditFacets.Name = "tsmiData_EditFacets";
-            this.tsmiData_EditFacets.Size = new System.Drawing.Size(168, 36);
+            this.tsmiData_EditFacets.Size = new System.Drawing.Size(224, 36);
             this.tsmiData_EditFacets.Text = "Editar Facetas";
             this.tsmiData_EditFacets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiData_EditFacets.Click += new System.EventHandler(this.tsmiData_EditFacets_Click);
             // 
             // tsmiDataEditObs
             // 
-            this.tsmiDataEditObs.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataEditObs.Image")));
+            this.tsmiDataEditObs.Image = global::GUI_GT.Properties.Resources.Editar_datos_v1_h32;
             this.tsmiDataEditObs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataEditObs.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataEditObs.Name = "tsmiDataEditObs";
-            this.tsmiDataEditObs.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataEditObs.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataEditObs.Text = "Editar datos";
             this.tsmiDataEditObs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataEditObs.Click += new System.EventHandler(this.tsmiDataEditObs_Click);
             // 
             // tsmiDataOmitLevels
             // 
-            this.tsmiDataOmitLevels.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataOmitLevels.Image")));
+            this.tsmiDataOmitLevels.Image = global::GUI_GT.Properties.Resources.check_mark_h32;
             this.tsmiDataOmitLevels.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataOmitLevels.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataOmitLevels.Name = "tsmiDataOmitLevels";
-            this.tsmiDataOmitLevels.Size = new System.Drawing.Size(168, 38);
+            this.tsmiDataOmitLevels.Size = new System.Drawing.Size(224, 38);
             this.tsmiDataOmitLevels.Text = "Omitir niveles";
             this.tsmiDataOmitLevels.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataOmitLevels.Click += new System.EventHandler(this.tsmiDataOmitLevels_Click);
             // 
             // tsmiBuildMeans
             // 
-            this.tsmiBuildMeans.Image = ((System.Drawing.Image)(resources.GetObject("tsmiBuildMeans.Image")));
+            this.tsmiBuildMeans.Image = global::GUI_GT.Properties.Resources.file_x_means_h32;
             this.tsmiBuildMeans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiBuildMeans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiBuildMeans.Name = "tsmiBuildMeans";
-            this.tsmiBuildMeans.Size = new System.Drawing.Size(168, 36);
+            this.tsmiBuildMeans.Size = new System.Drawing.Size(224, 36);
             this.tsmiBuildMeans.Text = "Generar media";
             this.tsmiBuildMeans.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiBuildMeans.Click += new System.EventHandler(this.tsmiBuildMeans_Click);
             // 
             // tsmiDataToSSQ
             // 
-            this.tsmiDataToSSQ.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataToSSQ.Image")));
+            this.tsmiDataToSSQ.Image = global::GUI_GT.Properties.Resources.genenerateSSQ_h32;
             this.tsmiDataToSSQ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataToSSQ.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataToSSQ.Name = "tsmiDataToSSQ";
-            this.tsmiDataToSSQ.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataToSSQ.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataToSSQ.Text = "Suma de cuadrados";
             this.tsmiDataToSSQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataToSSQ.Click += new System.EventHandler(this.tsmiDataToSSQ_Click);
             // 
             // tsmiDataExportExcel
             // 
-            this.tsmiDataExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataExportExcel.Image")));
+            this.tsmiDataExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
             this.tsmiDataExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataExportExcel.Name = "tsmiDataExportExcel";
-            this.tsmiDataExportExcel.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataExportExcel.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataExportExcel.Text = "Exportar Excel";
             this.tsmiDataExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataExportExcel.Click += new System.EventHandler(this.tsmiDataExportExcel_Click);
             // 
             // tsmiExportScore
             // 
-            this.tsmiExportScore.Image = ((System.Drawing.Image)(resources.GetObject("tsmiExportScore.Image")));
+            this.tsmiExportScore.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h32;
             this.tsmiExportScore.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiExportScore.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiExportScore.Name = "tsmiExportScore";
-            this.tsmiExportScore.Size = new System.Drawing.Size(168, 36);
+            this.tsmiExportScore.Size = new System.Drawing.Size(224, 36);
             this.tsmiExportScore.Text = "Exportar puntuaciones";
             this.tsmiExportScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiExportScore.Click += new System.EventHandler(this.tsmiExportScore_Click);
@@ -831,53 +836,53 @@
             this.tsmiDataPrintPreview,
             this.tsmiDataWordExport,
             this.tsmiDataPdfExport});
-            this.tsmiDataReports.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataReports.Image")));
+            this.tsmiDataReports.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiDataReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataReports.Name = "tsmiDataReports";
-            this.tsmiDataReports.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataReports.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataReports.Text = "Informes";
             this.tsmiDataReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiDataPrinter
             // 
-            this.tsmiDataPrinter.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataPrinter.Image")));
+            this.tsmiDataPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiDataPrinter.Name = "tsmiDataPrinter";
-            this.tsmiDataPrinter.Size = new System.Drawing.Size(134, 22);
+            this.tsmiDataPrinter.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataPrinter.Text = "Imprimir";
             this.tsmiDataPrinter.Click += new System.EventHandler(this.tsmiDataPrinter_Click);
             // 
             // tsmiDataPrintPreview
             // 
-            this.tsmiDataPrintPreview.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataPrintPreview.Image")));
+            this.tsmiDataPrintPreview.Image = global::GUI_GT.Properties.Resources.vista_preliminar_h32;
             this.tsmiDataPrintPreview.Name = "tsmiDataPrintPreview";
-            this.tsmiDataPrintPreview.Size = new System.Drawing.Size(134, 22);
+            this.tsmiDataPrintPreview.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataPrintPreview.Text = "Vista previa";
             this.tsmiDataPrintPreview.Click += new System.EventHandler(this.tsmiDataPrintPreview_Click);
             // 
             // tsmiDataWordExport
             // 
-            this.tsmiDataWordExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataWordExport.Image")));
+            this.tsmiDataWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiDataWordExport.Name = "tsmiDataWordExport";
-            this.tsmiDataWordExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiDataWordExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataWordExport.Text = "Word";
             this.tsmiDataWordExport.Click += new System.EventHandler(this.tsmiDataWordExport_Click);
             // 
             // tsmiDataPdfExport
             // 
-            this.tsmiDataPdfExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataPdfExport.Image")));
+            this.tsmiDataPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiDataPdfExport.Name = "tsmiDataPdfExport";
-            this.tsmiDataPdfExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiDataPdfExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiDataPdfExport.Text = "PDF";
             this.tsmiDataPdfExport.Click += new System.EventHandler(this.tsmiDataPdfExport_Click);
             // 
             // tsmiDataClose
             // 
-            this.tsmiDataClose.Image = ((System.Drawing.Image)(resources.GetObject("tsmiDataClose.Image")));
+            this.tsmiDataClose.Image = global::GUI_GT.Properties.Resources.File_close_bt_h32;
             this.tsmiDataClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataClose.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataClose.Name = "tsmiDataClose";
-            this.tsmiDataClose.Size = new System.Drawing.Size(168, 36);
+            this.tsmiDataClose.Size = new System.Drawing.Size(224, 36);
             this.tsmiDataClose.Text = "Cerrar";
             this.tsmiDataClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataClose.Click += new System.EventHandler(this.tsmiDataClose_Click);
@@ -891,16 +896,17 @@
             this.tabControlData.Controls.Add(this.tabPageObsTable);
             this.tabControlData.Controls.Add(this.tabPageDataEditFacets);
             this.tabControlData.Controls.Add(this.tabPageDataInfo);
-            this.tabControlData.Location = new System.Drawing.Point(183, 5);
+            this.tabControlData.Location = new System.Drawing.Point(244, 6);
+            this.tabControlData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlData.Name = "tabControlData";
             this.tabControlData.SelectedIndex = 0;
-            this.tabControlData.Size = new System.Drawing.Size(591, 475);
+            this.tabControlData.Size = new System.Drawing.Size(788, 585);
             this.tabControlData.TabIndex = 1;
             // 
             // tabPagMultiFacet
             // 
             this.tabPagMultiFacet.BackColor = System.Drawing.Color.Transparent;
-            this.tabPagMultiFacet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPagMultiFacet.BackgroundImage")));
+            this.tabPagMultiFacet.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPagMultiFacet.Controls.Add(this.btRemoveNesting);
             this.tabPagMultiFacet.Controls.Add(this.btNestingFacet);
             this.tabPagMultiFacet.Controls.Add(this.dataGridViewExFacets);
@@ -910,20 +916,22 @@
             this.tabPagMultiFacet.Controls.Add(this.tbDescription);
             this.tabPagMultiFacet.Controls.Add(this.lbCommentsData);
             this.tabPagMultiFacet.Controls.Add(this.lbFileData);
-            this.tabPagMultiFacet.Location = new System.Drawing.Point(4, 22);
+            this.tabPagMultiFacet.Location = new System.Drawing.Point(4, 25);
+            this.tabPagMultiFacet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPagMultiFacet.Name = "tabPagMultiFacet";
-            this.tabPagMultiFacet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagMultiFacet.Size = new System.Drawing.Size(583, 449);
+            this.tabPagMultiFacet.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPagMultiFacet.Size = new System.Drawing.Size(780, 556);
             this.tabPagMultiFacet.TabIndex = 0;
             this.tabPagMultiFacet.Text = "Facetas";
             // 
             // btRemoveNesting
             // 
             this.btRemoveNesting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btRemoveNesting.Image = ((System.Drawing.Image)(resources.GetObject("btRemoveNesting.Image")));
-            this.btRemoveNesting.Location = new System.Drawing.Point(203, 395);
+            this.btRemoveNesting.Image = global::GUI_GT.Properties.Resources.eliminar_anidamiento;
+            this.btRemoveNesting.Location = new System.Drawing.Point(271, 482);
+            this.btRemoveNesting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btRemoveNesting.Name = "btRemoveNesting";
-            this.btRemoveNesting.Size = new System.Drawing.Size(119, 48);
+            this.btRemoveNesting.Size = new System.Drawing.Size(159, 59);
             this.btRemoveNesting.TabIndex = 17;
             this.btRemoveNesting.Text = "Quitar anidamiento";
             this.btRemoveNesting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -933,10 +941,11 @@
             // btNestingFacet
             // 
             this.btNestingFacet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNestingFacet.Image = ((System.Drawing.Image)(resources.GetObject("btNestingFacet.Image")));
-            this.btNestingFacet.Location = new System.Drawing.Point(77, 395);
+            this.btNestingFacet.Image = global::GUI_GT.Properties.Resources.Sin_nombre2;
+            this.btNestingFacet.Location = new System.Drawing.Point(103, 482);
+            this.btNestingFacet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btNestingFacet.Name = "btNestingFacet";
-            this.btNestingFacet.Size = new System.Drawing.Size(119, 48);
+            this.btNestingFacet.Size = new System.Drawing.Size(159, 59);
             this.btNestingFacet.TabIndex = 16;
             this.btNestingFacet.Text = "Anidar faceta";
             this.btNestingFacet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -947,39 +956,40 @@
             // 
             this.dataGridViewExFacets.AllowUserToAddRows = false;
             this.dataGridViewExFacets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridViewExFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridViewExFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewExFacets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewExFacets.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewExFacets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewExFacets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewExFacets.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewExFacets.Location = new System.Drawing.Point(23, 83);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewExFacets.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewExFacets.Location = new System.Drawing.Point(31, 102);
+            this.dataGridViewExFacets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewExFacets.MinNumeracionFilas = 0;
             this.dataGridViewExFacets.Name = "dataGridViewExFacets";
             this.dataGridViewExFacets.NumeracionFilas = true;
             this.dataGridViewExFacets.NumeroColumnas = 0;
             this.dataGridViewExFacets.NumeroFilas = 0;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewExFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewExFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewExFacets.RowHeadersVisible = false;
             this.dataGridViewExFacets.RowHeadersWidth = 50;
-            this.dataGridViewExFacets.Size = new System.Drawing.Size(540, 306);
+            this.dataGridViewExFacets.Size = new System.Drawing.Size(720, 373);
             this.dataGridViewExFacets.TabIndex = 15;
             this.dataGridViewExFacets.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dataGridViewExFacets_KeyPressEditorCelda);
             this.dataGridViewExFacets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewExFacets_CellContentClick);
@@ -987,11 +997,12 @@
             // btDataFacetsCancel
             // 
             this.btDataFacetsCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataFacetsCancel.Image = ((System.Drawing.Image)(resources.GetObject("btDataFacetsCancel.Image")));
+            this.btDataFacetsCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btDataFacetsCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btDataFacetsCancel.Location = new System.Drawing.Point(473, 395);
+            this.btDataFacetsCancel.Location = new System.Drawing.Point(631, 482);
+            this.btDataFacetsCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataFacetsCancel.Name = "btDataFacetsCancel";
-            this.btDataFacetsCancel.Size = new System.Drawing.Size(92, 48);
+            this.btDataFacetsCancel.Size = new System.Drawing.Size(123, 59);
             this.btDataFacetsCancel.TabIndex = 14;
             this.btDataFacetsCancel.Text = "Cancelar";
             this.btDataFacetsCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1001,11 +1012,12 @@
             // btGenerateTableObs
             // 
             this.btGenerateTableObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btGenerateTableObs.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateTableObs.Image")));
+            this.btGenerateTableObs.Image = global::GUI_GT.Properties.Resources.datos_v1_new_h22x22;
             this.btGenerateTableObs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btGenerateTableObs.Location = new System.Drawing.Point(328, 395);
+            this.btGenerateTableObs.Location = new System.Drawing.Point(437, 482);
+            this.btGenerateTableObs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btGenerateTableObs.Name = "btGenerateTableObs";
-            this.btGenerateTableObs.Size = new System.Drawing.Size(139, 48);
+            this.btGenerateTableObs.Size = new System.Drawing.Size(185, 59);
             this.btGenerateTableObs.TabIndex = 13;
             this.btGenerateTableObs.Text = "Generar tabla de observaciones";
             this.btGenerateTableObs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1017,28 +1029,31 @@
             this.tbFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFileName.BackColor = System.Drawing.SystemColors.Window;
-            this.tbFileName.Location = new System.Drawing.Point(82, 10);
+            this.tbFileName.Location = new System.Drawing.Point(109, 12);
+            this.tbFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFileName.Name = "tbFileName";
             this.tbFileName.ReadOnly = true;
-            this.tbFileName.Size = new System.Drawing.Size(479, 20);
+            this.tbFileName.Size = new System.Drawing.Size(637, 22);
             this.tbFileName.TabIndex = 11;
             // 
             // tbDescription
             // 
             this.tbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDescription.Location = new System.Drawing.Point(82, 40);
+            this.tbDescription.Location = new System.Drawing.Point(109, 49);
+            this.tbDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(479, 20);
+            this.tbDescription.Size = new System.Drawing.Size(637, 22);
             this.tbDescription.TabIndex = 10;
             // 
             // lbCommentsData
             // 
             this.lbCommentsData.AutoSize = true;
             this.lbCommentsData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbCommentsData.Location = new System.Drawing.Point(20, 44);
+            this.lbCommentsData.Location = new System.Drawing.Point(27, 54);
+            this.lbCommentsData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCommentsData.Name = "lbCommentsData";
-            this.lbCommentsData.Size = new System.Drawing.Size(63, 13);
+            this.lbCommentsData.Size = new System.Drawing.Size(79, 16);
             this.lbCommentsData.TabIndex = 9;
             this.lbCommentsData.Text = "Descripción";
             // 
@@ -1046,25 +1061,27 @@
             // 
             this.lbFileData.AutoSize = true;
             this.lbFileData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbFileData.Location = new System.Drawing.Point(20, 13);
+            this.lbFileData.Location = new System.Drawing.Point(27, 16);
+            this.lbFileData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFileData.Name = "lbFileData";
-            this.lbFileData.Size = new System.Drawing.Size(43, 13);
+            this.lbFileData.Size = new System.Drawing.Size(52, 16);
             this.lbFileData.TabIndex = 8;
             this.lbFileData.Text = "Archivo";
             // 
             // tabPageObsTable
             // 
             this.tabPageObsTable.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageObsTable.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageObsTable.BackgroundImage")));
+            this.tabPageObsTable.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageObsTable.Controls.Add(this.checkBoxHideNulls);
             this.tabPageObsTable.Controls.Add(this.btImportScores);
             this.tabPageObsTable.Controls.Add(this.dataGridViewExObsTable);
             this.tabPageObsTable.Controls.Add(this.btDataObsSave);
             this.tabPageObsTable.Controls.Add(this.btDataObsCancel);
-            this.tabPageObsTable.Location = new System.Drawing.Point(4, 22);
+            this.tabPageObsTable.Location = new System.Drawing.Point(4, 25);
+            this.tabPageObsTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageObsTable.Name = "tabPageObsTable";
-            this.tabPageObsTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageObsTable.Size = new System.Drawing.Size(583, 449);
+            this.tabPageObsTable.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageObsTable.Size = new System.Drawing.Size(780, 556);
             this.tabPageObsTable.TabIndex = 1;
             this.tabPageObsTable.Text = "Tabla de Observaciones";
             this.tabPageObsTable.UseVisualStyleBackColor = true;
@@ -1072,9 +1089,10 @@
             // checkBoxHideNulls
             // 
             this.checkBoxHideNulls.AutoSize = true;
-            this.checkBoxHideNulls.Location = new System.Drawing.Point(8, 9);
+            this.checkBoxHideNulls.Location = new System.Drawing.Point(11, 11);
+            this.checkBoxHideNulls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxHideNulls.Name = "checkBoxHideNulls";
-            this.checkBoxHideNulls.Size = new System.Drawing.Size(88, 17);
+            this.checkBoxHideNulls.Size = new System.Drawing.Size(106, 20);
             this.checkBoxHideNulls.TabIndex = 19;
             this.checkBoxHideNulls.Text = "Ocultar nulos";
             this.checkBoxHideNulls.UseVisualStyleBackColor = true;
@@ -1083,12 +1101,13 @@
             // btImportScores
             // 
             this.btImportScores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btImportScores.Image = ((System.Drawing.Image)(resources.GetObject("btImportScores.Image")));
+            this.btImportScores.Image = global::GUI_GT.Properties.Resources.importat__data_h20;
             this.btImportScores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btImportScores.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btImportScores.Location = new System.Drawing.Point(230, 412);
+            this.btImportScores.Location = new System.Drawing.Point(307, 503);
+            this.btImportScores.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btImportScores.Name = "btImportScores";
-            this.btImportScores.Size = new System.Drawing.Size(140, 32);
+            this.btImportScores.Size = new System.Drawing.Size(187, 39);
             this.btImportScores.TabIndex = 18;
             this.btImportScores.Text = "Importar puntuaciones";
             this.btImportScores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1099,51 +1118,53 @@
             // 
             this.dataGridViewExObsTable.AllowUserToAddRows = false;
             this.dataGridViewExObsTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridViewExObsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridViewExObsTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewExObsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewExObsTable.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewExObsTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewExObsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle55.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewExObsTable.DefaultCellStyle = dataGridViewCellStyle55;
-            this.dataGridViewExObsTable.Location = new System.Drawing.Point(7, 35);
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewExObsTable.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewExObsTable.Location = new System.Drawing.Point(9, 43);
+            this.dataGridViewExObsTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewExObsTable.MinNumeracionFilas = 0;
             this.dataGridViewExObsTable.Name = "dataGridViewExObsTable";
             this.dataGridViewExObsTable.NumeracionFilas = true;
             this.dataGridViewExObsTable.NumeroColumnas = 0;
             this.dataGridViewExObsTable.NumeroFilas = 0;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewExObsTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewExObsTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewExObsTable.RowHeadersVisible = false;
             this.dataGridViewExObsTable.RowHeadersWidth = 50;
-            this.dataGridViewExObsTable.Size = new System.Drawing.Size(570, 370);
+            this.dataGridViewExObsTable.Size = new System.Drawing.Size(760, 452);
             this.dataGridViewExObsTable.TabIndex = 17;
             this.dataGridViewExObsTable.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dataGridViewExObsTable_KeyPressEditorCelda);
             // 
             // btDataObsSave
             // 
             this.btDataObsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataObsSave.Image = ((System.Drawing.Image)(resources.GetObject("btDataObsSave.Image")));
+            this.btDataObsSave.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.btDataObsSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btDataObsSave.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btDataObsSave.Location = new System.Drawing.Point(375, 412);
+            this.btDataObsSave.Location = new System.Drawing.Point(500, 503);
+            this.btDataObsSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataObsSave.Name = "btDataObsSave";
-            this.btDataObsSave.Size = new System.Drawing.Size(92, 32);
+            this.btDataObsSave.Size = new System.Drawing.Size(123, 39);
             this.btDataObsSave.TabIndex = 16;
             this.btDataObsSave.Text = "Guardar";
             this.btDataObsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1153,12 +1174,13 @@
             // btDataObsCancel
             // 
             this.btDataObsCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataObsCancel.Image = ((System.Drawing.Image)(resources.GetObject("btDataObsCancel.Image")));
+            this.btDataObsCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btDataObsCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btDataObsCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btDataObsCancel.Location = new System.Drawing.Point(472, 412);
+            this.btDataObsCancel.Location = new System.Drawing.Point(629, 503);
+            this.btDataObsCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataObsCancel.Name = "btDataObsCancel";
-            this.btDataObsCancel.Size = new System.Drawing.Size(92, 32);
+            this.btDataObsCancel.Size = new System.Drawing.Size(123, 39);
             this.btDataObsCancel.TabIndex = 15;
             this.btDataObsCancel.Text = "Cancelar";
             this.btDataObsCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1167,7 +1189,7 @@
             // 
             // tabPageDataEditFacets
             // 
-            this.tabPageDataEditFacets.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageDataEditFacets.BackgroundImage")));
+            this.tabPageDataEditFacets.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageDataEditFacets.Controls.Add(this.btDataEditFacetsSave);
             this.tabPageDataEditFacets.Controls.Add(this.btDataEditFacetsCancel);
             this.tabPageDataEditFacets.Controls.Add(this.dGridViewExDataEditFacets);
@@ -1175,10 +1197,11 @@
             this.tabPageDataEditFacets.Controls.Add(this.tbEditFacetDescription);
             this.tabPageDataEditFacets.Controls.Add(this.lbEditFacetsCommentsData);
             this.tabPageDataEditFacets.Controls.Add(this.lbEditFacetsFileData);
-            this.tabPageDataEditFacets.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDataEditFacets.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDataEditFacets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageDataEditFacets.Name = "tabPageDataEditFacets";
-            this.tabPageDataEditFacets.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDataEditFacets.Size = new System.Drawing.Size(583, 449);
+            this.tabPageDataEditFacets.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDataEditFacets.Size = new System.Drawing.Size(780, 556);
             this.tabPageDataEditFacets.TabIndex = 2;
             this.tabPageDataEditFacets.Text = "Editar Facetas";
             this.tabPageDataEditFacets.UseVisualStyleBackColor = true;
@@ -1186,11 +1209,12 @@
             // btDataEditFacetsSave
             // 
             this.btDataEditFacetsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataEditFacetsSave.Image = ((System.Drawing.Image)(resources.GetObject("btDataEditFacetsSave.Image")));
+            this.btDataEditFacetsSave.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.btDataEditFacetsSave.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btDataEditFacetsSave.Location = new System.Drawing.Point(372, 405);
+            this.btDataEditFacetsSave.Location = new System.Drawing.Point(496, 495);
+            this.btDataEditFacetsSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataEditFacetsSave.Name = "btDataEditFacetsSave";
-            this.btDataEditFacetsSave.Size = new System.Drawing.Size(92, 32);
+            this.btDataEditFacetsSave.Size = new System.Drawing.Size(123, 39);
             this.btDataEditFacetsSave.TabIndex = 22;
             this.btDataEditFacetsSave.Text = "Guardar";
             this.btDataEditFacetsSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1200,11 +1224,12 @@
             // btDataEditFacetsCancel
             // 
             this.btDataEditFacetsCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataEditFacetsCancel.Image = ((System.Drawing.Image)(resources.GetObject("btDataEditFacetsCancel.Image")));
+            this.btDataEditFacetsCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btDataEditFacetsCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btDataEditFacetsCancel.Location = new System.Drawing.Point(470, 405);
+            this.btDataEditFacetsCancel.Location = new System.Drawing.Point(627, 495);
+            this.btDataEditFacetsCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataEditFacetsCancel.Name = "btDataEditFacetsCancel";
-            this.btDataEditFacetsCancel.Size = new System.Drawing.Size(92, 32);
+            this.btDataEditFacetsCancel.Size = new System.Drawing.Size(123, 39);
             this.btDataEditFacetsCancel.TabIndex = 21;
             this.btDataEditFacetsCancel.Text = "Cancelar";
             this.btDataEditFacetsCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1215,39 +1240,40 @@
             // 
             this.dGridViewExDataEditFacets.AllowUserToAddRows = false;
             this.dGridViewExDataEditFacets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExDataEditFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExDataEditFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dGridViewExDataEditFacets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGridViewExDataEditFacets.BackgroundColor = System.Drawing.Color.White;
             this.dGridViewExDataEditFacets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dGridViewExDataEditFacets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExDataEditFacets.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dGridViewExDataEditFacets.Location = new System.Drawing.Point(23, 83);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGridViewExDataEditFacets.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dGridViewExDataEditFacets.Location = new System.Drawing.Point(31, 102);
+            this.dGridViewExDataEditFacets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dGridViewExDataEditFacets.MinNumeracionFilas = 0;
             this.dGridViewExDataEditFacets.Name = "dGridViewExDataEditFacets";
             this.dGridViewExDataEditFacets.NumeracionFilas = true;
             this.dGridViewExDataEditFacets.NumeroColumnas = 0;
             this.dGridViewExDataEditFacets.NumeroFilas = 0;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExDataEditFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGridViewExDataEditFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dGridViewExDataEditFacets.RowHeadersVisible = false;
             this.dGridViewExDataEditFacets.RowHeadersWidth = 50;
-            this.dGridViewExDataEditFacets.Size = new System.Drawing.Size(540, 306);
+            this.dGridViewExDataEditFacets.Size = new System.Drawing.Size(720, 373);
             this.dGridViewExDataEditFacets.TabIndex = 20;
             this.dGridViewExDataEditFacets.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dGridViewExDataEditFacets_KeyPressEditorCelda);
             // 
@@ -1256,28 +1282,31 @@
             this.tbEditFacetFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbEditFacetFileName.BackColor = System.Drawing.SystemColors.Window;
-            this.tbEditFacetFileName.Location = new System.Drawing.Point(82, 10);
+            this.tbEditFacetFileName.Location = new System.Drawing.Point(109, 12);
+            this.tbEditFacetFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEditFacetFileName.Name = "tbEditFacetFileName";
             this.tbEditFacetFileName.ReadOnly = true;
-            this.tbEditFacetFileName.Size = new System.Drawing.Size(479, 20);
+            this.tbEditFacetFileName.Size = new System.Drawing.Size(637, 22);
             this.tbEditFacetFileName.TabIndex = 19;
             // 
             // tbEditFacetDescription
             // 
             this.tbEditFacetDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbEditFacetDescription.Location = new System.Drawing.Point(82, 40);
+            this.tbEditFacetDescription.Location = new System.Drawing.Point(109, 49);
+            this.tbEditFacetDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbEditFacetDescription.Name = "tbEditFacetDescription";
-            this.tbEditFacetDescription.Size = new System.Drawing.Size(479, 20);
+            this.tbEditFacetDescription.Size = new System.Drawing.Size(637, 22);
             this.tbEditFacetDescription.TabIndex = 18;
             // 
             // lbEditFacetsCommentsData
             // 
             this.lbEditFacetsCommentsData.AutoSize = true;
             this.lbEditFacetsCommentsData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbEditFacetsCommentsData.Location = new System.Drawing.Point(20, 44);
+            this.lbEditFacetsCommentsData.Location = new System.Drawing.Point(27, 54);
+            this.lbEditFacetsCommentsData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEditFacetsCommentsData.Name = "lbEditFacetsCommentsData";
-            this.lbEditFacetsCommentsData.Size = new System.Drawing.Size(63, 13);
+            this.lbEditFacetsCommentsData.Size = new System.Drawing.Size(79, 16);
             this.lbEditFacetsCommentsData.TabIndex = 17;
             this.lbEditFacetsCommentsData.Text = "Descripción";
             // 
@@ -1285,21 +1314,23 @@
             // 
             this.lbEditFacetsFileData.AutoSize = true;
             this.lbEditFacetsFileData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbEditFacetsFileData.Location = new System.Drawing.Point(20, 13);
+            this.lbEditFacetsFileData.Location = new System.Drawing.Point(27, 16);
+            this.lbEditFacetsFileData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEditFacetsFileData.Name = "lbEditFacetsFileData";
-            this.lbEditFacetsFileData.Size = new System.Drawing.Size(43, 13);
+            this.lbEditFacetsFileData.Size = new System.Drawing.Size(52, 16);
             this.lbEditFacetsFileData.TabIndex = 16;
             this.lbEditFacetsFileData.Text = "Archivo";
             // 
             // tabPageDataInfo
             // 
-            this.tabPageDataInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageDataInfo.BackgroundImage")));
+            this.tabPageDataInfo.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageDataInfo.Controls.Add(this.btDataEditComment);
             this.tabPageDataInfo.Controls.Add(this.richTextBoxDataComment);
-            this.tabPageDataInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDataInfo.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDataInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageDataInfo.Name = "tabPageDataInfo";
-            this.tabPageDataInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDataInfo.Size = new System.Drawing.Size(583, 449);
+            this.tabPageDataInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDataInfo.Size = new System.Drawing.Size(780, 556);
             this.tabPageDataInfo.TabIndex = 3;
             this.tabPageDataInfo.Text = "Información";
             this.tabPageDataInfo.UseVisualStyleBackColor = true;
@@ -1307,11 +1338,12 @@
             // btDataEditComment
             // 
             this.btDataEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDataEditComment.Image = ((System.Drawing.Image)(resources.GetObject("btDataEditComment.Image")));
+            this.btDataEditComment.Image = global::GUI_GT.Properties.Resources.edit_h22;
             this.btDataEditComment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btDataEditComment.Location = new System.Drawing.Point(467, 398);
+            this.btDataEditComment.Location = new System.Drawing.Point(623, 486);
+            this.btDataEditComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btDataEditComment.Name = "btDataEditComment";
-            this.btDataEditComment.Size = new System.Drawing.Size(92, 32);
+            this.btDataEditComment.Size = new System.Drawing.Size(123, 39);
             this.btDataEditComment.TabIndex = 13;
             this.btDataEditComment.Text = "Editar";
             this.btDataEditComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1326,23 +1358,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxDataComment.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.richTextBoxDataComment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxDataComment.Location = new System.Drawing.Point(24, 21);
+            this.richTextBoxDataComment.Location = new System.Drawing.Point(32, 26);
+            this.richTextBoxDataComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxDataComment.Name = "richTextBoxDataComment";
             this.richTextBoxDataComment.ReadOnly = true;
-            this.richTextBoxDataComment.Size = new System.Drawing.Size(535, 364);
+            this.richTextBoxDataComment.Size = new System.Drawing.Size(712, 443);
             this.richTextBoxDataComment.TabIndex = 12;
             this.richTextBoxDataComment.Text = "";
             // 
             // tabPageMeans
             // 
             this.tabPageMeans.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageMeans.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageMeans.BackgroundImage")));
+            this.tabPageMeans.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageMeans.Controls.Add(this.tabControlMeans);
             this.tabPageMeans.Controls.Add(this.mStripMeans);
-            this.tabPageMeans.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMeans.Location = new System.Drawing.Point(4, 25);
+            this.tabPageMeans.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageMeans.Name = "tabPageMeans";
-            this.tabPageMeans.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMeans.Size = new System.Drawing.Size(777, 484);
+            this.tabPageMeans.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMeans.Size = new System.Drawing.Size(1039, 599);
             this.tabPageMeans.TabIndex = 1;
             this.tabPageMeans.Text = "tabPageMeans";
             this.tabPageMeans.UseVisualStyleBackColor = true;
@@ -1354,23 +1388,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlMeans.Controls.Add(this.tabPageMeansMain);
             this.tabControlMeans.Controls.Add(this.tbPageMeanInfo);
-            this.tabControlMeans.Location = new System.Drawing.Point(197, 7);
+            this.tabControlMeans.Location = new System.Drawing.Point(263, 9);
+            this.tabControlMeans.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlMeans.Name = "tabControlMeans";
             this.tabControlMeans.SelectedIndex = 0;
-            this.tabControlMeans.Size = new System.Drawing.Size(576, 470);
+            this.tabControlMeans.Size = new System.Drawing.Size(768, 578);
             this.tabControlMeans.TabIndex = 2;
             // 
             // tabPageMeansMain
             // 
-            this.tabPageMeansMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageMeansMain.BackgroundImage")));
+            this.tabPageMeansMain.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageMeansMain.Controls.Add(this.lbStdDv);
             this.tabPageMeansMain.Controls.Add(this.lbMeanVariance);
             this.tabPageMeansMain.Controls.Add(this.dataGridViewExMeans);
             this.tabPageMeansMain.Controls.Add(this.lbGrandMean);
-            this.tabPageMeansMain.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMeansMain.Location = new System.Drawing.Point(4, 25);
+            this.tabPageMeansMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageMeansMain.Name = "tabPageMeansMain";
-            this.tabPageMeansMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMeansMain.Size = new System.Drawing.Size(568, 444);
+            this.tabPageMeansMain.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMeansMain.Size = new System.Drawing.Size(760, 549);
             this.tabPageMeansMain.TabIndex = 0;
             this.tabPageMeansMain.Text = "Medias";
             this.tabPageMeansMain.UseVisualStyleBackColor = true;
@@ -1380,9 +1416,10 @@
             this.lbStdDv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbStdDv.AutoSize = true;
             this.lbStdDv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStdDv.Location = new System.Drawing.Point(306, 409);
+            this.lbStdDv.Location = new System.Drawing.Point(408, 500);
+            this.lbStdDv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbStdDv.Name = "lbStdDv";
-            this.lbStdDv.Size = new System.Drawing.Size(117, 16);
+            this.lbStdDv.Size = new System.Drawing.Size(142, 20);
             this.lbStdDv.TabIndex = 5;
             this.lbStdDv.Text = "Desviación Típica";
             // 
@@ -1391,9 +1428,10 @@
             this.lbMeanVariance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbMeanVariance.AutoSize = true;
             this.lbMeanVariance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMeanVariance.Location = new System.Drawing.Point(172, 409);
+            this.lbMeanVariance.Location = new System.Drawing.Point(229, 500);
+            this.lbMeanVariance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMeanVariance.Name = "lbMeanVariance";
-            this.lbMeanVariance.Size = new System.Drawing.Size(61, 16);
+            this.lbMeanVariance.Size = new System.Drawing.Size(75, 20);
             this.lbMeanVariance.TabIndex = 4;
             this.lbMeanVariance.Text = "Varianza";
             // 
@@ -1406,30 +1444,31 @@
             this.dataGridViewExMeans.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewExMeans.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewExMeans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewExMeans.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewExMeans.Location = new System.Drawing.Point(13, 9);
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewExMeans.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewExMeans.Location = new System.Drawing.Point(17, 11);
+            this.dataGridViewExMeans.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewExMeans.MinNumeracionFilas = 0;
             this.dataGridViewExMeans.Name = "dataGridViewExMeans";
             this.dataGridViewExMeans.NumeracionFilas = true;
             this.dataGridViewExMeans.NumeroColumnas = 0;
             this.dataGridViewExMeans.NumeroFilas = 0;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewExMeans.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewExMeans.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewExMeans.RowHeadersWidth = 50;
-            this.dataGridViewExMeans.Size = new System.Drawing.Size(543, 375);
+            this.dataGridViewExMeans.Size = new System.Drawing.Size(724, 458);
             this.dataGridViewExMeans.TabIndex = 3;
             // 
             // lbGrandMean
@@ -1437,25 +1476,27 @@
             this.lbGrandMean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbGrandMean.AutoSize = true;
             this.lbGrandMean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGrandMean.Location = new System.Drawing.Point(13, 409);
+            this.lbGrandMean.Location = new System.Drawing.Point(17, 500);
+            this.lbGrandMean.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbGrandMean.Name = "lbGrandMean";
-            this.lbGrandMean.Size = new System.Drawing.Size(81, 16);
+            this.lbGrandMean.Size = new System.Drawing.Size(101, 20);
             this.lbGrandMean.TabIndex = 1;
             this.lbGrandMean.Text = "Gran media:";
             // 
             // tbPageMeanInfo
             // 
-            this.tbPageMeanInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbPageMeanInfo.BackgroundImage")));
+            this.tbPageMeanInfo.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tbPageMeanInfo.Controls.Add(this.btMeanEditComment);
             this.tbPageMeanInfo.Controls.Add(this.rTxtBoxMeanInfo);
             this.tbPageMeanInfo.Controls.Add(this.tbDateMeanCreated);
             this.tbPageMeanInfo.Controls.Add(this.lbDateMeanCreated);
             this.tbPageMeanInfo.Controls.Add(this.tbFileMeanProvede);
             this.tbPageMeanInfo.Controls.Add(this.lbFileMeanProvede);
-            this.tbPageMeanInfo.Location = new System.Drawing.Point(4, 22);
+            this.tbPageMeanInfo.Location = new System.Drawing.Point(4, 25);
+            this.tbPageMeanInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPageMeanInfo.Name = "tbPageMeanInfo";
-            this.tbPageMeanInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageMeanInfo.Size = new System.Drawing.Size(568, 444);
+            this.tbPageMeanInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageMeanInfo.Size = new System.Drawing.Size(760, 549);
             this.tbPageMeanInfo.TabIndex = 1;
             this.tbPageMeanInfo.Text = "Información";
             this.tbPageMeanInfo.UseVisualStyleBackColor = true;
@@ -1463,11 +1504,12 @@
             // btMeanEditComment
             // 
             this.btMeanEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btMeanEditComment.Image = ((System.Drawing.Image)(resources.GetObject("btMeanEditComment.Image")));
+            this.btMeanEditComment.Image = global::GUI_GT.Properties.Resources.edit_h22;
             this.btMeanEditComment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMeanEditComment.Location = new System.Drawing.Point(460, 400);
+            this.btMeanEditComment.Location = new System.Drawing.Point(613, 489);
+            this.btMeanEditComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btMeanEditComment.Name = "btMeanEditComment";
-            this.btMeanEditComment.Size = new System.Drawing.Size(92, 32);
+            this.btMeanEditComment.Size = new System.Drawing.Size(123, 39);
             this.btMeanEditComment.TabIndex = 5;
             this.btMeanEditComment.Text = "Editar";
             this.btMeanEditComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1482,28 +1524,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rTxtBoxMeanInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.rTxtBoxMeanInfo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rTxtBoxMeanInfo.Location = new System.Drawing.Point(17, 110);
+            this.rTxtBoxMeanInfo.Location = new System.Drawing.Point(23, 135);
+            this.rTxtBoxMeanInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rTxtBoxMeanInfo.Name = "rTxtBoxMeanInfo";
             this.rTxtBoxMeanInfo.ReadOnly = true;
-            this.rTxtBoxMeanInfo.Size = new System.Drawing.Size(535, 277);
+            this.rTxtBoxMeanInfo.Size = new System.Drawing.Size(712, 336);
             this.rTxtBoxMeanInfo.TabIndex = 4;
             this.rTxtBoxMeanInfo.Text = "";
             // 
             // tbDateMeanCreated
             // 
             this.tbDateMeanCreated.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbDateMeanCreated.Location = new System.Drawing.Point(124, 63);
+            this.tbDateMeanCreated.Location = new System.Drawing.Point(165, 78);
+            this.tbDateMeanCreated.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDateMeanCreated.Name = "tbDateMeanCreated";
             this.tbDateMeanCreated.ReadOnly = true;
-            this.tbDateMeanCreated.Size = new System.Drawing.Size(263, 20);
+            this.tbDateMeanCreated.Size = new System.Drawing.Size(349, 22);
             this.tbDateMeanCreated.TabIndex = 3;
             // 
             // lbDateMeanCreated
             // 
             this.lbDateMeanCreated.AutoSize = true;
-            this.lbDateMeanCreated.Location = new System.Drawing.Point(16, 67);
+            this.lbDateMeanCreated.Location = new System.Drawing.Point(21, 82);
+            this.lbDateMeanCreated.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDateMeanCreated.Name = "lbDateMeanCreated";
-            this.lbDateMeanCreated.Size = new System.Drawing.Size(96, 13);
+            this.lbDateMeanCreated.Size = new System.Drawing.Size(119, 16);
             this.lbDateMeanCreated.TabIndex = 2;
             this.lbDateMeanCreated.Text = "Fecha de creación";
             // 
@@ -1512,24 +1557,27 @@
             this.tbFileMeanProvede.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFileMeanProvede.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbFileMeanProvede.Location = new System.Drawing.Point(124, 18);
+            this.tbFileMeanProvede.Location = new System.Drawing.Point(165, 22);
+            this.tbFileMeanProvede.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFileMeanProvede.Name = "tbFileMeanProvede";
             this.tbFileMeanProvede.ReadOnly = true;
-            this.tbFileMeanProvede.Size = new System.Drawing.Size(429, 20);
+            this.tbFileMeanProvede.Size = new System.Drawing.Size(571, 22);
             this.tbFileMeanProvede.TabIndex = 1;
             // 
             // lbFileMeanProvede
             // 
             this.lbFileMeanProvede.AutoSize = true;
-            this.lbFileMeanProvede.Location = new System.Drawing.Point(15, 22);
+            this.lbFileMeanProvede.Location = new System.Drawing.Point(20, 27);
+            this.lbFileMeanProvede.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFileMeanProvede.Name = "lbFileMeanProvede";
-            this.lbFileMeanProvede.Size = new System.Drawing.Size(86, 13);
+            this.lbFileMeanProvede.Size = new System.Drawing.Size(108, 16);
             this.lbFileMeanProvede.TabIndex = 0;
             this.lbFileMeanProvede.Text = "Fichero de datos";
             // 
             // mStripMeans
             // 
-            this.mStripMeans.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripMeans.BackgroundImage")));
+            this.mStripMeans.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripMeans.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripMeans.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiOpenMeans,
             this.tsmiImportMeans,
@@ -1539,10 +1587,10 @@
             this.tsmiMeansReports,
             this.tsmiMeansClose});
             this.mStripMeans.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.mStripMeans.Location = new System.Drawing.Point(3, 3);
-            this.mStripMeans.MaximumSize = new System.Drawing.Size(187, 469);
+            this.mStripMeans.Location = new System.Drawing.Point(4, 4);
+            this.mStripMeans.MaximumSize = new System.Drawing.Size(249, 577);
             this.mStripMeans.Name = "mStripMeans";
-            this.mStripMeans.Size = new System.Drawing.Size(187, 258);
+            this.mStripMeans.Size = new System.Drawing.Size(249, 274);
             this.mStripMeans.TabIndex = 1;
             this.mStripMeans.Text = "menuStrip1";
             // 
@@ -1551,37 +1599,37 @@
             this.tsmiOpenMeans.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMeansOpenLocal,
             this.tsmiMeansOpenWebService});
-            this.tsmiOpenMeans.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpenMeans.Image")));
+            this.tsmiOpenMeans.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiOpenMeans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiOpenMeans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenMeans.Name = "tsmiOpenMeans";
-            this.tsmiOpenMeans.Size = new System.Drawing.Size(180, 36);
+            this.tsmiOpenMeans.Size = new System.Drawing.Size(240, 52);
             this.tsmiOpenMeans.Text = "Abrir archivo de medias";
             this.tsmiOpenMeans.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiMeansOpenLocal
             // 
-            this.tsmiMeansOpenLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansOpenLocal.Image")));
+            this.tsmiMeansOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiMeansOpenLocal.Name = "tsmiMeansOpenLocal";
-            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(257, 26);
             this.tsmiMeansOpenLocal.Text = "Abrir";
             this.tsmiMeansOpenLocal.Click += new System.EventHandler(this.tsmiMeansOpenLocal_Click);
             // 
             // tsmiMeansOpenWebService
             // 
-            this.tsmiMeansOpenWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansOpenWebService.Image")));
+            this.tsmiMeansOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiMeansOpenWebService.Name = "tsmiMeansOpenWebService";
-            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(257, 26);
             this.tsmiMeansOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiMeansOpenWebService.Click += new System.EventHandler(this.tsmiMeansOpenWebService_Click);
             // 
             // tsmiImportMeans
             // 
-            this.tsmiImportMeans.Image = ((System.Drawing.Image)(resources.GetObject("tsmiImportMeans.Image")));
+            this.tsmiImportMeans.Image = global::GUI_GT.Properties.Resources.importat_h32;
             this.tsmiImportMeans.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiImportMeans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiImportMeans.Name = "tsmiImportMeans";
-            this.tsmiImportMeans.Size = new System.Drawing.Size(180, 36);
+            this.tsmiImportMeans.Size = new System.Drawing.Size(240, 36);
             this.tsmiImportMeans.Text = "Importar";
             this.tsmiImportMeans.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiImportMeans.Click += new System.EventHandler(this.tsmiImportMeans_Click);
@@ -1591,48 +1639,48 @@
             this.tsmiMeansSave.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMeansSavedLocal,
             this.tsmiMeansSavedWebService});
-            this.tsmiMeansSave.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansSave.Image")));
+            this.tsmiMeansSave.Image = global::GUI_GT.Properties.Resources.Disquette_v2_32x32;
             this.tsmiMeansSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeansSave.Name = "tsmiMeansSave";
-            this.tsmiMeansSave.Size = new System.Drawing.Size(180, 36);
+            this.tsmiMeansSave.Size = new System.Drawing.Size(240, 36);
             this.tsmiMeansSave.Text = "Guardar";
             this.tsmiMeansSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiMeansSavedLocal
             // 
-            this.tsmiMeansSavedLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansSavedLocal.Image")));
+            this.tsmiMeansSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiMeansSavedLocal.Name = "tsmiMeansSavedLocal";
-            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(202, 22);
+            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(253, 26);
             this.tsmiMeansSavedLocal.Text = "Guardar";
             this.tsmiMeansSavedLocal.Click += new System.EventHandler(this.tsmiMeansSavedLocal_Click);
             // 
             // tsmiMeansSavedWebService
             // 
-            this.tsmiMeansSavedWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansSavedWebService.Image")));
+            this.tsmiMeansSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiMeansSavedWebService.Name = "tsmiMeansSavedWebService";
-            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(202, 22);
+            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(253, 26);
             this.tsmiMeansSavedWebService.Text = "Guardar en servicio Web";
             this.tsmiMeansSavedWebService.Click += new System.EventHandler(this.tsmiMeansSavedWebService_Click);
             // 
             // tsmiMeanInformation
             // 
-            this.tsmiMeanInformation.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeanInformation.Image")));
+            this.tsmiMeanInformation.Image = global::GUI_GT.Properties.Resources.file_x_means_info_h32;
             this.tsmiMeanInformation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeanInformation.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeanInformation.Name = "tsmiMeanInformation";
-            this.tsmiMeanInformation.Size = new System.Drawing.Size(180, 36);
+            this.tsmiMeanInformation.Size = new System.Drawing.Size(240, 36);
             this.tsmiMeanInformation.Text = "Información";
             this.tsmiMeanInformation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeanInformation.Click += new System.EventHandler(this.tsmiMeanInformation_Click);
             // 
             // tsmiMeansExportExcel
             // 
-            this.tsmiMeansExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansExportExcel.Image")));
+            this.tsmiMeansExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
             this.tsmiMeansExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeansExportExcel.Name = "tsmiMeansExportExcel";
-            this.tsmiMeansExportExcel.Size = new System.Drawing.Size(180, 36);
+            this.tsmiMeansExportExcel.Size = new System.Drawing.Size(240, 36);
             this.tsmiMeansExportExcel.Text = "Exportar Excel";
             this.tsmiMeansExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansExportExcel.Click += new System.EventHandler(this.tsmiMeansExportExcel_Click);
@@ -1644,53 +1692,53 @@
             this.tsmiMeansPrintPreview,
             this.tsmiMeansWordExport,
             this.tsmiMeansPdfExport});
-            this.tsmiMeansReports.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansReports.Image")));
+            this.tsmiMeansReports.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiMeansReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeansReports.Name = "tsmiMeansReports";
-            this.tsmiMeansReports.Size = new System.Drawing.Size(180, 36);
+            this.tsmiMeansReports.Size = new System.Drawing.Size(240, 36);
             this.tsmiMeansReports.Text = "Informes";
             this.tsmiMeansReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiMeansPrinter
             // 
-            this.tsmiMeansPrinter.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansPrinter.Image")));
+            this.tsmiMeansPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiMeansPrinter.Name = "tsmiMeansPrinter";
-            this.tsmiMeansPrinter.Size = new System.Drawing.Size(134, 22);
+            this.tsmiMeansPrinter.Size = new System.Drawing.Size(224, 26);
             this.tsmiMeansPrinter.Text = "Imprimir";
             this.tsmiMeansPrinter.Click += new System.EventHandler(this.tsmiMeansPrinter_Click);
             // 
             // tsmiMeansPrintPreview
             // 
-            this.tsmiMeansPrintPreview.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansPrintPreview.Image")));
+            this.tsmiMeansPrintPreview.Image = global::GUI_GT.Properties.Resources.vista_preliminar_h32;
             this.tsmiMeansPrintPreview.Name = "tsmiMeansPrintPreview";
-            this.tsmiMeansPrintPreview.Size = new System.Drawing.Size(134, 22);
+            this.tsmiMeansPrintPreview.Size = new System.Drawing.Size(224, 26);
             this.tsmiMeansPrintPreview.Text = "Vista previa";
             this.tsmiMeansPrintPreview.Click += new System.EventHandler(this.tsmiMeansPrintPreview_Click);
             // 
             // tsmiMeansWordExport
             // 
-            this.tsmiMeansWordExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansWordExport.Image")));
+            this.tsmiMeansWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiMeansWordExport.Name = "tsmiMeansWordExport";
-            this.tsmiMeansWordExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiMeansWordExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiMeansWordExport.Text = "Word";
             this.tsmiMeansWordExport.Click += new System.EventHandler(this.tsmiMeansWordExport_Click);
             // 
             // tsmiMeansPdfExport
             // 
-            this.tsmiMeansPdfExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansPdfExport.Image")));
+            this.tsmiMeansPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiMeansPdfExport.Name = "tsmiMeansPdfExport";
-            this.tsmiMeansPdfExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiMeansPdfExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiMeansPdfExport.Text = "PDF";
             this.tsmiMeansPdfExport.Click += new System.EventHandler(this.tsmiMeansPdfExport_Click);
             // 
             // tsmiMeansClose
             // 
-            this.tsmiMeansClose.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMeansClose.Image")));
+            this.tsmiMeansClose.Image = global::GUI_GT.Properties.Resources.File_close_bt_h32;
             this.tsmiMeansClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansClose.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiMeansClose.Name = "tsmiMeansClose";
-            this.tsmiMeansClose.Size = new System.Drawing.Size(180, 36);
+            this.tsmiMeansClose.Size = new System.Drawing.Size(240, 36);
             this.tsmiMeansClose.Text = "Cerrar";
             this.tsmiMeansClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiMeansClose.Click += new System.EventHandler(this.tsmiMeansClose_Click);
@@ -1698,13 +1746,14 @@
             // tabPageSSQ
             // 
             this.tabPageSSQ.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageSSQ.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageSSQ.BackgroundImage")));
+            this.tabPageSSQ.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageSSQ.Controls.Add(this.tabControlSSQ);
             this.tabPageSSQ.Controls.Add(this.mStripSSQ);
-            this.tabPageSSQ.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSSQ.Location = new System.Drawing.Point(4, 25);
+            this.tabPageSSQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageSSQ.Name = "tabPageSSQ";
-            this.tabPageSSQ.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSSQ.Size = new System.Drawing.Size(777, 484);
+            this.tabPageSSQ.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSSQ.Size = new System.Drawing.Size(1249, 721);
             this.tabPageSSQ.TabIndex = 2;
             this.tabPageSSQ.Text = "tabPageSSQ";
             this.tabPageSSQ.UseVisualStyleBackColor = true;
@@ -1719,15 +1768,16 @@
             this.tabControlSSQ.Controls.Add(this.tabPageOptimization);
             this.tabControlSSQ.Controls.Add(this.tbPageSsqInfo);
             this.tabControlSSQ.Controls.Add(this.tabPageEditDescriptionFacets);
-            this.tabControlSSQ.Location = new System.Drawing.Point(191, 6);
+            this.tabControlSSQ.Location = new System.Drawing.Point(255, 7);
+            this.tabControlSSQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlSSQ.Name = "tabControlSSQ";
             this.tabControlSSQ.SelectedIndex = 0;
-            this.tabControlSSQ.Size = new System.Drawing.Size(580, 472);
+            this.tabControlSSQ.Size = new System.Drawing.Size(982, 720);
             this.tabControlSSQ.TabIndex = 2;
             // 
             // tabPageSSQ_TableComp
             // 
-            this.tabPageSSQ_TableComp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageSSQ_TableComp.BackgroundImage")));
+            this.tabPageSSQ_TableComp.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageSSQ_TableComp.Controls.Add(this.dataGridViewExSSQ);
             this.tabPageSSQ_TableComp.Controls.Add(this.dGridViewExSourceOfVar);
             this.tabPageSSQ_TableComp.Controls.Add(this.lbTotalDF);
@@ -1735,10 +1785,11 @@
             this.tabPageSSQ_TableComp.Controls.Add(this.lbTextTotalSSQ);
             this.tabPageSSQ_TableComp.Controls.Add(this.tbMeasurementDesign);
             this.tabPageSSQ_TableComp.Controls.Add(this.lbMeasurementDesign);
-            this.tabPageSSQ_TableComp.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSSQ_TableComp.Location = new System.Drawing.Point(4, 25);
+            this.tabPageSSQ_TableComp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageSSQ_TableComp.Name = "tabPageSSQ_TableComp";
-            this.tabPageSSQ_TableComp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSSQ_TableComp.Size = new System.Drawing.Size(572, 446);
+            this.tabPageSSQ_TableComp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageSSQ_TableComp.Size = new System.Drawing.Size(765, 552);
             this.tabPageSSQ_TableComp.TabIndex = 0;
             this.tabPageSSQ_TableComp.Text = "Suma de cuadrados";
             this.tabPageSSQ_TableComp.UseVisualStyleBackColor = true;
@@ -1747,52 +1798,14 @@
             // 
             this.dataGridViewExSSQ.AllowUserToAddRows = false;
             this.dataGridViewExSSQ.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridViewExSSQ.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridViewExSSQ.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewExSSQ.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewExSSQ.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewExSSQ.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewExSSQ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewExSSQ.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewExSSQ.Location = new System.Drawing.Point(13, 223);
-            this.dataGridViewExSSQ.MinNumeracionFilas = 0;
-            this.dataGridViewExSSQ.Name = "dataGridViewExSSQ";
-            this.dataGridViewExSSQ.NumeracionFilas = true;
-            this.dataGridViewExSSQ.NumeroColumnas = 0;
-            this.dataGridViewExSSQ.NumeroFilas = 0;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewExSSQ.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewExSSQ.RowHeadersVisible = false;
-            this.dataGridViewExSSQ.RowHeadersWidth = 50;
-            this.dataGridViewExSSQ.Size = new System.Drawing.Size(542, 174);
-            this.dataGridViewExSSQ.TabIndex = 8;
-            // 
-            // dGridViewExSourceOfVar
-            // 
-            this.dGridViewExSourceOfVar.AllowUserToAddRows = false;
-            this.dGridViewExSourceOfVar.AllowUserToResizeRows = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExSourceOfVar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dGridViewExSourceOfVar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dGridViewExSourceOfVar.BackgroundColor = System.Drawing.Color.White;
-            this.dGridViewExSourceOfVar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dGridViewExSourceOfVar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1800,13 +1813,14 @@
             dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExSourceOfVar.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dGridViewExSourceOfVar.Location = new System.Drawing.Point(13, 55);
-            this.dGridViewExSourceOfVar.MinNumeracionFilas = 0;
-            this.dGridViewExSourceOfVar.Name = "dGridViewExSourceOfVar";
-            this.dGridViewExSourceOfVar.NumeracionFilas = true;
-            this.dGridViewExSourceOfVar.NumeroColumnas = 0;
-            this.dGridViewExSourceOfVar.NumeroFilas = 0;
+            this.dataGridViewExSSQ.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewExSSQ.Location = new System.Drawing.Point(17, 274);
+            this.dataGridViewExSSQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewExSSQ.MinNumeracionFilas = 0;
+            this.dataGridViewExSSQ.Name = "dataGridViewExSSQ";
+            this.dataGridViewExSSQ.NumeracionFilas = true;
+            this.dataGridViewExSSQ.NumeroColumnas = 0;
+            this.dataGridViewExSSQ.NumeroFilas = 0;
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1814,10 +1828,49 @@
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExSourceOfVar.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewExSSQ.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewExSSQ.RowHeadersVisible = false;
+            this.dataGridViewExSSQ.RowHeadersWidth = 50;
+            this.dataGridViewExSSQ.Size = new System.Drawing.Size(723, 210);
+            this.dataGridViewExSSQ.TabIndex = 8;
+            // 
+            // dGridViewExSourceOfVar
+            // 
+            this.dGridViewExSourceOfVar.AllowUserToAddRows = false;
+            this.dGridViewExSourceOfVar.AllowUserToResizeRows = false;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExSourceOfVar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.dGridViewExSourceOfVar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGridViewExSourceOfVar.BackgroundColor = System.Drawing.Color.White;
+            this.dGridViewExSourceOfVar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dGridViewExSourceOfVar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGridViewExSourceOfVar.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dGridViewExSourceOfVar.Location = new System.Drawing.Point(17, 68);
+            this.dGridViewExSourceOfVar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dGridViewExSourceOfVar.MinNumeracionFilas = 0;
+            this.dGridViewExSourceOfVar.Name = "dGridViewExSourceOfVar";
+            this.dGridViewExSourceOfVar.NumeracionFilas = true;
+            this.dGridViewExSourceOfVar.NumeroColumnas = 0;
+            this.dGridViewExSourceOfVar.NumeroFilas = 0;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGridViewExSourceOfVar.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dGridViewExSourceOfVar.RowHeadersVisible = false;
             this.dGridViewExSourceOfVar.RowHeadersWidth = 50;
-            this.dGridViewExSourceOfVar.Size = new System.Drawing.Size(542, 149);
+            this.dGridViewExSourceOfVar.Size = new System.Drawing.Size(723, 183);
             this.dGridViewExSourceOfVar.TabIndex = 7;
             // 
             // lbTotalDF
@@ -1826,9 +1879,10 @@
             this.lbTotalDF.AutoSize = true;
             this.lbTotalDF.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbTotalDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotalDF.Location = new System.Drawing.Point(286, 403);
+            this.lbTotalDF.Location = new System.Drawing.Point(381, 492);
+            this.lbTotalDF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotalDF.Name = "lbTotalDF";
-            this.lbTotalDF.Size = new System.Drawing.Size(69, 13);
+            this.lbTotalDF.Size = new System.Drawing.Size(81, 17);
             this.lbTotalDF.TabIndex = 6;
             this.lbTotalDF.Text = "lbTotalDF";
             // 
@@ -1838,9 +1892,10 @@
             this.lbToltalSSQ.AutoSize = true;
             this.lbToltalSSQ.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbToltalSSQ.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbToltalSSQ.Location = new System.Drawing.Point(129, 403);
+            this.lbToltalSSQ.Location = new System.Drawing.Point(172, 492);
+            this.lbToltalSSQ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbToltalSSQ.Name = "lbToltalSSQ";
-            this.lbToltalSSQ.Size = new System.Drawing.Size(81, 13);
+            this.lbToltalSSQ.Size = new System.Drawing.Size(97, 17);
             this.lbToltalSSQ.TabIndex = 5;
             this.lbToltalSSQ.Text = "lbToltalSSQ";
             // 
@@ -1849,9 +1904,10 @@
             this.lbTextTotalSSQ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTextTotalSSQ.AutoSize = true;
             this.lbTextTotalSSQ.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextTotalSSQ.Location = new System.Drawing.Point(18, 403);
+            this.lbTextTotalSSQ.Location = new System.Drawing.Point(24, 492);
+            this.lbTextTotalSSQ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextTotalSSQ.Name = "lbTextTotalSSQ";
-            this.lbTextTotalSSQ.Size = new System.Drawing.Size(34, 13);
+            this.lbTextTotalSSQ.Size = new System.Drawing.Size(41, 16);
             this.lbTextTotalSSQ.TabIndex = 4;
             this.lbTextTotalSSQ.Text = "Total:";
             // 
@@ -1860,25 +1916,27 @@
             this.tbMeasurementDesign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMeasurementDesign.BackColor = System.Drawing.Color.White;
-            this.tbMeasurementDesign.Location = new System.Drawing.Point(13, 23);
+            this.tbMeasurementDesign.Location = new System.Drawing.Point(17, 28);
+            this.tbMeasurementDesign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbMeasurementDesign.Name = "tbMeasurementDesign";
             this.tbMeasurementDesign.ReadOnly = true;
-            this.tbMeasurementDesign.Size = new System.Drawing.Size(542, 20);
+            this.tbMeasurementDesign.Size = new System.Drawing.Size(721, 22);
             this.tbMeasurementDesign.TabIndex = 1;
             // 
             // lbMeasurementDesign
             // 
             this.lbMeasurementDesign.AutoSize = true;
             this.lbMeasurementDesign.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbMeasurementDesign.Location = new System.Drawing.Point(15, 9);
+            this.lbMeasurementDesign.Location = new System.Drawing.Point(20, 11);
+            this.lbMeasurementDesign.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMeasurementDesign.Name = "lbMeasurementDesign";
-            this.lbMeasurementDesign.Size = new System.Drawing.Size(95, 13);
+            this.lbMeasurementDesign.Size = new System.Drawing.Size(121, 16);
             this.lbMeasurementDesign.TabIndex = 0;
             this.lbMeasurementDesign.Text = "Diseño de medida:";
             // 
             // tabPageG_Parameters
             // 
-            this.tabPageG_Parameters.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageG_Parameters.BackgroundImage")));
+            this.tabPageG_Parameters.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageG_Parameters.Controls.Add(this.lbTotalTargetVar);
             this.tabPageG_Parameters.Controls.Add(this.lbTotalRelErr);
             this.tabPageG_Parameters.Controls.Add(this.lbTotalAbsErr);
@@ -1899,10 +1957,11 @@
             this.tabPageG_Parameters.Controls.Add(this.lbTotal_Error_Abs);
             this.tabPageG_Parameters.Controls.Add(this.lbTotal_Error_Rel);
             this.tabPageG_Parameters.Controls.Add(this.lbTotal_Target);
-            this.tabPageG_Parameters.Location = new System.Drawing.Point(4, 22);
+            this.tabPageG_Parameters.Location = new System.Drawing.Point(4, 25);
+            this.tabPageG_Parameters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageG_Parameters.Name = "tabPageG_Parameters";
-            this.tabPageG_Parameters.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageG_Parameters.Size = new System.Drawing.Size(572, 446);
+            this.tabPageG_Parameters.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageG_Parameters.Size = new System.Drawing.Size(765, 552);
             this.tabPageG_Parameters.TabIndex = 1;
             this.tabPageG_Parameters.Text = "G-Parámetros";
             this.tabPageG_Parameters.UseVisualStyleBackColor = true;
@@ -1912,9 +1971,10 @@
             this.lbTotalTargetVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTotalTargetVar.AutoSize = true;
             this.lbTotalTargetVar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotalTargetVar.Location = new System.Drawing.Point(6, 371);
+            this.lbTotalTargetVar.Location = new System.Drawing.Point(8, 453);
+            this.lbTotalTargetVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotalTargetVar.Name = "lbTotalTargetVar";
-            this.lbTotalTargetVar.Size = new System.Drawing.Size(37, 13);
+            this.lbTotalTargetVar.Size = new System.Drawing.Size(44, 16);
             this.lbTotalTargetVar.TabIndex = 1;
             this.lbTotalTargetVar.Text = "Total: ";
             // 
@@ -1923,10 +1983,11 @@
             this.lbTotalRelErr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTotalRelErr.AutoSize = true;
             this.lbTotalRelErr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotalRelErr.Location = new System.Drawing.Point(214, 371);
+            this.lbTotalRelErr.Location = new System.Drawing.Point(285, 453);
+            this.lbTotalRelErr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotalRelErr.Name = "lbTotalRelErr";
             this.lbTotalRelErr.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbTotalRelErr.Size = new System.Drawing.Size(55, 13);
+            this.lbTotalRelErr.Size = new System.Drawing.Size(68, 16);
             this.lbTotalRelErr.TabIndex = 2;
             this.lbTotalRelErr.Text = "(Error rel.):";
             this.lbTotalRelErr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1936,9 +1997,10 @@
             this.lbTotalAbsErr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTotalAbsErr.AutoSize = true;
             this.lbTotalAbsErr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotalAbsErr.Location = new System.Drawing.Point(395, 371);
+            this.lbTotalAbsErr.Location = new System.Drawing.Point(527, 453);
+            this.lbTotalAbsErr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotalAbsErr.Name = "lbTotalAbsErr";
-            this.lbTotalAbsErr.Size = new System.Drawing.Size(58, 13);
+            this.lbTotalAbsErr.Size = new System.Drawing.Size(73, 16);
             this.lbTotalAbsErr.TabIndex = 3;
             this.lbTotalAbsErr.Text = "(Error abs):";
             this.lbTotalAbsErr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1948,9 +2010,10 @@
             this.lbTextAbsoluteSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTextAbsoluteSE.AutoSize = true;
             this.lbTextAbsoluteSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextAbsoluteSE.Location = new System.Drawing.Point(395, 397);
+            this.lbTextAbsoluteSE.Location = new System.Drawing.Point(527, 485);
+            this.lbTextAbsoluteSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextAbsoluteSE.Name = "lbTextAbsoluteSE";
-            this.lbTextAbsoluteSE.Size = new System.Drawing.Size(98, 13);
+            this.lbTextAbsoluteSE.Size = new System.Drawing.Size(120, 16);
             this.lbTextAbsoluteSE.TabIndex = 16;
             this.lbTextAbsoluteSE.Text = "Desv. tip. absoluta:";
             this.lbTextAbsoluteSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1960,10 +2023,11 @@
             this.lbTextRelSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTextRelSE.AutoSize = true;
             this.lbTextRelSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextRelSE.Location = new System.Drawing.Point(214, 397);
+            this.lbTextRelSE.Location = new System.Drawing.Point(285, 485);
+            this.lbTextRelSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextRelSE.Name = "lbTextRelSE";
             this.lbTextRelSE.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbTextRelSE.Size = new System.Drawing.Size(92, 13);
+            this.lbTextRelSE.Size = new System.Drawing.Size(112, 16);
             this.lbTextRelSE.TabIndex = 14;
             this.lbTextRelSE.Text = "Desv. tip. relativa:";
             this.lbTextRelSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1973,9 +2037,10 @@
             this.lbTextCoef_G_Abs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTextCoef_G_Abs.AutoSize = true;
             this.lbTextCoef_G_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextCoef_G_Abs.Location = new System.Drawing.Point(395, 423);
+            this.lbTextCoef_G_Abs.Location = new System.Drawing.Point(527, 517);
+            this.lbTextCoef_G_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextCoef_G_Abs.Name = "lbTextCoef_G_Abs";
-            this.lbTextCoef_G_Abs.Size = new System.Drawing.Size(117, 13);
+            this.lbTextCoef_G_Abs.Size = new System.Drawing.Size(145, 16);
             this.lbTextCoef_G_Abs.TabIndex = 10;
             this.lbTextCoef_G_Abs.Text = "Coeficiente G absoluto:";
             this.lbTextCoef_G_Abs.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -1985,9 +2050,10 @@
             this.lbTextCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTextCoef_G_Rel.AutoSize = true;
             this.lbTextCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextCoef_G_Rel.Location = new System.Drawing.Point(214, 423);
+            this.lbTextCoef_G_Rel.Location = new System.Drawing.Point(285, 517);
+            this.lbTextCoef_G_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextCoef_G_Rel.Name = "lbTextCoef_G_Rel";
-            this.lbTextCoef_G_Rel.Size = new System.Drawing.Size(111, 13);
+            this.lbTextCoef_G_Rel.Size = new System.Drawing.Size(137, 16);
             this.lbTextCoef_G_Rel.TabIndex = 8;
             this.lbTextCoef_G_Rel.Text = "Coeficiente G relativo:";
             this.lbTextCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1996,39 +2062,40 @@
             // 
             this.dGridViewExG_Parameters.AllowUserToAddRows = false;
             this.dGridViewExG_Parameters.AllowUserToResizeRows = false;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExG_Parameters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExG_Parameters.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dGridViewExG_Parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGridViewExG_Parameters.BackgroundColor = System.Drawing.Color.White;
             this.dGridViewExG_Parameters.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dGridViewExG_Parameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExG_Parameters.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dGridViewExG_Parameters.Location = new System.Drawing.Point(13, 57);
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGridViewExG_Parameters.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dGridViewExG_Parameters.Location = new System.Drawing.Point(17, 70);
+            this.dGridViewExG_Parameters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dGridViewExG_Parameters.MinNumeracionFilas = 0;
             this.dGridViewExG_Parameters.Name = "dGridViewExG_Parameters";
             this.dGridViewExG_Parameters.NumeracionFilas = true;
             this.dGridViewExG_Parameters.NumeroColumnas = 0;
             this.dGridViewExG_Parameters.NumeroFilas = 0;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExG_Parameters.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGridViewExG_Parameters.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dGridViewExG_Parameters.RowHeadersVisible = false;
             this.dGridViewExG_Parameters.RowHeadersWidth = 50;
-            this.dGridViewExG_Parameters.Size = new System.Drawing.Size(542, 304);
+            this.dGridViewExG_Parameters.Size = new System.Drawing.Size(723, 370);
             this.dGridViewExG_Parameters.TabIndex = 20;
             // 
             // tbMeasurementDesign2
@@ -2036,19 +2103,21 @@
             this.tbMeasurementDesign2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMeasurementDesign2.BackColor = System.Drawing.Color.White;
-            this.tbMeasurementDesign2.Location = new System.Drawing.Point(13, 23);
+            this.tbMeasurementDesign2.Location = new System.Drawing.Point(17, 28);
+            this.tbMeasurementDesign2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbMeasurementDesign2.Name = "tbMeasurementDesign2";
             this.tbMeasurementDesign2.ReadOnly = true;
-            this.tbMeasurementDesign2.Size = new System.Drawing.Size(542, 20);
+            this.tbMeasurementDesign2.Size = new System.Drawing.Size(721, 22);
             this.tbMeasurementDesign2.TabIndex = 19;
             // 
             // lbMeasuDesignGP
             // 
             this.lbMeasuDesignGP.AutoSize = true;
             this.lbMeasuDesignGP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbMeasuDesignGP.Location = new System.Drawing.Point(15, 9);
+            this.lbMeasuDesignGP.Location = new System.Drawing.Point(20, 11);
+            this.lbMeasuDesignGP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMeasuDesignGP.Name = "lbMeasuDesignGP";
-            this.lbMeasuDesignGP.Size = new System.Drawing.Size(95, 13);
+            this.lbMeasuDesignGP.Size = new System.Drawing.Size(121, 16);
             this.lbMeasuDesignGP.TabIndex = 18;
             this.lbMeasuDesignGP.Text = "Diseño de medida:";
             // 
@@ -2057,9 +2126,10 @@
             this.lbAbsoluteSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAbsoluteSE.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAbsoluteSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAbsoluteSE.Location = new System.Drawing.Point(476, 397);
+            this.lbAbsoluteSE.Location = new System.Drawing.Point(635, 485);
+            this.lbAbsoluteSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAbsoluteSE.Name = "lbAbsoluteSE";
-            this.lbAbsoluteSE.Size = new System.Drawing.Size(92, 13);
+            this.lbAbsoluteSE.Size = new System.Drawing.Size(123, 16);
             this.lbAbsoluteSE.TabIndex = 17;
             this.lbAbsoluteSE.Text = "lbAbsoluteSE";
             this.lbAbsoluteSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2069,9 +2139,10 @@
             this.lbRelativeSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbRelativeSE.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbRelativeSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbRelativeSE.Location = new System.Drawing.Point(307, 397);
+            this.lbRelativeSE.Location = new System.Drawing.Point(409, 485);
+            this.lbRelativeSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbRelativeSE.Name = "lbRelativeSE";
-            this.lbRelativeSE.Size = new System.Drawing.Size(88, 13);
+            this.lbRelativeSE.Size = new System.Drawing.Size(117, 16);
             this.lbRelativeSE.TabIndex = 15;
             this.lbRelativeSE.Text = "lbRelativeSE";
             this.lbRelativeSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2081,9 +2152,10 @@
             this.lbStandDev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbStandDev.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbStandDev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbStandDev.Location = new System.Drawing.Point(112, 397);
+            this.lbStandDev.Location = new System.Drawing.Point(149, 485);
+            this.lbStandDev.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbStandDev.Name = "lbStandDev";
-            this.lbStandDev.Size = new System.Drawing.Size(100, 13);
+            this.lbStandDev.Size = new System.Drawing.Size(133, 16);
             this.lbStandDev.TabIndex = 13;
             this.lbStandDev.Text = "lbStandDev";
             this.lbStandDev.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2093,9 +2165,10 @@
             this.lbTextStandDev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTextStandDev.AutoSize = true;
             this.lbTextStandDev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextStandDev.Location = new System.Drawing.Point(6, 397);
+            this.lbTextStandDev.Location = new System.Drawing.Point(8, 485);
+            this.lbTextStandDev.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextStandDev.Name = "lbTextStandDev";
-            this.lbTextStandDev.Size = new System.Drawing.Size(93, 13);
+            this.lbTextStandDev.Size = new System.Drawing.Size(113, 16);
             this.lbTextStandDev.TabIndex = 12;
             this.lbTextStandDev.Text = "Desviacion típica:";
             // 
@@ -2104,9 +2177,10 @@
             this.lbCoef_G_Abs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbCoef_G_Abs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbCoef_G_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbCoef_G_Abs.Location = new System.Drawing.Point(471, 423);
+            this.lbCoef_G_Abs.Location = new System.Drawing.Point(628, 517);
+            this.lbCoef_G_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCoef_G_Abs.Name = "lbCoef_G_Abs";
-            this.lbCoef_G_Abs.Size = new System.Drawing.Size(97, 13);
+            this.lbCoef_G_Abs.Size = new System.Drawing.Size(129, 16);
             this.lbCoef_G_Abs.TabIndex = 11;
             this.lbCoef_G_Abs.Text = "lbCoef_G_Abs";
             this.lbCoef_G_Abs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2116,9 +2190,10 @@
             this.lbCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbCoef_G_Rel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbCoef_G_Rel.Location = new System.Drawing.Point(302, 423);
+            this.lbCoef_G_Rel.Location = new System.Drawing.Point(403, 517);
+            this.lbCoef_G_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCoef_G_Rel.Name = "lbCoef_G_Rel";
-            this.lbCoef_G_Rel.Size = new System.Drawing.Size(93, 13);
+            this.lbCoef_G_Rel.Size = new System.Drawing.Size(124, 16);
             this.lbCoef_G_Rel.TabIndex = 9;
             this.lbCoef_G_Rel.Text = "lbCoef_G_Rel";
             this.lbCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2128,9 +2203,10 @@
             this.lbTextGeneralizabilityCoef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTextGeneralizabilityCoef.AutoSize = true;
             this.lbTextGeneralizabilityCoef.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTextGeneralizabilityCoef.Location = new System.Drawing.Point(6, 423);
+            this.lbTextGeneralizabilityCoef.Location = new System.Drawing.Point(8, 517);
+            this.lbTextGeneralizabilityCoef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTextGeneralizabilityCoef.Name = "lbTextGeneralizabilityCoef";
-            this.lbTextGeneralizabilityCoef.Size = new System.Drawing.Size(166, 13);
+            this.lbTextGeneralizabilityCoef.Size = new System.Drawing.Size(212, 16);
             this.lbTextGeneralizabilityCoef.TabIndex = 7;
             this.lbTextGeneralizabilityCoef.Text = "Coeficientes de Generalizabilidad:";
             // 
@@ -2139,9 +2215,10 @@
             this.lbTotal_Error_Abs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTotal_Error_Abs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbTotal_Error_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotal_Error_Abs.Location = new System.Drawing.Point(442, 371);
+            this.lbTotal_Error_Abs.Location = new System.Drawing.Point(589, 453);
+            this.lbTotal_Error_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotal_Error_Abs.Name = "lbTotal_Error_Abs";
-            this.lbTotal_Error_Abs.Size = new System.Drawing.Size(126, 13);
+            this.lbTotal_Error_Abs.Size = new System.Drawing.Size(168, 16);
             this.lbTotal_Error_Abs.TabIndex = 6;
             this.lbTotal_Error_Abs.Text = "lbTotal_Error_Abs";
             this.lbTotal_Error_Abs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2151,9 +2228,10 @@
             this.lbTotal_Error_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbTotal_Error_Rel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbTotal_Error_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotal_Error_Rel.Location = new System.Drawing.Point(273, 371);
+            this.lbTotal_Error_Rel.Location = new System.Drawing.Point(364, 453);
+            this.lbTotal_Error_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotal_Error_Rel.Name = "lbTotal_Error_Rel";
-            this.lbTotal_Error_Rel.Size = new System.Drawing.Size(122, 13);
+            this.lbTotal_Error_Rel.Size = new System.Drawing.Size(163, 16);
             this.lbTotal_Error_Rel.TabIndex = 5;
             this.lbTotal_Error_Rel.Text = "lbTotal_Error_Rel";
             this.lbTotal_Error_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2163,23 +2241,25 @@
             this.lbTotal_Target.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTotal_Target.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbTotal_Target.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTotal_Target.Location = new System.Drawing.Point(109, 371);
+            this.lbTotal_Target.Location = new System.Drawing.Point(145, 453);
+            this.lbTotal_Target.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTotal_Target.Name = "lbTotal_Target";
-            this.lbTotal_Target.Size = new System.Drawing.Size(103, 13);
+            this.lbTotal_Target.Size = new System.Drawing.Size(137, 16);
             this.lbTotal_Target.TabIndex = 4;
             this.lbTotal_Target.Text = "lbTotal_Target";
             this.lbTotal_Target.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabPageOptimization
             // 
-            this.tabPageOptimization.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageOptimization.BackgroundImage")));
+            this.tabPageOptimization.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageOptimization.Controls.Add(this.dGridViewExOptimizationResum);
             this.tabPageOptimization.Controls.Add(this.dGridViewExFacetsOptimization);
             this.tabPageOptimization.Controls.Add(this.tbMesurDesign2);
             this.tabPageOptimization.Controls.Add(this.lbMesurDesign2);
-            this.tabPageOptimization.Location = new System.Drawing.Point(4, 22);
+            this.tabPageOptimization.Location = new System.Drawing.Point(4, 25);
+            this.tabPageOptimization.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageOptimization.Name = "tabPageOptimization";
-            this.tabPageOptimization.Size = new System.Drawing.Size(572, 446);
+            this.tabPageOptimization.Size = new System.Drawing.Size(765, 552);
             this.tabPageOptimization.TabIndex = 2;
             this.tabPageOptimization.Text = "Optimización";
             this.tabPageOptimization.UseVisualStyleBackColor = true;
@@ -2188,52 +2268,14 @@
             // 
             this.dGridViewExOptimizationResum.AllowUserToAddRows = false;
             this.dGridViewExOptimizationResum.AllowUserToResizeRows = false;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExOptimizationResum.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExOptimizationResum.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dGridViewExOptimizationResum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGridViewExOptimizationResum.BackgroundColor = System.Drawing.Color.White;
             this.dGridViewExOptimizationResum.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dGridViewExOptimizationResum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExOptimizationResum.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dGridViewExOptimizationResum.Location = new System.Drawing.Point(13, 237);
-            this.dGridViewExOptimizationResum.MinNumeracionFilas = 0;
-            this.dGridViewExOptimizationResum.Name = "dGridViewExOptimizationResum";
-            this.dGridViewExOptimizationResum.NumeracionFilas = true;
-            this.dGridViewExOptimizationResum.NumeroColumnas = 0;
-            this.dGridViewExOptimizationResum.NumeroFilas = 0;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExOptimizationResum.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            this.dGridViewExOptimizationResum.RowHeadersVisible = false;
-            this.dGridViewExOptimizationResum.RowHeadersWidth = 50;
-            this.dGridViewExOptimizationResum.Size = new System.Drawing.Size(542, 189);
-            this.dGridViewExOptimizationResum.TabIndex = 5;
-            // 
-            // dGridViewExFacetsOptimization
-            // 
-            this.dGridViewExFacetsOptimization.AllowUserToAddRows = false;
-            this.dGridViewExFacetsOptimization.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExFacetsOptimization.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
-            this.dGridViewExFacetsOptimization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dGridViewExFacetsOptimization.BackgroundColor = System.Drawing.Color.White;
-            this.dGridViewExFacetsOptimization.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dGridViewExFacetsOptimization.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2241,13 +2283,14 @@
             dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExFacetsOptimization.DefaultCellStyle = dataGridViewCellStyle22;
-            this.dGridViewExFacetsOptimization.Location = new System.Drawing.Point(13, 52);
-            this.dGridViewExFacetsOptimization.MinNumeracionFilas = 0;
-            this.dGridViewExFacetsOptimization.Name = "dGridViewExFacetsOptimization";
-            this.dGridViewExFacetsOptimization.NumeracionFilas = true;
-            this.dGridViewExFacetsOptimization.NumeroColumnas = 0;
-            this.dGridViewExFacetsOptimization.NumeroFilas = 0;
+            this.dGridViewExOptimizationResum.DefaultCellStyle = dataGridViewCellStyle22;
+            this.dGridViewExOptimizationResum.Location = new System.Drawing.Point(17, 292);
+            this.dGridViewExOptimizationResum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dGridViewExOptimizationResum.MinNumeracionFilas = 0;
+            this.dGridViewExOptimizationResum.Name = "dGridViewExOptimizationResum";
+            this.dGridViewExOptimizationResum.NumeracionFilas = true;
+            this.dGridViewExOptimizationResum.NumeroColumnas = 0;
+            this.dGridViewExOptimizationResum.NumeroFilas = 0;
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
             dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2255,10 +2298,49 @@
             dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExFacetsOptimization.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            this.dGridViewExOptimizationResum.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            this.dGridViewExOptimizationResum.RowHeadersVisible = false;
+            this.dGridViewExOptimizationResum.RowHeadersWidth = 50;
+            this.dGridViewExOptimizationResum.Size = new System.Drawing.Size(723, 229);
+            this.dGridViewExOptimizationResum.TabIndex = 5;
+            // 
+            // dGridViewExFacetsOptimization
+            // 
+            this.dGridViewExFacetsOptimization.AllowUserToAddRows = false;
+            this.dGridViewExFacetsOptimization.AllowUserToResizeRows = false;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExFacetsOptimization.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle24;
+            this.dGridViewExFacetsOptimization.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGridViewExFacetsOptimization.BackgroundColor = System.Drawing.Color.White;
+            this.dGridViewExFacetsOptimization.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dGridViewExFacetsOptimization.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGridViewExFacetsOptimization.DefaultCellStyle = dataGridViewCellStyle25;
+            this.dGridViewExFacetsOptimization.Location = new System.Drawing.Point(17, 64);
+            this.dGridViewExFacetsOptimization.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dGridViewExFacetsOptimization.MinNumeracionFilas = 0;
+            this.dGridViewExFacetsOptimization.Name = "dGridViewExFacetsOptimization";
+            this.dGridViewExFacetsOptimization.NumeracionFilas = true;
+            this.dGridViewExFacetsOptimization.NumeroColumnas = 0;
+            this.dGridViewExFacetsOptimization.NumeroFilas = 0;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGridViewExFacetsOptimization.RowHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.dGridViewExFacetsOptimization.RowHeadersVisible = false;
             this.dGridViewExFacetsOptimization.RowHeadersWidth = 50;
-            this.dGridViewExFacetsOptimization.Size = new System.Drawing.Size(542, 170);
+            this.dGridViewExFacetsOptimization.Size = new System.Drawing.Size(723, 209);
             this.dGridViewExFacetsOptimization.TabIndex = 4;
             // 
             // tbMesurDesign2
@@ -2266,35 +2348,38 @@
             this.tbMesurDesign2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMesurDesign2.BackColor = System.Drawing.Color.White;
-            this.tbMesurDesign2.Location = new System.Drawing.Point(13, 23);
+            this.tbMesurDesign2.Location = new System.Drawing.Point(17, 28);
+            this.tbMesurDesign2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbMesurDesign2.Name = "tbMesurDesign2";
             this.tbMesurDesign2.ReadOnly = true;
-            this.tbMesurDesign2.Size = new System.Drawing.Size(542, 20);
+            this.tbMesurDesign2.Size = new System.Drawing.Size(721, 22);
             this.tbMesurDesign2.TabIndex = 1;
             // 
             // lbMesurDesign2
             // 
             this.lbMesurDesign2.AutoSize = true;
             this.lbMesurDesign2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbMesurDesign2.Location = new System.Drawing.Point(15, 9);
+            this.lbMesurDesign2.Location = new System.Drawing.Point(20, 11);
+            this.lbMesurDesign2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMesurDesign2.Name = "lbMesurDesign2";
-            this.lbMesurDesign2.Size = new System.Drawing.Size(95, 13);
+            this.lbMesurDesign2.Size = new System.Drawing.Size(121, 16);
             this.lbMesurDesign2.TabIndex = 0;
             this.lbMesurDesign2.Text = "Diseño de medida:";
             // 
             // tbPageSsqInfo
             // 
-            this.tbPageSsqInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tbPageSsqInfo.BackgroundImage")));
+            this.tbPageSsqInfo.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tbPageSsqInfo.Controls.Add(this.btSsqEditComment);
             this.tbPageSsqInfo.Controls.Add(this.richTextBoxSsqComment);
             this.tbPageSsqInfo.Controls.Add(this.tbDateFileSsqInfo);
             this.tbPageSsqInfo.Controls.Add(this.lbDateFileSsqInfo);
             this.tbPageSsqInfo.Controls.Add(this.tbNameFileSsqInfo);
             this.tbPageSsqInfo.Controls.Add(this.lbNameFileSsqInfo);
-            this.tbPageSsqInfo.Location = new System.Drawing.Point(4, 22);
+            this.tbPageSsqInfo.Location = new System.Drawing.Point(4, 25);
+            this.tbPageSsqInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPageSsqInfo.Name = "tbPageSsqInfo";
-            this.tbPageSsqInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageSsqInfo.Size = new System.Drawing.Size(572, 446);
+            this.tbPageSsqInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageSsqInfo.Size = new System.Drawing.Size(765, 552);
             this.tbPageSsqInfo.TabIndex = 3;
             this.tbPageSsqInfo.Text = "Información";
             this.tbPageSsqInfo.UseVisualStyleBackColor = true;
@@ -2302,11 +2387,12 @@
             // btSsqEditComment
             // 
             this.btSsqEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSsqEditComment.Image = ((System.Drawing.Image)(resources.GetObject("btSsqEditComment.Image")));
+            this.btSsqEditComment.Image = global::GUI_GT.Properties.Resources.edit_h22;
             this.btSsqEditComment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSsqEditComment.Location = new System.Drawing.Point(462, 398);
+            this.btSsqEditComment.Location = new System.Drawing.Point(616, 486);
+            this.btSsqEditComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btSsqEditComment.Name = "btSsqEditComment";
-            this.btSsqEditComment.Size = new System.Drawing.Size(92, 32);
+            this.btSsqEditComment.Size = new System.Drawing.Size(123, 39);
             this.btSsqEditComment.TabIndex = 11;
             this.btSsqEditComment.Text = "Editar";
             this.btSsqEditComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2321,28 +2407,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxSsqComment.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.richTextBoxSsqComment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxSsqComment.Location = new System.Drawing.Point(19, 108);
+            this.richTextBoxSsqComment.Location = new System.Drawing.Point(25, 133);
+            this.richTextBoxSsqComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxSsqComment.Name = "richTextBoxSsqComment";
             this.richTextBoxSsqComment.ReadOnly = true;
-            this.richTextBoxSsqComment.Size = new System.Drawing.Size(535, 277);
+            this.richTextBoxSsqComment.Size = new System.Drawing.Size(712, 336);
             this.richTextBoxSsqComment.TabIndex = 10;
             this.richTextBoxSsqComment.Text = "";
             // 
             // tbDateFileSsqInfo
             // 
             this.tbDateFileSsqInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbDateFileSsqInfo.Location = new System.Drawing.Point(126, 61);
+            this.tbDateFileSsqInfo.Location = new System.Drawing.Point(168, 75);
+            this.tbDateFileSsqInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDateFileSsqInfo.Name = "tbDateFileSsqInfo";
             this.tbDateFileSsqInfo.ReadOnly = true;
-            this.tbDateFileSsqInfo.Size = new System.Drawing.Size(263, 20);
+            this.tbDateFileSsqInfo.Size = new System.Drawing.Size(349, 22);
             this.tbDateFileSsqInfo.TabIndex = 9;
             // 
             // lbDateFileSsqInfo
             // 
             this.lbDateFileSsqInfo.AutoSize = true;
-            this.lbDateFileSsqInfo.Location = new System.Drawing.Point(18, 65);
+            this.lbDateFileSsqInfo.Location = new System.Drawing.Point(24, 80);
+            this.lbDateFileSsqInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDateFileSsqInfo.Name = "lbDateFileSsqInfo";
-            this.lbDateFileSsqInfo.Size = new System.Drawing.Size(96, 13);
+            this.lbDateFileSsqInfo.Size = new System.Drawing.Size(119, 16);
             this.lbDateFileSsqInfo.TabIndex = 8;
             this.lbDateFileSsqInfo.Text = "Fecha de creación";
             // 
@@ -2351,31 +2440,34 @@
             this.tbNameFileSsqInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbNameFileSsqInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbNameFileSsqInfo.Location = new System.Drawing.Point(126, 16);
+            this.tbNameFileSsqInfo.Location = new System.Drawing.Point(168, 20);
+            this.tbNameFileSsqInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbNameFileSsqInfo.Name = "tbNameFileSsqInfo";
             this.tbNameFileSsqInfo.ReadOnly = true;
-            this.tbNameFileSsqInfo.Size = new System.Drawing.Size(429, 20);
+            this.tbNameFileSsqInfo.Size = new System.Drawing.Size(571, 22);
             this.tbNameFileSsqInfo.TabIndex = 7;
             // 
             // lbNameFileSsqInfo
             // 
             this.lbNameFileSsqInfo.AutoSize = true;
-            this.lbNameFileSsqInfo.Location = new System.Drawing.Point(17, 20);
+            this.lbNameFileSsqInfo.Location = new System.Drawing.Point(23, 25);
+            this.lbNameFileSsqInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNameFileSsqInfo.Name = "lbNameFileSsqInfo";
-            this.lbNameFileSsqInfo.Size = new System.Drawing.Size(86, 13);
+            this.lbNameFileSsqInfo.Size = new System.Drawing.Size(108, 16);
             this.lbNameFileSsqInfo.TabIndex = 6;
             this.lbNameFileSsqInfo.Text = "Fichero de datos";
             // 
             // tabPageEditDescriptionFacets
             // 
-            this.tabPageEditDescriptionFacets.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageEditDescriptionFacets.BackgroundImage")));
+            this.tabPageEditDescriptionFacets.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageEditDescriptionFacets.Controls.Add(this.btEditDescriptionFacetsAcept);
             this.tabPageEditDescriptionFacets.Controls.Add(this.btEditDescriptionFacetsCancel);
             this.tabPageEditDescriptionFacets.Controls.Add(this.dgvExSSQ_EditDescriptionFacets);
-            this.tabPageEditDescriptionFacets.Location = new System.Drawing.Point(4, 22);
+            this.tabPageEditDescriptionFacets.Location = new System.Drawing.Point(4, 25);
+            this.tabPageEditDescriptionFacets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageEditDescriptionFacets.Name = "tabPageEditDescriptionFacets";
-            this.tabPageEditDescriptionFacets.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEditDescriptionFacets.Size = new System.Drawing.Size(572, 446);
+            this.tabPageEditDescriptionFacets.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageEditDescriptionFacets.Size = new System.Drawing.Size(974, 691);
             this.tabPageEditDescriptionFacets.TabIndex = 4;
             this.tabPageEditDescriptionFacets.Text = "Facetas";
             this.tabPageEditDescriptionFacets.UseVisualStyleBackColor = true;
@@ -2383,11 +2475,12 @@
             // btEditDescriptionFacetsAcept
             // 
             this.btEditDescriptionFacetsAcept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEditDescriptionFacetsAcept.Image = ((System.Drawing.Image)(resources.GetObject("btEditDescriptionFacetsAcept.Image")));
+            this.btEditDescriptionFacetsAcept.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
             this.btEditDescriptionFacetsAcept.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btEditDescriptionFacetsAcept.Location = new System.Drawing.Point(364, 385);
+            this.btEditDescriptionFacetsAcept.Location = new System.Drawing.Point(694, 609);
+            this.btEditDescriptionFacetsAcept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btEditDescriptionFacetsAcept.Name = "btEditDescriptionFacetsAcept";
-            this.btEditDescriptionFacetsAcept.Size = new System.Drawing.Size(96, 48);
+            this.btEditDescriptionFacetsAcept.Size = new System.Drawing.Size(128, 59);
             this.btEditDescriptionFacetsAcept.TabIndex = 23;
             this.btEditDescriptionFacetsAcept.Text = "Aceptar";
             this.btEditDescriptionFacetsAcept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2397,10 +2490,11 @@
             // btEditDescriptionFacetsCancel
             // 
             this.btEditDescriptionFacetsCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEditDescriptionFacetsCancel.Image = ((System.Drawing.Image)(resources.GetObject("btEditDescriptionFacetsCancel.Image")));
-            this.btEditDescriptionFacetsCancel.Location = new System.Drawing.Point(467, 385);
+            this.btEditDescriptionFacetsCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
+            this.btEditDescriptionFacetsCancel.Location = new System.Drawing.Point(832, 609);
+            this.btEditDescriptionFacetsCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btEditDescriptionFacetsCancel.Name = "btEditDescriptionFacetsCancel";
-            this.btEditDescriptionFacetsCancel.Size = new System.Drawing.Size(96, 48);
+            this.btEditDescriptionFacetsCancel.Size = new System.Drawing.Size(128, 59);
             this.btEditDescriptionFacetsCancel.TabIndex = 22;
             this.btEditDescriptionFacetsCancel.Text = "Cancelar";
             this.btEditDescriptionFacetsCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2411,44 +2505,46 @@
             // 
             this.dgvExSSQ_EditDescriptionFacets.AllowUserToAddRows = false;
             this.dgvExSSQ_EditDescriptionFacets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExSSQ_EditDescriptionFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExSSQ_EditDescriptionFacets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
             this.dgvExSSQ_EditDescriptionFacets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExSSQ_EditDescriptionFacets.BackgroundColor = System.Drawing.Color.White;
             this.dgvExSSQ_EditDescriptionFacets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExSSQ_EditDescriptionFacets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExSSQ_EditDescriptionFacets.DefaultCellStyle = dataGridViewCellStyle25;
-            this.dgvExSSQ_EditDescriptionFacets.Location = new System.Drawing.Point(9, 13);
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExSSQ_EditDescriptionFacets.DefaultCellStyle = dataGridViewCellStyle28;
+            this.dgvExSSQ_EditDescriptionFacets.Location = new System.Drawing.Point(12, 16);
+            this.dgvExSSQ_EditDescriptionFacets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvExSSQ_EditDescriptionFacets.MinNumeracionFilas = 0;
             this.dgvExSSQ_EditDescriptionFacets.Name = "dgvExSSQ_EditDescriptionFacets";
             this.dgvExSSQ_EditDescriptionFacets.NumeracionFilas = true;
             this.dgvExSSQ_EditDescriptionFacets.NumeroColumnas = 0;
             this.dgvExSSQ_EditDescriptionFacets.NumeroFilas = 0;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExSSQ_EditDescriptionFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExSSQ_EditDescriptionFacets.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.dgvExSSQ_EditDescriptionFacets.RowHeadersVisible = false;
             this.dgvExSSQ_EditDescriptionFacets.RowHeadersWidth = 50;
-            this.dgvExSSQ_EditDescriptionFacets.Size = new System.Drawing.Size(554, 366);
+            this.dgvExSSQ_EditDescriptionFacets.Size = new System.Drawing.Size(948, 586);
             this.dgvExSSQ_EditDescriptionFacets.TabIndex = 21;
             // 
             // mStripSSQ
             // 
-            this.mStripSSQ.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripSSQ.BackgroundImage")));
+            this.mStripSSQ.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripSSQ.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripSSQ.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiOpenSSQ,
             this.tsmiSSQImport,
@@ -2462,10 +2558,10 @@
             this.tsmiSsqReports,
             this.tsmiSSQClose});
             this.mStripSSQ.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.mStripSSQ.Location = new System.Drawing.Point(3, 3);
-            this.mStripSSQ.MaximumSize = new System.Drawing.Size(187, 438);
+            this.mStripSSQ.Location = new System.Drawing.Point(4, 4);
+            this.mStripSSQ.MaximumSize = new System.Drawing.Size(249, 539);
             this.mStripSSQ.Name = "mStripSSQ";
-            this.mStripSSQ.Size = new System.Drawing.Size(187, 399);
+            this.mStripSSQ.Size = new System.Drawing.Size(311, 549);
             this.mStripSSQ.TabIndex = 1;
             this.mStripSSQ.Text = "mStripSSQ";
             // 
@@ -2474,37 +2570,37 @@
             this.tsmiOpenSSQ.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSSqOpenLocal,
             this.tsmiSSqOpenWebService});
-            this.tsmiOpenSSQ.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpenSSQ.Image")));
+            this.tsmiOpenSSQ.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiOpenSSQ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiOpenSSQ.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenSSQ.Name = "tsmiOpenSSQ";
-            this.tsmiOpenSSQ.Size = new System.Drawing.Size(180, 36);
+            this.tsmiOpenSSQ.Size = new System.Drawing.Size(302, 52);
             this.tsmiOpenSSQ.Text = "Abrir suma de cuadrados";
             this.tsmiOpenSSQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiSSqOpenLocal
             // 
-            this.tsmiSSqOpenLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqOpenLocal.Image")));
+            this.tsmiSSqOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiSSqOpenLocal.Name = "tsmiSSqOpenLocal";
-            this.tsmiSSqOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiSSqOpenLocal.Size = new System.Drawing.Size(257, 26);
             this.tsmiSSqOpenLocal.Text = "Abrir";
             this.tsmiSSqOpenLocal.Click += new System.EventHandler(this.tsmiSSqOpenLocal_Click);
             // 
             // tsmiSSqOpenWebService
             // 
-            this.tsmiSSqOpenWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqOpenWebService.Image")));
+            this.tsmiSSqOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiSSqOpenWebService.Name = "tsmiSSqOpenWebService";
-            this.tsmiSSqOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiSSqOpenWebService.Size = new System.Drawing.Size(257, 26);
             this.tsmiSSqOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiSSqOpenWebService.Click += new System.EventHandler(this.tsmiSSqOpenWebService_Click);
             // 
             // tsmiSSQImport
             // 
-            this.tsmiSSQImport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSQImport.Image")));
+            this.tsmiSSQImport.Image = global::GUI_GT.Properties.Resources.importat_h32;
             this.tsmiSSQImport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSQImport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSQImport.Name = "tsmiSSQImport";
-            this.tsmiSSQImport.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSQImport.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSQImport.Text = "Importar";
             this.tsmiSSQImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSQImport.Click += new System.EventHandler(this.tsmiSSQImport_Click);
@@ -2514,48 +2610,48 @@
             this.tsmiSSqSave.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSSqSavedLocal,
             this.tsmiSSqSavedWebService});
-            this.tsmiSSqSave.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqSave.Image")));
+            this.tsmiSSqSave.Image = global::GUI_GT.Properties.Resources.Disquette_v2_32x32;
             this.tsmiSSqSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSqSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSqSave.Name = "tsmiSSqSave";
-            this.tsmiSSqSave.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSqSave.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSqSave.Text = "Guardar";
             this.tsmiSSqSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiSSqSavedLocal
             // 
-            this.tsmiSSqSavedLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqSavedLocal.Image")));
+            this.tsmiSSqSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiSSqSavedLocal.Name = "tsmiSSqSavedLocal";
-            this.tsmiSSqSavedLocal.Size = new System.Drawing.Size(202, 22);
+            this.tsmiSSqSavedLocal.Size = new System.Drawing.Size(253, 26);
             this.tsmiSSqSavedLocal.Text = "Guardar";
             this.tsmiSSqSavedLocal.Click += new System.EventHandler(this.tsmiSSqSavedLocal_Click);
             // 
             // tsmiSSqSavedWebService
             // 
-            this.tsmiSSqSavedWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqSavedWebService.Image")));
+            this.tsmiSSqSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiSSqSavedWebService.Name = "tsmiSSqSavedWebService";
-            this.tsmiSSqSavedWebService.Size = new System.Drawing.Size(202, 22);
+            this.tsmiSSqSavedWebService.Size = new System.Drawing.Size(253, 26);
             this.tsmiSSqSavedWebService.Text = "Guardar en servicio Web";
             this.tsmiSSqSavedWebService.Click += new System.EventHandler(this.tsmiSSqSavedWebService_Click);
             // 
             // tsmiEditFacetDescription
             // 
-            this.tsmiEditFacetDescription.Image = ((System.Drawing.Image)(resources.GetObject("tsmiEditFacetDescription.Image")));
+            this.tsmiEditFacetDescription.Image = global::GUI_GT.Properties.Resources.File_TextDocument_edition_2_h32;
             this.tsmiEditFacetDescription.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiEditFacetDescription.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiEditFacetDescription.Name = "tsmiEditFacetDescription";
-            this.tsmiEditFacetDescription.Size = new System.Drawing.Size(180, 36);
+            this.tsmiEditFacetDescription.Size = new System.Drawing.Size(302, 36);
             this.tsmiEditFacetDescription.Text = "Editar descripción";
             this.tsmiEditFacetDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiEditFacetDescription.Click += new System.EventHandler(this.tsmiEditFacetDescription_Click);
             // 
             // tsmiAddLevelSign
             // 
-            this.tsmiAddLevelSign.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAddLevelSign.Image")));
+            this.tsmiAddLevelSign.Image = global::GUI_GT.Properties.Resources.x_h32x32;
             this.tsmiAddLevelSign.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddLevelSign.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAddLevelSign.Name = "tsmiAddLevelSign";
-            this.tsmiAddLevelSign.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAddLevelSign.Size = new System.Drawing.Size(302, 36);
             this.tsmiAddLevelSign.Text = "Niveles de optimización";
             this.tsmiAddLevelSign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddLevelSign.Click += new System.EventHandler(this.tsmiAddLevelSign_Click);
@@ -2566,67 +2662,67 @@
             this.tsmiChartOptimization,
             this.tsmiChartCoefGAbs,
             this.tsmiChartCoefGRel});
-            this.tsmiGraphs.Image = ((System.Drawing.Image)(resources.GetObject("tsmiGraphs.Image")));
+            this.tsmiGraphs.Image = global::GUI_GT.Properties.Resources.graph_svg_bar_med_32h;
             this.tsmiGraphs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiGraphs.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiGraphs.Name = "tsmiGraphs";
-            this.tsmiGraphs.Size = new System.Drawing.Size(180, 33);
+            this.tsmiGraphs.Size = new System.Drawing.Size(302, 33);
             this.tsmiGraphs.Text = "Gráficos";
             this.tsmiGraphs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiChartOptimization
             // 
-            this.tsmiChartOptimization.Image = ((System.Drawing.Image)(resources.GetObject("tsmiChartOptimization.Image")));
+            this.tsmiChartOptimization.Image = global::GUI_GT.Properties.Resources.image_16__2_;
             this.tsmiChartOptimization.Name = "tsmiChartOptimization";
-            this.tsmiChartOptimization.Size = new System.Drawing.Size(184, 22);
+            this.tsmiChartOptimization.Size = new System.Drawing.Size(231, 26);
             this.tsmiChartOptimization.Text = "Gráfico optimización";
             this.tsmiChartOptimization.Click += new System.EventHandler(this.tsmiChartOptimization_Click);
             // 
             // tsmiChartCoefGAbs
             // 
-            this.tsmiChartCoefGAbs.Image = ((System.Drawing.Image)(resources.GetObject("tsmiChartCoefGAbs.Image")));
+            this.tsmiChartCoefGAbs.Image = global::GUI_GT.Properties.Resources._graph_svg_med_16h;
             this.tsmiChartCoefGAbs.Name = "tsmiChartCoefGAbs";
-            this.tsmiChartCoefGAbs.Size = new System.Drawing.Size(184, 22);
+            this.tsmiChartCoefGAbs.Size = new System.Drawing.Size(231, 26);
             this.tsmiChartCoefGAbs.Text = "Grafico Coef. G Abs.";
             this.tsmiChartCoefGAbs.Click += new System.EventHandler(this.tsmiChartCoefGAbs_Click);
             // 
             // tsmiChartCoefGRel
             // 
-            this.tsmiChartCoefGRel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiChartCoefGRel.Image")));
+            this.tsmiChartCoefGRel.Image = global::GUI_GT.Properties.Resources._graph_svg_med_16h;
             this.tsmiChartCoefGRel.Name = "tsmiChartCoefGRel";
-            this.tsmiChartCoefGRel.Size = new System.Drawing.Size(184, 22);
+            this.tsmiChartCoefGRel.Size = new System.Drawing.Size(231, 26);
             this.tsmiChartCoefGRel.Text = "Gráfico Coef G Rel";
             this.tsmiChartCoefGRel.Click += new System.EventHandler(this.tsmiChartCoefGRel_Click);
             // 
             // tsmiSSqToAnalysis
             // 
-            this.tsmiSSqToAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqToAnalysis.Image")));
+            this.tsmiSSqToAnalysis.Image = global::GUI_GT.Properties.Resources.projects_gest_v2_5_32;
             this.tsmiSSqToAnalysis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSqToAnalysis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSqToAnalysis.Name = "tsmiSSqToAnalysis";
-            this.tsmiSSqToAnalysis.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSqToAnalysis.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSqToAnalysis.Text = "Analizar";
             this.tsmiSSqToAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSqToAnalysis.Click += new System.EventHandler(this.tsmiSSqToAnalysis_Click);
             // 
             // tsmiSSq_ExportExcel
             // 
-            this.tsmiSSq_ExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSq_ExportExcel.Image")));
+            this.tsmiSSq_ExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
             this.tsmiSSq_ExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSq_ExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSq_ExportExcel.Name = "tsmiSSq_ExportExcel";
-            this.tsmiSSq_ExportExcel.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSq_ExportExcel.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSq_ExportExcel.Text = "Exportar Excel";
             this.tsmiSSq_ExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSq_ExportExcel.Click += new System.EventHandler(this.tsmiSSq_ExportExcel_Click);
             // 
             // tsmiSSq_ExportSquares
             // 
-            this.tsmiSSq_ExportSquares.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSq_ExportSquares.Image")));
+            this.tsmiSSq_ExportSquares.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h32;
             this.tsmiSSq_ExportSquares.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSq_ExportSquares.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSq_ExportSquares.Name = "tsmiSSq_ExportSquares";
-            this.tsmiSSq_ExportSquares.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSq_ExportSquares.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSq_ExportSquares.Text = "Exportar cuadrados";
             this.tsmiSSq_ExportSquares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSq_ExportSquares.Click += new System.EventHandler(this.tsmiSSq_ExportSquares_Click);
@@ -2638,53 +2734,53 @@
             this.tsmiSsqPrintPreview,
             this.tsmiSSqWordExport,
             this.tsmiSSqPdfExport});
-            this.tsmiSsqReports.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSsqReports.Image")));
+            this.tsmiSsqReports.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiSsqReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSsqReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSsqReports.Name = "tsmiSsqReports";
-            this.tsmiSsqReports.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSsqReports.Size = new System.Drawing.Size(302, 36);
             this.tsmiSsqReports.Text = "Informes";
             this.tsmiSsqReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiSsqPrinter
             // 
-            this.tsmiSsqPrinter.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSsqPrinter.Image")));
+            this.tsmiSsqPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiSsqPrinter.Name = "tsmiSsqPrinter";
-            this.tsmiSsqPrinter.Size = new System.Drawing.Size(134, 22);
+            this.tsmiSsqPrinter.Size = new System.Drawing.Size(224, 26);
             this.tsmiSsqPrinter.Text = "Imprimir";
             this.tsmiSsqPrinter.Click += new System.EventHandler(this.tsmiSsqPrinter_Click);
             // 
             // tsmiSsqPrintPreview
             // 
-            this.tsmiSsqPrintPreview.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSsqPrintPreview.Image")));
+            this.tsmiSsqPrintPreview.Image = global::GUI_GT.Properties.Resources.vista_preliminar_h32;
             this.tsmiSsqPrintPreview.Name = "tsmiSsqPrintPreview";
-            this.tsmiSsqPrintPreview.Size = new System.Drawing.Size(134, 22);
+            this.tsmiSsqPrintPreview.Size = new System.Drawing.Size(224, 26);
             this.tsmiSsqPrintPreview.Text = "Vista previa";
             this.tsmiSsqPrintPreview.Click += new System.EventHandler(this.tsmiSsqPrintPreview_Click);
             // 
             // tsmiSSqWordExport
             // 
-            this.tsmiSSqWordExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqWordExport.Image")));
+            this.tsmiSSqWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiSSqWordExport.Name = "tsmiSSqWordExport";
-            this.tsmiSSqWordExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiSSqWordExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiSSqWordExport.Text = "Word";
             this.tsmiSSqWordExport.Click += new System.EventHandler(this.tsmiSSqWordExport_Click);
             // 
             // tsmiSSqPdfExport
             // 
-            this.tsmiSSqPdfExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSqPdfExport.Image")));
+            this.tsmiSSqPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiSSqPdfExport.Name = "tsmiSSqPdfExport";
-            this.tsmiSSqPdfExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiSSqPdfExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiSSqPdfExport.Text = "PDF";
             this.tsmiSSqPdfExport.Click += new System.EventHandler(this.tsmiSSqPdfExport_Click);
             // 
             // tsmiSSQClose
             // 
-            this.tsmiSSQClose.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSSQClose.Image")));
+            this.tsmiSSQClose.Image = global::GUI_GT.Properties.Resources.File_close_bt_h32;
             this.tsmiSSQClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSQClose.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSSQClose.Name = "tsmiSSQClose";
-            this.tsmiSSQClose.Size = new System.Drawing.Size(180, 36);
+            this.tsmiSSQClose.Size = new System.Drawing.Size(302, 36);
             this.tsmiSSQClose.Text = "Cerrar";
             this.tsmiSSQClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSSQClose.Click += new System.EventHandler(this.tsmiSSQClose_Click);
@@ -2692,13 +2788,14 @@
             // tabPageAnalysis
             // 
             this.tabPageAnalysis.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageAnalysis.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysis.BackgroundImage")));
+            this.tabPageAnalysis.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysis.Controls.Add(this.tabControlAnalysisSSQ);
             this.tabPageAnalysis.Controls.Add(this.mStripAnalysis);
-            this.tabPageAnalysis.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysis.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysis.Name = "tabPageAnalysis";
-            this.tabPageAnalysis.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAnalysis.Size = new System.Drawing.Size(777, 484);
+            this.tabPageAnalysis.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAnalysis.Size = new System.Drawing.Size(1039, 599);
             this.tabPageAnalysis.TabIndex = 3;
             this.tabPageAnalysis.Text = "tabPageAnalysis";
             this.tabPageAnalysis.UseVisualStyleBackColor = true;
@@ -2714,25 +2811,27 @@
             this.tabControlAnalysisSSQ.Controls.Add(this.tabPageAnalysisG_P);
             this.tabControlAnalysisSSQ.Controls.Add(this.tabPageAnalysisOpt);
             this.tabControlAnalysisSSQ.Controls.Add(this.tabPageAnalysisInf);
-            this.tabControlAnalysisSSQ.Location = new System.Drawing.Point(196, 6);
+            this.tabControlAnalysisSSQ.Location = new System.Drawing.Point(261, 7);
+            this.tabControlAnalysisSSQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlAnalysisSSQ.Name = "tabControlAnalysisSSQ";
             this.tabControlAnalysisSSQ.SelectedIndex = 0;
-            this.tabControlAnalysisSSQ.Size = new System.Drawing.Size(574, 472);
+            this.tabControlAnalysisSSQ.Size = new System.Drawing.Size(765, 581);
             this.tabControlAnalysisSSQ.TabIndex = 2;
             // 
             // tabPageAnalysisFacetas
             // 
-            this.tabPageAnalysisFacetas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisFacetas.BackgroundImage")));
+            this.tabPageAnalysisFacetas.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisFacetas.Controls.Add(this.btAcept);
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_RemoveNesting);
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_NestingFacet);
             this.tabPageAnalysisFacetas.Controls.Add(this.btCancelEditFacetOnAnalysis);
             this.tabPageAnalysisFacetas.Controls.Add(this.dGridViewExAnalysis_TableFacet);
             this.tabPageAnalysisFacetas.Controls.Add(this.btEditSumOfSquaresOnAnalisys);
-            this.tabPageAnalysisFacetas.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisFacetas.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisFacetas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisFacetas.Name = "tabPageAnalysisFacetas";
-            this.tabPageAnalysisFacetas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAnalysisFacetas.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisFacetas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAnalysisFacetas.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisFacetas.TabIndex = 0;
             this.tabPageAnalysisFacetas.Text = "Facetas";
             this.tabPageAnalysisFacetas.UseVisualStyleBackColor = true;
@@ -2740,11 +2839,12 @@
             // btAcept
             // 
             this.btAcept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAcept.Image = ((System.Drawing.Image)(resources.GetObject("btAcept.Image")));
+            this.btAcept.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
             this.btAcept.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btAcept.Location = new System.Drawing.Point(361, 390);
+            this.btAcept.Location = new System.Drawing.Point(481, 476);
+            this.btAcept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btAcept.Name = "btAcept";
-            this.btAcept.Size = new System.Drawing.Size(96, 48);
+            this.btAcept.Size = new System.Drawing.Size(128, 59);
             this.btAcept.TabIndex = 20;
             this.btAcept.Text = "Aceptar";
             this.btAcept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2754,10 +2854,11 @@
             // btAnalysis_RemoveNesting
             // 
             this.btAnalysis_RemoveNesting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAnalysis_RemoveNesting.Image = ((System.Drawing.Image)(resources.GetObject("btAnalysis_RemoveNesting.Image")));
-            this.btAnalysis_RemoveNesting.Location = new System.Drawing.Point(203, 390);
+            this.btAnalysis_RemoveNesting.Image = global::GUI_GT.Properties.Resources.eliminar_anidamiento;
+            this.btAnalysis_RemoveNesting.Location = new System.Drawing.Point(271, 476);
+            this.btAnalysis_RemoveNesting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btAnalysis_RemoveNesting.Name = "btAnalysis_RemoveNesting";
-            this.btAnalysis_RemoveNesting.Size = new System.Drawing.Size(119, 48);
+            this.btAnalysis_RemoveNesting.Size = new System.Drawing.Size(159, 59);
             this.btAnalysis_RemoveNesting.TabIndex = 19;
             this.btAnalysis_RemoveNesting.Text = "Quitar anidamiento";
             this.btAnalysis_RemoveNesting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2767,10 +2868,11 @@
             // btAnalysis_NestingFacet
             // 
             this.btAnalysis_NestingFacet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAnalysis_NestingFacet.Image = ((System.Drawing.Image)(resources.GetObject("btAnalysis_NestingFacet.Image")));
-            this.btAnalysis_NestingFacet.Location = new System.Drawing.Point(78, 390);
+            this.btAnalysis_NestingFacet.Image = global::GUI_GT.Properties.Resources.Sin_nombre2;
+            this.btAnalysis_NestingFacet.Location = new System.Drawing.Point(104, 476);
+            this.btAnalysis_NestingFacet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btAnalysis_NestingFacet.Name = "btAnalysis_NestingFacet";
-            this.btAnalysis_NestingFacet.Size = new System.Drawing.Size(119, 48);
+            this.btAnalysis_NestingFacet.Size = new System.Drawing.Size(159, 59);
             this.btAnalysis_NestingFacet.TabIndex = 18;
             this.btAnalysis_NestingFacet.Text = "Anidar faceta";
             this.btAnalysis_NestingFacet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2780,10 +2882,11 @@
             // btCancelEditFacetOnAnalysis
             // 
             this.btCancelEditFacetOnAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelEditFacetOnAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("btCancelEditFacetOnAnalysis.Image")));
-            this.btCancelEditFacetOnAnalysis.Location = new System.Drawing.Point(464, 390);
+            this.btCancelEditFacetOnAnalysis.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
+            this.btCancelEditFacetOnAnalysis.Location = new System.Drawing.Point(619, 476);
+            this.btCancelEditFacetOnAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btCancelEditFacetOnAnalysis.Name = "btCancelEditFacetOnAnalysis";
-            this.btCancelEditFacetOnAnalysis.Size = new System.Drawing.Size(96, 48);
+            this.btCancelEditFacetOnAnalysis.Size = new System.Drawing.Size(128, 59);
             this.btCancelEditFacetOnAnalysis.TabIndex = 3;
             this.btCancelEditFacetOnAnalysis.Text = "Cancelar";
             this.btCancelEditFacetOnAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2794,50 +2897,52 @@
             // 
             this.dGridViewExAnalysis_TableFacet.AllowUserToAddRows = false;
             this.dGridViewExAnalysis_TableFacet.AllowUserToResizeRows = false;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dGridViewExAnalysis_TableFacet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGridViewExAnalysis_TableFacet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dGridViewExAnalysis_TableFacet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGridViewExAnalysis_TableFacet.BackgroundColor = System.Drawing.Color.White;
             this.dGridViewExAnalysis_TableFacet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dGridViewExAnalysis_TableFacet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dGridViewExAnalysis_TableFacet.DefaultCellStyle = dataGridViewCellStyle28;
-            this.dGridViewExAnalysis_TableFacet.Location = new System.Drawing.Point(6, 18);
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGridViewExAnalysis_TableFacet.DefaultCellStyle = dataGridViewCellStyle31;
+            this.dGridViewExAnalysis_TableFacet.Location = new System.Drawing.Point(8, 22);
+            this.dGridViewExAnalysis_TableFacet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dGridViewExAnalysis_TableFacet.MinNumeracionFilas = 0;
             this.dGridViewExAnalysis_TableFacet.Name = "dGridViewExAnalysis_TableFacet";
             this.dGridViewExAnalysis_TableFacet.NumeracionFilas = true;
             this.dGridViewExAnalysis_TableFacet.NumeroColumnas = 0;
             this.dGridViewExAnalysis_TableFacet.NumeroFilas = 0;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGridViewExAnalysis_TableFacet.RowHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGridViewExAnalysis_TableFacet.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
             this.dGridViewExAnalysis_TableFacet.RowHeadersVisible = false;
             this.dGridViewExAnalysis_TableFacet.RowHeadersWidth = 50;
-            this.dGridViewExAnalysis_TableFacet.Size = new System.Drawing.Size(554, 366);
+            this.dGridViewExAnalysis_TableFacet.Size = new System.Drawing.Size(739, 447);
             this.dGridViewExAnalysis_TableFacet.TabIndex = 2;
             this.dGridViewExAnalysis_TableFacet.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dGridViewExAnalysis_TableFacet_KeyPressEditorCelda);
             // 
             // btEditSumOfSquaresOnAnalisys
             // 
             this.btEditSumOfSquaresOnAnalisys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEditSumOfSquaresOnAnalisys.Image = ((System.Drawing.Image)(resources.GetObject("btEditSumOfSquaresOnAnalisys.Image")));
+            this.btEditSumOfSquaresOnAnalisys.Image = global::GUI_GT.Properties.Resources.datos_v1_new_h22x22;
             this.btEditSumOfSquaresOnAnalisys.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btEditSumOfSquaresOnAnalisys.Location = new System.Drawing.Point(328, 390);
+            this.btEditSumOfSquaresOnAnalisys.Location = new System.Drawing.Point(437, 476);
+            this.btEditSumOfSquaresOnAnalisys.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btEditSumOfSquaresOnAnalisys.Name = "btEditSumOfSquaresOnAnalisys";
-            this.btEditSumOfSquaresOnAnalisys.Size = new System.Drawing.Size(130, 48);
+            this.btEditSumOfSquaresOnAnalisys.Size = new System.Drawing.Size(173, 59);
             this.btEditSumOfSquaresOnAnalisys.TabIndex = 1;
             this.btEditSumOfSquaresOnAnalisys.Text = "Editar suma de cuadrados";
             this.btEditSumOfSquaresOnAnalisys.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2846,7 +2951,7 @@
             // 
             // tabPageAnalysisEditingSSq
             // 
-            this.tabPageAnalysisEditingSSq.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisEditingSSq.BackgroundImage")));
+            this.tabPageAnalysisEditingSSq.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisEditSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btSaveAnalysisSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btCancelEditSsq);
@@ -2854,9 +2959,10 @@
             this.tabPageAnalysisEditingSSq.Controls.Add(this.dgvExAnalysis_FacetEditSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.tbAnalysisMdesign);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.lbAnalysis_M_Desing_EditSsq);
-            this.tabPageAnalysisEditingSSq.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisEditingSSq.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisEditingSSq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisEditingSSq.Name = "tabPageAnalysisEditingSSq";
-            this.tabPageAnalysisEditingSSq.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisEditingSSq.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisEditingSSq.TabIndex = 4;
             this.tabPageAnalysisEditingSSq.Text = "Suma de cuadrados";
             this.tabPageAnalysisEditingSSq.UseVisualStyleBackColor = true;
@@ -2864,12 +2970,13 @@
             // btImportAnalysisEditSsq
             // 
             this.btImportAnalysisEditSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btImportAnalysisEditSsq.Image = ((System.Drawing.Image)(resources.GetObject("btImportAnalysisEditSsq.Image")));
+            this.btImportAnalysisEditSsq.Image = global::GUI_GT.Properties.Resources.importat__data_h20;
             this.btImportAnalysisEditSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btImportAnalysisEditSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btImportAnalysisEditSsq.Location = new System.Drawing.Point(218, 405);
+            this.btImportAnalysisEditSsq.Location = new System.Drawing.Point(291, 495);
+            this.btImportAnalysisEditSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btImportAnalysisEditSsq.Name = "btImportAnalysisEditSsq";
-            this.btImportAnalysisEditSsq.Size = new System.Drawing.Size(128, 35);
+            this.btImportAnalysisEditSsq.Size = new System.Drawing.Size(171, 43);
             this.btImportAnalysisEditSsq.TabIndex = 22;
             this.btImportAnalysisEditSsq.Text = "Importar sumas de cuadrados";
             this.btImportAnalysisEditSsq.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2879,11 +2986,12 @@
             // btSaveAnalysisSsq
             // 
             this.btSaveAnalysisSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSaveAnalysisSsq.Image = ((System.Drawing.Image)(resources.GetObject("btSaveAnalysisSsq.Image")));
+            this.btSaveAnalysisSsq.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.btSaveAnalysisSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSaveAnalysisSsq.Location = new System.Drawing.Point(358, 405);
+            this.btSaveAnalysisSsq.Location = new System.Drawing.Point(477, 495);
+            this.btSaveAnalysisSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btSaveAnalysisSsq.Name = "btSaveAnalysisSsq";
-            this.btSaveAnalysisSsq.Size = new System.Drawing.Size(95, 35);
+            this.btSaveAnalysisSsq.Size = new System.Drawing.Size(127, 43);
             this.btSaveAnalysisSsq.TabIndex = 21;
             this.btSaveAnalysisSsq.Text = "Guardar";
             this.btSaveAnalysisSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2894,11 +3002,12 @@
             // btCancelEditSsq
             // 
             this.btCancelEditSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelEditSsq.Image = ((System.Drawing.Image)(resources.GetObject("btCancelEditSsq.Image")));
+            this.btCancelEditSsq.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btCancelEditSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCancelEditSsq.Location = new System.Drawing.Point(465, 405);
+            this.btCancelEditSsq.Location = new System.Drawing.Point(620, 495);
+            this.btCancelEditSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btCancelEditSsq.Name = "btCancelEditSsq";
-            this.btCancelEditSsq.Size = new System.Drawing.Size(90, 35);
+            this.btCancelEditSsq.Size = new System.Drawing.Size(120, 43);
             this.btCancelEditSsq.TabIndex = 20;
             this.btCancelEditSsq.Text = "Cancelar";
             this.btCancelEditSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2910,53 +3019,14 @@
             // 
             this.dgvExAnalysisEditSSq.AllowUserToAddRows = false;
             this.dgvExAnalysisEditSSq.AllowUserToResizeRows = false;
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysisEditSSq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysisEditSSq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle33;
             this.dgvExAnalysisEditSSq.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExAnalysisEditSSq.BackgroundColor = System.Drawing.Color.White;
             this.dgvExAnalysisEditSSq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExAnalysisEditSSq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysisEditSSq.DefaultCellStyle = dataGridViewCellStyle31;
-            this.dgvExAnalysisEditSSq.Location = new System.Drawing.Point(12, 220);
-            this.dgvExAnalysisEditSSq.MinNumeracionFilas = 0;
-            this.dgvExAnalysisEditSSq.Name = "dgvExAnalysisEditSSq";
-            this.dgvExAnalysisEditSSq.NumeracionFilas = true;
-            this.dgvExAnalysisEditSSq.NumeroColumnas = 0;
-            this.dgvExAnalysisEditSSq.NumeroFilas = 0;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysisEditSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
-            this.dgvExAnalysisEditSSq.RowHeadersVisible = false;
-            this.dgvExAnalysisEditSSq.RowHeadersWidth = 50;
-            this.dgvExAnalysisEditSSq.Size = new System.Drawing.Size(542, 174);
-            this.dgvExAnalysisEditSSq.TabIndex = 19;
-            this.dgvExAnalysisEditSSq.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dgvExAnalysisEditSSq_KeyPressEditorCelda);
-            // 
-            // dgvExAnalysis_FacetEditSsq
-            // 
-            this.dgvExAnalysis_FacetEditSsq.AllowUserToAddRows = false;
-            this.dgvExAnalysis_FacetEditSsq.AllowUserToResizeRows = false;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysis_FacetEditSsq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle33;
-            this.dgvExAnalysis_FacetEditSsq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvExAnalysis_FacetEditSsq.BackgroundColor = System.Drawing.Color.White;
-            this.dgvExAnalysis_FacetEditSsq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvExAnalysis_FacetEditSsq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2964,13 +3034,14 @@
             dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysis_FacetEditSsq.DefaultCellStyle = dataGridViewCellStyle34;
-            this.dgvExAnalysis_FacetEditSsq.Location = new System.Drawing.Point(12, 55);
-            this.dgvExAnalysis_FacetEditSsq.MinNumeracionFilas = 0;
-            this.dgvExAnalysis_FacetEditSsq.Name = "dgvExAnalysis_FacetEditSsq";
-            this.dgvExAnalysis_FacetEditSsq.NumeracionFilas = true;
-            this.dgvExAnalysis_FacetEditSsq.NumeroColumnas = 0;
-            this.dgvExAnalysis_FacetEditSsq.NumeroFilas = 0;
+            this.dgvExAnalysisEditSSq.DefaultCellStyle = dataGridViewCellStyle34;
+            this.dgvExAnalysisEditSSq.Location = new System.Drawing.Point(16, 271);
+            this.dgvExAnalysisEditSSq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExAnalysisEditSSq.MinNumeracionFilas = 0;
+            this.dgvExAnalysisEditSSq.Name = "dgvExAnalysisEditSSq";
+            this.dgvExAnalysisEditSSq.NumeracionFilas = true;
+            this.dgvExAnalysisEditSSq.NumeroColumnas = 0;
+            this.dgvExAnalysisEditSSq.NumeroFilas = 0;
             dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
             dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2978,10 +3049,50 @@
             dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysis_FacetEditSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            this.dgvExAnalysisEditSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
+            this.dgvExAnalysisEditSSq.RowHeadersVisible = false;
+            this.dgvExAnalysisEditSSq.RowHeadersWidth = 50;
+            this.dgvExAnalysisEditSSq.Size = new System.Drawing.Size(723, 210);
+            this.dgvExAnalysisEditSSq.TabIndex = 19;
+            this.dgvExAnalysisEditSSq.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dgvExAnalysisEditSSq_KeyPressEditorCelda);
+            // 
+            // dgvExAnalysis_FacetEditSsq
+            // 
+            this.dgvExAnalysis_FacetEditSsq.AllowUserToAddRows = false;
+            this.dgvExAnalysis_FacetEditSsq.AllowUserToResizeRows = false;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysis_FacetEditSsq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
+            this.dgvExAnalysis_FacetEditSsq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvExAnalysis_FacetEditSsq.BackgroundColor = System.Drawing.Color.White;
+            this.dgvExAnalysis_FacetEditSsq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvExAnalysis_FacetEditSsq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExAnalysis_FacetEditSsq.DefaultCellStyle = dataGridViewCellStyle37;
+            this.dgvExAnalysis_FacetEditSsq.Location = new System.Drawing.Point(16, 68);
+            this.dgvExAnalysis_FacetEditSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExAnalysis_FacetEditSsq.MinNumeracionFilas = 0;
+            this.dgvExAnalysis_FacetEditSsq.Name = "dgvExAnalysis_FacetEditSsq";
+            this.dgvExAnalysis_FacetEditSsq.NumeracionFilas = true;
+            this.dgvExAnalysis_FacetEditSsq.NumeroColumnas = 0;
+            this.dgvExAnalysis_FacetEditSsq.NumeroFilas = 0;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExAnalysis_FacetEditSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle38;
             this.dgvExAnalysis_FacetEditSsq.RowHeadersVisible = false;
             this.dgvExAnalysis_FacetEditSsq.RowHeadersWidth = 50;
-            this.dgvExAnalysis_FacetEditSsq.Size = new System.Drawing.Size(542, 149);
+            this.dgvExAnalysis_FacetEditSsq.Size = new System.Drawing.Size(723, 183);
             this.dgvExAnalysis_FacetEditSsq.TabIndex = 18;
             // 
             // tbAnalysisMdesign
@@ -2989,25 +3100,27 @@
             this.tbAnalysisMdesign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAnalysisMdesign.BackColor = System.Drawing.Color.White;
-            this.tbAnalysisMdesign.Location = new System.Drawing.Point(12, 23);
+            this.tbAnalysisMdesign.Location = new System.Drawing.Point(16, 28);
+            this.tbAnalysisMdesign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAnalysisMdesign.Name = "tbAnalysisMdesign";
             this.tbAnalysisMdesign.ReadOnly = true;
-            this.tbAnalysisMdesign.Size = new System.Drawing.Size(542, 20);
+            this.tbAnalysisMdesign.Size = new System.Drawing.Size(721, 22);
             this.tbAnalysisMdesign.TabIndex = 17;
             // 
             // lbAnalysis_M_Desing_EditSsq
             // 
             this.lbAnalysis_M_Desing_EditSsq.AutoSize = true;
             this.lbAnalysis_M_Desing_EditSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysis_M_Desing_EditSsq.Location = new System.Drawing.Point(14, 9);
+            this.lbAnalysis_M_Desing_EditSsq.Location = new System.Drawing.Point(19, 11);
+            this.lbAnalysis_M_Desing_EditSsq.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysis_M_Desing_EditSsq.Name = "lbAnalysis_M_Desing_EditSsq";
-            this.lbAnalysis_M_Desing_EditSsq.Size = new System.Drawing.Size(95, 13);
+            this.lbAnalysis_M_Desing_EditSsq.Size = new System.Drawing.Size(121, 16);
             this.lbAnalysis_M_Desing_EditSsq.TabIndex = 16;
             this.lbAnalysis_M_Desing_EditSsq.Text = "Diseño de medida:";
             // 
             // tabPageAnalysisSSQ
             // 
-            this.tabPageAnalysisSSQ.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisSSQ.BackgroundImage")));
+            this.tabPageAnalysisSSQ.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSSq);
             this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSourceOfVarSsq);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotalDF);
@@ -3015,10 +3128,11 @@
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotal);
             this.tabPageAnalysisSSQ.Controls.Add(this.tbAnalysisMeasurDesignSsq);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisMeasurDesignSsq);
-            this.tabPageAnalysisSSQ.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisSSQ.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisSSQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisSSQ.Name = "tabPageAnalysisSSQ";
-            this.tabPageAnalysisSSQ.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAnalysisSSQ.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisSSQ.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAnalysisSSQ.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisSSQ.TabIndex = 1;
             this.tabPageAnalysisSSQ.Text = "Suma de cuadrados";
             this.tabPageAnalysisSSQ.UseVisualStyleBackColor = true;
@@ -3027,52 +3141,14 @@
             // 
             this.dgvExAnalysisSSq.AllowUserToAddRows = false;
             this.dgvExAnalysisSSq.AllowUserToResizeRows = false;
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysisSSq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysisSSq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle39;
             this.dgvExAnalysisSSq.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExAnalysisSSq.BackgroundColor = System.Drawing.Color.White;
             this.dgvExAnalysisSSq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExAnalysisSSq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysisSSq.DefaultCellStyle = dataGridViewCellStyle37;
-            this.dgvExAnalysisSSq.Location = new System.Drawing.Point(12, 234);
-            this.dgvExAnalysisSSq.MinNumeracionFilas = 0;
-            this.dgvExAnalysisSSq.Name = "dgvExAnalysisSSq";
-            this.dgvExAnalysisSSq.NumeracionFilas = true;
-            this.dgvExAnalysisSSq.NumeroColumnas = 0;
-            this.dgvExAnalysisSSq.NumeroFilas = 0;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysisSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle38;
-            this.dgvExAnalysisSSq.RowHeadersVisible = false;
-            this.dgvExAnalysisSSq.RowHeadersWidth = 50;
-            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(542, 174);
-            this.dgvExAnalysisSSq.TabIndex = 15;
-            // 
-            // dgvExAnalysisSourceOfVarSsq
-            // 
-            this.dgvExAnalysisSourceOfVarSsq.AllowUserToAddRows = false;
-            this.dgvExAnalysisSourceOfVarSsq.AllowUserToResizeRows = false;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysisSourceOfVarSsq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle39;
-            this.dgvExAnalysisSourceOfVarSsq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvExAnalysisSourceOfVarSsq.BackgroundColor = System.Drawing.Color.White;
-            this.dgvExAnalysisSourceOfVarSsq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvExAnalysisSourceOfVarSsq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3080,13 +3156,14 @@
             dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysisSourceOfVarSsq.DefaultCellStyle = dataGridViewCellStyle40;
-            this.dgvExAnalysisSourceOfVarSsq.Location = new System.Drawing.Point(12, 66);
-            this.dgvExAnalysisSourceOfVarSsq.MinNumeracionFilas = 0;
-            this.dgvExAnalysisSourceOfVarSsq.Name = "dgvExAnalysisSourceOfVarSsq";
-            this.dgvExAnalysisSourceOfVarSsq.NumeracionFilas = true;
-            this.dgvExAnalysisSourceOfVarSsq.NumeroColumnas = 0;
-            this.dgvExAnalysisSourceOfVarSsq.NumeroFilas = 0;
+            this.dgvExAnalysisSSq.DefaultCellStyle = dataGridViewCellStyle40;
+            this.dgvExAnalysisSSq.Location = new System.Drawing.Point(16, 288);
+            this.dgvExAnalysisSSq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExAnalysisSSq.MinNumeracionFilas = 0;
+            this.dgvExAnalysisSSq.Name = "dgvExAnalysisSSq";
+            this.dgvExAnalysisSSq.NumeracionFilas = true;
+            this.dgvExAnalysisSSq.NumeroColumnas = 0;
+            this.dgvExAnalysisSSq.NumeroFilas = 0;
             dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
             dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3094,10 +3171,49 @@
             dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysisSourceOfVarSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            this.dgvExAnalysisSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            this.dgvExAnalysisSSq.RowHeadersVisible = false;
+            this.dgvExAnalysisSSq.RowHeadersWidth = 50;
+            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(723, 210);
+            this.dgvExAnalysisSSq.TabIndex = 15;
+            // 
+            // dgvExAnalysisSourceOfVarSsq
+            // 
+            this.dgvExAnalysisSourceOfVarSsq.AllowUserToAddRows = false;
+            this.dgvExAnalysisSourceOfVarSsq.AllowUserToResizeRows = false;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysisSourceOfVarSsq.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle42;
+            this.dgvExAnalysisSourceOfVarSsq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvExAnalysisSourceOfVarSsq.BackgroundColor = System.Drawing.Color.White;
+            this.dgvExAnalysisSourceOfVarSsq.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvExAnalysisSourceOfVarSsq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExAnalysisSourceOfVarSsq.DefaultCellStyle = dataGridViewCellStyle43;
+            this.dgvExAnalysisSourceOfVarSsq.Location = new System.Drawing.Point(16, 81);
+            this.dgvExAnalysisSourceOfVarSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExAnalysisSourceOfVarSsq.MinNumeracionFilas = 0;
+            this.dgvExAnalysisSourceOfVarSsq.Name = "dgvExAnalysisSourceOfVarSsq";
+            this.dgvExAnalysisSourceOfVarSsq.NumeracionFilas = true;
+            this.dgvExAnalysisSourceOfVarSsq.NumeroColumnas = 0;
+            this.dgvExAnalysisSourceOfVarSsq.NumeroFilas = 0;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExAnalysisSourceOfVarSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.dgvExAnalysisSourceOfVarSsq.RowHeadersVisible = false;
             this.dgvExAnalysisSourceOfVarSsq.RowHeadersWidth = 50;
-            this.dgvExAnalysisSourceOfVarSsq.Size = new System.Drawing.Size(542, 149);
+            this.dgvExAnalysisSourceOfVarSsq.Size = new System.Drawing.Size(723, 183);
             this.dgvExAnalysisSourceOfVarSsq.TabIndex = 14;
             // 
             // lbAnalysisTotalDF
@@ -3106,9 +3222,10 @@
             this.lbAnalysisTotalDF.AutoSize = true;
             this.lbAnalysisTotalDF.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisTotalDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalDF.Location = new System.Drawing.Point(281, 414);
+            this.lbAnalysisTotalDF.Location = new System.Drawing.Point(375, 506);
+            this.lbAnalysisTotalDF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotalDF.Name = "lbAnalysisTotalDF";
-            this.lbAnalysisTotalDF.Size = new System.Drawing.Size(124, 13);
+            this.lbAnalysisTotalDF.Size = new System.Drawing.Size(144, 17);
             this.lbAnalysisTotalDF.TabIndex = 13;
             this.lbAnalysisTotalDF.Text = "lbAnalysisTotalDF";
             // 
@@ -3118,9 +3235,10 @@
             this.lbAnalysisTotalSsq.AutoSize = true;
             this.lbAnalysisTotalSsq.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisTotalSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalSsq.Location = new System.Drawing.Point(148, 414);
+            this.lbAnalysisTotalSsq.Location = new System.Drawing.Point(197, 506);
+            this.lbAnalysisTotalSsq.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotalSsq.Name = "lbAnalysisTotalSsq";
-            this.lbAnalysisTotalSsq.Size = new System.Drawing.Size(130, 13);
+            this.lbAnalysisTotalSsq.Size = new System.Drawing.Size(152, 17);
             this.lbAnalysisTotalSsq.TabIndex = 12;
             this.lbAnalysisTotalSsq.Text = "lbAnalysisTotalSsq";
             // 
@@ -3129,9 +3247,10 @@
             this.lbAnalysisTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTotal.AutoSize = true;
             this.lbAnalysisTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotal.Location = new System.Drawing.Point(17, 414);
+            this.lbAnalysisTotal.Location = new System.Drawing.Point(23, 506);
+            this.lbAnalysisTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotal.Name = "lbAnalysisTotal";
-            this.lbAnalysisTotal.Size = new System.Drawing.Size(34, 13);
+            this.lbAnalysisTotal.Size = new System.Drawing.Size(41, 16);
             this.lbAnalysisTotal.TabIndex = 11;
             this.lbAnalysisTotal.Text = "Total:";
             // 
@@ -3140,26 +3259,28 @@
             this.tbAnalysisMeasurDesignSsq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAnalysisMeasurDesignSsq.BackColor = System.Drawing.Color.White;
-            this.tbAnalysisMeasurDesignSsq.Location = new System.Drawing.Point(12, 34);
+            this.tbAnalysisMeasurDesignSsq.Location = new System.Drawing.Point(16, 42);
+            this.tbAnalysisMeasurDesignSsq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAnalysisMeasurDesignSsq.Name = "tbAnalysisMeasurDesignSsq";
             this.tbAnalysisMeasurDesignSsq.ReadOnly = true;
-            this.tbAnalysisMeasurDesignSsq.Size = new System.Drawing.Size(542, 20);
+            this.tbAnalysisMeasurDesignSsq.Size = new System.Drawing.Size(721, 22);
             this.tbAnalysisMeasurDesignSsq.TabIndex = 10;
             // 
             // lbAnalysisMeasurDesignSsq
             // 
             this.lbAnalysisMeasurDesignSsq.AutoSize = true;
             this.lbAnalysisMeasurDesignSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisMeasurDesignSsq.Location = new System.Drawing.Point(14, 20);
+            this.lbAnalysisMeasurDesignSsq.Location = new System.Drawing.Point(19, 25);
+            this.lbAnalysisMeasurDesignSsq.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisMeasurDesignSsq.Name = "lbAnalysisMeasurDesignSsq";
-            this.lbAnalysisMeasurDesignSsq.Size = new System.Drawing.Size(95, 13);
+            this.lbAnalysisMeasurDesignSsq.Size = new System.Drawing.Size(121, 16);
             this.lbAnalysisMeasurDesignSsq.TabIndex = 9;
             this.lbAnalysisMeasurDesignSsq.Text = "Diseño de medida:";
             // 
             // tabPageAnalysisG_P
             // 
             this.tabPageAnalysisG_P.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageAnalysisG_P.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisG_P.BackgroundImage")));
+            this.tabPageAnalysisG_P.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotalTargetVar);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextCoef_G_Abs);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextAbsoluteSE);
@@ -3180,9 +3301,10 @@
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotal_Error_Rel);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisStandDev);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotal_Target);
-            this.tabPageAnalysisG_P.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisG_P.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisG_P.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisG_P.Name = "tabPageAnalysisG_P";
-            this.tabPageAnalysisG_P.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisG_P.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisG_P.TabIndex = 2;
             this.tabPageAnalysisG_P.Text = "G-Parámetros";
             this.tabPageAnalysisG_P.UseVisualStyleBackColor = true;
@@ -3192,9 +3314,10 @@
             this.lbAnalysisTotalTargetVar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTotalTargetVar.AutoSize = true;
             this.lbAnalysisTotalTargetVar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalTargetVar.Location = new System.Drawing.Point(5, 374);
+            this.lbAnalysisTotalTargetVar.Location = new System.Drawing.Point(7, 457);
+            this.lbAnalysisTotalTargetVar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotalTargetVar.Name = "lbAnalysisTotalTargetVar";
-            this.lbAnalysisTotalTargetVar.Size = new System.Drawing.Size(154, 13);
+            this.lbAnalysisTotalTargetVar.Size = new System.Drawing.Size(192, 16);
             this.lbAnalysisTotalTargetVar.TabIndex = 21;
             this.lbAnalysisTotalTargetVar.Text = "Total (Objetivo de la varianza): ";
             // 
@@ -3203,9 +3326,10 @@
             this.lbAnalysisTextCoef_G_Abs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTextCoef_G_Abs.AutoSize = true;
             this.lbAnalysisTextCoef_G_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextCoef_G_Abs.Location = new System.Drawing.Point(395, 422);
+            this.lbAnalysisTextCoef_G_Abs.Location = new System.Drawing.Point(527, 516);
+            this.lbAnalysisTextCoef_G_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextCoef_G_Abs.Name = "lbAnalysisTextCoef_G_Abs";
-            this.lbAnalysisTextCoef_G_Abs.Size = new System.Drawing.Size(117, 13);
+            this.lbAnalysisTextCoef_G_Abs.Size = new System.Drawing.Size(145, 16);
             this.lbAnalysisTextCoef_G_Abs.TabIndex = 30;
             this.lbAnalysisTextCoef_G_Abs.Text = "Coeficiente G absoluto:";
             this.lbAnalysisTextCoef_G_Abs.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -3215,9 +3339,10 @@
             this.lbAnalysisTextAbsoluteSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTextAbsoluteSE.AutoSize = true;
             this.lbAnalysisTextAbsoluteSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextAbsoluteSE.Location = new System.Drawing.Point(395, 398);
+            this.lbAnalysisTextAbsoluteSE.Location = new System.Drawing.Point(527, 486);
+            this.lbAnalysisTextAbsoluteSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextAbsoluteSE.Name = "lbAnalysisTextAbsoluteSE";
-            this.lbAnalysisTextAbsoluteSE.Size = new System.Drawing.Size(98, 13);
+            this.lbAnalysisTextAbsoluteSE.Size = new System.Drawing.Size(120, 16);
             this.lbAnalysisTextAbsoluteSE.TabIndex = 36;
             this.lbAnalysisTextAbsoluteSE.Text = "Desv. tip. absoluta:";
             this.lbAnalysisTextAbsoluteSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3227,9 +3352,10 @@
             this.lbAnalysisTotalAbsErr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTotalAbsErr.AutoSize = true;
             this.lbAnalysisTotalAbsErr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalAbsErr.Location = new System.Drawing.Point(395, 374);
+            this.lbAnalysisTotalAbsErr.Location = new System.Drawing.Point(527, 457);
+            this.lbAnalysisTotalAbsErr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotalAbsErr.Name = "lbAnalysisTotalAbsErr";
-            this.lbAnalysisTotalAbsErr.Size = new System.Drawing.Size(58, 13);
+            this.lbAnalysisTotalAbsErr.Size = new System.Drawing.Size(73, 16);
             this.lbAnalysisTotalAbsErr.TabIndex = 23;
             this.lbAnalysisTotalAbsErr.Text = "(Error abs):";
             this.lbAnalysisTotalAbsErr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3239,10 +3365,11 @@
             this.lbAnalysisTotalRelErr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTotalRelErr.AutoSize = true;
             this.lbAnalysisTotalRelErr.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalRelErr.Location = new System.Drawing.Point(214, 374);
+            this.lbAnalysisTotalRelErr.Location = new System.Drawing.Point(285, 457);
+            this.lbAnalysisTotalRelErr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotalRelErr.Name = "lbAnalysisTotalRelErr";
             this.lbAnalysisTotalRelErr.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbAnalysisTotalRelErr.Size = new System.Drawing.Size(55, 13);
+            this.lbAnalysisTotalRelErr.Size = new System.Drawing.Size(68, 16);
             this.lbAnalysisTotalRelErr.TabIndex = 22;
             this.lbAnalysisTotalRelErr.Text = "(Error rel.):";
             this.lbAnalysisTotalRelErr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3251,39 +3378,40 @@
             // 
             this.dgvExAnalysis_GP.AllowUserToAddRows = false;
             this.dgvExAnalysis_GP.AllowUserToResizeRows = false;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysis_GP.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysis_GP.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle45;
             this.dgvExAnalysis_GP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExAnalysis_GP.BackgroundColor = System.Drawing.Color.White;
             this.dgvExAnalysis_GP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExAnalysis_GP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysis_GP.DefaultCellStyle = dataGridViewCellStyle43;
-            this.dgvExAnalysis_GP.Location = new System.Drawing.Point(13, 57);
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExAnalysis_GP.DefaultCellStyle = dataGridViewCellStyle46;
+            this.dgvExAnalysis_GP.Location = new System.Drawing.Point(17, 70);
+            this.dgvExAnalysis_GP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvExAnalysis_GP.MinNumeracionFilas = 0;
             this.dgvExAnalysis_GP.Name = "dgvExAnalysis_GP";
             this.dgvExAnalysis_GP.NumeracionFilas = true;
             this.dgvExAnalysis_GP.NumeroColumnas = 0;
             this.dgvExAnalysis_GP.NumeroFilas = 0;
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysis_GP.RowHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExAnalysis_GP.RowHeadersDefaultCellStyle = dataGridViewCellStyle47;
             this.dgvExAnalysis_GP.RowHeadersVisible = false;
             this.dgvExAnalysis_GP.RowHeadersWidth = 50;
-            this.dgvExAnalysis_GP.Size = new System.Drawing.Size(542, 304);
+            this.dgvExAnalysis_GP.Size = new System.Drawing.Size(723, 370);
             this.dgvExAnalysis_GP.TabIndex = 40;
             // 
             // tbAnalysisMeasDesignG_P
@@ -3291,19 +3419,21 @@
             this.tbAnalysisMeasDesignG_P.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAnalysisMeasDesignG_P.BackColor = System.Drawing.Color.White;
-            this.tbAnalysisMeasDesignG_P.Location = new System.Drawing.Point(13, 23);
+            this.tbAnalysisMeasDesignG_P.Location = new System.Drawing.Point(17, 28);
+            this.tbAnalysisMeasDesignG_P.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAnalysisMeasDesignG_P.Name = "tbAnalysisMeasDesignG_P";
             this.tbAnalysisMeasDesignG_P.ReadOnly = true;
-            this.tbAnalysisMeasDesignG_P.Size = new System.Drawing.Size(542, 20);
+            this.tbAnalysisMeasDesignG_P.Size = new System.Drawing.Size(721, 22);
             this.tbAnalysisMeasDesignG_P.TabIndex = 39;
             // 
             // lbAnalysisMeasDesignG_P
             // 
             this.lbAnalysisMeasDesignG_P.AutoSize = true;
             this.lbAnalysisMeasDesignG_P.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisMeasDesignG_P.Location = new System.Drawing.Point(15, 9);
+            this.lbAnalysisMeasDesignG_P.Location = new System.Drawing.Point(20, 11);
+            this.lbAnalysisMeasDesignG_P.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisMeasDesignG_P.Name = "lbAnalysisMeasDesignG_P";
-            this.lbAnalysisMeasDesignG_P.Size = new System.Drawing.Size(95, 13);
+            this.lbAnalysisMeasDesignG_P.Size = new System.Drawing.Size(121, 16);
             this.lbAnalysisMeasDesignG_P.TabIndex = 38;
             this.lbAnalysisMeasDesignG_P.Text = "Diseño de medida:";
             // 
@@ -3312,9 +3442,10 @@
             this.lbAnalysisAbsoluteSE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbAnalysisAbsoluteSE.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisAbsoluteSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisAbsoluteSE.Location = new System.Drawing.Point(471, 398);
+            this.lbAnalysisAbsoluteSE.Location = new System.Drawing.Point(628, 486);
+            this.lbAnalysisAbsoluteSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisAbsoluteSE.Name = "lbAnalysisAbsoluteSE";
-            this.lbAnalysisAbsoluteSE.Size = new System.Drawing.Size(92, 13);
+            this.lbAnalysisAbsoluteSE.Size = new System.Drawing.Size(123, 16);
             this.lbAnalysisAbsoluteSE.TabIndex = 37;
             this.lbAnalysisAbsoluteSE.Text = "lbAbsoluteSE";
             this.lbAnalysisAbsoluteSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3324,9 +3455,10 @@
             this.lbAnalysisRelativeSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisRelativeSE.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisRelativeSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisRelativeSE.Location = new System.Drawing.Point(306, 398);
+            this.lbAnalysisRelativeSE.Location = new System.Drawing.Point(408, 486);
+            this.lbAnalysisRelativeSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisRelativeSE.Name = "lbAnalysisRelativeSE";
-            this.lbAnalysisRelativeSE.Size = new System.Drawing.Size(88, 13);
+            this.lbAnalysisRelativeSE.Size = new System.Drawing.Size(117, 16);
             this.lbAnalysisRelativeSE.TabIndex = 35;
             this.lbAnalysisRelativeSE.Text = "lbRelativeSE";
             this.lbAnalysisRelativeSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3336,10 +3468,11 @@
             this.lbAnalysisTextRelSE.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTextRelSE.AutoSize = true;
             this.lbAnalysisTextRelSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextRelSE.Location = new System.Drawing.Point(214, 398);
+            this.lbAnalysisTextRelSE.Location = new System.Drawing.Point(285, 486);
+            this.lbAnalysisTextRelSE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextRelSE.Name = "lbAnalysisTextRelSE";
             this.lbAnalysisTextRelSE.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbAnalysisTextRelSE.Size = new System.Drawing.Size(92, 13);
+            this.lbAnalysisTextRelSE.Size = new System.Drawing.Size(112, 16);
             this.lbAnalysisTextRelSE.TabIndex = 34;
             this.lbAnalysisTextRelSE.Text = "Desv. tip. relativa:";
             this.lbAnalysisTextRelSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3349,9 +3482,10 @@
             this.lbAnalysisTextStandDev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTextStandDev.AutoSize = true;
             this.lbAnalysisTextStandDev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextStandDev.Location = new System.Drawing.Point(5, 398);
+            this.lbAnalysisTextStandDev.Location = new System.Drawing.Point(7, 486);
+            this.lbAnalysisTextStandDev.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextStandDev.Name = "lbAnalysisTextStandDev";
-            this.lbAnalysisTextStandDev.Size = new System.Drawing.Size(93, 13);
+            this.lbAnalysisTextStandDev.Size = new System.Drawing.Size(113, 16);
             this.lbAnalysisTextStandDev.TabIndex = 32;
             this.lbAnalysisTextStandDev.Text = "Desviacion típica:";
             // 
@@ -3360,9 +3494,10 @@
             this.lbAnalysisCoef_G_Abs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbAnalysisCoef_G_Abs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisCoef_G_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisCoef_G_Abs.Location = new System.Drawing.Point(466, 422);
+            this.lbAnalysisCoef_G_Abs.Location = new System.Drawing.Point(621, 516);
+            this.lbAnalysisCoef_G_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisCoef_G_Abs.Name = "lbAnalysisCoef_G_Abs";
-            this.lbAnalysisCoef_G_Abs.Size = new System.Drawing.Size(97, 13);
+            this.lbAnalysisCoef_G_Abs.Size = new System.Drawing.Size(129, 16);
             this.lbAnalysisCoef_G_Abs.TabIndex = 31;
             this.lbAnalysisCoef_G_Abs.Text = "lbCoef_G_Abs";
             this.lbAnalysisCoef_G_Abs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3372,9 +3507,10 @@
             this.lbAnalysisCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisCoef_G_Rel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisCoef_G_Rel.Location = new System.Drawing.Point(301, 422);
+            this.lbAnalysisCoef_G_Rel.Location = new System.Drawing.Point(401, 516);
+            this.lbAnalysisCoef_G_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisCoef_G_Rel.Name = "lbAnalysisCoef_G_Rel";
-            this.lbAnalysisCoef_G_Rel.Size = new System.Drawing.Size(93, 13);
+            this.lbAnalysisCoef_G_Rel.Size = new System.Drawing.Size(124, 16);
             this.lbAnalysisCoef_G_Rel.TabIndex = 29;
             this.lbAnalysisCoef_G_Rel.Text = "lbCoef_G_Rel";
             this.lbAnalysisCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3384,9 +3520,10 @@
             this.lbAnalysisTextCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTextCoef_G_Rel.AutoSize = true;
             this.lbAnalysisTextCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextCoef_G_Rel.Location = new System.Drawing.Point(214, 422);
+            this.lbAnalysisTextCoef_G_Rel.Location = new System.Drawing.Point(285, 516);
+            this.lbAnalysisTextCoef_G_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextCoef_G_Rel.Name = "lbAnalysisTextCoef_G_Rel";
-            this.lbAnalysisTextCoef_G_Rel.Size = new System.Drawing.Size(111, 13);
+            this.lbAnalysisTextCoef_G_Rel.Size = new System.Drawing.Size(137, 16);
             this.lbAnalysisTextCoef_G_Rel.TabIndex = 28;
             this.lbAnalysisTextCoef_G_Rel.Text = "Coeficiente G relativo:";
             this.lbAnalysisTextCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3396,9 +3533,10 @@
             this.lbAnalysisTextGeneralizabilityCoef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTextGeneralizabilityCoef.AutoSize = true;
             this.lbAnalysisTextGeneralizabilityCoef.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextGeneralizabilityCoef.Location = new System.Drawing.Point(5, 422);
+            this.lbAnalysisTextGeneralizabilityCoef.Location = new System.Drawing.Point(7, 516);
+            this.lbAnalysisTextGeneralizabilityCoef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTextGeneralizabilityCoef.Name = "lbAnalysisTextGeneralizabilityCoef";
-            this.lbAnalysisTextGeneralizabilityCoef.Size = new System.Drawing.Size(166, 13);
+            this.lbAnalysisTextGeneralizabilityCoef.Size = new System.Drawing.Size(212, 16);
             this.lbAnalysisTextGeneralizabilityCoef.TabIndex = 27;
             this.lbAnalysisTextGeneralizabilityCoef.Text = "Coeficientes de Generalizabilidad:";
             // 
@@ -3407,9 +3545,10 @@
             this.lbAnalysisTotal_Error_Abs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbAnalysisTotal_Error_Abs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisTotal_Error_Abs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotal_Error_Abs.Location = new System.Drawing.Point(437, 374);
+            this.lbAnalysisTotal_Error_Abs.Location = new System.Drawing.Point(583, 457);
+            this.lbAnalysisTotal_Error_Abs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotal_Error_Abs.Name = "lbAnalysisTotal_Error_Abs";
-            this.lbAnalysisTotal_Error_Abs.Size = new System.Drawing.Size(126, 13);
+            this.lbAnalysisTotal_Error_Abs.Size = new System.Drawing.Size(168, 16);
             this.lbAnalysisTotal_Error_Abs.TabIndex = 26;
             this.lbAnalysisTotal_Error_Abs.Text = "lbTotal_Error_Abs";
             this.lbAnalysisTotal_Error_Abs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3419,9 +3558,10 @@
             this.lbAnalysisTotal_Error_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbAnalysisTotal_Error_Rel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisTotal_Error_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotal_Error_Rel.Location = new System.Drawing.Point(272, 374);
+            this.lbAnalysisTotal_Error_Rel.Location = new System.Drawing.Point(363, 457);
+            this.lbAnalysisTotal_Error_Rel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotal_Error_Rel.Name = "lbAnalysisTotal_Error_Rel";
-            this.lbAnalysisTotal_Error_Rel.Size = new System.Drawing.Size(122, 13);
+            this.lbAnalysisTotal_Error_Rel.Size = new System.Drawing.Size(163, 16);
             this.lbAnalysisTotal_Error_Rel.TabIndex = 25;
             this.lbAnalysisTotal_Error_Rel.Text = "lbTotal_Error_Rel";
             this.lbAnalysisTotal_Error_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3431,9 +3571,10 @@
             this.lbAnalysisStandDev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisStandDev.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisStandDev.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisStandDev.Location = new System.Drawing.Point(135, 398);
+            this.lbAnalysisStandDev.Location = new System.Drawing.Point(180, 486);
+            this.lbAnalysisStandDev.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisStandDev.Name = "lbAnalysisStandDev";
-            this.lbAnalysisStandDev.Size = new System.Drawing.Size(81, 13);
+            this.lbAnalysisStandDev.Size = new System.Drawing.Size(108, 16);
             this.lbAnalysisStandDev.TabIndex = 33;
             this.lbAnalysisStandDev.Text = "lbStandDev";
             this.lbAnalysisStandDev.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3443,23 +3584,25 @@
             this.lbAnalysisTotal_Target.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTotal_Target.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.lbAnalysisTotal_Target.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotal_Target.Location = new System.Drawing.Point(113, 374);
+            this.lbAnalysisTotal_Target.Location = new System.Drawing.Point(151, 457);
+            this.lbAnalysisTotal_Target.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisTotal_Target.Name = "lbAnalysisTotal_Target";
-            this.lbAnalysisTotal_Target.Size = new System.Drawing.Size(103, 13);
+            this.lbAnalysisTotal_Target.Size = new System.Drawing.Size(137, 16);
             this.lbAnalysisTotal_Target.TabIndex = 24;
             this.lbAnalysisTotal_Target.Text = "lbTotal_Target";
             this.lbAnalysisTotal_Target.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabPageAnalysisOpt
             // 
-            this.tabPageAnalysisOpt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisOpt.BackgroundImage")));
+            this.tabPageAnalysisOpt.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisOpt.Controls.Add(this.dgvAnalysisResumOpt);
             this.tabPageAnalysisOpt.Controls.Add(this.dgvExAnalysisFacetsOpt);
             this.tabPageAnalysisOpt.Controls.Add(this.tbAnalysisMesurDesignOpt);
             this.tabPageAnalysisOpt.Controls.Add(this.lbAnalysisMesurDesignOpt);
-            this.tabPageAnalysisOpt.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisOpt.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisOpt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisOpt.Name = "tabPageAnalysisOpt";
-            this.tabPageAnalysisOpt.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisOpt.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisOpt.TabIndex = 3;
             this.tabPageAnalysisOpt.Text = "Optimización";
             this.tabPageAnalysisOpt.UseVisualStyleBackColor = true;
@@ -3468,52 +3611,14 @@
             // 
             this.dgvAnalysisResumOpt.AllowUserToAddRows = false;
             this.dgvAnalysisResumOpt.AllowUserToResizeRows = false;
-            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvAnalysisResumOpt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvAnalysisResumOpt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle48;
             this.dgvAnalysisResumOpt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAnalysisResumOpt.BackgroundColor = System.Drawing.Color.White;
             this.dgvAnalysisResumOpt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvAnalysisResumOpt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle46.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.MenuText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAnalysisResumOpt.DefaultCellStyle = dataGridViewCellStyle46;
-            this.dgvAnalysisResumOpt.Location = new System.Drawing.Point(12, 243);
-            this.dgvAnalysisResumOpt.MinNumeracionFilas = 0;
-            this.dgvAnalysisResumOpt.Name = "dgvAnalysisResumOpt";
-            this.dgvAnalysisResumOpt.NumeracionFilas = true;
-            this.dgvAnalysisResumOpt.NumeroColumnas = 0;
-            this.dgvAnalysisResumOpt.NumeroFilas = 0;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAnalysisResumOpt.RowHeadersDefaultCellStyle = dataGridViewCellStyle47;
-            this.dgvAnalysisResumOpt.RowHeadersVisible = false;
-            this.dgvAnalysisResumOpt.RowHeadersWidth = 50;
-            this.dgvAnalysisResumOpt.Size = new System.Drawing.Size(542, 189);
-            this.dgvAnalysisResumOpt.TabIndex = 9;
-            // 
-            // dgvExAnalysisFacetsOpt
-            // 
-            this.dgvExAnalysisFacetsOpt.AllowUserToAddRows = false;
-            this.dgvExAnalysisFacetsOpt.AllowUserToResizeRows = false;
-            dataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgvExAnalysisFacetsOpt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle48;
-            this.dgvExAnalysisFacetsOpt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvExAnalysisFacetsOpt.BackgroundColor = System.Drawing.Color.White;
-            this.dgvExAnalysisFacetsOpt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvExAnalysisFacetsOpt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle49.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3521,13 +3626,14 @@
             dataGridViewCellStyle49.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle49.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExAnalysisFacetsOpt.DefaultCellStyle = dataGridViewCellStyle49;
-            this.dgvExAnalysisFacetsOpt.Location = new System.Drawing.Point(12, 58);
-            this.dgvExAnalysisFacetsOpt.MinNumeracionFilas = 0;
-            this.dgvExAnalysisFacetsOpt.Name = "dgvExAnalysisFacetsOpt";
-            this.dgvExAnalysisFacetsOpt.NumeracionFilas = true;
-            this.dgvExAnalysisFacetsOpt.NumeroColumnas = 0;
-            this.dgvExAnalysisFacetsOpt.NumeroFilas = 0;
+            this.dgvAnalysisResumOpt.DefaultCellStyle = dataGridViewCellStyle49;
+            this.dgvAnalysisResumOpt.Location = new System.Drawing.Point(16, 299);
+            this.dgvAnalysisResumOpt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvAnalysisResumOpt.MinNumeracionFilas = 0;
+            this.dgvAnalysisResumOpt.Name = "dgvAnalysisResumOpt";
+            this.dgvAnalysisResumOpt.NumeracionFilas = true;
+            this.dgvAnalysisResumOpt.NumeroColumnas = 0;
+            this.dgvAnalysisResumOpt.NumeroFilas = 0;
             dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
             dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3535,10 +3641,49 @@
             dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExAnalysisFacetsOpt.RowHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            this.dgvAnalysisResumOpt.RowHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            this.dgvAnalysisResumOpt.RowHeadersVisible = false;
+            this.dgvAnalysisResumOpt.RowHeadersWidth = 50;
+            this.dgvAnalysisResumOpt.Size = new System.Drawing.Size(723, 229);
+            this.dgvAnalysisResumOpt.TabIndex = 9;
+            // 
+            // dgvExAnalysisFacetsOpt
+            // 
+            this.dgvExAnalysisFacetsOpt.AllowUserToAddRows = false;
+            this.dgvExAnalysisFacetsOpt.AllowUserToResizeRows = false;
+            dataGridViewCellStyle51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvExAnalysisFacetsOpt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle51;
+            this.dgvExAnalysisFacetsOpt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvExAnalysisFacetsOpt.BackgroundColor = System.Drawing.Color.White;
+            this.dgvExAnalysisFacetsOpt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvExAnalysisFacetsOpt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle52.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle52.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.SystemColors.MenuText;
+            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExAnalysisFacetsOpt.DefaultCellStyle = dataGridViewCellStyle52;
+            this.dgvExAnalysisFacetsOpt.Location = new System.Drawing.Point(16, 71);
+            this.dgvExAnalysisFacetsOpt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvExAnalysisFacetsOpt.MinNumeracionFilas = 0;
+            this.dgvExAnalysisFacetsOpt.Name = "dgvExAnalysisFacetsOpt";
+            this.dgvExAnalysisFacetsOpt.NumeracionFilas = true;
+            this.dgvExAnalysisFacetsOpt.NumeroColumnas = 0;
+            this.dgvExAnalysisFacetsOpt.NumeroFilas = 0;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExAnalysisFacetsOpt.RowHeadersDefaultCellStyle = dataGridViewCellStyle53;
             this.dgvExAnalysisFacetsOpt.RowHeadersVisible = false;
             this.dgvExAnalysisFacetsOpt.RowHeadersWidth = 50;
-            this.dgvExAnalysisFacetsOpt.Size = new System.Drawing.Size(542, 170);
+            this.dgvExAnalysisFacetsOpt.Size = new System.Drawing.Size(723, 209);
             this.dgvExAnalysisFacetsOpt.TabIndex = 8;
             // 
             // tbAnalysisMesurDesignOpt
@@ -3546,35 +3691,38 @@
             this.tbAnalysisMesurDesignOpt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAnalysisMesurDesignOpt.BackColor = System.Drawing.Color.White;
-            this.tbAnalysisMesurDesignOpt.Location = new System.Drawing.Point(12, 29);
+            this.tbAnalysisMesurDesignOpt.Location = new System.Drawing.Point(16, 36);
+            this.tbAnalysisMesurDesignOpt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbAnalysisMesurDesignOpt.Name = "tbAnalysisMesurDesignOpt";
             this.tbAnalysisMesurDesignOpt.ReadOnly = true;
-            this.tbAnalysisMesurDesignOpt.Size = new System.Drawing.Size(542, 20);
+            this.tbAnalysisMesurDesignOpt.Size = new System.Drawing.Size(721, 22);
             this.tbAnalysisMesurDesignOpt.TabIndex = 7;
             // 
             // lbAnalysisMesurDesignOpt
             // 
             this.lbAnalysisMesurDesignOpt.AutoSize = true;
             this.lbAnalysisMesurDesignOpt.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisMesurDesignOpt.Location = new System.Drawing.Point(14, 15);
+            this.lbAnalysisMesurDesignOpt.Location = new System.Drawing.Point(19, 18);
+            this.lbAnalysisMesurDesignOpt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAnalysisMesurDesignOpt.Name = "lbAnalysisMesurDesignOpt";
-            this.lbAnalysisMesurDesignOpt.Size = new System.Drawing.Size(95, 13);
+            this.lbAnalysisMesurDesignOpt.Size = new System.Drawing.Size(121, 16);
             this.lbAnalysisMesurDesignOpt.TabIndex = 6;
             this.lbAnalysisMesurDesignOpt.Text = "Diseño de medida:";
             // 
             // tabPageAnalysisInf
             // 
-            this.tabPageAnalysisInf.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAnalysisInf.BackgroundImage")));
+            this.tabPageAnalysisInf.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisInf.Controls.Add(this.btAnalysisEditComment);
             this.tabPageAnalysisInf.Controls.Add(this.rTextBoxAnalysisInfo);
             this.tabPageAnalysisInf.Controls.Add(this.tbDateAnalysisCreated);
             this.tabPageAnalysisInf.Controls.Add(this.lbDateAnalysisCreated);
             this.tabPageAnalysisInf.Controls.Add(this.tbFileAnalysisProvede);
             this.tabPageAnalysisInf.Controls.Add(this.lbFileAnalysisProvede);
-            this.tabPageAnalysisInf.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAnalysisInf.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAnalysisInf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageAnalysisInf.Name = "tabPageAnalysisInf";
-            this.tabPageAnalysisInf.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAnalysisInf.Size = new System.Drawing.Size(566, 446);
+            this.tabPageAnalysisInf.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAnalysisInf.Size = new System.Drawing.Size(757, 552);
             this.tabPageAnalysisInf.TabIndex = 5;
             this.tabPageAnalysisInf.Text = "Información";
             this.tabPageAnalysisInf.UseVisualStyleBackColor = true;
@@ -3582,11 +3730,12 @@
             // btAnalysisEditComment
             // 
             this.btAnalysisEditComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAnalysisEditComment.Image = ((System.Drawing.Image)(resources.GetObject("btAnalysisEditComment.Image")));
+            this.btAnalysisEditComment.Image = global::GUI_GT.Properties.Resources.edit_h22;
             this.btAnalysisEditComment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btAnalysisEditComment.Location = new System.Drawing.Point(459, 398);
+            this.btAnalysisEditComment.Location = new System.Drawing.Point(612, 486);
+            this.btAnalysisEditComment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btAnalysisEditComment.Name = "btAnalysisEditComment";
-            this.btAnalysisEditComment.Size = new System.Drawing.Size(92, 32);
+            this.btAnalysisEditComment.Size = new System.Drawing.Size(123, 39);
             this.btAnalysisEditComment.TabIndex = 11;
             this.btAnalysisEditComment.Text = "Editar";
             this.btAnalysisEditComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3601,28 +3750,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rTextBoxAnalysisInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.rTextBoxAnalysisInfo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rTextBoxAnalysisInfo.Location = new System.Drawing.Point(16, 108);
+            this.rTextBoxAnalysisInfo.Location = new System.Drawing.Point(21, 133);
+            this.rTextBoxAnalysisInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rTextBoxAnalysisInfo.Name = "rTextBoxAnalysisInfo";
             this.rTextBoxAnalysisInfo.ReadOnly = true;
-            this.rTextBoxAnalysisInfo.Size = new System.Drawing.Size(535, 277);
+            this.rTextBoxAnalysisInfo.Size = new System.Drawing.Size(712, 336);
             this.rTextBoxAnalysisInfo.TabIndex = 10;
             this.rTextBoxAnalysisInfo.Text = "";
             // 
             // tbDateAnalysisCreated
             // 
             this.tbDateAnalysisCreated.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbDateAnalysisCreated.Location = new System.Drawing.Point(123, 61);
+            this.tbDateAnalysisCreated.Location = new System.Drawing.Point(164, 75);
+            this.tbDateAnalysisCreated.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDateAnalysisCreated.Name = "tbDateAnalysisCreated";
             this.tbDateAnalysisCreated.ReadOnly = true;
-            this.tbDateAnalysisCreated.Size = new System.Drawing.Size(263, 20);
+            this.tbDateAnalysisCreated.Size = new System.Drawing.Size(349, 22);
             this.tbDateAnalysisCreated.TabIndex = 9;
             // 
             // lbDateAnalysisCreated
             // 
             this.lbDateAnalysisCreated.AutoSize = true;
-            this.lbDateAnalysisCreated.Location = new System.Drawing.Point(15, 65);
+            this.lbDateAnalysisCreated.Location = new System.Drawing.Point(20, 80);
+            this.lbDateAnalysisCreated.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDateAnalysisCreated.Name = "lbDateAnalysisCreated";
-            this.lbDateAnalysisCreated.Size = new System.Drawing.Size(96, 13);
+            this.lbDateAnalysisCreated.Size = new System.Drawing.Size(119, 16);
             this.lbDateAnalysisCreated.TabIndex = 8;
             this.lbDateAnalysisCreated.Text = "Fecha de creación";
             // 
@@ -3631,24 +3783,27 @@
             this.tbFileAnalysisProvede.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFileAnalysisProvede.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbFileAnalysisProvede.Location = new System.Drawing.Point(123, 16);
+            this.tbFileAnalysisProvede.Location = new System.Drawing.Point(164, 20);
+            this.tbFileAnalysisProvede.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFileAnalysisProvede.Name = "tbFileAnalysisProvede";
             this.tbFileAnalysisProvede.ReadOnly = true;
-            this.tbFileAnalysisProvede.Size = new System.Drawing.Size(429, 20);
+            this.tbFileAnalysisProvede.Size = new System.Drawing.Size(571, 22);
             this.tbFileAnalysisProvede.TabIndex = 7;
             // 
             // lbFileAnalysisProvede
             // 
             this.lbFileAnalysisProvede.AutoSize = true;
-            this.lbFileAnalysisProvede.Location = new System.Drawing.Point(14, 20);
+            this.lbFileAnalysisProvede.Location = new System.Drawing.Point(19, 25);
+            this.lbFileAnalysisProvede.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFileAnalysisProvede.Name = "lbFileAnalysisProvede";
-            this.lbFileAnalysisProvede.Size = new System.Drawing.Size(86, 13);
+            this.lbFileAnalysisProvede.Size = new System.Drawing.Size(108, 16);
             this.lbFileAnalysisProvede.TabIndex = 6;
             this.lbFileAnalysisProvede.Text = "Fichero de datos";
             // 
             // mStripAnalysis
             // 
-            this.mStripAnalysis.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripAnalysis.BackgroundImage")));
+            this.mStripAnalysis.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripAnalysis.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripAnalysis.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewFileAnalysisSSQ,
             this.tsmiOpenAnalysis,
@@ -3664,20 +3819,20 @@
             this.tsmiAnalysisReports,
             this.tsmiCloseAnalysis});
             this.mStripAnalysis.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.mStripAnalysis.Location = new System.Drawing.Point(3, 3);
-            this.mStripAnalysis.MaximumSize = new System.Drawing.Size(187, 505);
+            this.mStripAnalysis.Location = new System.Drawing.Point(4, 4);
+            this.mStripAnalysis.MaximumSize = new System.Drawing.Size(249, 622);
             this.mStripAnalysis.Name = "mStripAnalysis";
-            this.mStripAnalysis.Size = new System.Drawing.Size(187, 471);
+            this.mStripAnalysis.Size = new System.Drawing.Size(311, 609);
             this.mStripAnalysis.TabIndex = 1;
             this.mStripAnalysis.Text = "menuStrip1";
             // 
             // tsmiNewFileAnalysisSSQ
             // 
-            this.tsmiNewFileAnalysisSSQ.Image = ((System.Drawing.Image)(resources.GetObject("tsmiNewFileAnalysisSSQ.Image")));
+            this.tsmiNewFileAnalysisSSQ.Image = global::GUI_GT.Properties.Resources.doc_new_h32;
             this.tsmiNewFileAnalysisSSQ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiNewFileAnalysisSSQ.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiNewFileAnalysisSSQ.Name = "tsmiNewFileAnalysisSSQ";
-            this.tsmiNewFileAnalysisSSQ.Size = new System.Drawing.Size(180, 36);
+            this.tsmiNewFileAnalysisSSQ.Size = new System.Drawing.Size(302, 36);
             this.tsmiNewFileAnalysisSSQ.Text = "Nueva suma de cuadrados";
             this.tsmiNewFileAnalysisSSQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiNewFileAnalysisSSQ.Click += new System.EventHandler(this.tsmiNewFileAnalysisSSQ_Click);
@@ -3687,37 +3842,37 @@
             this.tsmiOpenAnalysis.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAnalysisOpenLocal,
             this.tsmiAnalysisOpenWebService});
-            this.tsmiOpenAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tsmiOpenAnalysis.Image")));
+            this.tsmiOpenAnalysis.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiOpenAnalysis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiOpenAnalysis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenAnalysis.Name = "tsmiOpenAnalysis";
-            this.tsmiOpenAnalysis.Size = new System.Drawing.Size(180, 36);
+            this.tsmiOpenAnalysis.Size = new System.Drawing.Size(302, 52);
             this.tsmiOpenAnalysis.Text = "Abrir";
             this.tsmiOpenAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiAnalysisOpenLocal
             // 
-            this.tsmiAnalysisOpenLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisOpenLocal.Image")));
+            this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(257, 26);
             this.tsmiAnalysisOpenLocal.Text = "Abrir";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
             // tsmiAnalysisOpenWebService
             // 
-            this.tsmiAnalysisOpenWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisOpenWebService.Image")));
+            this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(257, 26);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
             // tsmiImportAnalysis
             // 
-            this.tsmiImportAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tsmiImportAnalysis.Image")));
+            this.tsmiImportAnalysis.Image = global::GUI_GT.Properties.Resources.importat_h32;
             this.tsmiImportAnalysis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiImportAnalysis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiImportAnalysis.Name = "tsmiImportAnalysis";
-            this.tsmiImportAnalysis.Size = new System.Drawing.Size(180, 36);
+            this.tsmiImportAnalysis.Size = new System.Drawing.Size(302, 36);
             this.tsmiImportAnalysis.Text = "Importar";
             this.tsmiImportAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiImportAnalysis.Click += new System.EventHandler(this.tsmiImportAnalysis_Click);
@@ -3727,70 +3882,70 @@
             this.tsmiAnalysis_Save.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAnalysisSavedLocal,
             this.tsmiAnalysisvedWebService});
-            this.tsmiAnalysis_Save.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysis_Save.Image")));
+            this.tsmiAnalysis_Save.Image = global::GUI_GT.Properties.Resources.Disquette_v2_32x32;
             this.tsmiAnalysis_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_Save.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_Save.Name = "tsmiAnalysis_Save";
-            this.tsmiAnalysis_Save.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysis_Save.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysis_Save.Text = "Guardar";
             this.tsmiAnalysis_Save.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiAnalysisSavedLocal
             // 
-            this.tsmiAnalysisSavedLocal.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisSavedLocal.Image")));
+            this.tsmiAnalysisSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiAnalysisSavedLocal.Name = "tsmiAnalysisSavedLocal";
-            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(202, 22);
+            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(253, 26);
             this.tsmiAnalysisSavedLocal.Text = "Guardar";
             this.tsmiAnalysisSavedLocal.Click += new System.EventHandler(this.tsmiAnalysisSavedLocal_Click);
             // 
             // tsmiAnalysisvedWebService
             // 
-            this.tsmiAnalysisvedWebService.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisvedWebService.Image")));
+            this.tsmiAnalysisvedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiAnalysisvedWebService.Name = "tsmiAnalysisvedWebService";
-            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(202, 22);
+            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(253, 26);
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 
             // tsmiAnalysisEditFacets
             // 
-            this.tsmiAnalysisEditFacets.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisEditFacets.Image")));
+            this.tsmiAnalysisEditFacets.Image = global::GUI_GT.Properties.Resources.Datos_Facets_Pencil_h32;
             this.tsmiAnalysisEditFacets.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditFacets.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysisEditFacets.Name = "tsmiAnalysisEditFacets";
-            this.tsmiAnalysisEditFacets.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysisEditFacets.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysisEditFacets.Text = "Editar Facetas";
             this.tsmiAnalysisEditFacets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditFacets.Click += new System.EventHandler(this.tsmiAnalysisEditFacets_Click);
             // 
             // tsmiChangeModel
             // 
-            this.tsmiChangeModel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiChangeModel.Image")));
+            this.tsmiChangeModel.Image = global::GUI_GT.Properties.Resources.Cambiar_Diseño_h32;
             this.tsmiChangeModel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiChangeModel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiChangeModel.Name = "tsmiChangeModel";
-            this.tsmiChangeModel.Size = new System.Drawing.Size(180, 36);
+            this.tsmiChangeModel.Size = new System.Drawing.Size(302, 36);
             this.tsmiChangeModel.Text = "Cambiar modelo";
             this.tsmiChangeModel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiChangeModel.Click += new System.EventHandler(this.tsmiChangeModel_Click);
             // 
             // tsmiAnalysisEditSsq
             // 
-            this.tsmiAnalysisEditSsq.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisEditSsq.Image")));
+            this.tsmiAnalysisEditSsq.Image = global::GUI_GT.Properties.Resources.Editar_datos_v1_h32;
             this.tsmiAnalysisEditSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditSsq.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysisEditSsq.Name = "tsmiAnalysisEditSsq";
-            this.tsmiAnalysisEditSsq.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysisEditSsq.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysisEditSsq.Text = "Editar cuadrados";
             this.tsmiAnalysisEditSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditSsq.Click += new System.EventHandler(this.tsmiAnalysisEditSsq_Click);
             // 
             // tsmiAnalysis_AddLevelSign
             // 
-            this.tsmiAnalysis_AddLevelSign.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysis_AddLevelSign.Image")));
+            this.tsmiAnalysis_AddLevelSign.Image = global::GUI_GT.Properties.Resources.x_h32x32;
             this.tsmiAnalysis_AddLevelSign.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_AddLevelSign.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_AddLevelSign.Name = "tsmiAnalysis_AddLevelSign";
-            this.tsmiAnalysis_AddLevelSign.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysis_AddLevelSign.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysis_AddLevelSign.Text = "Niveles de optimización";
             this.tsmiAnalysis_AddLevelSign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_AddLevelSign.Click += new System.EventHandler(this.tsmiAnalysis_AddLevelSign_Click);
@@ -3801,56 +3956,56 @@
             this.tsmiAnalysisChartOptimization,
             this.tsmiAnalysisChartCoefGAbs,
             this.tsmiAnalysisChartCoefGRel});
-            this.tsmiAnalysis_Graphs.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysis_Graphs.Image")));
+            this.tsmiAnalysis_Graphs.Image = global::GUI_GT.Properties.Resources.graph_svg_bar_med_32h;
             this.tsmiAnalysis_Graphs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_Graphs.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_Graphs.Name = "tsmiAnalysis_Graphs";
-            this.tsmiAnalysis_Graphs.Size = new System.Drawing.Size(180, 33);
+            this.tsmiAnalysis_Graphs.Size = new System.Drawing.Size(302, 33);
             this.tsmiAnalysis_Graphs.Text = "Gráficos";
             this.tsmiAnalysis_Graphs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiAnalysisChartOptimization
             // 
-            this.tsmiAnalysisChartOptimization.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisChartOptimization.Image")));
+            this.tsmiAnalysisChartOptimization.Image = global::GUI_GT.Properties.Resources.Bar_Graph_h32x32;
             this.tsmiAnalysisChartOptimization.Name = "tsmiAnalysisChartOptimization";
-            this.tsmiAnalysisChartOptimization.Size = new System.Drawing.Size(184, 22);
+            this.tsmiAnalysisChartOptimization.Size = new System.Drawing.Size(231, 26);
             this.tsmiAnalysisChartOptimization.Text = "Gráfico optimización";
             this.tsmiAnalysisChartOptimization.Click += new System.EventHandler(this.tsmiAnalysisChartOptimization_Click);
             // 
             // tsmiAnalysisChartCoefGAbs
             // 
-            this.tsmiAnalysisChartCoefGAbs.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisChartCoefGAbs.Image")));
+            this.tsmiAnalysisChartCoefGAbs.Image = global::GUI_GT.Properties.Resources._graph_svg_med_16h;
             this.tsmiAnalysisChartCoefGAbs.Name = "tsmiAnalysisChartCoefGAbs";
-            this.tsmiAnalysisChartCoefGAbs.Size = new System.Drawing.Size(184, 22);
+            this.tsmiAnalysisChartCoefGAbs.Size = new System.Drawing.Size(231, 26);
             this.tsmiAnalysisChartCoefGAbs.Text = "Gráfico Coef G Abs";
             this.tsmiAnalysisChartCoefGAbs.Click += new System.EventHandler(this.tsmiAnalysisChartCoefGAbs_Click);
             // 
             // tsmiAnalysisChartCoefGRel
             // 
-            this.tsmiAnalysisChartCoefGRel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisChartCoefGRel.Image")));
+            this.tsmiAnalysisChartCoefGRel.Image = global::GUI_GT.Properties.Resources._graph_svg_med_16h;
             this.tsmiAnalysisChartCoefGRel.Name = "tsmiAnalysisChartCoefGRel";
-            this.tsmiAnalysisChartCoefGRel.Size = new System.Drawing.Size(184, 22);
+            this.tsmiAnalysisChartCoefGRel.Size = new System.Drawing.Size(231, 26);
             this.tsmiAnalysisChartCoefGRel.Text = "Gráfico Coef G Rel";
             this.tsmiAnalysisChartCoefGRel.Click += new System.EventHandler(this.tsmiAnalysisChartCoefGRel_Click);
             // 
             // tsmiAnalysisExportExcel
             // 
-            this.tsmiAnalysisExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisExportExcel.Image")));
+            this.tsmiAnalysisExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
             this.tsmiAnalysisExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysisExportExcel.Name = "tsmiAnalysisExportExcel";
-            this.tsmiAnalysisExportExcel.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysisExportExcel.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysisExportExcel.Text = "Exportar Excel";
             this.tsmiAnalysisExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisExportExcel.Click += new System.EventHandler(this.tsmiAnalysisExportExcel_Click);
             // 
             // tsmiAnalysis_ExportSquares
             // 
-            this.tsmiAnalysis_ExportSquares.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysis_ExportSquares.Image")));
+            this.tsmiAnalysis_ExportSquares.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h32;
             this.tsmiAnalysis_ExportSquares.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_ExportSquares.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_ExportSquares.Name = "tsmiAnalysis_ExportSquares";
-            this.tsmiAnalysis_ExportSquares.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysis_ExportSquares.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysis_ExportSquares.Text = "Exportar Cuadrados";
             this.tsmiAnalysis_ExportSquares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_ExportSquares.Click += new System.EventHandler(this.tsmiAnalysis_ExportSquares_Click);
@@ -3862,53 +4017,53 @@
             this.tsmiAnalysisPrintPreview,
             this.tsmiAnalysisWordExport,
             this.tsmiAnalysisPdfExport});
-            this.tsmiAnalysisReports.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisReports.Image")));
+            this.tsmiAnalysisReports.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiAnalysisReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisReports.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysisReports.Name = "tsmiAnalysisReports";
-            this.tsmiAnalysisReports.Size = new System.Drawing.Size(180, 36);
+            this.tsmiAnalysisReports.Size = new System.Drawing.Size(302, 36);
             this.tsmiAnalysisReports.Text = "Informes";
             this.tsmiAnalysisReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiAnalysisPrinter
             // 
-            this.tsmiAnalysisPrinter.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisPrinter.Image")));
+            this.tsmiAnalysisPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiAnalysisPrinter.Name = "tsmiAnalysisPrinter";
-            this.tsmiAnalysisPrinter.Size = new System.Drawing.Size(134, 22);
+            this.tsmiAnalysisPrinter.Size = new System.Drawing.Size(224, 26);
             this.tsmiAnalysisPrinter.Text = "Imprimir";
             this.tsmiAnalysisPrinter.Click += new System.EventHandler(this.tsmiAnalysisPrinter_Click);
             // 
             // tsmiAnalysisPrintPreview
             // 
-            this.tsmiAnalysisPrintPreview.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisPrintPreview.Image")));
+            this.tsmiAnalysisPrintPreview.Image = global::GUI_GT.Properties.Resources.vista_preliminar_h32;
             this.tsmiAnalysisPrintPreview.Name = "tsmiAnalysisPrintPreview";
-            this.tsmiAnalysisPrintPreview.Size = new System.Drawing.Size(134, 22);
+            this.tsmiAnalysisPrintPreview.Size = new System.Drawing.Size(224, 26);
             this.tsmiAnalysisPrintPreview.Text = "Vista previa";
             this.tsmiAnalysisPrintPreview.Click += new System.EventHandler(this.tsmiAnalysisPrintPreview_Click);
             // 
             // tsmiAnalysisWordExport
             // 
-            this.tsmiAnalysisWordExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisWordExport.Image")));
+            this.tsmiAnalysisWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiAnalysisWordExport.Name = "tsmiAnalysisWordExport";
-            this.tsmiAnalysisWordExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiAnalysisWordExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiAnalysisWordExport.Text = "Word";
             this.tsmiAnalysisWordExport.Click += new System.EventHandler(this.tsmiAnalysisWordExport_Click);
             // 
             // tsmiAnalysisPdfExport
             // 
-            this.tsmiAnalysisPdfExport.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAnalysisPdfExport.Image")));
+            this.tsmiAnalysisPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiAnalysisPdfExport.Name = "tsmiAnalysisPdfExport";
-            this.tsmiAnalysisPdfExport.Size = new System.Drawing.Size(134, 22);
+            this.tsmiAnalysisPdfExport.Size = new System.Drawing.Size(224, 26);
             this.tsmiAnalysisPdfExport.Text = "PDF";
             this.tsmiAnalysisPdfExport.Click += new System.EventHandler(this.tsmiAnalysisPdfExport_Click);
             // 
             // tsmiCloseAnalysis
             // 
-            this.tsmiCloseAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCloseAnalysis.Image")));
+            this.tsmiCloseAnalysis.Image = global::GUI_GT.Properties.Resources.File_close_bt_h32;
             this.tsmiCloseAnalysis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiCloseAnalysis.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiCloseAnalysis.Name = "tsmiCloseAnalysis";
-            this.tsmiCloseAnalysis.Size = new System.Drawing.Size(180, 36);
+            this.tsmiCloseAnalysis.Size = new System.Drawing.Size(302, 36);
             this.tsmiCloseAnalysis.Text = "Cerrar";
             this.tsmiCloseAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiCloseAnalysis.Click += new System.EventHandler(this.tsmiCloseAnalysis_Click);
@@ -3916,13 +4071,14 @@
             // tabPageProjects
             // 
             this.tabPageProjects.BackColor = System.Drawing.Color.Transparent;
-            this.tabPageProjects.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageProjects.BackgroundImage")));
+            this.tabPageProjects.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageProjects.Controls.Add(this.gBoxActiveProject);
             this.tabPageProjects.Controls.Add(this.mStripProjects);
-            this.tabPageProjects.Location = new System.Drawing.Point(4, 22);
+            this.tabPageProjects.Location = new System.Drawing.Point(4, 25);
+            this.tabPageProjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPageProjects.Name = "tabPageProjects";
-            this.tabPageProjects.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProjects.Size = new System.Drawing.Size(777, 484);
+            this.tabPageProjects.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageProjects.Size = new System.Drawing.Size(1511, 874);
             this.tabPageProjects.TabIndex = 5;
             this.tabPageProjects.Text = "tabPageProjects";
             this.tabPageProjects.UseVisualStyleBackColor = true;
@@ -3939,9 +4095,11 @@
             this.gBoxActiveProject.Controls.Add(this.tbNameProject);
             this.gBoxActiveProject.Controls.Add(this.lbNameProject);
             this.gBoxActiveProject.Controls.Add(this.lbDescriptionProject);
-            this.gBoxActiveProject.Location = new System.Drawing.Point(194, 9);
+            this.gBoxActiveProject.Location = new System.Drawing.Point(259, 11);
+            this.gBoxActiveProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gBoxActiveProject.Name = "gBoxActiveProject";
-            this.gBoxActiveProject.Size = new System.Drawing.Size(567, 457);
+            this.gBoxActiveProject.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gBoxActiveProject.Size = new System.Drawing.Size(756, 562);
             this.gBoxActiveProject.TabIndex = 10;
             this.gBoxActiveProject.TabStop = false;
             this.gBoxActiveProject.Text = "Proyecto activo";
@@ -3949,11 +4107,12 @@
             // btProyectOk
             // 
             this.btProyectOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btProyectOk.Image = ((System.Drawing.Image)(resources.GetObject("btProyectOk.Image")));
+            this.btProyectOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
             this.btProyectOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btProyectOk.Location = new System.Drawing.Point(355, 405);
+            this.btProyectOk.Location = new System.Drawing.Point(473, 498);
+            this.btProyectOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btProyectOk.Name = "btProyectOk";
-            this.btProyectOk.Size = new System.Drawing.Size(92, 32);
+            this.btProyectOk.Size = new System.Drawing.Size(123, 39);
             this.btProyectOk.TabIndex = 24;
             this.btProyectOk.Text = "Aceptar";
             this.btProyectOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -3963,11 +4122,12 @@
             // btProyectCancel
             // 
             this.btProyectCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btProyectCancel.Image = ((System.Drawing.Image)(resources.GetObject("btProyectCancel.Image")));
+            this.btProyectCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btProyectCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btProyectCancel.Location = new System.Drawing.Point(453, 405);
+            this.btProyectCancel.Location = new System.Drawing.Point(604, 498);
+            this.btProyectCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btProyectCancel.Name = "btProyectCancel";
-            this.btProyectCancel.Size = new System.Drawing.Size(92, 32);
+            this.btProyectCancel.Size = new System.Drawing.Size(123, 39);
             this.btProyectCancel.TabIndex = 23;
             this.btProyectCancel.Text = "Cancelar";
             this.btProyectCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -3980,20 +4140,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rTextBoxDescriptionProject.BackColor = System.Drawing.SystemColors.Window;
-            this.rTextBoxDescriptionProject.Location = new System.Drawing.Point(19, 188);
+            this.rTextBoxDescriptionProject.Location = new System.Drawing.Point(25, 231);
+            this.rTextBoxDescriptionProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rTextBoxDescriptionProject.Name = "rTextBoxDescriptionProject";
             this.rTextBoxDescriptionProject.ReadOnly = true;
-            this.rTextBoxDescriptionProject.Size = new System.Drawing.Size(531, 185);
+            this.rTextBoxDescriptionProject.Size = new System.Drawing.Size(707, 227);
             this.rTextBoxDescriptionProject.TabIndex = 4;
             this.rTextBoxDescriptionProject.Text = "";
             // 
             // tbDateProject
             // 
             this.tbDateProject.BackColor = System.Drawing.SystemColors.Window;
-            this.tbDateProject.Location = new System.Drawing.Point(71, 70);
+            this.tbDateProject.Location = new System.Drawing.Point(95, 86);
+            this.tbDateProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDateProject.Name = "tbDateProject";
             this.tbDateProject.ReadOnly = true;
-            this.tbDateProject.Size = new System.Drawing.Size(230, 20);
+            this.tbDateProject.Size = new System.Drawing.Size(305, 22);
             this.tbDateProject.TabIndex = 6;
             // 
             // tbDirectorProject
@@ -4001,27 +4163,30 @@
             this.tbDirectorProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbDirectorProject.BackColor = System.Drawing.SystemColors.Window;
-            this.tbDirectorProject.Location = new System.Drawing.Point(19, 118);
+            this.tbDirectorProject.Location = new System.Drawing.Point(25, 145);
+            this.tbDirectorProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbDirectorProject.Name = "tbDirectorProject";
             this.tbDirectorProject.ReadOnly = true;
-            this.tbDirectorProject.Size = new System.Drawing.Size(531, 20);
+            this.tbDirectorProject.Size = new System.Drawing.Size(707, 22);
             this.tbDirectorProject.TabIndex = 8;
             // 
             // lbDateProject
             // 
             this.lbDateProject.AutoSize = true;
-            this.lbDateProject.Location = new System.Drawing.Point(21, 73);
+            this.lbDateProject.Location = new System.Drawing.Point(28, 90);
+            this.lbDateProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDateProject.Name = "lbDateProject";
-            this.lbDateProject.Size = new System.Drawing.Size(37, 13);
+            this.lbDateProject.Size = new System.Drawing.Size(45, 16);
             this.lbDateProject.TabIndex = 5;
             this.lbDateProject.Text = "Fecha";
             // 
             // lbDirectorProject
             // 
             this.lbDirectorProject.AutoSize = true;
-            this.lbDirectorProject.Location = new System.Drawing.Point(21, 102);
+            this.lbDirectorProject.Location = new System.Drawing.Point(28, 126);
+            this.lbDirectorProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDirectorProject.Name = "lbDirectorProject";
-            this.lbDirectorProject.Size = new System.Drawing.Size(103, 13);
+            this.lbDirectorProject.Size = new System.Drawing.Size(129, 16);
             this.lbDirectorProject.TabIndex = 7;
             this.lbDirectorProject.Text = "Director de proyecto";
             // 
@@ -4030,87 +4195,91 @@
             this.tbNameProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbNameProject.BackColor = System.Drawing.SystemColors.Window;
-            this.tbNameProject.Location = new System.Drawing.Point(72, 37);
+            this.tbNameProject.Location = new System.Drawing.Point(96, 46);
+            this.tbNameProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbNameProject.Name = "tbNameProject";
             this.tbNameProject.ReadOnly = true;
-            this.tbNameProject.Size = new System.Drawing.Size(478, 20);
+            this.tbNameProject.Size = new System.Drawing.Size(636, 22);
             this.tbNameProject.TabIndex = 2;
             // 
             // lbNameProject
             // 
             this.lbNameProject.AutoSize = true;
-            this.lbNameProject.Location = new System.Drawing.Point(21, 40);
+            this.lbNameProject.Location = new System.Drawing.Point(28, 49);
+            this.lbNameProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNameProject.Name = "lbNameProject";
-            this.lbNameProject.Size = new System.Drawing.Size(44, 13);
+            this.lbNameProject.Size = new System.Drawing.Size(56, 16);
             this.lbNameProject.TabIndex = 1;
             this.lbNameProject.Text = "Nombre";
             // 
             // lbDescriptionProject
             // 
             this.lbDescriptionProject.AutoSize = true;
-            this.lbDescriptionProject.Location = new System.Drawing.Point(21, 161);
+            this.lbDescriptionProject.Location = new System.Drawing.Point(28, 198);
+            this.lbDescriptionProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbDescriptionProject.Name = "lbDescriptionProject";
-            this.lbDescriptionProject.Size = new System.Drawing.Size(63, 13);
+            this.lbDescriptionProject.Size = new System.Drawing.Size(79, 16);
             this.lbDescriptionProject.TabIndex = 3;
             this.lbDescriptionProject.Text = "Descripción";
             // 
             // mStripProjects
             // 
             this.mStripProjects.BackColor = System.Drawing.SystemColors.Control;
-            this.mStripProjects.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mStripProjects.BackgroundImage")));
+            this.mStripProjects.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.mStripProjects.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mStripProjects.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAddProject,
             this.tsmiEditProject,
             this.tsmiSearchProject,
             this.tsmiAddDirectorToProject});
             this.mStripProjects.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.mStripProjects.Location = new System.Drawing.Point(3, 3);
-            this.mStripProjects.MaximumSize = new System.Drawing.Size(175, 0);
+            this.mStripProjects.Location = new System.Drawing.Point(4, 4);
+            this.mStripProjects.MaximumSize = new System.Drawing.Size(233, 0);
             this.mStripProjects.Name = "mStripProjects";
-            this.mStripProjects.Size = new System.Drawing.Size(175, 182);
+            this.mStripProjects.Size = new System.Drawing.Size(233, 182);
             this.mStripProjects.TabIndex = 0;
             this.mStripProjects.Text = "mStripProjects";
             // 
             // tsmiAddProject
             // 
-            this.tsmiAddProject.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAddProject.Image")));
+            this.tsmiAddProject.Image = global::GUI_GT.Properties.Resources.AVX_ICONS_FOLDER_2_h40;
             this.tsmiAddProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddProject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAddProject.Name = "tsmiAddProject";
-            this.tsmiAddProject.Size = new System.Drawing.Size(168, 44);
+            this.tsmiAddProject.Size = new System.Drawing.Size(224, 44);
             this.tsmiAddProject.Text = "Crear";
             this.tsmiAddProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddProject.Click += new System.EventHandler(this.tsmiAddProject_Click);
             // 
             // tsmiEditProject
             // 
-            this.tsmiEditProject.Image = ((System.Drawing.Image)(resources.GetObject("tsmiEditProject.Image")));
+            this.tsmiEditProject.Image = global::GUI_GT.Properties.Resources.AVX_ICONS_APPS_FOLDER_h401;
             this.tsmiEditProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiEditProject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiEditProject.Name = "tsmiEditProject";
-            this.tsmiEditProject.Size = new System.Drawing.Size(168, 44);
+            this.tsmiEditProject.Size = new System.Drawing.Size(224, 44);
             this.tsmiEditProject.Text = "Editar";
             this.tsmiEditProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiEditProject.Click += new System.EventHandler(this.tsmiEditProject_Click);
             // 
             // tsmiSearchProject
             // 
-            this.tsmiSearchProject.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSearchProject.Image")));
+            this.tsmiSearchProject.Image = global::GUI_GT.Properties.Resources.AVX_ICONS_FOLDER_BLUE_h40;
             this.tsmiSearchProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSearchProject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiSearchProject.Name = "tsmiSearchProject";
-            this.tsmiSearchProject.Size = new System.Drawing.Size(168, 44);
+            this.tsmiSearchProject.Size = new System.Drawing.Size(224, 44);
             this.tsmiSearchProject.Text = "Buscar";
             this.tsmiSearchProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSearchProject.Click += new System.EventHandler(this.tsmiSearchProject_Click);
             // 
             // tsmiAddDirectorToProject
             // 
-            this.tsmiAddDirectorToProject.Image = ((System.Drawing.Image)(resources.GetObject("tsmiAddDirectorToProject.Image")));
+            this.tsmiAddDirectorToProject.Image = global::GUI_GT.Properties.Resources.AVX_ICONS_USERS_FOLDER_h40;
             this.tsmiAddDirectorToProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddDirectorToProject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAddDirectorToProject.Name = "tsmiAddDirectorToProject";
-            this.tsmiAddDirectorToProject.Size = new System.Drawing.Size(168, 44);
+            this.tsmiAddDirectorToProject.Size = new System.Drawing.Size(224, 44);
             this.tsmiAddDirectorToProject.Text = "Asignar director";
             this.tsmiAddDirectorToProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAddDirectorToProject.Click += new System.EventHandler(this.tsmiAddDirectorToProject_Click);
@@ -4128,15 +4297,16 @@
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(784, 564);
+            this.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.ClientSize = new System.Drawing.Size(1045, 694);
             this.Controls.Add(this.mStripMain);
             this.Controls.Add(this.tabControlOptions);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mStripMain;
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1061, 728);
             this.Name = "FormPrincipal";
             this.Text = "SAGT";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_Closing);
