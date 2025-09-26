@@ -47,57 +47,61 @@
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(97, 112);
+            this.lbPassword.Location = new System.Drawing.Point(129, 138);
+            this.lbPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(61, 13);
+            this.lbPassword.Size = new System.Drawing.Size(76, 16);
             this.lbPassword.TabIndex = 105;
             this.lbPassword.Text = "Contraseña";
             // 
             // lbUserId
             // 
             this.lbUserId.AutoSize = true;
-            this.lbUserId.Location = new System.Drawing.Point(98, 48);
+            this.lbUserId.Location = new System.Drawing.Point(131, 59);
+            this.lbUserId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUserId.Name = "lbUserId";
-            this.lbUserId.Size = new System.Drawing.Size(43, 13);
+            this.lbUserId.Size = new System.Drawing.Size(54, 16);
             this.lbUserId.TabIndex = 104;
             this.lbUserId.Text = "Usuario";
             // 
             // m_tbPassword
             // 
-            this.m_tbPassword.Location = new System.Drawing.Point(97, 128);
+            this.m_tbPassword.Location = new System.Drawing.Point(129, 158);
+            this.m_tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.m_tbPassword.Name = "m_tbPassword";
             this.m_tbPassword.PasswordChar = '*';
             this.m_tbPassword.PromptChar = '-';
-            this.m_tbPassword.Size = new System.Drawing.Size(144, 20);
+            this.m_tbPassword.Size = new System.Drawing.Size(191, 22);
             this.m_tbPassword.TabIndex = 103;
             this.m_tbPassword.UseSystemPasswordChar = true;
             // 
             // tbUserId
             // 
-            this.tbUserId.Location = new System.Drawing.Point(97, 64);
+            this.tbUserId.Location = new System.Drawing.Point(129, 79);
+            this.tbUserId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbUserId.MaxLength = 0;
             this.tbUserId.Name = "tbUserId";
-            this.tbUserId.Size = new System.Drawing.Size(144, 20);
+            this.tbUserId.Size = new System.Drawing.Size(191, 22);
             this.tbUserId.TabIndex = 102;
             this.tbUserId.TextChanged += new System.EventHandler(this.tbUserId_TextChanged);
             // 
             // pictureBoxPass
             // 
             this.pictureBoxPass.Image = global::GUI_GT.Properties.Resources.icon_password_40;
-            this.pictureBoxPass.InitialImage = null;
-            this.pictureBoxPass.Location = new System.Drawing.Point(45, 113);
+            this.pictureBoxPass.Location = new System.Drawing.Point(60, 139);
+            this.pictureBoxPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxPass.Name = "pictureBoxPass";
-            this.pictureBoxPass.Size = new System.Drawing.Size(48, 49);
+            this.pictureBoxPass.Size = new System.Drawing.Size(64, 60);
             this.pictureBoxPass.TabIndex = 109;
             this.pictureBoxPass.TabStop = false;
             // 
             // pictureBoxUser
             // 
             this.pictureBoxUser.Image = global::GUI_GT.Properties.Resources.User_Card_h40;
-            this.pictureBoxUser.InitialImage = global::GUI_GT.Properties.Resources.User_Card_h40;
-            this.pictureBoxUser.Location = new System.Drawing.Point(44, 51);
+            this.pictureBoxUser.Location = new System.Drawing.Point(59, 63);
+            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxUser.Name = "pictureBoxUser";
-            this.pictureBoxUser.Size = new System.Drawing.Size(50, 44);
+            this.pictureBoxUser.Size = new System.Drawing.Size(67, 54);
             this.pictureBoxUser.TabIndex = 108;
             this.pictureBoxUser.TabStop = false;
             // 
@@ -107,9 +111,10 @@
             this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
             this.btOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btOk.Location = new System.Drawing.Point(41, 232);
+            this.btOk.Location = new System.Drawing.Point(55, 286);
+            this.btOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(92, 32);
+            this.btOk.Size = new System.Drawing.Size(123, 39);
             this.btOk.TabIndex = 107;
             this.btOk.Text = "Aceptar";
             this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -122,9 +127,10 @@
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btCancel.Location = new System.Drawing.Point(151, 232);
+            this.btCancel.Location = new System.Drawing.Point(201, 286);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(92, 32);
+            this.btCancel.Size = new System.Drawing.Size(123, 39);
             this.btCancel.TabIndex = 106;
             this.btCancel.Text = "Cancelar";
             this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -133,9 +139,10 @@
             // linkLbForgottenPass
             // 
             this.linkLbForgottenPass.AutoSize = true;
-            this.linkLbForgottenPass.Location = new System.Drawing.Point(76, 194);
+            this.linkLbForgottenPass.Location = new System.Drawing.Point(101, 239);
+            this.linkLbForgottenPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLbForgottenPass.Name = "linkLbForgottenPass";
-            this.linkLbForgottenPass.Size = new System.Drawing.Size(133, 13);
+            this.linkLbForgottenPass.Size = new System.Drawing.Size(168, 16);
             this.linkLbForgottenPass.TabIndex = 110;
             this.linkLbForgottenPass.TabStop = true;
             this.linkLbForgottenPass.Text = "He olvidado mi contraseña";
@@ -144,18 +151,20 @@
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
-            this.lbInfo.Location = new System.Drawing.Point(26, 21);
+            this.lbInfo.Location = new System.Drawing.Point(35, 26);
+            this.lbInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbInfo.Name = "lbInfo";
-            this.lbInfo.Size = new System.Drawing.Size(233, 13);
+            this.lbInfo.Size = new System.Drawing.Size(291, 16);
             this.lbInfo.TabIndex = 111;
             this.lbInfo.Text = "Introduzca el nombre de usuario y la contraseña";
             // 
             // checkBoxSavePassword
             // 
             this.checkBoxSavePassword.AutoSize = true;
-            this.checkBoxSavePassword.Location = new System.Drawing.Point(82, 169);
+            this.checkBoxSavePassword.Location = new System.Drawing.Point(109, 208);
+            this.checkBoxSavePassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxSavePassword.Name = "checkBoxSavePassword";
-            this.checkBoxSavePassword.Size = new System.Drawing.Size(120, 17);
+            this.checkBoxSavePassword.Size = new System.Drawing.Size(148, 20);
             this.checkBoxSavePassword.TabIndex = 112;
             this.checkBoxSavePassword.Text = "Guardar contraseña";
             this.checkBoxSavePassword.UseVisualStyleBackColor = true;
@@ -163,11 +172,11 @@
             // FormPass
             // 
             this.AcceptButton = this.btOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(284, 276);
+            this.ClientSize = new System.Drawing.Size(379, 340);
             this.Controls.Add(this.checkBoxSavePassword);
             this.Controls.Add(this.lbInfo);
             this.Controls.Add(this.linkLbForgottenPass);
@@ -181,6 +190,7 @@
             this.Controls.Add(this.tbUserId);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPass";
