@@ -1097,24 +1097,29 @@ namespace GUI_GT
          */
         private void FormPrincipal_Closing(object sender, FormClosingEventArgs e)
         {
-            TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
+            
+            if (e.CloseReason == CloseReason.UserClosing)   //check para ver si el cierre es por el usuario, único caso donde la ventana de confirmación debe aparecer
+            {
+                DialogResult res = ShowMessageDialog(
+                    titleConfirm,
+                    txtConfirmExit,
+                    MessageBoxIcon.Exclamation);
 
-            //string ok = this.dicMessage.labelTraslation("btOk").GetTranslation(lang).ToString();
-            //string cancel = this.dicMessage.labelTraslation("btCancel").GetTranslation(lang).ToString();
-            //MsgBoxUtil.HackMessageBox(ok, cancel);
-            //DialogResult res = MessageBox.Show(txtConfirmExit,
-            //    titleConfirm, MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-            DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmExit, MessageBoxIcon.Exclamation);
+                if (res == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
 
-            if (res == DialogResult.OK)
+            // Guardar configuración en caso de que cerremos
+            if (!e.Cancel)
             {
                 string pathDocuments = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                string pathSagtDir = pathDocuments + "\\" + SAGT_DIR;
+                string pathSagtDir = Path.Combine(pathDocuments, SAGT_DIR);
                 cfgApli.WriteFileConfig(pathSagtDir);
             }
-            e.Cancel = (res == DialogResult.Cancel);
         }
-        
+
 
         #region Selección de opciones del submenú Ayuda
         /*======================================================================================
