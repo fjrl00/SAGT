@@ -2439,23 +2439,15 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Se encarga de actualizar los campos del checkBox cada vez que son modificados
+         *  Se encarga de actualizar inmediatamente los valores de las celdas de checkBox al ser clicadas
          */
-        private void dataGridViewExFacets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewExFacets_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == dataGridViewExFacets.Columns[NAME_COL_OMIT].Index)
+            if (dataGridViewExFacets.CurrentCell is DataGridViewCheckBoxCell)
             {
-                if ((Convert.ToBoolean(dataGridViewExFacets.Rows[e.RowIndex].Cells[NAME_COL_OMIT].Value)))
-                {
-                    dataGridViewExFacets.Rows[e.RowIndex].Cells[NAME_COL_OMIT].Value = false;
-                }
-                else
-                {
-                    dataGridViewExFacets.Rows[e.RowIndex].Cells[NAME_COL_OMIT].Value = true;
-                }
+                dataGridViewExFacets.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-        }// end dataGridViewExFacets_CellContentClick
-
+        }
 
         /* Descripción:
          *  Evento que controla que se pulsen las teclas validas para editar la tabla de frecuencias.
@@ -2599,5 +2591,6 @@ namespace GUI_GT
         #endregion Botones del tapPage Proyectos
 
 
+        
     } // end public partial class FormPrincipal : Form
 } // end namespace GUI_TG
