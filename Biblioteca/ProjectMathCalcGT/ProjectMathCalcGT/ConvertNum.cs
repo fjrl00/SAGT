@@ -27,7 +27,6 @@ namespace AuxMathCalcGT
          * Constantes
          *=================================================================================*/
         public const string STRING_NULL = "NULL";
-        public const string STRING_N_E_U_N = "NeuN";
         // CONSTANTES (separador decimal)
         public const string DECIMAL_SEPARATOR_PERIOD = ".";
         public const string DECIMAL_SEPARATOR_COMMA = ",";
@@ -45,10 +44,6 @@ namespace AuxMathCalcGT
             if (d == null)
             {
                 retVal = STRING_NULL;
-            }
-            else if (double.IsNaN((double)d))
-            {
-                retVal = STRING_N_E_U_N;
             }
             return retVal;
         }
