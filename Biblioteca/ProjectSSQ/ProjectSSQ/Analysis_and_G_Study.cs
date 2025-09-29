@@ -643,9 +643,8 @@ namespace ProjectSSQ
             {
 
                 string nameFile = reader.ReadLine(); // path del fichero del que se extrajeron los datos
-                string[] timeFormats = { "d/MM/yyyy HH:mm:ss", "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy H:mm:ss" };
-                DateTime dateFile = DateTime.ParseExact(reader.ReadLine(), timeFormats,
-                                   new CultureInfo("es-ES", true), DateTimeStyles.AssumeLocal);
+                DateTime dateFile = DateTime.ParseExact(reader.ReadLine(), "dd/MM/yyyy H:mm:ss",
+                                   new CultureInfo("es-ES", false), DateTimeStyles.AssumeLocal);
 
                 // leemos el comentario
                 string line;
@@ -702,7 +701,7 @@ namespace ProjectSSQ
             }
             catch(FormatException)
             {
-                throw new Analysis_and_G_Study_Exception("Error de formato al ler los datos del fichero");
+                throw new Analysis_and_G_Study_Exception("Error de formato al leer los datos del fichero");
             }
             catch (TableAnalysisOfVarianceException)
             {

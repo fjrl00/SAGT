@@ -74,7 +74,7 @@ namespace ProjectSSQ
             {
                 relString = this.relErrorVar.ToString();
             }
-            return "Varianza de eror absoluta: "+absString+"\n"+
+            return "Varianza de error absoluta: "+absString+"\n"+
                 "Varianza de error relativo: "+relString;
         }
 
