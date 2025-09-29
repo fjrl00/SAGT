@@ -1289,7 +1289,7 @@ namespace ProjectSSQ
             {
                 string line;
                 ListFacets lf; // Lista de facetas
-                ListFacets lf_aux; // Lista de facetas auxiliar
+                //ListFacets lf_aux; // Lista de facetas auxiliar
                 List<string> ldesing = new List<string>();
 
                 /* inicalizamos el vector suma de cuadrados de las desviaciones (ssq)*/

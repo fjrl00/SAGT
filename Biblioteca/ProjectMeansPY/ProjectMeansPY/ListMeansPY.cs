@@ -137,7 +137,7 @@ namespace ListMeansPY
                         }// end if (* 1 *)
                     }// end while
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     throw new ListMeansPYException("Error en el formato del fichero");
                 }// end try

@@ -32,7 +32,7 @@ namespace GUI_GT
         string version = "Versión:";
         string student = "Francisco Jesús Ramos Pérez";
         string projectDirector = "Dr. Don Antonio Hernández Mendo";
-        string academicDirector = "Dr. Don José Luis Pastrana Brincones";
+        //string academicDirector = "Dr. Don José Luis Pastrana Brincones";
         string methodologicalAdviser = "Dr. Don Ángel Blanco Villaseñor";
 
 

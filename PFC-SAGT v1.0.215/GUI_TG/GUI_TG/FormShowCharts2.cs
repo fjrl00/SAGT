@@ -56,11 +56,11 @@ namespace GUI_GT
         // Cabeceras de las columnas pertenecientes al tabPage de Optimization
         // ===================================================================
         // private string sizeOfUniverse = "Tamaño del universo";
-        private string levelsProcess = "Niveles procesados";
+        //private string levelsProcess = "Niveles procesados";
         // indice de la posición en la tabla de optimización de la columna Niveles de procesamiento
-        private int IND_LEVELS_PROCESS = 2;
+        //private int IND_LEVELS_PROCESS = 2;
         // indice de la posición en la tabla de optimización de la columna Tamaño del universo
-        private int IND_SIZE_OF_UNIVERSE = 3;
+        //private int IND_SIZE_OF_UNIVERSE = 3;
 
         // String para la columna de resumen de datos
         //=============================================

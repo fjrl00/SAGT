@@ -309,7 +309,7 @@ namespace MultiFacetData
                     throw new ListFacetsException("Error en el formato del fichero");
                 }
             }
-            catch (FacetException e)
+            catch (FacetException)
             {
                 throw new ListFacetsException("Error en la lectura de facetas");
             }

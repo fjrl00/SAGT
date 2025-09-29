@@ -183,7 +183,7 @@ namespace SsqPY
 
                     
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     throw new RsaSsqPY_Exception("Error en el formato del fichero");
                 }

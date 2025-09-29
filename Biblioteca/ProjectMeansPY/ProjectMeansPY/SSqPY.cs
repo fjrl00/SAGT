@@ -155,7 +155,7 @@ namespace SsqPY
                     }
                     ssqPY = new SSqPY(descriptionFile, lf, ssq, lfDepend, lfIndepend);
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     throw new SSqPY_Exception("Error en el formato del fichero");
                 }
