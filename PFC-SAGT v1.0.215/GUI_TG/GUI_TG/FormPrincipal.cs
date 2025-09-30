@@ -1307,23 +1307,23 @@ namespace GUI_GT
         {
             // Llama al método (...) de la clase parcial DataOptions
             // Se encaga de editar los datos de la tabla de observaciones.
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
             try
             {
                 // Start the thread
-                th.Start();
+                //th.Start();
                 MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
                 if (this.checkBoxHideNulls.Checked)
                 {
                     // Si la propiedad checked esta a false se muestran todos los valores
                     loadDataInTabPageObsTable(multiFacets);
                 }
-                th.Abort();
+                //th.Abort();
             }
             catch (IOException ex)
             {
-                th.Abort();
+                //th.Abort();
                 ShowMessageErrorOK(ex.Message);
             }
             EditDataObsTable();
@@ -1542,11 +1542,11 @@ namespace GUI_GT
         private void checkBoxHideNulls_CheckedChanged(object sender, EventArgs e)
         {
             CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            fw.Show();
+            Application.DoEvents();
             try
             {
-                // Start the thread
-                th.Start();
+                
                 MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
                 if (this.checkBoxHideNulls.Checked)
                 {
@@ -1558,13 +1558,17 @@ namespace GUI_GT
                     // Si la propiedad checked esta a false se muestran todos los valores
                     loadDataInTabPageObsTable(multiFacets);
                 }
-                th.Abort();
+                
             }
             catch (IOException ex)
             {
-                th.Abort();
                 ShowMessageErrorOK(ex.Message);
             }
+            finally
+            {
+                fw.Close();
+            }
+
         }// end checkBoxHideNulls_CheckedChanged
 
         #endregion Botones de los tabPage: Tabla de Facetas y Tabla de observaciones

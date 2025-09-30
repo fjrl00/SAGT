@@ -1089,10 +1089,10 @@ namespace GUI_GT
         public void importAnalysis_SSqFile(string path)
         {
             // Ventana de carga
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            CWait fw2 = new CWait(msgLoading);
-            Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw2 = new CWait(msgLoading);
+            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
 
             try
             {
@@ -1105,32 +1105,32 @@ namespace GUI_GT
                 switch (typeOfFile)
                 {
                     case (TypeOfFile.ssq):
-                        th.Start();
+                        //th.Start();
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileSsq(path);
-                        th.Abort();
+                        //th.Abort();
                         break;
                     case (TypeOfFile.rsa):
-                        th.Start();
+                        //th.Start();
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileRsa(path);
-                        th.Abort();
+                        //th.Abort();
                         break;
                     case (TypeOfFile.txt):
-                        th.Start();
+                        //th.Start();
                         List<AnalysisSsqEduG> listAnalysisEduG = AnalysisSsqEduG.ReadFileReportTxtEduG(path);
-                        th.Abort();
+                        //th.Abort();
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG);
                         break;
                     case (TypeOfFile.rtf):
-                        th.Start();
+                        //th.Start();
                         List<AnalysisSsqEduG> listAnalysisEduG2 = AnalysisSsqEduG.ReadFileReportRtfEduG(path);
-                        th.Abort();
+                        //th.Abort();
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
                         // Ficheros xls de excel
-                        th.Start();
+                        //th.Start();
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
-                        th.Abort();
+                        //th.Abort();
                         break;
                     default:
                         ShowMessageErrorOK("No se muestra ninguno");
@@ -1139,19 +1139,19 @@ namespace GUI_GT
                 }
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    th2.Start();
+                    //th2.Start();
                     DateTime date = DateTime.Now;
                     this.anl_tAnalysis_G_study_opt = tAnalysis_tG_Study_Opt;
                     this.anl_tAnalysis_G_study_opt.SetDateTime(date);
                     this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(path);
                     LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, path);
-                    th2.Abort();
+                    //th2.Abort();
                 }
             }
             catch (SSqPY_Exception)
             {
-                th.Abort();
-                th2.Abort();
+                //th.Abort();
+                //th2.Abort();
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }

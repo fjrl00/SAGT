@@ -155,8 +155,8 @@ namespace GUI_GT
          */
         private void tsmiActionDataImport_Click(object sender, EventArgs e)
         {
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
@@ -186,9 +186,9 @@ namespace GUI_GT
                                 //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
 
                                 // Start the thread
-                                th.Start();
+                                //th.Start();
                                 this.importDataFile(formDataImport.pathFile());
-                                th.Abort();
+                                //th.Abort();
                                 salir = true;
                             }
                             break;
@@ -197,13 +197,13 @@ namespace GUI_GT
             }
             catch(IOException)
             {
-                th.Abort();
+                //th.Abort();
                 // Mostramos un mensaje indicando que el fichero esta siendo usado por otro programa
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
             {
-                th.Abort();
+                //th.Abort();
                 // Mostramos un mensaje indicando que el fichero no esta en el formato correcto
                 // MessageBox.Show(ex.Message);
                 ShowMessageErrorOK(ex.Message);

@@ -39,5 +39,15 @@ namespace GUI_GT
         {
             fw.ShowDialog();
         }
+
+        public void Show()
+        {
+            fw.Show();
+        }
+
+        public void Close()
+        {
+            fw.Close();
+        }
     }
 }

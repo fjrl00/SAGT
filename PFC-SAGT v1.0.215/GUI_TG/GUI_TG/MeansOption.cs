@@ -516,8 +516,8 @@ namespace GUI_GT
          */
         private void loadListOfMeansOfFileText_EduG(string path, string nameFileTras)
         {
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
 
             try
             {
@@ -525,7 +525,7 @@ namespace GUI_GT
                 this.Refresh();
                 Application.DoEvents();
                 // Start the thread
-                th.Start();
+                //th.Start();
 
                 List<ListMeansEduG> listOfListMeans = ListMeansEduG.ReadFileReportTxtEduG(path, cfgApli.GetTypeOfTableMeans());
                 List<string> listString = new List<string>();
@@ -535,7 +535,7 @@ namespace GUI_GT
                     listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString());
                 }
 
-                th.Abort();
+                //th.Abort();
 
                 TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
                 FormSelectionOneItemReport formSelectionOne = new FormSelectionOneItemReport(listString, lang);
@@ -572,7 +572,7 @@ namespace GUI_GT
             }
             catch (ListMeansEduG_Exception)
             {
-                th.Abort();
+                //th.Abort();
                 ShowMessageErrorOK(errorFormatFile);
             }
         }// end loadListOfMeansOfFileText_EduG
@@ -584,10 +584,10 @@ namespace GUI_GT
          */
         private void loadListOfMeansOfFileRtf_EduG(string path)
         {
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            CWait fw2 = new CWait(msgLoading);
-            Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw2 = new CWait(msgLoading);
+            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
 
             try
             {
@@ -595,7 +595,7 @@ namespace GUI_GT
                 this.Refresh();
                 Application.DoEvents();
                 // Start the thread
-                th.Start();
+                //th.Start();
 
                 List<ListMeansEduG> listOfListMeans = ListMeansEduG.ReadFileReportRtfEduG(path, cfgApli.GetTypeOfTableMeans());
                 List<string> listString = new List<string>();
@@ -605,7 +605,7 @@ namespace GUI_GT
                     listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString()); 
                 }
 
-                th.Abort();
+                //th.Abort();
                 TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
                 FormSelectionOneItemReport formSelectionOne = new FormSelectionOneItemReport(listString, lang);
                 bool salir = false;
@@ -621,7 +621,7 @@ namespace GUI_GT
                             int pos = formSelectionOne.SelectionIndex();
                             if (pos >= 0 && pos <= listOfListMeans.Count)
                             {
-                                th2.Start();
+                                //th2.Start();
                                 ListMeans listMeans = listOfListMeans[pos];
                                 // ListMeans listMeans = ListMeansEduG.ReadFileReportRtfEduG(path);
                                 listMeans.SetNameFileDataCreation(path);
@@ -629,7 +629,7 @@ namespace GUI_GT
                                 listMeans.SetDateTime(date);
                                 this.sagtElements.SetListMeans(listMeans);
                                 listOfTableMeansToTabPageMeans(listMeans);
-                                th2.Abort();
+                                //th2.Abort();
                                 salir = true;
                             }
                             else
@@ -643,8 +643,8 @@ namespace GUI_GT
             }
             catch (ListMeansEduG_Exception)
             {
-                th.Abort();
-                th2.Abort();
+                //th.Abort();
+                //th2.Abort();
                 ShowMessageErrorOK(errorFormatFile);
             }
         }

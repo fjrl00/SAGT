@@ -1486,10 +1486,10 @@ namespace GUI_GT
         public void importSSqFile(string path)
         {
             // Esta ventana se mostrará mientras se carga el fichero
-            CWait fw = new CWait(msgLoading);
-            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            CWait fw2 = new CWait(msgLoading);
-            Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            //CWait fw = new CWait(msgLoading);
+            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //CWait fw2 = new CWait(msgLoading);
+            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
 
             try
             {
@@ -1513,15 +1513,15 @@ namespace GUI_GT
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileRsa(path);
                         break;
                     case (TypeOfFile.txt):
-                        th.Start();
+                        //th.Start();
                         List<AnalysisSsqEduG> listAnalysisEduG = AnalysisSsqEduG.ReadFileReportTxtEduG(path);
-                        th.Abort();
+                        //th.Abort();
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG);
                         break;
                     case (TypeOfFile.rtf):
-                        th.Start();
+                        //th.Start();
                         List<AnalysisSsqEduG> listAnalysisEduG2 = AnalysisSsqEduG.ReadFileReportRtfEduG(path);
-                        th.Abort();
+                        //th.Abort();
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
@@ -1535,7 +1535,7 @@ namespace GUI_GT
 
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    th2.Start();
+                    //th2.Start();
                     date = DateTime.Now;
                     tAnalysis_tG_Study_Opt.SetDateTime(date);
                     tAnalysis_tG_Study_Opt.SetNameFileDataCreation(path);
@@ -1549,13 +1549,13 @@ namespace GUI_GT
                     this.sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
                     // mostramos el tabPage de suma de cuadrados
                     this.tabPageSSQ.Parent = this.tabControlOptions;
-                    th2.Abort();
+                    //th2.Abort();
                 }
             }
             catch (ImportEduGSsq.AnalysisSsqEduG_Exception)
             {
-                th.Abort();
-                th2.Abort();
+                //th.Abort();
+                //th2.Abort();
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }
