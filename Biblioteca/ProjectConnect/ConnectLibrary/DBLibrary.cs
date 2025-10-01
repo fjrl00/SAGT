@@ -160,7 +160,7 @@ namespace ConnectLibrary
         public AccessDB(string pathBD)
         {
             origen_datos = pathBD;
-            cadenaConexion = "Provider=Microsoft.Jet.OLEDB.4.0; "
+            cadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0; "
                     + "Data Source=" + pathBD;
         }
     }
