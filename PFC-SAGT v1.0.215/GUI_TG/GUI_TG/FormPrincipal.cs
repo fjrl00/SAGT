@@ -2162,7 +2162,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisWordExport_Click(object sender, EventArgs e)
         {
-            WriterAnalysisWordDocument();
+            SelectElementsAndCreateWordDocument();
         }
 
 

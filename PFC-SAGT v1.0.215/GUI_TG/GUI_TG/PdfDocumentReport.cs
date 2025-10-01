@@ -59,8 +59,6 @@ namespace GUI_GT
          */
         private void SelectElementsAndCreatePDFDocument()
         {
-
-
             bData = !(sagtElements.GetMultiFacetsObs() == null);
             bMeans = !(sagtElements.GetListMeans() == null);
             bSsq = !(sagtElements.GetAnalysis_and_G_Study() == null);
@@ -98,7 +96,6 @@ namespace GUI_GT
                                 WriterSagtPdfDocument(saveDialog.FileName);
                                 salir = true;
                             }
-                            
                         }
                         else
                         {
@@ -162,7 +159,7 @@ namespace GUI_GT
                 PdfWriter pdfWriter = PdfWriter.GetInstance(doc, file);
 
                 // OnEndPage(writer, doc);
-                pdfPage ev = new pdfPage(SAGT + " " + this.version, UNIV_UMA,
+                pdfPage ev = new pdfPage(SAGT + this.version, UNIV_UMA,
                     developer + ": " + NAME_STUDENT, projectDirector + ": " + NAME_PROJECT_DIRECTOR,
                     academicDirector + ": " + NAME_ACADEMIC_DIRECTOR, pag);
                 pdfWriter.PageEvent = ev; //After the Open
@@ -517,6 +514,7 @@ namespace GUI_GT
 
         /* Descripción:
          *  Devuelve una tabla que contiene la fecha de emisión de informe
+         *  (Exactamente, dibuja una tabla de una fila y dos celdas, de bordes invisibles, una alineada a la izq y otra a la der)
          */
         private PdfPTable FechaDeEmision(iTextSharp.text.Font font)
         {

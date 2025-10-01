@@ -71,6 +71,7 @@ namespace GUI_GT
         bool bData = false; // indica si se imprimirá el informe de la tabla de frecuencias
         bool bMeans = false; // indica si se imprimirá el informe de la lista de tabla de medias
         bool bSsq = false; // indica si se imprmimirá el informe de las tablas de análisis de varianza
+        //NOTA: Su significado cambia con el contexto, en por ejemplo SelectElementsAndCreateWordDocument se usan durante un instante para ver si esos elementos son seleccionables, no si se van a imprimir
 
         bool isFinishTableFacet = false;// indica si se ha terminado con la tabla de facetas
         bool isFinishTableObs = false; // indica si se ha terminado con la tabla de observaciones
