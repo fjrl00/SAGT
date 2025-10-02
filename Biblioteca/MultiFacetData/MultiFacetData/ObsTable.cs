@@ -103,23 +103,26 @@ namespace MultiFacetData
          */
         public ObsTable(ListFacets list_facets)
         {
+            int numFacets = list_facets.Count();
+
             if (list_facets == null)
             {
                 throw new ObsTableException("Error: no se hay facetas");
             }
-            else if (list_facets.Count() < 2)
+            else if (numFacets < 2)
             {
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
-            int rows = 1; // Guarda el nº de filas de la matriz de observaciones.
+            
+            int rows = 1; // Guarda el nº de filas de la matriz de observaciones. Inicializada con la identidad multiplicativa (IM*x=x)
 
             int[] levelOfFacets = new int[list_facets.Count()]; // Este array nos ayudará a contruir la estructura.
             // En este array insertaremos los niveles de cada faceta.
 
             int i = 0; // Será la dimensión del array y nuestro indice.
 
-            int numFacets = list_facets.Count();
+            
 
             for (int j = 0; j < numFacets; j++ )
             {
