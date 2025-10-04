@@ -204,6 +204,7 @@ namespace MultiFacetData
         /*======================================================================================
          * Métodos de instancia:
          *  - Add
+         *  - ParentOrderAdd
          *  - Remove
          *  - IsEmpty
          *  - WritingStreamListFacets
@@ -216,7 +217,7 @@ namespace MultiFacetData
          * Parámetros:
          *      Facet f: faceta que queremos añadir a nuestro objeto de la clase ListFacets
          * Excepciónes:
-         *      Lanza una excepcioón de tipo ListFacetsException si ya existe una faceta con el
+         *      Lanza una excepción de tipo ListFacetsException si ya existe una faceta con el
          *      mismo nombre en la lista.
          */
         public void Add(Facet f)
@@ -227,6 +228,38 @@ namespace MultiFacetData
                 throw new ListFacetsException("Existe una faceta con el mismo nombre.");
             }
             listFacets.Add(f);
+        }
+
+        /*
+         * Descripción:
+         *  Añade una faceta a la clase ListFacets, siguiendo el orden que sigue 'parent'
+         */
+        public void ParentOrderAdd(Facet f, ListFacets parent)
+        {
+            if(!parent.ContainsList(this) || !parent.Contains(f))
+            {
+                throw new ListFacetsException("Las listas de facetas de instrumentación y diferenciación no están sincronizadas con la original");
+            }
+            if (this.ExistNameFacet(f))
+            {
+                throw new ListFacetsException("Existe una faceta con el mismo nombre.");
+            }
+
+            int parentIndex = parent.IndexOf(f);
+            
+            // Find where this item should go in sublist
+            int insertIndex = this.listFacets.Count; // append at the end by default
+            for (int i = 0; i < this.listFacets.Count; i++) //begin iterating through the sublist
+            {
+                int sublistItemIndex = parent.IndexOf(this.listFacets[i]);  // get this sublist item's position in the parent list
+                if (parentIndex < sublistItemIndex) // if f should appear before this sublist item (based on parent order)
+                {
+                    insertIndex = i;                // aim to put the facet just before the current iterated item
+                    break;
+                }
+            }
+
+            this.listFacets.Insert(insertIndex, f);
         }
 
         /*

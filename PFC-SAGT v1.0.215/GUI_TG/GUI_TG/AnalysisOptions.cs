@@ -431,13 +431,9 @@ namespace GUI_GT
                     this.analysisSourceOfVarDiff = new ListFacets();
                     this.analysisSourceOfVarInst = new ListFacets();
 
-                    foreach (Facet f in listFacetsAnalysis)
-                    {
-                        analysisSourceOfVarInst.Add(f);
-                    }
 
                     // Creamos la ventana para introducir el diseño de medida
-                    FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, cfgApli.GetConfigLanguage());
+                    FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
                     bool salir = false; // variable de control del bucle
 
                     do
@@ -1544,7 +1540,7 @@ namespace GUI_GT
                 analysisSourceOfVarInst = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfInstrumentation();
                 // mostramos la ventana de selección de diseño
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, cfgApli.GetConfigLanguage());
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, this.anl_tAnalysis_G_study_opt.GetListFacets(), cfgApli.GetConfigLanguage());
                 bool salir = false; // variable de control del bucle
 
                 do

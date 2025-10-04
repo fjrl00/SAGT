@@ -12,12 +12,6 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MultiFacetData;
 
@@ -40,6 +34,7 @@ namespace GUI_GT
         // Variables
         ListFacets lfDiff; // lista de facetas de diferenciación, en principio la lista vacia
         ListFacets lfInst; // lista de facetas de instrumentación, en principio la original
+        ListFacets lfParent; // lista de facetas original
         // Mensages (String)
         // Este mensage se muestra si no se han seleccionado las fuentes de variación de manera correcta
         private string txtMessageNoSourceOfDiff = "No hay una fuente dependiente seleccionada";
@@ -61,7 +56,7 @@ namespace GUI_GT
          *  Constructor. Inicializa las variables que contiene la lista de facetas (fuentes de
          *  variciación) facetas de diferenciación e instrumentación.
          */
-        public FormMeasurDesign(ListFacets lfDiff, ListFacets lfInst, TransLibrary.Language lang)
+        public FormMeasurDesign(ListFacets lfDiff, ListFacets lfInst, ListFacets lfParent, TransLibrary.Language lang)
         {
             InitializeComponent();
             // traducimos
@@ -70,6 +65,16 @@ namespace GUI_GT
             // asignamos las fuentes de variación
             this.lfDiff = lfDiff;
             this.lfInst = lfInst;
+            // Por defecto las facetas irán todas a instrumentación
+            if (lfDiff.IsEmpty() && lfInst.IsEmpty())
+            {
+                foreach (Facet f in lfParent)
+                {
+                    this.lfInst.Add(f);
+                }
+            }
+            this.lfParent = lfParent;
+                
             LoadSourceOfInstListBox();
             this.listBoxSourceInst.SetSelected(0,true);
             WriteSourceOfVarInTextBox();
@@ -128,7 +133,7 @@ namespace GUI_GT
             if (this.listBoxSourceInst.SelectedIndex >= 0)
             {
                 int pos = this.listBoxSourceInst.SelectedIndex;
-                this.lfDiff.Add(this.lfInst.FacetInPos(pos));
+                this.lfDiff.ParentOrderAdd(this.lfInst.FacetInPos(pos), lfParent);
                 this.lfInst.Remove(this.lfInst.FacetInPos(pos));
                 WriteSourceOfVarInTextBox();
                 LoadSourceOfInstListBox();
@@ -160,7 +165,7 @@ namespace GUI_GT
             if (this.listBoxSourceDiff.SelectedIndex >= 0)
             {
                 int pos = this.listBoxSourceDiff.SelectedIndex;
-                this.lfInst.Add(this.lfDiff.FacetInPos(pos));
+                this.lfInst.ParentOrderAdd(this.lfDiff.FacetInPos(pos), lfParent);
                 this.lfDiff.Remove(this.lfDiff.FacetInPos(pos));
                 WriteSourceOfVarInTextBox();
                 LoadSourceOfInstListBox();

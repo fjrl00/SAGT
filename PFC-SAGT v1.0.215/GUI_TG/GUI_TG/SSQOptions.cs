@@ -231,12 +231,7 @@ namespace GUI_GT
                     // Primero debemos preguntarle al usuario por el diseño de medida.
                     ListFacets sourceOfDifferentiation = new ListFacets();
                     ListFacets sourceOfInstrumentation = new ListFacets();
-                    foreach (Facet f in multiFacets.ListFacets())
-                    {
-                        sourceOfInstrumentation.Add(f);
-                    }
-
-                    FormMeasurDesign formMeasurDesign = new FormMeasurDesign(sourceOfDifferentiation, sourceOfInstrumentation, cfgApli.GetConfigLanguage());
+                    FormMeasurDesign formMeasurDesign = new FormMeasurDesign(sourceOfDifferentiation, sourceOfInstrumentation, multiFacets.ListFacets(), cfgApli.GetConfigLanguage());
 
                     bool salir = false;
                     do
