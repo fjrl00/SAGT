@@ -726,7 +726,7 @@ namespace ProjectSSQ
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public object Clone()
+        public virtual object Clone()
         {
             // Copiamos la fuentes de diferenciación, 
             ListFacets copyLfDifferentiation = (ListFacets)this.lfDifferentiation.Clone();
