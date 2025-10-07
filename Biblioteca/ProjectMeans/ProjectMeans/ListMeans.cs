@@ -373,57 +373,66 @@ namespace ProjectMeans
                                    new CultureInfo("es-ES", true), DateTimeStyles.AssumeLocal);
                 retListMeans.SetDateTime(dateFile); // asignamos fecha
 
-                // leemos el comentario
                 string line;
-                string txt = "";
-                if (!(line = reader.ReadLine()).Equals(BEGIN_COMMENT))
+
+                // leemos el comentario
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_COMMENT))
                 {
-                    throw new ListMeansException("Error en la lectura de fichero");
+                    throw new ListMeansException($"Expected '{BEGIN_COMMENT}' but found '{line}' when parsing list of means.");
                 }
-                
-                txt = reader.ReadLine();
 
-                while (!(line = reader.ReadLine()).Equals(END_COMMENT))
+                StringBuilder commentBuilder = new System.Text.StringBuilder();
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_COMMENT))
                 {
-                    txt = txt + "\n" + line;
+                    if (commentBuilder.Length > 0)
+                        commentBuilder.Append('\n');
+                    commentBuilder.Append(line);
                 }
-                // finalizamos la lectura de comentarios
-
-                retListMeans.SetTextComment(txt); // asignamos comentario
-
-                if ((line = reader.ReadLine()).Equals(BEGIN_LIST_MEANS))
+                if (line == null)
                 {
-                    while (!(line = reader.ReadLine()).Equals(END_LIST_MEANS))
+                    throw new ListMeansException("Unexpected end of file while reading list of means.");
+                }
+                retListMeans.SetTextComment(commentBuilder.ToString()); // asignamos comentario
+
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_LIST_MEANS))
+                {
+                    throw new TableMeansException($"Expected '{BEGIN_LIST_MEANS}' but found '{line}' when parsing list of means.");
+                }
+
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_MEANS))
+                {
+                    if (line.Equals(TableMeans.BEGIN_TABLE_MEANS))
                     {
-                        if (line.Equals(TableMeans.BEGIN_TABLE_MEANS))
-                        {
-                            TableMeans tb = TableMeans.ReadingStreamTableMeans(reader);
-                            retListMeans.Add(tb);
-                        }
-                        else if (line.Equals(TableMeansDif.BEGIN_TABLE_MEANS_DIFF))
-                        {
-                            TableMeansDif tb = TableMeansDif.ReadingStreamTableMeans(reader);
-                            retListMeans.Add(tb);
-                        }
-                        else if (line.Equals(TableMeansTypScore.BEGIN_TABLE_MEANS_TYPICAL_SCORE))
-                        {
-                            TableMeansTypScore tb = TableMeansTypScore.ReadingStreamTableMeans(reader);
-                            retListMeans.Add(tb);
-                        }
+                        TableMeans tb = TableMeans.ReadingStreamTableMeans(reader);
+                        retListMeans.Add(tb);
+                    }
+                    else if (line.Equals(TableMeansDif.BEGIN_TABLE_MEANS_DIFF))
+                    {
+                        TableMeansDif tb = TableMeansDif.ReadingStreamTableMeans(reader);
+                        retListMeans.Add(tb);
+                    }
+                    else if (line.Equals(TableMeansTypScore.BEGIN_TABLE_MEANS_TYPICAL_SCORE))
+                    {
+                        TableMeansTypScore tb = TableMeansTypScore.ReadingStreamTableMeans(reader);
+                        retListMeans.Add(tb);
                     }
                 }
-                else
+                if (line == null)
                 {
-                    throw new TableMeansException();
+                    throw new TableMeansException("Unexpected end of file while reading list of means.");
                 }
             }
-            catch (TableMeansException)
+            catch (TableMeansException ex)
             {
-                throw new ListMeansException("Error al leer de fichero");
+                throw new ListMeansException("Error in list of means.", ex);
             }
-            catch (TableMeansTypScoreException)
+            catch (TableMeansDifException ex)
             {
-                throw new ListMeansException("Error al leer de fichero");
+                throw new ListMeansException("Error in list of means.", ex);
+            }
+            catch (TableMeansTypScoreException ex)
+            {
+                throw new ListMeansException("Error in list of means.", ex);
             }
             return retListMeans;
         }// end StreamReaderFileListMeans

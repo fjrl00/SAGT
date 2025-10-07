@@ -646,74 +646,98 @@ namespace ProjectSSQ
                 DateTime dateFile = DateTime.ParseExact(reader.ReadLine(), "dd/MM/yyyy H:mm:ss",
                                    new CultureInfo("es-ES", false), DateTimeStyles.AssumeLocal);
 
-                // leemos el comentario
                 string line;
-                string txt = "";
-                if (!(line = reader.ReadLine()).Equals(BEGIN_COMMENT))
+
+                // leemos el comentario
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_COMMENT))
                 {
-                    throw new Analysis_and_G_Study_Exception("Error en la lectura de fichero");
+                    throw new Analysis_and_G_Study_Exception($"Expected '{BEGIN_COMMENT}' but found '{line}' when parsing Analysis_and_G_Study.");
                 }
 
-                txt = reader.ReadLine();
-                while (!(line = reader.ReadLine()).Equals(END_COMMENT))
+                StringBuilder commentBuilder = new System.Text.StringBuilder();
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_COMMENT))
                 {
-                    // txt = txt + line + "\n";
-                    txt = txt + "\n" + line;
+                    if (commentBuilder.Length > 0)
+                        commentBuilder.Append('\n');
+                    commentBuilder.Append(line);
                 }
-                // finalizamos la lectura de comentarios
+                if (line == null)
+                {
+                    throw new Analysis_and_G_Study_Exception("Unexpected end of file while reading Analysis_and_G_Study.");
+                }
 
-                if ((line = reader.ReadLine()).Equals(BEGIN_ANALYSIS_SSQ))
-                {// (* 1 *)
-                    // Lectura de tablas análisis
-                    if ((line = reader.ReadLine()).Equals(TableAnalysisOfVariance.BEGIN_TABLE_ANALYSIS_OF_VARIANCE))
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_ANALYSIS_SSQ))
+                {
+                    throw new Analysis_and_G_Study_Exception($"Expected '{BEGIN_ANALYSIS_SSQ}' but found '{line}' when parsing Analysis_and_G_Study.");
+                }
+
+
+
+                // Lectura de tablas análisis
+                if ((line = reader.ReadLine()) == null || !line.Equals(TableAnalysisOfVariance.BEGIN_TABLE_ANALYSIS_OF_VARIANCE))
+                {
+                    throw new Analysis_and_G_Study_Exception(
+                        $"Expected '{TableAnalysisOfVariance.BEGIN_TABLE_ANALYSIS_OF_VARIANCE}' but found '{line}' when parsing Analysis_and_G_Study.");
+                }
+
+                tb_analysis = TableAnalysisOfVariance.ReadingStreamTableAnalysisOfVariance(reader);
+
+                // Lectura de tabla G_Study
+                if ((line = reader.ReadLine()) == null || !line.Equals(ProjectSSQ.TableG_Study_Percent.BEGIN_TABLE_G_STUDY_PERCENT))
+                {
+                    throw new Analysis_and_G_Study_Exception(
+                        $"Expected '{ProjectSSQ.TableG_Study_Percent.BEGIN_TABLE_G_STUDY_PERCENT}' but found '{line}' when parsing Analysis_and_G_Study.");
+                }
+
+                tb_G_Study = ProjectSSQ.TableG_Study_Percent.ReadingStreamTableG_Study_Percent(reader);
+
+                // lectura de lista de parámetros de optimización
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_LIST_G_PARAMETERS_OPT))
+                {
+                    throw new Analysis_and_G_Study_Exception($"Expected '{BEGIN_LIST_G_PARAMETERS_OPT}' but found '{line}' when parsing Analysis_and_G_Study.");
+                }
+
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_G_PARAMETERS_OPT))
+                {
+                    if ((line = reader.ReadLine()).Equals(G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
                     {
-                        tb_analysis = TableAnalysisOfVariance.ReadingStreamTableAnalysisOfVariance(reader);
-
-                        // Lectura de tabla G_Study
-                        if ((line = reader.ReadLine()).Equals(ProjectSSQ.TableG_Study_Percent.BEGIN_TABLE_G_STUDY_PERCENT))
-                        {
-                            tb_G_Study = ProjectSSQ.TableG_Study_Percent.ReadingStreamTableG_Study_Percent(reader);
-
-                            // lectura de lista de parámetros de optimización
-                            if ((line = reader.ReadLine()).Equals(BEGIN_LIST_G_PARAMETERS_OPT))
-                            {
-                                while (!line.Equals(END_LIST_G_PARAMETERS_OPT))
-                                {
-                                    if ((line = reader.ReadLine()).Equals(G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
-                                    {
-                                        G_ParametersOptimization gp = G_ParametersOptimization.ReadingStreamGParametersOptimization(reader);
-                                        listG_P.Add(gp);
-                                    }
-                                }
-                            }
-                        }
+                        throw new Analysis_and_G_Study_Exception(
+                            $"Expected '{G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT}' but found '{line}' when parsing Analysis_and_G_Study.");
                     }
-                    if (!(line = reader.ReadLine()).Equals(END_ANALYSIS_SSQ))
-                    {
-                        throw new Analysis_and_G_Study_Exception("Error: no se ha encotrado la marca de final de las tablas de análisis");
-                    }
-                }// end if (* 1 *)
+
+                    G_ParametersOptimization gp = G_ParametersOptimization.ReadingStreamGParametersOptimization(reader);
+                    listG_P.Add(gp);
+                }
+                if (line == null)
+                {
+                    throw new Analysis_and_G_Study_Exception("Unexpected end of file while reading Analysis_and_G_Study.");
+                }
+
+                if (!(line = reader.ReadLine()).Equals(END_ANALYSIS_SSQ))
+                {
+                    throw new Analysis_and_G_Study_Exception($"Expected '{END_ANALYSIS_SSQ}' but found '{line}' when parsing Analysis_and_G_Study.");
+                }
 
                 tables = new Analysis_and_G_Study(tb_analysis, tb_G_Study, listG_P);
                 tables.SetNameFileDataCreation(nameFile); // asignamos nombre
                 tables.SetDateTime(dateFile); // asignamos fecha
-                tables.SetTextComment(txt); // asignamos comentario
+                tables.SetTextComment(commentBuilder.ToString()); // asignamos comentario
             }
-            catch(FormatException)
+            catch(FormatException ex)
             {
-                throw new Analysis_and_G_Study_Exception("Error de formato al leer los datos del fichero");
+	            throw new Analysis_and_G_Study_Exception($"Unexpected value found when parsing Analysis_and_G_Study: {ex.Message}");
             }
-            catch (TableAnalysisOfVarianceException)
+            catch (TableAnalysisOfVarianceException ex)
             {
-                throw new Analysis_and_G_Study_Exception("Error al leer la tabla de anális del fichero");
+                throw new Analysis_and_G_Study_Exception("Error in Analysis_and_G_Study.", ex);
             }
-            catch (TableG_Study_PercentException)
+            catch (TableG_Study_PercentException ex)
             {
-                throw new Analysis_and_G_Study_Exception("Error al leer la tabla G_Study del fichero");
+                throw new Analysis_and_G_Study_Exception("Error in Analysis_and_G_Study.", ex);
             }
-            catch (G_ParametersOptimizationException)
+            catch (G_ParametersOptimizationException ex)
             {
-                throw new Analysis_and_G_Study_Exception("Error al leer los parámetros de optimización del fichero");
+                throw new Analysis_and_G_Study_Exception("Error in Analysis_and_G_Study.", ex);
             }
 
             return tables;

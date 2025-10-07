@@ -924,59 +924,60 @@ namespace ProjectMeans
                 ListFacets lf;
                 string design;
                 // Leemos la lista de facetas
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                    design = reader.ReadLine();
+                    throw new TableMeansTypScoreException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing TableMeansTypScore.");
                 }
-                else
-                {
-                    throw new TableMeansTypScoreException();
-                }
+
+                lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+                design = reader.ReadLine();
 
                 // Leemos la lista de datos
                 List<List<double?>> meansMatrix = new List<List<double?>>();
 
-                if ((line = reader.ReadLine()).Equals(BEGIN_LIST_OF_DATAMEANS_TYPICAL_SCORE))
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_LIST_OF_DATAMEANS_TYPICAL_SCORE))
                 {
-                    char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
-                    while (!(line = reader.ReadLine()).Equals(END_LIST_OF_DATAMEANS_TYPICAL_SCORE))
-                    {
-                        string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
-
-                        List<double?> row_data = new List<double?>();
-                        int numData = arrayOfDouble.Length;
-                        for (int i = 0; i < numData; i++)
-                        {
-                            row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
-                        }
-                        meansMatrix.Add(row_data);
-                    }
-
-                    double? gm = ConvertNum.String2Double(reader.ReadLine());
-                    double? v = ConvertNum.String2Double(reader.ReadLine());
-                    double? stdv = ConvertNum.String2Double(reader.ReadLine());
-                    // llamamos al constructor;
-                    tb = new TableMeansTypScore(lf, design, gm, v, stdv, meansMatrix);
-
-                    if (!(line = reader.ReadLine()).Equals(END_TABLE_MEANS_TYPICAL_SCORE))
-                    {
-                        throw new TableMeansTypScoreException("Error al leer de fichero");
-                    }
+                    throw new TableMeansTypScoreException($"Expected '{BEGIN_LIST_OF_DATAMEANS_TYPICAL_SCORE}' but found '{line}' when parsing TableMeansTypScore.");
                 }
-                else
+
+
+                char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_OF_DATAMEANS_TYPICAL_SCORE))
                 {
-                    throw new TableMeansTypScoreException("Error al leer de fichero");
+                    string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+
+                    List<double?> row_data = new List<double?>();
+                    int numData = arrayOfDouble.Length;
+                    for (int i = 0; i < numData; i++)
+                    {
+                        row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
+                    }
+                    meansMatrix.Add(row_data);
+                }
+                if (line == null)
+                {
+                    throw new TableMeansTypScoreException("Unexpected end of file while parsing TableMeansTypScore.");
+                }
+
+                double? gm = ConvertNum.String2Double(reader.ReadLine());
+                double? v = ConvertNum.String2Double(reader.ReadLine());
+                double? stdv = ConvertNum.String2Double(reader.ReadLine());
+                // llamamos al constructor;
+                tb = new TableMeansTypScore(lf, design, gm, v, stdv, meansMatrix);
+
+                if ((line = reader.ReadLine()) == null || !line.Equals(END_TABLE_MEANS_TYPICAL_SCORE))
+                {
+                    throw new TableMeansTypScoreException($"Expected '{END_TABLE_MEANS_TYPICAL_SCORE}' but found '{line}' when parsing TableMeansTypScore.");
                 }
 
             }
-            catch (FormatException)
+            catch(FormatException ex)
             {
-                throw new TableMeansTypScoreException("Error en el formato de los datos");
+	            throw new TableMeansTypScoreException($"Unexpected value found when parsing TableMeansTypScore: {ex.Message}");
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new TableMeansTypScoreException("Error al leer de fichero");
+                throw new TableMeansTypScoreException("Error in TableMeansTypScore.", ex);
             }
             return tb;
         }// end private static TableMeans ReadingStreamTableMeans

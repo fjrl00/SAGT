@@ -30,6 +30,10 @@ namespace ProjectSSQ
             : base(msg)
         {
         }
+
+        public G_ParametersOptimizationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }// end G_ParametersOptimizationException
 }// namespace ProjectSSQ
 

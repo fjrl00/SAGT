@@ -14,10 +14,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
 
 namespace MultiFacetData
 {
@@ -690,9 +691,10 @@ namespace MultiFacetData
 
         private void ReaderAuxSkipLevel(StreamReader readerFile)
         {
-            string line;
             char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
-            while (!((line = readerFile.ReadLine()).Equals(END_SKIP_LEVELS)))
+
+            string line;
+            while ((line = readerFile.ReadLine()) != null && !line.Equals(END_SKIP_LEVELS))
             {
                 string[] arrayOfInt = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
                 int n = arrayOfInt.Length;
@@ -701,6 +703,10 @@ namespace MultiFacetData
                     int skip_level =int.Parse(arrayOfInt[i]);
                     this.SetSkipLevels(skip_level, true);
                 }
+            }
+            if (line == null)
+            {
+                throw new FacetException("Unexpected end of file while reading Skip Levels of a facet.");
             }
         }
 
@@ -739,19 +745,17 @@ namespace MultiFacetData
                 {
                     f.ReaderAuxSkipLevel(readerFile);
                 }
-                // ponemos el cierre
-                line = readerFile.ReadLine();
-
-                if (!line.Equals(END_FACET))
+                
+                if ((line = readerFile.ReadLine()) == null || !line.Equals(END_FACET))
                 {
-                    throw new FacetException("Error, no se ha encontrado el fin de faceta");
+                    throw new FacetException($"Expected '{END_FACET}' but found '{line}' when parsing a facet.");
                 }
 
                 return f;
             }
-            catch(FormatException)
+            catch(FormatException ex)
             {
-                throw new FacetException("Error en el formato del archivo al leer una faceta");
+                throw new FacetException($"Unexpected value found when parsing a facet: {ex.Message}");
             }
         }
 

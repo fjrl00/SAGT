@@ -358,108 +358,91 @@ namespace ProjectSSQ
                 G_ParametersOptimization gp;
 
                 // Leemos la lista de facetas de diferenciación
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf_diff = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+                    throw new TableG_Study_PercentException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing Table G_Study.");
                 }
-                else
-                {
-                    throw new TableG_Study_PercentException();
-                }
+
+                lf_diff = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
 
                 // Leemos las filas de varianzas de diferenciación
-                if ((line = reader.ReadLine()).Equals(BEGIN_DIFFERENTIATION_ROW))
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_DIFFERENTIATION_ROW))
                 {
-                    while (!(line = reader.ReadLine()).Equals(END_DIFFERENTIATION_ROW))
-                    {
-                        // Leemos la linea con los datos
-                        // line = reader.ReadLine();
-                        char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
-                        string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+                    throw new TableG_Study_PercentException($"Expected '{BEGIN_DIFFERENTIATION_ROW}' but found '{line}' when parsing Table G_Study.");
+                }
 
-                        string key = arrayOfDouble[0];
-                        // double? var = double.Parse(arrayOfDouble[1]);
-                        double? var = ConvertNum.String2Double(arrayOfDouble[1]);
-                        diffVar.Add(key, var);
-                    }
-                }
-                else
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_DIFFERENTIATION_ROW))
                 {
-                    throw new TableG_Study_PercentException();
+                    // Leemos la linea con los datos
+                    char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
+                    string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+
+                    string key = arrayOfDouble[0];
+                    double? var = ConvertNum.String2Double(arrayOfDouble[1]);
+                    diffVar.Add(key, var);
                 }
-                
+                if (line == null)
+                {
+                    throw new TableG_Study_PercentException("Unexpected end of file while reading Table G_Study.");
+                }
+
                 // Leemos la lista de facetas de instrumentación
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf_inst = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+                    throw new TableG_Study_PercentException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing Table G_Study.");
                 }
-                else
-                {
-                    throw new TableG_Study_PercentException();
-                }
-                
-                 // Leemos las filas de varianzas de instrumentación
-                if ((line = reader.ReadLine()).Equals(BEGIN_INSTRUMENTATION_ROW))
-                {
-                    //if (line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
-                    //{
-                    //    ListFacets lf_intrumentation = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                    //}
-                    //else
-                    //{
-                    //    throw new TableG_Study_PercentException();
-                    //}
 
-                    while (!(line = reader.ReadLine()).Equals(END_INSTRUMENTATION_ROW))
-                    {
-                        // Leemos la linea con los datos
-                        // line = reader.ReadLine();
-                        char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
-                        string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+                lf_inst = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
 
-                        string key = arrayOfDouble[0];
-                        double? varInstRel = ConvertNum.String2Double(arrayOfDouble[1]);
-                        double? perct_error_rel = ConvertNum.String2Double(arrayOfDouble[2]);
-                        double? varInstAbs = ConvertNum.String2Double(arrayOfDouble[3]);
-                        double? perct_error_abs = ConvertNum.String2Double(arrayOfDouble[4]);
-                        ErrorVar e = new ErrorVar(varInstRel, varInstAbs);
-                        instVar.Add(key, e);
-                        ErrorVar p = new ErrorVar(perct_error_rel, perct_error_abs);
-                        percent.Add(key, p);
-                            
-                    }
-                }
-                else
+                // Leemos las filas de varianzas de instrumentación
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_INSTRUMENTATION_ROW))
                 {
-                    throw new TableG_Study_PercentException();
+                    throw new TableG_Study_PercentException($"Expected '{BEGIN_INSTRUMENTATION_ROW}' but found '{line}' when parsing Table G_Study.");
+                }
+
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_INSTRUMENTATION_ROW))
+                {
+                    // Leemos la linea con los datos
+                    char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
+                    string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+
+                    string key = arrayOfDouble[0];
+                    double? varInstRel = ConvertNum.String2Double(arrayOfDouble[1]);
+                    double? perct_error_rel = ConvertNum.String2Double(arrayOfDouble[2]);
+                    double? varInstAbs = ConvertNum.String2Double(arrayOfDouble[3]);
+                    double? perct_error_abs = ConvertNum.String2Double(arrayOfDouble[4]);
+                    ErrorVar e = new ErrorVar(varInstRel, varInstAbs);
+                    instVar.Add(key, e);
+                    ErrorVar p = new ErrorVar(perct_error_rel, perct_error_abs);
+                    percent.Add(key, p);
+                }
+                if (line == null)
+                {
+                    throw new TableG_Study_PercentException("Unexpected end of file while reading Table G_Study.");
                 }
 
                 // Leemos los datos de los G_ParametersOptimization
-                if ((line = reader.ReadLine()).Equals(ProjectSSQ.G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
+                if ((line = reader.ReadLine()) == null || !line.Equals(ProjectSSQ.G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
                 {
-                    gp = ProjectSSQ.G_ParametersOptimization.ReadingStreamGParametersOptimization(reader);
-                }
-                else
-                {
-                    throw new TableG_Study_PercentException();
+                    throw new TableG_Study_PercentException($"Expected '{ProjectSSQ.G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT}' but found '{line}' when parsing Table G_Study.");
                 }
 
-                if ((line = reader.ReadLine()).Equals(END_TABLE_G_STUDY_PERCENT))
+                gp = ProjectSSQ.G_ParametersOptimization.ReadingStreamGParametersOptimization(reader);
+
+                if ((line = reader.ReadLine()) == null || !line.Equals(END_TABLE_G_STUDY_PERCENT))
                 {
-                    tableG_Study_P = new TableG_Study_Percent(lf_diff, lf_inst, diffVar, instVar, percent, gp);
+                    throw new TableG_Study_PercentException($"Expected '{END_TABLE_G_STUDY_PERCENT}' but found '{line}' when parsing Table G_Study.");
                 }
-                else
-                {
-                    throw new TableG_Study_PercentException();
-                }
+                
+                tableG_Study_P = new TableG_Study_Percent(lf_diff, lf_inst, diffVar, instVar, percent, gp);
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                throw new TableG_Study_PercentException("Error al leer de fichero");
+                throw new TableG_Study_PercentException($"Unexpected value found when parsing Table G_Study: {ex.Message}");
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new TableG_Study_PercentException("Error al leer de fichero");
+                throw new TableG_Study_PercentException("Error in Table G_Study.", ex);
             }
 
             return tableG_Study_P;

@@ -724,52 +724,78 @@ namespace MultiFacetData
         }
 
 
-         /*
-         * Descripción:
-         *  Devuelve un objeto multifaceta. El método de Lectura en una streamreader. Los datos 
-         *  del elemento multifaceta se leen a través del streamReader y a partir de ellos se 
-         *  construye un objeto MutiFacetObs.
-         * Devuelve:
-         *  MultiFacetsObs: El objeto que se construye con los datos obtenidos en el stream;
-         */
+        /*
+        * Descripción:
+        *  Devuelve un objeto multifaceta. El método de Lectura en una streamreader. Los datos 
+        *  del elemento multifaceta se leen a través del streamReader y a partir de ellos se 
+        *  construye un objeto MutiFacetObs.
+        * Devuelve:
+        *  MultiFacetsObs: El objeto que se construye con los datos obtenidos en el stream;
+        */
         public static MultiFacetsObs ReadingFileObsData(StreamReader reader, string nameFile)
         {
-            MultiFacetsObs res = null; // Variable de retorno
-            string descriptionFile = reader.ReadLine();
-            string line;
-            if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+            try
             {
+                string line;
+
+                // Read description line
+                string descriptionFile = reader.ReadLine();
+
+                // Read BEGIN_LISTFACETS marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                {
+                    throw new MultiFacetObsException(
+                        $"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' while reading multifacets.");
+                }
+
+                // Parse list of facets
                 ListFacets lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                
-                res = new MultiFacetsObs(lf, nameFile, descriptionFile);
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ObsTable.BEGIN_OBS_TABLE))
+                var res = new MultiFacetsObs(lf, nameFile, descriptionFile);
+
+                // Read BEGIN_OBS_TABLE marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ObsTable.BEGIN_OBS_TABLE))
                 {
-                    res.observationTable = ObsTable.ReadingStreamObsTable(reader);
-                    // leemos el comentario
-                    string txt = "";
-                    if (!(line = reader.ReadLine()).Equals(BEGIN_COMMENT))
-                    {
-                        throw new MultiFacetObsException("Error en la lectura de fichero");
-                    }
-                    txt = reader.ReadLine();
-                    while (!(line = reader.ReadLine()).Equals(END_COMMENT))
-                    {
-                        txt = txt + "\n" + line;
-                    }
-                    // finalizamos la lectura de comentarios
-                    res.comment = txt;
+                    throw new MultiFacetObsException(
+                        $"Expected '{MultiFacetData.ObsTable.BEGIN_OBS_TABLE}' but found '{line}' while reading multifacets.");
                 }
-                else
+
+                // Parse obs table
+                res.observationTable = ObsTable.ReadingStreamObsTable(reader);
+
+                // Read BEGIN_COMMENT marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_COMMENT))
                 {
-                    throw new MultiFacetObsException("Error al leer los datos");
+                    throw new MultiFacetObsException(
+                        $"Expected '{BEGIN_COMMENT}' but found '{line}' while reading multifacets.");
                 }
+
+                // Read comment content
+                StringBuilder commentBuilder = new System.Text.StringBuilder();
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_COMMENT))
+                {
+                    if (commentBuilder.Length > 0)
+                        commentBuilder.Append('\n');
+                    commentBuilder.Append(line);
+                }
+                if (line == null)
+                {
+                    throw new MultiFacetObsException("Unexpected end of file while reading comment section in multifacets.");
+                }
+
+                res.Comment(commentBuilder.ToString());
+                return res;
             }
-            else
+            catch (ListFacetsException ex)
             {
-                throw new MultiFacetObsException("Error al leer los datos");
+                throw new MultiFacetObsException("Error in multifacets.", ex);
             }
-            return res;
+            catch (ObsTableException ex)
+            {
+                throw new MultiFacetObsException("Error in multifacets.", ex);
+            }
+            
         }
+
 
         #endregion Escritura y lectura de stream
 

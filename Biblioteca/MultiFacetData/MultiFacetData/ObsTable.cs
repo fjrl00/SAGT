@@ -537,11 +537,11 @@ namespace MultiFacetData
             try
             {
                 ObsTable res = new ObsTable(); // valor de retorno
-                string line;
                 List<double?> ldata = new List<double?>();
                 char[] delimeterChars2 = { ' ' }; // nuestro delimitador será el caracter '/'
-                
-                while (!(line = reader.ReadLine()).Equals(END_OBS_TABLE))
+
+                string line;
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_OBS_TABLE))
                 {
                     string[] arrayOfSplit = line.Split(delimeterChars2, StringSplitOptions.RemoveEmptyEntries);
                     int n = arrayOfSplit.Length;
@@ -551,16 +551,17 @@ namespace MultiFacetData
                         listDouble.Add(ConvertNum.String2Double(arrayOfSplit[i]));
                     }
                     res.obsMatrix.Add(listDouble);
-                    // res.rows++;
-                    // res.cols = Math.Max(res.cols,n);
                 }
-                // this.AssignListData(ldata);
+                if(line == null)
+                {
+                    throw new ObsTableException("Unexpected end of file while reading observation table.");
+                }
 
                 return res;
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                throw new ObsTableException("Error al leer de fichero");
+                throw new ObsTableException($"Unexpected value found when parsing observation table: {ex.Message}");
             }
         }
 

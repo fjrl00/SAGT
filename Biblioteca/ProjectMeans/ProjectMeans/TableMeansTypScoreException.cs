@@ -28,5 +28,9 @@ namespace ProjectMeans
             : base(msg)
         {
         }
+
+        public TableMeansTypScoreException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

@@ -31,5 +31,8 @@ namespace ProjectSSQ
         {
         }
 
+        public Analysis_and_G_Study_Exception(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }// end public class Analysis_and_G_Study_Exception
 }// end namespace ProjectSSQ

@@ -1289,7 +1289,6 @@ namespace ProjectSSQ
             {
                 string line;
                 ListFacets lf; // Lista de facetas
-                //ListFacets lf_aux; // Lista de facetas auxiliar
                 List<string> ldesing = new List<string>();
 
                 /* inicalizamos el vector suma de cuadrados de las desviaciones (ssq)*/
@@ -1306,21 +1305,18 @@ namespace ProjectSSQ
                 Dictionary<string, double?> d_standardError = new Dictionary<string, double?>();
 
                 // Leemos la lista de facetas
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                }
-                else
-                {
-                    throw new TableAnalysisOfVarianceException();
+                    throw new TableAnalysisOfVarianceException(
+                        $"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing TableAnalysisOfVariance.");
                 }
 
-                
-                while (!(line = reader.ReadLine()).Equals(END_TABLE_ANALYSIS_OF_VARIANCE))
+                lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_TABLE_ANALYSIS_OF_VARIANCE))
                 {// (* 1 *)
-                    
+
                     // Leemos la linea con los datos
-                    // line = reader.ReadLine();
                     char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
                     string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
 
@@ -1328,49 +1324,46 @@ namespace ProjectSSQ
                     {
                         string key = arrayOfDouble[0];
                         ldesing.Add(key);
-                        // double? ssq = double.Parse(arrayOfDouble[1]); // suma de cuadrados
                         double? ssq = ConvertNum.String2Double(arrayOfDouble[1]); // suma de cuadrados
 
                         d_ssq.Add(key, ssq);
-                        // double df = double.Parse(arrayOfDouble[2]); // suma de cuadrados
-                        double df = (double)ConvertNum.String2Double(arrayOfDouble[2]); // suma de 
+                        double df = (double)ConvertNum.String2Double(arrayOfDouble[2]); // suma de cuadrados
                         d_df.Add(key, df);
-                        // double? msq = double.Parse(arrayOfDouble[3]); // Suma de cuadrados medios (M.S.C.)
                         double? msq = ConvertNum.String2Double(arrayOfDouble[3]); // Suma de cuadrados medios (M.S.C.)
                         d_msq.Add(key, msq);
-                        // double? randomComp = double.Parse(arrayOfDouble[4]); // Componente de Varianza Aleatorio
                         double? randomComp = ConvertNum.String2Double(arrayOfDouble[4]); // Componente de Varianza Aleatorio
                         d_randomComp.Add(key, randomComp);
-                        // double? mixComp = double.Parse(arrayOfDouble[5]); // Componentes de Varianza Mixtos
                         double? mixComp = ConvertNum.String2Double(arrayOfDouble[5]); // Componentes de Varianza Mixtos
                         d_mixComp.Add(key, mixComp);
-                        // double? correcComp = double.Parse(arrayOfDouble[6]);
                         double? correcComp = ConvertNum.String2Double(arrayOfDouble[6]);
                         d_correcComp.Add(key, correcComp);
-                        // double? porcentage = double.Parse(arrayOfDouble[7]);
                         double? porcentage = ConvertNum.String2Double(arrayOfDouble[7]);
                         d_porcentage.Add(key, porcentage);
-                        // double? standardError = double.Parse(arrayOfDouble[8]);
                         double? standardError = ConvertNum.String2Double(arrayOfDouble[8]);
                         d_standardError.Add(key, standardError);
                     }
                     else
                     {
-                        throw new TableAnalysisOfVarianceException("Error al leer de fichero");
+                        throw new TableAnalysisOfVarianceException(
+                            $"Unexpected number of values found when parsing TableAnalysisOfVariance. Expected 9 values but found {arrayOfDouble.Length}.");
                     }
 
                 }// end while (* 1 *)
+                if (line == null)
+                {
+                    throw new TableAnalysisOfVarianceException("Unexpected end of file while reading TableAnalysisOfVariance.");
+                }
 
                 tableAnalysis = new TableAnalysisOfVariance(lf, ldesing, d_ssq, d_df, d_msq, d_randomComp, 
                     d_mixComp, d_correcComp,d_porcentage, d_standardError);
             }
-            catch (FormatException)
+            catch(FormatException ex)
             {
-                throw new TableAnalysisOfVarianceException("Error al leer de fichero");
+	            throw new TableAnalysisOfVarianceException($"Unexpected value found when parsing TableAnalysisOfVariance: {ex.Message}");
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new TableAnalysisOfVarianceException("Error al leer de fichero");
+                throw new TableAnalysisOfVarianceException("Error in TableAnalysisOfVariance.", ex);
             }
 
             return tableAnalysis;

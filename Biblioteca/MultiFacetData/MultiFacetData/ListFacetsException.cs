@@ -29,5 +29,9 @@ namespace MultiFacetData
             : base(msg)
         {
         }
+
+        public ListFacetsException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

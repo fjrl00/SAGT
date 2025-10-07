@@ -30,5 +30,9 @@ namespace ProjectSSQ
             : base(msg)
         {
         }
+
+        public TableAnalysisOfVarianceException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

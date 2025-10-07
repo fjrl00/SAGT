@@ -190,44 +190,35 @@ namespace Sagt
                 try
                 {
                     string line = reader.ReadLine();
-                    // if (line != null && line.Equals(BEGIN_MULTIFACETSOBS))
                     if (line != null && line.Equals(MultiFacetsObs.BEGIN_MULTI_FACET_OBS))
                     {
                         multiFacets = MultiFacetsObs.ReadingFileObsData(reader, path);
-                        // line = reader.ReadLine();
-                        // if ((line = reader.ReadLine()).Equals(END_MULTIFACETSOBS))
-                        if ((line = reader.ReadLine()).Equals(MultiFacetsObs.END_MULTI_FACET_OBS))
+                        if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetsObs.END_MULTI_FACET_OBS))
                         {
-                            line = reader.ReadLine();
+                            throw new SagtFileException($"Expected '{MultiFacetsObs.END_MULTI_FACET_OBS}' but found '{line}' when parsing file.");
                         }
-                        else
-                        {
-                            throw new SagtFileException("Error al leer la tabla de frecuencias en un fichero SAGT");
-                        }
+                        
+                        line = reader.ReadLine();
                     }
                     if (line != null && line.Equals(BEGIN_LISTMEANS))
                     {
                         listMeans = ListMeans.StreamReaderFileListMeans(reader);
-                        if ((line = reader.ReadLine()).Equals(END_LISTMEANS))
+                        if ((line = reader.ReadLine()) == null || !line.Equals(END_LISTMEANS))
                         {
-                            line = reader.ReadLine();
+                            throw new SagtFileException($"Expected '{END_LISTMEANS}' but found '{line}' when parsing file.");
                         }
-                        else
-                        {
-                            throw new SagtFileException("Error al leer las tablas de medias en un fichero SAGT");
-                        }
+                        
+                        line = reader.ReadLine();
                     }
                     if (line != null && line.Equals(BEGIN_ANALYSIS_AND_G_STUDY))
                     {
                         tAnalysis_tG_Study_Opt = Analysis_and_G_Study.StreamReaderAnalysisSSQ(reader);
-                        if ((line = reader.ReadLine()).Equals(END_ANALYSIS_AND_G_STUDY))
+                        if ((line = reader.ReadLine()) == null || !line.Equals(END_ANALYSIS_AND_G_STUDY))
                         {
-                            line = reader.ReadLine();
+                            throw new SagtFileException($"Expected '{END_ANALYSIS_AND_G_STUDY}' but found '{line}' when parsing file.");
                         }
-                        else
-                        {
-                            throw new SagtFileException("Error al leer las tablas de análisis de vairanza en un fichero SAGT");
-                        }
+                        
+                        line = reader.ReadLine();
                     }
                 }
                 catch (MultiFacetObsException)

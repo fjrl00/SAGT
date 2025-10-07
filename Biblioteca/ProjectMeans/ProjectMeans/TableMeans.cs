@@ -893,69 +893,77 @@ namespace ProjectMeans
          */
         public static TableMeans ReadingStreamTableMeans(StreamReader reader)
         {
-            TableMeans tb = null;
             try
             {
                 string line;
-                ListFacets lf;
-                // leemos el diseño de las facetas
+                // Read the initial design line
                 string design = reader.ReadLine();
-                // Leemos la lista de facetas
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+
+                // Read BEGIN_LISTFACETS marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                    design = reader.ReadLine();
-                }
-                else
-                {
-                    throw new TableMeansException();
+                    throw new TableMeansException(
+                        $"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' while reading table of means.");
                 }
 
-                // Leemos la lista de datos
-                List<List<double?>> meansMatrix = new List<List<double?>>();
+                // Parse list of facets
+                ListFacets lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
 
-                if ((line = reader.ReadLine()).Equals(BEGIN_LIST_OF_DATAMEANS))
+                // Read design line again (after facets)
+                design = reader.ReadLine();
+
+                // Read BEGIN_LIST_OF_DATAMEANS marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_LIST_OF_DATAMEANS))
                 {
-                    char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
+                    throw new TableMeansException(
+                        $"Expected '{BEGIN_LIST_OF_DATAMEANS}' but found '{line}' while reading table of means.");
+                }
 
-                    while (!(line = reader.ReadLine()).Equals(END_LIST_OF_DATAMEANS))
+                // Parse means data
+                var meansMatrix = new List<List<double?>>();
+                char[] delimiterChars = { ' ' };
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_OF_DATAMEANS))
+                {
+                    string[] arrayOfDouble = line.Trim().Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
+
+                    List<double?> row_data = new List<double?>();
+                    int numData = arrayOfDouble.Length;
+                    for (int i = 0; i < numData; i++)
                     {
-                        string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
-
-                        List<double?> row_data = new List<double?>();
-                        int numData = arrayOfDouble.Length;
-                        for (int i = 0; i < numData; i++)
-                        {
-                            row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
-                        }
-                        meansMatrix.Add(row_data);
+                        row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
                     }
-
-                    double? gm = ConvertNum.String2Double(reader.ReadLine());
-                    double? v = ConvertNum.String2Double(reader.ReadLine());
-                    double? stdv = ConvertNum.String2Double(reader.ReadLine());
-                    // llamamos al constructor;
-                    tb = new TableMeans(lf, design, gm, v, stdv, meansMatrix);
-                    if (!(line = reader.ReadLine()).Equals(END_TABLE_MEANS))
-                    {
-                        throw new TableMeansException("Error al leer de fichero");
-                    }
+                    meansMatrix.Add(row_data);
                 }
-                else
+                if (line == null)
                 {
-                    throw new TableMeansException();
+                    throw new TableMeansException("Unexpected end of file while reading table of means.");
                 }
 
+                // Read summary values
+                double? gm = ConvertNum.String2Double(reader.ReadLine());
+                double? v = ConvertNum.String2Double(reader.ReadLine());
+                double? stdv = ConvertNum.String2Double(reader.ReadLine());
+
+                // Construct TableMeans object
+                TableMeans tb = new TableMeans(lf, design, gm, v, stdv, meansMatrix);
+
+                // Check END_TABLE_MEANS marker
+                if ((line = reader.ReadLine()) == null || !line.Equals(END_TABLE_MEANS))
+                {
+                    throw new TableMeansException(
+                        $"Expected '{END_TABLE_MEANS}' but found '{line}' while reading table of means.");
+                }
+
+                return tb;
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                throw new ListMeansException("Error en el formato de los datos");
+                throw new TableMeansException($"Error parsing numeric values in table means: {ex.Message}");
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new ListMeansException("Error al leer de fichero");
+                throw new TableMeansException("Error in table of means.", ex);
             }
-            return tb;
         }// end private static TableMeans ReadingStreamTableMeans
 
 

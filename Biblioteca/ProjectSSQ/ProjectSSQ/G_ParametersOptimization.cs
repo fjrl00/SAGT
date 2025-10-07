@@ -254,47 +254,34 @@ namespace ProjectSSQ
                 string line;
                 ListFacets lf;
                 // Leemos la lista de facetas
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+                    throw new G_ParametersOptimizationException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing G Parameters.");
                 }
-                else
-                {
-                    throw new G_ParametersOptimizationException();
-                }
+
+                lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
 
                 // Leemos los G_Parámetros de datos
-                // double total_differentiation_var = double.Parse(reader.ReadLine()); // Suma total de las varianzas de las fuentes objetivo
-                double total_differentiation_var = (double)ConvertNum.String2Double(reader.ReadLine()); 
-                // double coefG_Rel = double.Parse(reader.ReadLine()); // coeficente G relativo
-                double coefG_Rel = (double)ConvertNum.String2Double(reader.ReadLine()); // coeficente G 
-                // double coefG_Abs = double.Parse(reader.ReadLine()); // Coeficiente G absoluto
-                double coefG_Abs = (double)ConvertNum.String2Double(reader.ReadLine()); 
-                // double totalRelErrorVar = double.Parse(reader.ReadLine()); // Varianza del error relativa
+                double total_differentiation_var = (double)ConvertNum.String2Double(reader.ReadLine()); // Suma total de las varianzas de las fuentes objetivo
+                double coefG_Rel = (double)ConvertNum.String2Double(reader.ReadLine()); // coeficente G relativo
+                double coefG_Abs = (double)ConvertNum.String2Double(reader.ReadLine()); // Coeficiente G absoluto
                 double totalRelErrorVar = (double)ConvertNum.String2Double(reader.ReadLine()); // Varianza del error relativa
-                // double totalAbsErrorVar = double.Parse(reader.ReadLine()); // Varianza del error absoluta
                 double totalAbsErrorVar = (double)ConvertNum.String2Double(reader.ReadLine()); // Varianza del error absoluta
-                // double errorRelStandDev = double.Parse(reader.ReadLine()); // Desviación tipica relativa
                 double errorRelStandDev = (double)ConvertNum.String2Double(reader.ReadLine()); // Desviación tipica relativa
-                // double errorAbsStandDev = double.Parse(reader.ReadLine()); // Desviación tipica absoluta
                 double errorAbsStandDev = (double)ConvertNum.String2Double(reader.ReadLine()); // Desviación tipica absoluta
-                // double targetStandDev = double.Parse(reader.ReadLine()); // desviación típica de las fuentes objetivo
                 double targetStandDev = (double)ConvertNum.String2Double(reader.ReadLine()); // desviación típica de las fuentes objetivo
 
-                if ((line = reader.ReadLine()).Equals(END_G_PARAMETERS_OPT))
+                if ((line = reader.ReadLine()) == null || !line.Equals(END_G_PARAMETERS_OPT))
                 {
-                    gp = new G_ParametersOptimization(lf, total_differentiation_var, coefG_Rel, coefG_Abs,
-                    totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, targetStandDev);
-                }
-                else
-                {
-                    throw new G_ParametersOptimizationException("Error al leer de fichero");
+                    throw new G_ParametersOptimizationException($"Expected '{END_G_PARAMETERS_OPT}' but found '{line}' when parsing G Parameters.");
                 }
                 
+                gp = new G_ParametersOptimization(lf, total_differentiation_var, coefG_Rel, coefG_Abs,
+                totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, targetStandDev);
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new G_ParametersOptimizationException("Error al leer de fichero");
+                throw new G_ParametersOptimizationException("Error in G Parameters.", ex);
             }
             return gp;
         }// end private static TableMeans ReadingStreamTableMeans

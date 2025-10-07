@@ -910,61 +910,63 @@ namespace ProjectMeans
                 string line;
                 ListFacets lf;
                 string design;
+                
                 // Leemos la lista de facetas
-                if ((line = reader.ReadLine()).Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
-                    lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
-                    design = reader.ReadLine();
+                    throw new TableMeansDifException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing TableMeansDif.");
                 }
-                else
-                {
-                    throw new TableMeansDifException();
-                }
+
+                lf = MultiFacetData.ListFacets.ReadingStreamListFacets(reader);
+                design = reader.ReadLine();
 
                 // Leemos la lista de datos
                 List<List<double?>> meansMatrix = new List<List<double?>>();
 
-                if ((line = reader.ReadLine()).Equals(BEGIN_LIST_OF_DATAMEANS_DIFF))
+                if ((line = reader.ReadLine()) == null || !line.Equals(BEGIN_LIST_OF_DATAMEANS_DIFF))
                 {
-                    char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
-
-                    while (!(line = reader.ReadLine()).Equals(END_LIST_OF_DATAMEANS_DIFF))
-                    {
-                        string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
-
-                        List<double?> row_data = new List<double?>();
-                        int numData = arrayOfDouble.Length;
-                        for (int i = 0; i < numData; i++)
-                        {
-                            row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
-                        }
-                        meansMatrix.Add(row_data);
-                    }
-
-                    double? gm = ConvertNum.String2Double(reader.ReadLine());
-                    double? v = ConvertNum.String2Double(reader.ReadLine());
-                    double? stdv = ConvertNum.String2Double(reader.ReadLine());
-                    // llamamos al constructor;
-                    tb = new TableMeansDif(lf, design, gm, v, stdv, meansMatrix);
-
-                    if (!(line = reader.ReadLine()).Equals(END_TABLE_MEANS_DIFF))
-                    {
-                        throw new TableMeansDifException("Error al leer de fichero");
-                    }
+                    throw new TableMeansDifException($"Expected '{BEGIN_LIST_OF_DATAMEANS_DIFF}' but found '{line}' when parsing TableMeansDif.");
                 }
-                else
+
+                
+                char[] delimeterChars = { ' ' }; // nuestro delimitador será el caracter blanco
+
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_OF_DATAMEANS_DIFF))
                 {
-                    throw new TableMeansDifException("Error al leer de fichero");
+                    string[] arrayOfDouble = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+
+                    List<double?> row_data = new List<double?>();
+                    int numData = arrayOfDouble.Length;
+                    for (int i = 0; i < numData; i++)
+                    {
+                        row_data.Add(ConvertNum.String2Double(arrayOfDouble[i]));
+                    }
+                    meansMatrix.Add(row_data);
+                }
+                if (line == null)
+                {
+                    throw new TableMeansDifException("Unexpected end of file while parsing TableMeansDif.");
+                }
+
+                double? gm = ConvertNum.String2Double(reader.ReadLine());
+                double? v = ConvertNum.String2Double(reader.ReadLine());
+                double? stdv = ConvertNum.String2Double(reader.ReadLine());
+                // llamamos al constructor;
+                tb = new TableMeansDif(lf, design, gm, v, stdv, meansMatrix);
+
+                if ((line = reader.ReadLine()) == null || !line.Equals(END_TABLE_MEANS_DIFF))
+                {
+                    throw new TableMeansDifException($"Expected '{END_TABLE_MEANS_DIFF}' but found '{line}' when parsing TableMeansDif.");
                 }
 
             }
-            catch (FormatException)
+            catch(FormatException ex)
             {
-                throw new TableMeansDifException("Error en el formato de los datos");
+	            throw new TableMeansDifException($"Unexpected value found when parsing TableMeansDif: {ex.Message}");
             }
-            catch (ListFacetsException)
+            catch (ListFacetsException ex)
             {
-                throw new TableMeansDifException("Error al leer de fichero");
+                throw new TableMeansDifException("Error in TableMeansDif.", ex);
             }
             return tb;
         }// end private static TableMeans ReadingStreamTableMeans

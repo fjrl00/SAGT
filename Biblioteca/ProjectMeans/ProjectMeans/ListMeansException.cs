@@ -28,5 +28,9 @@ namespace ProjectMeans
             : base(mgs)
         {
         }
+
+        public ListMeansException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

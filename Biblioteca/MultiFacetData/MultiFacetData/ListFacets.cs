@@ -333,22 +333,23 @@ namespace MultiFacetData
             try
             {
                 string line;
-                while (!(line = reader.ReadLine()).Equals(END_LISTFACETS) && line!=null)
+                while ((line = reader.ReadLine()) != null && !line.Equals(END_LISTFACETS))
                 {
                     lf.Add(Facet.ReadingStreamFacet(reader));
                 }
                 if (line == null)
                 {
-                    throw new ListFacetsException("Error en el formato del fichero");
+                    throw new ListFacetsException("Unexpected end of file while reading list of facets.");
                 }
             }
-            catch (FacetException)
+            catch (FacetException ex)
             {
-                throw new ListFacetsException("Error en la lectura de facetas");
+                throw new ListFacetsException("Error en la lectura de facetas", ex);
             }
-            
+
             return lf;
         }
+
 
 
 

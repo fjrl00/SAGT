@@ -30,5 +30,9 @@ namespace ProjectSSQ
             : base(msg)
         {
         }
+
+        public TableG_Study_PercentException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

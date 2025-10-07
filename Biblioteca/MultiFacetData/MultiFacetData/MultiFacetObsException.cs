@@ -30,5 +30,9 @@ namespace MultiFacetData
         {
             // no es necesario añadir codigo
         }
+
+        public MultiFacetObsException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }
