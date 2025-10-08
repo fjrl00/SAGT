@@ -28,5 +28,9 @@ namespace Sagt
             : base(msg)
         {
         }
+
+        public SagtFileException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

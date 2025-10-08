@@ -221,17 +221,17 @@ namespace Sagt
                         line = reader.ReadLine();
                     }
                 }
-                catch (MultiFacetObsException)
+                catch (MultiFacetObsException ex)
                 {
-                    throw new SagtFileException("Error al leer un fichero SAGT");
+                    throw new SagtFileException("Error al leer un fichero SAGT", ex);
                 }
-                catch (ListMeansException)
+                catch (ListMeansException ex)
                 {
-                    throw new SagtFileException("Error al leer un fichero SAGT");
+                    throw new SagtFileException("Error al leer un fichero SAGT", ex);
                 }
-                catch (Analysis_and_G_Study_Exception)
+                catch (Analysis_and_G_Study_Exception ex)
                 {
-                    throw new SagtFileException("Error al leer un fichero SAGT");
+                    throw new SagtFileException("Error al leer un fichero SAGT", ex);
                 }
             }// end using
             return new SagtFile(multiFacets, listMeans, tAnalysis_tG_Study_Opt);
