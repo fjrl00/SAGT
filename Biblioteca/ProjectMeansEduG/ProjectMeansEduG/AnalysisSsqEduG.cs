@@ -1298,8 +1298,8 @@ namespace ImportEduGSsq
                 else
                 {
                     // en este caso suponemos que contiene un punto
-                    // si el numero contiene un punto como separador decimal lo tratamos como refencia cultural en ingles
-                    retVal = double.Parse(s, System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US"));
+                    // si el numero contiene un punto como separador decimal lo tratamos como refencia cultural internacional
+                    retVal = double.Parse(s, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture);
                 }
             }
             return retVal;
