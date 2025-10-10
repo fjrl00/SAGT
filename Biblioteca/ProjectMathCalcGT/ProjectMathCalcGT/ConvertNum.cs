@@ -35,19 +35,13 @@ namespace AuxMathCalcGT
 
         /* Descripción:
          *  Transforma un double a string teniendo en cuenta que si el valor es null devolvera "NULL".
-         *  y si no es un número devolverá "NeuN".
          *  Esto es para facilitar su escritura/lectura en un archivo.
+         *  Si el valor es NaN (Not a Number) se devuelve "NaN".
          */
         public static string Double2String(double? d)
         {
-            string retVal = d.ToString();
-            if (d == null)
-            {
-                retVal = STRING_NULL;
-            }
-            return retVal;
+            return d?.ToString() ?? STRING_NULL;
         }
-
 
         /* Descripción:
          *  Transforma un String en un double teniendo en cuenta que si el valor es null devolvera "NULL".
@@ -56,18 +50,18 @@ namespace AuxMathCalcGT
         public static double? String2Double(string s)
         {
             double? d = null;
-            if (!s.ToUpper().Equals(STRING_NULL) && !string.IsNullOrEmpty(s))
+            if (!string.IsNullOrEmpty(s) && !string.Equals(s, STRING_NULL, StringComparison.OrdinalIgnoreCase))
             {
                 // d = double.Parse(s, NumberFormatInfo.InvariantInfo);
                 if (s.Contains(DECIMAL_SEPARATOR_PERIOD))
                 {
                     // el separador decimal es un punto
-                    d = double.Parse(s, System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US"));
+                    d = double.Parse(s, System.Globalization.NumberStyles.Float, CultureInfo.InvariantCulture);
                 }
                 else if (s.Contains(DECIMAL_SEPARATOR_COMMA))
                 {
                     // el separador decimal es una coma
-                    d = double.Parse(s, System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("es-ES"));
+                    d = double.Parse(s, System.Globalization.NumberStyles.Float, new CultureInfo("es-ES"));
                 }
                 else
                 {
@@ -90,59 +84,26 @@ namespace AuxMathCalcGT
          *      double d: double al queremos normalizar el numéro de decimales.
          *      int numOfDecimal: número de decimales que empleamos para representar el d.
          *      string puntoDecimal: Separador decimal.
+         * NOTA: si d es null devuelve "", si d es NaN devuelve "NaN".
          */
         public static string DecimalToString(double? d, int numOfDecimal, string separator)
         {
             string retVal = "";// valor de retorno
 
-            if (!separator.Equals(DECIMAL_SEPARATOR_PERIOD) && !separator.Equals(DECIMAL_SEPARATOR_COMMA))
-            {
-                throw new ConvertNumException("Error: No es un separador válido");
-            }
-
             if (d != null)
             {
-                // comprobamos si d no es un número (NeuN)
-                if (!double.IsNaN((double)d))
+                if(separator.Equals(DECIMAL_SEPARATOR_COMMA))
                 {
-                    double auxDouble = Math.Round((double)d, numOfDecimal);
-                    // string puntoDecimal = this.cfgApli.GetDecimalSeparator();
-                    char[] c = { ',', '.' };
-                    string[] s = (auxDouble.ToString()).Split(c);
-
-                    if (s.Length == 1)
-                    {
-                        // Si tiene longitud 1 entonces solo concatenamos ceros
-                        if (numOfDecimal == 0)
-                        {
-                            retVal = s[0];
-                        }
-                        else
-                        {
-                            retVal = s[0] + separator + StringZeros(numOfDecimal);
-                        }
-
-                    }
-                    else
-                    {
-                        int s1Lentgh = s[1].Length;
-                        if (s1Lentgh == numOfDecimal)
-                        {
-                            // retVal = auxDouble.ToString();
-                            retVal = s[0] + separator + s[1];
-                        }
-                        else if (s1Lentgh < numOfDecimal)
-                        {
-
-                            retVal = s[0] + separator + s[1] + StringZeros(numOfDecimal - s1Lentgh);
-                        }
-                    }
+                    retVal = d.Value.ToString($"F{numOfDecimal}", new CultureInfo("es-ES"));
+                }
+                else if (separator.Equals(DECIMAL_SEPARATOR_PERIOD))
+                {
+                    retVal = d.Value.ToString($"F{numOfDecimal}", CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    retVal = d.ToString();
+                    throw new ConvertNumException("Error: No es un separador válido");
                 }
-
             }
             return retVal;
         }// DecimalSetting
@@ -151,48 +112,28 @@ namespace AuxMathCalcGT
         /* Descripción:
          *  Devuelve el string que se pasa como parámetro cambiandole el separador decimal por el que se pasa
          *  como parametros
+         * NOTA: si d es null devuelve "", si d es NaN devuelve "". Conducta diferente a la del otro método DecimalToString. INVESTIGAR
          */
         public static string DecimalToString(double? d, string separator)
         {
             string retVal = "";// valor de retorno
-
-            if (!separator.Equals(DECIMAL_SEPARATOR_PERIOD) && !separator.Equals(DECIMAL_SEPARATOR_COMMA))
-            {
-                throw new ConvertNumException("Error: No es un separador válido");
-            }
 
             if (d != null)
             {
                 // comprobamos si d no es un número (NeuN)
                 if (!double.IsNaN((double)d))
                 {
-                    double auxDouble = (double)d;
-                    
-                    retVal = auxDouble.ToString();
+                    if (!separator.Equals(DECIMAL_SEPARATOR_PERIOD) && !separator.Equals(DECIMAL_SEPARATOR_COMMA))
+                    {
+                        throw new ConvertNumException("Error: No es un separador válido");
+                    }
 
+                    retVal = d.ToString();
                     retVal = retVal.Replace(DECIMAL_SEPARATOR_COMMA, separator);
                     retVal = retVal.Replace(DECIMAL_SEPARATOR_PERIOD, separator);
                 }
             }
             return retVal;
-        }
-
-
-
-        /*
-         * Descripción:
-         *  Operación auxiliar. Devuelve un string de ceros de la longitud que se pasa como parámetro.
-         * Parámetros:
-         *      int n: La longitud que ha de tener la cadena de ceros que se devuelve.
-         */
-        private static string StringZeros(int n)
-        {
-            StringBuilder retVal = new StringBuilder();
-            for (int i = 0; i < n; i++)
-            {
-                retVal.Append("0");
-            }
-            return retVal.ToString();
         }
 
         #endregion Métodos para el cambio de los decimales
