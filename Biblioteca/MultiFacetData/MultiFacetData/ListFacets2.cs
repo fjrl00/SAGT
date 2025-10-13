@@ -84,8 +84,9 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Devuelve un nueva lista como resultado de concatenar la lista implicita y la explicita. Primero
-         *  introduce la lista implicita y luego la explicita. No saltan excepciones si existen facetas
-         *  en la lista implicita que se encuentra en la explicita ya que cada faceta se asigna una vez.
+         *  introduce la lista implicita y luego la explicita. 
+         *  
+         *  En lugar de saltar excepción si existen facetas repetidas, las omite en la concatenación.
          */
         public ListFacets ConcatenateWithoutRepetitions(ListFacets lf)
         {

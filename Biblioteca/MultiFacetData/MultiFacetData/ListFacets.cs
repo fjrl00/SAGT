@@ -28,10 +28,10 @@ namespace MultiFacetData
         // Constantes para usarlas como marcas en el fichero
         public const string BEGIN_LISTFACETS = "<list_facets>";
         const string END_LISTFACETS = "</list_facets>";
-        public const string BEGIN_LIST_NESTING = "<list_nesting>";
-        const string END_LIST_NESTING = "</list_nesting>";
-        const string BEGIN_NESTING = "<nesting>";
-        const string END_NESTING = "</nesting>";
+        //public const string BEGIN_LIST_NESTING = "<list_nesting>";
+        //const string END_LIST_NESTING = "</list_nesting>";
+        //const string BEGIN_NESTING = "<nesting>";
+        //const string END_NESTING = "</nesting>";
 
 
         /*======================================================================================
@@ -99,36 +99,19 @@ namespace MultiFacetData
          */
         private static bool CheckListNameFacets(List<Facet> lFacets)
         {
-            bool retval = true; // variable de retorno
-            if (lFacets.Count > 1) // si la lista de facetas tiene menos de un elemento 
-                                   // no tengo porque chequearla.
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var f in lFacets)
             {
-                List<string> lNames = new List<string>();
-                foreach (Facet f in lFacets)
-                {
-                    lNames.Add(f.Name().ToUpper());
-                }
-
-                lNames.Sort();
-
-                int numFacets = lNames.Count - 1; // restamos uno para evitar que se salga del rango
-                for (int i = 0; i < numFacets && retval; i++)
-                {
-                    //res = lNames[i].Equals(lNames[i+1]);
-                    if (lNames[i].Equals(lNames[i + 1]))
-                    {
-                        retval = false;
-                    }
-                }
+                if (!seen.Add(f.Name())) // returns false if name already exists
+                    return false;
             }
-            
-            return retval;
+            return true;
         }// private static bool CheckListNameFacets(List<Facet> lFacets)
 
 
         /*
          * Descripción:
-         *  Devuelve true si existe una faceta con el mismo nombre en la lista de facetas, false en 
+         *  Devuelve true si existe una faceta con el mismo nombre en esta lista de facetas, false en 
          *  caso contrario.
          * Parámetro: 
          *      Facet f: Es la faceta que queremos comprobar.
@@ -232,7 +215,7 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Añade una faceta a la clase ListFacets, siguiendo el orden que sigue 'parent'
+         *  Añade una faceta a la clase ListFacets, siguiendo el orden que sigue la lista proveída 'parent'
          */
         public void ParentOrderAdd(Facet f, ListFacets parent)
         {
@@ -457,12 +440,12 @@ namespace MultiFacetData
          */
         public override int GetHashCode()
         {
-            int retval = 0;
+            int retval = 1;
             foreach (Facet f in this.listFacets)
             {
-                retval += f.GetHashCode();
+                retval = retval * 31 + f.GetHashCode();
             }
-            return (retval/3);
+            return retval;
         }
 
         #endregion Métodos redefinidos: ToString, Equals, GetHashCode

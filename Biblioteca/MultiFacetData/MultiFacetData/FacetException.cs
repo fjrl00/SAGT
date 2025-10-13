@@ -23,12 +23,10 @@ namespace MultiFacetData
         public FacetException()
             : base()
         {
-            // no es necesario añadir codigo
         }
 
         public FacetException(string mns): base(mns)
         {
-            // no es necesario añadir codigo
         }
     }
 }
