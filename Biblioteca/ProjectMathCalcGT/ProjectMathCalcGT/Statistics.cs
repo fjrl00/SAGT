@@ -85,6 +85,7 @@ namespace AuxMathCalcGT
          * Descripción:
          *  Añade un elemento double a la suma total (sumX) y a la suma total de cuadrados (sumX2),
          *  excluyendo los valores nulos.
+         * NOTA: Si pasamos NaN, convertiremos sumX y sumX2 en NaN.
          */
         public void Add(double? d)
         {
@@ -114,7 +115,6 @@ namespace AuxMathCalcGT
             if (d==null && zero)
             {
                 Add(0);
-                //numElem++;
             }
             else
             {

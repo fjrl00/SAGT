@@ -33,9 +33,6 @@ namespace MultiFacetData
         /*=================================================================================
          * Constantes
          *=================================================================================*/
-        // internal const string BEGIN_MULTI_FACET_OBS = "<multi_facet_obs>";
-        public const string BEGIN_MULTI_FACET_OBS = "<multi_facet_obs>";
-        public const string END_MULTI_FACET_OBS = "</multi_facet_obs>";
         // Comienzo y fin de comentario de una tabla de frecuencias
         const string BEGIN_COMMENT = "<file_data_comment>";
         const string END_COMMENT = "</file_data_comment>";
@@ -568,43 +565,6 @@ namespace MultiFacetData
             return res;
         }
 
-
-        /*
-         * Descripción:
-         *  Método de Lectura en una archivo. Los datos del archivo pasa al objeto
-         *  MutiFacetObs desde el que se hace la llamado por lo que se perderan los
-         *  datos de este.
-         * Devuelve:
-         *  bool: True si se ha leido correctamente false en otro caso;
-         */
-        public static MultiFacetsObs ReadingFileObsData(String fileName)
-        {
-            MultiFacetsObs res = null; // Variable de retorno
-            
-            using (StreamReader reader = new StreamReader(fileName))
-            {
-                try
-                {
-                    string line;
-                    if ((line = reader.ReadLine()).Equals(BEGIN_MULTI_FACET_OBS))
-                    {
-                        res = MultiFacetsObs.ReadingFileObsData(reader, fileName);
-                    }
-                    else
-                    {
-                        throw new MultiFacetObsException("Error al leer fichero");
-                    }
-                }
-                catch (FormatException ex)
-                {
-                    throw new MultiFacetObsException("Error de formato de fichero: " + ex.Message);
-                }
-                               
-            }
-            return res;
-        }
-
-
         /* Descripción:
          *  Escribe un fichero que contiene las puntuaciones almacenadas en la tabla de observaciones.
          *  Dicho fichero almacena los datos secuencialmente, uno por línea, y además los valores nulos
@@ -696,7 +656,6 @@ namespace MultiFacetData
         public bool WritingFileObsData(StreamWriter writer)
         {
             bool res = false;
-            writer.WriteLine(BEGIN_MULTI_FACET_OBS);
             writer.WriteLine(this.DescriptionFile());
             res = this.listFacets.WritingStreamListFacets(writer);
             // this.listFacets.WritingListNesting(writer);
@@ -709,7 +668,6 @@ namespace MultiFacetData
                     writer.WriteLine(BEGIN_COMMENT);
                     writeString(writer, this.comment);
                     writer.WriteLine(END_COMMENT);
-                    writer.WriteLine(END_MULTI_FACET_OBS);
                     return res;
                 }
                 else

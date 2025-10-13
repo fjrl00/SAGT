@@ -27,8 +27,8 @@ namespace Sagt
         /******************************************************************************************************
          *  Constantes de clase SagtFile
          ******************************************************************************************************/
-        const string BEGIN_MULTIFACETSOBS = "<file_sagt_multifacetobs>";
-        const string END_MULTIFACETSOBS = "</file_sagt_multifacetobs>";
+        const string BEGIN_MULTI_FACET_OBS = "<multi_facet_obs>";
+        const string END_MULTI_FACET_OBS = "</multi_facet_obs>";
         const string BEGIN_LISTMEANS = "<file_sagt_listmeans>";
         const string END_LISTMEANS = "</file_sagt_listmeans>";
         const string BEGIN_ANALYSIS_AND_G_STUDY = "<file_sagt_analysis_and_g_study>";
@@ -147,9 +147,9 @@ namespace Sagt
             {
                 if(this.multiFacets!=null)
                 {
-                    // writer.WriteLine(BEGIN_MULTIFACETSOBS);
+                    writer.WriteLine(BEGIN_MULTI_FACET_OBS);
                     res = this.multiFacets.WritingFileObsData(writer);
-                    // writer.WriteLine(END_MULTIFACETSOBS);
+                    writer.WriteLine(END_MULTI_FACET_OBS);
                 }
                 if (this.listMeans != null)
                 {
@@ -190,12 +190,12 @@ namespace Sagt
                 try
                 {
                     string line = reader.ReadLine();
-                    if (line != null && line.Equals(MultiFacetsObs.BEGIN_MULTI_FACET_OBS))
+                    if (line != null && line.Equals(BEGIN_MULTI_FACET_OBS))
                     {
                         multiFacets = MultiFacetsObs.ReadingFileObsData(reader, path);
-                        if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetsObs.END_MULTI_FACET_OBS))
+                        if ((line = reader.ReadLine()) == null || !line.Equals(END_MULTI_FACET_OBS))
                         {
-                            throw new SagtFileException($"Expected '{MultiFacetsObs.END_MULTI_FACET_OBS}' but found '{line}' when parsing file.");
+                            throw new SagtFileException($"Expected '{END_MULTI_FACET_OBS}' but found '{line}' when parsing file.");
                         }
                         
                         line = reader.ReadLine();
