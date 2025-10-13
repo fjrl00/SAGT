@@ -100,8 +100,9 @@ namespace TransLibrary
             bool found = false;
             foreach (Language l in this.wordTranslation.Keys)
             {
-                found = found || this.wordTranslation[l].ToUpper().Equals(w.ToUpper());
+                found = found || string.Equals(this.wordTranslation[l], w, StringComparison.OrdinalIgnoreCase);
             }
+            
             return found;
         }
 
@@ -128,9 +129,8 @@ namespace TransLibrary
         {
             //Variable de retorno
             Boolean res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is WordTranslation trans)
             {
-                WordTranslation trans = (WordTranslation)obj;
                 int n = this.wordTranslation.Keys.Count;
                 int m = trans.wordTranslation.Keys.Count;
                 res = n == m;
@@ -140,7 +140,7 @@ namespace TransLibrary
                     {
                         foreach (Language l in this.wordTranslation.Keys)
                         {
-                            res = res && this.wordTranslation[l].ToUpper().Equals(trans.wordTranslation[l].ToUpper());
+                            res = res && string.Equals(this.wordTranslation[l], trans.wordTranslation[l], StringComparison.OrdinalIgnoreCase);
                         }
                     }
                     catch (WordTranslationException)

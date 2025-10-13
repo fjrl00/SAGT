@@ -139,7 +139,7 @@ namespace MultiFacetData
             int n = this.listFacets.Count;
             for (int i = 0; i < n && !retval; i++)
             {
-                retval = this.listFacets[i].Name().ToLower().Equals(f.Name().ToLower());
+                retval = string.Equals(this.listFacets[i].Name(), f.Name(), StringComparison.OrdinalIgnoreCase);
             }
             return retval;
         }
@@ -435,9 +435,8 @@ namespace MultiFacetData
         {
             // Variable de retorno
             bool res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is ListFacets oList)
             {// (* 1 *)
-                ListFacets oList = (ListFacets)obj;
                 res = (oList.Count() == this.Count());
                 if (res)
                 {

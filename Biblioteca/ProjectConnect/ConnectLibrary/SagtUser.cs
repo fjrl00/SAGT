@@ -117,10 +117,8 @@ namespace ConnectLibrary
         {
             // Variable de retorno
             Boolean res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is SagtUser user)
             {
-                SagtUser user = (SagtUser)obj;
-
                 res = this.userID.Equals(user.userID);
             }
             return res;

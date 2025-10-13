@@ -78,7 +78,9 @@ public class SagtW : System.Web.Services.WebService
 
         for (int i = 0; i < l && !found; i++)
         {
-            if (found = arrayNames[i].ToLower().Equals(user.ToLower()) && arrayPass[i].ToLower().Equals(pass.ToLower()))
+            if (found =
+                    string.Equals(arrayNames[i], user, StringComparison.OrdinalIgnoreCase) 
+                    && string.Equals(arrayPass[i], pass, StringComparison.OrdinalIgnoreCase))
             {
                 retVal = i + 1;
             }

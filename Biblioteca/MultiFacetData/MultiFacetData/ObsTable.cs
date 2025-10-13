@@ -724,9 +724,8 @@ namespace MultiFacetData
         {
             // Variable de retorno
             bool res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is ObsTable obsT)
             {// (* 1 *)
-                ObsTable obsT = (ObsTable)obj;
                 if (this.ObsTableRows().Equals(obsT.ObsTableRows()) 
                     && this.ObsTableColumns().Equals(obsT.ObsTableColumns()))
                 {// (* 2 *)

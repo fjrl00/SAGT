@@ -1150,9 +1150,8 @@ namespace ConfigCFG
         public override bool Equals(object obj)
         {
             bool retVal = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is ConfigCFG cfg)
             {
-                ConfigCFG cfg = (ConfigCFG)obj;
                 retVal = this.language.Equals(cfg.language)
                     && this.numOfDecimals.Equals(cfg.numOfDecimals)
                     && this.decimalSeparator.Equals(cfg.decimalSeparator)

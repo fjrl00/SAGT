@@ -358,11 +358,7 @@ namespace MultiFacetData
          */
         public List<int> ListSkipLevels()
         {
-            List<int> lSkip = new List<int>();
-            foreach (int i in this.skipLevels.Keys)
-            {
-                lSkip.Add(i);
-            }
+            List<int> lSkip = this.skipLevels.Keys.ToList();
             lSkip.Sort();
             lSkip.Reverse();
             return lSkip;
@@ -806,16 +802,15 @@ namespace MultiFacetData
         {
             //Variable de retorno
             Boolean res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is Facet facet)
             {
-                Facet facet = (Facet)obj;
                 /*
                 res = this.name.Equals(facet.name) &&
                         this.level.Equals(facet.level) &&
                         this.sizeOfUniverse.Equals(facet.sizeOfUniverse) &&
-                        this.comment.ToUpper().Equals(facet.comment.ToUpper());
+                        string.Equals(this.name, facet.name, StringComparison.OrdinalIgnoreCase);
                 */
-                res = this.name.ToUpper().Equals(facet.name.ToUpper());
+                res = string.Equals(this.name, facet.name, StringComparison.OrdinalIgnoreCase);
             }
             return res;
         }
@@ -826,8 +821,8 @@ namespace MultiFacetData
          */
         public override int GetHashCode()
         {
-            //return (this.name.GetHashCode() + this.level.GetHashCode() +this.sizeOfUniverse.GetHashCode() +this.comment.GetHashCode()) / 3;
-            return (this.name.GetHashCode());
+            //return (StringComparer.OrdinalIgnoreCase.GetHashCode(this.name) + this.level.GetHashCode() +this.sizeOfUniverse.GetHashCode() +this.comment.GetHashCode()) / 3;
+            return StringComparer.OrdinalIgnoreCase.GetHashCode(this.name);
         }
 
         #endregion Métodos Redefinidos
@@ -836,8 +831,9 @@ namespace MultiFacetData
         #region Conversiones con DataSet
         /* Descripción:
          *  Toma una faceta como parámetro y devuelve un DataSet con los datos de esta
+         * NOTE: Untested, likely buggy code
          */
-        public DataSet Facet2DataSet(Facet f)
+        public DataSet Facet2DataSet()
         {
             DataSet dsFacets = new DataSet("DataSet_Facet");
 
@@ -876,6 +872,7 @@ namespace MultiFacetData
             }
             newFacetRow["size_of_universe"] = sz;
             newFacetRow["comment"] = this.comment;
+            newFacetRow["omit"] = this.omit;
             newFacetRow["list_facet_design"] = this.list_facets_design;
 
             // Añadimos la fila al dataTable del dataSet
@@ -920,8 +917,9 @@ namespace MultiFacetData
         /* Descripción:
          *  Dado un DataSet y un entero correspondiente a la clave primaria devuelve la faceta 
          *  correspondiente.
+         * NOTE: Untested, likely buggy code
          */
-        public Facet DataSet2Facet(DataSet ds, int pk)
+        public static Facet DataSet2Facet(DataSet ds, int pk)
         {
             string select = " pk_facet = " + pk;
             DataRow r = ds.Tables["TbFacet"].Select(select)[0];
@@ -970,8 +968,8 @@ namespace MultiFacetData
 
         public int CompareTo(Facet other)
         {
-            int retval = this.name.ToLower().CompareTo(other.name.ToLower());
-            if(retval==0)
+            int retval = string.Compare(this.name, other.name, StringComparison.OrdinalIgnoreCase);
+            if (retval == 0)
             {
                 retval = this.level.CompareTo(other.level);
                 if (retval == 0)

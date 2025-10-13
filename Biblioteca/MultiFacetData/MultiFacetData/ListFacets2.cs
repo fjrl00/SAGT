@@ -647,7 +647,7 @@ namespace MultiFacetData
             for(int i = 0; i < numFacet; i++)
             {
                 Facet f = this.FacetInPos(i);
-                if (f.Name().ToLower().Equals(oldName.ToLower()))
+                if (string.Equals(f.Name(), oldName, StringComparison.OrdinalIgnoreCase))
                 {
                     f = (Facet)f.Clone();
                     f.Name(newName);

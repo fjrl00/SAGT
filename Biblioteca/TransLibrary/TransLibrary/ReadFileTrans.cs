@@ -114,7 +114,7 @@ namespace TransLibrary
             
             for (int i = 0; i < n && !found; i++)
             {
-                found = code.ToUpper().Equals(LANG_LABELS[i].ToUpper());
+                found = string.Equals(code, LANG_LABELS[i], StringComparison.OrdinalIgnoreCase);
                 retVal = lnames[i];
             }
 

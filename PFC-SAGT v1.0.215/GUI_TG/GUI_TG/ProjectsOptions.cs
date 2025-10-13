@@ -395,7 +395,7 @@ namespace GUI_GT
             // Comprobamos que no exista un proyecto con el mismo nombre
             DataSet dsSameProject = sagtWS_Client.SelectSameProyects(dsProject, "");
             // indicamos si se ha cambiado el nombre.
-            bool changeNameProject = !this.activeProject.GetNameProject().ToLower().Equals(project.GetNameProject().ToLower());
+            bool changeNameProject = !string.Equals(this.activeProject.GetNameProject(), project.GetNameProject(), StringComparison.OrdinalIgnoreCase);
             // Si existe
             if (changeNameProject && dsSameProject.Tables[0].Rows.Count != 0 )
             {

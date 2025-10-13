@@ -259,12 +259,10 @@ namespace ConnectLibrary
         {
             // Variable de retorno
             Boolean res = false;
-            if (!(obj == null || GetType() != obj.GetType()))
+            if (obj is SagtProject project)
             {
-                SagtProject project = (SagtProject)obj;
-
-                res =  this.pk_project.Equals(project.pk_project)
-                        && this.name_project.ToUpper().Equals(project.name_project.ToUpper());
+                res = this.pk_project.Equals(project.pk_project)
+                        && string.Equals(this.name_project, project.name_project, StringComparison.OrdinalIgnoreCase);
             }
             return res;
         }
