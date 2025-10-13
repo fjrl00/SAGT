@@ -293,7 +293,6 @@ namespace ProjectMeans
             writer.WriteLine(this.dateCreation.ToString(new CultureInfo("es-ES", true)));// fecha en la se creo el archivo
             // escribimos el comentario
             writer.WriteLine(BEGIN_COMMENT);
-            // writer.WriteLine(this.textComment);
             writeString(writer, this.textComment);
             writer.WriteLine(END_COMMENT);
 

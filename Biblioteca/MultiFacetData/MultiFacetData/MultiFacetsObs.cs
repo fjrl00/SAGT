@@ -547,24 +547,6 @@ namespace MultiFacetData
          * Escritura y Lectura de ficheros 
          ********************************************************************************************/
 
-        /*
-         * Descripción:
-         *  Método de escritura en una archivo.
-         * Devuelve:
-         *  bool: True si se ha escrito correctamente false en otro caso;
-         */
-        public bool WritingFileObsData(String fileName)
-        {
-            bool res = false; // variable de retorno
-
-            using (StreamWriter writer = new StreamWriter(fileName))
-            {
-                res = this.WritingFileObsData(writer);
-                 
-            }
-            return res;
-        }
-
         /* Descripción:
          *  Escribe un fichero que contiene las puntuaciones almacenadas en la tabla de observaciones.
          *  Dicho fichero almacena los datos secuencialmente, uno por línea, y además los valores nulos
@@ -658,7 +640,6 @@ namespace MultiFacetData
             bool res = false;
             writer.WriteLine(this.DescriptionFile());
             res = this.listFacets.WritingStreamListFacets(writer);
-            // this.listFacets.WritingListNesting(writer);
             if (res)
             {
                 res = this.observationTable.WritingStreamObsTable(writer);
