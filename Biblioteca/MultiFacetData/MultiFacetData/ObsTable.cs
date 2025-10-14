@@ -375,12 +375,12 @@ namespace MultiFacetData
         public void AssignListData(List<double?> ldata)
         {
             int rows = this.ObsTableRows();
-            int cols = this.ObsTableColumns();
-
             if (ldata.Count != rows)
             {
-                throw new ObsTableException("La cantidad de datos no coincide con la dimensión de la columna");
+                throw new ObsTableException("La cantidad de datos no coincide con la dimensión de la tabla");
             }
+
+            int cols = this.ObsTableColumns();
             int pos = 0;
             foreach (double? d in ldata)
             {

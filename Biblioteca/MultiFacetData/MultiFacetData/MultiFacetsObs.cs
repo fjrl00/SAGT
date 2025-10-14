@@ -54,11 +54,6 @@ namespace MultiFacetData
          * Constructores
          *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-        // Constructor vacio para que sea serializable
-        public MultiFacetsObs()
-        {
-        }
-
         /*
          * Decripción:
          *  Crea un objeto observaciones multifaceta. Como mínimo debe tener un nombre.
@@ -85,7 +80,7 @@ namespace MultiFacetData
             this.listFacets = listFacets;
             this.nameFileObs = nameFileObs;
             this.description = description;
-            this.CreateTableObs();
+            this.observationTable = new ObsTable(this.listFacets);
             this.comment = "";
         }
 
@@ -104,55 +99,6 @@ namespace MultiFacetData
             :this(listFacets, nameFileObs, description)
         {
             this.comment = comment;
-        }
-
-
-        /*
-         * Descripción:
-         *  Operación auxiliar. Comprueba que la lista de facetas sea válida. Para ello no puede
-         *  haber dos facetas con el mismo nombre/etiqueta.
-         * Devuelve:
-         *  bool: True si la lista de facetas no contiene nombres repetidos. False en otro caso.
-         */
-        private static bool CheckListNameFacets(List<Facet> lFacets)
-        {
-            bool res = true; // variable de retorno
-
-            List<string> lNames = new List<string>();
-            foreach (Facet f in lFacets)
-            {
-                lNames.Add(f.Name().ToUpper());
-            }
-
-            lNames.Sort();
-
-            int numFacets = lNames.Count-1; // restamos uno para evitar que se salga del rango
-            for (int i = 0; i < numFacets; i++)
-            {
-                //res = lNames[i].Equals(lNames[i+1]);
-                if (lNames[i].Equals(lNames[i + 1]))
-                {
-                    return false;
-                }
-            }
-
-            return res;
-        }
-
-
-        /*
-         * Descripción:
-         *  Método auxiliar. Inicializa la tabla de observaciones. Los datos estan inicialmente a null.
-         * Excepciones:
-         *  MultiFacetException: si tiene menos de 2 facetas la lista de facetas.   
-         */
-        private void CreateTableObs()
-        {
-            if (this.listFacets.Count() < 2)
-            {
-                throw new MultiFacetObsException("No se puede crear la tabla. Debe haber al menos 2 facetas.");
-            }
-            this.observationTable = new ObsTable(this.listFacets);
         }
 
         #endregion Constructores
@@ -222,18 +168,20 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Cambia la lista de facetas del objeto MultFaceObs. Se permite modificar los nombres
+         *  Cambia la lista de facetas por otra que debe ser compatible con la actual 
+         *  ObservationTable. Igual número de facetas y cada faceta teniendo el mismo nivel que 
+         *  aquella en la misma posición.
+         *  NOTA: Creo que este método está siendo actualmente usurpado en la funcionalidad de
+         *  renombramiento de facetas.
+         * 
          * Parámetros:
-         *      List<Facet> list: Lista de facetas;
+         *      List<Facet> list: Nueva lista de facetas;
          * Excepciones:
          *      Lanza una excepción MultiFacetException:
          *          Si no tiene al menos dos facetas.
          *          Si la lista de facetas no coincide en número con la facetas asignada.
          *          Si los niveles de la nueva lista no coinciden con los de la lista 
          *              del objeto.
-         *      Lanza una excepción ListFacetsException
-         *          Si tiene el nombre de alguna faceta repetido (no puede haber dos 
-         *              facetas con el mismo nombre).
          */
         public void ListFacets(ListFacets list)
         {
@@ -338,16 +286,9 @@ namespace MultiFacetData
          * Descripción:
          *  Añade los datos a la tabla de observaciones multifaceta. La última columna es la que
          *  contiene los datos.
-         * Excepciones:
-         *  Lanza una excepción de tipo MultiFacetException si la lista de datos no coincide con el
-         *  número de columnas de la aplicación.
          */
         public void AssignDataToTheTableObs(List<Double?> listDataObs)
         {
-            if (listDataObs.Count != this.observationTable.ObsTableRows())
-            {
-                throw new MultiFacetObsException("Los datos no coinciden con la dimensión de la tabla.");
-            }
             this.observationTable.AssignListData(listDataObs);
         }
 
@@ -742,18 +683,15 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Devuelve true si todas las facetas de la lista de facetas que se pasa como parámetro 
-         *  pertenecen al objeto, false en caso contrario.
+         *  Devuelve true si la lista de facetas que se pasa como parámetro tiene todas sus facetas
+         *  contenidas en la lista de facetas que se pasa como parámetro implicito. False en caso de
+         *  que alguna de sus facetas no este contenida.
+         * Parámetros:
+         *      ListFacets lf: Lista de facetas que queremos comprobar.
          */
         public bool CheckMembershipOfFacets(ListFacets lf)
         {
-            bool retVal=true;
-            int n = lf.Count();
-            for (int i = 0; i < n && retVal; i++)
-            {
-                retVal = this.listFacets.Contains(lf.FacetInPos(i));
-            }
-            return retVal;
+            return this.listFacets.ContainsList(lf);
         }
 
         #region Converstión en DataSet
