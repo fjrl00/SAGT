@@ -27,7 +27,7 @@ using ProjectMeans;
 
 namespace ProjectSSQ
 {
-    public class TableAnalysisOfVariance : System.ICloneable //: IEnumerable
+    public class TableAnalysisOfVariance //: IEnumerable
     {
 
         /******************************************************************************************************
@@ -1099,19 +1099,15 @@ namespace ProjectSSQ
         #endregion Calculo se totales por columnas
 
 
-        #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
+        #region Clonación
 
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public object Clone()
+        public TableAnalysisOfVariance Clone()
         {
             // Copiamos la lista de facetas
-            ListFacets copyListFacet = (ListFacets)this.listFacets.Clone(); // copia en profundidad
+            ListFacets copyListFacet = this.listFacets.Clone(); // copia en profundidad
             // Copiamos la lista de diseños
             List<string> copyLdesign = new List<string>();
             
@@ -1183,7 +1179,7 @@ namespace ProjectSSQ
 
             return copy;
         }
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
 
         #region Escritura de datos de una Tabla de análisis de varianza

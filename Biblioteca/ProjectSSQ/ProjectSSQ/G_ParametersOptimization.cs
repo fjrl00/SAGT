@@ -24,7 +24,7 @@ using MultiFacetData;
 
 namespace ProjectSSQ
 {
-    public class G_ParametersOptimization : System.ICloneable 
+    public class G_ParametersOptimization
     {
         /******************************************************************************************************
          *  Constantes de clase G_ParametersOptimization
@@ -289,19 +289,14 @@ namespace ProjectSSQ
         #endregion Lectura de datos de G_Parametros de optimización
 
 
-        #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
-
+        #region Clonación
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public object Clone()
+        public G_ParametersOptimization Clone()
         {
             // Lista de Facetas a la que pertenecen los G_Parámetros
-            ListFacets copyGListFacets = (ListFacets)this.gListFacets.Clone(); 
+            ListFacets copyGListFacets = this.gListFacets.Clone(); 
             // Suma total de las varianzas de las fuentes objetivo
             double copyTotal_differentiation_var = this.total_differentiation_var; 
             double copyCoefG_Rel = this.coefG_Rel; // coeficente G relativo
@@ -315,7 +310,7 @@ namespace ProjectSSQ
             return new G_ParametersOptimization(copyGListFacets, copyTotal_differentiation_var, copyCoefG_Rel, copyCoefG_Abs,
                     copyTotalRelErrorVar, copyTotalAbsErrorVar, copyErrorRelStandDev, copyErrorAbsStandDev, copyTargetStandDev);
         }
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
 
 

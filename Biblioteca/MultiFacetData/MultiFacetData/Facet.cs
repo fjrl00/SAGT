@@ -22,7 +22,7 @@ using System.Text;
 
 namespace MultiFacetData
 {
-    public class Facet : System.ICloneable, System.IComparable<Facet>
+    public class Facet : System.IComparable<Facet>
     {
 
         #region Variables y Constantes
@@ -955,7 +955,26 @@ namespace MultiFacetData
 
         #endregion Conversiones con DataSet
 
+        #region Clonación
 
+        public Facet Clone()
+        {
+            string name = string.Copy(this.Name());
+            int l = this.Level();
+            int size = this.SizeOfUniverse();
+            string comment = string.Copy(this.Comment());
+            string nesting = string.Copy(this.ListFacetDesing());
+            bool o = this.Omit();
+            Facet f = new Facet(name, l, comment, sizeOfUniverse, nesting, omit);
+
+            foreach (int k in this.skipLevels.Keys)
+            {
+                f.SetSkipLevels(k, true);
+            }
+            return f;
+        }
+
+        #endregion Clonación
 
         #region Implementacion de la interfaz
         /*=================================================================================
@@ -963,7 +982,6 @@ namespace MultiFacetData
          * =============================
          * 
          * - CompareTo
-         * - Clone
          *=================================================================================*/
 
         public int CompareTo(Facet other)
@@ -982,24 +1000,6 @@ namespace MultiFacetData
                 }
             }
             return retval;
-        }
-
-
-        public object Clone()
-        {
-            string name = string.Copy(this.Name());
-            int l = this.Level();
-            int size = this.SizeOfUniverse();
-            string comment = string.Copy(this.Comment());
-            string nesting = string.Copy(this.ListFacetDesing());
-            bool o = this.Omit();
-            Facet f = new Facet(name, l, comment, sizeOfUniverse, nesting, omit);
-
-            foreach (int k in this.skipLevels.Keys)
-            {
-                f.SetSkipLevels(k, true);
-            }
-            return f;
         }
 
         #endregion Implementación de la interfaz

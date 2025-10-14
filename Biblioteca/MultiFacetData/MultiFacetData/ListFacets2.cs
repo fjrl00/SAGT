@@ -604,7 +604,7 @@ namespace MultiFacetData
             int n = this.Count();
             for (int i = 0; i < n; i++)
             {
-                Facet f = (Facet)this.FacetInPos(i).Clone();
+                Facet f = this.FacetInPos(i).Clone();
                 if (f.Omit() == false)
                 {
                     retLf.Add(f);
@@ -650,7 +650,7 @@ namespace MultiFacetData
                 Facet f = this.FacetInPos(i);
                 if (string.Equals(f.Name(), oldName, StringComparison.OrdinalIgnoreCase))
                 {
-                    f = (Facet)f.Clone();
+                    f = f.Clone();
                     f.Name(newName);
                 }
                 else

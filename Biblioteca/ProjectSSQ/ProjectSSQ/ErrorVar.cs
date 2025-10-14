@@ -21,7 +21,7 @@ using System.Text;
 
 namespace ProjectSSQ
 {
-    public class ErrorVar : System.ICloneable
+    public class ErrorVar
     {
         // Variables de instancia
         private double? relErrorVar; // Varianza del error relativo
@@ -78,16 +78,12 @@ namespace ProjectSSQ
                 "Varianza de error relativo: "+relString;
         }
 
-         #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
+         #region Clonación
 
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public object Clone()
+        public ErrorVar Clone()
         {
             double? copyRelErrorVar = this.relErrorVar; // Varianza del error relativo
             double? copyAbsErrorVar = this.absErrorVar; // Varianza del error absoluto
@@ -95,7 +91,7 @@ namespace ProjectSSQ
             return new ErrorVar(copyRelErrorVar, copyAbsErrorVar);
         }
 
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
     } // end public class ErrorVar
 }// enb namespace ProjectSSQ

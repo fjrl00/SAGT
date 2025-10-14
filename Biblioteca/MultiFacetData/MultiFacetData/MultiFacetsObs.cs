@@ -422,7 +422,7 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipIndexLevelFacetInDataTable()
         {
-            ListFacets lfSkipLevels = (ListFacets)this.ListFacets().Clone();
+            ListFacets lfSkipLevels = this.ListFacets().Clone();
             string comment = this.description;
             string nameFile = this.nameFileObs;
             MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);
@@ -440,7 +440,7 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipAndRestoreIndexLevelFacetInDataTable()
         {
-            ListFacets lfSkipLevels = (ListFacets)this.ListFacets().Clone();
+            ListFacets lfSkipLevels = this.ListFacets().Clone();
             string comment = this.description;
             string nameFile = this.nameFileObs;
             MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);

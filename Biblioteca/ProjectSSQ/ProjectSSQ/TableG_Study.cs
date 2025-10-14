@@ -22,7 +22,7 @@ using MultiFacetData;
 
 namespace ProjectSSQ
 {
-    public class TableG_Study : System.ICloneable
+    public class TableG_Study
     {
 
         /*======================================================================================
@@ -717,25 +717,21 @@ namespace ProjectSSQ
         }// end constructor G_P_special
 
 
-        #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
+        #region Clonación
 
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public virtual object Clone()
+        public virtual TableG_Study Clone()
         {
             // Copiamos la fuentes de diferenciación, 
-            ListFacets copyLfDifferentiation = (ListFacets)this.lfDifferentiation.Clone();
+            ListFacets copyLfDifferentiation = this.lfDifferentiation.Clone();
             // Copiamos la fuentes de instrumentación
-            ListFacets copyLfInstrumentation = (ListFacets)this.lfInstrumentation.Clone();
+            ListFacets copyLfInstrumentation = this.lfInstrumentation.Clone();
             Dictionary<string, double?> copyDifferentiationVar = ClonarDictionary(this.differentiationVar);
             Dictionary<string, ErrorVar> copyErrorVar = ClonarDictionary(this.errorVar);
 
-            G_ParametersOptimization copyG_parameterOptimization = (G_ParametersOptimization)this.g_parameterOptimization.Clone();
+            G_ParametersOptimization copyG_parameterOptimization = this.g_parameterOptimization.Clone();
             return new TableG_Study(copyLfDifferentiation, copyLfInstrumentation, copyDifferentiationVar,
                 copyErrorVar, copyG_parameterOptimization);
         }
@@ -772,7 +768,7 @@ namespace ProjectSSQ
             foreach (string skey in original.Keys)
             {
                 string copyKey = string.Copy(skey);
-                ErrorVar e = (ErrorVar)original[skey].Clone();
+                ErrorVar e = original[skey].Clone();
 
                 copy.Add(copyKey, e);
             }
@@ -780,7 +776,7 @@ namespace ProjectSSQ
             return copy;
         }
 
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
     } // end public class TableG_Study
 } // end namespace ProjectSSQ

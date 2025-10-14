@@ -124,7 +124,7 @@ namespace Sagt
          */
         public Analysis_and_G_Study CopyTablesOfAnalysis()
         {
-            return (Analysis_and_G_Study)this.tAnalysis_tG_Study_Opt.Clone();
+            return this.tAnalysis_tG_Study_Opt.Clone();
         }
 
 

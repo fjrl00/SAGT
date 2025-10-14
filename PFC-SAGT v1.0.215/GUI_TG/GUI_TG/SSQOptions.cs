@@ -993,7 +993,7 @@ namespace GUI_GT
                             {
                                 // lista de facetas que contedra tanto las facetas de instrumentación como de diferenciación.
                                 
-                                ListFacets newlf = (ListFacets)tablesOfAnalysisG.TableAnalysisVariance().ListFacets().Clone();
+                                ListFacets newlf = tablesOfAnalysisG.TableAnalysisVariance().ListFacets().Clone();
 
                                 /* Modificamos los valores de las facetas de intrumentación en la lista clonada.
                                  */

@@ -25,7 +25,7 @@ using AuxMathCalcGT;
 
 namespace ProjectSSQ
 {
-    public class TableG_Study_Percent : TableG_Study, System.ICloneable
+    public class TableG_Study_Percent : TableG_Study
     {
         /******************************************************************************************************
          *  Constantes de clase TableG_Study_Percent
@@ -195,25 +195,21 @@ namespace ProjectSSQ
 
 
 
-        #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
+        #region Clonación
 
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.
          */
-        public override object Clone()
+        public override TableG_Study Clone()
         {
             // Copiamos la fuentes de diferenciación, 
-            ListFacets copyLfDifferentiation = (ListFacets)this.LfDifferentiation().Clone();
+            ListFacets copyLfDifferentiation = this.LfDifferentiation().Clone();
             // Copiamos la fuentes de instrumentación
-            ListFacets copyLfInstrumentation = (ListFacets)this.LfInstrumentation().Clone();
+            ListFacets copyLfInstrumentation = this.LfInstrumentation().Clone();
             Dictionary<string, double?> copyDifferentiationVar = ClonarDictionary(this.Target());
             Dictionary<string, ErrorVar> copyErrorVar = ClonarDictionary(this.Error());
 
-            G_ParametersOptimization copyG_parameterOptimization = (G_ParametersOptimization)this.G_ParametersOptimization().Clone();
+            G_ParametersOptimization copyG_parameterOptimization = this.G_ParametersOptimization().Clone();
 
             Dictionary<string, ErrorVar> copyPercentError = ClonarDictionary(percentError);
 
@@ -252,14 +248,14 @@ namespace ProjectSSQ
             foreach (string skey in original.Keys)
             {
                 string copyKey = string.Copy(skey);
-                ErrorVar e = (ErrorVar)original[skey].Clone();
+                ErrorVar e = original[skey].Clone();
 
                 copy.Add(copyKey, e);
             }
 
             return copy;
         }
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
 
         #region Escritura de datos de una Tabla de G_Study con porcentaje de error

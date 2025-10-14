@@ -2334,7 +2334,7 @@ namespace GUI_GT
             else
             {
                 ListFacets listFacets = multiFacets.ListFacets();
-                ListFacets lf = (ListFacets)listFacets.Clone(); 
+                ListFacets lf = listFacets.Clone(); 
                 FormOmitLevelFacet formOmitLevelFacet = new FormOmitLevelFacet(cfgApli.GetConfigLanguage(), lf);
 
                 bool salir = false;

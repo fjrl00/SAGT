@@ -20,7 +20,7 @@ using System.IO;
 
 namespace MultiFacetData
 {
-    public partial class ListFacets : System.ICloneable, IEnumerable, IComparable<ListFacets>
+    public partial class ListFacets : IEnumerable, IComparable<ListFacets>
     {
         /*======================================================================================
          * Constantes
@@ -333,15 +333,28 @@ namespace MultiFacetData
             return lf;
         }
 
+        #region Clonación
 
+        public ListFacets Clone()
+        {
+            ListFacets lf = new ListFacets(); // Variable de retorno
+            int n = this.listFacets.Count;
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = this.FacetInPos(i);
+                Facet newF = f.Clone();
+                lf.Add(newF);
+            }
+            return lf;
+        }
 
+        #endregion Clonación
 
         #region Implementación de Interfaces
         /*======================================================================================
          * Implementación de Interfaces
          *  - GetEnumerator()
          *  - CompareTo(ListFacets other) 
-         *  - Clonable
          *======================================================================================*/
 
         /*
@@ -370,23 +383,6 @@ namespace MultiFacetData
                 }
             }
             return retval;
-        }
-
-
-        /* Descripción:
-         *  Método de la interfaz ICloneable
-         */
-        public object Clone()
-        {
-            ListFacets lf = new ListFacets(); // Variable de retorno
-            int n = this.listFacets.Count;
-            for (int i = 0; i < n; i++)
-            {
-                Facet f = this.FacetInPos(i);
-                Facet newF = (Facet)f.Clone();
-                lf.Add(newF);
-            }
-            return lf;
         }
 
         #endregion Implementación de Interfaces

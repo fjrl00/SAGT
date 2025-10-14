@@ -24,7 +24,7 @@ using MultiFacetData;
 
 namespace ProjectSSQ
 {
-    public class Analysis_and_G_Study : System.ICloneable
+    public class Analysis_and_G_Study
     {
         /******************************************************************************************************
          *  Constantes de clase Analysis_and_G_Study para la escritura de archivo de datos
@@ -391,7 +391,7 @@ namespace ProjectSSQ
         public Analysis_and_G_Study ReplaceNameOfFacet(string oldName, string newName)
         {
             // Clonamos
-            Analysis_and_G_Study analysisReplace = (Analysis_and_G_Study)this.Clone();
+            Analysis_and_G_Study analysisReplace = this.Clone();
 
             ListFacets lf = analysisReplace.GetListFacets();
 
@@ -428,7 +428,7 @@ namespace ProjectSSQ
 
             ListFacets lfDiff = this.tableG_Study_Percent.LfDifferentiation();
             int n = lfDiff.Count();
-            
+
             for (int i = 0; i < n; i++)
             {
                 Facet f = lfDiff.FacetInPos(i);
@@ -448,11 +448,11 @@ namespace ProjectSSQ
 
             TableG_Study_Percent tableG_study = new TableG_Study_Percent(newLfDiff, newLfInst, tableAnalysis);
 
-            
+
             List<G_ParametersOptimization> newList_gp = new List<G_ParametersOptimization>();
             Analysis_and_G_Study newAnalysis_and_G_Study = new Analysis_and_G_Study(tableAnalysis, tableG_study, newList_gp);
             n = this.listG_P_Optimization.Count;
-            for (int i = 0; i < n; i++ )
+            for (int i = 0; i < n; i++)
             {
                 G_ParametersOptimization gp = this.listG_P_Optimization[i];
                 ListFacets lf_Of_levels = gp.G_ListFacets();
@@ -462,7 +462,7 @@ namespace ProjectSSQ
                 {
                     Facet f_new = newLf.FacetInPos(j);
                     Facet f_old = lf_Of_levels.FacetInPos(j);
-                    newG_ListFacets.Add(new Facet(f_new.Name(),f_old.Level(),f_new.Comment(),f_old.SizeOfUniverse(),f_new.Omit()));
+                    newG_ListFacets.Add(new Facet(f_new.Name(), f_old.Level(), f_new.Comment(), f_old.SizeOfUniverse(), f_new.Omit()));
                 }
 
                 G_ParametersOptimization newGp = newAnalysis_and_G_Study.Calc_G_ParametersOptimización(newG_ListFacets);
@@ -472,24 +472,20 @@ namespace ProjectSSQ
             Analysis_and_G_Study retVal = new Analysis_and_G_Study(tableAnalysis, tableG_study, newList_gp);
             retVal.SetTextComment(this.GetTextComment());
             return retVal;
-                
+
         }// end ReplaceListOfFacet
 
         #endregion Remplazar lista de facetas
 
 
-        #region Implementacion de la interfaz
-        /******************************************************************************************************
-         *  Implementacion de la interfaz Cloneable
-         *  =======================================
-         ******************************************************************************************************/
-
+        #region Clonación
+        
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto, menos la fecha de creción.
          */
-        public object Clone()
+        public Analysis_and_G_Study Clone()
         {
-            TableAnalysisOfVariance copyTableAnalysis = (TableAnalysisOfVariance)this.tableAnalysisVariance.Clone();
+            TableAnalysisOfVariance copyTableAnalysis = this.tableAnalysisVariance.Clone();
             TableG_Study_Percent copyTableG_Study_Percent = (TableG_Study_Percent)this.tableG_Study_Percent.Clone();
 
             List<G_ParametersOptimization> copyListG_P_Optimization = new List<G_ParametersOptimization>();
@@ -497,7 +493,7 @@ namespace ProjectSSQ
             int n = this.listG_P_Optimization.Count;
             for (int i = 0; i < n; i++)
             {
-                G_ParametersOptimization copyGp = (G_ParametersOptimization)this.listG_P_Optimization[i].Clone();
+                G_ParametersOptimization copyGp = this.listG_P_Optimization[i].Clone();
                 copyListG_P_Optimization.Add(copyGp);
             }
 
@@ -511,7 +507,7 @@ namespace ProjectSSQ
             return copyAnalysis_and_G_Study;
         }
 
-        #endregion Implementacion de la interfaz
+        #endregion Clonación
 
 
         #region Escritura en archivo
