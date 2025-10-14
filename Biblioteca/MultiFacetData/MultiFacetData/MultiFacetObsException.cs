@@ -23,12 +23,10 @@ namespace MultiFacetData
         public MultiFacetObsException()
             : base()
         {
-            // no es necesario añadir codigo
         }
 
         public MultiFacetObsException(string mns): base(mns)
         {
-            // no es necesario añadir codigo
         }
 
         public MultiFacetObsException(string message, Exception innerException) : base(message, innerException)

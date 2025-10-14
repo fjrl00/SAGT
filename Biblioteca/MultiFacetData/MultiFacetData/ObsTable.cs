@@ -65,8 +65,6 @@ namespace MultiFacetData
          *=================================================================================*/
         internal const string BEGIN_OBS_TABLE = "<obs_table>";
         const string END_OBS_TABLE = "</obs_table>";
-        const string STRING_NULL = "NULL";
-
 
         /*=================================================================================
          * Variables de instancia
@@ -103,18 +101,18 @@ namespace MultiFacetData
          */
         public ObsTable(ListFacets list_facets)
         {
-            int numFacets = list_facets.Count();
-
             if (list_facets == null)
             {
                 throw new ObsTableException("Error: no se hay facetas");
             }
-            else if (numFacets < 2)
+            int numFacets = list_facets.Count();
+
+            if (numFacets < 2)
             {
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
-            
+
             int rows = 1; // Guarda el nº de filas de la matriz de observaciones. Inicializada con la identidad multiplicativa (IM*x=x)
 
             int[] levelOfFacets = new int[list_facets.Count()]; // Este array nos ayudará a contruir la estructura.
@@ -165,7 +163,7 @@ namespace MultiFacetData
          *      int[] levelOfFacets: un array con los niveles de cada una de las facetas.
          *      
          * Devuelve:
-         *      double[] res: un array con las veces que se repite cada uno de los indices.
+         *      int[] res: un array con las veces que se repite cada uno de los indices.
          */
         private static int[] RepeatedIndex(int[] levelOfFacets)
         {
@@ -182,7 +180,7 @@ namespace MultiFacetData
 
             }
             return res;
-        }// end private static double[] RepeatedIndex(double[] levelOfFacets)
+        }// end private static int[] RepeatedIndex(int[] levelOfFacets)
 
 
 
@@ -217,9 +215,7 @@ namespace MultiFacetData
                 { // * for 2*
 
 
-                    // this.obsMatrix[fila, columna] = indice;
                     this.obsMatrix[fila][columna] = indice;
-                    // this.obsMatrix.Add(new List<double?>());
                     numRep++;
                     if (numRep == rep[columna])
                     {
@@ -395,11 +391,9 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Elimina las filas donde se encuentre el nivel actual para la columna especificada.
-         * 
-         *  Nota: Al eliminar un nivel se alteran los niveles superiores que se ven reducidos en
-         *  uno. Por tanto para que no haya poblemas se debe reducir nivel en orden descendente,
-         *  empezando por en nivel más alto.
+         *  Elimina las filas que en la columna especificada contengan el nivel especificado.
+         *  Después, restaura los índices de los niveles superiores para que no haya huecos
+         *  de por medio.
          *  
          *  Parámetros:
          *          int skipLevel: nivel que se va a eliminar
@@ -407,64 +401,43 @@ namespace MultiFacetData
          */
         public void SkipLevelAndRestoreIndex(int skipLevel, int col)
         {
-            int rows = this.ObsTableRows();
+            //Step 1: remove the appropiate rows
+            this.obsMatrix.RemoveAll(row => (double)row[col] == skipLevel);
 
-            ArrayList arrayListRows = new ArrayList();
-
-            for (int i = 0; i < rows; i++)
+            //Step 2: Restore appropiate indexes
+            for (int i = 0; i < this.ObsTableRows(); i++)
             {
                 double data = (double)this.obsMatrix[i][col];
                 if (data > skipLevel)
                 {
                     this.obsMatrix[i][col] = (data - 1);
                 }
-                else if (data == skipLevel)
-                {
-                    arrayListRows.Add(this.obsMatrix[i]);
-                }
-            }
-
-            int n = arrayListRows.Count;
-            for (int i = 0; i < n; i++)
-            {
-                this.obsMatrix.Remove((List<double?>)arrayListRows[i]);
             }
         }
 
 
         /* Descripción:
-         *  Elimina las filas donde se encuentre el nivel actual para la columna especificada.
+         *  Elimina de la tabla de observaciones todas las filas que contengan un nivel
+         *  marcado para ser omitido en la lista de facetas correspondiente.
+         *  No se requiere restaurar los índices de los niveles superiores.
          *  
          *  Parámetros:
          *          ListFacets lf: Lista de facetas que contiene los niveles a omitir.
          */
         public void SkipLevelIndex(ListFacets lf)
         {
-            int rows = this.ObsTableRows();
-            int numFacets = lf.Count();
-            ArrayList arrayL = new ArrayList();
-
-            for (int i = 0; i < rows; i++)
+            this.obsMatrix.RemoveAll(row =>
             {
-                List<double?> lrow = this.obsMatrix[i];
-                bool skip = false;
-                for (int j = 0; j < numFacets && !skip; j++)
+                for (int j = 0; j < lf.Count(); j++)
                 {
-                    Facet f = lf.FacetInPos(j);
-                    int data = (int)lrow[j]; // conversión explicita
-                    skip = f.GetSkipLevels(data);
-                    if (skip)
-                    {
-                        arrayL.Add(lrow);
-                    }
-                }
-            }
+                    Facet facet = lf.FacetInPos(j);
+                    int data = (int)row[j];
 
-            int n = arrayL.Count;
-            for (int i = 0; i < n; i++)
-            {
-                this.obsMatrix.Remove((List<double?>)arrayL[i]);
-            }
+                    if (facet.GetSkipLevels(data))
+                        return true;
+                }
+                return false;
+            });
         }
 
 
@@ -473,6 +446,7 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Devuelve la suma de los datos de la tabla.
+         *  Suma de nulls equivale a null. Sin embargo sumar null a un número equivale a ese número.
          */
         public double? SumOfData()
         {
@@ -743,7 +717,7 @@ namespace MultiFacetData
             } // end if (* 1 *)
             return res;
         } // public override bool Equals(object obj)
-        
+
 
         /*
          * Descripción:
@@ -751,15 +725,23 @@ namespace MultiFacetData
          */
         public override int GetHashCode()
         {
-            int n = 0;
-            for (int i = 0; i < this.ObsTableRows(); i++)
+            int hash = 1;
+            int rows = this.ObsTableRows();
+            int cols = this.ObsTableColumns();
+
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < this.ObsTableColumns(); j++)
+                for (int j = 0; j < cols; j++)
                 {
-                    n = (n+this.obsMatrix[i][j].GetHashCode())/3;
+                    double? val = this.obsMatrix[i][j];
+                    hash = hash * 31 + (val?.GetHashCode() ?? 0);
                 }
             }
-            return (this.ObsTableRows().GetHashCode()+this.ObsTableColumns().GetHashCode()+n)/3;
+
+            hash = hash * 31 + rows.GetHashCode();
+            hash = hash * 31 + cols.GetHashCode();
+
+            return hash;
         }// public override int GetHashCode()
 
         #endregion Métodos redefinidos (ToString, Equals, GetHashCode)

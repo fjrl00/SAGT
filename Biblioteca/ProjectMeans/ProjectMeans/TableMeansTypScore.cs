@@ -67,7 +67,6 @@ namespace ProjectMeans
         const string END_TABLE_MEANS_TYPICAL_SCORE = "</table_means_typical_score>";
         const string BEGIN_LIST_OF_DATAMEANS_TYPICAL_SCORE = "<list_of_data_means_typical_score>";
         const string END_LIST_OF_DATAMEANS_TYPICAL_SCORE = "</list_of_data_means_typical_score>";
-        const string STRING_NULL = "NULL";
 
         /*=================================================================================
          * Variables de instancia

@@ -72,7 +72,6 @@ namespace ProjectMeans
         const string END_TABLE_MEANS_DIFF  = "</table_means_diff>";
         const string BEGIN_LIST_OF_DATAMEANS_DIFF  = "<list_of_data_means_diff>";
         const string END_LIST_OF_DATAMEANS_DIFF  = "</list_of_data_means_diff>";
-        const string STRING_NULL = "NULL";
 
         /*=================================================================================
          * Variables de instancia

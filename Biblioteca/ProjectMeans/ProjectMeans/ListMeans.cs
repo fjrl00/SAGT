@@ -36,7 +36,6 @@ namespace ProjectMeans
         // Comienzo y fin de lista de medias
         const string BEGIN_LIST_MEANS = "<listmeans>";
         const string END_LIST_MEANS = "</listmeans>";
-        // internal const string STRING_NULL = "NULL";
 
         /*======================================================================================
          * Variables
