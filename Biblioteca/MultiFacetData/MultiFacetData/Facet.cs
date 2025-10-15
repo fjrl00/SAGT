@@ -431,17 +431,17 @@ namespace MultiFacetData
         {
             string s = "[" + nameFacet + "]";
 
-            if (this.list_facets_design.EndsWith(NEST_CHAR + s))
+            if (this.list_facets_design.EndsWith(NEST_CHAR + s))                // if restodeldiseño:[f]
             {
-                this.list_facets_design.Replace(NEST_CHAR + s, "");
+                this.list_facets_design = this.list_facets_design.Replace(NEST_CHAR + s, "");                 //then restodeldiseño
             }
-            else if(this.list_facets_design.Contains(NEST_CHAR+s+NEST_CHAR))
+            else if(this.list_facets_design.Contains(NEST_CHAR+s+NEST_CHAR))    // if cacho1:[f]:cacho2
             {
-                this.list_facets_design.Replace(NEST_CHAR + s, "");
+                this.list_facets_design = this.list_facets_design.Replace(NEST_CHAR + s, "");                 //then cacho1:cacho2
             }
-            else
+            else                                                                //if cacho1[f]cacho2 (cacho1 o cacho2 pueden ser vacíos)
             {
-                this.list_facets_design.Replace(s, "");
+                this.list_facets_design = this.list_facets_design.Replace(s, "");                             //cacho1cacho2
             }
         }
 

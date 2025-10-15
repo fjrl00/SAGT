@@ -616,16 +616,16 @@ namespace MultiFacetData
                 }
             }
 
-            n = lsNameFacet.Count;
-            int m = retLf.Count();
+            n = lsNameFacet.Count;  //Número de facetas omitidas
+            int m = retLf.Count();  //número de facetas no omitidas (nuestra lista de retorno)
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)                 //iteramos por las facetas omitidas
             {
                 string s = lsNameFacet[i];
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m; j++)                 //iteramos por las facetas no omitidas
                 {
                     Facet f = retLf.FacetInPos(j);
-                    f.ListFacetsDesignRemove(s);
+                    f.ListFacetsDesignRemove(s);                //eliminamos de su diseño la faceta omitida
                 }
                 
             }

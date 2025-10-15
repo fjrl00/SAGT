@@ -460,9 +460,9 @@ namespace MultiFacetData
             // Begin building table too (maintains order of first appearance)
             var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
             var collapsedTable = new List<List<double?>>();
-            int measurementCol = this.ObsTableColumns() - 1;
             HashSet<int> omittedIndexes = lf.OmittedIndexes();
 
+            int measurementCol = this.ObsTableColumns() - 1;
             foreach (var row in obsMatrix)
             {
                 //extract the key (facet values) for this row, ignoring omitted facets
@@ -487,10 +487,11 @@ namespace MultiFacetData
             }
 
             // Phase 2: Fill in the measurements
+            int collapsedMeasurementCol = collapsedTable[0].Count - 1;
             for (int i = 0; i < collapsedTable.Count; i++)
             {
-                var key = collapsedTable[i].Take(measurementCol).Select(d => (double)d).ToList();
-                collapsedTable[i][measurementCol] = groups[key].Mean();
+                var key = collapsedTable[i].Take(collapsedMeasurementCol).Select(d => (double)d).ToList();
+                collapsedTable[i][collapsedMeasurementCol] = groups[key].Mean();
             }
 
             return new ObsTable(collapsedTable);
