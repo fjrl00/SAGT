@@ -1277,7 +1277,7 @@ namespace ConnectLibrary
             for(int i = 0; i < n; i++)
             {
                 int sl = skipLevels[i];
-                f.SetSkipLevels(sl, true);
+                f.SetSkipLevels(sl);
             }
             return f;
         }// end Return_Facet

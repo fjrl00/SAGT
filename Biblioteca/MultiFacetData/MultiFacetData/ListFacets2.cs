@@ -1235,7 +1235,7 @@ namespace MultiFacetData
                 for (int j = 0; j < numSkipLevels; j++)
                 {
                     int skip = (int)rows[j]["skip_level"];
-                    f.SetSkipLevels(skip, true);
+                    f.SetSkipLevels(skip);
                 }
 
                 // Añadimos la faceta a la lista

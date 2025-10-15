@@ -48,7 +48,7 @@ namespace MultiFacetData
         /*Una faceta puede estar anidada en más de una faceta por eso empleamos una lista. */
         private string list_facets_design;
         // Niveles de facetas omitidos
-        private Dictionary<int, bool> skipLevels;
+        private HashSet<int> skipLevels;
         #endregion Variables y Constantes
 
 
@@ -71,7 +71,7 @@ namespace MultiFacetData
             this.name = name;
             this.level = level;
             this.list_facets_design = "[" + name + "]"; // partimos de una sola faceta
-            this.skipLevels = new Dictionary<int, bool>();
+            this.skipLevels = new HashSet<int>();
             this.sizeOfUniverse = int.MaxValue;
             this.omit = false;
             this.comment = "";
@@ -318,16 +318,12 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Añade el estado de omisión o no omisión de los niveles.
-         * 
-         * NOTA: solo se añaden los niveles que se van a omitir. Los que no se omiten se determina por
-         * exclusión.
+         *  Añade o quita un nivel de la lista de omitidos.
          * 
          * Parámetros:
          *      int level: nivel sobre el que actuamos
-         *      bool skip: estado del nivel, true se omite, false no se omite
          */
-        public void SetSkipLevels(int level, bool skip)
+        public void SetSkipLevels(int level)
         {
             // Si el nivel no esta dentro del rango permitido lanzamos una excepción
             if (level < 1 && level > this.level)
@@ -335,19 +331,13 @@ namespace MultiFacetData
                 throw new FacetException("Error: nivel no permitido");
             }
 
-            if (this.skipLevels.ContainsKey(level))
+            if (this.skipLevels.Contains(level))
             {
-                if (!skip)
-                {
-                    this.skipLevels.Remove(level);
-                }
+                this.skipLevels.Remove(level);
             }
             else
             {
-                if (skip)
-                {
-                    this.skipLevels.Add(level, skip);
-                }
+                this.skipLevels.Add(level);
             }
         }
 
@@ -360,7 +350,7 @@ namespace MultiFacetData
          */
         public List<int> ListSkipLevels()
         {
-            List<int> lSkip = this.skipLevels.Keys.ToList();
+            List<int> lSkip = this.skipLevels.ToList();
             lSkip.Sort();
             lSkip.Reverse();
             return lSkip;
@@ -515,16 +505,6 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve el nivel de la faceta. Este será igual al número de niveles inicial menos el número
-         *  de niveles excluidos para los calculos
-         */
-        public int LevelNoSkip()
-        {
-            return (level - this.skipLevels.Keys.Count);
-        }
-
-
-        /* Descripción:
          *  Devuelve la descripción/comentario de la faceta.
          */
         public string Comment()
@@ -547,7 +527,7 @@ namespace MultiFacetData
          */
         public bool GetSkipLevels(int level)
         {
-            return this.skipLevels.ContainsKey(level);
+            return this.skipLevels.Contains(level);
         }
 
 
@@ -556,7 +536,7 @@ namespace MultiFacetData
          */
         public bool HasSkipLevels()
         {
-            return (this.skipLevels.Keys.Count > 0);
+            return (this.skipLevels.Count > 0);
         }
 
 
@@ -667,7 +647,7 @@ namespace MultiFacetData
             bool res = true;
             writerFile.WriteLine(BEGIN_SKIP_LEVELS);
             string sklevel = "";
-            foreach (int k in this.skipLevels.Keys)
+            foreach (int k in this.skipLevels)
             {
                 if (sklevel.Equals(""))
                 {
@@ -699,7 +679,7 @@ namespace MultiFacetData
                 for(int i =0; i<n; i++)
                 {
                     int skip_level =int.Parse(arrayOfInt[i]);
-                    this.SetSkipLevels(skip_level, true);
+                    this.SetSkipLevels(skip_level);
                 }
             }
             if (line == null)
@@ -780,7 +760,7 @@ namespace MultiFacetData
             }
 
             string sklevel = "";
-            foreach (int k in this.skipLevels.Keys)
+            foreach (int k in this.skipLevels)
             {
                 if (sklevel.Equals(""))
                 {
@@ -950,7 +930,7 @@ namespace MultiFacetData
             {
                 DataRow r_skip = rows[i];
                 int skipLevel = (int)r_skip["skip_level"];
-                f.SetSkipLevels(skipLevel, true);
+                f.SetSkipLevels(skipLevel);
             }
             return f;
         }
@@ -968,11 +948,11 @@ namespace MultiFacetData
             string nesting = string.Copy(this.ListFacetDesing());
             bool o = this.Omit();
             Facet f = new Facet(name, l, comment, sizeOfUniverse, nesting, omit);
-
-            foreach (int k in this.skipLevels.Keys)
+            foreach (int k in this.skipLevels)
             {
-                f.SetSkipLevels(k, true);
+                f.SetSkipLevels(k);
             }
+
             return f;
         }
 

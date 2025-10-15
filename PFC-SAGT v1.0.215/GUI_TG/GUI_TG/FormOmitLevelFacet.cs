@@ -92,7 +92,7 @@ namespace GUI_GT
             int indLevel = this.checkedListBoxSelectShipLevels.SelectedIndex;
             Facet f = this.listFacets.FacetInPos(indFacet);
 
-            f.SetSkipLevels(indLevel+1, this.checkedListBoxSelectShipLevels.GetItemChecked(indLevel));
+            f.SetSkipLevels(indLevel+1);
         }
 
         #endregion Eventos de ComboBox Seleccionar faceta

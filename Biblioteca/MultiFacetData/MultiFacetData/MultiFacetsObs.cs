@@ -380,7 +380,7 @@ namespace MultiFacetData
                     this.observationTable.SkipLevelAndRestoreIndex(skipLevel, i);
 
                     f.Level(f.Level() - 1);             // actualizamos el nivel
-                    f.SetSkipLevels(skipLevel, false);  // eliminamos el nivel de la lista de niveles omitidos
+                    f.SetSkipLevels(skipLevel);  // eliminamos el nivel de la lista de niveles omitidos
                 }
             }
         }// end AuxSkipLevelFacetInDataTable
