@@ -740,6 +740,20 @@ namespace MultiFacetData
         }
         #endregion Conversión a DataTable o DataSet
 
+        #region Clonación
+
+        public ObsTable Clone()
+        {
+            List<List<double?>> newMatrix = new List<List<double?>>();
+            foreach (var row in this.obsMatrix)
+            {
+                List<double?> newRow = new List<double?>(row);
+                newMatrix.Add(newRow);
+            }
+            return new ObsTable(newMatrix);
+        }
+
+        #endregion Clonación
 
         #region Métodos redefinidos (ToString, Equals, GetHashCode)
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 

@@ -43,10 +43,8 @@ namespace MultiFacetData
         private ListFacets listFacets; // lista de facetas
         private string nameFileObs; // Nombre del fichero de observaciones
         private string description; // posible descripción del archivo
-        // private ObsTable observationTable; // tabla de observacion.
         private InterfaceObsTable observationTable; // tabla de observacion.
-
-        private string comment; //;
+        private string comment;
         #endregion
 
         #region Constructores
@@ -311,7 +309,6 @@ namespace MultiFacetData
          * Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas
          * 
          *  - OmitFacetInDataTable()
-         *  - AuxCalculateTableObsOmit(MultiFacetsObs mfo)
          ********************************************************************************************/
 
         /* Descripción:
@@ -342,16 +339,9 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipIndexLevelFacetInDataTable()
         {
-            //1. Clonación del objeto
-            ListFacets lfSkipLevels = this.ListFacets().Clone();
-            string comment = this.description;
-            string nameFile = this.nameFileObs;
-            MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);
-            retVal.AssignDataToTheTableObs(this.ObservationTable().ListObs());
+            MultiFacetsObs retVal = this.Clone();
+            retVal.ObservationTable().SkipLevelIndex(retVal.ListFacets());
 
-            // 2. aplicamos la reducción de la tabla de frecuencias
-            InterfaceObsTable obsTable = retVal.ObservationTable();
-            obsTable.SkipLevelIndex(lfSkipLevels);
             return retVal;
         }
 
@@ -362,15 +352,9 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipAndRestoreIndexLevelFacetInDataTable()
         {
-            //1. Clonación del objeto
-            ListFacets lfSkipLevels = this.ListFacets().Clone();
-            string comment = this.description;
-            string nameFile = this.nameFileObs;
-            MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);
-            retVal.AssignDataToTheTableObs(this.ObservationTable().ListObs());
-
-            //2. aplicamos la reducción de la tabla de frecuencias
+            MultiFacetsObs retVal = this.Clone();
             retVal.AuxSkipLevelFacetInDataTable();
+
             return retVal;
         }
 
@@ -381,14 +365,13 @@ namespace MultiFacetData
         private void AuxSkipLevelFacetInDataTable()
         {
             int numFacet = this.listFacets.Count();
-            for (int i = 0; i < numFacet; i++)
+            for (int i = 0; i < numFacet; i++)              //for each facet
             {
                 Facet f = this.listFacets.FacetInPos(i);
-                int level = f.Level();
                 List<int> lSkipLevels = f.ListSkipLevels();
                 int n = lSkipLevels.Count;
 
-                for(int j = 0; j < n; j++)
+                for(int j = 0; j < n; j++)                  //for each level to skip
                 {
                     int skipLevel = lSkipLevels[j];
                     /* Entonces eliminamos todas las apariciones de j en la columna i y
@@ -396,9 +379,8 @@ namespace MultiFacetData
                         */
                     this.observationTable.SkipLevelAndRestoreIndex(skipLevel, i);
 
-                    // actualizamos el nivel
-                    f.Level(f.Level() - 1);
-                    f.SetSkipLevels(skipLevel, false);
+                    f.Level(f.Level() - 1);             // actualizamos el nivel
+                    f.SetSkipLevels(skipLevel, false);  // eliminamos el nivel de la lista de niveles omitidos
                 }
             }
         }// end AuxSkipLevelFacetInDataTable
@@ -684,11 +666,23 @@ namespace MultiFacetData
 
         #endregion Converstión en DataSet
 
+        #region Clonación
+        public MultiFacetsObs Clone()
+        {
+            ListFacets lf = this.listFacets.Clone();
+            string nameFile = this.nameFileObs;
+            string comment = this.comment;
+            string description = this.description;
+            ObsTable obsTable = this.observationTable.Clone();
+            return new MultiFacetsObs(lf, obsTable, nameFile, description, comment);
+        }
+        #endregion Clonación
+
         #region Métodos redefinidos
         /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
          * Métodos rededifinidos
          *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
- 
+
         /*
          * Descripción:
          *  Redefinición del método ToString

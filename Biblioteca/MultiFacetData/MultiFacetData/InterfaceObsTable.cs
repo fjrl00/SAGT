@@ -62,6 +62,8 @@ namespace MultiFacetData
         void SkipLevelIndex(ListFacets lf);
         //Crea una tabla de observaciones con las facetas a omitir omitidas.
         ObsTable CollapsedTable(ListFacets lf);
+        // Deep clone
+        ObsTable Clone();
 
     }// end interface InterfaceObsTable
 }// end namespace MultiFacetData

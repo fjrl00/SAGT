@@ -355,6 +355,8 @@ namespace MultiFacetData
         /* Descripción:
          *  Devuelve una lista ordenada (en orden descendende) con los niveles que se
          *  van a omitir.
+         *  Debe ser en orden descendente para permitir iterar en la omisión de niveles
+         *  de ObsTable.SkipLevelAndRestoreIndex
          */
         public List<int> ListSkipLevels()
         {
