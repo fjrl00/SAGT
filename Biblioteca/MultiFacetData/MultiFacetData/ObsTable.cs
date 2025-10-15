@@ -456,42 +456,41 @@ namespace MultiFacetData
             //Phase 0: check if the given list of facets is congruent with this table. If not, throw an exception.
             //todo
 
-            //Phase 1: Build dictionary of surviving facet value combinations and the
-            //list of measurements for each.
+            //Phase 1: Build dictionary of surviving facet value combinations and the list of measurements for each.
+            // Begin building table too (maintains order of first appearance)
             var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
+            var collapsedTable = new List<List<double?>>();
             int measurementCol = this.ObsTableColumns() - 1;
             HashSet<int> omittedIndexes = lf.OmittedIndexes();
 
             foreach (var row in obsMatrix)
             {
-                // Extract remaining facet values to build the key
+                //extract the key (facet values) for this row, ignoring omitted facets
                 var key = new List<double>();
                 for (int i = 0; i < measurementCol; i++)
-                {
                     if (!omittedIndexes.Contains(i))
                         key.Add((double)row[i]);
-                }
 
-                // Add measurement to the correct group
                 if (!groups.TryGetValue(key, out var measurements))
                 {
                     measurements = new AuxMathCalcGT.Statistics();
                     groups[key] = measurements;
+
+                    // Add to collapsedTable immediately (preserves order)
+                    var newRow = key.Select(d => (double?)d).ToList();
+                    newRow.Add(null); // placeholder for measurement
+                    collapsedTable.Add(newRow);
                 }
+
+                // Add measurement to the correct group
                 measurements.Add(row[measurementCol]);
             }
 
-            // Phase 2: Build the collapsed table
-            var collapsedTable = new List<List<double?>>();
-            foreach (var kvp in groups)
+            // Phase 2: Fill in the measurements
+            for (int i = 0; i < collapsedTable.Count; i++)
             {
-                var key = kvp.Key;
-                var measurements = kvp.Value;
-                double? mean = measurements.Mean();
-
-                var newRow = key.Select(d => (double?)d).ToList();
-                newRow.Add(mean);
-                collapsedTable.Add(newRow);
+                var key = collapsedTable[i].Take(measurementCol).Select(d => (double)d).ToList();
+                collapsedTable[i][measurementCol] = groups[key].Mean();
             }
 
             return new ObsTable(collapsedTable);
