@@ -86,6 +86,10 @@ namespace MultiFacetData
             obsMatrix = new List<List<double?>>();
         }
 
+        public ObsTable(List<List<double?>> obsMatrix)
+        {
+            this.obsMatrix = obsMatrix;
+        }
 
         /*
          * Descripción:
@@ -440,6 +444,88 @@ namespace MultiFacetData
             });
         }
 
+        /* Descripción:
+         *  Genera una nueva tabla de observaciones a partir de esta omitiendo/colapsando 
+         *  las facetas de la lista que están marcadas para omitir.
+         *  
+         *  Parámetros:
+         *          ListFacets lf: Lista de facetas (debe coincidir con las de esta tabla)
+         */
+        public ObsTable CollapsedTable(ListFacets lf)
+        {
+            //Phase 0: check if the given list of facets is congruent with this table. If not, throw an exception.
+            //todo
+
+            //Phase 1: Build dictionary of surviving facet value combinations and the
+            //list of measurements for each.
+            var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
+            int measurementCol = this.ObsTableColumns() - 1;
+            HashSet<int> omittedIndexes = lf.OmittedIndexes();
+
+            foreach (var row in obsMatrix)
+            {
+                // Extract remaining facet values to build the key
+                var key = new List<double>();
+                for (int i = 0; i < measurementCol; i++)
+                {
+                    if (!omittedIndexes.Contains(i))
+                        key.Add((double)row[i]);
+                }
+
+                // Add measurement to the correct group
+                if (!groups.TryGetValue(key, out var measurements))
+                {
+                    measurements = new AuxMathCalcGT.Statistics();
+                    groups[key] = measurements;
+                }
+                measurements.Add(row[measurementCol]);
+            }
+
+            // Phase 2: Build the collapsed table
+            var collapsedTable = new List<List<double?>>();
+            foreach (var kvp in groups)
+            {
+                var key = kvp.Key;
+                var measurements = kvp.Value;
+                double? mean = measurements.Mean();
+
+                var newRow = key.Select(d => (double?)d).ToList();
+                newRow.Add(mean);
+                collapsedTable.Add(newRow);
+            }
+
+            return new ObsTable(collapsedTable);
+        }
+
+        /* Descripción:
+         *  Clase auxiliar para CollapsedTable. Comparador de valores de facetas en filas
+         *  de la tabla de observaciones.
+         */
+        class ListDoubleComparer : IEqualityComparer<List<double>>
+        {
+            public bool Equals(List<double> x, List<double> y)
+            {
+                if (x.Count != y.Count) return false;
+                for (int i = 0; i < x.Count; i++)
+                {
+                    if (x[i] != y[i]) return false;
+                }
+                return true;
+            }
+
+            public int GetHashCode(List<double> obj)
+            {
+                unchecked
+                {
+                    int hash = 1;
+                    foreach (var d in obj)
+                    {
+                        hash = hash * 31 + d.GetHashCode();
+                    }
+                    return hash;
+                }
+            }
+        }
 
 
         #region Escritura Lectura en un stream
@@ -725,23 +811,26 @@ namespace MultiFacetData
          */
         public override int GetHashCode()
         {
-            int hash = 1;
-            int rows = this.ObsTableRows();
-            int cols = this.ObsTableColumns();
-
-            for (int i = 0; i < rows; i++)
+            unchecked
             {
-                for (int j = 0; j < cols; j++)
+                int hash = 1;
+                int rows = this.ObsTableRows();
+                int cols = this.ObsTableColumns();
+
+                for (int i = 0; i < rows; i++)
                 {
-                    double? val = this.obsMatrix[i][j];
-                    hash = hash * 31 + (val?.GetHashCode() ?? 0);
+                    for (int j = 0; j < cols; j++)
+                    {
+                        double? val = this.obsMatrix[i][j];
+                        hash = hash * 31 + (val?.GetHashCode() ?? 0);
+                    }
                 }
+
+                hash = hash * 31 + rows.GetHashCode();
+                hash = hash * 31 + cols.GetHashCode();
+
+                return hash;
             }
-
-            hash = hash * 31 + rows.GetHashCode();
-            hash = hash * 31 + cols.GetHashCode();
-
-            return hash;
         }// public override int GetHashCode()
 
         #endregion Métodos redefinidos (ToString, Equals, GetHashCode)

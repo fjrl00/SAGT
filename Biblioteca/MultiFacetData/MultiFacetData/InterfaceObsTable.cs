@@ -60,6 +60,8 @@ namespace MultiFacetData
         void SkipLevelAndRestoreIndex(int skipLevel, int col);
         // Elimina las filas donde se encuentre el nivel actual para la columna especificada.
         void SkipLevelIndex(ListFacets lf);
+        //Crea una tabla de observaciones con las facetas a omitir omitidas.
+        ObsTable CollapsedTable(ListFacets lf);
 
     }// end interface InterfaceObsTable
 }// end namespace MultiFacetData

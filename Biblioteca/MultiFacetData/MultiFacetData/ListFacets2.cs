@@ -52,6 +52,7 @@ namespace MultiFacetData
          * - SortByListFacets (ordena las facetas según sun nombre en función del orden que tenga en otra lista)
          * - ListDesignFacets (A partir de un string de diseños devueve una lista de listas de facetas)
          * - ListFacetWithoutOmit
+         * - OmittedIndexes
          * - ReplaceNameFacet (Remplaza el nombre de una faceta)
          **************************************************************************************************/
 
@@ -632,6 +633,24 @@ namespace MultiFacetData
             return retLf;
         }// end ListFacetWithoutOmit
 
+        /* Descripción:
+         *  Método auxiliar para el colapso de facetas.
+         *  Devuelve el set de posiciones de las facetas marcadas para omitir.
+         */
+        public HashSet<int> OmittedIndexes()
+        {
+            HashSet<int> omittedIndexes = new HashSet<int>();
+
+            foreach (var facet in listFacets)
+            {
+                if (facet.Omit())
+                {
+                    omittedIndexes.Add(listFacets.IndexOf(facet));
+                }
+            }
+
+            return omittedIndexes;
+        }
 
         /* Descripción:
          *  Replaza el nombre de una faceta por uno nuevo cambiandolo si aparece en el diseño de las 

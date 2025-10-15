@@ -315,98 +315,18 @@ namespace MultiFacetData
          ********************************************************************************************/
 
         /* Descripción:
-         *  Operación que devuelve un MultiFacetObs al que se le ha aplicada la omisión de las facetas que no
-         *  estan como parámetro.
+         *  Operación que devuelve un MultiFacetObs al que se le ha aplicada la omisión de las facetas 
+         *  marcadas para ser omitidas.
+         *  Se hace la media de los valores de las filas colapsadas.
          */
         public MultiFacetsObs OmitFacetInDataTable()
         {
-            ListFacets lfOmit = this.ListFacets().ListFacetWithoutOmit();
-            string comment = this.description;
-            string nameFile = this.nameFileObs;
-            MultiFacetsObs retVal = new MultiFacetsObs(lfOmit, nameFile, comment);
-            // aplicamos la reducción de la tabla de frecuencias
-            retVal.AuxCalculateTableObsOmit(this);
-            return retVal;
+            ObsTable newTable = this.observationTable.CollapsedTable(this.listFacets);
+            ListFacets newListFacets = this.listFacets.ListFacetWithoutOmit();
+
+            return new MultiFacetsObs(newListFacets, newTable, this.nameFileObs, this.description, this.comment);
         }
 
-
-        /* Descripción:
-         *  Operción auxiliar que se emplea para recalcular la tabla de observaciones eliminando las
-         *  facetas omitidas. Los valores de la s filas redundandantes se suman.
-         */
-        private void AuxCalculateTableObsOmit(MultiFacetsObs mfo)
-        {
-            /* Determinamos el número de facetas de la lista que pasamos como parámetro
-             * estas se corresponden con las columnas que necesitamos comparar para calcular los
-             * datos estadisticos*/
-            int longListFacet = this.listFacets.Count();
-
-            // este array determinna las columnas de la tabla a comparar
-            int[] posicionesEnColumnas = new int[longListFacet];
-
-            // obtenemos la lista de facetas del objeto mutifaceta para luego comparar y 
-            // obtener las posiciones
-            ListFacets mfo_listFacet = mfo.ListFacets();
-
-            // Rellenamos el array
-            for (int i = 0; i < longListFacet; i++)
-            {
-                posicionesEnColumnas[i] = mfo_listFacet.IndexOf(this.listFacets.FacetInPos(i));
-            }
-
-            // necesito la tabla de observaciones
-            InterfaceObsTable mfo_obsTable = mfo.ObservationTable();
-            // necesito el número de filas de la tabla de observaciones para el bucle interior
-            int num_rows_mfo_obsTable = mfo_obsTable.ObsTableRows();
-            int num_rows_obsTable = this.observationTable.ObsTableRows();
-
-            // Ahora usaremos los valores de la tabla de medias para recorrer la tabla de 
-            // observaciones y obtener los datos
-            for (int i = 0; i < num_rows_mfo_obsTable; i++)
-            {
-                bool found = false;
-                for (int j = 0; j < num_rows_obsTable && !found; j++)
-                {
-                    bool v = true;
-                    /* Ahora comparo los valores de los indices de la tabla de medias con sus
-                     * corespondecia en la tabla de observaciones si coincide lo agrego a la 
-                     * tabla de estadistica. */
-                    for (int k = 0; k < longListFacet && v; k++)
-                    {
-                        /* Comparo el valor de laa columnas de indices en la tabla de medias con 
-                         * los indices de la tabla de datos. Las columnas de la tabla de datos
-                         * las he guardado en el array posicionesEnColumnas. */
-                        v = (this.observationTable.Data(j, k).Equals(mfo_obsTable.Data(i, posicionesEnColumnas[k])));
-                    }
-
-                    if (v)
-                    {
-                        found = v;
-                        double? d1 = this.observationTable.Data(j);
-                        double? d2 = mfo_obsTable.Data(i);
-                        if (d1 != null)
-                        {
-                            if (d2 == null)
-                            {
-                                this.observationTable.Data(d1, j);
-                            }
-                            else
-                            {
-                                d1 = d1 + d2;
-                                this.observationTable.Data(d1, j);
-                            }
-                        }
-                        else
-                        {
-                            if (d2 != null)
-                            {
-                                this.observationTable.Data(d2, j);
-                            }
-                        }
-                    }
-                }
-            }
-        }// end AuxCalculateTableObsOmit
         #endregion Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas
 
 
@@ -422,12 +342,14 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipIndexLevelFacetInDataTable()
         {
+            //1. Clonación del objeto
             ListFacets lfSkipLevels = this.ListFacets().Clone();
             string comment = this.description;
             string nameFile = this.nameFileObs;
             MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);
             retVal.AssignDataToTheTableObs(this.ObservationTable().ListObs());
-            // aplicamos la reducción de la tabla de frecuencias
+
+            // 2. aplicamos la reducción de la tabla de frecuencias
             InterfaceObsTable obsTable = retVal.ObservationTable();
             obsTable.SkipLevelIndex(lfSkipLevels);
             return retVal;
@@ -440,12 +362,14 @@ namespace MultiFacetData
          */
         public MultiFacetsObs SkipAndRestoreIndexLevelFacetInDataTable()
         {
+            //1. Clonación del objeto
             ListFacets lfSkipLevels = this.ListFacets().Clone();
             string comment = this.description;
             string nameFile = this.nameFileObs;
             MultiFacetsObs retVal = new MultiFacetsObs(lfSkipLevels, nameFile, comment);
             retVal.AssignDataToTheTableObs(this.ObservationTable().ListObs());
-            // aplicamos la reducción de la tabla de frecuencias
+
+            //2. aplicamos la reducción de la tabla de frecuencias
             retVal.AuxSkipLevelFacetInDataTable();
             return retVal;
         }

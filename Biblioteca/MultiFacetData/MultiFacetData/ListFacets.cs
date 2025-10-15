@@ -436,12 +436,15 @@ namespace MultiFacetData
          */
         public override int GetHashCode()
         {
-            int retval = 1;
-            foreach (Facet f in this.listFacets)
+            unchecked
             {
-                retval = retval * 31 + f.GetHashCode();
+                int retval = 1;
+                foreach (Facet f in this.listFacets)
+                {
+                    retval = retval * 31 + f.GetHashCode();
+                }
+                return retval;
             }
-            return retval;
         }
 
         #endregion Métodos redefinidos: ToString, Equals, GetHashCode
