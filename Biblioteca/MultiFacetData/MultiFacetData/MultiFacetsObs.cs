@@ -94,7 +94,7 @@ namespace MultiFacetData
 
 
         public MultiFacetsObs(ListFacets listFacets, string nameFileObs, string description, string comment)
-            :this(listFacets, nameFileObs, description)
+            : this(listFacets, nameFileObs, description)
         {
             this.comment = comment;
         }
@@ -195,7 +195,8 @@ namespace MultiFacetData
             if (!this.CompareLevelsOfFacetsList(list))
             {
                 throw new MultiFacetObsException("No tiene el mismo número de niveles");
-            }           this.listFacets = list;
+            }
+            this.listFacets = list;
         }
 
 
@@ -213,7 +214,7 @@ namespace MultiFacetData
              * La variable de retorno res la inicializamos comparando el número de facetas.
              * Si no son iguales no hace falta que comparemos.
              */
-            bool res = (this.listFacets.Count() == list.Count()); // variable de retorno
+            bool res = this.listFacets.Count() == list.Count(); // variable de retorno
             if (res)
             {
                 // si tienen el mismo número comparamos uno a uno los nivelse
@@ -371,7 +372,7 @@ namespace MultiFacetData
                 List<int> lSkipLevels = f.ListSkipLevels();
                 int n = lSkipLevels.Count;
 
-                for(int j = 0; j < n; j++)                  //for each level to skip
+                for (int j = 0; j < n; j++)                  //for each level to skip
                 {
                     int skipLevel = lSkipLevels[j];
                     /* Entonces eliminamos todas las apariciones de j en la columna i y
@@ -387,7 +388,7 @@ namespace MultiFacetData
 
         #endregion Métodos para la eliminación de niveles de una tabla de frecuencias
 
-        
+
 
         #region Escritura y Lectura de ficheros
         /********************************************************************************************
@@ -409,11 +410,7 @@ namespace MultiFacetData
                 int n = table.ObsTableRows();
                 for (int i = 0; i < n; i++)
                 {
-                    double? d = table.Data(i);
-                    if (d == null)
-                    {
-                        d = 0;
-                    }
+                    double? d = table.Data(i) ?? 0;
                     writer.WriteLine(d.ToString());
                 }
                 res = true;
@@ -579,7 +576,7 @@ namespace MultiFacetData
             {
                 throw new MultiFacetObsException("Error in multifacets.", ex);
             }
-            
+
         }
 
 

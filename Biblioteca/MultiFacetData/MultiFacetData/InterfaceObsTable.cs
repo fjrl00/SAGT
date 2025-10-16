@@ -45,7 +45,7 @@ namespace MultiFacetData
         DataTable ObsTable2DataTable(ListFacets lf);
         // Transforma la tabla de observaciones en un DataSet
         DataSet ObsTable2DataSet(ListFacets lf);
-        
+
 
         /*=================================================================================================
          * Métodos de instancia

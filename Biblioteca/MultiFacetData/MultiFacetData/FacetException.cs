@@ -25,7 +25,7 @@ namespace MultiFacetData
         {
         }
 
-        public FacetException(string mns): base(mns)
+        public FacetException(string mns) : base(mns)
         {
         }
     }

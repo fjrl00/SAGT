@@ -21,7 +21,7 @@ using System.Data;
 
 namespace MultiFacetData
 {
-    public partial class ListFacets : IEnumerable, IComparable<ListFacets> 
+    public partial class ListFacets : IEnumerable, IComparable<ListFacets>
     {
 
         #region Operaciones con listas de facetas
@@ -135,7 +135,7 @@ namespace MultiFacetData
         //        {
         //            retVal = retVal * (f.Level() - 1);
         //        }
-                
+
         //    }
         //    return retVal;
         //}
@@ -155,11 +155,11 @@ namespace MultiFacetData
             }
             int retVal = 1;
 
-            char[] delimeterChars = { '[' , ']'}; // nuestro delimitador serán los corchetes
+            char[] delimeterChars = { '[', ']' }; // nuestro delimitador serán los corchetes
             string[] arrayOfstring = design.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
             int num = arrayOfstring.Length;
 
-            bool  nest_char = false;
+            bool nest_char = false;
 
             for (int i = 0; i < num; i++)
             {
@@ -167,17 +167,17 @@ namespace MultiFacetData
                 {
                     nest_char = arrayOfstring[i].Equals(Facet.NEST_CHAR);
                 }
-                
+
                 if (!arrayOfstring[i].Equals(Facet.NEST_CHAR))
                 {
                     Facet f = this.LookingFacet(arrayOfstring[i]);
                     if (nest_char)
                     {
-                        retVal = retVal * f.Level();
+                        retVal *= f.Level();
                     }
                     else
                     {
-                        retVal = retVal * (f.Level()-1);
+                        retVal *= f.Level() - 1;
                     }
                 }
             }
@@ -185,7 +185,7 @@ namespace MultiFacetData
             return retVal;
         }
 
-        
+
         /* Descripcíón:
          *  Devuelve true si la faceta que se pasa como parámetro no contiene otra faceta en su interior. 
          *  Es decir, no existe ninguna faceta en la lista que la referencie desde la lista de facetas
@@ -289,7 +289,7 @@ namespace MultiFacetData
                     Facet f = aux.FacetInPos(i);
                     if (f.IsInfinite())
                     {
-                        retVal = retVal * (1 / (double)f.Level());
+                        retVal *= 1 / (double)f.Level();
                     }
                     else if (f.IsRamdonFinite())
                     {
@@ -317,7 +317,7 @@ namespace MultiFacetData
             int numfacet = this.Count();
             for (int i = 0; i < numfacet; i++)
             {
-                retVal = retVal + this.FacetInPos(i).Level();
+                retVal += this.FacetInPos(i).Level();
             }
             return retVal;
         }
@@ -405,7 +405,7 @@ namespace MultiFacetData
                 }
                 else
                 {
-                    retVal = retVal * f.SizeOfUniverse();
+                    retVal *= f.SizeOfUniverse();
                 }
             }
 
@@ -433,7 +433,7 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Devuelve true si entre la lista de facetas hay al menos una faceta con algún nivel omitido
-         */ 
+         */
         public bool HasSkipLevels()
         {
             bool hasSkip = false;
@@ -501,7 +501,7 @@ namespace MultiFacetData
         {
             int s1 = this.Count();
             int s2 = lf.Count();
-            bool retval = (s1 == s2);
+            bool retval = s1 == s2;
             for (int i = 0; i < s1 && retval; i++)
             {
                 Facet f1 = this.FacetInPos(i);
@@ -523,7 +523,7 @@ namespace MultiFacetData
             {
                 Facet f = this.listFacets[i];
                 double level = f.Level();
-                d = d * ((level - 1) / level);
+                d *= (level - 1) / level;
             }
             return d;
         }
@@ -579,7 +579,7 @@ namespace MultiFacetData
         {
             ListFacets listReturn = new ListFacets();
 
-            char[] delimeterChars = { '[', ']', ':'}; // nuestro delimitador serán los corchetes y los dos puntos
+            char[] delimeterChars = { '[', ']', ':' }; // nuestro delimitador serán los corchetes y los dos puntos
             string[] arrayOfNamesFacets = lDesignFacets.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
 
             int n = arrayOfNamesFacets.Length;
@@ -601,7 +601,7 @@ namespace MultiFacetData
         {
             ListFacets retLf = new ListFacets();
             List<string> lsNameFacet = new List<string>();
-            
+
             int n = this.Count();
             for (int i = 0; i < n; i++)
             {
@@ -627,7 +627,7 @@ namespace MultiFacetData
                     Facet f = retLf.FacetInPos(j);
                     f.ListFacetsDesignRemove(s);                //eliminamos de su diseño la faceta omitida
                 }
-                
+
             }
 
             return retLf;
@@ -664,7 +664,7 @@ namespace MultiFacetData
             ListFacets retListFacets = new ListFacets();
             int numFacet = this.Count();
 
-            for(int i = 0; i < numFacet; i++)
+            for (int i = 0; i < numFacet; i++)
             {
                 Facet f = this.FacetInPos(i);
                 if (string.Equals(f.Name(), oldName, StringComparison.OrdinalIgnoreCase))
@@ -696,14 +696,14 @@ namespace MultiFacetData
         public ListFacets RemplaceListFacets(ListFacets lf)
         {
             ListFacets lf_retval = this; // variable de retorno
-            if(this.Count() != lf.Count())
+            if (this.Count() != lf.Count())
             {
                 // si el número de facetas no coincide lanzamos una excepción
                 throw new ListFacetsException("No se puede aplicar la operación porque no coincide el número de facetas");
             }
-            
+
             int n = lf.Count();
-            
+
             for (int i = 0; i < n; i++)
             {
                 Facet f_new_name = lf.FacetInPos(i);
@@ -769,14 +769,14 @@ namespace MultiFacetData
             {
                 Facet f = this.FacetInPos(i);
                 string desing = string.Copy(f.ListFacetDesing());
-                
+
                 l_string_facets.Add(desing);
                 int numOfElem2 = l_string_facets.Count - 1;
                 for (int j = 0; j < numOfElem2; j++)
                 {
                     string lf_aux2 = string.Copy(l_string_facets[j]);
 
-                    lf_aux2 = CrussedDesing(desing,lf_aux2);
+                    lf_aux2 = CrussedDesing(desing, lf_aux2);
                     if (!string.IsNullOrEmpty(lf_aux2))
                     {
                         l_string_facets.Add(lf_aux2);
@@ -784,7 +784,7 @@ namespace MultiFacetData
                 }
             }
             // l_string_facets.Sort();
-            return l_string_facets; 
+            return l_string_facets;
         }
 
 
@@ -804,8 +804,8 @@ namespace MultiFacetData
                 // dividimos el string en dos partes
                 int pos = design1.IndexOf(Facet.NEST_CHAR);
                 d1_part1 = design1.Substring(0, pos);
-                int l = design1.Length - pos-1;
-                d1_rest = design1.Substring(pos+1, l);
+                int l = design1.Length - pos - 1;
+                d1_rest = design1.Substring(pos + 1, l);
             }
 
             string d2_part1 = design2;
@@ -815,15 +815,15 @@ namespace MultiFacetData
                 // dividimos el string en dos partes
                 int pos = design2.IndexOf(Facet.NEST_CHAR);
                 d2_part1 = design2.Substring(0, pos);
-                int l = design2.Length - pos-1;
+                int l = design2.Length - pos - 1;
                 d2_rest = design2.Substring(pos + 1, l);
             }
 
             /* Comprobamos que no hay facetas repetidas
              */
             bool notFound = false; // variable booleana falso si no hay facetas repetidas
-            char[] delimeterChars = { '[', ']', ':'}; // nuestro delimitador serán los corchetes y los dos puntos
-            string[] arrayOfNamesFacets= d1_part1.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
+            char[] delimeterChars = { '[', ']', ':' }; // nuestro delimitador serán los corchetes y los dos puntos
+            string[] arrayOfNamesFacets = d1_part1.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
             int n = arrayOfNamesFacets.Length;
             for (int i = 0; i < n && !notFound; i++)
             {
@@ -845,10 +845,10 @@ namespace MultiFacetData
                 /* Unimos las dos primeras partes más el resto de la primera parte*/
                 retVal = d2_part1 + d1_part1;
                 // rellenamos con el resto de facetas no incluidas
-                retVal = retVal + unificar(d1_rest,d2_rest);
+                retVal += unificar(d1_rest, d2_rest);
 
             }
-            
+
             return retVal;
         }// end CrussedDesing
 
@@ -891,7 +891,7 @@ namespace MultiFacetData
                 {
                     resto2 = resto2.Substring(1);
                 }
-                
+
                 resto1 = eliminarFacetas(parte2, resto1);
                 resto2 = eliminarFacetas(parte1, resto2);
                 retVal = Facet.NEST_CHAR + unificar2(parte1, parte2) + unificar(resto1, resto2);
@@ -913,7 +913,7 @@ namespace MultiFacetData
                 string name = "[" + arrayFacets[i] + "]";
                 if (!restDesing2.Contains(name))
                 {
-                    restDesing2 = restDesing2 + name;
+                    restDesing2 += name;
                 }
             }
             return restDesing2;
@@ -926,12 +926,12 @@ namespace MultiFacetData
          */
         private string eliminarFacetas(string restDesing1, string restDesing2)
         {
-            char[] delimeterChars = { '[',']' }; // nuestro delimitador será el caracter blanco
+            char[] delimeterChars = { '[', ']' }; // nuestro delimitador será el caracter blanco
             string[] arrayFacets = restDesing1.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
             int n = arrayFacets.Length;
             for (int i = 0; i < n; i++)
             {
-                string name = "["+ arrayFacets[i] +"]";
+                string name = "[" + arrayFacets[i] + "]";
                 restDesing2 = restDesing2.Replace(name, "");
             }
             return restDesing2;
@@ -995,13 +995,13 @@ namespace MultiFacetData
                 if (f.SizeOfUniverse().Equals(int.MaxValue))
                 {
                     double x = f.Level();
-                    double y = (2 - 1)/2;
+                    double y = (2 - 1) / 2;
                     Console.WriteLine(y.ToString());
-                    retVal = retVal * ((x - 1) / x);
+                    retVal *= (x - 1) / x;
                 }
                 else
                 {
-                    retVal = retVal * (1 / f.Level());
+                    retVal *= 1 / f.Level();
                 }
             }
             return retVal;
@@ -1028,7 +1028,7 @@ namespace MultiFacetData
             }
             return retVal;
         }
-        
+
 
         /*
          * Descipción:
@@ -1044,7 +1044,7 @@ namespace MultiFacetData
                 {
                     if (linea.Equals(""))
                     {
-                        linea = linea + f.Name();
+                        linea += f.Name();
                     }
                     else
                     {
@@ -1138,7 +1138,7 @@ namespace MultiFacetData
             dtListFacets.Columns.Add(c_comment);
             dtListFacets.Columns.Add(c_omit);
             dtListFacets.Columns.Add(c_list_facet_design);
-            
+
             int numFacets = this.listFacets.Count;
 
             for (int i = 0; i < numFacets; i++)
@@ -1151,7 +1151,7 @@ namespace MultiFacetData
                 newFacetRow["name_facet"] = f.Name();
                 newFacetRow["level_facet"] = f.Level();
                 string sz = Facet.INFINITE;
-                if (f.SizeOfUniverse()< int.MaxValue)
+                if (f.SizeOfUniverse() < int.MaxValue)
                 {
                     sz = f.SizeOfUniverse().ToString();
                 }
@@ -1207,7 +1207,7 @@ namespace MultiFacetData
         public static ListFacets DataTables2ListFacets(DataTable dtListFacets, DataTable dtSkipLevels)
         {
             ListFacets returnList = new ListFacets(); // Variable de retorno
-            
+
             int numFacets = dtListFacets.Rows.Count;
 
             for (int i = 0; i < numFacets; i++)
@@ -1217,19 +1217,19 @@ namespace MultiFacetData
                 int level = (int)row["level_facet"];
                 string s = (string)row["size_of_universe"];
                 int size_of_universe = int.MaxValue;
-                if(!s.Equals(Facet.INFINITE))
+                if (!s.Equals(Facet.INFINITE))
                 {
                     size_of_universe = int.Parse(s);
                 }
                 string comment = (string)row["comment"];
                 string ldesign = (string)row["list_facet_design"];
                 bool omit = (bool)row["omit"];
-                
+
                 // Creamos la faceta;
                 Facet f = new Facet(name, level, comment, size_of_universe, ldesign, omit);
-                
+
                 // añadimos los niveles omitidos
-                string select = " name_facet = '" + name +"'";
+                string select = " name_facet = '" + name + "'";
                 DataRow[] rows = dtSkipLevels.Select(select);
                 int numSkipLevels = rows.Length;
                 for (int j = 0; j < numSkipLevels; j++)

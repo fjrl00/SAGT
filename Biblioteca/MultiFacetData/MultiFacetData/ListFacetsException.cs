@@ -18,7 +18,7 @@ using System.Text;
 
 namespace MultiFacetData
 {
-    public class ListFacetsException: Exception
+    public class ListFacetsException : Exception
     {
         public ListFacetsException()
             : base()

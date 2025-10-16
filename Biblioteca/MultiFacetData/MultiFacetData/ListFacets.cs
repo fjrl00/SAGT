@@ -219,7 +219,7 @@ namespace MultiFacetData
          */
         public void ParentOrderAdd(Facet f, ListFacets parent)
         {
-            if(!parent.ContainsList(this) || !parent.Contains(f))
+            if (!parent.ContainsList(this) || !parent.Contains(f))
             {
                 throw new ListFacetsException("Las listas de facetas de instrumentación y diferenciación no están sincronizadas con la original");
             }
@@ -229,7 +229,7 @@ namespace MultiFacetData
             }
 
             int parentIndex = parent.IndexOf(f);
-            
+
             // Find where this item should go in sublist
             int insertIndex = this.listFacets.Count; // append at the end by default
             for (int i = 0; i < this.listFacets.Count; i++) //begin iterating through the sublist
@@ -275,9 +275,9 @@ namespace MultiFacetData
             int n = this.Count();
             for (int i = 1; i < n; i++)
             {
-                Facet f = this.FacetInPos(i-1);
+                Facet f = this.FacetInPos(i - 1);
                 Facet s = this.FacetInPos(i);
-                string design = "["+ s.Name() +"]:" + f.ListFacetDesing();
+                string design = "[" + s.Name() + "]:" + f.ListFacetDesing();
                 s.ListFacetsDesignNesting(design);
             }
         }
@@ -374,7 +374,7 @@ namespace MultiFacetData
         public int CompareTo(ListFacets other)
         {
             int retval = this.Count().CompareTo(other.Count());
-            if(retval==0)
+            if (retval == 0)
             {
                 int longOther = other.Count();
                 for (int i = 0; i < longOther && (retval == 0); i++)
@@ -416,7 +416,7 @@ namespace MultiFacetData
             bool res = false;
             if (obj is ListFacets oList)
             {// (* 1 *)
-                res = (oList.Count() == this.Count());
+                res = oList.Count() == this.Count();
                 if (res)
                 {
                     int n = this.Count();

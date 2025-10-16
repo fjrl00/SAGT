@@ -26,12 +26,12 @@ namespace MultiFacetData
          * CONSTANTES
          ***************************************************************************************************/
         public const char CHAR_DELIMITER_CELL = '"';
-        
+
 
         /***************************************************************************************************
          * MÉTODOS
          ***************************************************************************************************/
-        
+
         /* Descripción:
          *  Importa la tabla de frecuencias de un fichero .csv y devuelve un objeto multifaceta.
          */
@@ -62,17 +62,17 @@ namespace MultiFacetData
              */
             string[] arrayHeadersColumns = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);
             int numColumns = arrayHeadersColumns.Length;
-            if (numColumns<2)   //in case we've detected that we weren't able to split the header line correctly (with ",", " ")
+            if (numColumns < 2)   //in case we've detected that we weren't able to split the header line correctly (with ",", " ")
             {
                 stringDelimiter = new string[1];
-                stringDelimiter[0]= ";";            //we try again but with ";". Which we'll then also use in the table body
+                stringDelimiter[0] = ";";            //we try again but with ";". Which we'll then also use in the table body
                 arrayHeadersColumns = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);
                 numColumns = arrayHeadersColumns.Length;
             }
 
             /* Los n-1 valores contendrá los nombres de las facetas (el último valor es la frecuencia/medición)
              */
-            int numFacet = arrayHeadersColumns.Length-1;
+            int numFacet = arrayHeadersColumns.Length - 1;
 
             int[] arrayLevels = new int[numFacet];// almacenará el nivel de cada faceta.
 
@@ -84,7 +84,7 @@ namespace MultiFacetData
             // La inicializamos
             for (int i = 0; i < numFacet; i++)
             {
-                arrayLevelVal[i] = new Dictionary<string, int>();  
+                arrayLevelVal[i] = new Dictionary<string, int>();
             }
 
             /* Nos encontramos en un bucle de lectura de tabla
@@ -99,13 +99,13 @@ namespace MultiFacetData
                     if (i < numColumns - 1)                                                                     //facet data
                     {
                         int l = arrayLevelVal[i].Count;                                                         //read number of possible different symbols of this facet seen thus far
-                        bool contains = arrayLevelVal[i].ContainsKey(arrayLineShare[i]);   
+                        bool contains = arrayLevelVal[i].ContainsKey(arrayLineShare[i]);
                         if (!contains)                                                                          //if this symbol is new
                         {
                             arrayLevelVal[i].Add(arrayLineShare[i], l + 1);                                     //we add the entry to the dictionary (symbol -> assigned numeric code)
                         }
                         row.Add(arrayLevelVal[i][arrayLineShare[i]]);                                           //dictionary for our column -> entry corresponding to the current symbol -> append to the row its numeric code
-                    }                                               
+                    }
                     else
                     {
                         row.Add(double.Parse(arrayLineShare[i]));                                               // frequency/measure data
@@ -132,7 +132,7 @@ namespace MultiFacetData
             else
             {
                 // entonces la tablaObs no es producto cartesiano y debemos ajustarla
-                retVal = new MultiFacetsObs(lf, path, "", comment); 
+                retVal = new MultiFacetsObs(lf, path, "", comment);
 
                 InterfaceObsTable obsT = retVal.ObservationTable(); //full observation table for these facets (but without frequency/measure)
 
@@ -169,11 +169,11 @@ namespace MultiFacetData
                             obsT.Data(d, r);                        //we asign it the frequency/measure value
                         }
                     }
-                    
+
                 }
             }// end if
 
-           
+
             return retVal;
         }// ReaderCSV_to_MultiFacetsObs
 
@@ -186,19 +186,19 @@ namespace MultiFacetData
         {
             string text = ""; // Variable de retorno
             int n = lDic.Length;
-            
+
             for (int i = 0; i < n; i++)
             {
                 string nameFacet = arrayHeadersColumns[i];
                 text = text + nameFacet + ":\n";
 
                 Dictionary<String, int> dic = lDic[i];
-                
+
                 foreach (string key in dic.Keys)
                 {
-                    text = text + "\t" + key + " = " + dic[key] +"\n";
+                    text = text + "\t" + key + " = " + dic[key] + "\n";
                 }
-                text = text + "\n";
+                text += "\n";
             }
 
             return text;

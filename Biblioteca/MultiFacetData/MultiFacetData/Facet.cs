@@ -178,7 +178,7 @@ namespace MultiFacetData
             }
 
             this.sizeOfUniverse = int.MaxValue;
-            this.list_facets_design = lfd; 
+            this.list_facets_design = lfd;
         }
 
 
@@ -214,7 +214,7 @@ namespace MultiFacetData
         *      FacetException: si el nivel es mayor que el universo.
          */
         public Facet(string name, int level, string comment, int sizeOfUniverse, string lfd)
-            :this(name,level,comment,lfd)
+            : this(name, level, comment, lfd)
         {
             if (level > sizeOfUniverse)
             {
@@ -241,10 +241,10 @@ namespace MultiFacetData
             this.omit = omit;
         }
 
-       #endregion Constructores
+        #endregion Constructores
 
 
-       #region Métodos de instancia
+        #region Métodos de instancia
         /*=================================================================================
          * Métodos de instancia
          * ====================
@@ -282,7 +282,7 @@ namespace MultiFacetData
          */
         public void Level(int level)
         {
-            if (level < 1 )
+            if (level < 1)
             {
                 throw new FacetException("Faceta tiene que tener un nivel positivo (mayor que cero)");
             }
@@ -366,12 +366,12 @@ namespace MultiFacetData
          */
         public void ListFacetsDesignNesting(Facet f)
         {
-            string name = "["+f.Name()+"]";
+            string name = "[" + f.Name() + "]";
             if (this.list_facets_design.Contains(name))
             {
                 throw new FacetException("Error: Ya esta contenida");
             }
-            this.list_facets_design = this.list_facets_design + ":[" + f.name +"]";
+            this.list_facets_design = this.list_facets_design + ":[" + f.name + "]";
         }
 
 
@@ -383,7 +383,7 @@ namespace MultiFacetData
         public void ListFacetsDesignNesting(string design)
         {
             int pos = design.IndexOf(']');
-            string name = design.Substring(1, pos-1);
+            string name = design.Substring(1, pos - 1);
             if (!this.name.Equals(name))
             {
                 throw new FacetException("Error: en el formato del diseño");
@@ -435,7 +435,7 @@ namespace MultiFacetData
             {
                 this.list_facets_design = this.list_facets_design.Replace(NEST_CHAR + s, "");                 //then restodeldiseño
             }
-            else if(this.list_facets_design.Contains(NEST_CHAR+s+NEST_CHAR))    // if cacho1:[f]:cacho2
+            else if (this.list_facets_design.Contains(NEST_CHAR + s + NEST_CHAR))    // if cacho1:[f]:cacho2
             {
                 this.list_facets_design = this.list_facets_design.Replace(NEST_CHAR + s, "");                 //then cacho1:cacho2
             }
@@ -536,7 +536,7 @@ namespace MultiFacetData
          */
         public bool HasSkipLevels()
         {
-            return (this.skipLevels.Count > 0);
+            return this.skipLevels.Count > 0;
         }
 
 
@@ -564,9 +564,9 @@ namespace MultiFacetData
          */
         public bool IsNesting()
         {
-            return (this.list_facets_design.Contains(":"));
+            return this.list_facets_design.Contains(":");
         }
-        
+
 
         /* Descripción:
          *  Devuelve true si la faceta aleatoria infinita. Tiene tamaño del universo infinito, 
@@ -594,7 +594,7 @@ namespace MultiFacetData
          */
         public bool IsRamdonFinite()
         {
-            return (!this.IsFixed() && !this.IsInfinite());
+            return !this.IsFixed() && !this.IsInfinite();
         }
 
 
@@ -634,7 +634,7 @@ namespace MultiFacetData
             res = WritingStreamSkipLevels(writerFile);
             // ponemos el cierre
             writerFile.WriteLine(END_FACET);
-            
+
             return res;
         }
 
@@ -651,7 +651,7 @@ namespace MultiFacetData
             {
                 if (sklevel.Equals(""))
                 {
-                    sklevel = sklevel + k;
+                    sklevel += k;
                 }
                 else
                 {
@@ -676,9 +676,9 @@ namespace MultiFacetData
             {
                 string[] arrayOfInt = line.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
                 int n = arrayOfInt.Length;
-                for(int i =0; i<n; i++)
+                for (int i = 0; i < n; i++)
                 {
-                    int skip_level =int.Parse(arrayOfInt[i]);
+                    int skip_level = int.Parse(arrayOfInt[i]);
                     this.SetSkipLevels(skip_level);
                 }
             }
@@ -693,7 +693,7 @@ namespace MultiFacetData
          *  Lectura de streamer de una faceta
          */
         public static Facet ReadingStreamFacet(StreamReader readerFile)
-        { 
+        {
             try
             {
                 // Escribimos los datos de la faceta
@@ -701,7 +701,7 @@ namespace MultiFacetData
                 int level = int.Parse(readerFile.ReadLine());
                 string u = readerFile.ReadLine();
                 int universe = int.MaxValue;
-            
+
                 if (!u.Equals(INFINITE))
                 {
                     universe = int.Parse(u);
@@ -723,7 +723,7 @@ namespace MultiFacetData
                 {
                     f.ReaderAuxSkipLevel(readerFile);
                 }
-                
+
                 if ((line = readerFile.ReadLine()) == null || !line.Equals(END_FACET))
                 {
                     throw new FacetException($"Expected '{END_FACET}' but found '{line}' when parsing a facet.");
@@ -731,7 +731,7 @@ namespace MultiFacetData
 
                 return f;
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
                 throw new FacetException($"Unexpected value found when parsing a facet: {ex.Message}");
             }
@@ -747,7 +747,7 @@ namespace MultiFacetData
          *  - Equals(Object obj)
          *  - GetHashCode()
          *=================================================================================*/
-        
+
         /* Descripción:
          *  Redefinición del método ToString para la clase faceta.
          */
@@ -764,7 +764,7 @@ namespace MultiFacetData
             {
                 if (sklevel.Equals(""))
                 {
-                    sklevel = sklevel + k;
+                    sklevel += k;
                 }
                 else
                 {
@@ -848,7 +848,7 @@ namespace MultiFacetData
             newFacetRow["name_facet"] = this.name;
             newFacetRow["level_facet"] = this.level;
             string sz = Facet.INFINITE;
-            if(this.sizeOfUniverse < int.MaxValue)
+            if (this.sizeOfUniverse < int.MaxValue)
             {
                 sz = this.sizeOfUniverse.ToString();
             }
@@ -947,7 +947,7 @@ namespace MultiFacetData
             string comment = string.Copy(this.Comment());
             string nesting = string.Copy(this.ListFacetDesing());
             bool o = this.Omit();
-            Facet f = new Facet(name, l, comment, sizeOfUniverse, nesting, omit);
+            Facet f = new Facet(name, l, comment, size, nesting, o);
             foreach (int k in this.skipLevels)
             {
                 f.SetSkipLevels(k);

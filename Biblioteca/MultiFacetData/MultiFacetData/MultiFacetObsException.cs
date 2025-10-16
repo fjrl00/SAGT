@@ -25,7 +25,7 @@ namespace MultiFacetData
         {
         }
 
-        public MultiFacetObsException(string mns): base(mns)
+        public MultiFacetObsException(string mns) : base(mns)
         {
         }
 

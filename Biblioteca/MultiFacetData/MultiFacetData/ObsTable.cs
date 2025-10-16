@@ -71,7 +71,7 @@ namespace MultiFacetData
          *=================================================================================*/
         // Variables
         private List<List<double?>> obsMatrix;
-        
+
 
 
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -124,13 +124,13 @@ namespace MultiFacetData
 
             int i = 0; // Será la dimensión del array y nuestro indice.
 
-            
 
-            for (int j = 0; j < numFacets; j++ )
+
+            for (int j = 0; j < numFacets; j++)
             {
                 Facet f = list_facets.FacetInPos(j);
                 levelOfFacets[i++] = f.Level();
-                rows = rows * f.Level();
+                rows *= f.Level();
                 if (rows < 0)
                 {
                     throw new ObsTableException("Error: desbordamiento del número de filas");
@@ -260,7 +260,7 @@ namespace MultiFacetData
                 throw new ObsTableException("La fila no petenece al rango de columnas de la tabla.");
             }
             // variable de retorno
-            double? res = this.obsMatrix[row][this.ObsTableColumns()- 1];
+            double? res = this.obsMatrix[row][this.ObsTableColumns() - 1];
 
             return res;
         }
@@ -278,7 +278,7 @@ namespace MultiFacetData
          */
         public double? Data(int row, int col)
         {
-            if (row < 0 || col < 0 || row > (this.ObsTableRows() - 1) || col > (this.ObsTableColumns()- 1))
+            if (row < 0 || col < 0 || row > (this.ObsTableRows() - 1) || col > (this.ObsTableColumns() - 1))
             {
                 throw new ObsTableException("Indice fuera de rango, posición no encontrada");
             }
@@ -320,7 +320,7 @@ namespace MultiFacetData
             int rows = this.ObsTableRows();
             for (int i = 0; i < rows; i++)
             {
-                listRes.Add(this.obsMatrix[i][cols-1]);
+                listRes.Add(this.obsMatrix[i][cols - 1]);
             }
             return listRes;
         }
@@ -414,7 +414,7 @@ namespace MultiFacetData
                 double data = (double)this.obsMatrix[i][col];
                 if (data > skipLevel)
                 {
-                    this.obsMatrix[i][col] = (data - 1);
+                    this.obsMatrix[i][col] = data - 1;
                 }
             }
         }
@@ -537,7 +537,7 @@ namespace MultiFacetData
         public double? SumOfData()
         {
             double? sum_X = null;
-            
+
             int n = this.ObsTableRows();
             for (int i = 0; i < n; i++)
             {
@@ -550,15 +550,15 @@ namespace MultiFacetData
                 {
                     sum_X = data;
                 }
- 
+
             }
             return sum_X;
         }
 
 
-       /* Descripción:
-        *  Escribe la tabla de datos de frecuencias.
-        */
+        /* Descripción:
+         *  Escribe la tabla de datos de frecuencias.
+         */
         public bool WritingStreamObsTable(StreamWriter writerFile)
         {
             bool res = false; // variable de retorno
@@ -573,10 +573,10 @@ namespace MultiFacetData
                 {
                     double? d = this.Data(i, j);
                     string valor = ConvertNum.Double2String(d); ;
-                    line = line + valor +" ";
+                    line = line + valor + " ";
                 }
-                
-                 
+
+
                 writerFile.WriteLine(line);
             }
 
@@ -612,7 +612,7 @@ namespace MultiFacetData
                     }
                     res.obsMatrix.Add(listDouble);
                 }
-                if(line == null)
+                if (line == null)
                 {
                     throw new ObsTableException("Unexpected end of file while reading observation table.");
                 }
@@ -669,12 +669,12 @@ namespace MultiFacetData
                 for (int j = 0; j < numCols; j++)
                 {
                     string name_col = "obs_data";
-                    if(j<lf.Count())
+                    if (j < lf.Count())
                     {
                         Facet f = lf.FacetInPos(j);
                         name_col = f.Name();
                     }
-                    if (this.Data(i, j)!= null)
+                    if (this.Data(i, j) != null)
                     {
                         row[name_col] = this.Data(i, j);
                     }
@@ -687,9 +687,9 @@ namespace MultiFacetData
         }// end ObsTable2DataTable
 
 
-         /* Descripción:
-         *  Devuelve un dataTable con los datos de la tabla de frecuencias
-         */
+        /* Descripción:
+        *  Devuelve un dataTable con los datos de la tabla de frecuencias
+        */
         public DataSet ObsTable2DataSet(ListFacets lf)
         {
             DataTable dt = this.ObsTable2DataTable(lf);
@@ -704,11 +704,11 @@ namespace MultiFacetData
         public static ObsTable DataTable2ObsTable(DataTable dtObsTable)
         {
             ObsTable obsTable = new ObsTable();
-            
+
             int numRows = dtObsTable.Rows.Count;
             int numColums = dtObsTable.Columns.Count;
 
-            for(int i = 0; i<numRows; i++)
+            for (int i = 0; i < numRows; i++)
             {
                 // Creamos la fila
                 List<double?> row = new List<double?>();
@@ -800,7 +800,7 @@ namespace MultiFacetData
             bool res = false;
             if (obj is ObsTable obsT)
             {// (* 1 *)
-                if (this.ObsTableRows().Equals(obsT.ObsTableRows()) 
+                if (this.ObsTableRows().Equals(obsT.ObsTableRows())
                     && this.ObsTableColumns().Equals(obsT.ObsTableColumns()))
                 {// (* 2 *)
                     res = true;
@@ -813,7 +813,7 @@ namespace MultiFacetData
                         }
                     }
                 }// (* 2 *)
-                
+
             } // end if (* 1 *)
             return res;
         } // public override bool Equals(object obj)
