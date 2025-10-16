@@ -23,8 +23,8 @@ namespace AuxMathCalcGT
     public class Statistics
     {
         // Variables de instancia
-        private double? sumX; // suma de las frecuencias
-        private double? sumX2; // suma al cuadrado de las frecuencias
+        private double sumX; // suma de las frecuencias
+        private double sumX2; // suma al cuadrado de las frecuencias
         private int numElem; // número de elementos de las frecuencias
         /*
          * Nota:
@@ -39,8 +39,8 @@ namespace AuxMathCalcGT
          */
         public Statistics()
         {
-            sumX = null;
-            sumX2 = null;
+            sumX = 0;
+            sumX2 = 0;
             numElem = 0;
         }
 
@@ -54,7 +54,7 @@ namespace AuxMathCalcGT
          */
         public double? SumX()
         {
-            return this.sumX;
+            return numElem == 0 ? (double?)null : sumX;
         }
 
 
@@ -64,7 +64,7 @@ namespace AuxMathCalcGT
          */
         public double? SumX2()
         {
-            return this.sumX2;
+            return numElem == 0 ? (double?)null : sumX2;
         }
 
 
@@ -91,16 +91,9 @@ namespace AuxMathCalcGT
         {
             if (d != null)
             {
-                if (sumX == null)
-                {
-                    sumX = d;
-                    sumX2 = Math.Pow((double)d,2);
-                }
-                else
-                {
-                    sumX = sumX + d;
-                    sumX2 = sumX2 + Math.Pow((double)d, 2);
-                }
+                double value = d.Value; //faster than operating with double? d
+                sumX += value;
+                sumX2 += value * value;
                 numElem++;
             }
         }
@@ -112,15 +105,15 @@ namespace AuxMathCalcGT
          */
         public void Add(double? d, bool zero)
         {
-            if (d==null && zero)
+            if (d != null || zero)
             {
-                Add(0);
-            }
-            else
-            {
-                Add(d);
+                double value = d.GetValueOrDefault(); // 0 if null
+                sumX += value;
+                sumX2 += value * value;
+                numElem++;
             }
         }
+
 
 
 
@@ -130,12 +123,10 @@ namespace AuxMathCalcGT
          */
         public double? Mean()
         {
-            double? retval = sumX;
-            if(retval!=null)
-            {
-                retval = retval/ numElem;
-            }
-            return retval;
+            if (numElem == 0)
+                return null;
+
+            return sumX / numElem;
         }
 
 
@@ -145,12 +136,11 @@ namespace AuxMathCalcGT
          */
         public double? Variance()
         {
-            double? retval = sumX;
-            if (retval != null)
-            {
-                retval = (sumX2/numElem - Math.Pow((double)Mean(), 2));
-            }
-            return retval;
+            if (numElem == 0)
+                return null;
+
+            double mean = sumX / numElem;
+            return (sumX2 / numElem) - (mean * mean);
         }
 
 
@@ -161,13 +151,10 @@ namespace AuxMathCalcGT
          */
         public double? StandardDeviation()
         {
-            double? retval = Variance();
-            if (retval != null)
-            {
-                retval = Math.Sqrt((double)retval);
+            if (numElem == 0)
+                return null;
 
-            }
-            return retval;
+            return Math.Sqrt(Variance().Value);
         }
 
     } // end public class Statistics

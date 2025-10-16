@@ -676,7 +676,8 @@ namespace ProjectSSQ
             }
             else
             {
-                retVal = retVal * Math.Pow((double)sum_X, 2);
+                double value = sum_X.Value;
+                retVal = retVal * value * value;
             }
    
             return retVal;
@@ -719,7 +720,8 @@ namespace ProjectSSQ
                 double? mean = tableMeans.MeanData(i);
                 if (mean != null)
                 {
-                    sumX_2 = sumX_2 + Math.Pow((double)mean,2);
+                    double value = mean.Value;
+                    sumX_2 = sumX_2 + value * value;
                 }
             }
 
@@ -1020,7 +1022,7 @@ namespace ProjectSSQ
                     if (lf_aux.ContainsList(lf))
                     {
                         double d1 = (double)this.msq[key_aux]; 
-                        double d = (Math.Pow(d1,2)* 2);
+                        double d = d1 * d1 * 2;
                         double d2 = lf_aux.DegreeOfFreedom(key_aux);
                         aux = aux + (d / (d2 + 2));
                     }

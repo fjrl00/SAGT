@@ -321,7 +321,8 @@ namespace ProjectSSQ
                 // asignamos la suma al cuadrado de X
                 if (x != null)
                 {
-                    this.SumX2Data(Math.Pow((double)x, 2.0), i);
+                    double value = x.Value;
+                    this.SumX2Data(value * value, i);
                 }
 
                 this.variance = stc.Variance();
