@@ -125,6 +125,8 @@ namespace ProjectMeans
          *  Contructor de la clase
          * Parámetros:
          *      ListFacets lF: Lista de facetas
+         *          Niveles marcados para omitir serán omitidos.
+         *          Facetas marcadas para omitir no serán omitidas.
          *      string design: Texto que identifica la tabla de medias
          *      MultiFacetsObs mfo: Objeto multifaceta con la tabla de frecuencias
          *      bool zero: Si es true se realizarán los calculos interpretando los valores 
@@ -140,30 +142,8 @@ namespace ProjectMeans
             this.listF = lF;
             this.facetDesign = design;
 
-            int rows = 1; // Guarda el nº de filas de la matriz de medias.
-
-            int[] levelOfFacets = new int[lF.Count()];
-            /* Este array nos ayudará a contruir la estructura en el caso de que haya mas de una faceta
-             * en la lista.
-             * En este array insertaremos los niveles de cada faceta.
-             */
-
-            int i = 0; // Inicializamos al valor cero. 
-            // Será la dimensión del array y nuestro indice.
-
-            foreach (Facet f in lF)
-            {
-                levelOfFacets[i++] = f.Level();
-                rows = rows * f.Level();
-            }
-
-            int cols = lF.Count() + 6; // nº de columnas de la matriz de observaciones
-
             // creamos la matriz
-            this.meansMatrix = new List<List<double?>>();
-
-            // rellenamos la tabla con los indices
-            this.IniIndexSubTable(levelOfFacets, rows, cols);
+            meansMatrix = IniIndexSubTable(lF);
 
             // eliminamos las filas omitidas
             if (this.listF.HasSkipLevels())
@@ -293,25 +273,34 @@ namespace ProjectMeans
 
         /**
          * Descripción:
-         *  Rellena las n-2 primeras columnas de la tabla con los indices que se deducen a
-         *  partir de los niveles de las facetas.
-         * Entrada:
-         *      int[] levelOfFacets: Array de enteros con el nivel de cada una de las facetas.
-         *      int[] rep: Array de enteros con el número de veces que se repite el indice en 
-         *                  esa columna.
-         *      int rows: Número de columnas que tiene el array bidimensional:     
+         *  Devuelve un esqueleto de la tabla correspondiente a la lista de facetas proveída.
+         *  La tabla es de todas las facetas y todos los niveles, sin importar si están marcados para omitir.    
          */
-        private void IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
+        private static List<List<double?>> IniIndexSubTable(ListFacets list_facets)
         {
+            List<List<double?>> matrix = new List<List<double?>>();
+
+            int numFacets = list_facets.Count();
+            int[] levelOfFacets = new int[numFacets];
+            int f_i = 0;
+            int rows = 1; // Guarda el nº de filas de la matriz. Inicializada con la identidad multiplicativa (IM*x=x)
+            foreach (Facet f in list_facets)
+            {
+                levelOfFacets[f_i++] = f.Level();
+                rows *= f.Level();
+            }
+
+            int cols = list_facets.Count() + 6;
+
             int[] rep = RepeatedIndex(levelOfFacets);
             int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)
             {
-                this.meansMatrix.Add(new List<double?>());
+                matrix.Add(new List<double?>());
                 for (int j = 0; j < cols; j++)
                 {
-                    this.meansMatrix[i].Add(null);
+                    matrix[i].Add(null);
                 }
             }
 
@@ -322,7 +311,7 @@ namespace ProjectMeans
                 for (int fila = 0; fila < rows; fila++)
                 { // * for 2*
 
-                    this.meansMatrix[fila][columna] = indice;
+                    matrix[fila][columna] = indice;
                     numRep++;
                     if (numRep == rep[columna])
                     {
@@ -337,6 +326,8 @@ namespace ProjectMeans
 
                 } // * for 2 *
             } // * for 1 *
+
+            return matrix;
         }// end private void IniIndexSubTable
 
 

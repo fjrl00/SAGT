@@ -97,8 +97,6 @@ namespace MultiFacetData
          *  la lista de facetas. Calcula la dimensión a partir de los niveles de las facetas.
          *  Igualmente calucula los indices que se almacenarán en las n-2 primeras columnas
          *  (comenzando desde la posición cero).
-         *  La tabla de observaciones es de todas las facetas y todos los niveles, sin importar
-         *  de si están marcados para omitir.
          * 
          * Excepciones:
          *  ObsTableException: en el caso de que la lista de facetas sea null o menor que 2.
@@ -111,29 +109,14 @@ namespace MultiFacetData
             {
                 throw new ObsTableException("Error: no se hay facetas");
             }
-            int numFacets = list_facets.Count();
 
+            int numFacets = list_facets.Count();
             if (numFacets < 2)
             {
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
-            int rows = 1; // Guarda el nº de filas de la matriz de observaciones. Inicializada con la identidad multiplicativa (IM*x=x)
-            int[] levelOfFacets = new int[list_facets.Count()]; // Este array nos ayudará a contruir la estructura.
-            // En este array insertaremos los niveles de cada faceta.
-            int i = 0; // Será la dimensión del array y nuestro indice.
-            for (int j = 0; j < numFacets; j++)
-            {
-                Facet f = list_facets.FacetInPos(j);
-                levelOfFacets[i++] = f.Level();
-                rows *= f.Level();
-                if (rows < 0)
-                {
-                    throw new ObsTableException("Error: desbordamiento del número de filas");
-                }
-            }
-            int cols = list_facets.Count() + 1;
-            this.obsMatrix = IniIndexSubTable(levelOfFacets, rows, cols);
+            this.obsMatrix = IniIndexSubTable(list_facets);
 
         } // end public ObsTable(LinkedList<Facet> facets)
 
@@ -177,17 +160,26 @@ namespace MultiFacetData
 
         /**
          * Descripción:
-         *  Rellena las n-2 primeras columnas de la tabla con los indices que se deducen a
-         *  partir de los niveles de las facetas.
-         * Entrada:
-         *      int[] levelOfFacets: Array de enteros con el nivel de cada una de las facetas.
-         *      int[] rep: Array de enteros con el numero de veces que se repite el indice en 
-         *                  esa columna.
-         *      int rows: Número de columnas que tiene el array bidimensional:     
+         *  Devuelve un esqueleto de una tabla de observaciones correspondiente a la lista
+         *  de facetas proveída.
+         *  La tabla de observaciones es de todas las facetas y todos los niveles, sin 
+         *  importar si están marcados para omitir.   
          */
-        private List<List<double?>> IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
+        private static List<List<double?>> IniIndexSubTable(ListFacets list_facets)
         {
             List<List<double?>> matrix = new List<List<double?>>();
+
+            int numFacets = list_facets.Count();
+            int[] levelOfFacets = new int[numFacets];
+            int f_i = 0;
+            int rows = 1; // Guarda el nº de filas de la matriz. Inicializada con la identidad multiplicativa (IM*x=x)
+            foreach (Facet f in list_facets)
+            {
+                levelOfFacets[f_i++] = f.Level();
+                rows *= f.Level();
+            }
+
+            int cols = numFacets + 1;
 
             int[] rep = RepeatedIndex(levelOfFacets);
 
@@ -437,20 +429,23 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Genera una nueva tabla de observaciones a partir de esta omitiendo/colapsando 
-         *  las facetas de la lista proveida que están marcadas para omitir.
+         *  las facetas que están marcadas para omitir.
          *  
          *  Parámetros:
-         *          ListFacets lf: Lista de facetas (debe coincidir con las de esta tabla)
+         *          ListFacets lf: Lista de facetas 
+         *              (debe coincidir con las de esta tabla)
          */
         public ObsTable CollapsedTable(ListFacets lf)
         {
             //Phase 0: check if the given list of facets is congruent with this table. If not, throw an exception.
             //todo
 
-            //Phase 1: Build dictionary of surviving facet value combinations and the list of measurements for each.
+            //Phase 1: Build skeleton of new table
+            List<List<double?>> collapsedTable = IniIndexSubTable(lf.ListFacetWithoutOmit());
+
+            //Phase 2: Build dictionary of surviving facet value combinations and the list of measurements for each.
             // Begin building table too (maintains order of first appearance)
             var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
-            var collapsedTable = new List<List<double?>>();
             HashSet<int> omittedIndexes = lf.OmittedIndexes();
 
             int measurementCol = this.ObsTableColumns() - 1;
@@ -462,22 +457,17 @@ namespace MultiFacetData
                     if (!omittedIndexes.Contains(i))
                         key.Add((double)row[i]);
 
-                if (!groups.TryGetValue(key, out var measurements))
+                if (!groups.TryGetValue(key, out var measurements)) // if first time we see this combination, then initialize it
                 {
                     measurements = new AuxMathCalcGT.Statistics();
                     groups[key] = measurements;
-
-                    // Add to collapsedTable immediately (preserves order)
-                    var newRow = key.Select(d => (double?)d).ToList();
-                    newRow.Add(null); // placeholder for measurement
-                    collapsedTable.Add(newRow);
                 }
 
                 // Add measurement to the correct group
                 measurements.Add(row[measurementCol]);
             }
 
-            // Phase 2: Fill in the measurements
+            // Phase 3: Fill in the measurements
             int collapsedMeasurementCol = collapsedTable[0].Count - 1;
             for (int i = 0; i < collapsedTable.Count; i++)
             {
