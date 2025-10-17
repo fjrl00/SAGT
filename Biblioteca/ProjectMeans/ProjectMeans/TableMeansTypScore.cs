@@ -158,10 +158,8 @@ namespace ProjectMeans
             // creamos la matriz
             this.meansMatrix = new List<List<double?>>();
 
-            // inicializamos las columnas de indices
-            int[] repIndexs = RepeatedIndex(levelOfFacets);
             // rellenamos la tabla con los indices
-            this.IniIndexSubTable(levelOfFacets, repIndexs, rows, cols);
+            this.IniIndexSubTable(levelOfFacets, rows, cols);
 
             // eliminamos las filas omitidas
             if (this.listF.HasSkipLevels())
@@ -219,10 +217,8 @@ namespace ProjectMeans
             // meansMatrix = new double?[this.rows, this.cols];
             this.meansMatrix = new List<List<double?>>();
 
-            // inicializamos las columnas de indices
-            int[] repIndexs = RepeatedIndex(levelOfFacets);
             // rellenamos la tabla con los indices
-            this.IniIndexSubTable(levelOfFacets, repIndexs, rows, cols);
+            this.IniIndexSubTable(levelOfFacets, rows, cols);
 
             // Ahora introducimos los valores en la tabla
             if (!(listMeans.Count == listStd_dev.Count && listMeans.Count == listVariances.Count
@@ -366,8 +362,9 @@ namespace ProjectMeans
          *                  esa columna.
          *      int rows: Número de columnas que tiene el array bidimensional:     
          */
-        private void IniIndexSubTable(int[] levelOfFacets, int[] rep, int rows, int cols)
+        private void IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
         {
+            int[] rep = RepeatedIndex(levelOfFacets);
             int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)

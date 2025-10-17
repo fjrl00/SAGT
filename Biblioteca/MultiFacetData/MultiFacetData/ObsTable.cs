@@ -143,9 +143,7 @@ namespace MultiFacetData
             obsMatrix = new List<List<double?>>();
 
             // inicializamos las columnas de indices
-            int[] repIndexs = RepeatedIndex(levelOfFacets);
-
-            this.IniIndexSubTable(levelOfFacets, repIndexs, rows, cols);
+            this.IniIndexSubTable(levelOfFacets, rows, cols);
 
 
         } // end public ObsTable(LinkedList<Facet> facets)
@@ -198,8 +196,10 @@ namespace MultiFacetData
          *                  esa columna.
          *      int rows: Número de columnas que tiene el array bidimensional:     
          */
-        private void IniIndexSubTable(int[] levelOfFacets, int[] rep, int rows, int cols)
+        private void IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
         {
+            int[] rep = RepeatedIndex(levelOfFacets);
+
             int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)

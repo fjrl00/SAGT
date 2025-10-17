@@ -76,7 +76,6 @@ namespace SsqPY
          */
         public static SSqPY ReadFileSsqPY(String nameFile)
         {
-            // ListTableSSQ lSSQ = new ListTableSSQ(); // objeto que vamos a devolver
             SSqPY ssqPY = new SSqPY();
 
             using (TextReader reader = new StreamReader(nameFile))
@@ -242,5 +241,5 @@ namespace SsqPY
         }
         #endregion Combinación sin repetición de lista de facetas en el mismo orden que el programa GT E 2.
 
-    }// end public class SSqPY: ListTableSSQ
+    }// end public class SSqPY
 }// namespace SsqPY

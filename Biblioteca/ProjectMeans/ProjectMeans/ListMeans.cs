@@ -64,7 +64,7 @@ namespace ProjectMeans
         }
         /*
          * Descripción:
-         *  Constructor de la clase ListsTableSSQ. Se le pasa por parámetro una lista de Facetas.
+         *  Constructor de la clase ListMeans. Se le pasa por parámetro una lista de Facetas.
          *  (No puede haber dos facetas con el mismo nombre).
          * Parámetros:
          *      List<Facet> listF: Lista de Facetas.

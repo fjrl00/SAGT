@@ -39,7 +39,6 @@ namespace GUI_GT
         
         private ListFacets listFacetsAnalysis = null; // lista de facetas que se emplea para el analisis
         private List<string> llFacetsAnalysis; // Lista
-        // private List<TableAnalysisOfVariance> listOfListAnalysisTableSSQ;
         // private List<TableG_Study_Percent> listAnalysisG_Parameters;
         private Analysis_and_G_Study anl_tAnalysis_G_study_opt; // variable con las tablas de análisis con la que se trabaja actualmente
         private Analysis_and_G_Study anl_tAnalysis_G_study_opt_Old; // variable antigua, para permitir deshacer cambios.
@@ -1080,7 +1079,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Importa un fichero de suma de cuadrados para construir el objeto listTableSSQ.
+         *  Importa un fichero de suma de cuadrados.
          */
         public void importAnalysis_SSqFile(string path)
         {

@@ -81,7 +81,7 @@ namespace ProjectMeans
             this.meansMatrix = new List<List<double?>>();
         }
 
-
+        //Lazy constructor used by ConnectDB. Do not use otherwise
         public TableMeans(ListFacets lf, string design, int rows)
             :this()
         {
@@ -145,10 +145,8 @@ namespace ProjectMeans
             // creamos la matriz
             meansMatrix = new List<List<double?>>();
 
-            // inicializamos las columnas de indices
-            int[] repIndexs = RepeatedIndex(levelOfFacets);
             // rellenamos la tabla con los indices
-            this.IniIndexSubTable(levelOfFacets, repIndexs, rows, cols);
+            this.IniIndexSubTable(levelOfFacets, rows, cols);
 
             // eliminamos las filas omitidas
             if (this.listF.HasSkipLevels())
@@ -163,7 +161,7 @@ namespace ProjectMeans
             this.Calc_GrandMean_Variance_StdDev(mfo, zero);
         }
 
-
+        //Unused. Pseudo-cloner?
         public TableMeans(ListFacets lf, string design, double? grandMean, double? variance, double? std_dev, 
             List<double?> listMeans, List<double?> listVariances, List<double?> listStd_dev)
         {
@@ -200,10 +198,8 @@ namespace ProjectMeans
             // meansMatrix = new double?[this.rows, this.cols];
             meansMatrix = new List<List<double?>>();
 
-            // inicializamos las columnas de indices
-            int[] repIndexs = RepeatedIndex(levelOfFacets);
             // rellenamos la tabla con los indices
-            this.IniIndexSubTable(levelOfFacets, repIndexs, rows, cols);
+            this.IniIndexSubTable(levelOfFacets, rows, cols);
 
             // Ahora introducimos los valores en la tabla
             if (!(listMeans.Count == listStd_dev.Count && listMeans.Count == listVariances.Count))
@@ -221,7 +217,7 @@ namespace ProjectMeans
             }
         }// end public TableMeans
 
-
+        //ReadingStreamTableMeans's constructor
         public TableMeans(ListFacets lf, string design, double? grandMean, double? variance, double? std_dev,
             List<List<double?>> meansMatrix)
         {
@@ -238,7 +234,7 @@ namespace ProjectMeans
 
         }// end public TableMeans
 
-
+        //DataTable constructor
         public TableMeans(DataTable dt, double? grandMean, double? variance, double? stdDev, string facetDesign)
             :this()
         {
@@ -341,8 +337,9 @@ namespace ProjectMeans
          *                  esa columna.
          *      int rows: Número de columnas que tiene el array bidimensional:     
          */
-        private void IniIndexSubTable(int[] levelOfFacets, int[] rep, int rows, int cols)
+        private void IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
         {
+            int[] rep = RepeatedIndex(levelOfFacets);
             int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)
@@ -423,7 +420,8 @@ namespace ProjectMeans
          *  datos estadisticos (media, varianza desviación típica).
          * Parámetros:
          *      ListFacets lf: lista de facetas, contiene las facetas sobre la que queremos calcular 
-         *              la media y otros datos
+         *              la media y otros datos.
+         *              NOTA: Teóricamente debe ser un subconjunto de la lista de facetas de mfo
          *      MultiFacetsObs mfo: es el objeto multifaceta que contiene la tabla de datos.
          *      bool zero: true si se quiere realizar los calculos interpretando los valores nulos
          *              como ceros.

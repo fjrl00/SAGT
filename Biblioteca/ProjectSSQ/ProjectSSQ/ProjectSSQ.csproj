@@ -56,7 +56,6 @@
     <Compile Include="Analysis_and_G_Study.cs" />
     <Compile Include="Analysis_and_G_Study_Exception.cs" />
     <Compile Include="ErrorVar.cs" />
-    <Compile Include="InterfaceTableSSQ.cs" />
     <Compile Include="ListOfTerms.cs" />
     <Compile Include="TableG_Study.cs" />
     <Compile Include="TableG_StudyException.cs" />
@@ -66,9 +65,7 @@
     <Compile Include="TableAnalysisOfVarianceException.cs" />
     <Compile Include="TableG_Study_Percent.cs" />
     <Compile Include="TableG_Study_PercentException.cs" />
-    <Compile Include="TableSSQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TableSSQException.cs" />
     <Compile Include="Term.cs" />
     <Compile Include="TermException.cs" />
   </ItemGroup>

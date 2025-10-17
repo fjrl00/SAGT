@@ -373,7 +373,6 @@ namespace ProjectSSQ
                 }
 
                 TableAnalysisOfVariance newTbAnalysisVar = new TableAnalysisOfVariance(newlf, ssq);
-                // this.listOfListTableSSQ.Add(newTbAnalysisVar);
                 newGp = new TableG_Study_Percent(lfDiff, lfInst, newTbAnalysisVar);
             }
 

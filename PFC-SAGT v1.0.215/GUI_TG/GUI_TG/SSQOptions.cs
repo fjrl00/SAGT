@@ -386,7 +386,7 @@ namespace GUI_GT
 
         /*
          * Descripción:
-         *  Muestra los datos de un ListTableSSQ en el dataGridView del tabPageSSQ
+         *  Muestra los datos de un TableAnalysisOfVariance en el dataGridView del tabPageSSQ
          * Parámetros:
          *      TableAnalysisOfVariance tbAnalysisVar: Es el objeto tabla de análisis de varianza de donse se
          *              extraen los datos.
@@ -798,7 +798,7 @@ namespace GUI_GT
 
             // Ahora rellenamos los datos
             // int n = dgvExOptimization.ColumnCount;
-            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultiOfLevel(); // newListTableSSQ.CalcTotalDF();
+            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultiOfLevel();
             dgvExOptimization.Rows[numFacets + 1].Cells[num_col_pos].Value =
                 ConvertNum.DecimalToString(newG_Parameters.CoefG_Rel(), numOfDecimal, puntoDecimal);
             dgvExOptimization.Rows[numFacets + 2].Cells[num_col_pos].Value =
@@ -1476,7 +1476,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Importa un fichero de suma de cuadrados para construir el objeto listTableSSQ .
+         *  Importa un fichero de suma de cuadrados.
          */
         public void importSSqFile(string path)
         {
@@ -1558,8 +1558,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Importa un fichero de suma de cuadrados .ssq del programa GT E 2.0 para construir el objeto 
-         *  listTableSSQ .
+         *  Importa un fichero de suma de cuadrados .ssq del programa GT E 2.0 para construir el objeto.
          */
         public Analysis_and_G_Study Aux_loadListTableSSqOfFileSsq(string path)
         {
@@ -1574,8 +1573,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Importa un fichero de resultado de suma de cuadrados .rsa del programa GT E 2.0 para construir el objeto 
-         *  listTableSSQ.
+         *  Importa un fichero de resultado de suma de cuadrados .rsa del programa GT E 2.0 para construir el objeto.
          */
         private Analysis_and_G_Study Aux_loadListTableSSqOfFileRsa(string path)
         {
@@ -1597,7 +1595,7 @@ namespace GUI_GT
             }
 
             return new Analysis_and_G_Study(ssqPY[0], listG_Parameters[0], listG_ParametersOpt);
-        }// loadListTableSSqOfFileRsa
+        }
 
 
         /* Descripción:
@@ -1756,7 +1754,7 @@ namespace GUI_GT
             }// end if
 
             return tAnalysisSsq;
-        }// Aux_loadListTableSSqOfFileRsa
+        }
 
 
         /* Descripción:

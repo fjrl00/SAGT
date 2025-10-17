@@ -99,7 +99,7 @@ namespace ProjectSSQ
 
         /*
          * Descripción:
-         *  Constructor de la clase ListsTableSSQ. Se le pasa por parámetro una lista de Facetas.
+         *  Constructor de la clase TableAnalysisOfVariance. Se le pasa por parámetro una lista de Facetas.
          *  (No puede haber dos facetas con el mismo nombre).
          * Parámetros:
          *      List<Facet> listF: Lista de Facetas.
@@ -324,14 +324,14 @@ namespace ProjectSSQ
                 if (!incluido)
                 {
                     throw new TableAnalysisOfVarianceException
-                    ("Error al crear listTableSSQ: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
+                    ("Error al crear TableAnalysisOfVariance: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
                 }
                 
             }
             else
             {
                 throw new TableAnalysisOfVarianceException
-                    ("Error al crear listTableSSQ: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
+                    ("Error al crear TableAnalysisOfVariance: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
             }
 
             this.ssq = newssq;
@@ -377,7 +377,7 @@ namespace ProjectSSQ
                 {
                     // lanzamos una excepción
                     throw new TableAnalysisOfVarianceException
-                    ("Error al crear listTableSSQ: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
+                    ("Error al crear TableAnalysisOfVariance: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
                 }
             }
             // ahora calcula los cuadrados medios
@@ -618,30 +618,6 @@ namespace ProjectSSQ
         #endregion Métodos de Consulta
 
 
-
-        #region Métodos de instancia
-        /*======================================================================================
-         * Métodos de instancia
-         *======================================================================================*/
-
-        /*
-         * Descripción:
-         *  Elimina un elemento pasado como parámetro de la lista. Si el elemento es eliminado
-         *  correctamente devuelve true, en otro caso devuelve false.
-         * Parámetros:
-         *      TableMeans tms: Tabla de suma de cuadrados que queremos eliminar.
-         */
-        /*
-        public bool Remove(TableSSQ tms)
-        {
-            return this.listTableSSQ.Remove(tms);
-        }
-        */
-
-        #endregion Métodos de instancia
-
-
-
         #region Operaciones auxiliares (calculos parciales para la suma de cuadrados)
         /*==============================================================================================
          * Operaciones auxiliares (calculos parciales para la suma de cuadrados)
@@ -682,22 +658,6 @@ namespace ProjectSSQ
    
             return retVal;
         }// end CalcResidue
-
-
-
-        /*
-         * Descripción:
-         *  Devuelve el diccionario(clave,valor) de Suma de cuadrados parciales. La clave es una lista de facetas.
-         * Parámetros:
-         *      Dictionary<string, double?> sum_x2: suma de cuadrados al cuadrado.
-         */
-        private double? PartialSumOfSquares(ListFacets lf, MultiFacetsObs mfo)
-        {
-            InterfaceTableSSQ table = new TableSSQ(lf, mfo);
-            double? sumX_2 = table.Sum_sumX2();
-            sumX_2 = (1 / this.listFacets.MultipSourcesOfVariabilityAbsent(lf)) * sumX_2;
-            return sumX_2;
-        }
 
 
         /* Descripción:

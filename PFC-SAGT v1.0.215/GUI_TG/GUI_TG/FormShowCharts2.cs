@@ -404,7 +404,7 @@ namespace GUI_GT
 
             // Ahora rellenamos los datos
             // int n = dgvExOptimization.ColumnCount;
-            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultiOfLevel(); // newListTableSSQ.CalcTotalDF();
+            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultiOfLevel();
             dgvExOptimization.Rows[numFacets + 1].Cells[num_col_pos].Value =
                 ConvertNum.DecimalToString(newG_Parameters.CoefG_Rel(), numOfDecimal, puntoDecimal);
             dgvExOptimization.Rows[numFacets + 2].Cells[num_col_pos].Value =
