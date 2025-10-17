@@ -28,7 +28,7 @@ namespace MultiFacetData
          * Métodos de consulta
          *=================================================================================================*/
         // Devuelve el dato de la frecuencia que se encuentra en la fila row.
-        double? Data(int row);
+        double? ObsData(int row);
         // Devuelve el dato que se encuentra en la tabla de frecuancias en la fila row, columna col.
         double? Data(int row, int col);
         // Devuelve el número de columnas de la tabla

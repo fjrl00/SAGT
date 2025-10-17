@@ -11,7 +11,7 @@
  * Fecha de revisión: 26/Ene/2012                           
  * 
  * Descripción:
- *      Iterface para tabla de medias Libreria de medias
+ *      Interface para tabla de medias Libreria de medias
  */
 
 using System;

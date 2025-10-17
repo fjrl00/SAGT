@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartesianProductTable.cs" />
     <Compile Include="ImportCSV.cs" />
     <Compile Include="InterfaceObsTable.cs" />
     <Compile Include="ProvisionOfFacets.cs" />

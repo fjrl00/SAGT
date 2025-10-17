@@ -26,7 +26,7 @@ using AuxMathCalcGT;
 namespace ProjectMeans
 {
 
-    public class TableMeansDif : InterfaceTableMeans
+    public class TableMeansDif : CartesianProductTable, InterfaceTableMeans
     {
         /*
          * Descripción:
@@ -57,12 +57,6 @@ namespace ProjectMeans
          *         1       1        2       x2      v2       dt2          dm2         dv2          ddt2
          *         1       2        3       x3      v3       dt3          dm3         dv3          ddt3
          *       (...)   (...)    (...)   (...)   (...)     (...)        (...)       (...)         (...)
-         *      
-         *      Los datos puede representarese en una matriz. El número de filas se obtine de la 
-         *      multiplicación los niveles de todas las facetas (en nuestro ejemplo: 2x3x2 = 12 
-         *      filas). El número de columnas es igual al número de facetas más 6.
-         *      
-         *      Para representar los datos se usará un array bidimensional o matriz de tipo double.
          */
 
         /*=================================================================================
@@ -76,8 +70,11 @@ namespace ProjectMeans
         /*=================================================================================
          * Variables de instancia
          *=================================================================================*/
-        // Variables 
-        private List<List<double?>> matrix; // matriz de medias.
+        //private List<List<double?>> matrix; // matriz de medias.
+        protected override Exception CPTException(string msg)
+        {
+            return new TableMeansDifException(msg);
+        }
         private ListFacets listF; // lista de facetas sobre la que construiremos la tabla de medias
         private double? grandMean; // Gran media o media general
         private double? variance; // Varianza
@@ -136,7 +133,7 @@ namespace ProjectMeans
         {
             if (lF.Count() < 1)
             {
-                throw new ObsTableException("Error: no hay facetas");
+                throw new TableMeansDifException("Error: no hay facetas");
             }
 
             this.listF = lF;
@@ -166,7 +163,7 @@ namespace ProjectMeans
         {
             if (lf.Count() < 1)
             {
-                throw new ObsTableException("Error: no hay facetas");
+                throw new TableMeansDifException("Error: no hay facetas");
             }
             this.listF = lf;
             this.facetDesign = design;
@@ -241,36 +238,6 @@ namespace ProjectMeans
          *      - SkipLevels --> Elimina las filas con niveles omitidos
          *=================================================================================*/
 
-        /*
-         * Descripción:
-         *  Método auxiliar que devuelve un array con las veces que se repite cada uno 
-         *  de los indices de una columna antes de pasar al siguiente indice. Su utilidad 
-         *  es facilitar la contrucción de la tabla.
-         * 
-         * Entradas:
-         *      int[] levelOfFacets: un array con los niveles de cada una de las facetas.
-         *      
-         * Devuelve:
-         *      int[] res: un array con las veces que se repite cada uno de los indices.
-         */
-        private static int[] IndexRepeats(int[] levelOfFacets)
-        {
-            // Necesitamos saber la longitud de vector para crear el nuevo vector
-            int sizeVector = levelOfFacets.Length;
-
-            // Variable de retorno
-            int[] res = new int[sizeVector];
-            res[sizeVector - 1] = 1;
-
-            for (int i = sizeVector - 1; i > 0; i--)
-            {
-                res[i - 1] = res[i] * levelOfFacets[i];
-
-            }
-            return res;
-        }// end private static int[] IndexRepeats(int[] levelOfFacets)
-
-
         /**
          * Descripción:
          *  Devuelve un esqueleto de la tabla correspondiente a la lista de facetas proveída.
@@ -278,69 +245,8 @@ namespace ProjectMeans
          */
         private static List<List<double?>> IniIndexSubTable(ListFacets list_facets)
         {
-            List<List<double?>> matrix = new List<List<double?>>();
-
-            int numFacets = list_facets.Count();
-            int cols = numFacets + 6;
-
-            int[] levelOfFacets = list_facets.levelOfFacets();
-            double rows = list_facets.MultOfLevels();
-            int[] rep = IndexRepeats(levelOfFacets);
-
-            for (int i = 0; i < rows; i++)
-            {
-                matrix.Add(new List<double?>());
-                for (int j = 0; j < cols; j++)
-                {
-                    matrix[i].Add(null);
-                }
-            }
-
-            for (int columna = 0; columna < numFacets; columna++)
-            { // * for 1 *
-                int indice = 1;
-                int numRep = 0;
-                for (int fila = 0; fila < rows; fila++)
-                { // * for 2*
-
-                    matrix[fila][columna] = indice;
-                    numRep++;
-                    if (numRep == rep[columna])
-                    {
-                        indice++;
-                        numRep = 0;
-                    }
-                    if (indice > levelOfFacets[columna])
-                    {
-                        indice = 1;
-                        numRep = 0;
-                    }
-
-                } // * for 2 *
-            } // * for 1 *
-
-            return matrix;
+            return IniIndexSubTable(list_facets, 6);
         }// end private void IniIndexSubTable
-
-
-        /* Descripción:
-         *  Elimina de la tabla la filas donde haya algún indice omitido
-         */
-        public void SkipLevels(ListFacets lf)
-        {
-            this.matrix.RemoveAll(row =>
-            {
-                for (int j = 0; j < lf.Count(); j++)
-                {
-                    Facet facet = lf.FacetInPos(j);
-                    int data = (int)row[j];
-
-                    if (facet.GetSkipLevels(data))
-                        return true;
-                }
-                return false;
-            });
-        }// end SkipLevels
 
         #endregion Operaciones auxiliares del constructor
 
@@ -407,7 +313,7 @@ namespace ProjectMeans
 
                     if (v)
                     {
-                        stc.Add(mfo_obsTable.Data(j), zero);
+                        stc.Add(mfo_obsTable.ObsData(j), zero);
                     }
                 }
 
@@ -442,7 +348,7 @@ namespace ProjectMeans
             for (int i = 0; i < r; i++)
             {
                 // stc.Add(this.Data(i, c), zero);
-                stc.Add(observationTable.Data(i), zero);
+                stc.Add(observationTable.ObsData(i), zero);
             }
             this.grandMean = stc.Mean();
             this.variance = stc.Variance();
@@ -453,26 +359,6 @@ namespace ProjectMeans
         /*=================================================================================
          * Métodos de Consulta
          *=================================================================================*/
-
-        /*
-         * Descripción:
-         *  Consulta el valor de un elemento de la tabla y lo devuelve
-         * Parámetros:
-         *      int row: fila de la que se obtiene el dato.
-         *      int col: Columna de la que se obtiene el dato.
-         * Excepciones:
-         *      Lanza una excepción TableMeansException si alguno de los valores que se pasa como
-         *      argumento tienen el indice fuera del rango de las dimensiones de la tabla.
-         */
-        public double? Data(int row, int col)
-        {
-            if (row < 0 || col < 0 || row > (this.TableRows() - 1) || col > (this.TableColumns() - 1))
-            {
-                throw new TableMeansDifException("Indice fuera de rango, posición no encontrada");
-            }
-
-            return this.matrix[row][col];
-        }
 
         /*
          * Descripción:
@@ -541,26 +427,6 @@ namespace ProjectMeans
             double? res = this.matrix[row][this.TableColumns() - 4];
 
             return res;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve el número de columnas de la tabla de medias.
-         */
-        public int TableColumns()
-        {
-            return this.matrix[0].Count;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve el número de filas de la tabla medias.
-         */
-        public int TableRows()
-        {
-            return this.matrix.Count;
         }
 
         /*

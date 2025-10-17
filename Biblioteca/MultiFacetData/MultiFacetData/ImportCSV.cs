@@ -165,7 +165,7 @@ namespace MultiFacetData
                         }
                         if (b)                                      //if we've found a hit
                         {
-                            double d = (double)tableObs.Data(i);
+                            double d = (double)tableObs.ObsData(i);
                             obsT.Data(d, r);                        //we asign it the frequency/measure value
                         }
                     }

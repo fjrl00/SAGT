@@ -873,7 +873,7 @@ namespace GUI_GT
             for (int f = 0; f < fila; ++f)
             {
                 // Insertamos en la tabla si es distinto de null;
-                if (obsTable.Data(f) != null)
+                if (obsTable.ObsData(f) != null)
                 {
                     object[] mi_fila = new object[col + 1]; // + 1 para los datos a introducir
                     //Meto los datos en la fila

@@ -399,7 +399,7 @@ namespace MultiFacetData
                 int n = table.TableRows();
                 for (int i = 0; i < n; i++)
                 {
-                    double? d = table.Data(i) ?? 0;
+                    double? d = table.ObsData(i) ?? 0;
                     writer.WriteLine(d.ToString());
                 }
                 res = true;
@@ -413,7 +413,7 @@ namespace MultiFacetData
          *  manterner el retorno de carro.
          * Nota: Si se envia un string null como parámetro, escribira la cadena vacía.
          */
-        private void writeString(StreamWriter writer, string txt)
+        private void WriteString(StreamWriter writer, string txt)
         {
             if (txt == null)
             {
@@ -480,7 +480,7 @@ namespace MultiFacetData
                 {
                     // escribimos el comentario
                     writer.WriteLine(BEGIN_COMMENT);
-                    writeString(writer, this.comment);
+                    WriteString(writer, this.comment);
                     writer.WriteLine(END_COMMENT);
                     return res;
                 }
