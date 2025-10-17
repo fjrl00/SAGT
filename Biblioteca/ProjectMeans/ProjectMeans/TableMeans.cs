@@ -225,13 +225,13 @@ namespace ProjectMeans
          * Descripción:
          *  Método auxiliar que devuelve un array con las veces que se repite cada uno 
          *  de los indices de una columna antes de pasar al siguiente indice. Su utilidad 
-         *  es facilitar la contrucción de la tabla de medias.
+         *  es facilitar la contrucción de la tabla.
          * 
          * Entradas:
          *      int[] levelOfFacets: un array con los niveles de cada una de las facetas.
          *      
          * Devuelve:
-         *      double[] res: un array con las veces que se repite cada uno de los indices.
+         *      int[] res: un array con las veces que se repite cada uno de los indices.
          */
         private static int[] RepeatedIndex(int[] levelOfFacets)
         {
@@ -248,7 +248,7 @@ namespace ProjectMeans
 
             }
             return res;
-        }// end private static double[] RepeatedIndex(double[] levelOfFacets)
+        }// end private static int[] RepeatedIndex(int[] levelOfFacets)
 
 
         /**
@@ -261,19 +261,11 @@ namespace ProjectMeans
             List<List<double?>> matrix = new List<List<double?>>();
 
             int numFacets = list_facets.Count();
-            int[] levelOfFacets = new int[numFacets];
-            int f_i = 0;
-            int rows = 1; // Guarda el nº de filas de la matriz. Inicializada con la identidad multiplicativa (IM*x=x)
-            foreach (Facet f in list_facets)
-            {
-                levelOfFacets[f_i++] = f.Level();
-                rows *= f.Level();
-            }
-
             int cols = numFacets + 3;
 
+            int[] levelOfFacets = list_facets.levelOfFacets();
+            double rows = list_facets.MultOfLevels();
             int[] rep = RepeatedIndex(levelOfFacets);
-            int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)
             {
@@ -284,7 +276,7 @@ namespace ProjectMeans
                 }
             }
 
-            for (int columna = 0; columna < anchura; columna++)
+            for (int columna = 0; columna < numFacets; columna++)
             { // * for 1 *
                 int indice = 1;
                 int numRep = 0;

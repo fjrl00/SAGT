@@ -31,6 +31,7 @@ namespace MultiFacetData
          * - ConcatenateWithoutRepetitions (concatena dos listas omitiendo los repetidos)
          * - DegreeOfFreedom (Devuelve el grado de libertad)
          * - MultOfLevels (Producto de los niveles)
+         * - levelOfFacets (array con los niveles de las facetas)
          * - SourcesOfVariabilityAbsent (Lista de las facetas ausentes)
          * - MultipSourcesOfVariabilityAbsent (Producto de la lista de facetas ausentes)
          * - MultipSourcesOfVariabilityAbsentForTypeOfFacet (Producto de la lista de facetas ausentes,
@@ -209,15 +210,34 @@ namespace MultiFacetData
          * Descripción:
          *  Contiene la multiplicación de los niveles de la lista de facetas.
          *  Equivaldría al número de filas de la tabla de observaciones correspondiente a esta lista de facetas, entre posiblemente otros usos.
+         *  NOTE: should prob change to int instead of double
          */
         public double MultOfLevels()
         {
-            double retVal = 1; // valor de retorno
+            double retVal = 1; // Inicializada con la identidad multiplicativa (IM*x=x)
             foreach (Facet f in this.listFacets)
             {
                 retVal *= f.Level();
             }
             return retVal;
+        }
+
+        /*
+         * Descripción:
+         *  Devuelve un array de enteros con los niveles de las facetas en correcto orden.
+         *  Soporte a cálculos de tablas de productos cartesianos.
+         */
+        public int[] levelOfFacets()
+        {
+            int[] levelOfFacets = new int[this.Count()];
+
+            int f_i = 0;
+            foreach (Facet f in this.listFacets)
+            {
+                levelOfFacets[f_i++] = f.Level();
+            }
+
+            return levelOfFacets;
         }
 
 
