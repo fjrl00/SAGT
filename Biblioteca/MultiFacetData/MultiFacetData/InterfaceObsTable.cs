@@ -32,11 +32,9 @@ namespace MultiFacetData
         // Devuelve el dato que se encuentra en la tabla de frecuancias en la fila row, columna col.
         double? Data(int row, int col);
         // Devuelve el número de columnas de la tabla
-        int ObsTableColumns();
+        int TableColumns();
         // Devuelve el número de filas de la tabla
-        int ObsTableRows();
-        // Devuelve una lista con los valores de las frecuencias de la tabla.
-        List<double?> ListObs();
+        int TableRows();
         // Devuelve el valor de las suma de las frecuencias
         double? SumOfData();
         // Escribe la tabla de datos de frecuencias.
@@ -59,7 +57,7 @@ namespace MultiFacetData
         // Elimina un nivel para una determinada columna
         void SkipLevelAndRestoreIndex(int skipLevel, int col);
         // Elimina las filas donde se encuentre el nivel actual para la columna especificada.
-        void SkipLevelIndex(ListFacets lf);
+        void SkipLevels(ListFacets lf);
         //Crea una tabla de observaciones con las facetas a omitir omitidas.
         ObsTable CollapsedTable(ListFacets lf);
         // Deep clone

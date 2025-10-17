@@ -124,7 +124,7 @@ namespace MultiFacetData
                 lf.Add(f);
             }
             int mul = (int)lf.MultOfLevels(); // devuelve el número de filas que tendrá la tabla
-            if (mul == tableObs.ObsTableRows()) //if we have data for all rows
+            if (mul == tableObs.TableRows()) //if we have data for all rows
             {
                 // entonces la tablaObs es producto cartesiano (aka there's data for each combination of facet values)
                 retVal = new MultiFacetsObs(lf, tableObs, path, "", comment);
@@ -136,7 +136,7 @@ namespace MultiFacetData
 
                 InterfaceObsTable obsT = retVal.ObservationTable(); //full observation table for these facets (but without frequency/measure)
 
-                int n_items = tableObs.ObsTableRows();              //number of entries for which there's data
+                int n_items = tableObs.TableRows();              //number of entries for which there's data
 
                 //int pos = 0;
                 //for (int i = 0; (i < mul) && (pos < n_items); i++)

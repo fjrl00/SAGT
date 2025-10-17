@@ -643,7 +643,6 @@ namespace ProjectSSQ
         private double? CalcResidue(InterfaceObsTable table)
         {
             double? retVal = 1 / (this.listFacets.MultOfLevels());
-            //double? sum_X = this.listTableSSQ[this.listTableSSQ.Count - 1].Sum_sumX();
             double? sum_X = table.SumOfData();
 
             if (sum_X == null)
@@ -672,7 +671,7 @@ namespace ProjectSSQ
         private double? PartialSumOfSquaresByMeans(ListFacets lf, MultiFacetsObs mfo, bool zero)
         {
             TableMeans  tableMeans = new TableMeans(lf, "", mfo, zero);
-            int rows = tableMeans.MeansTableRows();
+            int rows = tableMeans.TableRows();
 
             double? sumX_2 = 0;
             for (int i = 0; i < rows; i++)

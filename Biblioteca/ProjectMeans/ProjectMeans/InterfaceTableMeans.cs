@@ -34,8 +34,8 @@ namespace ProjectMeans
         double? MeanData(int row); // Devuelve el dato de media que se encuentra en la fila row
         double? VarianceData(int row); // Devuelve el dato de varianza que se encuentra en la fila row
         double? Std_dev_Data(int row); // Devuelve el dato de desviación típica que se encuentra en la fila row
-        int MeansTableColumns(); // número de fila de la tabla
-        int MeansTableRows();    // número de columnas de la tabla
+        int TableColumns(); // número de fila de la tabla
+        int TableRows();    // número de columnas de la tabla
         ListFacets ListFacets(); // Devuelve la lista de facetas de la tabla de medias
         string FacetDesign(); // Devuelve el diseño de la tabla de la lista de facetas
         double? GrandMean(); // Devuelve la gran media de la tabla

@@ -438,8 +438,8 @@ namespace ConnectLibrary
             // Inserto la tabla de Observaciones
             InterfaceObsTable obs = mfo.ObservationTable();
 
-            int nRows = obs.ObsTableRows();
-            int nCols = obs.ObsTableColumns();
+            int nRows = obs.TableRows();
+            int nCols = obs.TableColumns();
 
             ListFacets lf = mfo.ListFacets();
 
@@ -674,8 +674,8 @@ namespace ConnectLibrary
          */
         public void Insert_TableMeans(TableMeans tbMeans, int fk_means)
         {
-            int nRows = tbMeans.MeansTableRows();
-            int nCols = tbMeans.MeansTableColumns();
+            int nRows = tbMeans.TableRows();
+            int nCols = tbMeans.TableColumns();
 
             ListFacets lf = tbMeans.ListFacets();
 
@@ -717,8 +717,8 @@ namespace ConnectLibrary
          */
         public void Insert_TableMeansDif(TableMeansDif tbMeansDif, int fk_means)
         {
-            int nRows = tbMeansDif.MeansTableRows();
-            int nCols = tbMeansDif.MeansTableColumns();
+            int nRows = tbMeansDif.TableRows();
+            int nCols = tbMeansDif.TableColumns();
 
             ListFacets lf = tbMeansDif.ListFacets();
 
@@ -775,8 +775,8 @@ namespace ConnectLibrary
          */
         public void Insert_TableMeansTypScore(TableMeansTypScore tbMeansTtpScore, int fk_means)
         {
-            int nRows = tbMeansTtpScore.MeansTableRows();
-            int nCols = tbMeansTtpScore.MeansTableColumns();
+            int nRows = tbMeansTtpScore.TableRows();
+            int nCols = tbMeansTtpScore.TableColumns();
 
             ListFacets lf = tbMeansTtpScore.ListFacets();
 
@@ -1316,7 +1316,7 @@ namespace ConnectLibrary
         public InterfaceObsTable Return_ObsTable(ListFacets lf, int fk_multi_facet_obs)
         {
             InterfaceObsTable oTable = new ObsTable(lf);
-            int r = oTable.ObsTableRows();
+            int r = oTable.TableRows();
             string cadenaSelect = "  SELECT  TbDataObservation.row, TbDataObservation.name_column, TbDataObservation.data_cell "
                    + " FROM    TbDataObservation "
                    + " WHERE (TbDataObservation.fk_multi_facet_obs = " + fk_multi_facet_obs + ")";

@@ -830,8 +830,8 @@ namespace GUI_GT
             LoadHeadersInObsTable(multiFacets, dataGridViewExObsTable);
 
 
-            int fila = multiFacets.ObservationTable().ObsTableRows();
-            int col = multiFacets.ObservationTable().ObsTableColumns();
+            int fila = multiFacets.ObservationTable().TableRows();
+            int col = multiFacets.ObservationTable().TableColumns();
 
             for (int f = 0; f < fila; ++f)
             {
@@ -866,8 +866,8 @@ namespace GUI_GT
             LoadHeadersInObsTable(multiFacets, dataGridViewExObsTable);
 
 
-            int fila = multiFacets.ObservationTable().ObsTableRows();
-            int col = multiFacets.ObservationTable().ObsTableColumns();
+            int fila = multiFacets.ObservationTable().TableRows();
+            int col = multiFacets.ObservationTable().TableColumns();
 
             InterfaceObsTable obsTable = multiFacets.ObservationTable();
             for (int f = 0; f < fila; ++f)

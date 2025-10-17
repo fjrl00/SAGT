@@ -291,17 +291,6 @@ namespace MultiFacetData
             this.observationTable.AssignListData(listDataObs);
         }
 
-
-        /*
-         * Descripción:
-         *  Devuelve una lista de tipo double? con las observaciones que se encuentran en la 
-         *  última columna de la tabla
-         */
-        public List<double?> ListObs()
-        {
-            return this.observationTable.ListObs();
-        }
-
         #endregion Métodos de instancia
 
 
@@ -341,7 +330,7 @@ namespace MultiFacetData
         public MultiFacetsObs SkipIndexLevelFacetInDataTable()
         {
             MultiFacetsObs retVal = this.Clone();
-            retVal.ObservationTable().SkipLevelIndex(retVal.ListFacets());
+            retVal.ObservationTable().SkipLevels(retVal.ListFacets());
 
             return retVal;
         }
@@ -407,7 +396,7 @@ namespace MultiFacetData
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 InterfaceObsTable table = this.ObservationTable();
-                int n = table.ObsTableRows();
+                int n = table.TableRows();
                 for (int i = 0; i < n; i++)
                 {
                     double? d = table.Data(i) ?? 0;

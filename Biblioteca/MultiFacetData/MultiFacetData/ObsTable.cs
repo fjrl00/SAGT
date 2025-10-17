@@ -70,7 +70,7 @@ namespace MultiFacetData
          * Variables de instancia
          *=================================================================================*/
         // Variables
-        private List<List<double?>> obsMatrix;
+        private List<List<double?>> matrix;
 
 
 
@@ -83,12 +83,12 @@ namespace MultiFacetData
          */
         public ObsTable()
         {
-            obsMatrix = new List<List<double?>>();
+            matrix = new List<List<double?>>();
         }
 
         public ObsTable(List<List<double?>> obsMatrix)
         {
-            this.obsMatrix = obsMatrix;
+            this.matrix = obsMatrix;
         }
 
         /*
@@ -116,7 +116,7 @@ namespace MultiFacetData
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
-            this.obsMatrix = IniIndexSubTable(list_facets);
+            this.matrix = IniIndexSubTable(list_facets);
 
         } // end public ObsTable(LinkedList<Facet> facets)
 
@@ -139,7 +139,7 @@ namespace MultiFacetData
          * Devuelve:
          *      int[] res: un array con las veces que se repite cada uno de los indices.
          */
-        private static int[] RepeatedIndex(int[] levelOfFacets)
+        private static int[] IndexRepeats(int[] levelOfFacets)
         {
             // Necesitamos saber la longitud de vector para crear el nuevo vector
             int sizeVector = levelOfFacets.Length;
@@ -154,7 +154,7 @@ namespace MultiFacetData
 
             }
             return res;
-        }// end private static int[] RepeatedIndex(int[] levelOfFacets)
+        }// end private static int[] IndexRepeats(int[] levelOfFacets)
 
 
 
@@ -174,7 +174,7 @@ namespace MultiFacetData
 
             int[] levelOfFacets = list_facets.levelOfFacets();
             double rows = list_facets.MultOfLevels();
-            int[] rep = RepeatedIndex(levelOfFacets);
+            int[] rep = IndexRepeats(levelOfFacets);
 
             for (int i = 0; i < rows; i++)
             {
@@ -228,12 +228,12 @@ namespace MultiFacetData
          */
         public double? Data(int row)
         {
-            if (row < 0 || row > this.ObsTableRows() - 1)
+            if (row < 0 || row > this.TableRows() - 1)
             {
                 throw new ObsTableException("La fila no petenece al rango de columnas de la tabla.");
             }
             // variable de retorno
-            double? res = this.obsMatrix[row][this.ObsTableColumns() - 1];
+            double? res = this.matrix[row][this.TableColumns() - 1];
 
             return res;
         }
@@ -251,12 +251,12 @@ namespace MultiFacetData
          */
         public double? Data(int row, int col)
         {
-            if (row < 0 || col < 0 || row > (this.ObsTableRows() - 1) || col > (this.ObsTableColumns() - 1))
+            if (row < 0 || col < 0 || row > (this.TableRows() - 1) || col > (this.TableColumns() - 1))
             {
                 throw new ObsTableException("Indice fuera de rango, posición no encontrada");
             }
 
-            return this.obsMatrix[row][col];
+            return this.matrix[row][col];
         }
 
 
@@ -264,9 +264,9 @@ namespace MultiFacetData
          * Descripción:
          *  Devuelve el número de columnas de la tabla.
          */
-        public int ObsTableColumns()
+        public int TableColumns()
         {
-            return this.obsMatrix[0].Count;
+            return this.matrix[0].Count;
         }
 
 
@@ -274,28 +274,9 @@ namespace MultiFacetData
          * Descripción:
          *  Devuelve el número de filas de la tabla.
          */
-        public int ObsTableRows()
+        public int TableRows()
         {
-            return this.obsMatrix.Count;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve una lista de tipo double? con las observaciones que se encuentran en la 
-         *  última columna de la tabla
-         *  
-         */
-        public List<double?> ListObs()
-        {
-            int cols = this.ObsTableColumns();
-            List<double?> listRes = new List<double?>(); //variable de retorno
-            int rows = this.ObsTableRows();
-            for (int i = 0; i < rows; i++)
-            {
-                listRes.Add(this.obsMatrix[i][cols - 1]);
-            }
-            return listRes;
+            return this.matrix.Count;
         }
 
 
@@ -308,7 +289,7 @@ namespace MultiFacetData
          */
         public void Add(List<double?> row)
         {
-            this.obsMatrix.Add(row);
+            this.matrix.Add(row);
         }
 
 
@@ -327,14 +308,14 @@ namespace MultiFacetData
          */
         public void Data(double? data, int pos)
         {
-            int rows = this.ObsTableRows();
-            int cols = this.ObsTableColumns();
+            int rows = this.TableRows();
+            int cols = this.TableColumns();
 
             if (pos < 0 || pos >= rows)
             {
                 throw new ObsTableException("La posición de inserción en la tabla de observaciones se encuentra fuera del rango");
             }
-            this.obsMatrix[pos][cols - 1] = data;
+            this.matrix[pos][cols - 1] = data;
         }
 
 
@@ -351,17 +332,17 @@ namespace MultiFacetData
          */
         public void AssignListData(List<double?> ldata)
         {
-            int rows = this.ObsTableRows();
+            int rows = this.TableRows();
             if (ldata.Count != rows)
             {
                 throw new ObsTableException("La cantidad de datos no coincide con la dimensión de la tabla");
             }
 
-            int cols = this.ObsTableColumns();
+            int cols = this.TableColumns();
             int pos = 0;
             foreach (double? d in ldata)
             {
-                this.obsMatrix[pos][cols - 1] = d;
+                this.matrix[pos][cols - 1] = d;
                 pos++;
             }
         }
@@ -379,15 +360,15 @@ namespace MultiFacetData
         public void SkipLevelAndRestoreIndex(int skipLevel, int col)
         {
             //Step 1: remove the appropiate rows
-            this.obsMatrix.RemoveAll(row => (double)row[col] == skipLevel);
+            this.matrix.RemoveAll(row => (double)row[col] == skipLevel);
 
             //Step 2: Restore appropiate indexes
-            for (int i = 0; i < this.ObsTableRows(); i++)
+            for (int i = 0; i < this.TableRows(); i++)
             {
-                double data = (double)this.obsMatrix[i][col];
+                double data = (double)this.matrix[i][col];
                 if (data > skipLevel)
                 {
-                    this.obsMatrix[i][col] = data - 1;
+                    this.matrix[i][col] = data - 1;
                 }
             }
         }
@@ -401,9 +382,9 @@ namespace MultiFacetData
          *  Parámetros:
          *          ListFacets lf: Lista de facetas que contiene los niveles a omitir.
          */
-        public void SkipLevelIndex(ListFacets lf)
+        public void SkipLevels(ListFacets lf)
         {
-            this.obsMatrix.RemoveAll(row =>
+            this.matrix.RemoveAll(row =>
             {
                 for (int j = 0; j < lf.Count(); j++)
                 {
@@ -438,8 +419,8 @@ namespace MultiFacetData
             var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
             HashSet<int> omittedIndexes = lf.OmittedIndexes();
 
-            int measurementCol = this.ObsTableColumns() - 1;
-            foreach (var row in obsMatrix)
+            int measurementCol = this.TableColumns() - 1;
+            foreach (var row in matrix)
             {
                 //extract the key (facet values) for this row, ignoring omitted facets
                 var key = new List<double>();
@@ -509,7 +490,7 @@ namespace MultiFacetData
         {
             double? sum_X = null;
 
-            int n = this.ObsTableRows();
+            int n = this.TableRows();
             for (int i = 0; i < n; i++)
             {
                 double? data = this.Data(i);
@@ -535,8 +516,8 @@ namespace MultiFacetData
             bool res = false; // variable de retorno
             writerFile.WriteLine(BEGIN_OBS_TABLE);
             // Escribimos los datos
-            int row = this.ObsTableRows();
-            int col = this.ObsTableColumns();
+            int row = this.TableRows();
+            int col = this.TableColumns();
             for (int i = 0; i < row; i++)
             {
                 string line = "";
@@ -581,7 +562,7 @@ namespace MultiFacetData
                     {
                         listDouble.Add(ConvertNum.String2Double(arrayOfSplit[i]));
                     }
-                    res.obsMatrix.Add(listDouble);
+                    res.matrix.Add(listDouble);
                 }
                 if (line == null)
                 {
@@ -612,7 +593,7 @@ namespace MultiFacetData
          */
         public DataTable ObsTable2DataTable(ListFacets lf)
         {
-            if (lf.Count() + 1 != this.ObsTableColumns())
+            if (lf.Count() + 1 != this.TableColumns())
             {
                 throw new ObsTableException("Lista de facetas no coincide con el número de columnas indice");
             }
@@ -630,8 +611,8 @@ namespace MultiFacetData
             dtObsTable.Columns.Add(new DataColumn("obs_data", System.Type.GetType("System.Double")));
 
             // rellenamos el dataTable
-            int numRows = this.ObsTableRows();
-            int numCols = this.ObsTableColumns();
+            int numRows = this.TableRows();
+            int numCols = this.TableColumns();
             for (int i = 0; i < numRows; i++)
             {
                 // Creamos una fila
@@ -716,7 +697,7 @@ namespace MultiFacetData
         public ObsTable Clone()
         {
             List<List<double?>> newMatrix = new List<List<double?>>();
-            foreach (var row in this.obsMatrix)
+            foreach (var row in this.matrix)
             {
                 List<double?> newRow = new List<double?>(row);
                 newMatrix.Add(newRow);
@@ -742,17 +723,17 @@ namespace MultiFacetData
         {
             StringBuilder res = new StringBuilder();
             //string res = ""; // variable de retorno
-            for (int i = 0; i < this.ObsTableRows(); i++)
+            for (int i = 0; i < this.TableRows(); i++)
             {/*for 1*/
-                for (int j = 0; j < this.ObsTableColumns(); j++)
+                for (int j = 0; j < this.TableColumns(); j++)
                 {/*for 2*/
-                    if (this.obsMatrix[i][j] == null)
+                    if (this.matrix[i][j] == null)
                     {
                         res.Append("- ");
                     }
                     else
                     {
-                        res.Append(this.obsMatrix[i][j].ToString() + " ");
+                        res.Append(this.matrix[i][j].ToString() + " ");
                     }
                 }/*end for 2*/
                 res.Append("; \n");
@@ -771,16 +752,16 @@ namespace MultiFacetData
             bool res = false;
             if (obj is ObsTable obsT)
             {// (* 1 *)
-                if (this.ObsTableRows().Equals(obsT.ObsTableRows())
-                    && this.ObsTableColumns().Equals(obsT.ObsTableColumns()))
+                if (this.TableRows().Equals(obsT.TableRows())
+                    && this.TableColumns().Equals(obsT.TableColumns()))
                 {// (* 2 *)
                     res = true;
 
-                    for (int i = 0; i < this.ObsTableRows() && res; i++)
+                    for (int i = 0; i < this.TableRows() && res; i++)
                     {
-                        for (int j = 0; j < this.ObsTableColumns() && res; j++)
+                        for (int j = 0; j < this.TableColumns() && res; j++)
                         {
-                            res = this.obsMatrix[i][j].Equals(obsT.obsMatrix[i][j]);
+                            res = this.matrix[i][j].Equals(obsT.matrix[i][j]);
                         }
                     }
                 }// (* 2 *)
@@ -799,14 +780,14 @@ namespace MultiFacetData
             unchecked
             {
                 int hash = 1;
-                int rows = this.ObsTableRows();
-                int cols = this.ObsTableColumns();
+                int rows = this.TableRows();
+                int cols = this.TableColumns();
 
                 for (int i = 0; i < rows; i++)
                 {
                     for (int j = 0; j < cols; j++)
                     {
-                        double? val = this.obsMatrix[i][j];
+                        double? val = this.matrix[i][j];
                         hash = hash * 31 + (val?.GetHashCode() ?? 0);
                     }
                 }

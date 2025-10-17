@@ -64,7 +64,7 @@ namespace ProjectMeans
          * Variables de instancia
          *=================================================================================*/
         // Variables
-        private List<List<double?>> meansMatrix; // matriz de medias.
+        private List<List<double?>> matrix; // matriz de medias.
         private ListFacets listF; // lista de facetas sobre la que construiremos la tabla de medias
         private double? grandMean; // Gran media o media general
         private double? variance; // Varianza
@@ -78,7 +78,7 @@ namespace ProjectMeans
         public TableMeans()
         {
             listF = new ListFacets();
-            this.meansMatrix = new List<List<double?>>();
+            this.matrix = new List<List<double?>>();
         }
 
         //Lazy constructor used by ConnectDB. Do not use otherwise
@@ -95,10 +95,10 @@ namespace ProjectMeans
 
             for (int i = 0; i < rows; i++)
             {
-                this.meansMatrix.Add(new List<double?>());
+                this.matrix.Add(new List<double?>());
                 for (int j = 0; j < cols; j++)
                 {
-                    this.meansMatrix[i].Add(null);
+                    this.matrix[i].Add(null);
                 }
             }
         }
@@ -126,12 +126,12 @@ namespace ProjectMeans
             this.facetDesign = design;
 
             // creamos la matriz
-            meansMatrix = IniIndexSubTable(lF);
+            matrix = IniIndexSubTable(lF);
 
             // eliminamos las filas omitidas
             if (this.listF.HasSkipLevels())
             {
-                this.SkipLevel(this.listF);
+                this.SkipLevels(this.listF);
             }
 
             // Calculamos las medias
@@ -154,7 +154,7 @@ namespace ProjectMeans
             this.grandMean = grandMean;
             this.variance = variance;
             this.stdDev = std_dev;
-            this.meansMatrix = meansMatrix;
+            this.matrix = meansMatrix;
 
         }// end public TableMeans
 
@@ -170,7 +170,7 @@ namespace ProjectMeans
             for (int i = 0; i < r; i++)
             {
                 List<double?> ld = new List<double?>();
-                this.meansMatrix.Add(ld);
+                this.matrix.Add(ld);
             }
 
             // Rellenamos los datos columna a columna
@@ -180,7 +180,7 @@ namespace ProjectMeans
                 
                 for (int i = 0; i < r; i++)
                 {
-                    List<double?> ld = this.meansMatrix[i];
+                    List<double?> ld = this.matrix[i];
                     double? d = null;
                     DataRow row = dt.Rows[i];
                     object o = row[j];
@@ -216,9 +216,9 @@ namespace ProjectMeans
         #region Operaciones auxiliares del constructor
         /*=================================================================================
          * Operaciones auxiliares del constructor:
-         *      - RepeatedIndex --> array de indices 
+         *      - IndexRepeats --> array de indices 
          *      - IniIndexSubTable --> Inicializa la tabla con los indices
-         *      - SkipLevel --> Elimina las filas con niveles omitidos
+         *      - SkipLevels --> Elimina las filas con niveles omitidos
          *=================================================================================*/
 
         /*
@@ -233,7 +233,7 @@ namespace ProjectMeans
          * Devuelve:
          *      int[] res: un array con las veces que se repite cada uno de los indices.
          */
-        private static int[] RepeatedIndex(int[] levelOfFacets)
+        private static int[] IndexRepeats(int[] levelOfFacets)
         {
             // Necesitamos saber la longitud de vector para crear el nuevo vector
             int sizeVector = levelOfFacets.Length;
@@ -248,7 +248,7 @@ namespace ProjectMeans
 
             }
             return res;
-        }// end private static int[] RepeatedIndex(int[] levelOfFacets)
+        }// end private static int[] IndexRepeats(int[] levelOfFacets)
 
 
         /**
@@ -265,7 +265,7 @@ namespace ProjectMeans
 
             int[] levelOfFacets = list_facets.levelOfFacets();
             double rows = list_facets.MultOfLevels();
-            int[] rep = RepeatedIndex(levelOfFacets);
+            int[] rep = IndexRepeats(levelOfFacets);
 
             for (int i = 0; i < rows; i++)
             {
@@ -307,34 +307,21 @@ namespace ProjectMeans
         /* Descripción:
          *  Elimina de la tabla la filas donde haya algún indice omitido
          */
-        private void SkipLevel(ListFacets lf)
+        public void SkipLevels(ListFacets lf)
         {
-            int rows = this.MeansTableRows();
-            int numFacets = lf.Count();
-            ArrayList arrayL = new ArrayList();
-
-            for (int i = 0; i < rows; i++)
+            this.matrix.RemoveAll(row =>
             {
-                List<double?> lrow = this.meansMatrix[i];
-                bool skip = false;
-                for (int j = 0; j < numFacets && !skip; j++)
+                for (int j = 0; j < lf.Count(); j++)
                 {
-                    Facet f = lf.FacetInPos(j);
-                    int data = (int)lrow[j];// conversión explicita
-                    skip = f.GetSkipLevels(data);
-                    if (skip)
-                    {
-                        arrayL.Add(lrow);
-                    }
-                }
-            }
+                    Facet facet = lf.FacetInPos(j);
+                    int data = (int)row[j];
 
-            int n = arrayL.Count;
-            for (int i = 0; i < n; i++)
-            {
-                this.meansMatrix.Remove((List<double?>)arrayL[i]);
-            }
-        }// end SkipLevel
+                    if (facet.GetSkipLevels(data))
+                        return true;
+                }
+                return false;
+            });
+        }// end SkipLevels
 
         #endregion Operaciones auxiliares del constructor
 
@@ -376,9 +363,9 @@ namespace ProjectMeans
             // necesito la tabla de observaciones
             InterfaceObsTable mfo_obsTable = mfo.ObservationTable();
             // necesito el número de filas de la tabla de observaciones para el bucle interior
-            int num_rows_obsTable = mfo_obsTable.ObsTableRows();
+            int num_rows_obsTable = mfo_obsTable.TableRows();
 
-            int rows = this.MeansTableRows();
+            int rows = this.TableRows();
 
             // Ahora usaremos los valores de la tabla de medias para recorrer la tabla de 
             // observaciones y obtener los datos
@@ -433,9 +420,9 @@ namespace ProjectMeans
             // Creamos el elemento stadistica que contendra las sumas
             Statistics stc = new Statistics();
             InterfaceObsTable observationTable = mfo.ObservationTable();
-            // int r = this.MeansTableRows();
-            int r = observationTable.ObsTableRows();
-            // int c = (this.MeansTableColumns()-3);
+            // int r = this.TableRows();
+            int r = observationTable.TableRows();
+            // int c = (this.TableColumns()-3);
             for (int i = 0; i < r; i++)
             {
                 // stc.Add(this.Data(i, c), zero);
@@ -454,8 +441,8 @@ namespace ProjectMeans
          *  - MeanData
          *  - VarianceData
          *  - Std_dev_Data
-         *  - MeansTableColumns
-         *  - MeansTableRows
+         *  - TableColumns
+         *  - TableRows
          *  - ListFacets
          *  - GrandMean
          *  - StdDev
@@ -475,12 +462,12 @@ namespace ProjectMeans
          */
         public double? Data(int row, int col)
         {
-            if (row < 0 || col < 0 || row > (this.MeansTableRows() - 1) || col > (this.MeansTableColumns() - 1))
+            if (row < 0 || col < 0 || row > (this.TableRows() - 1) || col > (this.TableColumns() - 1))
             {
                 throw new TableMeansException("Indice fuera de rango, posición no encontrada");
             }
 
-            return this.meansMatrix[row][col];
+            return this.matrix[row][col];
         }
 
 
@@ -497,12 +484,12 @@ namespace ProjectMeans
          */
         public double? MeanData(int row)
         {
-            if (row < 0 || row > this.MeansTableRows() - 1)
+            if (row < 0 || row > this.TableRows() - 1)
             {
                 throw new TableMeansException("La fila no petenece al rango de columnas de la tabla.");
             }
             // variable de retorno
-            double? res = this.meansMatrix[row][this.MeansTableColumns() - 3];
+            double? res = this.matrix[row][this.TableColumns() - 3];
 
             return res;
         }
@@ -521,12 +508,12 @@ namespace ProjectMeans
          */
         public double? VarianceData(int row)
         {
-            if (row < 0 || row > this.MeansTableRows() - 1)
+            if (row < 0 || row > this.TableRows() - 1)
             {
                 throw new TableMeansException("La fila no petenece al rango de columnas de la tabla.");
             }
             // variable de retorno
-            double? res = this.meansMatrix[row][this.MeansTableColumns() - 2];
+            double? res = this.matrix[row][this.TableColumns() - 2];
 
             return res;
         }
@@ -545,12 +532,12 @@ namespace ProjectMeans
          */
         public double? Std_dev_Data(int row)
         {
-            if (row < 0 || row > this.MeansTableRows() - 1)
+            if (row < 0 || row > this.TableRows() - 1)
             {
                 throw new TableMeansException("La fila no petenece al rango de columnas de la tabla.");
             }
             // variable de retorno
-            double? res = this.meansMatrix[row][this.MeansTableColumns() - 1];
+            double? res = this.matrix[row][this.TableColumns() - 1];
 
             return res;
         }
@@ -560,9 +547,9 @@ namespace ProjectMeans
          * Descripción:
          *  Devuelve el número de columnas de la tabla de medias.
          */
-        public int MeansTableColumns()
+        public int TableColumns()
         {
-            return this.meansMatrix[0].Count;
+            return this.matrix[0].Count;
         }
 
 
@@ -570,9 +557,9 @@ namespace ProjectMeans
          * Descripción:
          *  Devuelve el número de filas de la tabla medias.
          */
-        public int MeansTableRows()
+        public int TableRows()
         {
-            return this.meansMatrix.Count;
+            return this.matrix.Count;
         }
 
 
@@ -646,12 +633,12 @@ namespace ProjectMeans
          */
         public void MeanData(double? data, int row)
         {
-            if (row < 0 || row >= this.MeansTableRows())
+            if (row < 0 || row >= this.TableRows())
             {
                 throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
             }
-            int cols = this.MeansTableColumns();
-            this.meansMatrix[row][cols - 3] = data;
+            int cols = this.TableColumns();
+            this.matrix[row][cols - 3] = data;
         }
 
 
@@ -670,12 +657,12 @@ namespace ProjectMeans
          */
         public void VarianceData(double? data, int row)
         {
-            if (row < 0 || row >= this.MeansTableRows())
+            if (row < 0 || row >= this.TableRows())
             {
                 throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
             }
-            int cols = this.MeansTableColumns();
-            this.meansMatrix[row][cols - 2] = data;
+            int cols = this.TableColumns();
+            this.matrix[row][cols - 2] = data;
         }
 
 
@@ -694,12 +681,12 @@ namespace ProjectMeans
          */
         public void Std_dev_Data(double? data, int row)
         {
-            if (row < 0 || row >= this.MeansTableRows())
+            if (row < 0 || row >= this.TableRows())
             {
                 throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
             }
-            int cols = this.MeansTableColumns();
-            this.meansMatrix[row][cols - 1] = data;
+            int cols = this.TableColumns();
+            this.matrix[row][cols - 1] = data;
         }
 
 
@@ -715,11 +702,11 @@ namespace ProjectMeans
          */
         public void InsertDataInPos(double? data, int row, int col)
         {
-            if ((row < 0 || row >= this.MeansTableRows()) || (col < 0 || col >= this.MeansTableColumns()))
+            if ((row < 0 || row >= this.TableRows()) || (col < 0 || col >= this.TableColumns()))
             {
                 throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
             }
-            this.meansMatrix[row][col] = data;
+            this.matrix[row][col] = data;
         }
 
 
@@ -788,11 +775,11 @@ namespace ProjectMeans
             bool res = false; // variable de retorno
             writerFile.WriteLine(BEGIN_LIST_OF_DATAMEANS);
             // Escribimos los datos
-            int row = this.MeansTableRows();
+            int row = this.TableRows();
 
             for (int i = 0; i < row; i++)
             {
-                List<double?> row_data = meansMatrix[i];
+                List<double?> row_data = matrix[i];
                 int col = row_data.Count;
                 string line = "";
                 for (int j = 0; j < col; j++)
@@ -954,8 +941,8 @@ namespace ProjectMeans
             dtTableMeans.Columns.Add(new DataColumn("std_dev", System.Type.GetType("System.Double")));
 
             // rellenamos el dataTable
-            int numRows = this.MeansTableRows();
-            int numCols = this.MeansTableColumns();
+            int numRows = this.TableRows();
+            int numCols = this.TableColumns();
             for (int i = 0; i < numRows; i++)
             {
                 // Creamos una fila
@@ -1026,20 +1013,20 @@ namespace ProjectMeans
         public override string ToString()
         {
             StringBuilder res = new StringBuilder();
-            int rows = this.MeansTableRows();
-            int cols = this.MeansTableColumns();
+            int rows = this.TableRows();
+            int cols = this.TableColumns();
 
             for (int i = 0; i < rows; i++)
             {/*for 1*/
                 for (int j = 0; j < cols; j++)
                 {/*for 2*/
-                    if (this.meansMatrix[i][j] == null)
+                    if (this.matrix[i][j] == null)
                     {
                         res.Append("- ");
                     }
                     else
                     {
-                        res.Append(this.meansMatrix[i][j].ToString() + " ");
+                        res.Append(this.matrix[i][j].ToString() + " ");
                     }
                 }/*end for 2*/
                 res.Append("\n");

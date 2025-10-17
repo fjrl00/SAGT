@@ -232,7 +232,7 @@ namespace GUI_GT
         public void SetTableMeans(TableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.Rows.Clear();
-            int n = tMeans.MeansTableColumns();
+            int n = tMeans.TableColumns();
             dgvExTableMean.NumeroColumnas = n;
             dgvExTableMean.AllowUserToResizeRows = false;
 
@@ -290,8 +290,8 @@ namespace GUI_GT
 
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
 
-            int fila = tMeans.MeansTableRows();
-            int col = tMeans.MeansTableColumns();
+            int fila = tMeans.TableRows();
+            int col = tMeans.TableColumns();
 
             int longRow = col + 1;
             int aplicationDecimalSetting = col - 3;
@@ -338,7 +338,7 @@ namespace GUI_GT
         public void SetTableMeans(TableMeansDif tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.Rows.Clear();
-            int n = tMeans.MeansTableColumns();
+            int n = tMeans.TableColumns();
             dgvExTableMean.NumeroColumnas = n;
             dgvExTableMean.AllowUserToResizeRows = false;
 
@@ -394,8 +394,8 @@ namespace GUI_GT
 
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
 
-            int fila = tMeans.MeansTableRows();
-            int col = tMeans.MeansTableColumns();
+            int fila = tMeans.TableRows();
+            int col = tMeans.TableColumns();
 
             int longRow = col + 1;
             int aplicationDecimalSetting = col - 6;
@@ -442,7 +442,7 @@ namespace GUI_GT
         public void SetTableMeans(TableMeansTypScore tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.Rows.Clear();
-            int n = tMeans.MeansTableColumns();
+            int n = tMeans.TableColumns();
             dgvExTableMean.NumeroColumnas = n;
             dgvExTableMean.AllowUserToResizeRows = false;
 
@@ -496,8 +496,8 @@ namespace GUI_GT
 
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
 
-            int fila = tMeans.MeansTableRows();
-            int col = tMeans.MeansTableColumns();
+            int fila = tMeans.TableRows();
+            int col = tMeans.TableColumns();
 
             int longRow = col + 1;
             int aplicationDecimalSetting = col - 5;
