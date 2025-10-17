@@ -123,7 +123,7 @@ namespace MultiFacetData
                 Facet f = new Facet(arrayHeadersColumns[i], arrayLevelVal[i].Keys.Count);
                 lf.Add(f);
             }
-            int mul = (int)lf.MultiOfLevel(); // devuelve el número de filas que tendrá la tabla
+            int mul = (int)lf.MultOfLevels(); // devuelve el número de filas que tendrá la tabla
             if (mul == tableObs.ObsTableRows()) //if we have data for all rows
             {
                 // entonces la tablaObs es producto cartesiano (aka there's data for each combination of facet values)

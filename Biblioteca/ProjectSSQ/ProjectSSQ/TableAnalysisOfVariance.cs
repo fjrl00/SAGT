@@ -642,7 +642,7 @@ namespace ProjectSSQ
          */
         private double? CalcResidue(InterfaceObsTable table)
         {
-            double? retVal = 1 / (this.listFacets.MultiOfLevel());
+            double? retVal = 1 / (this.listFacets.MultOfLevels());
             //double? sum_X = this.listTableSSQ[this.listTableSSQ.Count - 1].Sum_sumX();
             double? sum_X = table.SumOfData();
 

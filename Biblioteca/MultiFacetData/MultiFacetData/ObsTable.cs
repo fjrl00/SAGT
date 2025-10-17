@@ -97,6 +97,8 @@ namespace MultiFacetData
          *  la lista de facetas. Calcula la dimensión a partir de los niveles de las facetas.
          *  Igualmente calucula los indices que se almacenarán en las n-2 primeras columnas
          *  (comenzando desde la posición cero).
+         *  La tabla de observaciones es de todas las facetas y todos los niveles, sin importar
+         *  de si están marcados para omitir.
          * 
          * Excepciones:
          *  ObsTableException: en el caso de que la lista de facetas sea null o menor que 2.
@@ -116,16 +118,10 @@ namespace MultiFacetData
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
-
             int rows = 1; // Guarda el nº de filas de la matriz de observaciones. Inicializada con la identidad multiplicativa (IM*x=x)
-
             int[] levelOfFacets = new int[list_facets.Count()]; // Este array nos ayudará a contruir la estructura.
             // En este array insertaremos los niveles de cada faceta.
-
             int i = 0; // Será la dimensión del array y nuestro indice.
-
-
-
             for (int j = 0; j < numFacets; j++)
             {
                 Facet f = list_facets.FacetInPos(j);
@@ -136,15 +132,8 @@ namespace MultiFacetData
                     throw new ObsTableException("Error: desbordamiento del número de filas");
                 }
             }
-
-            int cols = list_facets.Count() + 1; // nº de columnas de la matriz de observaciones
-
-            // creamos la matriz
-            obsMatrix = new List<List<double?>>();
-
-            // inicializamos las columnas de indices
-            this.IniIndexSubTable(levelOfFacets, rows, cols);
-
+            int cols = list_facets.Count() + 1;
+            this.obsMatrix = IniIndexSubTable(levelOfFacets, rows, cols);
 
         } // end public ObsTable(LinkedList<Facet> facets)
 
@@ -196,18 +185,20 @@ namespace MultiFacetData
          *                  esa columna.
          *      int rows: Número de columnas que tiene el array bidimensional:     
          */
-        private void IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
+        private List<List<double?>> IniIndexSubTable(int[] levelOfFacets, int rows, int cols)
         {
+            List<List<double?>> matrix = new List<List<double?>>();
+
             int[] rep = RepeatedIndex(levelOfFacets);
 
             int anchura = levelOfFacets.Length;
 
             for (int i = 0; i < rows; i++)
             {
-                this.obsMatrix.Add(new List<double?>());
+                matrix.Add(new List<double?>());
                 for (int j = 0; j < cols; j++)
                 {
-                    this.obsMatrix[i].Add(null);
+                    matrix[i].Add(null);
                 }
             }
 
@@ -219,7 +210,7 @@ namespace MultiFacetData
                 { // * for 2*
 
 
-                    this.obsMatrix[fila][columna] = indice;
+                    matrix[fila][columna] = indice;
                     numRep++;
                     if (numRep == rep[columna])
                     {
@@ -234,9 +225,9 @@ namespace MultiFacetData
 
                 } // * for 2 *
             } // * for 1 *
+
+            return matrix;
         }// end private void IniIndexSubTable(double[] levelOfFacets, double[] rep,int rows)
-
-
 
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
          * Métodos de consulta
@@ -446,7 +437,7 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Genera una nueva tabla de observaciones a partir de esta omitiendo/colapsando 
-         *  las facetas de la lista que están marcadas para omitir.
+         *  las facetas de la lista proveida que están marcadas para omitir.
          *  
          *  Parámetros:
          *          ListFacets lf: Lista de facetas (debe coincidir con las de esta tabla)

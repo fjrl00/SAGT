@@ -313,7 +313,7 @@ namespace GUI_GT
             // Punto de separación decimal
             string puntoDecimal = this.cfg.GetDecimalSeparator();
 
-            AuxLoadDataGridViewOptimizationResum(dgvEx, this.total_nb_obs, lf.MultiOfLevel());
+            AuxLoadDataGridViewOptimizationResum(dgvEx, this.total_nb_obs, lf.MultOfLevels());
             AuxLoadDataGridViewOptimizationResum(dgvEx, this.relat_measmt, ConvertNum.DecimalToString(first_gp.CoefG_Rel(), numOfDecimal, puntoDecimal));
             AuxLoadDataGridViewOptimizationResum(dgvEx, this.absol_measmt, ConvertNum.DecimalToString(first_gp.CoefG_Abs(), numOfDecimal, puntoDecimal));
             AuxLoadDataGridViewOptimizationResum(dgvEx, this.relat_err_var, ConvertNum.DecimalToString(first_gp.TotalRelErrorVar(), numOfDecimal, puntoDecimal));
@@ -404,7 +404,7 @@ namespace GUI_GT
 
             // Ahora rellenamos los datos
             // int n = dgvExOptimization.ColumnCount;
-            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultiOfLevel();
+            dgvExOptimization.Rows[numFacets].Cells[num_col_pos].Value = lf.MultOfLevels();
             dgvExOptimization.Rows[numFacets + 1].Cells[num_col_pos].Value =
                 ConvertNum.DecimalToString(newG_Parameters.CoefG_Rel(), numOfDecimal, puntoDecimal);
             dgvExOptimization.Rows[numFacets + 2].Cells[num_col_pos].Value =

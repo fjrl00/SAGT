@@ -181,68 +181,6 @@ namespace ProjectMeans
             this.CalcColumsOfDifference();
         }// end public TableMeansDif(ListFacets lF, MultiFacetsObs mfo)
 
-
-        public TableMeansDif(ListFacets lf, string design, double? grandMean, double? variance, double? std_dev, 
-            List<double?> listMeans, List<double?> listVariances, List<double?> listStd_dev,
-            List<double?> listDifMeans, List<double?> listDifVariances, List<double?> listDifStd_dev)
-        {
-            if (lf.Count() < 1)
-            {
-                throw new ObsTableException("Error: no hay facetas");
-            }
-            this.listF = lf;
-            this.facetDesign = design;
-            this.grandMean = grandMean;
-            this.variance = variance;
-            this.stdDev = std_dev;
-
-            int rows = 1; // Guarda el nº de filas de la matriz de medias.
-
-            int[] levelOfFacets = new int[lf.Count()];
-            /* Este array nos ayudará a contruir la estructura en el caso de que haya mas de una faceta
-             * en la lista.
-             * En este array insertaremos los niveles de cada faceta.
-             */
-
-            int i = 0; // Inicializamos al valor cero. 
-            // Será la dimensión del array y nuestro indice.
-
-            foreach (Facet f in lf)
-            {
-                levelOfFacets[i++] = f.Level();
-                rows = rows * f.Level();
-            }
-
-            int cols = lf.Count() + 6; // nº de columnas de la matriz de observaciones
-
-            // creamos la matriz
-            this.meansMatrix = new List<List<double?>>();
-
-            // inicializamos las columnas de indices
-            this.IniIndexSubTable(levelOfFacets, rows, cols);
-
-            // Ahora introducimos los valores en la tabla
-            if (!(listMeans.Count == listStd_dev.Count && listMeans.Count == listVariances.Count
-                && listDifMeans.Count == listDifMeans.Count && listMeans.Count == listDifVariances.Count
-                && listMeans.Count == listDifStd_dev.Count))
-            {
-                throw new ObsTableException("Error: en la cardinalidad de los datos de las medias");
-            }
-
-            int n = listMeans.Count;
-            for (int j = 0; j < n; j++)
-            {
-                // sustituimos el valor i por el j
-                meansMatrix[j][cols - 6] = listMeans[j];
-                meansMatrix[j][cols - 5] = listVariances[j];
-                meansMatrix[j][cols - 4] = listStd_dev[j];
-                meansMatrix[j][cols - 3] = listDifMeans[j];
-                meansMatrix[j][cols - 2] = listDifVariances[j];
-                meansMatrix[j][cols - 1] = listDifStd_dev[j];
-            }
-        }// end public TableMeansDif
-
-
         public TableMeansDif(ListFacets lf, string design, double? grandMean, double? variance, double? std_dev,
             List<List<double?>> meansMatrix)
         {

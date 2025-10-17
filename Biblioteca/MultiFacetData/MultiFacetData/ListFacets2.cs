@@ -30,12 +30,11 @@ namespace MultiFacetData
          * - Concatenate (Concatena dos listas en una nueva lista)
          * - ConcatenateWithoutRepetitions (concatena dos listas omitiendo los repetidos)
          * - DegreeOfFreedom (Devuelve el grado de libertad)
-         * - MultiOfLevel (Producto de los niveles)
+         * - MultOfLevels (Producto de los niveles)
          * - SourcesOfVariabilityAbsent (Lista de las facetas ausentes)
          * - MultipSourcesOfVariabilityAbsent (Producto de la lista de facetas ausentes)
          * - MultipSourcesOfVariabilityAbsentForTypeOfFacet (Producto de la lista de facetas ausentes,
          *              depende del tipo de facetas)
-         * - SumLevelOfListFacets (Suma de niveles de la lista de facetas)
          * - Contains (True si la faceta esta contenida en la lista)
          * - ContainsList (True si todas las facetas de la lista estan contenidas)
          * - ReplaceLevels (Remplaza los niveles de las facetas)
@@ -209,8 +208,9 @@ namespace MultiFacetData
         /*
          * Descripción:
          *  Contiene la multiplicación de los niveles de la lista de facetas.
+         *  Equivaldría al número de filas de la tabla de observaciones correspondiente a esta lista de facetas, entre posiblemente otros usos.
          */
-        public double MultiOfLevel()
+        public double MultOfLevels()
         {
             double retVal = 1; // valor de retorno
             foreach (Facet f in this.listFacets)
@@ -259,7 +259,7 @@ namespace MultiFacetData
              * contenga las misma facetas que la lista del parámetro implícito */
             if (aux.Count() != 0)
             {
-                retVal = aux.MultiOfLevel();
+                retVal = aux.MultOfLevels();
             }
             return retVal;
         }
@@ -302,22 +302,6 @@ namespace MultiFacetData
                         retVal = 0;
                     }
                 }
-            }
-            return retVal;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve la suma los niveles contenidos en una lista de facetas.
-         */
-        public int SumLevelOfListFacets()
-        {
-            int retVal = 0;
-            int numfacet = this.Count();
-            for (int i = 0; i < numfacet; i++)
-            {
-                retVal += this.FacetInPos(i).Level();
             }
             return retVal;
         }
@@ -1027,33 +1011,6 @@ namespace MultiFacetData
                 }
             }
             return retVal;
-        }
-
-
-        /*
-         * Descipción:
-         *  Imprimer por pantalla una lista de listas de Facetas.
-         */
-        private static void toStringListOfListFacets(List<ListFacets> llf)
-        {
-            string linea = "";
-            foreach (ListFacets lf in llf)
-            {
-                List<Facet> auxLista = lf.RetListFacets();
-                foreach (Facet f in auxLista)
-                {
-                    if (linea.Equals(""))
-                    {
-                        linea += f.Name();
-                    }
-                    else
-                    {
-                        linea = linea + "," + f.Name();
-                    }
-                }
-                Console.WriteLine(linea);
-                linea = "";
-            }
         }
 
 
