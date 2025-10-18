@@ -201,72 +201,45 @@ namespace MultiFacetData
             //todo
 
             //Phase 1: Build skeleton of new table
-            List<List<double?>> collapsedTable = IniIndexSubTable(lf.ListFacetWithoutOmit());
+            ListFacets c_Lf = lf.ListFacetWithoutOmit();
+            List<List<double?>> c_Table = IniIndexSubTable(c_Lf);
 
-            //Phase 2: Build dictionary of surviving facet value combinations and the list of measurements for each.
-            var groups = new Dictionary<List<double>, AuxMathCalcGT.Statistics>(new ListDoubleComparer());
-            HashSet<int> omittedIndexes = lf.OmittedIndexes();
-
-            int measurementCol = this.TableColumns() - 1;
-            foreach (var row in matrix)
+            //Phase 2: Build and fill up "dictionary" of row index to list of measurements corresponding to it
+            Statistics[] groups = new Statistics[c_Table.Count];
+            for (int i = 0; i < groups.Length; i++)
             {
-                //extract the key (facet values) for this row, ignoring omitted facets
-                var key = new List<double>();
-                for (int i = 0; i < measurementCol; i++)
-                    if (!omittedIndexes.Contains(i))
-                        key.Add((double)row[i]);
-
-                if (!groups.TryGetValue(key, out var measurements)) // if first time we see this combination, then initialize it
-                {
-                    measurements = new AuxMathCalcGT.Statistics();
-                    groups[key] = measurements;
-                }
-
-                // Add measurement to the correct group
-                measurements.Add(row[measurementCol]);
+                groups[i] = new Statistics();
             }
 
-            // Phase 3: Fill in the measurements
-            int collapsedMeasurementCol = collapsedTable[0].Count - 1;
-            for (int i = 0; i < collapsedTable.Count; i++)
+            int measurementCol = this.TableColumns() - 1;   //same as lf.Count() btw. Naming for clarity
+            int c_MeasurementCol = c_Table[0].Count - 1;
+            int[] indexRepeats = IndexRepeats(c_Lf.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
+
+            int[] c_index = new int[c_Lf.Count()];    //maps collapsed facet indices to original facet indices
+            for (int i = 0; i < c_Lf.Count(); i++)
             {
-                var key = collapsedTable[i].Take(collapsedMeasurementCol).Select(d => (double)d).ToList();
-                collapsedTable[i][collapsedMeasurementCol] = groups[key].Mean();
+                c_index[i] = lf.IndexOf(c_Lf.FacetInPos(i));    
             }
 
-            return new ObsTable(collapsedTable);
+            foreach (List<double?> row in matrix)
+            {
+                //Calculate index of this row in the collapsed table. We can since 
+                //row positions in our cartesian product tables are deterministic from their facets' values
+                int collapsedRowIndex = 0;
+                for (int c_i = 0; c_i < c_Lf.Count(); c_i++)
+                    collapsedRowIndex += indexRepeats[c_i] * ((int)row[c_index[c_i]] - 1);
+
+                groups[collapsedRowIndex].Add(row[measurementCol]);
+            }
+
+            // Phase 3: Fill up collapsed table
+            for (int i = 0; i < c_Table.Count; i++)
+            {
+                c_Table[i][c_MeasurementCol] = groups[i].Mean();
+            }
+
+            return new ObsTable(c_Table);
         }
-
-        /* Descripción:
-         *  Clase auxiliar para CollapsedTable. Comparador de valores de facetas en filas
-         *  de la tabla de observaciones.
-         */
-        class ListDoubleComparer : IEqualityComparer<List<double>>
-        {
-            public bool Equals(List<double> x, List<double> y)
-            {
-                if (x.Count != y.Count) return false;
-                for (int i = 0; i < x.Count; i++)
-                {
-                    if (x[i] != y[i]) return false;
-                }
-                return true;
-            }
-
-            public int GetHashCode(List<double> obj)
-            {
-                unchecked
-                {
-                    int hash = 1;
-                    foreach (var d in obj)
-                    {
-                        hash = hash * 31 + d.GetHashCode();
-                    }
-                    return hash;
-                }
-            }
-        }
-
 
         #region Escritura Lectura en un stream
 

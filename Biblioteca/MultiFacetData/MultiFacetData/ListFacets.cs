@@ -37,10 +37,7 @@ namespace MultiFacetData
         /*======================================================================================
          * Variables de instancia
          *======================================================================================*/
-        // Variables de instancia;
         private List<Facet> listFacets;
-
-
 
         #region Constructores de la clase ListFacets
         /*======================================================================================

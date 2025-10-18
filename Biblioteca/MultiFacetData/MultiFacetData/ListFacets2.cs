@@ -637,10 +637,12 @@ namespace MultiFacetData
             return retLf;
         }// end ListFacetWithoutOmit
 
+        
         /* Descripción:
          *  Método auxiliar para el colapso de facetas.
          *  Devuelve el set de posiciones de las facetas marcadas para omitir.
          */
+        /*
         public HashSet<int> OmittedIndexes()
         {
             HashSet<int> omittedIndexes = new HashSet<int>();
@@ -654,7 +656,7 @@ namespace MultiFacetData
             }
 
             return omittedIndexes;
-        }
+        }*/
 
         /* Descripción:
          *  Replaza el nombre de una faceta por uno nuevo cambiandolo si aparece en el diseño de las 
