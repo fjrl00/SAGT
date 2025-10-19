@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuxMathCalcGT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace MultiFacetData
     public abstract class CartesianProductTable
     {
         protected List<List<double?>> matrix;
+        protected ListFacets listF; // Lista de facetas asociada a la tabla
         protected abstract Exception CPTException(string msg);
 
         /**
@@ -55,6 +57,9 @@ namespace MultiFacetData
 	     *              index += IndexRepeats[i]*(value[i] - 1);
          *        En el anterior ejemplo: (2,3,2) = 6*(2-1) + 2*(3-1) + 1*(2-1) = 11
          */
+
+        #region Table initialization methods
+
         protected static List<List<double?>> IniIndexSubTable(ListFacets list_facets, int extraCols)
         {
             List<List<double?>> matrix = new List<List<double?>>();
@@ -130,6 +135,10 @@ namespace MultiFacetData
             return res;
         }
 
+        #endregion Table initialization methods
+
+        #region SkipLevels methods
+
         /* Descripción:
          *  Elimina de la tabla todas las filas que contengan un nivel
          *  marcado para ser omitido en la lista de facetas correspondiente.
@@ -178,6 +187,10 @@ namespace MultiFacetData
                 }
             }
         }
+
+        #endregion SkipLevels methods
+
+        #region Getters and Setters
 
         /*
          * Descripción:
@@ -250,5 +263,122 @@ namespace MultiFacetData
         {
             this.matrix.Add(row);
         }
+
+        #endregion Getters and Setters
+
+        #region Collapse Calculations (POOR INTEGRATION WITH OBSTABLE)
+
+        /*
+         * Descripción:
+         *  Recorre la tabla comparando los indices y cuando encuentra el correcto calcula los
+         *  datos estadisticos (media, varianza desviación típica).
+         * Parámetros:
+         *      ListFacets lf: lista de facetas, contiene las facetas sobre la que queremos calcular 
+         *              la media y otros datos.
+         *              NOTA: Teóricamente debe ser un subconjunto de la lista de facetas de mfo
+         *      MultiFacetsObs mfo: es el objeto multifaceta que contiene la tabla de datos.
+         *      bool zero: true si se quiere realizar los calculos interpretando los valores nulos
+         *              como ceros.
+         */
+        protected void CalculateMeans(MultiFacetsObs mfo, bool zero)
+        {
+            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
+            //todo
+
+            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
+
+            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
+
+            Statistics[] groups = new Statistics[this.TableRows()];
+            for (int i = 0; i < groups.Length; i++)
+            {
+                groups[i] = new Statistics();
+            }
+
+            InterfaceObsTable mfo_table = mfo.ObservationTable();
+            int measurementCol = mfo_table.TableColumns() - 1;
+            int[] indexRepeats = IndexRepeats(listF.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
+
+            int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
+            for (int i = 0; i < listF.Count(); i++)
+            {
+                c_index[i] = mfo.ListFacets().IndexOf(listF.FacetInPos(i));
+            }
+
+            for (int i = 0; i < mfo_table.TableRows(); i++)
+            {
+                //Calculate index of this row in the collapsed table. We can since 
+                //row positions in our cartesian product tables are deterministic from their facets' values
+                int collapsedRowIndex = 0;
+                for (int c_i = 0; c_i < listF.Count(); c_i++)
+                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
+
+                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
+            }
+
+            // Phase 3: Fill up collapsed table
+
+            for (int i = 0; i < this.TableRows(); i++)
+            {
+                this.MeanData(groups[i], i);
+                this.VarianceData(groups[i], i);
+                this.Std_dev_Data(groups[i], i);
+            }
+        }// end CalculateMeans
+
+        /*
+         * Despcrición:
+         *  Introduce la media en la fila de la tabla que se pasa como parámetro.
+         *  Se asume que la columna en que se debe introducir la media es 
+         *  la primera tras acabar con las facetas.
+         *  listF debe ser congruente con matrix.
+         */
+        protected void MeanData(Statistics stc, int row)
+        {
+            if (row < 0 || row >= this.TableRows())
+            {
+                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+            }
+            int meanCol = listF.Count();
+            this.matrix[row][meanCol] = stc.Mean();
+        }
+
+
+        /*
+         * Despcrición:
+         *  Introduce la media en la fila de la tabla que se pasa como parámetro.
+         *  Se asume que la columna en que se debe introducir la media es 
+         *  la segunda tras acabar con las facetas.
+         *  listF debe ser congruente con matrix.
+         */
+        protected void VarianceData(Statistics stc, int row)
+        {
+            if (row < 0 || row >= this.TableRows())
+            {
+                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+            }
+            int meanCol = listF.Count();
+            this.matrix[row][meanCol + 1] = stc.Variance();
+        }
+
+
+        /*
+         * Despcrición:
+         *  Introduce la media en la fila de la tabla que se pasa como parámetro.
+         *  Se asume que la columna en que se debe introducir la media es 
+         *  la tercera tras acabar con las facetas.
+         *  listF debe ser congruente con matrix.
+         */
+        protected void Std_dev_Data(Statistics stc, int row)
+        {
+            if (row < 0 || row >= this.TableRows())
+            {
+                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+            }
+            int meanCol = listF.Count();
+            this.matrix[row][meanCol + 2] = stc.StandardDeviation();
+        }
+
+        #endregion Collapse Calculations (POOR INTEGRATION WITH OBSTABLE)
     }
 }

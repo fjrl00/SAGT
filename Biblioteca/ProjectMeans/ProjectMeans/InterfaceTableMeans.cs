@@ -48,9 +48,6 @@ namespace ProjectMeans
          * Métodos de instancia
          *=================================================================================================*/
         
-        void MeanData(double? data, int row); // Asigna el valor de una media en una fila.
-        void VarianceData(double? data, int row); // Asigna el valor de una varianza en una fila. 
-        void Std_dev_Data(double? data, int row); // Asigna el valor de una desviación típica en una fila.
         void InsertDataInPos(double? data, int row, int col); //inserta el dato en la posición especificada en los
                                                               // parámetros
         void Calc_GrandMean_Variance_StdDev(MultiFacetsObs mfo, bool zero); // calcula la media la varianza y la desviación típica.

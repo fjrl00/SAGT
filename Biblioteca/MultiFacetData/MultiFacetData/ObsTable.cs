@@ -64,7 +64,8 @@ namespace MultiFacetData
          * Variables de instancia
          *=================================================================================*/
 
-        //private List<List<double?>> matrix;
+        //private List<List<double?>> matrix;       //inherited from CartesianProductTable
+        //private ListFacets listF;                 //inherited from CartesianProductTable BUT WE DO NOT USE IT
         protected override Exception CPTException(string msg)
         {
             return new ObsTableException(msg);

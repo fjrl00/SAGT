@@ -58,11 +58,11 @@ namespace ProjectMeans
          * Variables de instancia
          *=================================================================================*/
         //private List<List<double?>> matrix; // matriz de medias.
+        //private ListFacets listF; // lista de facetas sobre la que construiremos la tabla de medias
         protected override Exception CPTException(string msg)
         {
             return new TableMeansException(msg);
         }
-        private ListFacets listF; // lista de facetas sobre la que construiremos la tabla de medias
         private double? grandMean; // Gran media o media general
         private double? variance; // Varianza
         private double? stdDev; // Desviación típica
@@ -232,64 +232,7 @@ namespace ProjectMeans
 
 
 
-
-        /*
-         * Descripción:
-         *  Recorre la tabla comparando los indices y cuando encuentra el correcto calcula los
-         *  datos estadisticos (media, varianza desviación típica).
-         * Parámetros:
-         *      ListFacets lf: lista de facetas, contiene las facetas sobre la que queremos calcular 
-         *              la media y otros datos.
-         *              NOTA: Teóricamente debe ser un subconjunto de la lista de facetas de mfo
-         *      MultiFacetsObs mfo: es el objeto multifaceta que contiene la tabla de datos.
-         *      bool zero: true si se quiere realizar los calculos interpretando los valores nulos
-         *              como ceros.
-         */
-        private void CalculateMeans(MultiFacetsObs mfo, bool zero)
-        {
-            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
-            //todo
-
-            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
-            
-            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
-
-            Statistics[] groups = new Statistics[this.TableRows()];
-            for (int i = 0; i < groups.Length; i++)
-            {
-                groups[i] = new Statistics();
-            }
-
-            InterfaceObsTable mfo_table = mfo.ObservationTable();
-            int measurementCol = mfo_table.TableColumns() - 1;
-            int[] indexRepeats = IndexRepeats(listF.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
-
-            int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
-            for (int i = 0; i < listF.Count(); i++)
-            {
-                c_index[i] = mfo.ListFacets().IndexOf(listF.FacetInPos(i));
-            }
-
-            for (int i = 0; i < mfo_table.TableRows(); i++)
-            {
-                //Calculate index of this row in the collapsed table. We can since 
-                //row positions in our cartesian product tables are deterministic from their facets' values
-                int collapsedRowIndex = 0;
-                for (int c_i = 0; c_i < listF.Count(); c_i++)
-                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
-
-                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
-            }
-
-            // Phase 3: Fill up collapsed table
-
-            for (int i = 0; i < this.TableRows(); i++)
-            {
-                this.MeanData(groups[i].Mean(), i);
-                this.VarianceData(groups[i].Variance(), i);
-                this.Std_dev_Data(groups[i].StandardDeviation(), i);
-            }
-        }// end CalculateMeans
+        
 
 
         /* Descripción:
@@ -458,78 +401,6 @@ namespace ProjectMeans
         /*=================================================================================
          * Métodos de instancia
          *=================================================================================*/
-
-        /*
-         * Despcrición:
-         *  Introduce la media en la tabla en la posición que se pasa como parámetro.
-         *  Los datos se encuentran en la última columna de la tabla, por lo que el 
-         *  parametro columna esta fijo.
-         * Parametros:
-         *      double? data: dato que se va a insertar en la última columna de la tabla.
-         *      int pos: posción (fila) en la que vamos a insertar la media. La columna de datos 
-         *              es fija y es la antepenúltima.
-         * Excepciones:
-         *      TableMeansException: En el caso de que la posición de inserción no coincida con el 
-         *              rango de filas.
-         */
-        public void MeanData(double? data, int row)
-        {
-            if (row < 0 || row >= this.TableRows())
-            {
-                throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
-            }
-            int cols = this.TableColumns();
-            this.matrix[row][cols - 3] = data;
-        }
-
-
-        /*
-         * Despcrición:
-         *  Introduce la desviación tipica en la tabla en la posición que se pasa como parametro.
-         *  Los datos se encuentran en la última columna de la tabla, por lo que el 
-         *  parametro columna esta fijo.
-         * Parámetros:
-         *      double? data: dato que se va a insertar en la última columna de la tabla.
-         *      int pos: posción (fila) en la que vamos a insertar la varianza. La columna de datos 
-         *              es fija y es la penúltima.
-         * Excepciones:
-         *      TableMeansException: En el caso de que la posición de inserción no coincida con el 
-         *              rango de filas.
-         */
-        public void VarianceData(double? data, int row)
-        {
-            if (row < 0 || row >= this.TableRows())
-            {
-                throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
-            }
-            int cols = this.TableColumns();
-            this.matrix[row][cols - 2] = data;
-        }
-
-
-        /*
-         * Despcrición:
-         *  Introduce un dato en la tabla en la posición que se pasa como parámetro.
-         *  Los datos se encuentran en la última columna de la tabla, por lo que el 
-         *  parámetro columna esta fijo.
-         * Parámetros:
-         *      double? data: dato que se va a insertar en la última columna de la tabla.
-         *      int pos: posción (fila) en la que vamos a insertar la desviación tipica. 
-         *              La columna de desviación tipica es fija y es la última.
-         * Excepciones:
-         *      TableMeansException: En el caso de que la posición de inserción no coincida con el 
-         *              rango de filas.
-         */
-        public void Std_dev_Data(double? data, int row)
-        {
-            if (row < 0 || row >= this.TableRows())
-            {
-                throw new TableMeansException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
-            }
-            int cols = this.TableColumns();
-            this.matrix[row][cols - 1] = data;
-        }
-
 
         /* Descripción:
          *  Inserta un dato en la posición indicada en los parámetros.
