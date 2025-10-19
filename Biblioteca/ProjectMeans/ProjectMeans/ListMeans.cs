@@ -269,30 +269,13 @@ namespace ProjectMeans
          * Escritura de ficheros de medias
          *======================================================================================*/
 
-        /* Descripción:
-         *  Método de escritura en una archivo de medias.
-         * Devuelve:
-         *  bool: True si se ha escrito correctamente false en otro caso;
-         */
-        public bool WritingFileListMeans(String fileName)
-        {
-            bool res = false; // variable de retorno
-
-            using (StreamWriter writer = new StreamWriter(fileName))
-            {
-                res = StringWriterFileListMeans(writer);
-            }
-            return res;
-        }// end public bool WritingFileListMeans
-
-
         public bool StringWriterFileListMeans(StreamWriter writer)
         {
             writer.WriteLine(this.nameFileDataCreation);// escribimos el path del fichero con el que se crearon los datos
             writer.WriteLine(this.dateCreation.ToString(new CultureInfo("es-ES", true)));// fecha en la se creo el archivo
             // escribimos el comentario
             writer.WriteLine(BEGIN_COMMENT);
-            writeString(writer, this.textComment);
+            WriteString(writer, this.textComment);
             writer.WriteLine(END_COMMENT);
 
             // escribimos la lista de tablas de medias
@@ -312,7 +295,7 @@ namespace ProjectMeans
          *  manterner el retorno de carro.
          * Nota: Si se envia un string null como parámetro, escribira la cadena vacía.
          */
-        private void writeString(StreamWriter writer, string txt)
+        private void WriteString(StreamWriter writer, string txt)
         {
             if (txt == null)
             {
@@ -338,22 +321,6 @@ namespace ProjectMeans
         /*======================================================================================
          * Lectura de ficheros de medias
          *======================================================================================*/
-        /* Descripción:
-         *  Método de Lectura en una archivo de medias. Los datos del archivo pasa al objeto
-         *  ListMeans desde el que se hace la llamado por lo que se perderan los
-         *  datos de este.
-         */
-        public static ListMeans ReadingFileListMeans(String fileName)
-        {
-            ListMeans retListMeans = new ListMeans();
-            using (StreamReader reader = new StreamReader(fileName))
-            {
-                retListMeans = StreamReaderFileListMeans(reader);
-            }// end using
-            return retListMeans;
-        }// end public static ListMeans ReadingFileListMeans
-
-
         /* Descripción:
          *  Método de Lectura en una stream de medias. Los datos del archivo pasa al objeto
          *  ListMeans desde el que se hace la llamado por lo que se perderan los
