@@ -83,6 +83,7 @@ namespace MultiFacetData
             matrix = new List<List<double?>>();
         }
 
+        //Cloning constructor
         public ObsTable(List<List<double?>> obsMatrix)
         {
             this.matrix = obsMatrix;
@@ -118,6 +119,19 @@ namespace MultiFacetData
 
         } // end public ObsTable(LinkedList<Facet> facets)
 
+        //OmitFacetInDataTable's constructor
+        public ObsTable(ListFacets lF, MultiFacetsObs mfo)
+        {
+            this.matrix = IniIndexSubTable(lF);
+            this.listF = lF;
+
+            this.SkipLevels(lF);
+            Statistics[] stats = this.StatisticsData(mfo.SkipIndexLevelFacetInDataTable(), false);
+            for (int i = 0; i < this.TableRows(); i++)
+            {
+                this.MeanData(stats[i], i);
+            }
+        }
 
 
         /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

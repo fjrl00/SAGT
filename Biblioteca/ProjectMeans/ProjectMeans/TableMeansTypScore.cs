@@ -145,7 +145,13 @@ namespace ProjectMeans
             }
 
             // Calculamos las medias
-            this.CalculateMeans(mfo, zero);
+            Statistics[] stats = this.StatisticsData(mfo, zero);
+            for (int i = 0; i < this.TableRows(); i++)
+            {
+                this.MeanData(stats[i], i);
+                this.VarianceData(stats[i], i);
+                this.Std_dev_Data(stats[i], i);
+            }
 
             // Calculamos la gran media
             this.Calc_GrandMean_Variance_StdDev(mfo, zero);

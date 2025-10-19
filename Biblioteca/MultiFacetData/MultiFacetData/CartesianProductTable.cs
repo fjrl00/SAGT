@@ -266,30 +266,21 @@ namespace MultiFacetData
 
         #endregion Getters and Setters
 
-        #region Collapse Calculations (POOR INTEGRATION WITH OBSTABLE)
+        #region Collapse Calculations
 
         /*
          * Descripción:
-         *  Recorre la tabla comparando los indices y cuando encuentra el correcto calcula los
-         *  datos estadisticos (media, varianza desviación típica).
-         * Parámetros:
-         *      ListFacets lf: lista de facetas, contiene las facetas sobre la que queremos calcular 
-         *              la media y otros datos.
-         *              NOTA: Teóricamente debe ser un subconjunto de la lista de facetas de mfo
-         *      MultiFacetsObs mfo: es el objeto multifaceta que contiene la tabla de datos.
-         *      bool zero: true si se quiere realizar los calculos interpretando los valores nulos
-         *              como ceros.
+         *  Devuelve un array con los datos estadísticos de cada fila de esta tabla
+         *  (tabla obtenida a partir de colapsar cero o más facetas de la de mfo)
+         *  Usado tanto en la omisión de facetas como en el cálculo de medias.
+         *  
+         *  Algunos requisitos:
+         *  - this.listF debe ser congruente con this.matrix.
+         *  - this.listF debe ser un subconjunto de mfo.ListFacets().
+         *  - SkipLevels debe haber sido aplicado tanto a esta tabla como a mfo.ObservationTable() antes de realizar esta operación.
          */
-        protected void CalculateMeans(MultiFacetsObs mfo, bool zero)
+        public Statistics[] StatisticsData(MultiFacetsObs mfo, bool zero)
         {
-            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
-            //todo
-
-            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
-            //NOTE: Such table needs to have had SkipLevels applied to it. Else collapsedRowIndex calculation will fail as of now
-
-            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
-
             Statistics[] groups = new Statistics[this.TableRows()];
             for (int i = 0; i < groups.Length; i++)
             {
@@ -317,15 +308,8 @@ namespace MultiFacetData
                 groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
             }
 
-            // Phase 3: Fill up collapsed table
-
-            for (int i = 0; i < this.TableRows(); i++)
-            {
-                this.MeanData(groups[i], i);
-                this.VarianceData(groups[i], i);
-                this.Std_dev_Data(groups[i], i);
-            }
-        }// end CalculateMeans
+            return groups;
+        }
 
         /*
          * Despcrición:
@@ -338,7 +322,7 @@ namespace MultiFacetData
         {
             if (row < 0 || row >= this.TableRows())
             {
-                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+                throw CPTException("La posición de inserción en la tabla se encuentra fuera del rango");
             }
             int meanCol = listF.Count();
             this.matrix[row][meanCol] = stc.Mean();
@@ -356,7 +340,7 @@ namespace MultiFacetData
         {
             if (row < 0 || row >= this.TableRows())
             {
-                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+                throw CPTException("La posición de inserción en la tabla se encuentra fuera del rango");
             }
             int meanCol = listF.Count();
             this.matrix[row][meanCol + 1] = stc.Variance();
@@ -374,12 +358,12 @@ namespace MultiFacetData
         {
             if (row < 0 || row >= this.TableRows())
             {
-                throw CPTException("La posición de inserción en la tabla de medias se encuentra fuera del rango");
+                throw CPTException("La posición de inserción en la tabla se encuentra fuera del rango");
             }
             int meanCol = listF.Count();
             this.matrix[row][meanCol + 2] = stc.StandardDeviation();
         }
 
-        #endregion Collapse Calculations (POOR INTEGRATION WITH OBSTABLE)
+        #endregion Collapse Calculations
     }
 }
