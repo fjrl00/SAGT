@@ -305,16 +305,23 @@ namespace MultiFacetData
          *  Operación que devuelve un MultiFacetObs al que se le ha aplicada la omisión de las facetas 
          *  marcadas para ser omitidas.
          *  Se hace la media de los valores de las filas colapsadas.
+         *  BAD TEMPORARY SPAGUETTI CODE FOR SAKE OF TABLE REFORM. TOFIX
          */
         public MultiFacetsObs OmitFacetInDataTable()
         {
             ListFacets c_lf = this.listFacets.ListFacetWithoutOmit();
             ObsTable c_Table = new ObsTable(c_lf);  //calls IniIndexSubTable(c_lf)
+
+            MultiFacetsObs skipped_mfo = this.Clone();
             if (c_lf.HasSkipLevels())
             {
+                //skip levels from clone of parent. Can't skip them from this one
+                skipped_mfo.observationTable.SkipLevels(skipped_mfo.listFacets);
+
+                //skip levels from skeleton
                 c_Table.SkipLevels(c_lf);
             }
-            c_Table.CollapsedTable(this, false);
+            c_Table.CollapsedTable(skipped_mfo, false);
 
             return new MultiFacetsObs(c_lf, c_Table, this.nameFileObs, this.description, this.comment);
         }

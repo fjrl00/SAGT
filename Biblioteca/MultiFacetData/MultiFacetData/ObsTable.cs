@@ -215,7 +215,7 @@ namespace MultiFacetData
 
             InterfaceObsTable mfo_table = mfo.ObservationTable();
             int measurementCol = mfo_table.TableColumns() - 1;
-            int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
+            int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());
 
             int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
             for (int i = 0; i < listF.Count(); i++)
