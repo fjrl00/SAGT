@@ -48,11 +48,12 @@ namespace MultiFacetData
          *  
          *  Algunos hechos matemáticos a tener en cuenta:
          *      - El número de filas es el producto de los niveles de todas las facetas. En el anterior ejemplo: 2*3*2=12
+         *      - número de columnas = número de facetas + número de columnas extra decidido.
          *      - El índice de la tabla en que se guardaría cierta combinación de niveles de facetas es:
          *           int index = 0;
          *           for (int i =0, i<numfacets, i++)
 	     *              index += IndexRepeats[i]*(value[i] - 1);
-         *        En el anterior ejemplo: (2,3,2) = 6*(2-1) + 2*(3-2) + 1*(2-1) = 11
+         *        En el anterior ejemplo: (2,3,2) = 6*(2-1) + 2*(3-1) + 1*(2-1) = 11
          */
         protected static List<List<double?>> IniIndexSubTable(ListFacets list_facets, int extraCols)
         {

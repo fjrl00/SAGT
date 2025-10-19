@@ -204,7 +204,7 @@ namespace MultiFacetData
             ListFacets c_Lf = lf.ListFacetWithoutOmit();
             List<List<double?>> c_Table = IniIndexSubTable(c_Lf);
 
-            //Phase 2: Build and fill up "dictionary" of row index to list of measurements corresponding to it
+            //Phase 2: Build and fill up the statistics accumulator corresponding to each index (needed to calculate the mean)
             Statistics[] groups = new Statistics[c_Table.Count];
             for (int i = 0; i < groups.Length; i++)
             {
