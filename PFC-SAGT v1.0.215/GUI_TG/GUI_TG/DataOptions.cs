@@ -1746,7 +1746,6 @@ namespace GUI_GT
                     ListFacets lf = actual_lf;
 
                     // crearemos la ventana y le pasamos como argumento el objeto multifaceta
-                    // ListFacets lf = multiFacets.ListFacets();
                     if (actual_lf.Count() != withoutOmit_lf.Count())
                     {
                         lf = withoutOmit_lf; // asignación de las facetas no omitidas

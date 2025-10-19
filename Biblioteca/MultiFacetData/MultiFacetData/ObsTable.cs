@@ -126,7 +126,7 @@ namespace MultiFacetData
             this.listF = lF;
 
             this.SkipLevels(lF);
-            Statistics[] stats = this.StatisticsData(mfo.SkipIndexLevelFacetInDataTable(), false);
+            Statistics[] stats = this.StatisticsData(mfo.SkipIndexLevelFacetInDataTable(), false);  //Note that SkipIndexLevelFacetInDataTable doesn't modify mfo, it instead returns a modified clone. Wonky, I know
             for (int i = 0; i < this.TableRows(); i++)
             {
                 this.MeanData(stats[i], i);

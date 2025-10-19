@@ -308,7 +308,6 @@ namespace MultiFacetData
          */
         public MultiFacetsObs OmitFacetInDataTable()
         {
-            MultiFacetsObs skipped_mfo = this.Clone();
             ListFacets c_lf = this.listFacets.ListFacetWithoutOmit();
             ObsTable c_Table = new ObsTable(c_lf, this);
 
@@ -338,22 +337,22 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Operación que devuelve un MultiFacetObs al que se le ha aplicado la eliminación de los 
-         *  niveles marcados como omitidos en sus respectivas facetas.
+         *  Operación que devuelve un MultiFacetObs al que se le ha 
+         *  eliminado todo rastro de omisión de niveles de la tabla y lista de facetas.
          */
-        public MultiFacetsObs SkipAndRestoreIndexLevelFacetInDataTable()
+        public MultiFacetsObs RestoreIndexLevelFacetInDataTable()
         {
             MultiFacetsObs retVal = this.Clone();
-            retVal.AuxSkipLevelFacetInDataTable();
+            retVal.AuxRestoreIndexLevelFacetInDataTable();
 
             return retVal;
         }
 
 
         /* Descripción:
-         *  Reconstruye el objeto eliminando los niveles omitidos de cada faceta.
+         *  Elimina todo rastro de omisión de niveles de la tabla y lista de facetas.
          */
-        private void AuxSkipLevelFacetInDataTable()
+        private void AuxRestoreIndexLevelFacetInDataTable()
         {
             int numFacet = this.listFacets.Count();
             for (int i = 0; i < numFacet; i++)              //for each facet
@@ -365,10 +364,8 @@ namespace MultiFacetData
                 for (int j = 0; j < n; j++)                  //for each level to skip
                 {
                     int skipLevel = lSkipLevels[j];
-                    /* Entonces eliminamos todas las apariciones de j en la columna i y
-                        * ademas a los elementos mayores que j los sustituimos por j-1
-                        */
-                    this.observationTable.SkipLevelAndRestoreIndex(skipLevel, i);
+                    // los elementos mayores que j los sustituimos por j-1
+                    this.observationTable.RestoreIndexes(skipLevel, i);
 
                     f.Level(f.Level() - 1);             // actualizamos el nivel
                     f.SetSkipLevels(skipLevel);  // eliminamos el nivel de la lista de niveles omitidos

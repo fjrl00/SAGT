@@ -55,7 +55,7 @@ namespace MultiFacetData
         // Asigna los valores de la lista que se pasa como parámetro como frecuencias de la tabla
         void AssignListData(List<double?> ldata);
         // Elimina un nivel para una determinada columna
-        void SkipLevelAndRestoreIndex(int skipLevel, int col);
+        void RestoreIndexes(int skipLevel, int col);
         // Elimina las filas donde se encuentre el nivel actual para la columna especificada.
         void SkipLevels(ListFacets lf);
         // Deep clone

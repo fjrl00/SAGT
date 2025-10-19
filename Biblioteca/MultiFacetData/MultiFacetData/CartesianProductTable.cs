@@ -164,20 +164,16 @@ namespace MultiFacetData
         }
 
         /* Descripción:
-         *  Elimina las filas que en la columna especificada contengan el nivel especificado.
-         *  Después, restaura los índices de los niveles superiores para que no haya huecos
-         *  de por medio.
+         *  Restaura los índices de los niveles superiores al proveido 
+         *  para que no haya huecos de por medio.
          *  
          *  Parámetros:
-         *          int skipLevel: nivel que se va a eliminar
-         *          int col: columna en la que se va a buscar el nivel a eliminar
+         *          int skipLevel: nivel buscado
+         *          int col: columna en la que se va a buscar el nivel
          */
-        public void SkipLevelAndRestoreIndex(int skipLevel, int col)
+        public void RestoreIndexes(int skipLevel, int col)
         {
-            //Step 1: remove the appropiate rows
-            this.matrix.RemoveAll(row => (double)row[col] == skipLevel);
-
-            //Step 2: Restore appropiate indexes
+            //Restore appropiate indexes
             for (int i = 0; i < this.TableRows(); i++)
             {
                 double data = (double)this.matrix[i][col];
@@ -288,7 +284,6 @@ namespace MultiFacetData
             }
 
             InterfaceObsTable mfo_table = mfo.ObservationTable();
-            int measurementCol = mfo_table.TableColumns() - 1;
             int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());
 
             int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
