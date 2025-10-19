@@ -474,7 +474,8 @@ namespace MultiFacetData
          *  - IsInfinite
          *  - IsFixed
          *  - IsRamdonFinite
-         *  - StringDesing
+         *  - CollapsedValue
+         *  - ListFacetDesign
          *=================================================================================*/
 
         /* Descripción:
@@ -597,11 +598,28 @@ namespace MultiFacetData
             return !this.IsFixed() && !this.IsInfinite();
         }
 
+        /* Descripción:
+         *  Devuelve el valor de faceta colapsada, es decir, el valor ajustado al eliminar los niveles
+         */
+        public int CollapsedValue( int value)
+        {
+            foreach (int l in this.skipLevels)
+            {
+                if (l < value)
+                {
+                    value--;
+                }
+
+                //if l == value, or if value is contained in skipLevels, a exception should be raised
+            }
+
+            return value;
+        }
 
         /* Descripción:
          *  Devuelve un string con el disposición de facetas para esa faceta.
          */
-        public string ListFacetDesing()
+        public string ListFacetDesign()
         {
             return this.list_facets_design;
         }
@@ -629,7 +647,7 @@ namespace MultiFacetData
             writerFile.WriteLine(universe);
             writerFile.WriteLine(this.omit.ToString());
             writerFile.WriteLine(this.Comment());
-            writerFile.WriteLine(this.ListFacetDesing());
+            writerFile.WriteLine(this.ListFacetDesign());
             // Escribimos la lista lista de facetas omitidas.
             res = WritingStreamSkipLevels(writerFile);
             // ponemos el cierre
@@ -945,7 +963,7 @@ namespace MultiFacetData
             int l = this.Level();
             int size = this.SizeOfUniverse();
             string comment = string.Copy(this.Comment());
-            string nesting = string.Copy(this.ListFacetDesing());
+            string nesting = string.Copy(this.ListFacetDesign());
             bool o = this.Omit();
             Facet f = new Facet(name, l, comment, size, nesting, o);
             foreach (int k in this.skipLevels)

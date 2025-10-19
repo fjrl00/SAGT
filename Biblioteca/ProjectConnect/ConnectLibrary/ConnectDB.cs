@@ -529,7 +529,7 @@ namespace ConnectLibrary
 
             string insertFacet = "Insert into TbFacets (name_facet, level_facet, size_of_universe, comment, omit, list_facet_design)";
             // insertFacet += "VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', '" + f.Omit() + "', '" + f.ListFacetDesing() + "')"; 
-            insertFacet += " VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', " + f.Omit() + ", '" + f.ListFacetDesing() + "')"; 
+            insertFacet += " VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', " + f.Omit() + ", '" + f.ListFacetDesign() + "')"; 
             this.dataBase.Insert(insertFacet);
             string selectFacet = "SELECT MAX(TbFacets.pk_facet) FROM TbFacets";
             DataTable dt = this.dataBase.Select2DataTable(selectFacet);

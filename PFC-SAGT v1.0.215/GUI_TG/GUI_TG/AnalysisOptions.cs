@@ -344,7 +344,7 @@ namespace GUI_GT
                         Facet f = this.listFacetsAnalysis.FacetInPos(i);
                         if (f.IsNesting())
                         {
-                            string aux = f.ListFacetDesing();
+                            string aux = f.ListFacetDesign();
                             int m = aux.Count();
                             lfSelectFacet.Add(aux);
                         }

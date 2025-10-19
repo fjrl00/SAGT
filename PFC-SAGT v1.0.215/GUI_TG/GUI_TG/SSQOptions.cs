@@ -1155,7 +1155,7 @@ namespace GUI_GT
                                 int level = int.Parse(dgvExAddInstLevelSign.Rows[i].Cells[numCol - 1].Value.ToString());
                                 int sizeUni = readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
                                 string comment = f.Comment();
-                                string design = f.ListFacetDesing();
+                                string design = f.ListFacetDesign();
                                 Facet auxF = new Facet(name, level, comment, sizeUni, design);
                                 newLevelListInstFacets.Add(auxF);
                                 newlf.Add(auxF);
@@ -1175,7 +1175,7 @@ namespace GUI_GT
                                 // int sizeUni = int.Parse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
                                 int sizeUni = readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
                                 string comment = f.Comment();
-                                string design = f.ListFacetDesing();
+                                string design = f.ListFacetDesign();
                                 Facet auxF = new Facet(name, level, comment, sizeUni, design);
                                 newLevelListDiffFacets.Add(auxF);
                                 newlf.Add(auxF);

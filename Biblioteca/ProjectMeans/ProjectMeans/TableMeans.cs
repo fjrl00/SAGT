@@ -262,7 +262,6 @@ namespace ProjectMeans
 
             InterfaceObsTable mfo_table = mfo.ObservationTable();
             int measurementCol = mfo_table.TableColumns() - 1;
-            int c_MeasurementCol = this.TableColumns() - 1;              //same as listF.Count() btw. Naming for clarity
             int[] indexRepeats = IndexRepeats(listF.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
 
             int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
@@ -277,9 +276,9 @@ namespace ProjectMeans
                 //row positions in our cartesian product tables are deterministic from their facets' values
                 int collapsedRowIndex = 0;
                 for (int c_i = 0; c_i < listF.Count(); c_i++)
-                    collapsedRowIndex += indexRepeats[c_i] * ((int)mfo_table.Data(i, c_index[c_i]) - 1);
+                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
 
-                groups[collapsedRowIndex].Add(mfo_table.ObsData(i));
+                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
             }
 
             // Phase 3: Fill up collapsed table

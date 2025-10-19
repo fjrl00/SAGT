@@ -680,7 +680,7 @@ namespace MultiFacetData
                 }
                 else
                 {
-                    string design = f.ListFacetDesing();
+                    string design = f.ListFacetDesign();
                     design = design.Replace("[" + oldName + "]", "[" + newName + "]");
                     f = new Facet(f.Name(), f.Level(), f.Comment(), f.SizeOfUniverse(), design, f.Omit());
                 }
@@ -774,7 +774,7 @@ namespace MultiFacetData
             for (int i = 0; i < numOfElem; i++)
             {
                 Facet f = this.FacetInPos(i);
-                string desing = string.Copy(f.ListFacetDesing());
+                string desing = string.Copy(f.ListFacetDesign());
 
                 l_string_facets.Add(desing);
                 int numOfElem2 = l_string_facets.Count - 1;
@@ -1137,7 +1137,7 @@ namespace MultiFacetData
                 newFacetRow["size_of_universe"] = sz;
                 newFacetRow["comment"] = f.Comment();
                 newFacetRow["omit"] = f.Omit();
-                newFacetRow["list_facet_design"] = f.ListFacetDesing();
+                newFacetRow["list_facet_design"] = f.ListFacetDesign();
 
                 // Añadimos la fila al dataTable
                 dtListFacets.Rows.Add(newFacetRow);

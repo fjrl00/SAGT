@@ -71,7 +71,7 @@ namespace GUI_GT
             for (int i = 0; i < l; i++)
             {
                 Facet f = this.lf.FacetInPos(i);
-                this.cBoxSelectFacet.Items.Add(f.ListFacetDesing());
+                this.cBoxSelectFacet.Items.Add(f.ListFacetDesign());
                 this.cBoxNestingFacet.Items.Add("[" + f.Name() + "]");
             }
 
@@ -208,7 +208,7 @@ namespace GUI_GT
             if ((pos_select_facet > 0) && (pos_nesting_facet > 0))
             {
                 Facet f = this.lf.FacetInPos(pos_select_facet - 1);
-                string desing = f.ListFacetDesing(); // obtenemos el diseño
+                string desing = f.ListFacetDesign(); // obtenemos el diseño
                 Facet f2 = this.lf.FacetInPos(pos_nesting_facet - 1);
                 string f2_name = "[" + f2.Name() + "]"; // obtenemos la operación
                 string oper = "";

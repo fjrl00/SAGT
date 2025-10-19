@@ -274,7 +274,7 @@ namespace MultiFacetData
             {
                 Facet f = this.FacetInPos(i - 1);
                 Facet s = this.FacetInPos(i);
-                string design = "[" + s.Name() + "]:" + f.ListFacetDesing();
+                string design = "[" + s.Name() + "]:" + f.ListFacetDesign();
                 s.ListFacetsDesignNesting(design);
             }
         }

@@ -593,7 +593,7 @@ namespace GUI_GT
                 }
                 else
                 {
-                    my_Row[IND_NAME] = f.ListFacetDesing();
+                    my_Row[IND_NAME] = f.ListFacetDesign();
                 }
                 
                 my_Row[IND_LEVEL] = f.Level();
@@ -785,7 +785,7 @@ namespace GUI_GT
             {
                 // dgvExObsTable.Columns[colu].Name = multiFacets.ListFacets()[colu].Name();
                 // dgvExObsTable.Columns[colu].HeaderText = multiFacets.ListFacets().FacetInPos(colu).Name();
-                dgvExObsTable.Columns[colu].HeaderText = multiFacets.ListFacets().FacetInPos(colu).ListFacetDesing();
+                dgvExObsTable.Columns[colu].HeaderText = multiFacets.ListFacets().FacetInPos(colu).ListFacetDesign();
                 // impedimos que las columnas sean reordenables al pulsar la cabecera
                 dgvExObsTable.Columns[colu].SortMode = DataGridViewColumnSortMode.NotSortable;
                 // dgvExObsTable.Columns[colu].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; // .AllCells;
@@ -1458,7 +1458,7 @@ namespace GUI_GT
                         Facet f = lf_global.FacetInPos(i);
                         if (f.IsNesting())
                         {
-                            string aux = f.ListFacetDesing();
+                            string aux = f.ListFacetDesign();
                             int m = aux.Count();
                             lfSelectFacet.Add(aux);
                         }
