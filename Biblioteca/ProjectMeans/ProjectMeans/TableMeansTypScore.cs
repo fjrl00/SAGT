@@ -264,67 +264,47 @@ namespace ProjectMeans
          */
         private void CalculateMeans(MultiFacetsObs mfo, bool zero)
         {
-            /* determinamos el número de facetas de la lista que pasamos como parámetro
-             * estas se corresponden con las columnas que necesitamos comparar para calcular los
-             * datos estadisticos*/
-            int longListFacet = this.listF.Count();
+            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
+            //todo
 
-            // este array determinna las columnas de la tabla a comparar
-            int[] posicionesEnColumnas = new int[longListFacet];
-            
-            // obtenemos la lista de facetas del objeto mutifaceta para luego comparar y 
-            // obtener las posiciones
-            ListFacets mfo_listFacet = mfo.ListFacets();
+            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
 
-            // Rellenamos el array
-            for (int i = 0; i < longListFacet; i++)
+            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
+
+            Statistics[] groups = new Statistics[this.TableRows()];
+            for (int i = 0; i < groups.Length; i++)
             {
-                posicionesEnColumnas[i] = mfo_listFacet.IndexOf(this.listF.FacetInPos(i));
+                groups[i] = new Statistics();
             }
 
-            // necesito la tabla de observaciones
-            InterfaceObsTable mfo_obsTable = mfo.ObservationTable();
-            // necesito el número de filas de la tabla de observaciones para el bucle interior
-            int num_rows_obsTable = mfo_obsTable.TableRows();
-            int rows = this.TableRows();
+            InterfaceObsTable mfo_table = mfo.ObservationTable();
+            int measurementCol = mfo_table.TableColumns() - 1;
+            int[] indexRepeats = IndexRepeats(listF.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
 
-            // Ahora usaremos los valores de la tabla de medias para recorrer la tabla de 
-            // observaciones y obtener los datos
-            for (int i = 0; i < rows; i++)
+            int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
+            for (int i = 0; i < listF.Count(); i++)
             {
-                // Creamos el elemento stadistica que contendra las sumas
-                Statistics stc = new Statistics();
+                c_index[i] = mfo.ListFacets().IndexOf(listF.FacetInPos(i));
+            }
 
-                for (int j = 0; j < num_rows_obsTable; j++)
-                {
-                    bool v = true;
-                    /* Ahora comparo los valores de los indices de la tabla de medias con sus
-                     * corespondecia en la tabla de observaciones si coincide lo agrego a la 
-                     * tabla de estadistica. */
+            for (int i = 0; i < mfo_table.TableRows(); i++)
+            {
+                //Calculate index of this row in the collapsed table. We can since 
+                //row positions in our cartesian product tables are deterministic from their facets' values
+                int collapsedRowIndex = 0;
+                for (int c_i = 0; c_i < listF.Count(); c_i++)
+                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
 
-                    
-                    for (int k = 0; k < longListFacet && v; k++)
-                    {
-                        /* Comparo el valor de laa columnas de indices en la tabla de medias con 
-                         * los indices de la tabla de datos. Las columnas de la tabla de datos
-                         * las he guardado en el arrary posicionesEnColumnas. */
-                        v = (this.Data(i, k).Equals(mfo_obsTable.Data(j, posicionesEnColumnas[k])));
-                    }
+                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
+            }
 
-                    if (v)
-                    {
-                        stc.Add(mfo_obsTable.ObsData(j), zero);
-                    }
-                }
+            // Phase 3: Fill up collapsed table
 
-                // ahora asignamos la media
-                this.MeanData(stc.Mean(),i);
-                
-                // asignamos la varianza
-                this.VarianceData(stc.Variance(), i);
-
-                // asignamos la desviación tipica
-                this.Std_dev_Data(stc.StandardDeviation(),i);
+            for (int i = 0; i < this.TableRows(); i++)
+            {
+                this.MeanData(groups[i].Mean(), i);
+                this.VarianceData(groups[i].Variance(), i);
+                this.Std_dev_Data(groups[i].StandardDeviation(), i);
             }
         }
 

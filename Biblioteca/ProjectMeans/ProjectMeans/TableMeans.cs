@@ -289,8 +289,6 @@ namespace ProjectMeans
                 this.VarianceData(groups[i].Variance(), i);
                 this.Std_dev_Data(groups[i].StandardDeviation(), i);
             }
-
-
         }// end CalculateMeans
 
 
