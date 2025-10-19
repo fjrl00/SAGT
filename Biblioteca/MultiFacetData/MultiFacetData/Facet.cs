@@ -504,6 +504,10 @@ namespace MultiFacetData
             return level;
         }
 
+        public int Level_skipped() {             
+            return level - skipLevels.Count;
+        }
+
 
         /* Descripción:
          *  Devuelve la descripción/comentario de la faceta.
@@ -525,6 +529,7 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Devuelve true si esta marcado como nivel que se omitira, false en otro caso.
+         * TERRIBLE NAMING
          */
         public bool GetSkipLevels(int level)
         {

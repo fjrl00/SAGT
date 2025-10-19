@@ -286,6 +286,7 @@ namespace MultiFacetData
             //todo
 
             //Phase 1: Skeleton table already created in constructor and stored in this.matrix
+            //NOTE: Such table needs to have had SkipLevels applied to it. Else collapsedRowIndex calculation will fail as of now
 
             //Phase 2: Build and fill up the statistics accumulator corresponding to each index
 
@@ -297,7 +298,7 @@ namespace MultiFacetData
 
             InterfaceObsTable mfo_table = mfo.ObservationTable();
             int measurementCol = mfo_table.TableColumns() - 1;
-            int[] indexRepeats = IndexRepeats(listF.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
+            int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());
 
             int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
             for (int i = 0; i < listF.Count(); i++)

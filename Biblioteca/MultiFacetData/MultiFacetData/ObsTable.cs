@@ -65,7 +65,7 @@ namespace MultiFacetData
          *=================================================================================*/
 
         //private List<List<double?>> matrix;       //inherited from CartesianProductTable
-        //private ListFacets listF;                 //inherited from CartesianProductTable BUT WE DO NOT USE IT
+        //private ListFacets listF;                 //inherited from CartesianProductTable. POORLY IMPLEMENTED HERE RN
         protected override Exception CPTException(string msg)
         {
             return new ObsTableException(msg);
@@ -113,6 +113,7 @@ namespace MultiFacetData
                 throw new ObsTableException("Error: al menos debe haber 2 facetas");
             }
 
+            this.listF = list_facets;
             this.matrix = IniIndexSubTable(list_facets);
 
         } // end public ObsTable(LinkedList<Facet> facets)
@@ -196,50 +197,49 @@ namespace MultiFacetData
          *          ListFacets lf: Lista de facetas 
          *              (debe coincidir con las de esta tabla)
          */
-        public ObsTable CollapsedTable(ListFacets lf)
+        public void CollapsedTable(MultiFacetsObs mfo, bool zero)
         {
-            //Phase 0: check if the given list of facets is congruent with this table. If not, throw an exception.
+            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
             //todo
 
-            //Phase 1: Build skeleton of new table
-            ListFacets c_Lf = lf.ListFacetWithoutOmit();
-            List<List<double?>> c_Table = IniIndexSubTable(c_Lf);
+            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
+            //NOTE: Such table needs to have had SkipLevels applied to it. Else collapsedRowIndex calculation will fail as of now
 
-            //Phase 2: Build and fill up the statistics accumulator corresponding to each index (needed to calculate the mean)
-            Statistics[] groups = new Statistics[c_Table.Count];
+            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
+
+            Statistics[] groups = new Statistics[this.TableRows()];
             for (int i = 0; i < groups.Length; i++)
             {
                 groups[i] = new Statistics();
             }
 
-            int measurementCol = this.TableColumns() - 1;   //same as lf.Count() btw. Naming for clarity
-            int c_MeasurementCol = c_Table[0].Count - 1;
-            int[] indexRepeats = IndexRepeats(c_Lf.levelOfFacets());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
+            InterfaceObsTable mfo_table = mfo.ObservationTable();
+            int measurementCol = mfo_table.TableColumns() - 1;
+            int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());    //NOTE: Inefficent, these two are already computed inside IniIndexSubTable
 
-            int[] c_index = new int[c_Lf.Count()];    //maps collapsed facet indices to original facet indices
-            for (int i = 0; i < c_Lf.Count(); i++)
+            int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
+            for (int i = 0; i < listF.Count(); i++)
             {
-                c_index[i] = lf.IndexOf(c_Lf.FacetInPos(i));    
+                c_index[i] = mfo.ListFacets().IndexOf(listF.FacetInPos(i));
             }
 
-            foreach (List<double?> row in matrix)
+            for (int i = 0; i < mfo_table.TableRows(); i++)
             {
                 //Calculate index of this row in the collapsed table. We can since 
                 //row positions in our cartesian product tables are deterministic from their facets' values
                 int collapsedRowIndex = 0;
-                for (int c_i = 0; c_i < c_Lf.Count(); c_i++)
-                    collapsedRowIndex += indexRepeats[c_i] * ((int)row[c_index[c_i]] - 1);
+                for (int c_i = 0; c_i < listF.Count(); c_i++)
+                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
 
-                groups[collapsedRowIndex].Add(row[measurementCol]);
+                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
             }
 
             // Phase 3: Fill up collapsed table
-            for (int i = 0; i < c_Table.Count; i++)
-            {
-                c_Table[i][c_MeasurementCol] = groups[i].Mean();
-            }
 
-            return new ObsTable(c_Table);
+            for (int i = 0; i < this.TableRows(); i++)
+            {
+                this.MeanData(groups[i], i);
+            }
         }
 
         #region Escritura Lectura en un stream

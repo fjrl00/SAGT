@@ -308,10 +308,15 @@ namespace MultiFacetData
          */
         public MultiFacetsObs OmitFacetInDataTable()
         {
-            ObsTable newTable = this.observationTable.CollapsedTable(this.listFacets);
-            ListFacets newListFacets = this.listFacets.ListFacetWithoutOmit();
+            ListFacets c_lf = this.listFacets.ListFacetWithoutOmit();
+            ObsTable c_Table = new ObsTable(c_lf);  //calls IniIndexSubTable(c_lf)
+            if (c_lf.HasSkipLevels())
+            {
+                c_Table.SkipLevels(c_lf);
+            }
+            c_Table.CollapsedTable(this, false);
 
-            return new MultiFacetsObs(newListFacets, newTable, this.nameFileObs, this.description, this.comment);
+            return new MultiFacetsObs(c_lf, c_Table, this.nameFileObs, this.description, this.comment);
         }
 
         #endregion Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas

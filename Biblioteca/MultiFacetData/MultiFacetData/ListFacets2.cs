@@ -31,7 +31,7 @@ namespace MultiFacetData
          * - ConcatenateWithoutRepetitions (concatena dos listas omitiendo los repetidos)
          * - DegreeOfFreedom (Devuelve el grado de libertad)
          * - MultOfLevels (Producto de los niveles)
-         * - levelOfFacets (array con los niveles de las facetas)
+         * - levelOfFacets (array con los niveles de las facetas) + adjusted for omits version
          * - SourcesOfVariabilityAbsent (Lista de las facetas ausentes)
          * - MultipSourcesOfVariabilityAbsent (Producto de la lista de facetas ausentes)
          * - MultipSourcesOfVariabilityAbsentForTypeOfFacet (Producto de la lista de facetas ausentes,
@@ -235,6 +235,19 @@ namespace MultiFacetData
             foreach (Facet f in this.listFacets)
             {
                 levelOfFacets[f_i++] = f.Level();
+            }
+
+            return levelOfFacets;
+        }
+
+        public int[] levelOfFacets_skipped()
+        {
+            int[] levelOfFacets = new int[this.Count()];
+
+            int f_i = 0;
+            foreach (Facet f in this.listFacets)
+            {
+                levelOfFacets[f_i++] = f.Level_skipped();
             }
 
             return levelOfFacets;

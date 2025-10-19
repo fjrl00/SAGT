@@ -102,7 +102,7 @@ namespace ProjectMeans
 
 
         /* Descripción:
-         *  Constructor de la clase.
+         *  Constructor principal de la clase.
          * Parámetros:
          *      ListFacets lF: Lista de facetas
          *          Niveles marcados para omitir serán omitidos.

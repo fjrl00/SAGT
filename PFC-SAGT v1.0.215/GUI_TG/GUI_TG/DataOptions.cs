@@ -1750,16 +1750,13 @@ namespace GUI_GT
                     if (actual_lf.Count() != withoutOmit_lf.Count())
                     {
                         lf = withoutOmit_lf; // asignación de las facetas no omitidas
-                        // multiFacets = this.sagtElements.GetMultiFacetsObs();
-                        multiFacets = multiFacets.OmitFacetInDataTable();
-                    }
-
-                    // omitimos los niveles marcados
-                    if (lf.HasSkipLevels())
+                        multiFacets = multiFacets.OmitFacetInDataTable();   //this calls skipLevels btw (wonky, torework)
+                    } 
+                    else if (lf.HasSkipLevels())
                     {
                         multiFacets = multiFacets.SkipIndexLevelFacetInDataTable();
                     }
-                    
+
                     List<string> cswr = lf.CombinationStringWithoutRepetition();
                     List<string> ldesingSeleted = new List<string>();
                     
