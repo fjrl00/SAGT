@@ -203,59 +203,6 @@ namespace MultiFacetData
             }
         }
 
-        /* Descripción:
-         *  Genera una nueva tabla de observaciones a partir de esta omitiendo/colapsando 
-         *  las facetas que están marcadas para omitir.
-         *  
-         *  Parámetros:
-         *          ListFacets lf: Lista de facetas 
-         *              (debe coincidir con las de esta tabla)
-         */
-        public void CollapsedTable(MultiFacetsObs mfo, bool zero)
-        {
-            //Phase 0: check if mfo.listfacets contains all facets in this.listFacets
-            //todo
-
-            //Phase 1: Skeleton table already created in constructor and stored in this.matrix
-            //NOTE: Such table needs to have had SkipLevels applied to it. Else collapsedRowIndex calculation will fail as of now
-
-            //Phase 2: Build and fill up the statistics accumulator corresponding to each index
-
-            Statistics[] groups = new Statistics[this.TableRows()];
-            for (int i = 0; i < groups.Length; i++)
-            {
-                groups[i] = new Statistics();
-            }
-
-            InterfaceObsTable mfo_table = mfo.ObservationTable();
-            int measurementCol = mfo_table.TableColumns() - 1;
-            int[] indexRepeats = IndexRepeats(listF.levelOfFacets_skipped());
-
-            int[] c_index = new int[listF.Count()];    //maps collapsed facet indices to original facet indices
-            for (int i = 0; i < listF.Count(); i++)
-            {
-                c_index[i] = mfo.ListFacets().IndexOf(listF.FacetInPos(i));
-            }
-
-            for (int i = 0; i < mfo_table.TableRows(); i++)
-            {
-                //Calculate index of this row in the collapsed table. We can since 
-                //row positions in our cartesian product tables are deterministic from their facets' values
-                int collapsedRowIndex = 0;
-                for (int c_i = 0; c_i < listF.Count(); c_i++)
-                    collapsedRowIndex += indexRepeats[c_i] * (listF.FacetInPos(c_i).CollapsedValue((int)mfo_table.Data(i, c_index[c_i])) - 1);
-
-                groups[collapsedRowIndex].Add(mfo_table.ObsData(i), zero);
-            }
-
-            // Phase 3: Fill up collapsed table
-
-            for (int i = 0; i < this.TableRows(); i++)
-            {
-                this.MeanData(groups[i], i);
-            }
-        }
-
         #region Escritura Lectura en un stream
 
         /* Descripción:
