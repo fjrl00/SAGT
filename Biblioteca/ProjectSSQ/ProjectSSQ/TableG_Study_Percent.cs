@@ -12,7 +12,7 @@
  * 
  * Descripción:
  *      Clase TableG_Study_Percent que hereda de TableG_Study y que incorpora nuevas variable y operaciones 
- *      para el calculo del el porcentage de error
+ *      para el calculo del porcentaje de error
  */
 using System;
 using System.Collections.Generic;
@@ -65,7 +65,7 @@ namespace ProjectSSQ
         {
         }
 
-
+        //Miscellaneous
         public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation, 
             Dictionary<string, double?> diffVar, Dictionary<string, ErrorVar> errorVar,
             G_ParametersOptimization gp, Dictionary<string, ErrorVar> percentError)
@@ -82,7 +82,7 @@ namespace ProjectSSQ
             CalcPercent();
         }
 
-
+        //ImportPY
         public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
             double coefG_Rel, double coefG_Abs, double totalRelErrorVar, double totalAbsErrorVar,
             double errorRelStandDev, double errorAbsStandDev)

@@ -112,9 +112,6 @@ namespace ProjectSSQ
         public TableAnalysisOfVariance(List<string> ldesign, MultiFacetsObs mfo, bool zero)
             : this()
         {
-            /* inicializamos el grado de libertad */
-            this.df = new Dictionary<string, double>();
-
             if (ldesign == null || ldesign.Count < 2)
             {
                 throw new TableAnalysisOfVarianceException("Error en la lista de diseños");
@@ -124,9 +121,14 @@ namespace ProjectSSQ
             // inicializamos la lista de facetas
             this.listFacets = mfo.ListFacets();
 
+            //Inicializamos grados de libertad
+            foreach (string design in ldesign)
+            {
+                df.Add(design, this.listFacets.DegreeOfFreedom(design));
+            }
+
             // Calculo la suma de cuadrados
             CalcSSq(mfo, zero);
-
 
             // ahora calcula los cuadrados medios
             CalcMSQ();
@@ -156,8 +158,6 @@ namespace ProjectSSQ
             for (int i = 0; i < n; i++) //for each design
             {// (* 1 *)
                 string key_design = this.ldesigns[i];
-
-                df.Add(key_design, this.listFacets.DegreeOfFreedom(key_design));
 
                 ListOfTerms LoT = new ListOfTerms(this.listFacets, key_design); //generate its list of terms
 
@@ -670,7 +670,7 @@ namespace ProjectSSQ
          *  
          *  Note: O(n^2) performance, ListDesignFacets could probably be cached
          */
-        public void CalcMixComp()
+        private void CalcMixComp()
         {
             if (this.listFacets.HasAllFacetsSizeInfinite())
             {
@@ -712,7 +712,7 @@ namespace ProjectSSQ
         /* Descripción
          *  Calcula el componente de varianza corregida
          */
-        public void CalcCorrecComp()
+        private void CalcCorrecComp()
         {
             int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)

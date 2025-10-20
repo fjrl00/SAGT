@@ -175,26 +175,6 @@ namespace ProjectSSQ
         }
 
 
-        /* Descripción:
-         *  Devuelve una copia del objeto tras actualizar las listas de facetas por la nueva que se 
-         *  pasa como parámetro.
-         *  
-         *  NOTA:
-         *  Se aprovecha de que el orden de la lista de los diseños será el mismo para
-         *  el antiguo que para el nuevo.
-         *  
-         * @Precondición:
-         *  La nueva lista tiene que tener el mismo número de facetas y para cada una de ellas
-         *  debe tener la misma jerarquia de anidamientos.
-         */
-        public G_ParametersOptimization ReplaceListFacets(ListFacets newListFacets)
-        {
-            return new G_ParametersOptimization(newListFacets, this.total_differentiation_var,
-                this.coefG_Rel, this.coefG_Abs, this.totalRelErrorVar, this.totalAbsErrorVar,
-                this.errorRelStandDev, this.errorAbsStandDev, this.targetStandDev);
-        }
-
-
         #region Escritura de datos de G_Parametros de optimización
         /***********************************************************************************************
          * Métodos de para la escritura de datos
