@@ -78,7 +78,10 @@ namespace GUI_GT
         // MultiFacetsObs multiFacets = null;
 
         // variable para la inserción/edición de facetas 
-        ListFacets lf_global = null;
+        // Más exactamente, se usa para seguir la pista durante la creación de facetas mixtas, 
+        // dejando de ser null tras hacer un anidamiento, volviendo a null cuando hemos terminado 
+        // el proceso de creacion de facetas mixtas
+        ListFacets lf_global = null;    
         // Variable que indica la disposición de la facetas para el objeto multifaceta que se esta creando
         // La disposición de las facetas puede ser: cruzada, anidada o mixta.
         MultiFacetData.ProvisionOfFacets provision;
@@ -1657,25 +1660,25 @@ namespace GUI_GT
         private void btAccionGenerateTableObs_Click(object sender, EventArgs e)
         {
             ListFacets lf = null;
-            // Comprobamos si hay datos en la varible de edición de facetas
-            if (this.lf_global == null)
+            if (this.lf_global == null) // Comprobamos si hay datos en la varible de edición de facetas (aka hay anidamientos de facetas mixtas)
             {
                 // comprobamos que los datos de la tabla son correctos y los obtenemos de la tabla.
                 lf = validateFacetTable(this.dataGridViewExFacets);
+            }
+            else    //si hay anidamientos de facetas mixtas
+            {
+                lf = this.lf_global;    //pasamos esa información directamente
+            }
+
+            if (lf != null) // si los datos son correctos...
+            {
                 if (this.provision.Equals(ProvisionOfFacets.Nested))
                 {
                     // Hacemos un anidamiento de las facetas
                     lf.NestingAllFacet();
                     LoadListFacetInDataGridView(lf, dataGridViewExFacets);
                 }
-            }
-            else
-            {
-                lf = this.lf_global;
-            }
 
-            if (lf != null) // si los datos son correctos...
-            {
                 try
                 {
                     // Ocultamos el checkBox de "Ocultar nulos"
