@@ -12,6 +12,10 @@
  * 
  * Descripción:
  *      Clase de Tabla de Análisis de Varianza.
+ *      
+ *      Contiene para cada fuente de variabilidad (definido como un string), la suma de cuadrados, el grado de 
+ *      libertad, el cuadrado medio, la componente de varianza aleatoria, la componente de varianza mixta, la 
+ *      componente de varianza corregida, porcentaje de la componente de varianza corregida positiva y el error estándar.
  */
 
 using System;
@@ -37,9 +41,6 @@ namespace ProjectSSQ
         // Comienzo y fin de una tabla de análisis de varianza
         public const string BEGIN_TABLE_ANALYSIS_OF_VARIANCE = "<table_analysis_of_variance>";
         const string END_TABLE_ANALYSIS_OF_VARIANCE = "</table_analysis_of_variance>";
-        // Comienzo y fin de una lista de lista de facetas
-        const string BEGIN_LIST_OF_LIST_FACETS = "<list_of_list_facets>";
-        const string END_LIST_OF_LIST_FACETS = "</list_of_list_facets>";
 
 
         /******************************************************************************************************
@@ -47,10 +48,7 @@ namespace ProjectSSQ
          ******************************************************************************************************/
 
         private ListFacets listFacets; // lista de facetas (Fuentes de variación)
-        // fuente de variación (una o más facetas) la que queremos calular
-        // fuente de variación (una o más facetas) a partir de las cuales queremos calular
-        // private List<ListFacets> llf; // Combinación de listas de facetas
-        private List<string> ldesign; // Lista de diseños contendrá las claves
+        private List<string> ldesigns; // Lista de diseños contendrá las claves
 
         private Dictionary<string, double> df; // grado de libertad 
         private Dictionary<string, double?> ssq; // suma de cuadrados
@@ -66,7 +64,7 @@ namespace ProjectSSQ
         private Dictionary<string, double?> correcComp;
 
         // Porcentaje
-        private Dictionary<string, double?> porcentage;
+        private Dictionary<string, double?> percentage;
         // Error estandar
         private Dictionary<string, double?> standardError;
 
@@ -92,7 +90,7 @@ namespace ProjectSSQ
             this.randomComp = new Dictionary<string, double?>();
             this.mixComp = new Dictionary<string, double?>();
             this.correcComp = new Dictionary<string, double?>();
-            this.porcentage = new Dictionary<string, double?>();
+            this.percentage = new Dictionary<string, double?>();
             this.standardError = new Dictionary<string, double?>();
         }
 
@@ -117,37 +115,17 @@ namespace ProjectSSQ
             /* inicializamos el grado de libertad */
             this.df = new Dictionary<string, double>();
 
-            /* Inicializamos la estructura de suma de cuadrados*/
-            Dictionary<string, double?> sum_x = new Dictionary<string, double?>();
-
-            /* Inicializamos la estructura de suma de cuadrados al cuadrado*/
-            Dictionary<string, double?> sum_x2 = new Dictionary<string, double?>();
-
-            /* inicializamos el vector de varianza */
-            Dictionary<string, double?> variance = new Dictionary<string, double?>();
-
-            //this.sourceLeft = sLeft;
-            //this.sourceRight = sRight;
-
-            // this.llf = llf; // contiene las variaciones de la lista
             if (ldesign == null || ldesign.Count < 2)
             {
                 throw new TableAnalysisOfVarianceException("Error en la lista de diseños");
             }
-            this.ldesign = ldesign;
+            this.ldesigns = ldesign;
 
             // inicializamos la lista de facetas
             this.listFacets = mfo.ListFacets();
 
             // Calculo la suma de cuadrados
             CalcSSq(mfo, zero);
-            
-            // Calculos parciales de la suma de cuadrados
-            /* inicializamos la suma de cuadrados parciales*/
-            // Dictionary<string, double?> partialSSQ = PartialSumOfSquares(sum_x2);
-
-            /*Ahora ya podemos calcular la suma de cuadrados de las desviaciones*/
-            // CalcSSQ(partialSSQ, residue);
 
 
             // ahora calcula los cuadrados medios
@@ -159,7 +137,7 @@ namespace ProjectSSQ
             // Calculamos los componentes de varianza corregida
             CalcCorrecComp();
             // Caculamos el porcentaje 
-            CalcPorcentage();
+            CalcPercentage();
             // Calculamos el error standar
             CalcStandardError();
         }// end TableAnalysisOfVariance
@@ -174,36 +152,30 @@ namespace ProjectSSQ
             // también llamado suma de cuadrados parciales
             Dictionary<ListFacets, double?> terms = new Dictionary<ListFacets, double?>();
 
-            // inicializamos la variable que contiene el residuo
-            // string s_residue = DesignResidue(this.ldesign);
-            double? residue = CalcResidue(mfo.ObservationTable());
-
-            // int n = this.llf.Count;
-            int n = this.ldesign.Count;
-            for (int i = 0; i < n; i++)
+            int n = this.ldesigns.Count;
+            for (int i = 0; i < n; i++) //for each design
             {// (* 1 *)
-                string key_design = this.ldesign[i];
+                string key_design = this.ldesigns[i];
 
                 df.Add(key_design, this.listFacets.DegreeOfFreedom(key_design));
 
-                ListOfTerms lot = new ListOfTerms(this.listFacets, key_design); // lot (list of terms)
+                ListOfTerms LoT = new ListOfTerms(this.listFacets, key_design); //generate its list of terms
 
                 double sumsOfSquares = 0;
 
-                int numOfTerm = lot.Count();
-                for (int j = 0; j < numOfTerm; j++)
+                int numOfTerm = LoT.Count();
+                for (int j = 0; j < numOfTerm; j++) //for each term                 
                 {// (* 2 *)
-                    Term t = lot.TermInPos(j);
+                    Term t = LoT.TermInPos(j);
                     ListFacets facetsOfTerm = t.ListFacets();
-                    char sign = t.Sign();
 
-                    double? partial = null; // almacena el valor de la suma parcial.
+                    double? partial; // almacena el valor de la suma parcial.
 
                     // Si "facetsOfTerm"  es la lista vacia entonces debe calcularse el residuo
                     if (facetsOfTerm.IsEmpty())
                     {
                         // asignamos a partial el valor del residuo
-                        partial = residue;
+                        partial = CalcResidue(mfo.ObservationTable());
                     }
                     else
                     {
@@ -217,24 +189,23 @@ namespace ProjectSSQ
                             /* Si la clave no está contenida, calcularé el valor de la suma parcial
                              * y lo introduciré en la estructura.
                              */
-                            // partial = PartialSumOfSquares(facetsOfTerm, mfo);
                             partial = PartialSumOfSquaresByMeans(facetsOfTerm, mfo, zero);
                             terms[facetsOfTerm] = partial;
                         }
                     }
 
-                    switch (sign)
+                    switch (t.Sign())
                     {
                         case (Term.MINUS):
                             if (partial != null)
                             {
-                                sumsOfSquares = (sumsOfSquares - (double)partial);
+                                sumsOfSquares -= (double)partial;
                             }
                             break;
                         case (Term.PLUS):
                             if (partial != null)
                             {
-                                sumsOfSquares = (sumsOfSquares + (double)partial);
+                                sumsOfSquares += (double)partial;
                             }
                             break;
                         default:
@@ -247,37 +218,6 @@ namespace ProjectSSQ
                 this.ssq[key_design] = sumsOfSquares;
             }// end for (* 1 *)
         }// end CalcSSq
-
-
-        /* Descripción:
-         *  Devuelve de la lista de diseños aquel que se corresponde con el diseño del residuo.
-         *  Devolverá el diseño que tenga mayor número de facetas. Si hay varios con el mismo 
-         *  número devolverá el último que encuentre.
-         */
-        private static string DesignResidue(List<string> ldesign)
-        {
-            if (ldesign == null || ldesign.Count < 2)
-            {
-                throw new TableAnalysisOfVarianceException("Error en la lista de diseños");
-            }
-            string res = ldesign[0];
-            char[] delimeterChars = { '[' }; // nuestro delimitador será el caracter blanco
-            string[] arrayOfstring = res.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
-            int num = arrayOfstring.Length;
-            int n = ldesign.Count;
-            for (int i = 1; i < n; i++)
-            {
-                string next = ldesign[i];
-                arrayOfstring = next.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
-                int num2 = arrayOfstring.Length;
-                if (num <= num2)
-                {
-                    res = next;
-                    num = num2;
-                }
-            }
-            return res;
-        }
 
 
         /* Descripción:
@@ -304,8 +244,8 @@ namespace ProjectSSQ
             : this()
         {
             this.listFacets = listF;
-            this.ldesign = this.listFacets.CombinationStringWithoutRepetition();
-            int num_ldesign = this.ldesign.Count();
+            this.ldesigns = this.listFacets.CombinationStringWithoutRepetition();
+            int num_ldesign = this.ldesigns.Count();
             int num_listOSSQ = ssq.Keys.Count;
 
             Dictionary<string, double?> newssq = new Dictionary<string, double?>();
@@ -315,7 +255,7 @@ namespace ProjectSSQ
                 bool incluido = true;
                 for (int i = 0; i < num_listOSSQ && incluido; i++)
                 {
-                    string key_design = this.ldesign[i];
+                    string key_design = this.ldesigns[i];
                     df.Add(key_design, this.listFacets.DegreeOfFreedom(key_design));
                     incluido = ssq.ContainsKey(key_design);
                     double? d = ssq[key_design];
@@ -344,52 +284,7 @@ namespace ProjectSSQ
             // Calculamos los componentes de varianza corregida
             CalcCorrecComp();
             // Calculamos el porcentaje
-            CalcPorcentage();
-            // Calculamos el error standar
-            CalcStandardError();
-        }// end TableAnalysisOfVariance
-
-
-        /*
-         *Descripción:
-         * Contruye un objeto de la clase a partir de una lista de facetas y una lista de
-         * suma de cuadrados.
-         */
-        public TableAnalysisOfVariance(ListFacets listF_mod, TableAnalysisOfVariance lssqOriginal)
-            : this()
-        {
-            this.listFacets = listF_mod;
-            List<string> listOfSourceOfVarOriginal = lssqOriginal.SourcesOfVar();
-            // List<ListFacets> newListOfSourceOfVar = listF_mod.CombinationWithoutRepetition();
-            this.ldesign = listF_mod.CombinationStringWithoutRepetition();
-            int n_sourceOfVarOrig = listOfSourceOfVarOriginal.Count;
-
-            for (int i = 0; i < n_sourceOfVarOrig; i++)
-            {
-                string key_design_original = listOfSourceOfVarOriginal[i];
-                string key_design_mod = this.ldesign[i];
-                if (key_design_original.Equals(key_design_mod))
-                {
-                    // entonce realizamos asignación
-                    this.ssq.Add(key_design_mod,lssqOriginal.ssq[key_design_original]);
-                }
-                else
-                {
-                    // lanzamos una excepción
-                    throw new TableAnalysisOfVarianceException
-                    ("Error al crear TableAnalysisOfVariance: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
-                }
-            }
-            // ahora calcula los cuadrados medios
-            CalcMSQ();
-            // Calculamos los componentes de varianza aleatorios
-            CalcRandomComp();
-            // Calculamos los componentes de varianza mixtos
-            CalcMixComp();
-            // Calculamos los componentes de varianza corregida
-            CalcCorrecComp();
-            // Calculamos el porcentaje
-            CalcPorcentage();
+            CalcPercentage();
             // Calculamos el error standar
             CalcStandardError();
         }// end TableAnalysisOfVariance
@@ -406,15 +301,15 @@ namespace ProjectSSQ
             : this()
         {
             this.listFacets = listF;
-            this.ldesign = listF.CombinationStringWithoutRepetition();
+            this.ldesigns = listF.CombinationStringWithoutRepetition();
             this.ssq = ssq;
             this.df = d_df;
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                double df = this.df[this.ldesign[i]];
-                double? msq_aux = 0;
-                double? ssq_aux = ssq[this.ldesign[i]];
+                double df = this.df[this.ldesigns[i]];
+                double? msq_aux;
+                double? ssq_aux = ssq[this.ldesigns[i]];
                 if (df > 0 && ssq_aux != null)
                 {
                     msq_aux = (double)ssq_aux / df;
@@ -423,38 +318,13 @@ namespace ProjectSSQ
                 {
                     throw new TableAnalysisOfVarianceException("Error en los parámetros");
                 }
-                this.msq.Add(this.ldesign[i], msq_aux);
+                this.msq.Add(this.ldesigns[i], msq_aux);
             }
             this.randomComp = random;
             this.mixComp = mix;
             this.correcComp = correc;
             // Calculamos el porcentaje
-            CalcPorcentage();
-            // Calculamos el error standar
-            CalcStandardError();
-        }// end TableAnalysisOfVariance
-
-
-        /* Descripción:
-         *  Constructor. Le pasamos como argumento la suma de cuadrados y las componentes: aleatorias
-         *  mixtas y corregidas.
-         */
-        public TableAnalysisOfVariance(ListFacets listF, Dictionary<string, double?> ssq,
-            Dictionary<string, int> d_df,
-            Dictionary<string, double?> msq,
-            Dictionary<string, double?> random,
-            Dictionary<string, double?> mix, Dictionary<string, double?> correc)
-            : this()
-        {
-            this.listFacets = listF;
-            this.ldesign = listF.CombinationStringWithoutRepetition();
-            this.ssq = ssq;
-            this.msq = msq;
-            this.randomComp = random;
-            this.mixComp = mix;
-            this.correcComp = correc;
-            // Calculamos el porcentaje
-            CalcPorcentage();
+            CalcPercentage();
             // Calculamos el error standar
             CalcStandardError();
         }// end TableAnalysisOfVariance
@@ -476,14 +346,14 @@ namespace ProjectSSQ
             : this()
         {
             this.listFacets = listF;
-            this.ldesign = ldesign;
+            this.ldesigns = ldesign;
             this.ssq = ssq;
             this.df = df;
             this.msq = msq;
             this.randomComp = random;
             this.mixComp = mix;
             this.correcComp = correc;
-            this.porcentage = porc;
+            this.percentage = porc;
             this.standardError = stad_error;
         }
         #endregion Constructores de la clase TableAnalysisOfVariance
@@ -501,7 +371,7 @@ namespace ProjectSSQ
          *  - MSQ: Suma de cuadrados medios.
          *  - RandomComp: Componente de varianza aleatorio.
          *  - MixModComp: Componente de vaianza mixto.
-         *  - CorretedComp: Componente de vaianza corregido.
+         *  - CorrectedComp: Componente de vaianza corregido.
          *  - Porcentage: Tanto por ciento.
          *  - StandardError: Error standar.
          *======================================================================================*/
@@ -512,7 +382,7 @@ namespace ProjectSSQ
          */
         public List<string> SourcesOfVar()
         {
-            return this.ldesign;
+            return this.ldesigns;
         }
 
 
@@ -591,7 +461,7 @@ namespace ProjectSSQ
          * Parámetro:
          *      string key: Fuente de variación.
          */
-        public double? CorretedComp(string key)
+        public double? CorrectedComp(string key)
         {
             return this.correcComp[key];
         }
@@ -602,7 +472,7 @@ namespace ProjectSSQ
          */
         public double? Porcentage(string key)
         {
-            return this.porcentage[key];
+            return this.percentage[key];
         }
 
 
@@ -680,7 +550,7 @@ namespace ProjectSSQ
                 if (mean != null)
                 {
                     double value = mean.Value;
-                    sumX_2 = sumX_2 + value * value;
+                    sumX_2 += value * value;
                 }
             }
 
@@ -688,78 +558,16 @@ namespace ProjectSSQ
             return sumX_2;
         }
 
-
-        /*
-         * Descripción:
-         *  Calcula la suma de cuadrados de las desviaciones
-         */
-        //private void CalcSSQ(Dictionary<string, double?> partialSSQ, double? residue)
-        //{
-        //    int n = this.ldesign.Count;
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        string design = this.ldesign[i];
-        //        ListFacets lf = this.listFacets.ListDesignFacets(design);
-        //        List<string> llf_aux = lf.CombinationStringWithoutRepetition();
-        //        llf_aux.Reverse();
-        //        int sign = 1;
-        //        int num = llf_aux[0].Count();
-        //        double d = 0;
-        //        int n2 = llf_aux.Count;
-        //        for(int j=0; j <n2; j++)
-        //        {
-        //            string lf2 = llf_aux[j];
-        //            if (num != lf2.Count())
-        //            {
-        //                sign *= (-1);
-        //                num = lf2.Count();
-        //            }
-
-        //            //int num_facets = lf.Count(); /* el número de facetas determina el signo */
-        //            //int pos = llf.IndexOf(lf_aux[j]); /* posición en la que esta el dato parcial */
-        //            d = d + (sign *(double)partialSSQ[lf2]);
-        //        }
-        //        if ((lf.Count() % 2) == 0)
-        //        {
-        //            sign = 1;
-        //        }
-        //        else
-        //        {
-        //            sign = (-1);
-        //        }
-        //        this.ssq[design] = d + (sign * residue);
-        //    }
-        //}// end public void CalcSSQ()
-
-
-
-        /*
-         * Descripción:
-         *  Calcula la suma de cuadrados de las desviaciones
-         */
-        //private void CalcSSQ(MultiFacetsObs mfo, List<string> ldesign)
-        //{
-        //    Dictionary<string, double?> terms;
-        //    double? residue;
-
-        //    int num = ldesign.Count;
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        string design = ldesign[i];
-        //    }
-        //}
-
-
         /*
          * Descripción:
          *  Calcula la suma de cuadrados medios.
          */
         private void CalcMSQ()
         {
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                string design = this.ldesign[i];
+                string design = this.ldesigns[i];
                 double df = this.df[design];
                 if (df == 0)
                 {
@@ -777,14 +585,14 @@ namespace ProjectSSQ
 
         /*
          * Descripción:
-         *  Calculo del componente de varianza aleatorio
+         *  Cálculo del componente de varianza aleatorio
          */
         private void CalcRandomComp()
         {
-            int n = this.ldesign.Count;
-            List<string> sortl = SortDesing(this.ldesign, this.listFacets.Count());
+            int n = this.ldesigns.Count;
+            List<string> sortl = SortDesing(this.ldesigns, this.listFacets.Count());
 
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++)     //for each design
             {
                 // PASO 0
                 string design = sortl[j];
@@ -804,16 +612,16 @@ namespace ProjectSSQ
                     int numOfTerm = 0;
                     bool end = false;
                     numF++;
-                    for (int i = 0; i < n && !end; i++)
+                    for (int i = 0; i < n && !end; i++)     //for each design again
                     {
                         string design_aux = sortl[i];
                         ListFacets lf_aux = this.listFacets.ListDesignFacets(design_aux);
                         int numFacet_of_lf_aux = lf_aux.Count();
                         end = !(numFacet_of_lf_aux <= numF);
 
-                        if ((numF== numFacet_of_lf_aux) && lf_aux.ContainsList(lf))
+                        if ((numF== numFacet_of_lf_aux) && lf_aux.ContainsList(lf)) //if match, operate
                         {
-                            d = d + (sign * this.msq[design_aux]);
+                            d += (sign * this.msq[design_aux]);
                             l_facets_used = l_facets_used.Union(lf_aux);
                             numOfTerm++;
                         }
@@ -840,7 +648,7 @@ namespace ProjectSSQ
 
                             if ((numF == numFacet_of_lf_aux) && l_facets_used.ContainsList(lf_aux) && lf_aux.ContainsList(lf))
                             {
-                                d = d + (sign * this.msq[design_aux]);
+                                d += (sign * this.msq[design_aux]);
                                 l_facets_used2 = l_facets_used2.Union(lf_aux);
                                 numOfTerm++;
                             }
@@ -859,6 +667,8 @@ namespace ProjectSSQ
         /* Descripción:
          *  Calculo de componetes de varianza mixtos. Estos serán iguales a los aleatorios en el caso
          *  de que todas las facetas sean aleatorias infinita.
+         *  
+         *  Note: O(n^2) performance, ListDesignFacets could probably be cached
          */
         public void CalcMixComp()
         {
@@ -871,25 +681,25 @@ namespace ProjectSSQ
             else
             {
                 /* Al menos una faceta no es aleatoria infinita. */
-                int n = this.ldesign.Count;
-                for (int j = 0; j < n; j++)
+                int n = this.ldesigns.Count;
+                for (int j = 0; j < n; j++)     //For each design
                 {
-                    string design = this.ldesign[j];
+                    string design = this.ldesigns[j];                           
                     ListFacets lf = this.listFacets.ListDesignFacets(design);
                     double d = 0;
-                    for (int i = 0; i < n; i++)
+                    for (int i = 0; i < n; i++)     //We iterate through all designs again
                     {
-                        string key_design_aux = this.ldesign[i];
+                        string key_design_aux = this.ldesigns[i];
                         ListFacets lf_aux = this.listFacets.ListDesignFacets(key_design_aux);
-                        if(lf_aux.ContainsList(lf))
+
+                        if(lf_aux.ContainsList(lf)) //if second design contains the first
                         {
                             double d2 = (double)this.randomComp[key_design_aux];
-                            // lf_aux = lf_aux.Difference(lf);
                             lf_aux = lf_aux.SourcesOfVariabilityAbsent(lf);
                             double mult = lf_aux.MultSizeOfUniverse();
                             if (mult > 0)
                             {
-                                d = d + (1 / mult) * d2;
+                                d += (1 / mult) * d2;   //It's a hit, it counts for the calculus of this design's mixed component of variance
                             }
                         }
                     }
@@ -904,16 +714,16 @@ namespace ProjectSSQ
          */
         public void CalcCorrecComp()
         {
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                string design = this.ldesign[i];
+                string design = this.ldesigns[i];
                 ListFacets lf = this.listFacets.ListDesignFacets(design);
                 double d = (double)this.mixComp[design];
                 if (lf.HasAllFacetsFixed())
                 {
                     // Se trata de una faceta fija
-                    d = d * lf.HopeOfVariance();
+                    d *= lf.HopeOfVariance();
                 }
                 this.correcComp.Add(design, d);
             }
@@ -926,14 +736,14 @@ namespace ProjectSSQ
         private double SumTotalPositiveCompOfVar()
         {
             double retVal = 0;
-            int pos = this.ldesign.Count;
+            int pos = this.ldesigns.Count;
             for (int i = 0; i < pos; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 double n = (double)this.correcComp[key];
                 if (n > 0)
                 {
-                    retVal = retVal + n;
+                    retVal += n;
                 }
             }
             return retVal;
@@ -943,21 +753,21 @@ namespace ProjectSSQ
         /* Descripción:
          *  Calculo de porcentaje
          */
-        private void CalcPorcentage()
+        private void CalcPercentage()
         {
             double sumTotal = SumTotalPositiveCompOfVar();
-            int pos = this.ldesign.Count;
+            int pos = this.ldesigns.Count;
             for (int i = 0; i < pos; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 double n = (double)this.correcComp[key];
                 if (n <= 0)
                 {
-                    this.porcentage[key] = 0;
+                    this.percentage[key] = 0;
                 }
                 else
                 {
-                    this.porcentage[key] = (n * 100) / sumTotal;
+                    this.percentage[key] = (n * 100) / sumTotal;
                 }
             } 
         }
@@ -968,22 +778,22 @@ namespace ProjectSSQ
          */
         private void CalcStandardError()
         {
-            int pos = this.ldesign.Count;
-            for (int i = 0; i < pos; i++)
+            int pos = this.ldesigns.Count;
+            for (int i = 0; i < pos; i++)       //for each design
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 ListFacets lf = this.listFacets.ListDesignFacets(key);
                 double aux = 0;
-                for (int j = 0; j < pos; j++)
+                for (int j = 0; j < pos; j++)       //for each design
                 {
-                    string key_aux = this.ldesign[j];
+                    string key_aux = this.ldesigns[j];
                     ListFacets lf_aux = this.listFacets.ListDesignFacets(key_aux);
-                    if (lf_aux.ContainsList(lf))
+                    if (lf_aux.ContainsList(lf))        //if it's a match, then calc
                     {
                         double d1 = (double)this.msq[key_aux]; 
                         double d = d1 * d1 * 2;
                         double d2 = lf_aux.DegreeOfFreedom(key_aux);
-                        aux = aux + (d / (d2 + 2));
+                        aux += (d / (d2 + 2));
                     }
                 }
                 
@@ -1009,10 +819,10 @@ namespace ProjectSSQ
         public double? CalcTotalSSQ()
         {
             double? retVal = null;
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 double? d = this.ssq[key];
                 if (d != null)
                 {
@@ -1022,7 +832,7 @@ namespace ProjectSSQ
                     }
                     else
                     {
-                        retVal = retVal + d;
+                        retVal += d;
                     }
                 }
             }
@@ -1037,10 +847,10 @@ namespace ProjectSSQ
         public double? CalcTotalDF()
         {
             double? retVal = null;
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                string design = this.ldesign[i];
+                string design = this.ldesigns[i];
                 double? d = this.df[design];
                 if (d != null)
                 {
@@ -1050,7 +860,7 @@ namespace ProjectSSQ
                     }
                     else
                     {
-                        retVal = retVal + d;
+                        retVal += d;
                     }
                 }
             }
@@ -1068,14 +878,14 @@ namespace ProjectSSQ
         public TableAnalysisOfVariance Clone()
         {
             // Copiamos la lista de facetas
-            ListFacets copyListFacet = this.listFacets.Clone(); // copia en profundidad
+            ListFacets copyListFacet = this.listFacets.DeepClone(); // copia en profundidad
             // Copiamos la lista de diseños
             List<string> copyLdesign = new List<string>();
             
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
-                copyLdesign.Add(string.Copy(this.ldesign[i]));
+                copyLdesign.Add(string.Copy(this.ldesigns[i]));
             }
 
             // Copiamos el grado de libertad
@@ -1093,7 +903,7 @@ namespace ProjectSSQ
             Dictionary<string, double?> copyCorrecComp = ClonarDictionary(this.correcComp);
 
             // Copiamos los Porcentajes
-            Dictionary<string, double?> copyPorcentage = ClonarDictionary(this.porcentage);
+            Dictionary<string, double?> copyPorcentage = ClonarDictionary(this.percentage);
             // Error estandar
             Dictionary<string, double?> copyStandardError = ClonarDictionary(this.standardError);
 
@@ -1162,15 +972,11 @@ namespace ProjectSSQ
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 Dictionary<string,double?> sumOfSquares = this.ssq;
-                int n = this.ldesign.Count;
+                int n = this.ldesigns.Count;
                 for (int i = 0; i < n; i++)
                 {
-                    string design = this.ldesign[i];
-                    double? d = sumOfSquares[design];
-                    if (d == null)
-                    {
-                        d = 0;
-                    }
+                    string design = this.ldesigns[i];
+                    double? d = sumOfSquares[design] ?? 0;
                     writer.WriteLine(d.ToString());
                 }
                 res = true;
@@ -1194,12 +1000,12 @@ namespace ProjectSSQ
             // Escribimos la lista de lista de facetas y el resto de los datos
             if (res)
             {//(* 1 *)
-                int n = this.ldesign.Count;
+                int n = this.ldesigns.Count;
                 // fila de datos
                 for (int i = 0; i < n && res; i++)
                 {
                     // Escribimos la lista de facetas
-                    string key = this.ldesign[i];
+                    string key = this.ldesigns[i];
 
                     double? ssq = this.ssq[key]; // suma de cuadrados
                     double? df = this.df[key]; // grado de libertad
@@ -1207,7 +1013,7 @@ namespace ProjectSSQ
                     double? randomComp = this.randomComp[key]; // Componente de Varianza Aleatorio
                     double? mixComp = this.mixComp[key]; // Componentes de Varianza Mixtos
                     double? correcComp = this.correcComp[key];
-                    double? porcentage = this.porcentage[key];
+                    double? porcentage = this.percentage[key];
                     double? standardError = this.standardError[key];
 
                     string line = key + " " + ssq.ToString() + " " + df.ToString() + " " 
@@ -1341,13 +1147,13 @@ namespace ProjectSSQ
         public override string ToString()
         {
             StringBuilder res = new StringBuilder(); // variable de retorno
-            int n = this.ldesign.Count;
+            int n = this.ldesigns.Count;
 
             res.Append("\n\nSuma de cuadrados:\n");
 
             for (int i = 0; i < n; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 res.Append(key + ": "+ this.ssq[key] + "\n");
             }
             res.Append("\n\n");
@@ -1355,7 +1161,7 @@ namespace ProjectSSQ
             res.Append("\n\nGrado de libertad:\n");
             for (int i = 0; i < n; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 res.Append(key + ": " + this.DegreesOfFreedom(key) + "\n");
             }
             res.Append("\n\n");
@@ -1363,7 +1169,7 @@ namespace ProjectSSQ
             res.Append("\n\nCuadrado medio:\n");
             for (int i = 0; i < n; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 res.Append(key + ": " + this.msq[key] + "\n");
             }
             res.Append("\n\n");
@@ -1372,7 +1178,7 @@ namespace ProjectSSQ
 
             for (int i = 0; i < n; i++)
             {
-                string key = this.ldesign[i];
+                string key = this.ldesigns[i];
                 res.Append(key + ": " + this.randomComp[key] + "\n");
             }
             res.Append("\n\n");
@@ -1451,7 +1257,7 @@ namespace ProjectSSQ
             Dictionary<string, double?> newSsq = new Dictionary<string, double?>();
             for (int i = 0; i < num; i++)
             {
-                newSsq.Add(newldesign[i], this.ssq[this.ldesign[i]]);
+                newSsq.Add(newldesign[i], this.ssq[this.ldesigns[i]]);
             }
 
             return new TableAnalysisOfVariance(newListFacets, newSsq);
@@ -1486,10 +1292,10 @@ namespace ProjectSSQ
             dtAnalysisOfVar.Columns.Add(new DataColumn("porcentage", System.Type.GetType("System.Double")));
             dtAnalysisOfVar.Columns.Add(new DataColumn("standard_error", System.Type.GetType("System.Double")));
 
-            int nSource = this.ldesign.Count;
+            int nSource = this.ldesigns.Count;
             for (int i = 0; i < nSource; i++)
             {
-                string source = this.ldesign[i];
+                string source = this.ldesigns[i];
                 // Insertamos los datos
                 DataRow row = dtAnalysisOfVar.NewRow();
                 row["source_of_var"] = source;
@@ -1499,7 +1305,7 @@ namespace ProjectSSQ
                 row["random_comp"] = this.randomComp[source];
                 row["mix_comp"] = this.mixComp[source];
                 row["correc_comp"] = this.correcComp[source];
-                row["porcentage"] = this.porcentage[source];
+                row["porcentage"] = this.percentage[source];
                 row["standard_error"] = this.standardError[source];
                 // Añadimos la fila
                 dtAnalysisOfVar.Rows.Add(row);

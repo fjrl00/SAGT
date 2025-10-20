@@ -33,12 +33,6 @@ namespace ProjectSSQ
         // Comienzo y fin de una tabla G_Study con columnas de porcentaje de error
         public const string BEGIN_TABLE_G_STUDY_PERCENT = "<table_g_study_percent>";
         const string END_TABLE_G_STUDY_PERCENT = "</table_g_study_percent>";
-        // Comienzo y fin de la lista de facetas de diferenciación
-        const string BEGIN_DIFFERENTIATION_FACETS = "<differentiation_facets>";
-        const string END_DIFFERENTIATION_FACETS = "</differentiation_facets>";
-        // Comienzo y fin de la lista de facetas de instrumentación
-        const string BEGIN_INSTRUMENTATION_FACETS = "<instrumentation_facets>";
-        const string END_INSTRUMENTATION_FACETS = "</instrumentation_facets>";
         // Comienzo y fin de las "filas" de datos de la varianza de diferenciación
         const string BEGIN_DIFFERENTIATION_ROW = "<differentiation_row>";
         const string END_DIFFERENTIATION_ROW = "</differentiation_row>";
@@ -101,33 +95,10 @@ namespace ProjectSSQ
 
         public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
             Dictionary<string, double?> diffVar, Dictionary<string, ErrorVar> errorVar,
-            double coefG_Rel, double coefG_Abs, double totalRelErrorVar, double totalAbsErrorVar,
-            double errorRelStandDev, double errorAbsStandDev, double total_differentiation_var, 
-            double targetStandDev)
-            : base(differentiation, instrumentation, diffVar, errorVar, coefG_Rel, coefG_Abs,
-                    totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, total_differentiation_var, 
-                    targetStandDev)
-        {
-            CalcPercent();
-        }
-
-
-        public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
-            Dictionary<string, double?> diffVar, Dictionary<string, ErrorVar> errorVar,
             Dictionary<string, ErrorVar> percent, G_ParametersOptimization gp)
             : base(differentiation, instrumentation, diffVar, errorVar, gp)
         {
             this.percentError = percent;
-        }
-
-
-
-        public TableG_Study_Percent(TableG_Study tableG)
-            : this(tableG.LfDifferentiation(), tableG.LfInstrumentation(), tableG.Target(), tableG.Error(),
-            tableG.CoefG_Rel(), tableG.CoefG_Abs(), tableG.TotalRelErrorVar(), tableG.TotalAbsErrorVar(), 
-            tableG.ErrorRelStandDev(), tableG.ErrorAbsStandDev(), tableG.TotalDifferentiationVariance(),
-            tableG.TargetStandDev())
-        {
         }
 
         #endregion Constructores de la clase TableG_Study_Percent
@@ -203,9 +174,9 @@ namespace ProjectSSQ
         public override TableG_Study Clone()
         {
             // Copiamos la fuentes de diferenciación, 
-            ListFacets copyLfDifferentiation = this.LfDifferentiation().Clone();
+            ListFacets copyLfDifferentiation = this.LfDifferentiation().DeepClone();
             // Copiamos la fuentes de instrumentación
-            ListFacets copyLfInstrumentation = this.LfInstrumentation().Clone();
+            ListFacets copyLfInstrumentation = this.LfInstrumentation().DeepClone();
             Dictionary<string, double?> copyDifferentiationVar = ClonarDictionary(this.Target());
             Dictionary<string, ErrorVar> copyErrorVar = ClonarDictionary(this.Error());
 

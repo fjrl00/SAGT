@@ -13,6 +13,10 @@
  * Descripción:
  *      Libreria de suma de cuadrados.
  *      Contiene los valores de las varianzas de error o de su porcetanje de error.
+ *      
+ *      Para cada fuente de variabilidad que se corresponda con una fuente de 
+ *      instrumentación esta tendrá dos pares de valores que pueden ser nulos. 
+ *      Un valor se corresponde con el valor relativo y otro con el valor absoluto.
  */
 using System;
 using System.Collections.Generic;

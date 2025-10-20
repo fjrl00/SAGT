@@ -11,6 +11,7 @@
  * Fecha de revisión: 29/Jun/2012
  * 
  * Descripción:
+ *      Parámetros de Generalizabilidad obtenidos a partir de la TablaG_Study.
  *      Se construye con los parámetros optenidos tras una optimización.
  */
 using System;
@@ -296,7 +297,7 @@ namespace ProjectSSQ
         public G_ParametersOptimization Clone()
         {
             // Lista de Facetas a la que pertenecen los G_Parámetros
-            ListFacets copyGListFacets = this.gListFacets.Clone(); 
+            ListFacets copyGListFacets = this.gListFacets.DeepClone(); 
             // Suma total de las varianzas de las fuentes objetivo
             double copyTotal_differentiation_var = this.total_differentiation_var; 
             double copyCoefG_Rel = this.coefG_Rel; // coeficente G relativo

@@ -653,7 +653,7 @@ namespace MultiFacetData
         #region Clonación
         public MultiFacetsObs Clone()
         {
-            ListFacets lf = this.listFacets.Clone();
+            ListFacets lf = this.listFacets.DeepClone();
             string nameFile = this.nameFileObs;
             string comment = this.comment;
             string description = this.description;

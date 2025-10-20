@@ -290,12 +290,8 @@ namespace ProjectSSQ
          */
         public G_ParametersOptimization Calc_G_ParametersOptimización(ListFacets newLf)
         {
-            TableAnalysisOfVariance tableAnalysis = this.tableAnalysisVariance.ReplaceListFacets(newLf);
-
             ListFacets newLfDiff = new ListFacets();
             ListFacets newLfInst = new ListFacets();
-
-            ListFacets lf = this.tableAnalysisVariance.ListFacets();
 
             ListFacets lfDiff = this.tableG_Study_Percent.LfDifferentiation();
             int n = lfDiff.Count();
@@ -343,7 +339,7 @@ namespace ProjectSSQ
             lfDiff = this.List_Facets_Differentiation().SortByListFacets(lfDiff);
             lfInst = this.List_Facets_Intrumentation().SortByListFacets(lfInst);
 
-            TableG_Study_Percent newGp = new TableG_Study_Percent(lfDiff, lfInst);
+            TableG_Study_Percent newGp;
 
             /* Si todas las facetas de análisis y de optimización son infinitas
              * entoces uso la tabla de análisis original 
@@ -387,6 +383,7 @@ namespace ProjectSSQ
          *  string oldName: Nombre antiguo de la faceta que vamos a sustituir.
          *  string newName: Nombre nuevo de la faceta por el cual sustituimos
          */
+        /*
         public Analysis_and_G_Study ReplaceNameOfFacet(string oldName, string newName)
         {
             // Clonamos
@@ -405,7 +402,7 @@ namespace ProjectSSQ
             }
 
             return analysisReplace;
-        }// end ReplaceNameOfFacet
+        }// end ReplaceNameOfFacet*/
 
 
         #region Remplazar lista de facetas
@@ -545,7 +542,7 @@ namespace ProjectSSQ
             // escribimos el comentario del fichero de analisis de suma de cuadrados
             writer.WriteLine(BEGIN_COMMENT);
             // writer.WriteLine(this.textComment);
-            writeString(writer, this.textComment);
+            WriteString(writer, this.textComment);
             writer.WriteLine(END_COMMENT);
 
             // escribimos el resto de objetos del que se compone el fichero
@@ -575,7 +572,7 @@ namespace ProjectSSQ
          *  Es una operación auxiliar que se usa para escribir una a una cada linea del comentario y
          *  manterner el retorno de carro.
          */
-        private void writeString(StreamWriter writer, string txt)
+        private void WriteString(StreamWriter writer, string txt)
         {
             if (txt == null)
             {

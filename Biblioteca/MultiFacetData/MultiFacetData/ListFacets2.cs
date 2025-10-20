@@ -88,6 +88,8 @@ namespace MultiFacetData
          *  introduce la lista implicita y luego la explicita. 
          *  
          *  En lugar de saltar excepción si existen facetas repetidas, las omite en la concatenación.
+         * 
+         * Usada en DataTable2TableG_Study.
          */
         public ListFacets ConcatenateWithoutRepetitions(ListFacets lf)
         {
@@ -109,6 +111,32 @@ namespace MultiFacetData
             }
 
             return totalFacets;
+        }
+
+
+        /* Descripción:
+         *  Devuelve una lista de facetas como resultado de unir las dos lista, una como parámetro
+         *  implicito y otra como parámetro explicito. No contiene facetas repetidas.
+         *  
+         * Usada en CalcRandomComp.
+         * Diferencias con ConcatenateWithoutRepetitions:
+         * - usa ExistNameFacet como estándar de igualdad, en lugar de .Contains... Que actualmente también utiliza igualdad de nombre
+         * - el orden es algo así como [facetas que están en this pero no en lf, lf], en lugar de [this, facetas que están en lf pero no en list]
+         */
+        public ListFacets Union(ListFacets lf)
+        {
+            ListFacets retVal = new ListFacets();
+            int n = this.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = this.FacetInPos(i);
+                if (!lf.ExistNameFacet(f))
+                {
+                    retVal.Add(f);
+                }
+            }
+            retVal = retVal.Concatenate(lf);
+            return retVal;
         }
 
 
@@ -143,7 +171,8 @@ namespace MultiFacetData
 
         /*
         * Descripción:
-        *  Devuelve (int) el grado de libertad de una lista de facetas. Si una faceta no esta anidada,
+        *  Devuelve (int) el grado de libertad de una lista de facetas de acuerdo con el
+        *  diseño proveído.
         * Excepciones:
         *      ListFacetsException: Si la lista de facetas esta vacia.
         */
@@ -209,7 +238,7 @@ namespace MultiFacetData
         /*
          * Descripción:
          *  Contiene la multiplicación de los niveles de la lista de facetas.
-         *  Equivaldría al número de filas de la tabla de observaciones correspondiente a esta lista de facetas, entre posiblemente otros usos.
+         *  Equivaldría al número de filas de la tabla de observaciones correspondiente a esta lista de facetas, entre otros usos.
          *  NOTE: should prob change to int instead of double
          */
         public double MultOfLevels()
@@ -262,7 +291,7 @@ namespace MultiFacetData
          */
         public ListFacets SourcesOfVariabilityAbsent(ListFacets lf)
         {
-            ListFacets aux = clonaListaF(this);
+            ListFacets aux = this.ShallowClone();
             foreach (Facet f in lf)
             {
                 aux.Remove(f);
@@ -282,7 +311,7 @@ namespace MultiFacetData
          */
         public double MultipSourcesOfVariabilityAbsent(ListFacets lf)
         {
-            ListFacets aux = clonaListaF(this);
+            ListFacets aux = this.ShallowClone();
             foreach (Facet f in lf)
             {
                 aux.Remove(f);
@@ -557,7 +586,6 @@ namespace MultiFacetData
             for (int j = 0; j < num; j++)
             {
                 stringListOfFacets = stringListOfFacets + "[" + this.listFacets[j].Name() + "] ";
-
             }
             return stringListOfFacets;
         }
@@ -763,7 +791,7 @@ namespace MultiFacetData
                 int numOfElem2 = llf.Count - 1;
                 for (int j = 0; j < numOfElem2; j++)
                 {
-                    ListFacets lf_aux2 = CopyListFacets(llf[j]);
+                    ListFacets lf_aux2 = llf[j].ShallowClone();
                     lf_aux2.Add(f);
                     llf.Add(lf_aux2);
                 }
@@ -777,8 +805,8 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve una lista de string donde cada uno representa un diseño posible como combinación
-         *  de facetas.
+         *  Devuelve una lista de string de todos los posibles diseños 
+         *  como combinación de facetas.
          */
         public List<string> CombinationStringWithoutRepetition()
         {
@@ -959,45 +987,10 @@ namespace MultiFacetData
         #endregion Lista con las combinaciones de los diseños de las facetas
 
 
-
-        /* Descripción:
-         *  Copia una lista de facetas. La copia de facetas es supercial, se mantienen las referncias
-         *  a las facetas.
-         * Parámetros:
-         *      ListFacets lf: Es la lista de facetas que deseamos copiar.
-         */
-        public static ListFacets CopyListFacets(ListFacets lf)
-        {
-            ListFacets retVal = new ListFacets();
-            int numElems = lf.Count();
-            for (int i = 0; i < numElems; i++)
-            {
-                retVal.Add(lf.FacetInPos(i));
-            }
-            return retVal;
-        }
-
         #endregion Combinación sin repetición de lista de facetas ordenadas
 
 
 
-        /*
-         * Descripción:
-         *  Clona una lista de facetas.
-         * NOTA:
-         *  Solo clona la lista no las facetas.
-         */
-
-        private static ListFacets clonaListaF(ListFacets lf)
-        {
-            ListFacets cloneLF = new ListFacets();
-            List<Facet> auxLista = lf.RetListFacets();
-            foreach (Facet f in auxLista)
-            {
-                cloneLF.Add(f);
-            }
-            return cloneLF;
-        }
 
 
         /* Descripción:
@@ -1049,27 +1042,6 @@ namespace MultiFacetData
         }
 
 
-        /* Descripción:
-         *  Devuelve una lista de facetas como resultado de unir las dos lista, una como parámetro
-         *  implicito y otra como parámetro explicito. No contiene facetas repetidas.
-         */
-        public ListFacets Union(ListFacets lf)
-        {
-            ListFacets retVal = new ListFacets();
-            int n = this.Count();
-            for (int i = 0; i < n; i++)
-            {
-                Facet f = this.FacetInPos(i);
-                if (!lf.ExistNameFacet(f))
-                {
-                    retVal.Add(f);
-                }
-            }
-            retVal = retVal.Concatenate(lf);
-            return retVal;
-        }
-
-
 
         #region Operaciones para definir el anidamiento de facetas
         /*=================================================================================================
@@ -1083,7 +1055,7 @@ namespace MultiFacetData
          *=================================================================================================*/
 
         /* Descripción:
-         *  Devuelve si esta en la lista una faceta con el nombre que se pasa como parámetro. Devuelve null
+         *  Devuelve la faceta de la lista con el nombre que se pasa como parámetro. Devuelve null
          *  si la faceta no se encuentra en la lista.
          */
         public Facet LookingFacet(String name)

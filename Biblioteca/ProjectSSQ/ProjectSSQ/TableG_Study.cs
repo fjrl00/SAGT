@@ -12,6 +12,8 @@
  * 
  * Descripción:
  *      Clase TableG_Study 
+ *      La tabla que contiene los valores de la varianza de diferenciación para dichas fuentes y 
+ *      las varianzas de instrumentación de error relativos y absolutos para las fuentes de instrumentación
  */
 
 using System;
@@ -72,7 +74,7 @@ namespace ProjectSSQ
                 string key = llf_diff_cwr[i];
                 // Si varianaza corregida es negativa entonces la varianza de diferenciación debe
                 // valer cero.
-                double? tVar = lTSSQ.CorretedComp(key);
+                double? tVar = lTSSQ.CorrectedComp(key);
                 if ((tVar != null) && (double)tVar<0)
                 {
                     tVar = 0;
@@ -170,21 +172,6 @@ namespace ProjectSSQ
 
             this.g_parameterOptimization = new G_ParametersOptimization(totalFacets, 0, coefG_Rel, coefG_Abs,
             totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, 0);
-        }
-
-
-        public TableG_Study(ListFacets differentiation, ListFacets instrumentation,
-            Dictionary<string, double?> targetVar,
-            Dictionary<string, ErrorVar> errorVar,
-            double coefG_Rel, double coefG_Abs,
-            double totalRelErrorVar, double totalAbsErrorVar,
-            double errorRelStandDev, double errorAbsStandDev,
-            double total_differentiation_var, double targetStandDev)
-            : this(differentiation, instrumentation)
-        {
-            ListFacets totalFacets = differentiation.Concatenate(instrumentation);
-            this.g_parameterOptimization = new G_ParametersOptimization(totalFacets, total_differentiation_var, coefG_Rel, coefG_Abs,
-            totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, targetStandDev);
         }
 
         #endregion Constructores de la clase TableG_Study
@@ -460,7 +447,7 @@ namespace ProjectSSQ
          */
         private double CalcCoefG_Rel()
         {
-            double retVal = 0;
+            double retVal;
             double totalTarget = this.TotalDifferentiationVariance();
             double totalRelErr = this.TotalRelErrorVar();
             try
@@ -482,7 +469,7 @@ namespace ProjectSSQ
         */
         private double CalcCoefG_Abs()
         {
-            double retVal = 0;
+            double retVal;
             double totalTarget = this.TotalDifferentiationVariance();
             double totalRelAbs = this.TotalAbsErrorVar();
             try
@@ -554,7 +541,7 @@ namespace ProjectSSQ
                     double? d = targetVar[key];
                     if (d != null)
                     {
-                        d = d * lf.estimateBrennan();
+                        d *= lf.estimateBrennan();
                         targetVar.Remove(key);
                         targetVar.Add(key, d);
                     }
@@ -568,13 +555,13 @@ namespace ProjectSSQ
                     
                     if (d1 != null)
                     {
-                        d1 = d1 * lf_kety.Difference(differentiation).estimateBrennan();
+                        d1 *= lf_kety.Difference(differentiation).estimateBrennan();
                         e.RelErrorVar(d1);
                     }
 
                     if (d2 != null)
                     {
-                        d2 = d2 * lf_kety.Difference(differentiation).estimateBrennan();
+                        d2 *= lf_kety.Difference(differentiation).estimateBrennan();
                         e.AbsErrorVar(d2);
                     }
                     errorVar.Remove(key);
@@ -630,7 +617,7 @@ namespace ProjectSSQ
                 string key = llf_diff_cwr[i];
                 // Si varianaza corregida es negativa entonces la varianza de diferenciación debe
                 // valer cero.
-                double? tVar = lTSSQ.CorretedComp(key);
+                double? tVar = lTSSQ.CorrectedComp(key);
                 if ((tVar != null) && (double)tVar < 0)
                 {
                     tVar = 0;
@@ -725,9 +712,9 @@ namespace ProjectSSQ
         public virtual TableG_Study Clone()
         {
             // Copiamos la fuentes de diferenciación, 
-            ListFacets copyLfDifferentiation = this.lfDifferentiation.Clone();
+            ListFacets copyLfDifferentiation = this.lfDifferentiation.DeepClone();
             // Copiamos la fuentes de instrumentación
-            ListFacets copyLfInstrumentation = this.lfInstrumentation.Clone();
+            ListFacets copyLfInstrumentation = this.lfInstrumentation.DeepClone();
             Dictionary<string, double?> copyDifferentiationVar = ClonarDictionary(this.differentiationVar);
             Dictionary<string, ErrorVar> copyErrorVar = ClonarDictionary(this.errorVar);
 

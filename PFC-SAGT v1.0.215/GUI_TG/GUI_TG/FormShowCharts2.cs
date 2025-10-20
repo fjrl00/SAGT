@@ -211,7 +211,7 @@ namespace GUI_GT
          */
         private ListFacets newListFacets(ListFacets lf, Facet facet, int newLevel)
         {
-            ListFacets retListVal = lf.Clone();
+            ListFacets retListVal = lf.DeepClone();
             Facet f = retListVal.LookingFacet(facet.Name());
             if (f.SizeOfUniverse() < newLevel)
             {

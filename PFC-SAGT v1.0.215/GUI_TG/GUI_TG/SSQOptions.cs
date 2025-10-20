@@ -455,7 +455,7 @@ namespace GUI_GT
                 my_Row[IND_MSQ] = ConvertNum.DecimalToString(tbAnalysisVar.MSQ(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_RANDOM_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.RandomComp(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_MIX_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.MixModComp(key), numOfDecimal, puntoDecimal);
-                my_Row[IND_CORRECTED_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.CorretedComp(key), numOfDecimal, puntoDecimal);
+                my_Row[IND_CORRECTED_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.CorrectedComp(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_PORCENTAGE] = ConvertNum.DecimalToString(tbAnalysisVar.Porcentage(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_STANDARD_ERROR] = ConvertNum.DecimalToString(tbAnalysisVar.StandardError(key), numOfDecimal, puntoDecimal);
 
@@ -995,7 +995,7 @@ namespace GUI_GT
                             {
                                 // lista de facetas que contedra tanto las facetas de instrumentación como de diferenciación.
                                 
-                                ListFacets newlf = tablesOfAnalysisG.TableAnalysisVariance().ListFacets().Clone();
+                                ListFacets newlf = tablesOfAnalysisG.TableAnalysisVariance().ListFacets().DeepClone();
 
                                 /* Modificamos los valores de las facetas de intrumentación en la lista clonada.
                                  */

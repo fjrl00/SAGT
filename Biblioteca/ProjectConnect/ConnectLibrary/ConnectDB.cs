@@ -953,7 +953,7 @@ namespace ConnectLibrary
                 double msq = (double)analysisOfVar.MSQ(source_of_var);
                 double random_comp = (double)analysisOfVar.RandomComp(source_of_var);
                 double mix_comp = (double)analysisOfVar.MixModComp(source_of_var);
-                double correc_comp = (double)analysisOfVar.CorretedComp(source_of_var);
+                double correc_comp = (double)analysisOfVar.CorrectedComp(source_of_var);
                 double porcentage = (double)analysisOfVar.Porcentage(source_of_var);
                 double standard_error = (double)analysisOfVar.StandardError(source_of_var);
 

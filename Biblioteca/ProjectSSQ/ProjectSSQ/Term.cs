@@ -8,7 +8,11 @@
  *          Dr. Don José Luis Pastrana Brincones
  *          Dr. Don Antonio Hernández Mendo
  * 
- * Fecha de revisión: 15/Nov/2011                     
+ * Fecha de revisión: 15/Nov/2011         
+ * 
+ * Un termino es cada una de las partes de las que se compone la expresión para calcular la suma 
+ * de cuadrados de la fuente de variabilidad. Un término viene  determinado por su signo 
+ * (positivo o negativo) y por una lista de facetas.
  * 
  */
 using System;
@@ -39,15 +43,6 @@ namespace ProjectSSQ
          * Constructores
          *======================================================================================*/
 
-        //Term(ListFacets lf)
-        //{
-        //    if (lf == null || lf.Count() < 1)
-        //    {
-        //        throw new TermException("No cotiene terminos");
-        //    }
-        //    this.lf = lf;
-        //    this.sign = PLUS;
-        //}
         public Term(char sign)
         {
             if (!sign.Equals(PLUS) && !sign.Equals(MINUS))
@@ -108,26 +103,26 @@ namespace ProjectSSQ
             }
         }
 
-        public void Add(char sign)
+        public void AddSign(char sign)
         {
             if (!sign.Equals(PLUS) && !sign.Equals(MINUS))
             {
                 throw new TermException("Signo incorrecto");
             }
-            if (this.sign.Equals(sign))
+            if (this.sign.Equals(sign))     //If our signs coincide (++ or --)
             {
-                this.sign = Term.PLUS;
+                this.sign = Term.PLUS;          // then +
             }
-            else
+            else                            // else (if +- or -+)
             {
-                this.sign = Term.MINUS;
+                this.sign = Term.MINUS;         //then -
             }
         }
 
         public void Add(Term t)
         {
             Add(t.lf);
-            Add(t.sign);
+            AddSign(t.sign);
         }
 
 
@@ -136,7 +131,7 @@ namespace ProjectSSQ
          *======================================================================================*/
         public override string ToString()
         {
-            return (this.sign + this.lf.StringOfListFactes());
+            return this.sign + "(" + this.lf.StringOfListFactes() +")" ;
         }
 
     }// end class Term

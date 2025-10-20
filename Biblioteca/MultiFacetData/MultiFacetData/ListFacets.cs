@@ -28,10 +28,6 @@ namespace MultiFacetData
         // Constantes para usarlas como marcas en el fichero
         public const string BEGIN_LISTFACETS = "<list_facets>";
         const string END_LISTFACETS = "</list_facets>";
-        //public const string BEGIN_LIST_NESTING = "<list_nesting>";
-        //const string END_LIST_NESTING = "</list_nesting>";
-        //const string BEGIN_NESTING = "<nesting>";
-        //const string END_NESTING = "</nesting>";
 
 
         /*======================================================================================
@@ -161,16 +157,6 @@ namespace MultiFacetData
         public int Count()
         {
             return this.listFacets.Count;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve la lista de facetas.
-         */
-        public List<Facet> RetListFacets()
-        {
-            return this.listFacets;
         }
 
         public int IndexOf(Facet f)
@@ -332,15 +318,33 @@ namespace MultiFacetData
 
         #region Clonación
 
-        public ListFacets Clone()
+        /* Descripción:
+         *  Deep Clone.
+         */
+        public ListFacets DeepClone()
         {
-            ListFacets lf = new ListFacets(); // Variable de retorno
+            ListFacets lf = new ListFacets();
             int n = this.listFacets.Count;
             for (int i = 0; i < n; i++)
             {
                 Facet f = this.FacetInPos(i);
                 Facet newF = f.Clone();
                 lf.Add(newF);
+            }
+            return lf;
+        }
+
+        /* Descripción:
+         *  Shallow Clone, AFAIK for memory optimization purposes.
+         */
+        public ListFacets ShallowClone()
+        {
+            ListFacets lf = new ListFacets();
+            int n = this.listFacets.Count; ;
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = this.FacetInPos(i);
+                lf.Add(f);
             }
             return lf;
         }
