@@ -540,13 +540,13 @@ namespace ProjectSSQ
          */
         private double? PartialSumOfSquaresByMeans(ListFacets lf, MultiFacetsObs mfo, bool zero)
         {
-            TableMeans  tableMeans = new TableMeans(lf, "", mfo, zero);
-            int rows = tableMeans.TableRows();
+            ObsTable  obsTable = new ObsTable(lf, mfo, zero);
+            int rows = obsTable.TableRows();
 
             double? sumX_2 = 0;
             for (int i = 0; i < rows; i++)
             {
-                double? mean = tableMeans.MeanData(i);
+                double? mean = obsTable.ObsData(i);
                 if (mean != null)
                 {
                     double value = mean.Value;

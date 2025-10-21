@@ -303,7 +303,7 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Operación que devuelve un MultiFacetObs al que se le ha aplicada la omisión de las facetas 
-         *  marcadas para ser omitidas.
+         *  marcadas para ser omitidas (nota: se ignora 'zero', no se pueden tomar nulos como cero).
          *  Se hace la media de los valores de las filas colapsadas.
          */
         public MultiFacetsObs OmitFacetInDataTable()

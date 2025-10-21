@@ -119,14 +119,18 @@ namespace MultiFacetData
 
         } // end public ObsTable(LinkedList<Facet> facets)
 
-        //OmitFacetInDataTable's constructor
-        public ObsTable(ListFacets lF, MultiFacetsObs mfo)
+        /* Descripción:
+         *  Constructor para la creación de tablas colapsadas a partir de otra.
+         *  - mfo contiene la tabla de observaciones original 
+         *  - lf contiene el subconjunto de facetas de mfo con que crear la tabla colapsada
+         */
+        public ObsTable(ListFacets lF, MultiFacetsObs mfo, bool zero=false)
         {
             this.matrix = IniIndexSubTable(lF);
             this.listF = lF;
 
             this.SkipLevels(lF);
-            Statistics[] stats = this.StatisticsData(mfo.SkipIndexLevelFacetInDataTable(), false);  //Note that SkipIndexLevelFacetInDataTable doesn't modify mfo, it instead returns a modified clone. Wonky, I know
+            Statistics[] stats = this.StatisticsData(mfo.SkipIndexLevelFacetInDataTable(), zero);  //Note that SkipIndexLevelFacetInDataTable doesn't modify mfo, it instead returns a modified clone. Wonky, I know
             for (int i = 0; i < this.TableRows(); i++)
             {
                 this.MeanData(stats[i], i);
