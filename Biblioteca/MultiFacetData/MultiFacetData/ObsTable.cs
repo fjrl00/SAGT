@@ -121,8 +121,10 @@ namespace MultiFacetData
 
         /* Descripción:
          *  Constructor para la creación de tablas colapsadas a partir de otra.
+         *  También aplica omisión de niveles.
          *  - mfo contiene la tabla de observaciones original 
-         *  - lf contiene el subconjunto de facetas de mfo con que crear la tabla colapsada
+         *  - lF contiene el subconjunto de facetas de mfo con que crear la tabla colapsada
+         *      Si una faceta está omitida según Facet.Omit no es relevante. Tan solo si está en lF
          */
         public ObsTable(ListFacets lF, MultiFacetsObs mfo, bool zero=false)
         {

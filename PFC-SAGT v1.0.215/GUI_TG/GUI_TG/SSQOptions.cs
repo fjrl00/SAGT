@@ -203,7 +203,7 @@ namespace GUI_GT
                 // Recuperamos las casillas de omision de facetas
                 ReadColumnOmit(this.sagtElements, this.dataGridViewExFacets);
                 ListFacets actual_lf = this.sagtElements.GetMultiFacetsObs().ListFacets();
-                ListFacets withoutOmit_lf = actual_lf.ListFacetWithoutOmit();
+                ListFacets withoutOmit_lf = actual_lf.ListFacetsWithoutOmit();
 
 
                 // si withoutOmit_lf tiene menos de 2 elementos lanzamos un mensage de error

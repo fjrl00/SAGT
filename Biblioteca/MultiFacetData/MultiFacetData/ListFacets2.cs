@@ -639,10 +639,10 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve una lista de facetas donde todas las facetas estes sin omitir y donde los diseños
+         *  Devuelve un clon de esta lista de facetas donde todas las facetas estes sin omitir y donde los diseños
          *  de estas no contienen anidamientos o cruces con facetas omitidas.
          */
-        public ListFacets ListFacetWithoutOmit()
+        public ListFacets ListFacetsWithoutOmit()
         {
             ListFacets retLf = new ListFacets();
             List<string> lsNameFacet = new List<string>();

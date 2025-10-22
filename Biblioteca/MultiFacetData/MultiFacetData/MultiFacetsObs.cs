@@ -308,7 +308,7 @@ namespace MultiFacetData
          */
         public MultiFacetsObs OmitFacetInDataTable()
         {
-            ListFacets c_lf = this.listFacets.ListFacetWithoutOmit();
+            ListFacets c_lf = this.listFacets.ListFacetsWithoutOmit();
             ObsTable c_Table = new ObsTable(c_lf, this);
 
             return new MultiFacetsObs(c_lf, c_Table, this.nameFileObs, this.description, this.comment);

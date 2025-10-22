@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagt", "..\..\Biblioteca\Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectLibrary", "..\..\Biblioteca\ProjectConnect\ConnectLibrary\ConnectLibrary.csproj", "{B31CE65A-C8B1-43C9-87D1-239332347716}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{94522287-E7D7-41EB-AF91-60E4967E88DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{B31CE65A-C8B1-43C9-87D1-239332347716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31CE65A-C8B1-43C9-87D1-239332347716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31CE65A-C8B1-43C9-87D1-239332347716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94522287-E7D7-41EB-AF91-60E4967E88DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94522287-E7D7-41EB-AF91-60E4967E88DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94522287-E7D7-41EB-AF91-60E4967E88DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94522287-E7D7-41EB-AF91-60E4967E88DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
