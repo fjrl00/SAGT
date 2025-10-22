@@ -969,7 +969,7 @@ namespace GUI_GT
                         }
 
                         TranslationTContextualMenu(dgvEx, dicMeans, lang);
-                        tpEx.TraslateLabel(numOfDecimal, puntoDecimal, grandMean, means, variance, stdv,
+                        tpEx.TranslateLabel(numOfDecimal, puntoDecimal, grandMean, means, variance, stdv,
                             diffMean, diffVar, diffStd_Dev, TypScore);
                     }
                     this.tbPageMeanInfo.Parent = this.tabControlMeans;

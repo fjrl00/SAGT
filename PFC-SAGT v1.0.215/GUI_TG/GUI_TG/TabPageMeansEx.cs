@@ -129,6 +129,9 @@ namespace GUI_GT
 
         /* Descripción:
          *  Constructor para la tabla diferencias de medias.
+         *  
+         *  DOES THE EXACT SAME THING AS THE OTHER CONSTRUCTOR EXCEPT IT ALSO RECEIVES 
+         *  TRANSLATION DATA FOR THE LAST COLUMNS
          */
         public TabPageMeansEx(Image blackground, string name, string txtGrandMeans, Point point_label1, string gm,
             string m, string variance, string stdv, string nameColDiffMean, string nameColDiffVar, 
@@ -229,309 +232,105 @@ namespace GUI_GT
          *      TableMeans tMeans: Tabla de medias
          *      ConfigCFG.ConfigCFG cfgApli: Parámetros de configuración.
          */
-        public void SetTableMeans(TableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
+        public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.Rows.Clear();
             int n = tMeans.TableColumns();
             dgvExTableMean.NumeroColumnas = n;
             dgvExTableMean.AllowUserToResizeRows = false;
 
-            // Set the column header style.
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Aqua;
-            columnHeaderStyle.Font = new Font("Verdana", 9, FontStyle.Bold);
+            // --- Common Header Style ---
+            var columnHeaderStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.Aqua,
+                Font = new Font("Verdana", 9, FontStyle.Bold)
+            };
             dgvExTableMean.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
             dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
-            int long_indx = n - 3;
-
-            int l_total = 0;
-            int col_l_size_1 = 100;
-            int col_l_size_2 = 100;
-
-            for (int colu = 0; colu < long_indx; colu++)
+            int nonFacetCols = 0;
+            if (tMeans is TableMeans)
             {
-                // l_total = 0;
-                dgvExTableMean.Columns[colu].Name = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].HeaderText = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].ReadOnly = true;
-                // dgvExMeans.Width = col_l_size_1;
-                l_total = l_total + col_l_size_1;
-                // impedimos que las columnas sean reordenables al pulsar la cabecera
-                dgvExTableMean.Columns[colu].SortMode = DataGridViewColumnSortMode.NotSortable;
+                nonFacetCols = 3;
+            }
+            else if (tMeans is TableMeansDif)
+            {
+                nonFacetCols = 6;
+            }
+            else if (tMeans is TableMeansTypScore)
+            {
+                nonFacetCols = 5;
             }
 
-            /* measurementVariable: Contiene el nombre de la columna de datos (esta cambiará 
-             * en función del idioma elegido).
-             * 
-             * 'n' se corresponde ahora con el indice de la última columna, aquella que contiene
-             * las "variables observadas".
-             */
+            int facetCount = n - nonFacetCols;
 
-            // Columna de medias
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 3), nameColMeans, col_l_size_2);
-
-            // columna de varianzas
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 2), nameColVariance, col_l_size_2);
-
-            // Columna de desviacion tipica
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 1), nameColStd_Dev, 150);
-            // sumamos 20 para cubrir el desajuste
-            /*
-            if (l_total < (dgvExTableMean.Size.Width + 20))
+            // --- Facet Columns ---
+            for (int colu = 0; colu < facetCount; colu++)
             {
-                dgvExTableMean.Columns[n - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                var name = tMeans.ListFacets().FacetInPos(colu).Name();
+                var col = dgvExTableMean.Columns[colu];
+                col.Name = name;
+                col.HeaderText = name;
+                col.ReadOnly = true;
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-            else
-            {
-                dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            }
-             */
 
-            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
+            // --- Dynamically Add the Final Columns ---
+            AddFinalColumns(dgvExTableMean, tMeans, facetCount);
 
+            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8);
+
+            // --- Fill Rows ---
             int fila = tMeans.TableRows();
-            int col = tMeans.TableColumns();
-
-            int longRow = col + 1;
-            int aplicationDecimalSetting = col - 3;
-
             int numOfDecimal = cfgApli.GetNumberOfDecimals();
             string puntoDecimal = cfgApli.GetDecimalSeparator();
 
             for (int f = 0; f < fila; ++f)
             {
-                object[] mi_fila = new object[longRow]; // + 1 para los datos a introducir
-
-                //Meto los datos en la fila
-                for (int c = 0; c < col; c++)
+                object[] mi_fila = new object[n + 1];
+                for (int c = 0; c < n; c++)
                 {
-
-                    if (c < aplicationDecimalSetting)
-                    {
+                    if (c < facetCount)
                         mi_fila[c] = tMeans.Data(f, c);
-                    }
                     else
-                    {
                         mi_fila[c] = ConvertNum.DecimalToString(tMeans.Data(f, c), numOfDecimal, puntoDecimal);
-                    }
                 }
-                // mi_fila[col] = "";
-
                 dgvExTableMean.Rows.Add(mi_fila);
             }
+
+            // --- Final Stats ---
             this.gMean = tMeans.GrandMean();
             this.variance = tMeans.Variance();
             this.std_dev = tMeans.StdDev();
             SetTextGrandMean(numOfDecimal, puntoDecimal);
-            
-        }// end SetTableMeans
+        }
 
-
-        /* Descripción:
-         *  Introduce los valores en la tabla los datos de la tabla de medias que se pasa como parámetro.
-         *  El segundo parámetro sirbe para establecer los valores de configuración.
-         * Parámtros:
-         *      TableMeansDif tMeans: Tabla de medias de diferencias.
-         *      ConfigCFG.ConfigCFG cfgApli: parámtros de configuración.
-         */
-        public void SetTableMeans(TableMeansDif tMeans, ConfigCFG.ConfigCFG cfgApli)
+        private void AddFinalColumns(DataGridViewEx.DataGridViewEx dgv, InterfaceTableMeans tMeans, int startIndex)
         {
-            dgvExTableMean.Rows.Clear();
-            int n = tMeans.TableColumns();
-            dgvExTableMean.NumeroColumnas = n;
-            dgvExTableMean.AllowUserToResizeRows = false;
-
-            // Set the column header style.
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Aqua;
-            columnHeaderStyle.Font = new Font("Verdana", 9, FontStyle.Bold);
-            dgvExTableMean.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-            dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            int long_indx = n - 6;
-
-            int l_total = 0;
-            int col_l_size_1 = 100;
-            int col_l_size_2 = 100;
-
-            for (int colu = 0; colu < long_indx; colu++)
+            if (tMeans is TableMeans)
             {
-                // l_total = 0;
-                dgvExTableMean.Columns[colu].Name = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].HeaderText = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].ReadOnly = true;
-                // dgvExMeans.Width = col_l_size_1;
-                l_total = l_total + col_l_size_1;
-                // impedimos que las columnas sean reordenables al pulsar la cabecera
-                dgvExTableMean.Columns[colu].SortMode = DataGridViewColumnSortMode.NotSortable;
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
             }
-
-            /* measurementVariable: Contiene el nombre de la columna de datos (esta cambiará 
-             * en función del idioma elegido).
-             * 
-             * 'n' se corresponde ahora con el indice de la última columna, aquella que contiene
-             * las "variables observadas".
-             */
-
-            // Columna de medias
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 6), nameColMeans, col_l_size_2);
-
-            // Columna de varianzas
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 5), nameColVariance, col_l_size_2);
-
-            // Columna de desviación típica
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 4), nameColStd_Dev, 150);
-
-            // Columna de diferencia de medias
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 3), nameColDiffMean, col_l_size_2);
-
-            // Columna de diferencia de varianzas
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 2), nameColDiffVar, col_l_size_2);
-
-            // Columna de diferencia de desviación típica
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 1), nameColDiffStd_dev, col_l_size_2);
-
-            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
-
-            int fila = tMeans.TableRows();
-            int col = tMeans.TableColumns();
-
-            int longRow = col + 1;
-            int aplicationDecimalSetting = col - 6;
-
-            int numOfDecimal = cfgApli.GetNumberOfDecimals();
-            string puntoDecimal = cfgApli.GetDecimalSeparator();
-
-            for (int f = 0; f < fila; ++f)
+            else if (tMeans is TableMeansDif)
             {
-                object[] mi_fila = new object[longRow]; // + 1 para los datos a introducir
-
-                //Meto los datos en la fila
-                for (int c = 0; c < col; c++)
-                {
-
-                    if (c < aplicationDecimalSetting)
-                    {
-                        mi_fila[c] = tMeans.Data(f, c);
-                    }
-                    else
-                    {
-                        mi_fila[c] = ConvertNum.DecimalToString(tMeans.Data(f, c), numOfDecimal, puntoDecimal);
-                    }
-                }
-                // mi_fila[col] = "";
-
-                dgvExTableMean.Rows.Add(mi_fila);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColDiffVar, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 5, nameColDiffStd_dev, 100);
             }
-            this.gMean = tMeans.GrandMean();
-            this.variance = tMeans.Variance();
-            this.std_dev = tMeans.StdDev();
-            SetTextGrandMean(numOfDecimal, puntoDecimal);
-
-        }// end SetTableMeans (TableMeansDif tMeans, ConfigCFG.ConfigCFG cfgApli)
-
-
-        /* Descripción:
-         *  Introduce los valores en la tabla los datos de la tabla de medias que se pasa como parámetro.
-         *  El segundo parámetro sirbe para establecer los valores de configuración.
-         * Parámetros:
-         *          TableMeansTypScore tMeans: Tabla de medias de puntuación típica
-         *          ConfigCFG.ConfigCFG cfgApli: parámetros de configuración.
-         */
-        public void SetTableMeans(TableMeansTypScore tMeans, ConfigCFG.ConfigCFG cfgApli)
-        {
-            dgvExTableMean.Rows.Clear();
-            int n = tMeans.TableColumns();
-            dgvExTableMean.NumeroColumnas = n;
-            dgvExTableMean.AllowUserToResizeRows = false;
-
-            // Set the column header style.
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Aqua;
-            columnHeaderStyle.Font = new Font("Verdana", 9, FontStyle.Bold);
-            dgvExTableMean.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-            dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            int long_indx = n - 5;
-
-            // int l_total = 0;
-            // int col_l_size_1 = 100;
-            int col_l_size_2 = 100;
-
-            for (int colu = 0; colu < long_indx; colu++)
+            else if (tMeans is TableMeansTypScore)
             {
-                // l_total = 0;
-                dgvExTableMean.Columns[colu].Name = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].HeaderText = tMeans.ListFacets().FacetInPos(colu).Name();
-                dgvExTableMean.Columns[colu].ReadOnly = true;
-                // dgvExMeans.Width = col_l_size_1;
-                //l_total = l_total + col_l_size_1;
-                // impedimos que las columnas sean reordenables al pulsar la cabecera
-                dgvExTableMean.Columns[colu].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dgvExTableMean.Columns[colu].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColTypScore, 100);
             }
-
-            /* measurementVariable: Contiene el nombre de la columna de datos (esta cambiará 
-             * en función del idioma elegido).
-             * 
-             * 'n' se corresponde ahora con el indice de la última columna, aquella que contiene
-             * las "variables observadas".
-             */
-
-            // Columna de medias
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 5), nameColMeans, col_l_size_2);
-
-            // Columna de varianzas
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 4), nameColVariance, col_l_size_2);
-
-            // Columna de desviación típica
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 3), nameColStd_Dev, 150);
-
-            // Columna de diferencia de medias
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 2), nameColDiffMean, col_l_size_2);
-
-            // Columna de Puntuación típica
-            PropertyColumnTableMeansDGV(dgvExTableMean, (n - 1), nameColTypScore, col_l_size_2);
-
-            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
-
-            int fila = tMeans.TableRows();
-            int col = tMeans.TableColumns();
-
-            int longRow = col + 1;
-            int aplicationDecimalSetting = col - 5;
-
-            int numOfDecimal = cfgApli.GetNumberOfDecimals();
-            string puntoDecimal = cfgApli.GetDecimalSeparator();
-
-            for (int f = 0; f < fila; ++f)
-            {
-                object[] mi_fila = new object[longRow]; // + 1 para los datos a introducir
-
-                //Meto los datos en la fila
-                for (int c = 0; c < col; c++)
-                {
-
-                    if (c < aplicationDecimalSetting)
-                    {
-                        mi_fila[c] = tMeans.Data(f, c);
-                    }
-                    else
-                    {
-                        mi_fila[c] = ConvertNum.DecimalToString(tMeans.Data(f, c), numOfDecimal, puntoDecimal);
-                    }
-                }
-                // mi_fila[col] = "";
-
-                dgvExTableMean.Rows.Add(mi_fila);
-            }
-            this.gMean = tMeans.GrandMean();
-            this.variance = tMeans.Variance();
-            this.std_dev = tMeans.StdDev();
-            SetTextGrandMean(numOfDecimal, puntoDecimal);
-
-        }// end SetTableMeans
+        }
 
 
         /* Descripción:
@@ -601,7 +400,7 @@ namespace GUI_GT
          *      string std_devDif: texto "Diferencia de desv. típica" en el idioma correspondiente
          *      string pointT: texto "Puntuación típica" en el idioma correspondiente
          */
-        public void TraslateLabel(int numOfDecimal, string puntoDecimal, string gm, string m,
+        public void TranslateLabel(int numOfDecimal, string puntoDecimal, string gm, string m,
             string variance, string stdv, string diffMeans, string diffVariance, string diff_std_dev, string typScore)
         {
             // Asignamos las traducciónes
