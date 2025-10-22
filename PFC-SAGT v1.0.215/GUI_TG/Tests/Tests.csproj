@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObsTableTests.cs" />
+    <Compile Include="ReadingAndWritingTests.cs" />
     <Compile Include="StatisticsTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,18 @@
     <ProjectReference Include="..\..\..\Biblioteca\ProjectMathCalcGT\ProjectMathCalcGT\AuxMathCalcGT.csproj">
       <Project>{B39DD8FB-BDF0-4301-8049-0E5919BED85D}</Project>
       <Name>AuxMathCalcGT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectMeans\ProjectMeans\ProjectMeans.csproj">
+      <Project>{355660B0-86ED-4846-BFBB-0DCA87391E5A}</Project>
+      <Name>ProjectMeans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\ProjectSSQ\ProjectSSQ\ProjectSSQ.csproj">
+      <Project>{53408ABF-B487-4934-B555-79B98CFB916A}</Project>
+      <Name>ProjectSSQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Biblioteca\Sagt\Sagt\Sagt.csproj">
+      <Project>{A286D159-0F30-45B7-AE47-BFBAEFFBE3C5}</Project>
+      <Name>Sagt</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

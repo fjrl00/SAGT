@@ -1760,7 +1760,7 @@ namespace GUI_GT
                     }
 
                     List<string> cswr = lf.CombinationStringWithoutRepetition();
-                    List<string> ldesingSeleted = new List<string>();
+                    List<string> ldesingSelected = new List<string>();
                     
                     FormListFacets formListFacet = new FormListFacets(lang, cswr);
                     
@@ -1783,7 +1783,7 @@ namespace GUI_GT
                                     if (ckListBox.GetItemChecked(i))
                                     {
                                         string design = ckListBox.Items[i].ToString();
-                                        ldesingSeleted.Add(design);
+                                        ldesingSelected.Add(design);
                                         ListFacets newLf = lf.ListDesignFacets(design);
                                         selectedListFacets.Add(newLf);
                                     }
@@ -1799,7 +1799,7 @@ namespace GUI_GT
                                         {
                                             this.ClearTabPageMeans();
                                             // hay al menos algún elemento seleccionado
-                                            createMeansOfListOfListFacets(selectedListFacets, ldesingSeleted, multiFacets, this.cfgApli, MEAN_STRINGS);
+                                            createMeansOfListOfListFacets(selectedListFacets, ldesingSelected, multiFacets, this.cfgApli, MEAN_STRINGS);
                                             salir = true;
 
                                             ExcludeTabPages();
@@ -1813,7 +1813,7 @@ namespace GUI_GT
                                     else
                                     {
                                         // hay al menos algún elemento seleccionado
-                                        createMeansOfListOfListFacets(selectedListFacets, ldesingSeleted, multiFacets, this.cfgApli, MEAN_STRINGS);
+                                        createMeansOfListOfListFacets(selectedListFacets, ldesingSelected, multiFacets, this.cfgApli, MEAN_STRINGS);
 
                                         ExcludeTabPages();
                                         this.tabPageMeans.Parent = this.tabControlOptions;

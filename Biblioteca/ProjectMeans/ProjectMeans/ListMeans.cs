@@ -80,6 +80,7 @@ namespace ProjectMeans
          */
         public ListMeans(List<ListFacets> llf, List<string> ldesign, MultiFacetsObs mfo, DateTime date, string nameFile, bool zero)
         {
+            listTableMeans = new List<InterfaceTableMeans>();
             this.dateCreation = date;
             this.nameFileDataCreation = nameFile;
             int n = llf.Count;
