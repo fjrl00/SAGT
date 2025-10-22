@@ -236,6 +236,30 @@ namespace MultiFacetData
             return sum_X;
         }
 
+        /* Descripción:
+         *  Devuelve la suma de los datos al cuadrado de la tabla.
+         *  Suma de nulls equivale a null. Sin embargo sumar null a un número equivale a ese número.
+         */
+        public double? SumOfData_2()
+        {
+            double? sum_X_2 = null;
+
+            int n = this.TableRows();
+            for (int i = 0; i < n; i++)
+            {
+                double? data = this.ObsData(i);
+                if (sum_X_2 != null && data != null)
+                {
+                    sum_X_2 += data*data;
+                }
+                else if (sum_X_2 == null && data != null)
+                {
+                    sum_X_2 = data*data;
+                }
+
+            }
+            return sum_X_2;
+        }
 
         /* Descripción:
          *  Escribe la tabla de datos de frecuencias.

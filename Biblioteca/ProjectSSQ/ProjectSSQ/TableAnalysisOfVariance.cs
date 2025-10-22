@@ -541,9 +541,11 @@ namespace ProjectSSQ
         private double? PartialSumOfSquaresByMeans(ListFacets lf, MultiFacetsObs mfo, bool zero)
         {
             ObsTable  obsTable = new ObsTable(lf, mfo, zero);
-            int rows = obsTable.TableRows();
+            double? sumX_2 = obsTable.SumOfData_2();
 
+            /*  //Old code, slightly different behavior: will return 0 instead of null even if every element is null
             double? sumX_2 = 0;
+            int rows = obsTable.TableRows();
             for (int i = 0; i < rows; i++)
             {
                 double? mean = obsTable.ObsData(i);
@@ -552,7 +554,7 @@ namespace ProjectSSQ
                     double value = mean.Value;
                     sumX_2 += value * value;
                 }
-            }
+            }*/
 
             sumX_2 = this.listFacets.MultipSourcesOfVariabilityAbsent(lf) * sumX_2;
             return sumX_2;
