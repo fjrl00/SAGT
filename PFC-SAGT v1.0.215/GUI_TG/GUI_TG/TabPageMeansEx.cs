@@ -21,6 +21,7 @@ using DataGridViewEx;
 using AuxMathCalcGT;
 using ProjectMeans;
 using ConfigCFG;
+using System.Data;
 
 namespace GUI_GT
 {
@@ -231,16 +232,17 @@ namespace GUI_GT
          * Parámetros:
          *      TableMeans tMeans: Tabla de medias
          *      ConfigCFG.ConfigCFG cfgApli: Parámetros de configuración.
+         *      
+         * Documented inaccuracy: Header column gets highlighted when selecting a cell. This didn't use to happen
          */
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
-            dgvExTableMean.Rows.Clear();
-            int n = tMeans.TableColumns();
-            dgvExTableMean.NumeroColumnas = n;
-            dgvExTableMean.AllowUserToResizeRows = false;
+            dgvExTableMean.DataSource = tMeans.TableMeansToDGV();   //input cell value data
 
-            // --- Common Header Style ---
-            var columnHeaderStyle = new DataGridViewCellStyle
+            // Global table properties
+            dgvExTableMean.AllowUserToResizeRows = false;
+            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.Aqua,
                 Font = new Font("Verdana", 9, FontStyle.Bold)
@@ -248,88 +250,59 @@ namespace GUI_GT
             dgvExTableMean.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
             dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
-            int nonFacetCols = 0;
-            if (tMeans is TableMeans)
+            int numFacets = tMeans.ListFacets().Count();
+            dgvExTableMean.DataBindingComplete += (s, e) => //All code inside here will trigger an exception if positioned outside
             {
-                nonFacetCols = 3;
-            }
-            else if (tMeans is TableMeansDif)
-            {
-                nonFacetCols = 6;
-            }
-            else if (tMeans is TableMeansTypScore)
-            {
-                nonFacetCols = 5;
-            }
-
-            int facetCount = n - nonFacetCols;
-
-            // --- Facet Columns ---
-            for (int colu = 0; colu < facetCount; colu++)
-            {
-                var name = tMeans.ListFacets().FacetInPos(colu).Name();
-                var col = dgvExTableMean.Columns[colu];
-                col.Name = name;
-                col.HeaderText = name;
-                col.ReadOnly = true;
-                col.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-
-            // --- Dynamically Add the Final Columns ---
-            AddFinalColumns(dgvExTableMean, tMeans, facetCount);
-
-            dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8);
-
-            // --- Fill Rows ---
-            int fila = tMeans.TableRows();
-            int numOfDecimal = cfgApli.GetNumberOfDecimals();
-            string puntoDecimal = cfgApli.GetDecimalSeparator();
-
-            for (int f = 0; f < fila; ++f)
-            {
-                object[] mi_fila = new object[n + 1];
-                for (int c = 0; c < n; c++)
+                // Properties for facet columns
+                for (int c = 0; c < numFacets; c++)
                 {
-                    if (c < facetCount)
-                        mi_fila[c] = tMeans.Data(f, c);
-                    else
-                        mi_fila[c] = ConvertNum.DecimalToString(tMeans.Data(f, c), numOfDecimal, puntoDecimal);
+                    var name = tMeans.ListFacets().FacetInPos(c).Name();
+                    var col = dgvExTableMean.Columns[c];
+                    col.Name = name;
+                    col.HeaderText = name;
+                    col.ReadOnly = true;
+                    col.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-                dgvExTableMean.Rows.Add(mi_fila);
-            }
 
-            // --- Final Stats ---
+                // Properties for calculation columns
+                AddFinalColumns(dgvExTableMean, tMeans, numFacets, "F" + cfgApli.GetNumberOfDecimals());
+            };
+
+            // Final stats
             this.gMean = tMeans.GrandMean();
             this.variance = tMeans.Variance();
             this.std_dev = tMeans.StdDev();
-            SetTextGrandMean(numOfDecimal, puntoDecimal);
+            SetTextGrandMean(cfgApli.GetNumberOfDecimals(), cfgApli.GetDecimalSeparator());
+
         }
 
-        private void AddFinalColumns(DataGridViewEx.DataGridViewEx dgv, InterfaceTableMeans tMeans, int startIndex)
+        private void AddFinalColumns(DataGridViewEx.DataGridViewEx dgv, InterfaceTableMeans tMeans, int startIndex, string decimalFormat)
         {
-            if (tMeans is TableMeans)
-            {
-                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
-            }
-            else if (tMeans is TableMeansDif)
-            {
-                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColDiffVar, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 5, nameColDiffStd_dev, 100);
-            }
-            else if (tMeans is TableMeansTypScore)
-            {
-                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100);
-                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColTypScore, 100);
-            }
+            
+                if (tMeans is TableMeans)
+                {
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+                }
+                else if (tMeans is TableMeansDif)
+                {
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColDiffVar, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 5, nameColDiffStd_dev, 100, decimalFormat);
+                }
+                else if (tMeans is TableMeansTypScore)
+                {
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
+                    PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColTypScore, 100, decimalFormat);
+                }
+            
         }
 
 
@@ -352,17 +325,14 @@ namespace GUI_GT
         /* Descripción:
          *  Asigna las caracteristicas de la columna de un dataGridView
          */
-        private static void PropertyColumnTableMeansDGV(DataGridViewEx.DataGridViewEx dgvTableMeans, int pos, string nameCol, int width)
+        private static void PropertyColumnTableMeansDGV(DataGridViewEx.DataGridViewEx dgvTableMeans, int pos, string nameCol, int width, string decimalFormat)
         {
-            // int n = dgvTableMeans.Columns.Count;
-            // dgvTableMeans.Columns[n - pos].Name = nameCol;
             dgvTableMeans.Columns[pos].HeaderText = nameCol;
-            // dgvTableMeans.Columns[pos].Width = width; // asignamos longitud
             dgvTableMeans.Columns[pos].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            // e impedimos que la ultima fila sea ordenable al pulsar la cabecera.
             dgvTableMeans.Columns[pos].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgvTableMeans.Columns[pos].ReadOnly = true;
             dgvTableMeans.Columns[pos].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
+            dgvTableMeans.Columns[pos].DefaultCellStyle.Format = decimalFormat;
         }
 
 

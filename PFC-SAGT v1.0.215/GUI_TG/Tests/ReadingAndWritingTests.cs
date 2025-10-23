@@ -102,7 +102,7 @@ namespace Tests
 
             //AssertDataSetArraysEqual(sagtFile.GetAnalysis_and_G_Study().Analysis_and_G_Study2ListDataSets(), readSagtFile.GetAnalysis_and_G_Study().Analysis_and_G_Study2ListDataSets());
             //Found issue: decimal precision is lost when saving? Investigate if this is the case
-            //    Expected: ···sq>0.083333333333314386</ssq>\n<msq>0.083333333333314386</msq>···
+            //Expected: ···sq>0.083333333333314386</ssq>\n<msq>0.083333333333314386</msq>···
             //Actual:   ···sq > 0.0833333333333144 </ ssq >\n < msq > 0.0833333333333144 </ msq >\n < ra···
 
             //STEP 3: Save again, Compare
@@ -169,13 +169,7 @@ namespace Tests
             return text.Trim();
         }
 
-
-        //todo:make, save, reload, compare first make with reloaded version. Problem: need to manufacture .Equals methods
-        //One solution could be using the DataSet methods:
-        //Assert.Equal(sagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml(), readSagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml());
-        //Problem: they also run into minor differences we don't care about
-
-        //todo: test correct output of reading broken files
+        //todo: test correct error output of reading broken files
     }
 
 

@@ -42,12 +42,13 @@ namespace ProjectMeans
         double? Variance(); // Devuelve la varianza total de la tabla
         double? StdDev(); // Devuelve la desviación típica de la tabla
         DataSet TableMeans2DataSet(); // Convierte la tabla de medias en un DataSet
+        DataTable TableMeansToDGV();
 
 
         /*=================================================================================================
          * Métodos de instancia
          *=================================================================================================*/
-        
+
         void InsertDataInPos(double? data, int row, int col); //inserta el dato en la posición especificada en los
                                                               // parámetros
         void Calc_GrandMean_Variance_StdDev(MultiFacetsObs mfo, bool zero); // calcula la media la varianza y la desviación típica.

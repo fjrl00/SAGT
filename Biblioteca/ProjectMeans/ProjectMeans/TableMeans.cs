@@ -598,6 +598,35 @@ namespace ProjectMeans
 
 
         #region Conversión entre tabla de medias y DataSet
+
+        /*  //More lightweight version for feeding data to DataGridView
+        public DataTable TableMeansToDGV()
+        {
+            DataTable dt = new DataTable("Tb_Table_Means");
+
+            int numCols = this.TableColumns();
+            int numRows = this.TableRows();
+
+            // Add placeholder columns (no UI logic)
+            for (int i = 0; i < numCols; i++)
+                dt.Columns.Add(new DataColumn($"Col{i}", typeof(double)));
+
+            // Fill the table
+            for (int r = 0; r < numRows; r++)
+            {
+                DataRow row = dt.NewRow();
+                for (int c = 0; c < numCols; c++)
+                {
+                    row[c] = this.Data(r, c);
+                }
+                dt.Rows.Add(row);
+            }
+
+            return dt;
+        }
+        */
+
+
         /* Descripción:
          * Convierte una tabla de medias en un DataSet
          */
@@ -631,7 +660,7 @@ namespace ProjectMeans
             dtTableMeans.Rows.Add(row);
             // añadimos el dataTable
             dsTableMeans.Tables.Add(dtTableMeans);
-            DataTable dtTable = this.AuxDataTableMeans();
+            DataTable dtTable = this.TableMeansToDGV();
             dsTableMeans.Tables.Add(dtTable);
 
             return dsTableMeans;
@@ -641,7 +670,7 @@ namespace ProjectMeans
         /* Descripción:
          *  Operación auxiliar de TableMeans2DataSet que devuelve un dataTable con la tabla de medias
          */
-        private DataTable AuxDataTableMeans()
+        public DataTable TableMeansToDGV()
         {
             DataTable dtTableMeans = new DataTable("Tb_Table_Means"); // valor de retorno
 
