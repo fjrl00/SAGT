@@ -101,7 +101,7 @@ namespace GUI_GT
             dgvExTableMean.RowHeadersVisible = false;
 
             dgvExTableMean.ScrollBars = ScrollBars.Both;
-            dgvExTableMean.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvExTableMean.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // INTERESTING FACT: UPGRADING .NET FRAMEWORK TO 4.8.1 CAUSED THIS TO BEHAVE SLIGHTLY DIFFERENTLY, now it also causes the column header to glow
             // hay que traducir cada uno de los menu contextuales de los dataGridViewEx
             TranslationTContextualMenu(cut, copy, paste, remove, selectAll);
 
@@ -232,8 +232,6 @@ namespace GUI_GT
          * Parámetros:
          *      TableMeans tMeans: Tabla de medias
          *      ConfigCFG.ConfigCFG cfgApli: Parámetros de configuración.
-         *      
-         * Documented inaccuracy: Header column gets highlighted when selecting a cell. This didn't use to happen
          */
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
@@ -251,8 +249,8 @@ namespace GUI_GT
             dgvExTableMean.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
             int numFacets = tMeans.ListFacets().Count();
-            dgvExTableMean.DataBindingComplete += (s, e) => //All code inside here will trigger an exception if positioned outside
-            {
+            dgvExTableMean.DataBindingComplete += (s, e) => //All code inside here will trigger an exception if positioned outside. Can also trigger weird behavior like columns out of order, or empty columns.
+            {                                               //Further note: this seemingly only works thanks to the fact that these datagridviews are destroyed and never reused when calculating new tables. If they were, then this code would break upon second execution
                 // Properties for facet columns
                 for (int c = 0; c < numFacets; c++)
                 {

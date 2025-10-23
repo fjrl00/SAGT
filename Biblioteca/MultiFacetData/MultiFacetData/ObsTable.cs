@@ -391,6 +391,57 @@ namespace MultiFacetData
             return dtObsTable;
         }// end ObsTable2DataTable
 
+        public DataTable ObsTable2DataTable_hideNull(ListFacets lf)
+        {
+            if (lf.Count() + 1 != this.TableColumns())
+            {
+                throw new ObsTableException("Lista de facetas no coincide con el número de columnas índice");
+            }
+
+            DataTable dtObsTable = new DataTable("TbObsTable"); // valor de retorno
+
+            int numFacet = lf.Count();
+
+            // --- Crear columnas ---
+            for (int i = 0; i < numFacet; i++)
+            {
+                Facet f = lf.FacetInPos(i);
+                string name_col = f.Name();
+                dtObsTable.Columns.Add(new DataColumn(name_col, typeof(double)));
+            }
+            dtObsTable.Columns.Add(new DataColumn("obs_data", typeof(double)));
+
+            // --- Rellenar filas ---
+            int numRows = this.TableRows();
+            int numCols = this.TableColumns();
+
+            for (int i = 0; i < numRows; i++)
+            {
+                bool hasNull = false;
+                DataRow row = dtObsTable.NewRow();
+
+                for (int j = 0; j < numCols; j++)
+                {
+                    string name_col = (j < lf.Count()) ? lf.FacetInPos(j).Name() : "obs_data";
+                    object value = this.Data(i, j);
+
+                    if (value == null || value == DBNull.Value)
+                    {
+                        hasNull = true;
+                        break; // no need to keep checking this row
+                    }
+
+                    row[name_col] = value;
+                }
+
+                if (!hasNull)
+                {
+                    dtObsTable.Rows.Add(row);
+                }
+            }
+
+            return dtObsTable;
+        }
 
         /* Descripción:
         *  Devuelve un dataTable con los datos de la tabla de frecuencias

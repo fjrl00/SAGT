@@ -43,6 +43,7 @@ namespace MultiFacetData
         DataTable ObsTable2DataTable(ListFacets lf);
         // Transforma la tabla de observaciones en un DataSet
         DataSet ObsTable2DataSet(ListFacets lf);
+        DataTable ObsTable2DataTable_hideNull(ListFacets lf);
 
 
         /*=================================================================================================

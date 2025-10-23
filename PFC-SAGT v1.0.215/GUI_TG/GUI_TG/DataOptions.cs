@@ -775,7 +775,7 @@ namespace GUI_GT
             dgvExObsTable.ColumnHeadersVisible = true;
             int n = multiFacets.ListFacets().Count();
             // dgvExObsTable.ColumnCount = n + 1;
-            dgvExObsTable.NumeroColumnas = n + 1;
+            dgvExObsTable.NumeroColumnas = n + 1;   //note: deleting this line will cause an exception in DataGridViewEx.KeyPressEditor upon writing a character in a cell. But deleting it seemingly causes no other issues.
 
             // Set the column header style.
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
@@ -813,6 +813,17 @@ namespace GUI_GT
             // dgvExObsTable.AutoSize = true; // DataGridViewAutoSizeColumnMode.AllCells;
         }// end LoadHeadersInObsTable
 
+        private MultiFacetsObs _currentMultiFacets;
+        private void OnDataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (_currentMultiFacets != null)
+            {
+                LoadHeadersInObsTable(_currentMultiFacets, dataGridViewExObsTable);
+            }
+
+            // Unsubscribe after first execution to prevent re-triggering
+            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
+        }
 
         /*
          * Descripción:
@@ -820,75 +831,46 @@ namespace GUI_GT
          *  de la variable observable).
          * Parámetros:
          *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
+         *
+         *  NOTE: Extremely brittle code. Further research and refactoring is likely needed
          */
         private void loadDataInTabPageObsTable(MultiFacetsObs multiFacets)
         {
-            dataGridViewExObsTable.Rows.Clear();// limpiamos el dataGridViewEx
+            dataGridViewExObsTable.Columns.Clear();
 
-            //DataTable dtPrueba = multiFacets.ObservationTable().ObsTable2DataTable(multiFacets.ListFacets());
+            // Clear existing event handlers to prevent accumulation
+            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
+            dataGridViewExObsTable.DataBindingComplete += OnDataBindingComplete;
 
-            //dataGridViewExObsTable.DataSource = dtPrueba;
+            // Store multiFacets for use in the event handler
+            _currentMultiFacets = multiFacets;
 
-            // Escribimos la cabecera de la tabla
-            LoadHeadersInObsTable(multiFacets, dataGridViewExObsTable);
-
-
-            int fila = multiFacets.ObservationTable().TableRows();
-            int col = multiFacets.ObservationTable().TableColumns();
-
-            for (int f = 0; f < fila; ++f)
-            {
-                object[] mi_fila = new object[col + 1]; // + 1 para los datos a introducir
-                //Meto los datos en la fila
-                for (int c = 0; c < col; c++)
-                {
-                    mi_fila[c] = multiFacets.ObservationTable().Data(f, c);
-                }
-
-                dataGridViewExObsTable.Rows.Add(mi_fila);
-            }
-            
-        }// end loadDataInTabPageObsTable
+            // Load data
+            dataGridViewExObsTable.DataSource = multiFacets.ObservationTable().ObsTable2DataTable(multiFacets.ListFacets());
+        }
 
 
-       /* Descripción:
-        *  Carga los datos del objetos que se pasa como parámetro en la tabla de datos (la que muestra los datos
-        *  de la variable observable). Pero en este caso solo carga los valores distintos de null.
-        * Parámetros:
-        *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
-        */
+        /* Descripción:
+         *  Carga los datos del objetos que se pasa como parámetro en la tabla de datos (la que muestra los datos
+         *  de la variable observable). Pero en este caso solo carga los valores distintos de null.
+         * Parámetros:
+         *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
+         *
+         *  NOTE: Extremely brittle code. Further research and refactoring is likely needed
+         */
         private void loadData_hideNulls_InTabPageObsTable(MultiFacetsObs multiFacets)
         {
-            dataGridViewExObsTable.Rows.Clear();// limpiamos el dataGridViewEx
+            dataGridViewExObsTable.Columns.Clear();
 
-            //DataTable dtPrueba = multiFacets.ObservationTable().ObsTable2DataTable(multiFacets.ListFacets());
+            // Clear existing event handlers to prevent accumulation
+            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
+            dataGridViewExObsTable.DataBindingComplete += OnDataBindingComplete;
 
-            //dataGridViewExObsTable.DataSource = dtPrueba;
+            // Store multiFacets for use in the event handler
+            _currentMultiFacets = multiFacets;
 
-            // Escribimos la cabecera de la tabla
-            LoadHeadersInObsTable(multiFacets, dataGridViewExObsTable);
-
-
-            int fila = multiFacets.ObservationTable().TableRows();
-            int col = multiFacets.ObservationTable().TableColumns();
-
-            InterfaceObsTable obsTable = multiFacets.ObservationTable();
-            for (int f = 0; f < fila; ++f)
-            {
-                // Insertamos en la tabla si es distinto de null;
-                if (obsTable.ObsData(f) != null)
-                {
-                    object[] mi_fila = new object[col + 1]; // + 1 para los datos a introducir
-                    //Meto los datos en la fila
-                    for (int c = 0; c < col; c++)
-                    {
-                        mi_fila[c] = obsTable.Data(f, c);
-                    }
-
-                    dataGridViewExObsTable.Rows.Add(mi_fila);
-                }
-            }
-
+            // Load data
+            dataGridViewExObsTable.DataSource = multiFacets.ObservationTable().ObsTable2DataTable_hideNull(multiFacets.ListFacets());
         }// end loadData_hideNulls_InTabPageObsTable
 
 
