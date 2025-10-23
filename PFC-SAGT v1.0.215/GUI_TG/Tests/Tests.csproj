@@ -46,7 +46,7 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObsTableTests.cs" />
+    <Compile Include="TableTests.cs" />
     <Compile Include="ReadingAndWritingTests.cs" />
     <Compile Include="StatisticsTests.cs" />
     <Compile Include="UnitTest1.cs" />

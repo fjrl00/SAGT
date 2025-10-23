@@ -112,7 +112,7 @@ namespace ProjectMeans
          *      bool zero: Si es true se realizarán los calculos interpretando los valores 
          *              nulos como ceros
          */
-        public TableMeans(ListFacets lF, string design, MultiFacetsObs mfo, bool zero)
+        public TableMeans(ListFacets lF, string design, MultiFacetsObs mfo, bool zero=false)
         {
 
             if (lF.Count() < 1)

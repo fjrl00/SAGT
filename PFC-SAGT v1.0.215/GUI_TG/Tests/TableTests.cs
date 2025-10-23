@@ -2,23 +2,24 @@
 using Xunit;
 using MultiFacetData;
 using System.Collections.Generic;
+using ProjectMeans;
 
 namespace Tests
 {
-    public class ObsTableTests
+    public class TableTests
     {
-        private void AssertTableEquals(InterfaceObsTable expected, InterfaceObsTable table)
+        private void AssertTableEquals(List<List<double?>> expected, CartesianProductTable table)
         {
             // Check dimensions
-            Assert.Equal(expected.TableRows(), table.TableRows());
-            Assert.Equal(expected.TableColumns(), table.TableColumns());
+            Assert.Equal(expected.Count, table.TableRows());
+            Assert.Equal(expected[0].Count, table.TableColumns());
 
             // Check each cell
             for (int row = 0; row < table.TableRows(); row++)
             {
                 for (int col = 0; col < table.TableColumns(); col++)
                 {
-                    double? expectedValue = expected.Data(row, col);
+                    double? expectedValue = expected[row][col];
                     double? actualValue = table.Data(row, col);
 
                     if(expectedValue.HasValue && actualValue.HasValue)
@@ -75,7 +76,6 @@ namespace Tests
                 new List<double?> { 2, 3, 1, null },
                 new List<double?> { 2, 3, 2, null },
             };
-            ObsTable e_table = new ObsTable(e_matrix);
 
             Facet f1 = new Facet("Individuos", 2);
             Facet f2 = new Facet("Observaciones", 3);
@@ -88,7 +88,7 @@ namespace Tests
 
             ObsTable table = new ObsTable(lf);
 
-            AssertTableEquals(e_table, table);
+            AssertTableEquals(e_matrix, table);
         }
 
         //OMITTESTING.cs
@@ -126,17 +126,31 @@ namespace Tests
             return mfo;
         }
 
-
-        //Testing the collapser constructor.
         //Test omitting nothing from OMITTESTING
         [Fact]
         public void CollapseConstructor_BaseCase()
         {
+            var e_matrix = new List<List<double?>>
+            {
+                new List<double?> { 1, 1, 1, 202 },
+                new List<double?> { 1, 1, 2, 198 },
+                new List<double?> { 1, 2, 1, 159 },
+                new List<double?> { 1, 2, 2, 161 },
+                new List<double?> { 2, 1, 1, 191.5 },
+                new List<double?> { 2, 1, 2, 999 },
+                new List<double?> { 2, 2, 1, 150 },
+                new List<double?> { 2, 2, 2, 1 },
+                new List<double?> { 3, 1, 1, 190.5 },
+                new List<double?> { 3, 1, 2, 189.5 },
+                new List<double?> { 3, 2, 1, 171 },
+                new List<double?> { 3, 2, 2, 169 },
+            };
+
             MultiFacetsObs mfo = OmitTestingSagt();
 
             ObsTable table = new ObsTable(mfo.ListFacets(), mfo);
 
-            AssertTableEquals(mfo.ObservationTable(), table);
+            AssertTableEquals(e_matrix, table);
         }
 
         //Test omitting level 2 of Escuela from OMITTESTING
@@ -154,14 +168,13 @@ namespace Tests
                 new List<double?> { 3, 2, 1, 171 },
                 new List<double?> { 3, 2, 2, 169 },
             };
-            ObsTable e_table = new ObsTable(e_matrix);
 
             MultiFacetsObs mfo = OmitTestingSagt();
             mfo.ListFacets().LookingFacet("Escuela").SetSkipLevels(2);
 
             ObsTable table = new ObsTable(mfo.ListFacets(), mfo);
 
-            AssertTableEquals(e_table, table);
+            AssertTableEquals(e_matrix, table);
         }
 
         //Test omitting Escuela from OMITTESTING
@@ -175,7 +188,6 @@ namespace Tests
                 new List<double?> { 2, 1, 160 },
                 new List<double?> { 2, 2, 110.333 },
             };
-            ObsTable e_table = new ObsTable(e_matrix);
 
             MultiFacetsObs mfo = OmitTestingSagt();
             mfo.ListFacets().LookingFacet("Escuela").Omit(true);
@@ -183,7 +195,7 @@ namespace Tests
 
             ObsTable table = new ObsTable(lf, mfo);
 
-            AssertTableEquals(e_table, table);
+            AssertTableEquals(e_matrix, table);
         }
 
         //Test omitting Escuela and level2 of Escuela from OMITTESTING
@@ -197,7 +209,6 @@ namespace Tests
                 new List<double?> { 2, 1, 165 },
                 new List<double?> { 2, 2, 165 },
             };
-            ObsTable e_table = new ObsTable(e_matrix);
 
             MultiFacetsObs mfo = OmitTestingSagt();
             mfo.ListFacets().LookingFacet("Escuela").Omit(true);
@@ -206,9 +217,109 @@ namespace Tests
 
             ObsTable table = new ObsTable(lf, mfo);
 
-            AssertTableEquals(e_table, table);
+            AssertTableEquals(e_matrix, table);
         }
-        
+
+        #region TableMeans
+
+        //Test omitting nothing from OMITTESTING
+        [Fact]
+        public void TMConstructor_BaseCase()
+        {
+            var e_matrix = new List<List<double?>>
+            {
+                new List<double?> { 1, 1, 1, 202.000, 0.000, 0.000 },
+                new List<double?> { 1, 1, 2, 198.000, 0.000, 0.000 },
+                new List<double?> { 1, 2, 1, 159.000, 0.000, 0.000 },
+                new List<double?> { 1, 2, 2, 161.000, 0.000, 0.000 },
+                new List<double?> { 2, 1, 1, 191.500, 0.000, 0.000 },
+                new List<double?> { 2, 1, 2, 999.000, 0.000, 0.000 },
+                new List<double?> { 2, 2, 1, 150.000, 0.000, 0.000 },
+                new List<double?> { 2, 2, 2, 1.000, 0.000, 0.000 },
+                new List<double?> { 3, 1, 1, 190.500, 0.000, 0.000 },
+                new List<double?> { 3, 1, 2, 189.500, 0.000, 0.000 },
+                new List<double?> { 3, 2, 1, 171.000, 0.000, 0.000 },
+                new List<double?> { 3, 2, 2, 169.000, 0.000, 0.000 },
+            };
+
+            MultiFacetsObs mfo = OmitTestingSagt();
+
+            TableMeans table = new TableMeans(mfo.ListFacets(), "", mfo);
+
+            AssertTableEquals(e_matrix, table);
+        }
+
+        //Test omitting level 2 of Escuela from OMITTESTING
+        [Fact]
+        public void TMConstructor_SkipOneLevel()
+        {
+            var e_matrix = new List<List<double?>>
+            {
+                new List<double?> { 1, 1, 1, 202.000, 0.000, 0.000 },
+                new List<double?> { 1, 1, 2, 198.000, 0.000, 0.000 },
+                new List<double?> { 1, 2, 1, 159.000, 0.000, 0.000 },
+                new List<double?> { 1, 2, 2, 161.000, 0.000, 0.000 },
+                new List<double?> { 3, 1, 1, 190.500, 0.000, 0.000 },
+                new List<double?> { 3, 1, 2, 189.500, 0.000, 0.000 },
+                new List<double?> { 3, 2, 1, 171.000, 0.000, 0.000 },
+                new List<double?> { 3, 2, 2, 169.000, 0.000, 0.000 },
+            };
+
+            MultiFacetsObs mfo = OmitTestingSagt();
+            mfo.ListFacets().LookingFacet("Escuela").SetSkipLevels(2);
+            mfo = mfo.SkipIndexLevelFacetInDataTable(); //line not needed with obstable
+
+            TableMeans table = new TableMeans(mfo.ListFacets(), "", mfo);
+
+            AssertTableEquals(e_matrix, table);
+        }
+
+        //Test omitting Escuela from OMITTESTING
+        [Fact]
+        public void TMConstructor_OmitOneFacet()
+        {
+            var e_matrix = new List<List<double?>>
+            {
+                new List<double?> { 1, 1, 194.667, 27.056, 5.201 },
+                new List<double?> { 1, 2, 462.167, 144107.056, 379.614 },
+                new List<double?> { 2, 1, 160.000, 74.000, 8.602 },
+                new List<double?> { 2, 2, 110.333, 5987.556, 77.379 },
+            };
+
+            MultiFacetsObs mfo = OmitTestingSagt();
+            mfo.ListFacets().LookingFacet("Escuela").Omit(true);
+            ListFacets lf = mfo.ListFacets().ListFacetsWithoutOmit();
+
+            TableMeans table = new TableMeans(lf, "", mfo);
+
+            AssertTableEquals(e_matrix, table);
+        }
+
+        //Test omitting Escuela and level2 of Escuela from OMITTESTING
+        [Fact]
+        public void TMConstructor_SkipLevelFromFacetToAlsoOmit()
+        {
+            var e_matrix = new List<List<double?>>
+            {
+                new List<double?> { 1, 1, 196.250, 33.063, 5.750 },
+                new List<double?> { 1, 2, 193.750, 18.063, 4.250 },
+                new List<double?> { 2, 1, 165.000, 36.000, 6.000 },
+                new List<double?> { 2, 2, 165.000, 16.000, 4.000 },
+            };
+
+            MultiFacetsObs mfo = OmitTestingSagt();
+            mfo.ListFacets().LookingFacet("Escuela").Omit(true);
+            mfo.ListFacets().LookingFacet("Escuela").SetSkipLevels(2);
+            mfo = mfo.SkipIndexLevelFacetInDataTable(); //line not needed with obstable
+            ListFacets lf = mfo.ListFacets().ListFacetsWithoutOmit();
+
+            TableMeans table = new TableMeans(lf, "", mfo);
+
+            AssertTableEquals(e_matrix, table);
+        }
+
+        #endregion TableMeans
+
 
 
         //todo: test trying to omit everything or being given a wrong lF and such

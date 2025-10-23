@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
-using MultiFacetData;
+﻿using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
 using Sagt;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -90,39 +90,94 @@ namespace Tests
 
             SagtFile sagtFile = new SagtFile(mfo, lmeans, aags);
 
-            //STEP 2: Save, Reload, Save again
+            //STEP 2: Save, Reload, Compare. NOTE: We haven't made fitting .Equal methods, so we're relying on our DataSet methods (not checked, not fully reliable)
             string firstFile = Path.GetTempFileName();
-            string secondFile = Path.GetTempFileName();
-
             sagtFile.WritingSagtFile(firstFile);
             SagtFile readSagtFile = SagtFile.ReadingSagtFile(firstFile);
+
+            Assert.Equal(NormalizeXml(sagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml()), NormalizeXml(readSagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml()));
+
+            //AssertDataSetArraysEqual(sagtFile.GetListMeans().ListMeans2DataSet(), readSagtFile.GetListMeans().ListMeans2DataSet());   
+            //this one directly doesn't work it has the labels juggled, pretty sure it's the dataset function's fault
+
+            //AssertDataSetArraysEqual(sagtFile.GetAnalysis_and_G_Study().Analysis_and_G_Study2ListDataSets(), readSagtFile.GetAnalysis_and_G_Study().Analysis_and_G_Study2ListDataSets());
+            //Found issue: decimal precision is lost when saving? Investigate if this is the case
+            //    Expected: ···sq>0.083333333333314386</ssq>\n<msq>0.083333333333314386</msq>···
+            //Actual:   ···sq > 0.0833333333333144 </ ssq >\n < msq > 0.0833333333333144 </ msq >\n < ra···
+
+            //STEP 3: Save again, Compare
+
+            string secondFile = Path.GetTempFileName();
             readSagtFile.WritingSagtFile(secondFile);
-
-            // === STEP 3: Normalize text and compare ===
-            string Normalize(string text)
-            {
-                if (text == null) return string.Empty;
-
-                // Normalize all newline variants (\r, \n, \r\n, or even \n\r) to a single '\n'
-                text = Regex.Replace(text, @"\r\n?|\n\r?", "\n");
-
-                // Trim trailing spaces/tabs at end of each line
-                text = Regex.Replace(text, @"[ \t]+$", "", RegexOptions.Multiline);
-
-                // Collapse multiple blank lines
-                text = Regex.Replace(text, @"\n{2,}", "\n");
-
-                // Trim overall leading/trailing whitespace
-                return text.Trim();
-            }
-            //(Yes, the comparison will fail without taking care of the above stuff, and it seems to be mostly due lorem ipsum comment)
 
             string firstText = Normalize(File.ReadAllText(firstFile));
             string secondText = Normalize(File.ReadAllText(secondFile));
 
             Assert.Equal(firstText, secondText);
         }
+        private static void AssertDataSetArraysEqual(DataSet[] expected, DataSet[] actual)
+        {
+            Assert.Equal(expected.Length, actual.Length); // ensure same number of DataSets
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                string expectedXml = NormalizeXml(expected[i].GetXml());
+                string actualXml = NormalizeXml(actual[i].GetXml());
+
+                Assert.Equal(expectedXml, actualXml); // will fail with a readable diff
+            }
+        }
+
+        private static string NormalizeXml(string xml)
+        {
+            if (xml == null) return string.Empty;
+
+            // Remove <name_file>, <date_creation> content
+            xml = Regex.Replace(xml, @"<name_file>.*?</name_file>", "<name_file></name_file>", RegexOptions.Singleline);    //extra info on file's path will be added when saving
+            xml = Regex.Replace(xml, @"<date_creation>.*?</date_creation>", "<date_creation></date_creation>", RegexOptions.Singleline);    //Seemingly, millisecond data is stored originally but omitted when saving
+            xml = Regex.Replace(xml, @"<dateCreation>.*?</dateCreation>", "<dateCreation></dateCreation>", RegexOptions.Singleline);
+
+            // Normalize all newline variants
+            xml = Regex.Replace(xml, @"\r\n?|\n\r?", "\n");
+
+            // Ensure a newline after opening tags like <comment>
+            xml = Regex.Replace(xml, @"<(comment|description|otherTags)>([^\n])", "<$1>\n$2");
+
+            // Trim leading/trailing spaces/tabs from each line
+            xml = Regex.Replace(xml, @"^[ \t]+|[ \t]+$", "", RegexOptions.Multiline);
+
+            // Collapse multiple blank lines to a single blank line
+            xml = Regex.Replace(xml, @"\n{2,}", "\n");
+
+            return xml.Trim();
+        }
+
+        private static string Normalize(string text)
+        {
+            if (text == null) return string.Empty;
+
+            // Normalize all newline variants (\r, \n, \r\n, or even \n\r) to a single '\n'
+            text = Regex.Replace(text, @"\r\n?|\n\r?", "\n");
+
+            // Trim trailing spaces/tabs at end of each line
+            text = Regex.Replace(text, @"[ \t]+$", "", RegexOptions.Multiline);
+
+            // Collapse multiple blank lines
+            text = Regex.Replace(text, @"\n{2,}", "\n");
+
+            // Trim overall leading/trailing whitespace
+            return text.Trim();
+        }
+
+
+        //todo:make, save, reload, compare first make with reloaded version. Problem: need to manufacture .Equals methods
+        //One solution could be using the DataSet methods:
+        //Assert.Equal(sagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml(), readSagtFile.GetMultiFacetsObs().MultiFacetObs2DataSet().GetXml());
+        //Problem: they also run into minor differences we don't care about
 
         //todo: test correct output of reading broken files
     }
+
+
+
 }
