@@ -1,6 +1,7 @@
 ﻿using AuxMathCalcGT;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -360,5 +361,35 @@ namespace MultiFacetData
         }
 
         #endregion Collapse Calculations
+
+        public DataTable TableMeansToDGV()
+        {
+            DataTable dt = new DataTable("Tb_Table_Means");
+
+            int numCols = this.TableColumns();
+            int numRows = this.TableRows();
+
+            // Define columns (nullable via DBNull)
+            for (int i = 0; i < numCols; i++)
+            {
+                DataColumn col = new DataColumn($"Col{i}", typeof(double));
+                col.AllowDBNull = true; // important to permit DBNull.Value
+                dt.Columns.Add(col);
+            }
+
+            // Fill rows safely
+            for (int r = 0; r < numRows; r++)
+            {
+                DataRow row = dt.NewRow();
+                for (int c = 0; c < numCols; c++)
+                {
+                    double? value = this.Data(r, c);
+                    row[c] = value.HasValue ? (object)value.Value : DBNull.Value;
+                }
+                dt.Rows.Add(row);
+            }
+
+            return dt;
+        }
     }
 }

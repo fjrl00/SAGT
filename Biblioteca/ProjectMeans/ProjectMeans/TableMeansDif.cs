@@ -632,7 +632,7 @@ namespace ProjectMeans
             dtTableMeans.Rows.Add(row);
             // añadimos el dataTable
             dsTableMeans.Tables.Add(dtTableMeans);
-            DataTable dtTable = this.TableMeansToDGV();
+            DataTable dtTable = this.AuxDataTableMeans();
             dsTableMeans.Tables.Add(dtTable);
 
             return dsTableMeans;
@@ -642,7 +642,7 @@ namespace ProjectMeans
         /* Descripción:
          *  Operación auxiliar de TableMeans2DataSet que devuelve un dataTable con la tabla de medias
          */
-        public DataTable TableMeansToDGV()
+        private DataTable AuxDataTableMeans()
         {
             DataTable dtTableMeans = new DataTable("Tb_Table_Means_Dif"); // valor de retorno
 

@@ -232,6 +232,8 @@ namespace GUI_GT
          * Parámetros:
          *      TableMeans tMeans: Tabla de medias
          *      ConfigCFG.ConfigCFG cfgApli: Parámetros de configuración.
+         *
+         * Further research needed. The DataBindingComplete thing is a weird hack and I'm not completely sure this will work in all circunstances.
          */
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
