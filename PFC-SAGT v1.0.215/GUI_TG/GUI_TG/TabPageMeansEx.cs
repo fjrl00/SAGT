@@ -238,7 +238,7 @@ namespace GUI_GT
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.DataSource = tMeans.TableMeansToDGV();   //input cell value data
-
+            
             // Global table properties
             dgvExTableMean.AllowUserToResizeRows = false;
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
@@ -266,6 +266,8 @@ namespace GUI_GT
 
                 // Properties for calculation columns
                 AddFinalColumns(dgvExTableMean, tMeans, numFacets, "F" + cfgApli.GetNumberOfDecimals());
+
+                dgvExTableMean.NumeroColumnas = tMeans.TableColumns();
             };
 
             // Final stats
