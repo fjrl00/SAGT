@@ -1992,7 +1992,7 @@ namespace GUI_GT
         private void clearDataElements()
         {
             CleanerDataGridViewExFacets(this.dataGridViewExFacets);
-            this.dataGridViewExObsTable.Rows.Clear();
+            this.dataGridViewExObsTable.DataSource = null;
             this.dataGridViewExObsTable.ColumnHeadersVisible = false;
             this.dataGridViewExFacets.ColumnHeadersVisible = false;
             this.tbDescription.Text = "";
