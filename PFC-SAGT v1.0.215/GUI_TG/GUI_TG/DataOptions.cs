@@ -272,26 +272,19 @@ namespace GUI_GT
          */
         private void loadMultiFacetFileXls(string path)
         {
-            List<string> namesTables = ImportExcel.GetTableExcel(path);
-            if (namesTables.Count != 2)
+            try
             {
-                // No esta en el formato correcto
-                ShowMessageErrorOK(errorFormatFile);
-            }
-            else
-            {
-                // la primera tabla debe contener las facetas.
-                DataTable dtFacets = ImportExcel.GetDataTableExcel(path, namesTables[0]);
-                ListFacets lf = DataTable2ListFacets(dtFacets);
-                MultiFacetsObs mfo = new MultiFacetsObs(lf, path, "");
-                // La segunda tabla debe contener la tabla de frecuencias
-                DataTable dtObsTable = ImportExcel.GetDataTableExcel(path, namesTables[1]);
-                InterfaceObsTable obsTb = mfo.ObservationTable();
-                obsTb = DataTable2Observation(dtObsTable, obsTb);
-                mfo.ObservationTable(obsTb);
+                MultiFacetsObs mfo = ImportExcel.ImportFileXLS_to_MultiFacetsObs(path);
                 this.sagtElements.SetMultiFacetsObs(mfo);
                 loadMultiFacets(path, mfo);
             }
+            catch(ObsTableException)
+            {
+                ShowMessageErrorOK(errorFormatFile);
+            }
+            
+
+            
         }//end loadMultiFacetFileXls
 
 
@@ -2096,94 +2089,7 @@ namespace GUI_GT
 
         #endregion Exportar los datos a un archivo Excel
 
-
-        #region Importar los datos de un archivo Excel
-        /*================================================================================================
-         * Importa los datos de un archivo Excel
-         * 
-         * NOTA:
-         *  Para ello emplea ADOX y oledb
-         *================================================================================================*/
-
-        /* Descripción:
-         *  Toma los datos de un DataTable y genera con ellos una lista de facetas
-         */
-        private ListFacets DataTable2ListFacets(DataTable dt)
-        {
-            ListFacets lf = null;
-            try
-            {
-                lf = new ListFacets();
-
-                int r = dt.Rows.Count;
-
-                for (int i = 0; i < r; i++)
-                {
-                    DataRow row = dt.Rows[i];
-
-                    string design = (string)row[0].ToString();
-                    string name = ExtractNameOfDesign(design);
-                    int level = int.Parse((string)row[1].ToString());
-                    int size = int.MaxValue;
-                    string stSize = ((string)row[2].ToString()).Trim();
-                    if (!stSize.Equals(Facet.INFINITE))
-                    {
-                        size = int.Parse(stSize);
-                    }
-                    string description = (string)row[3].ToString();
-
-                    Facet f = new Facet(name, level, description, size, design);
-                    lf.Add(f);
-                }
-            }
-            catch (FormatException e)
-            {
-                // contiene un campo incorrecto
-                throw e;
-            }
-            return lf;
-        }// end DataTable2ListFacets
-
-
-        /* Descripción:
-         *  Método auxiliar. De un diseño obtiene el nombre de la faceta de la faceta
-         */
-        private string ExtractNameOfDesign(string design)
-        {
-            int posI = design.IndexOf("[");
-            int posf = design.IndexOf("]");
-            return (design.Substring(posI+1,posf-1));
-        }
-
-
-        /* Descripción:
-         *  Devuelve la lista de observaciones leidas de un datatable
-         */
-        private InterfaceObsTable DataTable2Observation(DataTable dt, InterfaceObsTable obsTb)
-        {
-            InterfaceObsTable res = null;
-            try
-            {
-                res = obsTb;
-                int r = dt.Rows.Count;
-                int c = dt.Columns.Count;
-
-                for (int i = 0; i < r; i++)
-                {
-                    DataRow row = dt.Rows[i];
-                    double? d = ConvertNum.String2Double((string)row[c-1].ToString());
-                    res.Data(d,i);
-                }
-            }
-            catch (FormatException)
-            {
-                // Hemos cometido un error al leer
-                throw new ObsTableException(errorFormatFile);
-            }
-            return res;
-        }
-
-        #endregion Importar los datos de un archivo Excel
+        
 
 
         /* Descripción:

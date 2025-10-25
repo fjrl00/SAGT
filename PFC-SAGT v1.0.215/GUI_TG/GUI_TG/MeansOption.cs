@@ -655,44 +655,20 @@ namespace GUI_GT
          */
         private void loadListTableMeansFileXls(string path)
         {
-            List<string> namesTables = ImportExcel.GetTableExcel(path);
-            if (namesTables.Count < 2)
+            try
             {
-                // No esta en el formato correcto
-                ShowMessageErrorOK(errorFormatFile);
-            }
-            else
-            {
-                ListMeans lm = new ListMeans();
-                int n = namesTables.Count;
-                List<string> namesTablesaux = ImportExcel.GetTableExcel(path);
-                DataTable dtGrandMeans = ImportExcel.GetDataTableExcel(path, "Grand Mean$");
+                // Necesiatamos averiagura el tipo de tabla de medias
+                TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + MEAN_STRINGS);
+                TransLibrary.WordTranslation tras = dic.labelTraslation("Medias");
 
-                for (int i = 0; i < n; i++)
-                {
-                    string nameTable = namesTables[i];
-                    if (!nameTable.Contains("Grand Mean"))
-                    {
-                        DataTable dtMeansTable = ImportExcel.GetDataTableExcel(path, nameTable);
-
-                        // Necesiatamos averiagura el tipo de tabla de medias
-                        TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + MEAN_STRINGS);
-                        TransLibrary.WordTranslation tras = dic.labelTraslation("Medias");
-
-                        string tbDesign = dtGrandMeans.Rows[i-1][1].ToString();
-                        double? gm = ConvertNum.String2Double((string)dtGrandMeans.Rows[i - 1][2].ToString());
-                        double? variance = ConvertNum.String2Double((string)dtGrandMeans.Rows[i - 1][3].ToString());
-                        double? stdDev = ConvertNum.String2Double((string)dtGrandMeans.Rows[i - 1][4].ToString());
-                        InterfaceTableMeans tbMeans = DataTable2TableMeans(dtMeansTable, gm, variance, stdDev, tbDesign, tras);
-                        lm.Add(tbMeans);
-                    }
-                }
-                lm.SetNameFileDataCreation(path);
-                DateTime date = DateTime.Now;
-                lm.SetDateTime(date);
+                ListMeans lm = ImportExcel.ImportFileXLS_to_ListMeans(path, tras);
                 this.sagtElements.SetListMeans(lm);
                 // Mostramos los datos en las tablas
                 listOfTableMeansToTabPageMeans(lm);
+            }
+            catch (ListMeansException)
+            {
+                ShowMessageErrorOK(errorFormatFile);
             }
         }// loadListTableMeansFileXls
 
@@ -827,51 +803,6 @@ namespace GUI_GT
         }
 
 
-        /* Descripción:
-         *  Devuelve una tabla de medias
-         */
-        private InterfaceTableMeans DataTable2TableMeans(DataTable dt, double? grandMean,
-            double? variance, double? stdDev, string tbDesign, TransLibrary.WordTranslation trans)
-        {
-            InterfaceTableMeans tm = null;
-
-            /* Necesito averiguar que tipo de tabla de medias es. Lo averiguare mediante la posición
-             * de la columna media.
-             */
-            int r = dt.Rows.Count;
-            int c = dt.Columns.Count;
-            int pos = c-1;
-
-            bool found = false;
-            
-            while (pos >= 0 && !found)
-            {
-                string sMeans = dt.Columns[pos].ColumnName;
-                found = trans.TranslationIncluded(sMeans);
-                if (!found)
-                {
-                    pos--;
-                }
-            }
-
-            // Si es pos == c-4 entonces medias por defecto
-            if (pos == (c - 3))
-            {
-                tm = new TableMeans(dt, grandMean, variance, stdDev, tbDesign);
-            }
-            // Si es pos == c-5 entonces puntuación típica
-            if (pos == (c - 5))
-            {
-                tm = new TableMeansTypScore(dt, grandMean, variance, stdDev, tbDesign);
-            }
-            // Si es pos == c-6 entonces medias de las desviaciones
-            if (pos == (c - 6))
-            {
-                tm = new TableMeansDif(dt, grandMean, variance, stdDev, tbDesign);
-            }
-
-            return tm;
-        }// end DataTable2TableMeans
 
 
         #region Cambio de idioma de los elementos del tabPageMeans
