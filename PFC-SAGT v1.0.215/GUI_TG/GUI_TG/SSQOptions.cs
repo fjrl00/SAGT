@@ -2182,7 +2182,7 @@ namespace GUI_GT
                 stand_absol_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Actuamos sobre el dGridViewExOptimizationResum
-                if (dGridViewExOptimizationResum.ColumnCount != 0)
+                if (this.sagtElements.GetAnalysis_and_G_Study() != null)
                 {
                     // dGridViewExOptimizationResum.Columns[0].HeaderText = name_resum;
                     // Entonces pintamos la tabla de resumen de nuevo
