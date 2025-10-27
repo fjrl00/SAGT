@@ -15,21 +15,22 @@
  *      Medias: generación de valores estadisticos a partir de una lista de Facetas y la tabla de 
  *      observaciones.
  */
+using AuxMathCalcGT;
+using ImportEduGMeans;
+using MultiFacetData;
+using ProjectMeans;
+using ProjectSSQ;
+using Sagt;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using MultiFacetData;
-using System.Drawing;
-using ProjectMeans;
-using ImportEduGMeans;
-using ProjectSSQ;
-using AuxMathCalcGT;
 using System.Threading;
-using Sagt;
+using System.Windows.Forms;
 
 
 namespace GUI_GT
@@ -730,41 +731,22 @@ namespace GUI_GT
                 saveDialog.AddExtension = true;
                 saveDialog.RestoreDirectory = true;
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
-                // CuadroDialogo.InitialDirectory = @"c:\";
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ExportExcel expExcel = new ExportExcel();
-                    int nlistMeans = listMeans.Count();
-                    int pos = nlistMeans-1;
-
-                    // Exportamos la tablas con los diseños (nombre de las pestañas y los datos de la grand media)
-                    DataGridView dgvGrandMean = AuxDataGridViewGrandMeans(listMeans);
-                    expExcel.addXlsWorksheet(dgvGrandMean, "Grand Mean");
-
-                    // Exportamos el resto de las tablas
-                    TabPageMeansEx tp = (TabPageMeansEx)tabControlMeans.TabPages[pos];
-                    DataGridViewEx.DataGridViewEx dgvExMean = tp.GetDataGridViewEx();
-                    expExcel.addNewXlsWorksheet(dgvExMean, "Media " + (nlistMeans));
-                    // expExcel.addXlsWorksheet(dgvExMean, tp.Text);
-
-                    pos--;
-                    nlistMeans--;
-                    // this.tabControlMeans.
-                    for (int i = pos; i >=0 ; i--)
+                    var sheetList = new List<(string SheetName, DataGridView Grid)>();
+                    for(int i=0; i<listMeans.Count(); i++)
                     {
-                        tp = (TabPageMeansEx)tabControlMeans.TabPages[i];
-                        dgvExMean = tp.GetDataGridViewEx();
-                        expExcel.addNewXlsWorksheet(dgvExMean, "Media " + nlistMeans);
-                        nlistMeans--;
+                        TabPageMeansEx tp = (TabPageMeansEx)tabControlMeans.TabPages[i];
+                        DataGridViewEx.DataGridViewEx dgvExMean = tp.GetDataGridViewEx();
+                        sheetList.Add(($"Media {i + 1}", dgvExMean));
                     }
-
-                    expExcel.saveFileExcel(saveDialog.FileName);
-
+                    sheetList.Add(("Grand Mean", AuxDataGridViewGrandMeans(listMeans)));
+                    ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
 
                     // MessageBox.Show("Fin");
+                    Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
                     saveDialog = null;
-                    expExcel.aplicationExcelQuit();
                 }
             }
         }// end tsmiActionMeansExportExcel_Click

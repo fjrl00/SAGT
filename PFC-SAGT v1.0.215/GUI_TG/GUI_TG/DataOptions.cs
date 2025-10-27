@@ -14,22 +14,22 @@
  *      Clase parcial ("partial") del FormPrincipal. Contiene los métodos referentes a la parte de
  *      Datos: creación de Facetas y tabla de observaciones.
  */
+using AuxMathCalcGT;
+using MultiFacetData;
+using ProjectMeans;
+using ProjectSSQ;
+using Sagt;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
+using System.Globalization; // permite leer doubles con independencia del punto decimal que usemos
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using MultiFacetData;
-using AuxMathCalcGT;
-using ProjectSSQ;
-using ProjectMeans;
-using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.Threading; // permite usar hilos
-using System.Globalization; // permite leer doubles con independencia del punto decimal que usemos
-using myExcel = Microsoft.Office.Interop.Excel; // permite interactuar con ficheros Excel
-using Sagt;
-using System.IO;
+using System.Windows.Forms;
 
 
 namespace GUI_GT
@@ -2053,27 +2053,19 @@ namespace GUI_GT
             saveDialog.AddExtension = true;
             saveDialog.RestoreDirectory = true;
             saveDialog.Title = titleSave;
-            // CuadroDialogo.InitialDirectory = @"c:\";
             if (saveDialog.ShowDialog() == DialogResult.OK)
-            {/*
-                ExcelApp.ActiveWorkbook.SaveCopyAs(CuadroDialogo.FileName);
-                ExcelApp.ActiveWorkbook.Saved = true;
-                CuadroDialogo.Dispose();
-                CuadroDialogo = null;
-                ExcelApp.Quit();
-              */
-
-                ExportExcel expExcel = new ExportExcel();
-                expExcel.addXlsWorksheet(dataGridViewExObsTable, tabPageObsTable.Text);
-                expExcel.addNewXlsWorksheet(dataGridViewExFacets, tabPagMultiFacet.Text);
-                
-                expExcel.saveFileExcel(saveDialog.FileName);
-                
+            {
+                var sheetList = new List<(string SheetName, DataGridView Grid)>
+                {
+                    (tabPagMultiFacet.Text, dataGridViewExFacets),
+                    (tabPageObsTable.Text, dataGridViewExObsTable),
+                };
+                ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
 
                 // MessageBox.Show("Fin");
+                Process.Start(saveDialog.FileName); //opens the file
                 saveDialog.Dispose();
                 saveDialog = null;
-                expExcel.aplicationExcelQuit();
             }
         }// end SaveFileExcelDialog
        

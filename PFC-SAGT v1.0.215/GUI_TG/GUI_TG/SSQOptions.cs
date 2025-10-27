@@ -23,6 +23,7 @@ using SsqPY;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.IO;
 using System.Linq;
@@ -1665,7 +1666,6 @@ namespace GUI_GT
         {
             try
             {
-                // Necesiatamos averiagura el tipo de tabla de medias
                 TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + DATA_STRINGS);
                 TransLibrary.WordTranslation transFacets = dic.labelTraslation(tabPagMultiFacet.Name.ToString());
                 dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + SSQ_STRINGS);
@@ -1777,22 +1777,21 @@ namespace GUI_GT
                 saveDialog.AddExtension = true;
                 saveDialog.RestoreDirectory = true;
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
-                // CuadroDialogo.InitialDirectory = @"c:\";
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ExportExcel expExcel = new ExportExcel();
-                    expExcel.addXlsWorksheet(dGridViewExOptimizationResum, tabPageOptimization.Text);
-                    expExcel.addNewXlsWorksheet(dGridViewExG_Parameters, tabPageG_Parameters.Text);
-                    expExcel.addNewXlsWorksheet(dataGridViewExSSQ, tabPageSSQ_TableComp.Text);
-                    expExcel.addNewXlsWorksheet(dGridViewExSourceOfVar, tabPagMultiFacet.Text);
-
-                    expExcel.saveFileExcel(saveDialog.FileName);
-
+                    var sheetList = new List<(string SheetName, DataGridView Grid)>
+                    {
+                        (tabPagMultiFacet.Text, dGridViewExSourceOfVar),
+                        (tabPageSSQ_TableComp.Text, dataGridViewExSSQ),
+                        (tabPageG_Parameters.Text, dGridViewExG_Parameters),
+                        (tabPageOptimization.Text, dGridViewExOptimizationResum),
+                    };
+                    ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
 
                     // MessageBox.Show("Fin");
+                    Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
                     saveDialog = null;
-                    expExcel.aplicationExcelQuit();
                 }
             }
         }// end tsmiActionSSq_ExportExcel_Click

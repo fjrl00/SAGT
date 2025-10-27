@@ -14,18 +14,19 @@
  *      Clase parcial ("partial") del FormPrincipal. Contiene los métodos referentes a la parte de
  *      Análisis de varianza del plan y estimación de los componentes de varianza.
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO;
 using AuxMathCalcGT;
+using ImportEduGSsq;
 using MultiFacetData;
 using ProjectSSQ;
 using SsqPY;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading; // permite usar hilos
-using ImportEduGSsq;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -1178,22 +1179,21 @@ namespace GUI_GT
                 saveDialog.AddExtension = true;
                 saveDialog.RestoreDirectory = true;
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
-                // CuadroDialogo.InitialDirectory = @"c:\";
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ExportExcel expExcel = new ExportExcel();
-                    expExcel.addXlsWorksheet(dgvAnalysisResumOpt, tabPageOptimization.Text);
-                    expExcel.addNewXlsWorksheet(dgvExAnalysis_GP, tabPageG_Parameters.Text);
-                    expExcel.addNewXlsWorksheet(dgvExAnalysisSSq, tabPageSSQ_TableComp.Text);
-                    expExcel.addNewXlsWorksheet(dgvExAnalysisSourceOfVarSsq, tabPagMultiFacet.Text);
-
-                    expExcel.saveFileExcel(saveDialog.FileName);
-
+                    var sheetList = new List<(string SheetName, DataGridView Grid)>
+                    {
+                        (tabPagMultiFacet.Text, dgvExAnalysisSourceOfVarSsq),
+                        (tabPageSSQ_TableComp.Text, dgvExAnalysisSSq),
+                        (tabPageG_Parameters.Text, dgvExAnalysis_GP),
+                        (tabPageOptimization.Text, dgvAnalysisResumOpt),
+                    };
+                    ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
 
                     // MessageBox.Show("Fin");
+                    Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
                     saveDialog = null;
-                    expExcel.aplicationExcelQuit();
                 }
             }
         }// end tsmiActionAnalysisExportExcel_Click

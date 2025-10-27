@@ -66,7 +66,7 @@ namespace AuxMathCalcGT
                 else
                 {
                     // No contiene separador decimal
-                    d = double.Parse(s);
+                    d = double.Parse(s);    //note that this will throw if we are reading something that is not a number
                 }
                 
             }
