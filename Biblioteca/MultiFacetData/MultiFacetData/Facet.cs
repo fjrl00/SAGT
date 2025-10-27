@@ -468,7 +468,6 @@ namespace MultiFacetData
          *  - SizeOfUniverse
          *  - GetSkipLevels
          *  - Omit
-         *  - ListFacetsNesting
          *  - IsNesting
          *  - IsValidateNesting
          *  - IsInfinite
@@ -552,15 +551,6 @@ namespace MultiFacetData
         public bool Omit()
         {
             return omit;
-        }
-
-
-        /* Descripción:
-         *  Devuelve la lista de facetas sobre la que esta anidada. Si la faceta no esta anidada devolverá null.
-         */
-        public string ListFacetsNesting()
-        {
-            return this.list_facets_design;
         }
 
 

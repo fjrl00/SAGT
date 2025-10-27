@@ -87,11 +87,10 @@ namespace MultiFacetData
          *  Devuelve un nueva lista como resultado de concatenar la lista implicita y la explicita. Primero
          *  introduce la lista implicita y luego la explicita. 
          *  
-         *  En lugar de saltar excepción si existen facetas repetidas, las omite en la concatenación.
-         * 
-         * Usada en DataTable2TableG_Study.
+         * - En lugar de saltar excepción si existen facetas repetidas, las omite en la concatenación.
+         * - Orden: FIFO (necesario para la importación correcta desde Excel). [this, facetas que están en lf pero no en list]
          */
-        public ListFacets ConcatenateWithoutRepetitions(ListFacets lf)
+        public ListFacets Union(ListFacets lf)
         {
             ListFacets totalFacets = new ListFacets();
             int n = this.Count();
@@ -112,62 +111,6 @@ namespace MultiFacetData
 
             return totalFacets;
         }
-
-
-        /* Descripción:
-         *  Devuelve una lista de facetas como resultado de unir las dos lista, una como parámetro
-         *  implicito y otra como parámetro explicito. No contiene facetas repetidas.
-         *  
-         * Usada en CalcRandomComp.
-         * Diferencias con ConcatenateWithoutRepetitions:
-         * - usa ExistNameFacet como estándar de igualdad, en lugar de .Contains... Que actualmente también utiliza igualdad de nombre
-         * - el orden es algo así como [facetas que están en this pero no en lf, lf], en lugar de [this, facetas que están en lf pero no en list]
-         */
-        public ListFacets Union(ListFacets lf)
-        {
-            ListFacets retVal = new ListFacets();
-            int n = this.Count();
-            for (int i = 0; i < n; i++)
-            {
-                Facet f = this.FacetInPos(i);
-                if (!lf.ExistNameFacet(f))
-                {
-                    retVal.Add(f);
-                }
-            }
-            retVal = retVal.Concatenate(lf);
-            return retVal;
-        }
-
-
-        /*
-         * Descripción:
-         *  Devuelve (int) el grado de libertad de una lista de facetas. Si una faceta no esta anidada,
-         * Excepciones:
-         *      ListFacetsException: Si la lista de facetas esta vacia.
-         */
-        //public int DegreeOfFreedom()
-        //{
-        //    if (this.Count() == 0)
-        //    {
-        //        throw new ListFacetsException("Error: No se puede calcular el grado de libertad a una lista vacia");
-        //    }
-        //    int retVal = 1;
-        //    foreach (Facet f in this.listFacets)
-        //    {
-        //        if (f.IsNesting())
-        //        {
-        //            retVal = retVal * f.Level();
-        //        }
-        //        else
-        //        {
-        //            retVal = retVal * (f.Level() - 1);
-        //        }
-
-        //    }
-        //    return retVal;
-        //}
-
 
         /*
         * Descripción:
@@ -213,26 +156,6 @@ namespace MultiFacetData
 
             return retVal;
         }
-
-
-        /* Descripcíón:
-         *  Devuelve true si la faceta que se pasa como parámetro no contiene otra faceta en su interior. 
-         *  Es decir, no existe ninguna faceta en la lista que la referencie desde la lista de facetas
-         *  anidadas. Si la faceta no contiene niguna otra devolvera false,
-         */
-        /*
-        private bool DoesNotContainToYetAnotherFacet(Facet f)
-        {
-            bool retVal = false;
-            int n = this.Count();
-            for (int i = 0; i < n && !retVal; i++)
-            {
-                Facet f_pos_i = this.FacetInPos(i);
-                retVal = f_pos_i.ListFacetsNesting().ExistNameFacet(f);
-            }
-            return retVal;
-        }
-         */
 
 
         /*

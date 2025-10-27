@@ -1675,7 +1675,7 @@ namespace GUI_GT
 
                 return ImportExcel.ImportFileXLS_to_AAGS(path, transFacets, transSSq, transG_p, transResum);
             }
-            catch(Analysis_and_G_Study_Exception)
+            catch(Analysis_and_G_Study_Exception)   //todo
             {
                 ShowMessageErrorOK(errorFormatFile);
                 return null;    //Note: functions that call this function should take this return null into account to avoid deleting data

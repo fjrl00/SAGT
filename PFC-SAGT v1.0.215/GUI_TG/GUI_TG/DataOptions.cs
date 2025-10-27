@@ -1285,7 +1285,7 @@ namespace GUI_GT
             this.dataGridViewExFacets.Rows.Clear();
             //this.dataGridViewExFacets.NumeroFilas = 0;
             this.dataGridViewExFacets.NumeroColumnas = 0;
-            this.dataGridViewExObsTable.Rows.Clear();
+            this.dataGridViewExObsTable.DataSource = null;
             this.dataGridViewExObsTable.NumeroColumnas = 0;
             //this.dataGridViewExObsTable.NumeroFilas = 0;
 
@@ -1358,15 +1358,6 @@ namespace GUI_GT
                                     Facet f = this.lf_global.FacetInPos(posSelctFacet);
                                     Facet f_Nested = this.lf_global.FacetInPos(posNestedFacet);
                                     // anidamos
-                                    /* if (f.IsValidateNesting(f_Nested))
-                                    // if(f_Nested.IsValidateNesting(f))
-                                    {
-                                        f.ListFacetsDesignNesting(f_Nested);
-                                        // f_Nested.ListFacetsNesting(f);
-                                        // pintamos de nuevo las facetas en la tabla
-                                        LoadListFacetInDataGridView(this.lf_global, dataGridViewExFacets);
-                                        salir = true;
-                                    }*/
                                     try
                                     {
                                         if (fAddNesting.RadioButtonNest())
