@@ -30,7 +30,7 @@ namespace Tests
         /*
          * Requirements to run:
          * - Spanish language
-         * - Ejemplo1.sagt must exist in workspace
+         * - datos.sagt must exist in workspace
          * - Don't have tabs capable of blocking our app on the foreground
          */ 
         [Fact]
@@ -62,7 +62,7 @@ namespace Tests
                 ).Result;
 
                 var fileBox = openDialog.FindFirstDescendant(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.Edit)).AsTextBox();
-                fileBox.Enter("Ejemplo1.sagt");
+                fileBox.Enter("datos.sagt");
 
                 // This is the bottom right 'Open' button. Trying to find it through text doesn't work
                 // since it will be confused with the dropdown button of the file name field.
@@ -72,10 +72,11 @@ namespace Tests
                 var openButton = openDialog.FindFirstChild(cf => cf.ByAutomationId("1")).AsButton();   
                 openButton.Click();
 
-                // Step 4: Verify data loaded in textbox
+                //Now, test if the Description data has been laoded correctly
                 var tbDescription = window.FindFirstDescendant(cf => cf.ByAutomationId("tbDescription")).AsTextBox();
                 Assert.Equal("Ejemplo1", tbDescription.Text);
             }
+            app.Close();
         }
     }
 }
