@@ -451,7 +451,7 @@ namespace GUI_GT
          */
         private void DecimalSetting()
         {
-            cfg.SetNull_to_Zero(this.checkBoxNull_to_zero.Checked);
+            cfg.SetNull_to_Zero(this.checkBoxNull_to_zero.Checked); //What's this doing here?
             int newNumberOfDecimals = this.cBoxNumberOfDecimals.SelectedIndex;
            
             if (!cfg.GetNumberOfDecimals().Equals(newNumberOfDecimals)

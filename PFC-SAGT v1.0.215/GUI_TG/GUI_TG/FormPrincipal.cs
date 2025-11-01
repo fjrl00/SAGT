@@ -1170,6 +1170,13 @@ namespace GUI_GT
             // Punto de separación decimal
             string puntoDecimal = this.cfgApli.GetDecimalSeparator();
 
+            //Refrescamos obsTable
+            MultiFacetsObs mfo = this.sagtElements.GetMultiFacetsObs();
+            if (mfo != null)
+            {
+                loadDataInTabPageObsTable(mfo, this.checkBoxHideNulls.Checked);
+            }
+
             // Refrescamos medias
             ListMeans listMeans = this.sagtElements.GetListMeans();
             if (listMeans != null)

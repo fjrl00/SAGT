@@ -11,17 +11,18 @@
  * Fecha de revisión: 3/Nov/2011  
  * 
  */
+using AuxMathCalcGT;
+using ConfigCFG;
+using DataGridViewEx;
+using ProjectMeans;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
-using DataGridViewEx;
-using AuxMathCalcGT;
-using ProjectMeans;
-using ConfigCFG;
-using System.Data;
 
 namespace GUI_GT
 {
@@ -242,6 +243,8 @@ namespace GUI_GT
             // Global table properties
             dgvExTableMean.AllowUserToResizeRows = false;
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
+            if(cfgApli.GetDecimalSeparator().Equals(","))
+                dgvExTableMean.DefaultCellStyle.FormatProvider = new CultureInfo("es-ES");
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.Aqua,

@@ -769,7 +769,6 @@ namespace GUI_GT
             dgvExObsTable.AutoGenerateColumns = false;
             dgvExObsTable.ColumnHeadersVisible = true;
 
-            dgvExObsTable.DefaultCellStyle.Font = fontCellTable;
             dgvExObsTable.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.Aqua,
@@ -804,6 +803,13 @@ namespace GUI_GT
                 Width = 200
             };
             dgvExObsTable.Columns.Add(last);
+
+            //Other data (needs to be set after generating the columns, not before)
+            dgvExObsTable.DefaultCellStyle.Font = fontCellTable;
+            if (cfgApli.GetDecimalSeparator().Equals(","))
+                dgvExObsTable.DefaultCellStyle.FormatProvider = new CultureInfo("es-ES");
+            else
+                dgvExObsTable.DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
 
             dgvExObsTable.NumeroColumnas = n + 1;   //note: deleting this line will cause an exception in DataGridViewEx.KeyPressEditor upon writing a character in a cell. But deleting it seemingly causes no other issues.
         }// end LoadHeadersInObsTable
