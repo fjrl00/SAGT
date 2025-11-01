@@ -42,7 +42,7 @@ namespace ProjectMeans
         double? Variance(); // Devuelve la varianza total de la tabla
         double? StdDev(); // Devuelve la desviación típica de la tabla
         DataSet TableMeans2DataSet(); // Convierte la tabla de medias en un DataSet
-        DataTable TableMeansToDGV();
+        DataTable TableToDGV(bool hideNull=false);
 
 
         /*=================================================================================================

@@ -1546,19 +1546,8 @@ namespace GUI_GT
             Application.DoEvents();
             try
             {
-                
                 MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
-                if (this.checkBoxHideNulls.Checked)
-                {
-                    // Si la propiedad checked esta a true se ocultan los valores
-                    loadData_hideNulls_InTabPageObsTable(multiFacets);
-                }
-                else
-                {
-                    // Si la propiedad checked esta a false se muestran todos los valores
-                    loadDataInTabPageObsTable(multiFacets);
-                }
-                
+                loadDataInTabPageObsTable(multiFacets, this.checkBoxHideNulls.Checked);
             }
             catch (IOException ex)
             {

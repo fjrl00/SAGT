@@ -237,7 +237,7 @@ namespace GUI_GT
          */
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
-            dgvExTableMean.DataSource = tMeans.TableMeansToDGV();   //input cell value data
+            dgvExTableMean.DataSource = tMeans.TableToDGV();   //input cell value data
             
             // Global table properties
             dgvExTableMean.AllowUserToResizeRows = false;

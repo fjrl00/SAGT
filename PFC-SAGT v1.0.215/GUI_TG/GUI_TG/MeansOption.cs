@@ -273,7 +273,7 @@ namespace GUI_GT
                     {
                         //listMeans = ProjectMeans.ListMeans.ReadingFileListMeans(openDialog.FileName);
                         this.sagtElements = SagtFile.ReadingSagtFile(openDialog.FileName);
-                        listMeans = this.sagtElements.GetListMeans();
+                        listMeans = this.sagtElements.GetListMeans();   //why?
                         //if (listMeans != null)
                         //{
                         //    // cerramos todos los tabPage

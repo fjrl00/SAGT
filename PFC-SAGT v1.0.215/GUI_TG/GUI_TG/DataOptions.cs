@@ -16,6 +16,7 @@
  */
 using AuxMathCalcGT;
 using MultiFacetData;
+using NPOI.SS.Formula.Functions;
 using ProjectMeans;
 using ProjectSSQ;
 using Sagt;
@@ -351,7 +352,7 @@ namespace GUI_GT
                 // MultiFacetsObs multiFacets = MultiFacetsObs.ReadingFileObsData(path);
                 sagtElements = SagtFile.ReadingSagtFile(path);
                 // Cargamos los elementos
-                MultiFacetsObs multiFacets = sagtElements.GetMultiFacetsObs();
+                MultiFacetsObs multiFacets = sagtElements.GetMultiFacetsObs();  //why?
                 // sagtElements.SetMultiFacetsObs(multiFacets);
                 //loadMultiFacets(fileNameData, multiFacets);
                 loadSagtElements(fileNameData, sagtElements);
@@ -764,59 +765,48 @@ namespace GUI_GT
          */
         private void LoadHeadersInObsTable(MultiFacetsObs multiFacets, DataGridViewEx.DataGridViewEx dgvExObsTable)
         {
-            // dgvExObsTable.Rows.Clear();
+            dgvExObsTable.Columns.Clear();
+            dgvExObsTable.AutoGenerateColumns = false;
             dgvExObsTable.ColumnHeadersVisible = true;
-            int n = multiFacets.ListFacets().Count();
-            // dgvExObsTable.ColumnCount = n + 1;
-            dgvExObsTable.NumeroColumnas = n + 1;   //note: deleting this line will cause an exception in DataGridViewEx.KeyPressEditor upon writing a character in a cell. But deleting it seemingly causes no other issues.
 
-            // Set the column header style.
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Aqua;
-            columnHeaderStyle.Font = new Font("Verdana", 10, FontStyle.Bold);
-            dgvExObsTable.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
             dgvExObsTable.DefaultCellStyle.Font = fontCellTable;
-
-            for (int colu = 0; colu < n; colu++)
+            dgvExObsTable.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
-                // dgvExObsTable.Columns[colu].Name = multiFacets.ListFacets()[colu].Name();
-                // dgvExObsTable.Columns[colu].HeaderText = multiFacets.ListFacets().FacetInPos(colu).Name();
-                dgvExObsTable.Columns[colu].HeaderText = multiFacets.ListFacets().FacetInPos(colu).ListFacetDesign();
-                // impedimos que las columnas sean reordenables al pulsar la cabecera
-                dgvExObsTable.Columns[colu].SortMode = DataGridViewColumnSortMode.NotSortable;
-                // dgvExObsTable.Columns[colu].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells; // .AllCells;
-                dgvExObsTable.Columns[colu].ReadOnly = true;
+                BackColor = Color.Aqua,
+                Font = new Font("Verdana", 10, FontStyle.Bold)
+            };
+
+            int n = multiFacets.ListFacets().Count();
+            // Create facet columns
+            for (int col = 0; col < n; col++)
+            {
+                var facet = multiFacets.ListFacets().FacetInPos(col);
+
+                var c = new DataGridViewTextBoxColumn
+                {
+                    Name = $"Col{col}",
+                    HeaderText = facet.ListFacetDesign(),
+                    DataPropertyName = $"Col{col}",         // must match DataTable column name
+                    ReadOnly = true,
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgvExObsTable.Columns.Add(c);
             }
 
-            /* measurementVariable: Contiene el nombre de la columna de datos (esta cambiará 
-             * en función del idioma elegido).
-             * 
-             * 'n' se corresponde ahora con el indice de la última columna, aquella que contiene
-             * las "variables observadas".
-             */
-            // dgvExObsTable.Columns[n].Name = measurementVariable; // asignamos nombre
-            dgvExObsTable.Columns[n].HeaderText = measurementVariable;
-            dgvExObsTable.Columns[n].Width = 200; // asignamos longitud
-            // e impedimos que la ultima fila sea ordenable al pulsar la cabecera.
-            dgvExObsTable.Columns[n].SortMode = DataGridViewColumnSortMode.NotSortable;
-            // dgvExObsTable.Columns[n].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            // dgvExObsTable.Columns[n].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvExObsTable.Columns[n].ReadOnly = true;
-            //dgvExObsTable.Columns[n].DefaultCellStyle.Format = "###,##0.00";
-            // dgvExObsTable.AutoSize = true; // DataGridViewAutoSizeColumnMode.AllCells;
+            // Create measurement variable column
+            var last = new DataGridViewTextBoxColumn
+            {
+                Name = $"Col{n}",
+                HeaderText = measurementVariable,
+                DataPropertyName = $"Col{n}",   // must match DataTable column name
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Width = 200
+            };
+            dgvExObsTable.Columns.Add(last);
+
+            dgvExObsTable.NumeroColumnas = n + 1;   //note: deleting this line will cause an exception in DataGridViewEx.KeyPressEditor upon writing a character in a cell. But deleting it seemingly causes no other issues.
         }// end LoadHeadersInObsTable
-
-        private MultiFacetsObs _currentMultiFacets;
-        private void OnDataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (_currentMultiFacets != null)
-            {
-                LoadHeadersInObsTable(_currentMultiFacets, dataGridViewExObsTable);
-            }
-
-            // Unsubscribe after first execution to prevent re-triggering
-            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
-        }
 
         /*
          * Descripción:
@@ -824,47 +814,14 @@ namespace GUI_GT
          *  de la variable observable).
          * Parámetros:
          *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
-         *
-         *  NOTE: Extremely brittle code. Further research and refactoring is likely needed
+         *      hideNull: esconder o no filas con valor nulo. Por defecto se dejará falso
          */
-        private void loadDataInTabPageObsTable(MultiFacetsObs multiFacets)
+        private void loadDataInTabPageObsTable(MultiFacetsObs multiFacets, bool hideNull = false)
         {
-            dataGridViewExObsTable.Columns.Clear();
+            LoadHeadersInObsTable(multiFacets, dataGridViewExObsTable);
 
-            // Clear existing event handlers to prevent accumulation
-            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
-            dataGridViewExObsTable.DataBindingComplete += OnDataBindingComplete;
-
-            // Store multiFacets for use in the event handler
-            _currentMultiFacets = multiFacets;
-
-            // Load data
-            dataGridViewExObsTable.DataSource = multiFacets.ObservationTable().ObsTable2DataTable(multiFacets.ListFacets());
+            dataGridViewExObsTable.DataSource = multiFacets.ObservationTable().TableToDGV(hideNull);
         }
-
-
-        /* Descripción:
-         *  Carga los datos del objetos que se pasa como parámetro en la tabla de datos (la que muestra los datos
-         *  de la variable observable). Pero en este caso solo carga los valores distintos de null.
-         * Parámetros:
-         *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
-         *
-         *  NOTE: Extremely brittle code. Further research and refactoring is likely needed
-         */
-        private void loadData_hideNulls_InTabPageObsTable(MultiFacetsObs multiFacets)
-        {
-            dataGridViewExObsTable.Columns.Clear();
-
-            // Clear existing event handlers to prevent accumulation
-            dataGridViewExObsTable.DataBindingComplete -= OnDataBindingComplete;
-            dataGridViewExObsTable.DataBindingComplete += OnDataBindingComplete;
-
-            // Store multiFacets for use in the event handler
-            _currentMultiFacets = multiFacets;
-
-            // Load data
-            dataGridViewExObsTable.DataSource = multiFacets.ObservationTable().ObsTable2DataTable_hideNull(multiFacets.ListFacets());
-        }// end loadData_hideNulls_InTabPageObsTable
 
 
         /* Descripción:

@@ -362,9 +362,9 @@ namespace MultiFacetData
 
         #endregion Collapse Calculations
 
-        public DataTable TableMeansToDGV()
+        public DataTable TableToDGV(bool hideNull = false)
         {
-            DataTable dt = new DataTable("Tb_Table_Means");
+            DataTable dt = new DataTable();
 
             int numCols = this.TableColumns();
             int numRows = this.TableRows();
@@ -380,13 +380,21 @@ namespace MultiFacetData
             // Fill rows safely
             for (int r = 0; r < numRows; r++)
             {
+                bool hasNull = false;
                 DataRow row = dt.NewRow();
                 for (int c = 0; c < numCols; c++)
                 {
                     double? value = this.Data(r, c);
+                    if(hideNull && value == null)
+                    {
+                        hasNull = true;
+                        break;
+                    }
                     row[c] = value.HasValue ? (object)value.Value : DBNull.Value;
                 }
-                dt.Rows.Add(row);
+
+                if(!hasNull)
+                    dt.Rows.Add(row);
             }
 
             return dt;
