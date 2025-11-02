@@ -1,0 +1,36 @@
+BUGFIXES
+
+- Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
+- Solved bug where omitting rows of omitted facets had no effect
+- Solved bug where cancelling exiting the program after encountering an exception resulted in exiting anyway
+- Solved bug where clicking on the content of certain cells would trigger an exception
+- Solved bug where storing files that contained the number "NaN" would render them impossible to load
+- Solved multiple bugs where the app would sometimes crash when executing tasks that used a loading screen way too fast
+- Solved importing and exporting Excel files not working in modern PC's
+- Solved bug where differentiation and instrumentation facets wouldn't be imported correctly in Excel
+- Solved a bug where putting facets of differentiation and instrumentation in certain orders could trigger an exception
+- Solved bug where omitting a facet nested in another facet would trigger an exception when generating means
+- Solved bug where duplicated error screens could be created when generating nested facets
+- Solved bug where changing language after loading and unloading Sums Of Squares data would cause an exception
+- Overhauled how the app works in different culture settings, bugs that would've been triggered regarding handling text data in certain cultures like Turkish have been solved.
+- Solved other minor bugs throughout the app related to handling null values
+- Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
+
+OPTIMIZATION
+
+- Removed duplicated image data throughout the app
+- Removed multitude of unnecessary files
+- Reworked Word exporting and Excel importing/exporting to be way faster and resource light, and to not require a Microsoft Office installation.
+- Greatly improved the speed of calculating omitting of facets.
+- Greatly improved the speed of generating means and sums of squares.
+- Greatly improved the speed at which data is rendered inside tables.
+- Plenty of minor performance improvements throughout the app
+
+OTHERS
+
+- Updated project from .NET Framework 3.5 to 4.8.1
+- Overhauled error feedback when reading or writing files
+- Overhauled error feedback when importing and exporting Excel documents
+- Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
+
+Last updated: 02/11/25

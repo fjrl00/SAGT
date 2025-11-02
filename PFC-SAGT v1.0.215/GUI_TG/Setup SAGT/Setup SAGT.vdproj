@@ -382,12 +382,6 @@
         "Entry"
         {
         "MsmKey" = "8:_44FC77698ED4B58A4A73EE1DED87E0D4"
-        "OwnerKey" = "8:_493E1100328D66619C1F2F23F242F326"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_44FC77698ED4B58A4A73EE1DED87E0D4"
         "OwnerKey" = "8:_7C767EEE1A82A75658065A2D7F3E6065"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -615,12 +609,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_686BFE23616C062F37F52B35F3B82563"
-        "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6E1B5B8BFC3848D3B08001017BE761FF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -705,6 +693,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8F164C7BEF424F3392735FD78E8D5FEE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8F6F951504D14C708B3695DEA2FE78DE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -718,12 +712,6 @@
         "Entry"
         {
         "MsmKey" = "8:_98530CC522F1483AB6BDF124F7531575"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_99398176A0B44A34B4BC6A9F6A62D336"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -879,12 +867,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D2D56B7F57DC021A78B3D1062D03E288"
-        "OwnerKey" = "8:_E5B72BEF2B658CA3C8AAF6FD4C19525A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D4574AEDB1A04348812F21D9470367D6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -934,12 +916,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E2263672F516552B76A39892C67863DF"
-        "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E5B72BEF2B658CA3C8AAF6FD4C19525A"
         "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1114,12 +1090,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5B72BEF2B658CA3C8AAF6FD4C19525A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7050237D276DF167B21A4FFEE954B06C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1187,12 +1157,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F6D33B97EFD23823F7E483EB83C3B98D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_686BFE23616C062F37F52B35F3B82563"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2420,37 +2384,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_686BFE23616C062F37F52B35F3B82563"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ADODB, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_686BFE23616C062F37F52B35F3B82563"
-                    {
-                    "Name" = "8:adodb.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:adodb.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_92D4345E910641959579F5AD96895363"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E1B5B8BFC3848D3B08001017BE761FF"
             {
             "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\lang\\formShowCharts2.txt"
@@ -2717,6 +2650,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F164C7BEF424F3392735FD78E8D5FEE"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\changelog.txt"
+            "TargetName" = "8:changelog.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_92D4345E910641959579F5AD96895363"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F6F951504D14C708B3695DEA2FE78DE"
             {
             "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\lang\\idioma_menu.txt"
@@ -2763,26 +2716,6 @@
             "TargetName" = "8:Sagt document.ico"
             "Tag" = "8:"
             "Folder" = "8:_46E063E637DA4E93BCCB62891576146F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99398176A0B44A34B4BC6A9F6A62D336"
-            {
-            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\Cambios recientes.rtf"
-            "TargetName" = "8:Cambios recientes.rtf"
-            "Tag" = "8:"
-            "Folder" = "8:_92D4345E910641959579F5AD96895363"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3101,26 +3034,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2D56B7F57DC021A78B3D1062D03E288"
-            {
-            "SourcePath" = "8:msadox.dll"
-            "TargetName" = "8:msadox.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_92D4345E910641959579F5AD96895363"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D4574AEDB1A04348812F21D9470367D6"
             {
             "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\icons\\Uninstall v.01 h32.ico"
@@ -3266,37 +3179,6 @@
                     }
                 }
             "SourcePath" = "8:TransLibrary.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_92D4345E910641959579F5AD96895363"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E5B72BEF2B658CA3C8AAF6FD4C19525A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.ADOX, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E5B72BEF2B658CA3C8AAF6FD4C19525A"
-                    {
-                    "Name" = "8:Interop.ADOX.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Interop.ADOX.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92D4345E910641959579F5AD96895363"
@@ -3603,7 +3485,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SAGT v1.1"
         "ProductCode" = "8:{F04D2D80-46AA-4982-9A02-EB22A21C62A2}"
-        "PackageCode" = "8:{A39DD86E-1678-4812-9CF3-DFEAC771C970}"
+        "PackageCode" = "8:{71FCF450-1DE9-490B-968B-841928AD64E6}"
         "UpgradeCode" = "8:{C23BE02D-D1D7-46AB-843E-8479F68E8639}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4262,7 +4144,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_07A13145387246DCB081B05008C6DE22"
             {
-            "SourcePath" = "8:..\\GUI_TG\\obj\\Debug\\GUI_TG.exe"
+            "SourcePath" = "8:..\\GUI_TG\\obj\\Release\\GUI_TG.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92D4345E910641959579F5AD96895363"

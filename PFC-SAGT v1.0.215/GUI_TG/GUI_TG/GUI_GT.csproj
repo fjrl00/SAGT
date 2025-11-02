@@ -674,7 +674,7 @@
     <None Include="Resources\File TextDocument edition 2 h32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cambios recientes.rtf">
+    <Content Include="changelog.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Contrato de licencia.rtf">

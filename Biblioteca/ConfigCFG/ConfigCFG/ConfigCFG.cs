@@ -141,7 +141,7 @@ namespace ConfigCFG
             this.language = TransLibrary.Language.spanish;
             this.numOfDecimals = DEFAULT_DECIMAL;
             this.decimalSeparator = DEFAULT_DECIMAL_SEPARATOR;
-            this.null_to_zero = true;
+            this.null_to_zero = false;
             this.path_workspace = "";
 
             
@@ -166,9 +166,9 @@ namespace ConfigCFG
             // Estilo en el que se mostrarán los gráficos de Coeficiente G
             this.serieChartType = SeriesChartType.Spline; // por defecto lo representamos por splin
             // posición en la que se mostrarán el valor de los puntos.
-            this.labelAlignmentStyles = LabelAlignmentStyles.None;
+            this.labelAlignmentStyles = LabelAlignmentStyles.Top;
             // Marca de punto
-            this.markerStyle = MarkerStyle.Circle; // por defecto se representa como punto.
+            this.markerStyle = MarkerStyle.Diamond;
 
             this.typeMeans = TypeOfTableMeans.Default;
             this.shadingRows = true;
