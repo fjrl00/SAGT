@@ -53,7 +53,7 @@ namespace ProjectSSQ
          *  
          *  [A]:[B]             -> {+([A] [B]) -([B]) } B is given to every element, maintaining signs as they were
          *  [A]:[B]:[C]         -> {+([A] [B] [C]) -([B] [C]) } same conduct as [A]:[B]
-         *  [A]:[B][C]          -> {+([A] [B] [C] ) -([B] [C] ) } same conduct as [A]:[B]
+         *  [A]:[B][C]          -> {+([A] [B] [C]) -([B] [C]) } same conduct as [A]:[B]
          *  
          *  [A][B]              -> {+([A] [B]) -([B]) -([A]) +() } The positive branch given B, the other one flipped
          *  [A][B]:[C]          -> {+([A] [B] [C]) -([B] [C]) -([A] [C]) +([C]) } same conduct as [A]:[B]

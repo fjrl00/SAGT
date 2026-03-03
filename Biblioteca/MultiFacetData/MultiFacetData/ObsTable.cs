@@ -223,15 +223,17 @@ namespace MultiFacetData
             for (int i = 0; i < n; i++)
             {
                 double? data = this.ObsData(i);
-                if (sum_X != null && data != null)
+                if(data != null)
                 {
-                    sum_X += data;
+                    if (sum_X != null)
+                    {
+                        sum_X += data;
+                    }
+                    else
+                    {
+                        sum_X = data;
+                    }
                 }
-                else if (sum_X == null && data != null)
-                {
-                    sum_X = data;
-                }
-
             }
             return sum_X;
         }
@@ -248,13 +250,16 @@ namespace MultiFacetData
             for (int i = 0; i < n; i++)
             {
                 double? data = this.ObsData(i);
-                if (sum_X_2 != null && data != null)
+                if (data != null)
                 {
-                    sum_X_2 += data*data;
-                }
-                else if (sum_X_2 == null && data != null)
-                {
-                    sum_X_2 = data*data;
+                    if (sum_X_2 != null)
+                    {
+                        sum_X_2 += data*data;
+                    }
+                    else
+                    {
+                        sum_X_2 = data * data;
+                    }
                 }
 
             }

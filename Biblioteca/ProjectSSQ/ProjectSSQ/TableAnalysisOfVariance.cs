@@ -152,7 +152,7 @@ namespace ProjectSSQ
         {
             // Estructura de datos que almacenará cada uno de los terminos de la suma de cuadrados,
             // también llamado suma de cuadrados parciales
-            Dictionary<ListFacets, double?> terms = new Dictionary<ListFacets, double?>();
+            Dictionary<ListFacets, double?> cache = new Dictionary<ListFacets, double?>();
 
             int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++) //for each design
@@ -171,27 +171,18 @@ namespace ProjectSSQ
 
                     double? partial; // almacena el valor de la suma parcial.
 
-                    // Si "facetsOfTerm"  es la lista vacia entonces debe calcularse el residuo
-                    if (facetsOfTerm.IsEmpty())
+                    if (cache.ContainsKey(facetsOfTerm)) // Si ya se ha calculado la suma de cuadrados parcial para este término, la recuperamos del cache
                     {
-                        // asignamos a partial el valor del residuo
-                        partial = CalcResidue(mfo.ObservationTable());
+                        partial = cache[facetsOfTerm];
                     }
-                    else
+                    else // Si no, la calculamos y la almacenamos en el cache
                     {
-                        if (terms.ContainsKey(facetsOfTerm))
-                        {
-                            // Si la clave esta contenida recupero el valor 
-                            partial = terms[facetsOfTerm];
-                        }
+                        if (facetsOfTerm.IsEmpty()) // Si el término es el término vacío, la suma de cuadrados parcial es el residuo
+                            partial = CalcResidue(mfo.ObservationTable());
                         else
-                        {
-                            /* Si la clave no está contenida, calcularé el valor de la suma parcial
-                             * y lo introduciré en la estructura.
-                             */
                             partial = PartialSumOfSquaresByMeans(facetsOfTerm, mfo, zero);
-                            terms[facetsOfTerm] = partial;
-                        }
+
+                        cache[facetsOfTerm] = partial;
                     }
 
                     switch (t.Sign())
