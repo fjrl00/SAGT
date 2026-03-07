@@ -68,12 +68,11 @@ namespace ProjectSSQ
             List<string> llf_diff_cwr = differentiation.CombinationStringWithoutRepetition();
             List<string> llf_inst_cwr = instrumentation.CombinationStringWithoutRepetition();
 
+            // We officially take the differentiation variance to be the corrected variance component, and consider negative variance components to be 0.
             int n = llf_diff_cwr.Count;
             for (int i = 0; i < n; i++)
             {
                 string key = llf_diff_cwr[i];
-                // Si varianaza corregida es negativa entonces la varianza de diferenciación debe
-                // valer cero.
                 double? tVar = lTSSQ.CorrectedComp(key);
                 if ((tVar != null) && (double)tVar<0)
                 {
@@ -85,9 +84,10 @@ namespace ProjectSSQ
             ListFacets totalFacets = this.lfDifferentiation.Concatenate(this.lfInstrumentation);
             // ListFacets totalFacets = lTSSQ.ListFacets();
             // List<string> ldesing = totalFacets.CombinationStringWithoutRepetition();
-            List<string> ldesing = lTSSQ.ListFacets().CombinationStringWithoutRepetition(); 
+            List<string> ldesing = lTSSQ.ListFacets().CombinationStringWithoutRepetition();
 
 
+            // Now we calculate error variances
             n = ldesing.Count;
             for (int i = 0; i < n; i++)
             {
@@ -95,49 +95,40 @@ namespace ProjectSSQ
                 double? relError = null;
                 double? absError = null;
 
-                /* Introdiremos aquellas entradas que no sean combinación de las fuentes de 
-                 * Diferenciación. */
-                if (!differentiationVar.ContainsKey(key))
+                if (!differentiationVar.ContainsKey(key))   // Only applies when not all facets in this design are differentiation facets
                 {
-                    /* Compruebo si son combinacion de las fuentes de instrumentatión
-                     * ya que esta si el valor del error negativo pasa a ser null*/
-                    if (llf_inst_cwr.Contains(key))
+                    if (llf_inst_cwr.Contains(key))     // If all facets in this design are instrumentation facets, they only count towards the absolute error variance
                     {
-                        if (lTSSQ.MixModComp(key) < 0)
+                        if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         {
-                            // si es negativo vale 0
-                            relError = 0.0;
+                            relError = 0.0;                 //wrong. It's absError=0, relError=Null
                         }
                         else
                         {
-                            // en otro caso vale
-                            // relError = lTSSQ.RandomComp(lf) / lf.MultipSourcesOfVariabilityAbsent(depend);   //INVESTIGATE
+                            // relError = lTSSQ.RandomComp(lf) / lf.MultipSourcesOfVariabilityAbsent(depend);   //This was left commented out by the previous dev. 1. RelError not being null is wrong, should be null, at most what this could be is the calculus for AbsError put in the incorrect variable 2. Using 'MultipSourcesOfVariabilityAbsent' is incorrect, despite its bad name and description it ACTUALLY DOES substract 'depend' from 'lf' which is the correct behavior in case depend=differentiationfacets, but what it needs is division, not multiplication 3. Why are we using the random comp?
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            absError = lTSSQ.MixModComp(key) * lf.MultipSourcesOfVariabilityAbsentForTypeOfFacet(differentiation);
+                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  // why mixedcomp instead of CorrecComp?
                         }
-                    }
-                    else
-                    {
-                        // en este caso no esta contenida
-                        if (lTSSQ.MixModComp(key) < 0)
+                    }   
+                    else                                // If some are differentiation facets, then they do directly count towards the relative error variance, which indirectly counts towards the absolute error variance 
+                    { 
+                        if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         {
-                            // si es negativo vale 0
-                            absError = 0.0;
+                            absError = 0.0;             // Most accurately (I think) this should be null, and CalcTotalAbsErrorVar() modified to use the relative error in its calculation. Though we can leave this here for ease of comparison in the resulting tables.
                             relError = 0.0;
 
                         }
-                        else
+                        else  //notes regarding absError and MixedComp as above
                         {
-                            // en otro caso vale
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            relError = lTSSQ.MixModComp(key) * lf.MultipSourcesOfVariabilityAbsentForTypeOfFacet(differentiation);
+                            relError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  
                             absError = relError;
                         }
-                    }/* end if 1*/
+                    }
                     ErrorVar error_variance = new ErrorVar(relError,absError);
                     this.errorVar.Add(key, error_variance);
                 }
-            } // end if
+            }
 
             double total_differentiation_var = CalcTotalTarget();
             double totalRelErrorVar = CalcTotalRelErrorVar();

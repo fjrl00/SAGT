@@ -160,13 +160,13 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Contiene la multiplicación de los niveles de la lista de facetas.
+         *  Devuelve la multiplicación de los niveles de la lista de facetas.
          *  Equivaldría al número de filas de la tabla de observaciones correspondiente a esta lista de facetas, entre otros usos.
-         *  NOTE: should prob change to int instead of double
+         *  Devuelve 1 (la identidad multiplicativa) si la lista de facetas esta vacia.
          */
         public double MultOfLevels()
         {
-            double retVal = 1; // Inicializada con la identidad multiplicativa (IM*x=x)
+            double retVal = 1;
             foreach (Facet f in this.listFacets)
             {
                 retVal *= f.Level();
@@ -207,12 +207,12 @@ namespace MultiFacetData
 
 
         /* Descripción: 
-         *  Devuelve una copia de la lista de facetas como parámetro implicito a la que le hemos
+         *  Devuelve una copia (shallow clone) de la lista de facetas como parámetro implicito a la que le hemos
          *  sustraido las facetas que aparecen como parametro explicito.
          * Parámetros:
          *      ListFacets lf: es la lista de las facetas que vamos a sustraer.
          */
-        public ListFacets SourcesOfVariabilityAbsent(ListFacets lf)
+        public ListFacets SubstractFacets(ListFacets lf)
         {
             ListFacets aux = this.ShallowClone();
             foreach (Facet f in lf)
@@ -225,47 +225,16 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Devuelve el producto de los nivel de las fuentes de variación (facetas) "ausentes". Si
-         *  al eliminar todas las facetas presentes en lista de facetas que se pasa como parámetro
-         *  obtenemos la lista vacia entonces devolveremos 1 como resultado de la función. Para
-         *  el cálculo no influye el tipo de universo.
+         *  Helper function for calculating error variances.
          * Parámetros:
-         *      ListFacets lf: es la lista de las facetas que vamos a sustraer
+         *      ListFacets de este objeto: es asumido que es la lista de facetas del diseño del que queremos calcular (su contribución a) la varianza del error.
+         *      ListFacets lf: lista de facetas de diferenciación del modelo.
          */
-        public double MultipSourcesOfVariabilityAbsent(ListFacets lf)
+        public double ErrorVarianceFacetTypeModifier(ListFacets lf)
         {
-            ListFacets aux = this.ShallowClone();
-            foreach (Facet f in lf)
-            {
-                aux.Remove(f);
-            }
-            double retVal = 1; // valor de retorno
-            /* Se le inicializa valor uno para el caso en que la lista que se pasa como parámetro
-             * contenga las misma facetas que la lista del parámetro implícito */
-            if (aux.Count() != 0)
-            {
-                retVal = aux.MultOfLevels();
-            }
-            return retVal;
-        }
+            ListFacets aux = this.SubstractFacets(lf);
 
-
-        /*
-         * Descripción:
-         *  Devuelve el producto de los nivel de las fuentes de variación (facetas) "ausentes". Si
-         *  al eliminar todas las facetas presentes en lista de facetas que se pasa como parámetro
-         *  obtenemos la lista vacia entonces devolveremos 1 como resultado de la función. Dependiendo
-         *  del tipo de faceta (infinitas, finitas o fijas) el producto entre facetas será distinto.
-         * Parámetros:
-         *      ListFacets lf: es la lista de las facetas que vamos a sustraer.
-         */
-        public double MultipSourcesOfVariabilityAbsentForTypeOfFacet(ListFacets lf)
-        {
-            ListFacets aux = this.SourcesOfVariabilityAbsent(lf);
-
-            double retVal = 1; // valor de retorno
-            /* Se le inicializa valor uno para el caso en que la lista que se pasa como parametro
-             * contenga las misma facetas que la lista del parámetro implicito */
+            double retVal = 1; // valor de retorno (inicializada a identidad multiplicativa)
             int n = aux.Count();
             if (n != 0)
             {
@@ -274,17 +243,18 @@ namespace MultiFacetData
                     Facet f = aux.FacetInPos(i);
                     if (f.IsInfinite())
                     {
-                        retVal *= 1 / (double)f.Level();
+                        retVal *= 1 / (double)f.Level();    // Random facets contribute at a rate of 1/level.
+                    }
+                    else if (f.IsFixed())
+                    {
+                        retVal = 0;     // Fixed facets do not contribute to the error variance.
+                        break;          // No need to continue the loop, multipying further won't change the result
                     }
                     else if (f.IsRamdonFinite())
                     {
                         double l = f.Level();
                         double u = f.SizeOfUniverse();
-                        retVal = retVal * (1 / l) * ((u - l) / (u - 1));
-                    }
-                    else if (f.IsFixed())
-                    {
-                        retVal = 0;
+                        retVal = retVal * (1 / l) * ((u - l) / (u - 1));    // Facets inbetween contribute to the error at a weighted rate according to the Finite Population Correction (FPC) factor. The 'infiniter' they are the more like infinite facets they contribute (1/level), the 'fixed-er' they are the more like fixed facets they contribute (0)
                     }
                 }
             }
@@ -355,8 +325,9 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve el producto de los universo de una lista. Devuelve cero si existe alguna faceta
-         *  con tamaño del universo igual a infinito
+         *  Devuelve el producto de los universo de una lista. 
+         *  Devuelve cero si existe alguna faceta con tamaño del universo igual a infinito.
+         *  Devuelve 1 (la identidad multiplicativa) si la lista de facetas esta vacia.
          */
         public double MultSizeOfUniverse()
         {
@@ -482,7 +453,7 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve la esperanza de varianza. El produto de (n-1)/n siendo e 'n' el nivel de las facetas.
+         *  Devuelve la esperanza de varianza (terminología usada en la tesis doctoral de Joann Lynn Moore). El producto de (n-1)/n siendo e 'n' el nivel de las facetas.
          */
         public double HopeOfVariance()
         {

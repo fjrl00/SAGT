@@ -456,7 +456,7 @@ namespace GUI_GT
                 my_Row[IND_SSQ] = ConvertNum.DecimalToString(tbAnalysisVar.SSQ(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_MSQ] = ConvertNum.DecimalToString(tbAnalysisVar.MSQ(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_RANDOM_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.RandomComp(key), numOfDecimal, puntoDecimal);
-                my_Row[IND_MIX_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.MixModComp(key), numOfDecimal, puntoDecimal);
+                my_Row[IND_MIX_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.MixedComp(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_CORRECTED_COMP] = ConvertNum.DecimalToString(tbAnalysisVar.CorrectedComp(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_PORCENTAGE] = ConvertNum.DecimalToString(tbAnalysisVar.Porcentage(key), numOfDecimal, puntoDecimal);
                 my_Row[IND_STANDARD_ERROR] = ConvertNum.DecimalToString(tbAnalysisVar.StandardError(key), numOfDecimal, puntoDecimal);

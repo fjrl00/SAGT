@@ -59,7 +59,7 @@ namespace ProjectSSQ
         // Componente de Varianza aleatorio
         private Dictionary<string, double?> randomComp; // Componente de Varianza Aleatorio
         // Componente de Varianza Mixto
-        private Dictionary<string, double?> mixComp; // Componentes de Varianza Mixtos
+        private Dictionary<string, double?> mixedComp; // Componentes de Varianza Mixtos
         // Componente de Varianza Corregido
         private Dictionary<string, double?> correcComp;
 
@@ -88,7 +88,7 @@ namespace ProjectSSQ
             this.msq = new Dictionary<string, double?>();
             /* inicializamos el vector de componentes de varianza aleatorios */
             this.randomComp = new Dictionary<string, double?>();
-            this.mixComp = new Dictionary<string, double?>();
+            this.mixedComp = new Dictionary<string, double?>();
             this.correcComp = new Dictionary<string, double?>();
             this.percentage = new Dictionary<string, double?>();
             this.standardError = new Dictionary<string, double?>();
@@ -146,7 +146,9 @@ namespace ProjectSSQ
 
 
         /* Descripción:
-         *  Calcula la suma de cuadrados y la guarda según la fuente de variavilidad en la variable ssq
+         *  Suma de cuadrados de las desviaciones con respecto a la media para cada fuente de variación (diseño).
+         *  Coloquialmente referida como simplemente "Suma de cuadrados".
+         *  Calculada a partir de cuadrados parciales y residuo.
          */
         private void CalcSSq(MultiFacetsObs mfo, bool zero)
         {
@@ -312,7 +314,7 @@ namespace ProjectSSQ
                 this.msq.Add(this.ldesigns[i], msq_aux);
             }
             this.randomComp = random;
-            this.mixComp = mix;
+            this.mixedComp = mix;
             this.correcComp = correc;
             // Calculamos el porcentaje
             CalcPercentage();
@@ -342,7 +344,7 @@ namespace ProjectSSQ
             this.df = df;
             this.msq = msq;
             this.randomComp = random;
-            this.mixComp = mix;
+            this.mixedComp = mix;
             this.correcComp = correc;
             this.percentage = porc;
             this.standardError = stad_error;
@@ -361,7 +363,7 @@ namespace ProjectSSQ
          *  - SSQ: la suma de cuadrados.
          *  - MSQ: Suma de cuadrados medios.
          *  - RandomComp: Componente de varianza aleatorio.
-         *  - MixModComp: Componente de vaianza mixto.
+         *  - MixedComp: Componente de vaianza mixto.
          *  - CorrectedComp: Componente de vaianza corregido.
          *  - Porcentage: Tanto por ciento.
          *  - StandardError: Error standar.
@@ -439,9 +441,9 @@ namespace ProjectSSQ
          * Parámetro:
          *      string key: Fuente de variación.
          */
-        public double? MixModComp(string key)
+        public double? MixedComp(string key)
         {
-            return this.mixComp[key];
+            return this.mixedComp[key];
         }
 
 
@@ -497,7 +499,7 @@ namespace ProjectSSQ
 
         /*
          * Descripción:
-         *  Calculo del Residuo.
+         *  Calculo del Residuo (valor del término correspondiente a la fuente de variación vacía).
          * Parámetros:
          *      ListFacets lf: es la lista de fatetas para la que vamos a calular el residuo.
          */
@@ -523,6 +525,8 @@ namespace ProjectSSQ
         /* Descripción:
          *  Suma de cuadrados parciales mediante la media al cuadrado, tal como viene en la tesis
          *  doctoral de Joann Lynn Moore
+         *  
+         *  Calcula el valor de un término usado en la suma de cuadrados.
          * Parámetros:
          *      ListFacets lf: Lista de facetas
          *      MultiFacetsObs mfo: Tabla de frecuencias a partir de la cuals se calculará la suma de
@@ -532,23 +536,10 @@ namespace ProjectSSQ
         private double? PartialSumOfSquaresByMeans(ListFacets lf, MultiFacetsObs mfo, bool zero)
         {
             ObsTable  obsTable = new ObsTable(lf, mfo, zero);
-            double? sumX_2 = obsTable.SumOfData_2();
+            double? retVal = obsTable.SumOfData_2();
 
-            /*  //Old code, slightly different behavior: will return 0 instead of null even if every element is null
-            double? sumX_2 = 0;
-            int rows = obsTable.TableRows();
-            for (int i = 0; i < rows; i++)
-            {
-                double? mean = obsTable.ObsData(i);
-                if (mean != null)
-                {
-                    double value = mean.Value;
-                    sumX_2 += value * value;
-                }
-            }*/
-
-            sumX_2 = this.listFacets.MultipSourcesOfVariabilityAbsent(lf) * sumX_2;
-            return sumX_2;
+            retVal = this.listFacets.SubstractFacets(lf).MultOfLevels() * retVal;
+            return retVal;
         }
 
         /*
@@ -564,8 +555,8 @@ namespace ProjectSSQ
                 double df = this.df[design];
                 if (df == 0)
                 {
-                    /* En el caso de que el grado de libertad sea 0, como no podemos
-                     * dividir por cero entonces el cuadrado medio será 0 también. */
+                    // If the degree of freedom is 0 (facet has only one level), then this facet contributes neither variability nor error.
+                    // Thus for the context of our calculations we consider MSQ to be 0 in this case, and signal it so by showing it as 0 to the user, even though more accurately, it's Undefined.
                     this.msq.Add(design, 0);
                 }
                 else
@@ -579,6 +570,18 @@ namespace ProjectSSQ
         /*
          * Descripción:
          *  Cálculo del componente de varianza aleatorio
+         *  
+         * BEHAVIOUR:
+         *  To calculate the RandomComp of this design, multiply (1 / listFacets.MultipSourcesOfVariabilityAbsent(lf)) by the result of the following steps:
+         *  
+         *  Step 0: Start with the msq of this design.
+         *  Step 1: Substract the msq of each design that contains the same facets as this one plus one extra facet not included in this one
+         *  Step 2: Add the msq of each design that contains the same facets as this one plus two extra facets not included in this one, and whose facets are all included in the list of facets used in step 1.
+         *  Step j: Add (if j is even) or substract (if j is odd) the msq of each design that contains the same facets as this one plus j extra facets not included in this one, and whose facets are all included in the list of facets used in step j-1.
+         *  
+         *  If this design contains all the facets of the original list of facets, then there won't be any design that contains it, and thus proceeding past step 0 won't change anything.
+         *  Likewise, if we found out during the execution of a step that only one design fits that step, then we also know proceeding past that step won't change anything either.
+         *  
          */
         private void CalcRandomComp()
         {
@@ -587,32 +590,30 @@ namespace ProjectSSQ
 
             for (int j = 0; j < n; j++)     //for each design
             {
-                // PASO 0
                 string design = sortl[j];
-                double? d = this.msq[design];
+                double? d = this.msq[design];   // STEP 0
                 ListFacets lf = this.listFacets.ListDesignFacets(design);
                 int sign = (-1);
 
                 // cuento el número de facetas de la lista lf para compararlo posteriormente
                 int numF = lf.Count();
 
-                // inicializamos la lista de facetas que será usada en el paso 1
-                ListFacets l_facets_used = new ListFacets();
+                ListFacets l_facets_used = new ListFacets();    // Lista de facetas usadas
 
-                // PASO 1
+                // STEP 1
                 if (numF != this.listFacets.Count())
                 {
                     int numOfTerm = 0;
                     bool end = false;
                     numF++;
-                    for (int i = 0; i < n && !end; i++)     //for each design again
+                    for (int i = 0; i < n && !end; i++)
                     {
                         string design_aux = sortl[i];
                         ListFacets lf_aux = this.listFacets.ListDesignFacets(design_aux);
                         int numFacet_of_lf_aux = lf_aux.Count();
                         end = !(numFacet_of_lf_aux <= numF);
 
-                        if ((numF== numFacet_of_lf_aux) && lf_aux.ContainsList(lf)) //if match, operate
+                        if ((numF== numFacet_of_lf_aux) && lf_aux.ContainsList(lf))
                         {
                             d += (sign * this.msq[design_aux]);
                             l_facets_used = l_facets_used.Union(lf_aux);
@@ -620,16 +621,13 @@ namespace ProjectSSQ
                         }
                     }
 
-                    // PASO 2
-                    /* Si el número de terminos es mayor que uno ejecuto el paso 2
-                     */
+                    // STEP 2 AND FURTHER
                     while (numOfTerm > 1)
                     {
                         sign = ((-1) * sign);
                         numF++;
                         numOfTerm = 0;
-                        // inicializamos la lista de facetas que será usada en el paso i+1
-                        ListFacets l_facets_used2 = new ListFacets();
+                        ListFacets l_facets_used2 = new ListFacets();   // Segunda lista de facetas usadas (necesaria en pasos j+1)
                         end = false;
 
                         for (int i = 0; i < n && !end; i++)
@@ -651,7 +649,7 @@ namespace ProjectSSQ
                 }
 
                 // Calculo la componente de varianza aleatoria y la añado a la estructura de datos
-                d = (1 / this.listFacets.MultipSourcesOfVariabilityAbsent(lf)) * d;
+                d = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels()) * d;
                 this.randomComp.Add(design, d);
             }
         }// end CalcRandomComp
@@ -661,7 +659,7 @@ namespace ProjectSSQ
          *  Calculo de componetes de varianza mixtos. Estos serán iguales a los aleatorios en el caso
          *  de que todas las facetas sean aleatorias infinita.
          *  
-         *  Note: O(n^2) performance, ListDesignFacets could probably be cached
+         *  Note: ListDesignFacets could probably be cached? (Probably for all our calculations not just this method)
          */
         private void CalcMixComp()
         {
@@ -669,7 +667,7 @@ namespace ProjectSSQ
             {
                 /* todas las facetas tienen tamaño de universo infinito y no es necesario calcularlas
                  * basta con que la igualesmos con las aleatorias. */
-                this.mixComp = this.randomComp;
+                this.mixedComp = this.randomComp;
             }
             else
             {
@@ -680,7 +678,7 @@ namespace ProjectSSQ
                     string design = this.ldesigns[j];                           
                     ListFacets lf = this.listFacets.ListDesignFacets(design);
                     double d = 0;
-                    for (int i = 0; i < n; i++)     //We iterate through all designs again
+                    for (int i = 0; i < n; i++)
                     {
                         string key_design_aux = this.ldesigns[i];
                         ListFacets lf_aux = this.listFacets.ListDesignFacets(key_design_aux);
@@ -688,15 +686,15 @@ namespace ProjectSSQ
                         if(lf_aux.ContainsList(lf)) //if second design contains the first
                         {
                             double d2 = (double)this.randomComp[key_design_aux];
-                            lf_aux = lf_aux.SourcesOfVariabilityAbsent(lf);
-                            double mult = lf_aux.MultSizeOfUniverse();
-                            if (mult > 0)
+                            lf_aux = lf_aux.SubstractFacets(lf);
+                            double mult = lf_aux.MultSizeOfUniverse();  // Note: this returns 0 if any of its facets is infinite (and 1 if lf_aux is lf)
+                            if (mult > 0)                               // thus, we need to exclude cases where we're returned a 0 (which should mean that mult=infinite actually thus resulting in d+=0, not d+=infinity)
                             {
-                                d += (1 / mult) * d2;   //It's a hit, it counts for the calculus of this design's mixed component of variance
+                                d += (1 / mult) * d2;
                             }
                         }
                     }
-                    this.mixComp.Add(design, d);
+                    this.mixedComp.Add(design, d);
                 }
             }
         }// end CalcMixComp()
@@ -712,10 +710,9 @@ namespace ProjectSSQ
             {
                 string design = this.ldesigns[i];
                 ListFacets lf = this.listFacets.ListDesignFacets(design);
-                double d = (double)this.mixComp[design];
+                double d = (double)this.mixedComp[design];
                 if (lf.HasAllFacetsFixed())
                 {
-                    // Se trata de una faceta fija
                     d *= lf.HopeOfVariance();
                 }
                 this.correcComp.Add(design, d);
@@ -777,11 +774,11 @@ namespace ProjectSSQ
                 string key = this.ldesigns[i];
                 ListFacets lf = this.listFacets.ListDesignFacets(key);
                 double aux = 0;
-                for (int j = 0; j < pos; j++)       //for each design
+                for (int j = 0; j < pos; j++)
                 {
                     string key_aux = this.ldesigns[j];
                     ListFacets lf_aux = this.listFacets.ListDesignFacets(key_aux);
-                    if (lf_aux.ContainsList(lf))        //if it's a match, then calc
+                    if (lf_aux.ContainsList(lf))
                     {
                         double d1 = (double)this.msq[key_aux]; 
                         double d = d1 * d1 * 2;
@@ -790,7 +787,7 @@ namespace ProjectSSQ
                     }
                 }
                 
-                this.standardError[key] = (1 / this.listFacets.MultipSourcesOfVariabilityAbsent(lf)) * Math.Sqrt(aux);
+                this.standardError[key] = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels()) * Math.Sqrt(aux);
             }
         }
 
@@ -891,7 +888,7 @@ namespace ProjectSSQ
             // Copiamos el componente de Varianza aleatorio
             Dictionary<string, double?> copyRandomComp = ClonarDictionary(this.randomComp); 
             // Copiamos el componente de Varianza Mixto
-            Dictionary<string, double?> copyMixComp = ClonarDictionary(this.mixComp);
+            Dictionary<string, double?> copyMixComp = ClonarDictionary(this.mixedComp);
             // Copiamos el componente de Varianza Corregido
             Dictionary<string, double?> copyCorrecComp = ClonarDictionary(this.correcComp);
 
@@ -1004,7 +1001,7 @@ namespace ProjectSSQ
                     double? df = this.df[key]; // grado de libertad
                     double? msq = this.msq[key]; // Suma de cuadrados medios (M.S.C.)
                     double? randomComp = this.randomComp[key]; // Componente de Varianza Aleatorio
-                    double? mixComp = this.mixComp[key]; // Componentes de Varianza Mixtos
+                    double? mixComp = this.mixedComp[key]; // Componentes de Varianza Mixtos
                     double? correcComp = this.correcComp[key];
                     double? porcentage = this.percentage[key];
                     double? standardError = this.standardError[key];
@@ -1296,7 +1293,7 @@ namespace ProjectSSQ
                 row["ssq"] = this.ssq[source];
                 row["msq"] = this.msq[source];
                 row["random_comp"] = this.randomComp[source];
-                row["mix_comp"] = this.mixComp[source];
+                row["mix_comp"] = this.mixedComp[source];
                 row["correc_comp"] = this.correcComp[source];
                 row["porcentage"] = this.percentage[source];
                 row["standard_error"] = this.standardError[source];

@@ -18,12 +18,13 @@ BUGFIXES
 
 OPTIMIZATION
 
-- Removed duplicated image data throughout the app
+- Removed duplicated image data throughout the app, installation size optimized
 - Removed multitude of unnecessary files
 - Reworked Word exporting and Excel importing/exporting to be way faster and resource light, and to not require a Microsoft Office installation.
 - Greatly improved the speed of calculating omitting of facets.
 - Greatly improved the speed of generating means and sums of squares.
 - Greatly improved the speed at which data is rendered inside tables.
+- cacheing improvements during some calculations
 - Plenty of minor performance improvements throughout the app
 
 OTHERS
@@ -33,4 +34,4 @@ OTHERS
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
 
-Last updated: 02/11/25
+Last updated: 06/03/2026
