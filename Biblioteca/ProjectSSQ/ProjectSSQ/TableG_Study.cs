@@ -82,16 +82,14 @@ namespace ProjectSSQ
             }
 
             ListFacets totalFacets = this.lfDifferentiation.Concatenate(this.lfInstrumentation);
-            // ListFacets totalFacets = lTSSQ.ListFacets();
-            // List<string> ldesing = totalFacets.CombinationStringWithoutRepetition();
-            List<string> ldesing = lTSSQ.ListFacets().CombinationStringWithoutRepetition();
+            List<string> ldesign = lTSSQ.ListFacets().CombinationStringWithoutRepetition(); // We would kinda prefer to also use totalFacets here to present the designs in that order? But we would need to change code around in order to achieve that
 
 
             // Now we calculate error variances
-            n = ldesing.Count;
+            n = ldesign.Count;
             for (int i = 0; i < n; i++)
             {
-                string key = ldesing[i];
+                string key = ldesign[i];
                 double? relError = null;
                 double? absError = null;
 
@@ -101,28 +99,27 @@ namespace ProjectSSQ
                     {
                         if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         {
-                            relError = 0.0;                 //wrong. It's absError=0, relError=Null
+                            absError = 0.0;
                         }
                         else
                         {
-                            // relError = lTSSQ.RandomComp(lf) / lf.MultipSourcesOfVariabilityAbsent(depend);   //This was left commented out by the previous dev. 1. RelError not being null is wrong, should be null, at most what this could be is the calculus for AbsError put in the incorrect variable 2. Using 'MultipSourcesOfVariabilityAbsent' is incorrect, despite its bad name and description it ACTUALLY DOES substract 'depend' from 'lf' which is the correct behavior in case depend=differentiationfacets, but what it needs is division, not multiplication 3. Why are we using the random comp?
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  // why mixedcomp instead of CorrecComp?
+                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);   // Note that we can use MixedComp, since fixed facets (the ones for which CorrecComp is relevant) will result in 0 error anyway
                         }
                     }   
-                    else                                // If some are differentiation facets, then they do directly count towards the relative error variance, which indirectly counts towards the absolute error variance 
+                    else                                // If some are differentiation facets, then they do directly count towards both relative and absolute error variances
                     { 
                         if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         {
-                            absError = 0.0;             // Most accurately (I think) this should be null, and CalcTotalAbsErrorVar() modified to use the relative error in its calculation. Though we can leave this here for ease of comparison in the resulting tables.
+                            absError = 0.0;
                             relError = 0.0;
 
                         }
-                        else  //notes regarding absError and MixedComp as above
+                        else
                         {
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            relError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  
-                            absError = relError;
+                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  
+                            relError = absError;
                         }
                     }
                     ErrorVar error_variance = new ErrorVar(relError,absError);

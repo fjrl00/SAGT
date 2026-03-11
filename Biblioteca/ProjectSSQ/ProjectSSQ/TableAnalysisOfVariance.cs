@@ -187,22 +187,19 @@ namespace ProjectSSQ
                         cache[facetsOfTerm] = partial;
                     }
 
-                    switch (t.Sign())
+                    if (partial != null)
                     {
-                        case (Term.MINUS):
-                            if (partial != null)
-                            {
+                        switch (t.Sign())
+                        {
+                            case (Term.MINUS):
                                 sumsOfSquares -= (double)partial;
-                            }
-                            break;
-                        case (Term.PLUS):
-                            if (partial != null)
-                            {
+                                break;
+                            case (Term.PLUS):
                                 sumsOfSquares += (double)partial;
-                            }
-                            break;
-                        default:
-                            throw new TableAnalysisOfVarianceException("Error al calcular el termino");
+                                break;
+                            default:
+                                throw new TableAnalysisOfVarianceException("Error al calcular el termino. Signo de término no aceptado: " + t.Sign());
+                        }
                     }
 
                 }// end for (* 2 *)
@@ -751,14 +748,11 @@ namespace ProjectSSQ
             {
                 string key = this.ldesigns[i];
                 double n = (double)this.correcComp[key];
-                if (n <= 0)
+                if (n < 0)
                 {
-                    this.percentage[key] = 0;
+                    n = 0;
                 }
-                else
-                {
-                    this.percentage[key] = (n * 100) / sumTotal;
-                }
+                this.percentage[key] = (n * 100) / sumTotal;
             } 
         }
 
