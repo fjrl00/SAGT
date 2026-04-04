@@ -387,22 +387,18 @@ namespace MultiFacetData
          *  Dicho fichero almacena los datos secuencialmente, uno por línea, y además los valores nulos
          *  son exportados como 0, de esta mamera los datos pueden ser luego usado por EduG 6.0.
          */
-        public bool WritingFileDataScore(String fileName)
+        public void WritingFileDataScore(String fileName)
         {
-            bool res = false; // variable de retorno
-
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 InterfaceObsTable table = this.ObservationTable();
                 int n = table.TableRows();
                 for (int i = 0; i < n; i++)
                 {
-                    double? d = table.ObsData(i) ?? 0;
+                    double d = table.ObsData(i) ?? 0;
                     writer.WriteLine(d.ToString());
                 }
-                res = true;
             }
-            return res;
         }
 
 

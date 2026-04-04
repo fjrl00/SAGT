@@ -2064,23 +2064,16 @@ namespace GUI_GT
                 saveDialog.AddExtension = true;
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    MultiFacetsObs multiFacetData = this.sagtElements.GetMultiFacetsObs();
-                    bool res = multiFacetData.WritingFileDataScore(saveDialog.FileName);
-                    if (res)
+                    try
                     {
-                        // Mostramos un mensaje de que las puntuaciones se han guardado
-                        // MessageBox.Show(txtSaveScores, titleSaved);
+                        multiFacet.WritingFileDataScore(saveDialog.FileName);
                         ShowMessageInfo(txtSaveScores, titleSaved);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        // Mostramos un mensaje ERROR, en el que las puntuaciones NO se han guardado
-                        // MessageBox.Show(txtNoSaveScores, titleMessageError1);
-                        ShowMessageInfo(txtSaveScores, titleSaved);
+                        ShowMessageErrorOK($"{txtNoSaveScores}\n\n{ex.Message}");
                     }
                 }
-                // Deshabilitamos los botones de facetas
-                btGenerateTableObsDisables();
             }
         }// end tsmiActionExportScore_Click
 
