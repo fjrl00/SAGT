@@ -48,7 +48,7 @@ namespace GUI_GT
         string[] fileDescriptions = {"",
                             "Fichero de suma de cuadrados (.ssq) generado por el software GT 2.0 E.",
                             "Fichero de análisis de suma de cuadrados (.rsa) generado por el software GT 2.0 E.",
-                            "EduG 6.0 genera informes de análisis de suma de cuadrados que pueden ser exportados en ficheros .txt y .rtf. Para que las tablas puedan ser recuperadas de un txt debe respetarse que el campo \"Facet\" no tenga más de 25 caracteres. Para prevenir errores dichos ficheros no deben ser editados y modificados por los usuarios. Si un fichero contiene más de un informe el usuario podrá elegir el informe de entre los presentes.",
+                            "EduG 6.0 genera informes de análisis de suma de cuadrados que pueden ser exportados en ficheros .txt y .rtf. Para que las tablas puedan ser recuperadas de un txt debe respetarse que el campo \"Facet\" no tenga más de 25 caracteres. Para prevenir errores dichos ficheros no deben ser editados y modificados por los usuarios. Si un fichero contiene más de un informe, el usuario podrá elegir el informe de entre los presentes.",
                             "Importa los datos de un fichero Excel siempre que este tenga el mismo formato que los ficheros exportados por esta misma aplicación."};
 
         string[] fileFilter = {"Todos los archivos|*.*",

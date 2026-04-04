@@ -402,7 +402,7 @@ namespace ProjectSSQ
         
         
         /* Descripción:
-         *  Calcula la suma de todas la varianzas de error relativas
+         *  Calcula la suma de todas la varianzas de error absolutas
          */
         private double CalcTotalAbsErrorVar()
         {

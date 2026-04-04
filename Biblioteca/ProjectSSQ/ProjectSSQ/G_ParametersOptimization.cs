@@ -45,8 +45,8 @@ namespace ProjectSSQ
         private double coefG_Abs; // Coeficiente G absoluto
         private double totalRelErrorVar; // Varianza del error relativa
         private double totalAbsErrorVar; // Varianza del error absoluta
-        private double errorRelStandDev; // Desviación típica relativa
-        private double errorAbsStandDev; // Desviación típica absoluta
+        private double errorRelStandDev; // Desviación típica relativa (aka: desviación típica del error relativo)
+        private double errorAbsStandDev; // Desviación típica absoluta (aka: desviación típica del error absoluto)
         private double targetStandDev;   // desviación típica de las fuentes objetivo
 
 
