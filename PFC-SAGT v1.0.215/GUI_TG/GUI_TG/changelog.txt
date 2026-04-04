@@ -29,6 +29,7 @@ OPTIMIZATION
 
 LOCALIZATION
 
+- Solved incorrect terminology "frequency table" which actually refers to "observation table"
 - Solved English translation error where "standard deviation of relative error" was instead translated as "relative standard error"
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization

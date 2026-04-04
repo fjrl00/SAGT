@@ -719,7 +719,7 @@ namespace GUI_GT
          */
         private void SaveFileSagtWedService(SagtFile sagtElements, int id_project, int id_user)
         {
-            bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de frecuencias
+            bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de observaciones
             bool bMean = !(sagtElements.GetListMeans() == null); // pestaña de tablas de medias
             bool bSsq = !(sagtElements.GetAnalysis_and_G_Study() == null); // pestaña de análisis de varianza
 
@@ -784,7 +784,7 @@ namespace GUI_GT
                                     // Mostramos un mensage indicando que los datos se han guardado
                                     ShowMessageInfo(txtTheDataIsSaved);
 
-                                    // btGenerateTableObsDisables(); Esta linea solo es necesaría si editamos la tabla de frecuencias
+                                    // btGenerateTableObsDisables(); Esta linea solo es necesaría si editamos la tabla de observaciones
                                     salir = true;
                                 }
                             }

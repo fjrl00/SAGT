@@ -54,7 +54,7 @@ namespace GUI_GT
          *  Constructor. Inicializa las casillas habilitandolas y marcandolas según el caso.
          * Parámetros:
          *      TransLibrary.Language lang: Idioma que mostrará los textos de la ventana.
-         *      bool bData: Indica si se habilitará o no la pestaña de tabla de frecuencias.
+         *      bool bData: Indica si se habilitará o no la pestaña de tabla de observaciones.
          *      bool bMean: Indica si se habilitará o no la pestaña de tablas de medias. 
          *      bool bSsq: Indica si se habilitará o no la tablas de análisis.
          */
@@ -93,7 +93,7 @@ namespace GUI_GT
          *  Constructor. Inicializa las casillas habilitandolas y marcandolas según el caso.
          * Parámetros:
          *      TransLibrary.Language lang: Idioma que mostrará los textos de la ventana.
-         *      bool bData: Indica si se habilitará o no la pestaña de tabla de frecuencias.
+         *      bool bData: Indica si se habilitará o no la pestaña de tabla de observaciones.
          *      bool bMean: Indica si se habilitará o no la pestaña de tablas de medias. 
          *      bool bSsq: Indica si se habilitará o no la tablas de análisis.
          *      bool visible: Indica si se va a mostrár o no la etiqueta y el textBox de nombre del archivo

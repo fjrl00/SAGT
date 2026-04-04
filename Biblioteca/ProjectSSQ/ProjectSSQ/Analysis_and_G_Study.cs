@@ -156,7 +156,7 @@ namespace ProjectSSQ
 
 
         /* Descripción:
-         *  Devuelve el nombre del fichero que contiene las tablas de frecuencias.
+         *  Devuelve el nombre del fichero que contiene las tablas de observaciones.
          */
         public string GetNameFileDataCreation()
         {
@@ -218,7 +218,7 @@ namespace ProjectSSQ
 
 
         /* Descripción:
-         *  Devuelve el nombre del fichero que contiene las tablas de frecuencias.
+         *  Devuelve el nombre del fichero que contiene las tablas de observaciones.
          */
         public void SetNameFileDataCreation(string nameFile)
         {

@@ -72,7 +72,7 @@ namespace GUI_GT
 
         private string measurementVariable = "Variable de medida"; // se corresponde con la última columna de la tabla de observaciones
 
-        // Variable de SAGT que contiene la Tabla de de frecuencias
+        // Variable de SAGT que contiene la Tabla de de observaciones
         private SagtFile sagtElements = new SagtFile();
 
         // variable pertenecientes al proyecto MultiFacetData
@@ -155,7 +155,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Muestra la ventana de importación de facetas y tabla de variables observadas.
+         *  Muestra la ventana de importación de facetas y tabla de observaciones.
          */
         private void tsmiActionDataImport_Click(object sender, EventArgs e)
         {
@@ -238,7 +238,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Carga los datos de las facetas y de las variables observadas a traves de un fichero .rms 
+         *  Carga los datos de las facetas y de las observaciones a traves de un fichero .rms 
          *  (lee el fichero resultado de medias con fomato del progama "GT").
          * Parámetros:
          *      string path: ubicación del fichero
@@ -269,7 +269,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Importa los datos de la tabla de facetas y table de frecuencias de un fichero xls
+         *  Importa los datos de la tabla de facetas y table de observaciones de un fichero xls
          */
         private void loadMultiFacetFileXls(string path)
         {
@@ -381,7 +381,7 @@ namespace GUI_GT
             }
             else
             {
-                // Cargamos los datos de las fuentes de variabilidad y tabla de frecuencias
+                // Cargamos los datos de las fuentes de variabilidad y tabla de observaciones
                 loadMultiFacets(fileNameData, multiFacets);
                 // nos posicionamos
                 ExcludeTabPages();
@@ -456,7 +456,7 @@ namespace GUI_GT
          *  Muestra los datos en las tablas de facetas y en los textbox del TabPage Datos.
          * Parámetros:
          *      string fileName: Nombre del fichero del que se extraen los datos.
-         *      MultiFacetsObs multiFacets: Objeto que contiene los datos de las facetas y las variables observadas.
+         *      MultiFacetsObs multiFacets: Objeto que contiene los datos de las facetas y las observaciones.
          */
         private void loadDataInTabPageFacets(string fileName, MultiFacetsObs multiFacets)
         {
@@ -817,7 +817,7 @@ namespace GUI_GT
         /*
          * Descripción:
          *  Carga los datos del objetos que se pasa como parametro en la tabla de datos (la que muestra los datos
-         *  de la variable observable).
+         *  de la variable observada).
          * Parámetros:
          *      MultiFacetsObs multiFacets: Objeto que contiene los datos que se almacenarán en las tablas
          *      hideNull: esconder o no filas con valor nulo. Por defecto se dejará falso
@@ -890,7 +890,7 @@ namespace GUI_GT
          */
         private void SaveFileSagt(SagtFile sagtElements)
         {
-            bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de frecuencias
+            bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de observaciones
             bool bMean = !(sagtElements.GetListMeans() == null); // pestaña de tablas de medias
             bool bSsq = !(sagtElements.GetAnalysis_and_G_Study() == null); // pestaña de análisis de varianza
 
@@ -972,11 +972,11 @@ namespace GUI_GT
             {
                 // multiFacet.WritingFileObsData(saveDialog.FileName);
                 sagtElementsSave.WritingSagtFile(saveDialog.FileName);
-                // Si tenemos la tabla de frecuencias abierta actualizamos el nombre
+                // Si tenemos la tabla de observaciones abierta actualizamos el nombre
                 MultiFacetsObs multiFacet = sagtElements.GetMultiFacetsObs();
                 if (multiFacet != null)
                 {
-                    // Existe una tabla de frecuencias y por tanto actualizamos el nombre del fichero
+                    // Existe una tabla de observaciones y por tanto actualizamos el nombre del fichero
                     multiFacet.NameFileObs(saveDialog.FileName);
                     this.tbFileName.Text = saveDialog.FileName;
                 }
@@ -1036,7 +1036,7 @@ namespace GUI_GT
          */
         public void ReadColumnOmit(SagtFile sagtElements, DataGridViewEx.DataGridViewEx dgvFacet)
         {
-            // Solo se ejecuta en el caso de que exista una tabla de frecuencias.
+            // Solo se ejecuta en el caso de que exista una tabla de observaciones.
             // En ese caso hay que actualizar la facetas omitidas para guardarla correctamente
             if (sagtElements.GetMultiFacetsObs() != null)
             {
@@ -1769,7 +1769,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Cancelación de la edición de una tabla de variables observadas. Si la tabla esta siendo creada
+         *  Cancelación de la edición de una tabla de observaciones. Si la tabla esta siendo creada
          *  se debe volver a dejar las tablas vacias y los objetos a null. Si la tabla estaba editando 
          *  un objeto creado se debe restaurar sus valores.
          */
@@ -1951,7 +1951,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Introduce comentarios en la opción de tabla de frecuencias
+         *  Introduce comentarios en la opción de tabla de observaciones
          */
         private void btActionDataEditComment_Click(object sender, EventArgs e)
         {

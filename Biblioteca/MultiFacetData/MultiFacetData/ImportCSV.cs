@@ -33,7 +33,7 @@ namespace MultiFacetData
          ***************************************************************************************************/
 
         /* Descripción:
-         *  Importa la tabla de frecuencias de un fichero .csv y devuelve un objeto multifaceta.
+         *  Importa la tabla de observaciones de un fichero .csv y devuelve un objeto multifaceta.
          */
         public static MultiFacetsObs ImportFileCSV_to_MultiFacetsObs(string path)
         {
@@ -47,7 +47,7 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Importa los datos de una tabla de frecuencias con formato csv (del inglés comma-separated values)
+         *  Importa los datos de una tabla de observaciones con formato csv (del inglés comma-separated values)
          *  y devuelve un objeto multifaceta.
          */
         private static MultiFacetsObs ReaderCSV_to_MultiFacetsObs(StreamReader reader, string path)
@@ -70,7 +70,7 @@ namespace MultiFacetData
                 numColumns = arrayHeadersColumns.Length;
             }
 
-            /* Los n-1 valores contendrá los nombres de las facetas (el último valor es la frecuencia/medición)
+            /* Los n-1 valores contendrá los nombres de las facetas (el último valor es la medición)
              */
             int numFacet = arrayHeadersColumns.Length - 1;
 

@@ -59,7 +59,7 @@ namespace GUI_GT
 
         // Titulos de los informes
         string issuanceOfReport = "Emisión de informe";
-        string titleDataReport = "Informe de tabla de frecuencias";
+        string titleDataReport = "Informe de tabla de observaciones";
         string titleMeansReport = "Informe de tablas de medias";
         string titleSsqReport = "Informe de análisis de varianzas";
         string titleG_ParametersReport = "G Parámetros";
@@ -68,7 +68,7 @@ namespace GUI_GT
         string stringTable = "Tabla";
 
         // Variables booleanas
-        bool bData = false; // indica si se imprimirá el informe de la tabla de frecuencias
+        bool bData = false; // indica si se imprimirá el informe de la tabla de observaciones
         bool bMeans = false; // indica si se imprimirá el informe de la lista de tabla de medias
         bool bSsq = false; // indica si se imprmimirá el informe de las tablas de análisis de varianza
         //NOTA: Su significado cambia con el contexto, en por ejemplo SelectElementsAndCreateWordDocument se usan durante un instante para ver si esos elementos son seleccionables, no si se van a imprimir
@@ -306,7 +306,7 @@ namespace GUI_GT
 
                 }// end if (* 1 *)
 
-                // Impresión del Informe de tabla de frecuencias
+                // Impresión del Informe de tabla de observaciones
                 if (bData)
                 {// (* 2 *)
                     // is es true imprimimos la tabla de facetas
@@ -332,7 +332,7 @@ namespace GUI_GT
                     }// end if (* 3 *)
 
 
-                    // Imprimimos la tabla de frecuencias;
+                    // Imprimimos la tabla de observaciones;
                     if (isFinishTableFacet)
                     {// (* 5 *)
                         if (isFirstPageObsTable)
@@ -1071,7 +1071,7 @@ namespace GUI_GT
                 // Traducimos la etiqueta de director academico
                 name = "academicDirector";
                 academicDirector = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos la etiqueta de titulo de informe de tabla de frecuencias
+                // Traducimos la etiqueta de titulo de informe de tabla de observaciones
                 name = "titleDataReport";
                 titleDataReport = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Traducimos la etiqueta de informe de tablas de medias

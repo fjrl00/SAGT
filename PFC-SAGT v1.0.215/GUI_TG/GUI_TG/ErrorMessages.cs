@@ -45,7 +45,7 @@ namespace GUI_GT
          **************************************************************************************************/
         private string errorMinNumFacet = "El número de facetas ha de ser como mínimo 2.";
         private string errorMessageTraslation = "Se produjo un error al traducir:";
-        private string errorNoTableObs = "No se ha creado la tabla de variables observadas.";
+        private string errorNoTableObs = "No se ha creado la tabla de observaciones.";
         private string errorVarTableObs = "Error: uno o más varibles observadas no contiene datos numéricos.";
         private string errorNoNumFacet = "No ha especificado el número de facetas.";
         private string errorOverUniverse = "El tamaño del nivel es mayor que el universo.";
@@ -94,7 +94,7 @@ namespace GUI_GT
          ****************************************************************************************************/
         private string txtConfirmBuildNesting = "No podrá seguir editando las facetas \nhasta que el proceso finalice ¿Desea continuar?";
         private string txtAdvise = "No está conectado al servidor";
-        private string txtSaveDataObserved = "La tabla de frecuencias se ha guardado";
+        private string txtSaveDataObserved = "La tabla de observaciones se ha guardado";
         private string txtNoSaveScores = "Las puntuaciones no se han guardado";
         private string txtSaveScores = "Las puntuaciones se han guardado";
         private string txtNoSaveSumOfSquares = "Las sumas de cuadrados no se han guardado";

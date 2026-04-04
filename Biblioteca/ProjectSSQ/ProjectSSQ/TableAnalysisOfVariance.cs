@@ -526,7 +526,7 @@ namespace ProjectSSQ
          *  Calcula el valor de un término usado en la suma de cuadrados.
          * Parámetros:
          *      ListFacets lf: Lista de facetas
-         *      MultiFacetsObs mfo: Tabla de frecuencias a partir de la cuals se calculará la suma de
+         *      MultiFacetsObs mfo: Tabla de observaciones a partir de la cuals se calculará la suma de
          *              cuadrados parcial.
          *      bool zero: Si es bool se calculará la media tomando los valores nulos como ceros.
          */

@@ -1446,14 +1446,14 @@ namespace GUI_GT
          *  - Botón Salvar (Editar tabla de observaciones) (btDataObsSave_Click()
          *  - Botón Cancelar (Editar tabla de observaciones) (btDataObsCancel_Click)
          *  - Editar cometarios (btDataEditComment_Click)
-         *  - Ocultar nulos en la tabla de frecuencias (checkBoxHideNulls_CheckedChanged)
+         *  - Ocultar nulos en la tabla de observaciones (checkBoxHideNulls_CheckedChanged)
          *============================================================================================*/
 
 
         /* Descripción:
          *  Guarda los cambios que se realizan tras la edición de las facetas (Modificación del nombre,
          *  tamaño del universo o descripción de una faceta. La modificación del nivel de una faceta implica
-         *  reconstruir la tabla de frecuencias, por eso no se permite.)
+         *  reconstruir la tabla de observaciones, por eso no se permite.)
          */
         private void btDataEditFacetsSave_Click(object sender, EventArgs e)
         {
@@ -1521,7 +1521,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Cancelamos la edición de la tabla de variables observadas. Si el objeto multifaceta esta siendo 
+         *  Cancelamos la edición de la tabla de observaciones. Si el objeto multifaceta esta siendo 
          *  creado de un objeto multifaceta por primera vez dejamos las tablas vacias. Si lo estamos editando 
          *  cancelamos la edidción y restauramos los valores del archivo.
          */
@@ -1544,7 +1544,7 @@ namespace GUI_GT
 
         /* Descripción:
          *  Este evento se activa al cambiar el estado del checkBox "Ocular nulos" (CheckBoxHideNull). Al marcarlo deben
-         *  ocultarse los valores nulos de la tabla de frecuencias. Al desmarcarlo deben mostrarse todos los valores.
+         *  ocultarse los valores nulos de la tabla de observaciones. Al desmarcarlo deben mostrarse todos los valores.
          */
         private void checkBoxHideNulls_CheckedChanged(object sender, EventArgs e)
         {
@@ -2450,7 +2450,7 @@ namespace GUI_GT
         }
 
         /* Descripción:
-         *  Evento que controla que se pulsen las teclas validas para editar la tabla de frecuencias.
+         *  Evento que controla que se pulsen las teclas validas para editar la tabla de observaciones.
          */
         private void dataGridViewExObsTable_KeyPressEditorCelda(object sender, KeyPressEventArgs e)
         {
@@ -2468,7 +2468,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Controla la edición de la ultima columna de la tabla de frecuencia permitiendo que
+         *  Controla la edición de la ultima columna de la tabla de observaciones permitiendo que
          *  unicamente se escriban los caracteres validos para la escritura de un "double".
          */
         private void writerDouble_KeyPressEditorCelda(DataGridViewEx.DataGridViewEx dgvEx, object sender, KeyPressEventArgs e)

@@ -42,7 +42,7 @@ namespace ConnectLibrary
 
         private AccessDB dataBase;
 
-        // Constante que determina la columna de variables observadas
+        // Constante que determina la columna de observaciones
         private string COLMN_VAR_OBS = "var_obs";
         // Constante que determina la columna de medias
         private string COLMN_MEANS = "means";
@@ -327,7 +327,7 @@ namespace ConnectLibrary
         {
             String cadenaInsertSagtFile;
 
-            // Tabla de frecuencias
+            // Tabla de observaciones
             int fk_muti_facet_obs = 0;
             MultiFacetsObs mfo = sagtFile.GetMultiFacetsObs();
 
@@ -411,7 +411,7 @@ namespace ConnectLibrary
 
 
         /* Descripción:
-         *  Almacena los datos de la tabla de frecuencias en la base de datos. Los datos se almacenan
+         *  Almacena los datos de la tabla de observaciones en la base de datos. Los datos se almacenan
          *  en la tabla TbDataObservation. Se realiza un mapeo de los datos de memoria.
          */
         public int Insert_MultiFacetsObs(MultiFacetsObs mfo)
@@ -1149,7 +1149,7 @@ namespace ConnectLibrary
             MultiFacetsObs mfo = null;
             if (pk_multi_facet_obs != 0)
             {
-                // Leemos la tabla de frecuencias de la base de datos
+                // Leemos la tabla de observaciones de la base de datos
                 mfo = Return_MultiFacetObs(pk_multi_facet_obs);
             }
 
@@ -1192,7 +1192,7 @@ namespace ConnectLibrary
 
 
         /* Descripción:
-         *  Devuelve La tabla de frecuencias que recupera a partir de la clave primaria.
+         *  Devuelve La tabla de observaciones que recupera a partir de la clave primaria.
          */
         private MultiFacetsObs Return_MultiFacetObs(int pk_multi_facet_obs)
         {
@@ -1311,7 +1311,7 @@ namespace ConnectLibrary
 
 
         /* Descripción: 
-         *  Devuelve un objeto que implemente la InterfaceObsTable (Tabla de frecuencias)
+         *  Devuelve un objeto que implemente la InterfaceObsTable (Tabla de observaciones)
          */
         public InterfaceObsTable Return_ObsTable(ListFacets lf, int fk_multi_facet_obs)
         {

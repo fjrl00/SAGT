@@ -11,7 +11,7 @@
  * Fecha de revisión: 18/Jun/2012                           
  * 
  * Descripción:
- *      Interface para tabla de frecuencias Libreria de MultiFacetData
+ *      Interface para tabla de observaciones Libreria de MultiFacetData
  */
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace MultiFacetData
         /*=================================================================================================
          * Métodos de consulta
          *=================================================================================================*/
-        // Devuelve el dato de la frecuencia que se encuentra en la fila row.
+        // Devuelve el dato de la medición que se encuentra en la fila row.
         double? ObsData(int row);
         // Devuelve el dato que se encuentra en la tabla de frecuancias en la fila row, columna col.
         double? Data(int row, int col);
@@ -35,9 +35,9 @@ namespace MultiFacetData
         int TableColumns();
         // Devuelve el número de filas de la tabla
         int TableRows();
-        // Devuelve el valor de las suma de las frecuencias
+        // Devuelve el valor de las suma de las observaciones
         double? SumOfData();
-        // Escribe la tabla de datos de frecuencias.
+        // Escribe la tabla de datos de observaciones.
         bool WritingStreamObsTable(StreamWriter writerFile);
         // Tranforma la tabla de observaciones en un DataTable
         DataTable ObsTable2DataTable(ListFacets lf);
@@ -51,9 +51,9 @@ namespace MultiFacetData
          *=================================================================================================*/
         // Añade una fila a la tabla con los valores de la lista que se pasan como parámetros a la tabla
         void Add(List<double?> row);
-        // Añade el dato (data)de la frecuencia en la fila (pos) que se pasa como parámetro
+        // Añade el dato (data)de la medición en la fila (pos) que se pasa como parámetro
         void Data(double? data, int pos);
-        // Asigna los valores de la lista que se pasa como parámetro como frecuencias de la tabla
+        // Asigna los valores de la lista que se pasa como parámetro como observaciones de la tabla
         void AssignListData(List<double?> ldata);
         // Elimina un nivel para una determinada columna
         void RestoreIndexes(int skipLevel, int col);

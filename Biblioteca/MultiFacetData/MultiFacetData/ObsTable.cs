@@ -267,7 +267,7 @@ namespace MultiFacetData
         }
 
         /* Descripción:
-         *  Escribe la tabla de datos de frecuencias.
+         *  Escribe la tabla de datos de observaciones.
          */
         public bool WritingStreamObsTable(StreamWriter writerFile)
         {
@@ -341,13 +341,13 @@ namespace MultiFacetData
         #region Conversión a DataTable o DataSet
         /*===============================================================================================
          * Conversión a DataTable o DataSet
-         * - Tabla de frecuencias a DataTable (ObsTable2DataTable)
-         * - Tabla de frecuencias a DataSet (ObsTable2DataSet)
-         * - De DataTable a tabla de frecuencias (DataTable2ObsTable)
-         * - De DataSet a tabla de frecuencias (DataSet2ObsTable)
+         * - Tabla de observaciones a DataTable (ObsTable2DataTable)
+         * - Tabla de observaciones a DataSet (ObsTable2DataSet)
+         * - De DataTable a tabla de observaciones (DataTable2ObsTable)
+         * - De DataSet a tabla de observaciones (DataSet2ObsTable)
          *===============================================================================================/
         /* Descripción:
-         *  Devuelve un dataTable con los datos de la tabla de frecuencias
+         *  Devuelve un dataTable con los datos de la tabla de observaciones
          */
         public DataTable ObsTable2DataTable(ListFacets lf)
         {
@@ -365,7 +365,7 @@ namespace MultiFacetData
                 string name_col = f.Name();
                 dtObsTable.Columns.Add(new DataColumn(name_col, System.Type.GetType("System.Double")));
             }
-            // Añadimos la columna de las frecuencias
+            // Añadimos la columna de las observaciones
             dtObsTable.Columns.Add(new DataColumn("obs_data", System.Type.GetType("System.Double")));
 
             // rellenamos el dataTable
@@ -397,7 +397,7 @@ namespace MultiFacetData
         }// end ObsTable2DataTable
 
         /* Descripción:
-        *  Devuelve un dataTable con los datos de la tabla de frecuencias
+        *  Devuelve un dataTable con los datos de la tabla de observaciones
         */
         public DataSet ObsTable2DataSet(ListFacets lf)
         {
@@ -408,7 +408,7 @@ namespace MultiFacetData
         }
 
         /* Descripción:
-         *  Toma un DataTable como argumento y devuelve una Tabla de Frecuencias
+         *  Toma un DataTable como argumento y devuelve una Tabla de observaciones
          */
         public static ObsTable DataTable2ObsTable(DataTable dtObsTable)
         {
@@ -440,7 +440,7 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Toma un DataSet como argumento y devuelve una Tabla de Frecuencias
+         *  Toma un DataSet como argumento y devuelve una Tabla de observaciones
          */
         public static ObsTable DataSet2ObsTable(DataSet dsObsTable)
         {

@@ -33,7 +33,7 @@ namespace MultiFacetData
         /*=================================================================================
          * Constantes
          *=================================================================================*/
-        // Comienzo y fin de comentario de una tabla de frecuencias
+        // Comienzo y fin de comentario de una tabla de observaciones
         const string BEGIN_COMMENT = "<file_data_comment>";
         const string END_COMMENT = "</file_data_comment>";
 
@@ -138,7 +138,7 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve los comentarios de la tabla de frecuencias
+         *  Devuelve los comentarios de la tabla de observaciones
          */
         public string Comment()
         {
@@ -294,9 +294,9 @@ namespace MultiFacetData
         #endregion Métodos de instancia
 
 
-        #region Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas
+        #region Métodos para devolver una tabla de observaciones donde no aparezcan las facetas omitidas
         /********************************************************************************************
-         * Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas
+         * Métodos para devolver una tabla de observaciones donde no aparezcan las facetas omitidas
          * 
          *  - OmitFacetInDataTable()
          ********************************************************************************************/
@@ -314,13 +314,13 @@ namespace MultiFacetData
             return new MultiFacetsObs(c_lf, c_Table, this.nameFileObs, this.description, this.comment);
         }
 
-        #endregion Métodos para devolver una tabla de frecuencias donde no aparezcan las facetas omitidas
+        #endregion Métodos para devolver una tabla de observaciones donde no aparezcan las facetas omitidas
 
 
 
-        #region Métodos para la eliminación de niveles de una tabla de frecuencias
+        #region Métodos para la eliminación de niveles de una tabla de observaciones
         /********************************************************************************************
-         * Métodos para la eliminación de niveles de una tabla de frecuencias
+         * Métodos para la eliminación de niveles de una tabla de observaciones
          ********************************************************************************************/
 
         /* Descripción:
@@ -373,7 +373,7 @@ namespace MultiFacetData
             }
         }// end AuxSkipLevelFacetInDataTable
 
-        #endregion Métodos para la eliminación de niveles de una tabla de frecuencias
+        #endregion Métodos para la eliminación de niveles de una tabla de observaciones
 
 
 
@@ -621,9 +621,9 @@ namespace MultiFacetData
             DataTable dtSkipLevels = this.listFacets.SkipLevels2DataTable("TbSkipLevels");
             // Añadimos el dataTable con los niveles omitidos
             dsMultiFacetData.Tables.Add(dtSkipLevels);
-            // Obtenemos el dataTable con la tabla de frecuencias
+            // Obtenemos el dataTable con la tabla de observaciones
             DataTable dtObsTable = this.observationTable.ObsTable2DataTable(this.listFacets);
-            // Añadimos el dataTable con la tabla de frecuencias
+            // Añadimos el dataTable con la tabla de observaciones
             dsMultiFacetData.Tables.Add(dtObsTable);
 
             return dsMultiFacetData;

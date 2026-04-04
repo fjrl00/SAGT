@@ -321,12 +321,12 @@ namespace GUI_GT
                     this.cfgApli.GetShadingRows(), fontTableReport);
                 document.Add(datatableData1);
 
-                // Tabla de frecuencias
+                // Tabla de observaciones
                 PdfPTable datatableData2 = GeneratePdfPTable(this.dataGridViewExObsTable,
                     this.cfgApli.GetShadingRows(), fontTableReport);
                 document.Add(datatableData2);
 
-                // Comentarios (Pestaña de información de tabla de frecuencias)
+                // Comentarios (Pestaña de información de tabla de observaciones)
                 string textDataInfoComment = "";
                 if (richTextBoxDataComment.Text != null)
                 {

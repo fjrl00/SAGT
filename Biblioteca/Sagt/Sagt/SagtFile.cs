@@ -176,7 +176,7 @@ namespace Sagt
 
         /* Descripción:
          *  Devuelve un objeto SagtFile tras la lectura de un fichero que puede contener los datos de la 
-         *  tabla de frecuencias, las tablas de medias y/o las tablas de analisis de varianzas.
+         *  tabla de observaciones, las tablas de medias y/o las tablas de analisis de varianzas.
          * Parámetros:
          *      string path: String con el path del fichero.
          */

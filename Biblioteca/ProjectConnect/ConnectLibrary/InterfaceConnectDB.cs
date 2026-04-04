@@ -38,7 +38,7 @@ namespace ConnectLibrary
         int Insert_SagtFile(SagtFile sagtFile, string nameFile, int fk_projects, int fk_user);
         // Inserta un objeto fichero de Análisis en la base de datos en un proyecto especificado
         int Insert_AnalysisFile(Analysis_and_G_Study analysisFile, string nameFile, int fk_projects, int fk_user);
-        // Almacena los datos de la tabla de frecuencias en la base de datos. 
+        // Almacena los datos de la tabla de observaciones en la base de datos. 
         int Insert_MultiFacetsObs(MultiFacetsObs mfo);
         // Inserta los datos de una lista de facetas en la base de datos y devuelve la clave primaria
         //  de esa lista.
@@ -74,7 +74,7 @@ namespace ConnectLibrary
         // Devuelve una lista de enteros (los enteros que omite una determinada faceta) a partir
         //  de la clave foranea de la faceta que se pasa como parametro.
         List<int> Return_ListSkipLevels(int fk_facet);
-        // Devuelve un objeto que implemente la InterfaceObsTable (Tabla de frecuencias)
+        // Devuelve un objeto que implemente la InterfaceObsTable (Tabla de observaciones)
         InterfaceObsTable Return_ObsTable(ListFacets lf, int fk_multi_facet_obs);
         // Devuelve un objeto de tablas de medias por defecto a partir de la clave foranea que se pasa
         //  como parámetro.

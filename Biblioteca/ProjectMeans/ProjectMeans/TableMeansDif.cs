@@ -125,7 +125,7 @@ namespace ProjectMeans
          *          Niveles marcados para omitir serán omitidos.
          *          Facetas marcadas para omitir no serán omitidas.
          *      string design: Texto que identifica la tabla de medias
-         *      MultiFacetsObs mfo: Objeto multifaceta con la tabla de frecuencias
+         *      MultiFacetsObs mfo: Objeto multifaceta con la tabla de observaciones
          *      bool zero: Si es true se realizarán los calculos interpretando los valores 
          *              nulos como ceros
          */
@@ -260,7 +260,7 @@ namespace ProjectMeans
          *  Devuelve la Gran media o media general.
          *  
          *  Parámetros
-         *      MultiFacetsObs mfo: Para obtener los datos de la tabla de frecuencias de los que se optiene la grand media
+         *      MultiFacetsObs mfo: Para obtener los datos de la tabla de observaciones de los que se optiene la grand media
          *      bool zero: true si se quiere realizar los calculos interpretando los valores nulos
          *              como ceros.
          */
@@ -654,7 +654,7 @@ namespace ProjectMeans
                 string name_col = f.Name();
                 dtTableMeans.Columns.Add(new DataColumn(name_col, System.Type.GetType("System.Double")));
             }
-            // Añadimos la columna de las frecuencias
+            // Añadimos la columna de las observaciones
             dtTableMeans.Columns.Add(new DataColumn("means", System.Type.GetType("System.Double")));
             dtTableMeans.Columns.Add(new DataColumn("variance", System.Type.GetType("System.Double")));
             dtTableMeans.Columns.Add(new DataColumn("stand_dev", System.Type.GetType("System.Double")));

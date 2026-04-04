@@ -23,13 +23,13 @@ namespace AuxMathCalcGT
     public class Statistics
     {
         // Variables de instancia
-        private double sumX; // suma de las frecuencias
-        private double sumX2; // suma al cuadrado de las frecuencias
-        private int numElem; // número de elementos de las frecuencias
+        private double sumX; // suma de las observaciones
+        private double sumX2; // suma al cuadrado de las observaciones
+        private int numElem; // número de elementos de las observaciones
         /*
          * Nota:
          *  Los valores null no se cuenta a la hora de realizar las medias o la suma de 
-         *  cuadrados con lo que puede ocurrir que el resultado de una determinada frecuencia
+         *  cuadrados con lo que puede ocurrir que el resultado de una determinada medición
          *  sea null.
          */
 
@@ -50,7 +50,7 @@ namespace AuxMathCalcGT
          *=================================================================================*/
         /*
          * Descripción:
-         *  Devuelve la suma de la frecuencia.
+         *  Devuelve la suma de las observaciones.
          */
         public double? SumX()
         {
@@ -60,7 +60,7 @@ namespace AuxMathCalcGT
 
         /*
          * Descripción:
-         *  Devuelve la suma de los cuadrados la frecuencia.
+         *  Devuelve la suma de los cuadrados las observaciones.
          */
         public double? SumX2()
         {
@@ -70,7 +70,7 @@ namespace AuxMathCalcGT
 
         /*
          * Descripción:
-         *  Devuelve el número de elementos de la frecuencia.
+         *  Devuelve el número de elementos de las observaciones.
          */
         public int NumElem()
         {

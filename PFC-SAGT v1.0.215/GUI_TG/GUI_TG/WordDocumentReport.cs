@@ -190,7 +190,7 @@ namespace GUI_GT
                 // Tabla de facetas
                 InsertTable(doc, dataGridViewExFacets, fontTableReport, this.cfgApli.GetShadingRows());
 
-                // Tabla de frecuencias
+                // Tabla de observaciones
                 InsertTable(doc, dataGridViewExObsTable, fontTableReport, this.cfgApli.GetShadingRows());
 
                 // Comentarios

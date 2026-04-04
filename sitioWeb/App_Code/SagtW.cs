@@ -210,7 +210,7 @@ public class SagtW : System.Web.Services.WebService
     }
 
 
-    // Almacena los datos de la tabla de frecuencias en la base de datos. 
+    // Almacena los datos de la tabla de observaciones en la base de datos. 
     [WebMethod]
     public int Insert_MultiFacetsObs(DataSet dsMultiFacetData)
     {
@@ -295,7 +295,7 @@ public class SagtW : System.Web.Services.WebService
     }
 
 
-    // Devuelve un objeto que implemente la InterfaceObsTable (Tabla de frecuencias)
+    // Devuelve un objeto que implemente la InterfaceObsTable (Tabla de observaciones)
     [WebMethod]
     public DataSet Return_ObsTable(DataSet ListFacet, int fk_multi_facet_obs)
     {

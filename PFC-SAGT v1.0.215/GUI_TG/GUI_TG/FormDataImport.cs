@@ -35,12 +35,12 @@ namespace GUI_GT
         string[] typesFiles = {"Seleccione un fichero" ,
                                   "Datos observados, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Resultado de medias, GT E 2.0 (Pierre Ysewijn, 1996)",
-                                  "Tabla de frecuencias exportada por SAGT a Excel",
+                                  "Tabla de observaciones exportada por SAGT a Excel",
                                   "Ficheros .csv"};
 
         string[] fileDescriptions = {"",
-                            "Tabla de frecuencia extraída de un fichero de observaciones (.obs) generado con el software GT 2.0 E. Este archivo contiene los datos de las facetas además del nombre del fichero de datos (.dat) que contiene las frecuencias. El fichero de observaciones y el de datos debe encontrarse en el mismo directorio para que pueda ser leído.",
-                            "Obtiene la tabla de frecuencias a partir de un fichero de medias (.rsm) generado con el software GT 2.0 E. Se aprovecha de que la última tabla de medias coincide con la tabla de frecuencias para obtenerla.",
+                            "Tabla de observaciones extraída de un fichero de observaciones (.obs) generado con el software GT 2.0 E. Este archivo contiene los datos de las facetas además del nombre del fichero de datos (.dat) que contiene las observaciones. El fichero de observaciones y el de datos debe encontrarse en el mismo directorio para que pueda ser leído.",
+                            "Obtiene la tabla de observaciones a partir de un fichero de medias (.rsm) generado con el software GT 2.0 E. Se aprovecha de que la última tabla de medias coincide con la tabla de observaciones para obtenerla.",
                             "Importa los datos de un fichero Excel siempre que este tenga el mismo formato que los ficheros exportados por esta misma aplicación.",
                             "Ficheros .csv exportados por la aplicación de José Antonio López López."};
 
