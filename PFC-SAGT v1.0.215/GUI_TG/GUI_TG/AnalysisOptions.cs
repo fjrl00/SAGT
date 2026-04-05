@@ -443,8 +443,6 @@ namespace GUI_GT
                             case (DialogResult.OK):
                                 if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
                                 {
-
-                                    // MessageBox.Show(errorM_DesignNoValidate, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                     ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
                                 }
                                 else
@@ -743,7 +741,6 @@ namespace GUI_GT
             catch (Analysis_and_G_Study_Exception e)
             {
                 // Mostramos información del error
-                // MessageBox.Show(errorReadingFile + ". " + e.Message, titleMessageError1);
                 ShowMessageErrorOK(errorReadingFile + ". " + e.Message, titleMessageError1, MessageBoxIcon.Error);
             }
             catch (Exception ex)
@@ -790,7 +787,6 @@ namespace GUI_GT
                 {
                     this.anl_tAnalysis_G_study_opt.WritingFileAnalysisSSQ(saveDialog.FileName);
                     // Mostramos un mensaje indicando que se ha salvado
-                    // MessageBox.Show(txtTheDataIsSaved, titleSaved);
                     ShowMessageInfo(txtTheDataIsSaved, titleSaved);
                 }
             }
@@ -1064,7 +1060,6 @@ namespace GUI_GT
             {
                 // th.Abort();
                 // Mostramos un mensage indicando que el fichero esta siendo usado
-                // MessageBox.Show(errorFileInUse);
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
@@ -1128,7 +1123,6 @@ namespace GUI_GT
                         break;
                     default:
                         ShowMessageErrorOK("No se muestra ninguno");
-                        // MessageBox.Show("No se muestra ninguno");
                         break;
                 }
                 if (tAnalysis_tG_Study_Opt != null)
@@ -1330,7 +1324,6 @@ namespace GUI_GT
                         // Mostramos mensaje
                         string message = txtInfoImportScores;
                         message = message.Replace("[n]", n.ToString());
-                        // MessageBox.Show(message);
                         ShowMessageInfo(message);
 
                     }
@@ -1338,7 +1331,6 @@ namespace GUI_GT
                 catch (MultiFacetObsException)
                 {
                     // Mostramos un mensaje de error informando de que no se han podido extraer los datos
-                    // MessageBox.Show(errorReadingFileScore, titleMessageError1);
                     ShowMessageErrorOK(errorReadingFileScore, titleMessageError1, MessageBoxIcon.Error);
                 }
             }
@@ -1399,7 +1391,6 @@ namespace GUI_GT
             if (this.anl_tAnalysis_G_study_opt == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
-                // MessageBox.Show(errorNoSSQ);
             }
             else
             {
@@ -1496,7 +1487,6 @@ namespace GUI_GT
             if (this.anl_tAnalysis_G_study_opt == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
-                // MessageBox.Show(errorNoSSQ);
             }
             else
             {
@@ -1527,7 +1517,6 @@ namespace GUI_GT
             if (this.anl_tAnalysis_G_study_opt == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
-                // MessageBox.Show(errorNoSSQ);
             }
             else
             {
@@ -1549,7 +1538,6 @@ namespace GUI_GT
                         case (DialogResult.OK):
                             if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
                             {
-                                // MessageBox.Show(errorM_DesignNoValidate, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                 ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
                             }
                             else
@@ -1749,7 +1737,6 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         } // private void TraslationAnalysisElements

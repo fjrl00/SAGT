@@ -948,7 +948,6 @@ namespace GUI_GT
                                     {// (*2*)
                                         correct = false;
                                         ShowMessageErrorOK(errorOverUniverse);
-                                        // MessageBox.Show("El tamaño de el nivel es mayor que el universo");
                                     }//end if (*2*)
                                 }
                             }// end for
@@ -972,7 +971,6 @@ namespace GUI_GT
                                     {// (*3*)
                                         correct = false;
                                         ShowMessageErrorOK(errorOverUniverse);
-                                        // MessageBox.Show("El tamaño de el nivel es mayor que el universo");
                                     }//end if (*3*)
                                 }
                             }// end for
@@ -1108,7 +1106,6 @@ namespace GUI_GT
                                 {// (*2*)
                                     correct = false;
                                     ShowMessageErrorOK(errorOverUniverse);
-                                    // MessageBox.Show("El tamaño de el nivel es mayor que el universo");
                                 }//end if (*2*)
 
                             }
@@ -1124,7 +1121,6 @@ namespace GUI_GT
                                 {// (*3*)
                                     correct = false;
                                     ShowMessageErrorOK(errorOverUniverse);
-                                    // MessageBox.Show("El tamaño de el nivel es mayor que el universo");
                                 }
 
                             }//end if (*3*)
@@ -1461,14 +1457,12 @@ namespace GUI_GT
             catch (IOException)
             {
                 // th.Abort();
-                // MessageBox.Show("Otro porgrama esta usando el archivo");
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
             {
                 // th.Abort();
                 // Mostramos un mensaje indicando que el fichero no tiene el formato correcto
-                // MessageBox.Show(ex.Message);
                 ShowMessageErrorOK(ex.Message);
             }
         }// end tsmiActionSSQImport_Click
@@ -1903,13 +1897,11 @@ namespace GUI_GT
                         {
                             // Mostramos un mensaje de que las sumas de cuadrados se han guardado
                             ShowMessageInfo(txtSaveSumOfSquares, titleSaved);
-                            // MessageBox.Show(txtSaveSumOfSquares, titleSaved);
                         }
                         else
                         {
                             // Mostramos un mensaje ERROR, en el que las puntuaciones NO se han guardado
                             ShowMessageInfo(txtNoSaveSumOfSquares, titleMessageError1);
-                            // MessageBox.Show(txtNoSaveSumOfSquares, titleMessageError1);
                         }
                     }
                 }// end if (* 2 *)

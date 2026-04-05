@@ -187,7 +187,6 @@ namespace GUI_GT
                     EnabledOrDisabledButtonOkCancel(false);
 
                     // mostrar mensage de que el proyecto ha sido creado
-                    // MessageBox.Show(txtProyectCreated);
                     ShowMessageInfo(txtProyectCreated);
                 }
                 else

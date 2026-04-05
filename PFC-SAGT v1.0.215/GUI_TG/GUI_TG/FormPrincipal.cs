@@ -209,7 +209,6 @@ namespace GUI_GT
                     break;
                 default:
                     ShowMessageErrorOK("No se muestra ninguno");
-                    // MessageBox.Show("No se muestra ninguno");
                     break;
             }
         }
@@ -330,7 +329,6 @@ namespace GUI_GT
                 catch (ConfigCFGException e)
                 {
                     // Se produjo un error al leer el archivo
-                    // MessageBox.Show(e.Message + " " + "Se produjo un error al leer" + " " + cfgApli.NameFileConfig());
                     ShowMessageErrorOK(e.Message + " " + errorReadingFile + " " + cfgApli.NameFileConfig());
                 }
             }
@@ -403,7 +401,6 @@ namespace GUI_GT
             catch (TransLibrary.LabelTranslationException lEx)
             {
                 // Se produjo un error al traducir
-                // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         }
@@ -474,7 +471,6 @@ namespace GUI_GT
             catch (TransLibrary.LabelTranslationException lEx)
             {
                 // Se produjo un error al traducir mostramos el mensaje
-                // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         }
@@ -510,7 +506,6 @@ namespace GUI_GT
             catch (TransLibrary.LabelTranslationException lEx)
             {
                 // Se produjo un error al traducir mostramos mensaje
-                // MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         }
@@ -551,7 +546,6 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         }
@@ -576,7 +570,6 @@ namespace GUI_GT
             catch (TransLibrary.LabelTranslationException lEx)
             {
                 // Mostramos el mensaje de error al traducir
-                // MessageBox.Show(lEx.Message + " Se produjo un error al traducir el menú contextual");
                 ShowMessageErrorOK(lEx.Message + errorMessageTraslation);
             }
         }
@@ -768,7 +761,6 @@ namespace GUI_GT
                                 }
                                 th.Abort();
 
-                                // MessageBox.Show(mensage);
                                 ShowMessageInfo(mensage);
                             }
                             catch (EndpointNotFoundException)
@@ -1549,19 +1541,10 @@ namespace GUI_GT
             CWait fw = new CWait(msgLoading);
             fw.Show();
             Application.DoEvents();
-            try
-            {
-                MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
-                loadDataInTabPageObsTable(multiFacets, this.checkBoxHideNulls.Checked);
-            }
-            catch (IOException ex)
-            {
-                ShowMessageErrorOK(ex.Message);
-            }
-            finally
-            {
-                fw.Close();
-            }
+
+            MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
+            loadDataInTabPageObsTable(multiFacets, this.checkBoxHideNulls.Checked);
+            fw.Close();
 
         }// end checkBoxHideNulls_CheckedChanged
 

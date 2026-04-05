@@ -205,7 +205,6 @@ namespace GUI_GT
             {
                 //th.Abort();
                 // Mostramos un mensaje indicando que el fichero no esta en el formato correcto
-                // MessageBox.Show(ex.Message);
                 ShowMessageErrorOK(ex.Message);
             }
         }// end tsmiActionDataImport_Click
@@ -325,7 +324,6 @@ namespace GUI_GT
                 case (DEFAULT_EXT_EXCEL): loadMultiFacetFileXls(path); break;
                 case ("csv"): loadMultiFacetFileCsv(path); break;
                 default:
-                    // MessageBox.Show("No se muestra ninguno");
                     ShowMessageInfo("No se muestra ninguno");
                     break;
             }
@@ -974,7 +972,6 @@ namespace GUI_GT
                     this.tbFileName.Text = saveDialog.FileName;
                 }
                 // Mostrmos un mensaje indicando que los datos han sido guardados
-                // MessageBox.Show(txtSaveDataObserved, titleSaved);
                 ShowMessageInfo(txtSaveDataObserved, titleSaved);
             }
             // deshabilitamos los botones de facetas
@@ -1448,7 +1445,6 @@ namespace GUI_GT
             if (this.sagtElements.GetMultiFacetsObs() == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                // MessageBox.Show(errorNoTableObs);
             }
             else
             {
@@ -1477,7 +1473,6 @@ namespace GUI_GT
             if (this.sagtElements.GetMultiFacetsObs() == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoTableObs);
-                // MessageBox.Show(errorNoTableObs);
             }
             else
             {
@@ -1859,21 +1854,18 @@ namespace GUI_GT
             catch (FormatException formEx)
             {
                 // Se produjo la excepción al obtener el nivel de la 
-                // MessageBox.Show(formEx.Message);
                 ShowMessageErrorOK(formEx.Message);
                 lf = null;
             }
             catch (ListFacetsException facetEx)
             {
                 // Se produjo una excecpción al crear una faceta
-                // MessageBox.Show(facetEx.Message);
                 ShowMessageErrorOK(facetEx.Message);
                 lf = null;
             }
             catch (FacetException facetEx)
             {
                 // Se produjo una excecpción al crear una faceta
-                // MessageBox.Show(facetEx.Message);
                 ShowMessageErrorOK(facetEx.Message);
                 lf = null;
             }
@@ -1900,7 +1892,6 @@ namespace GUI_GT
             catch (MultiFacetObsException multFactEx)
             {
                 // se produjo un error al crear el objeto multifaceta
-                // MessageBox.Show(multFactEx.Message);
                 ShowMessageErrorOK(multFactEx.Message);
                 valret = null;
             }
@@ -2126,13 +2117,11 @@ namespace GUI_GT
                         // Mostramos mensaje
                         string message = txtInfoImportScores;
                         message = message.Replace("[n]", n.ToString());
-                        // MessageBox.Show(message);
                         ShowMessageInfo(message);
                     }
                     catch (MultiFacetObsException)
                     {
                         // Mostramos un mensaje de error informando de que no se han podido extraer los datos
-                        // MessageBox.Show(errorReadingFileScore, titleMessageError1);
                         ShowMessageErrorOK(errorReadingFileScore, titleMessageError1, MessageBoxIcon.Error);
                     }
                 }
@@ -2350,7 +2339,6 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                // MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         } // private void TraslationDataElements
