@@ -12,21 +12,14 @@
  * 
  */
 using AuxMathCalcGT;
-using ConfigCFG;
-using DataGridViewEx;
 using ProjectMeans;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
 {
-    public class TabPageMeansEx: TabPage
+    public class TabPageMeansEx : TabPage
     {
         /*====================================================================================================
          * Variables de instancia
@@ -71,7 +64,7 @@ namespace GUI_GT
             this.nameColMeans = m;
             this.nameColVariance = variance;
             this.nameColStd_Dev = stdv;
-            
+
             // creamos el tabPage
             this.Text = name;
             this.MinimumSize = new System.Drawing.Size(568, 444);
@@ -83,7 +76,7 @@ namespace GUI_GT
             dgvExTableMean.Location = new System.Drawing.Point(13, 7);
 
             // dgvExTableMean.Size = new System.Drawing.Size(500, 400);
-            dgvExTableMean.Size = new System.Drawing.Size(this.Width-50, this.Height-100);
+            dgvExTableMean.Size = new System.Drawing.Size(this.Width - 50, this.Height - 100);
             dgvExTableMean.MaximumSize = new Size(1100, 400);
 
             // newDataGridViewEx.Anchor = this.tabControlMeans.Anchor;// (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right );
@@ -136,7 +129,7 @@ namespace GUI_GT
          *  TRANSLATION DATA FOR THE LAST COLUMNS
          */
         public TabPageMeansEx(Image blackground, string name, string txtGrandMeans, Point point_label1, string gm,
-            string m, string variance, string stdv, string nameColDiffMean, string nameColDiffVar, 
+            string m, string variance, string stdv, string nameColDiffMean, string nameColDiffVar,
             string nameColDiffStd_dev, string cut, string copy, string paste, string remove, string selectAll) :
             base()
         {
@@ -239,11 +232,11 @@ namespace GUI_GT
         public void SetTableMeans(InterfaceTableMeans tMeans, ConfigCFG.ConfigCFG cfgApli)
         {
             dgvExTableMean.DataSource = tMeans.TableToDGV();   //input cell value data
-            
+
             // Global table properties
             dgvExTableMean.AllowUserToResizeRows = false;
             dgvExTableMean.DefaultCellStyle.Font = new Font("Verdana", 8, FontStyle.Regular);
-            if(cfgApli.GetDecimalSeparator().Equals(","))
+            if (cfgApli.GetDecimalSeparator().Equals(","))
                 dgvExTableMean.DefaultCellStyle.FormatProvider = new CultureInfo("es-ES");
             DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle
             {
@@ -283,31 +276,31 @@ namespace GUI_GT
 
         private void AddFinalColumns(DataGridViewEx.DataGridViewEx dgv, InterfaceTableMeans tMeans, int startIndex, string decimalFormat)
         {
-            
-                if (tMeans is TableMeans)
-                {
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
-                }
-                else if (tMeans is TableMeansDif)
-                {
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColDiffVar, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 5, nameColDiffStd_dev, 100, decimalFormat);
-                }
-                else if (tMeans is TableMeansTypScore)
-                {
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
-                    PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColTypScore, 100, decimalFormat);
-                }
-            
+
+            if (tMeans is TableMeans)
+            {
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+            }
+            else if (tMeans is TableMeansDif)
+            {
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColDiffVar, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 5, nameColDiffStd_dev, 100, decimalFormat);
+            }
+            else if (tMeans is TableMeansTypScore)
+            {
+                PropertyColumnTableMeansDGV(dgv, startIndex + 0, nameColMeans, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 1, nameColVariance, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 2, nameColStd_Dev, 150, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 3, nameColDiffMean, 100, decimalFormat);
+                PropertyColumnTableMeansDGV(dgv, startIndex + 4, nameColTypScore, 100, decimalFormat);
+            }
+
         }
 
 
@@ -345,7 +338,7 @@ namespace GUI_GT
          * Descripción:
          *  Cambia de idioma el menú contextual de los dataGridVieWEx
          */
-        public void TranslationTContextualMenu(string cut, string copy, string paste, string remove, 
+        public void TranslationTContextualMenu(string cut, string copy, string paste, string remove,
             string selectAll)
         {
             this.dgvExTableMean.ContextMenuStrip.Items[0].Text = cut;

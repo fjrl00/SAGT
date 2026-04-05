@@ -15,12 +15,10 @@
  *      PDF encabezado y pie de página de una manera sencilla.
  */
 
-using System;
-using System.Web;
-using System.Windows.Forms;
 // iTextSharp
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System;
 
 namespace myApp.ns.pages
 {
@@ -36,14 +34,14 @@ namespace myApp.ns.pages
         private string projectDirector;
         private string academicDirector;
         private string page;
-        
+
 
         /*=================================================================================
          * Constructores redefinidos
          *=================================================================================*/
-        public pdfPage(string sagt, string uma, string developer, string projectDirector, 
+        public pdfPage(string sagt, string uma, string developer, string projectDirector,
             string academicDirector, string page)
-            :base()
+            : base()
 
         {
             this.sagt = sagt;
@@ -128,11 +126,11 @@ namespace myApp.ns.pages
             PdfPTable footerTbl = new PdfPTable(2);
 
             //set the width of the table to be the same as the document
-            footerTbl.TotalWidth = doc.PageSize.Width - (50*2);
+            footerTbl.TotalWidth = doc.PageSize.Width - (50 * 2);
 
             //Center the table on the page
             footerTbl.HorizontalAlignment = Element.ALIGN_CENTER;
-            
+
             Paragraph para = new Paragraph(developer, footer);
 
             //add a carriage return
@@ -166,7 +164,7 @@ namespace myApp.ns.pages
             //align the text to the right of the cell
             cell.HorizontalAlignment = Element.ALIGN_RIGHT;
             //set border to 0
-            cell.Border = 0; 
+            cell.Border = 0;
             cell.Border = iTextSharp.text.Rectangle.TOP_BORDER; // añadimos el borde superior a la 2º celda
 
             // add some padding to take away from the edge of the page
@@ -176,7 +174,7 @@ namespace myApp.ns.pages
             footerTbl.AddCell(cell);
 
             //write the rows out to the PDF output stream.
-            footerTbl.WriteSelectedRows(0, -1, 50, (doc.BottomMargin-5), writer.DirectContent);
+            footerTbl.WriteSelectedRows(0, -1, 50, (doc.BottomMargin - 5), writer.DirectContent);
         }// end OnEndPage
 
     }// end class pdfPage : iTextSharp.text.pdf.PdfPageEventHelper

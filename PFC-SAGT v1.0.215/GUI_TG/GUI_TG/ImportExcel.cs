@@ -13,19 +13,16 @@
  * Descripción:
  *      Exporta los datos de un data gridView a Excel usando las librerias de Interoperabilidad.
  */
+using AuxMathCalcGT;
+using MultiFacetData;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using ProjectMeans;
+using ProjectSSQ;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using NPOI.SS.UserModel;
-using NPOI.XSSF.UserModel;
-using NPOI.HSSF.UserModel;
-using AuxMathCalcGT;
-using MultiFacetData;
-using ProjectMeans;
-using ProjectSSQ;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using TransLibrary;
 
 namespace GUI_GT
@@ -62,7 +59,7 @@ namespace GUI_GT
             for (int i = 0; i < workbook.NumberOfSheets; i++)
             {
                 string sheetName = workbook.GetSheetName(i);
-                
+
                 result.Add(sheetName);
             }
 
@@ -479,7 +476,7 @@ namespace GUI_GT
                     ListFacets newLF = new ListFacets
                     {
                         newF
-                    };                        
+                    };
                     lfDifferentiation = lfDifferentiation.Union(newLF); //add it to lfDifferentiation only in case it's not already in the list
 
                     double? d = ConvertNum.String2Double((string)row[1].ToString());

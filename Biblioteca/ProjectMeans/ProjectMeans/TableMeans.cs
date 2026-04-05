@@ -13,15 +13,13 @@
  * Descripción:
  *      Libreria de medias
  */
+using AuxMathCalcGT;
+using MultiFacetData;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.IO;
-using MultiFacetData;
-using AuxMathCalcGT;
+using System.Text;
 
 namespace ProjectMeans
 {
@@ -80,7 +78,7 @@ namespace ProjectMeans
 
         //Lazy constructor used by ConnectDB. Do not use otherwise
         public TableMeans(ListFacets lf, string design, int rows)
-            :this()
+            : this()
         {
             if (lf.Count() < 1)
             {
@@ -112,7 +110,7 @@ namespace ProjectMeans
          *      bool zero: Si es true se realizarán los calculos interpretando los valores 
          *              nulos como ceros
          */
-        public TableMeans(ListFacets lF, string design, MultiFacetsObs mfo, bool zero=false)
+        public TableMeans(ListFacets lF, string design, MultiFacetsObs mfo, bool zero = false)
         {
 
             if (lF.Count() < 1)
@@ -163,7 +161,7 @@ namespace ProjectMeans
 
         //DataTable constructor
         public TableMeans(DataTable dt, double? grandMean, double? variance, double? stdDev, string facetDesign)
-            :this()
+            : this()
         {
             this.listF = new ListFacets();
             int r = dt.Rows.Count;
@@ -180,7 +178,7 @@ namespace ProjectMeans
             for (int j = 0; j < c; j++)
             {
                 int level = 1;
-                
+
                 for (int i = 0; i < r; i++)
                 {
                     List<double?> ld = this.matrix[i];
@@ -196,7 +194,7 @@ namespace ProjectMeans
                             level = Convert.ToInt32(Math.Max(level, (double)d));
                         }
                     }
-                    
+
                     ld.Add(d);
                 }
 
@@ -238,7 +236,7 @@ namespace ProjectMeans
 
 
 
-        
+
 
 
         /* Descripción:
@@ -485,9 +483,9 @@ namespace ProjectMeans
         }
 
 
-       /* Descripción:
-        *  Escribe la lista de datos de media.
-        */
+        /* Descripción:
+         *  Escribe la lista de datos de media.
+         */
         public bool WritingStreamListDataMeans(StreamWriter writerFile)
         {
             bool res = false; // variable de retorno
@@ -506,7 +504,7 @@ namespace ProjectMeans
                 }
 
                 writerFile.WriteLine(line);
-                    
+
             }
 
             // ponemos el cierre

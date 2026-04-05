@@ -16,13 +16,10 @@
  *      informe de las medias generado por el programa EduG 6.0
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ImportEduGMeans
 {
-    public class ListMeansEduG_Exception: Exception
+    public class ListMeansEduG_Exception : Exception
     {
         public ListMeansEduG_Exception()
             : base()

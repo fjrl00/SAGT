@@ -13,20 +13,8 @@
  * Descripción:
  *  Contiene los string con los mensages de error
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TransLibrary;
-using MultiFacetData;
-using MultiFacetPY;
 //
-using System.Diagnostics;
-using System.IO; // para poder usar File.Exist
-using ConfigCFG;
 
 namespace GUI_GT
 {
@@ -76,7 +64,7 @@ namespace GUI_GT
         private string errorNameFileExist = "Ya existe un archivo con el mismo nombre";
         private string errorNoExistWorkspace = "No se ha encontrado el espacio de trabajo. Se usará el espacio de trabajo por defecto.";
         private string errorValueNullOrEmpty = "Hay campos vacios";
-        private string errorDuplicateNameFacet = "Nombre de faceta duplicado"; 
+        private string errorDuplicateNameFacet = "Nombre de faceta duplicado";
 
         // Errores de Proyecto
         private string errorNoNameProject = "Nombre de proyecto no válido";
@@ -116,10 +104,10 @@ namespace GUI_GT
         private string filterDatas = "Fichero de puntuaciones";
         private string filterSsqExportEduG = "Fichero de sumas de cuadrados EduG";
 
-         /*
-         * Descripción:
-         *  Traduce todos los textos de la ventana al idioma que se encuentre activo
-         */
+        /*
+        * Descripción:
+        *  Traduce todos los textos de la ventana al idioma que se encuentre activo
+        */
         private void TraslationErrorMessages(TransLibrary.Language lang)
         {
             // el diccionario que contiene los mensages de error es dicError
@@ -266,7 +254,7 @@ namespace GUI_GT
                 filterDatas = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "filterSsqExportEduG";
                 filterSsqExportEduG = dicError.labelTraslation(name).GetTranslation(lang).ToString();
-                
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
@@ -313,7 +301,7 @@ namespace GUI_GT
          *      string msg: Texto que mostraremos en la ventana de error.
          *      MessageBoxIcon : Icono que se mostrará
          */
-        public void ShowMessageErrorOK(string msg,string titleMsg, MessageBoxIcon iconMessage)
+        public void ShowMessageErrorOK(string msg, string titleMsg, MessageBoxIcon iconMessage)
         {
             MsgBoxUtil.HackMessageBox(btOkWindowsMessage);
             MessageBox.Show(msg, titleMsg, MessageBoxButtons.OK, iconMessage);

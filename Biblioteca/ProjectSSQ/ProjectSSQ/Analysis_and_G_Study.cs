@@ -13,14 +13,13 @@
  * Descripción:
  *      Clase maestra de la libreria.
  */
+using MultiFacetData;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using MultiFacetData;
 
 namespace ProjectSSQ
 {
@@ -74,7 +73,7 @@ namespace ProjectSSQ
         }
 
 
-        public Analysis_and_G_Study(TableAnalysisOfVariance tableAnalysis, TableG_Study_Percent tableG)            
+        public Analysis_and_G_Study(TableAnalysisOfVariance tableAnalysis, TableG_Study_Percent tableG)
             : this()
         {
             this.tableAnalysisVariance = tableAnalysis;
@@ -376,7 +375,7 @@ namespace ProjectSSQ
         }// Calc_G_ParametersOptimización
 
 
-        
+
         /* Descripción:
          *  Sustituye el nombre de una faceta y propaga los cambios al resto de los elementos.
          * Parámetros:
@@ -475,7 +474,7 @@ namespace ProjectSSQ
 
 
         #region Clonación
-        
+
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto, menos la fecha de creción.
          */
@@ -615,7 +614,7 @@ namespace ProjectSSQ
             {
                 tables = StreamReaderAnalysisSSQ(reader);
             }// end using
-            
+
             return tables;
 
         }// end ReadingFileAnalysisSSQ
@@ -715,9 +714,9 @@ namespace ProjectSSQ
                 tables.SetDateTime(dateFile); // asignamos fecha
                 tables.SetTextComment(commentBuilder.ToString()); // asignamos comentario
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
-	            throw new Analysis_and_G_Study_Exception($"Unexpected value found when parsing Analysis_and_G_Study: {ex.Message}");
+                throw new Analysis_and_G_Study_Exception($"Unexpected value found when parsing Analysis_and_G_Study: {ex.Message}");
             }
             catch (TableAnalysisOfVarianceException ex)
             {
@@ -789,7 +788,7 @@ namespace ProjectSSQ
             {
                 G_ParametersOptimization gp = this.listG_P_Optimization[i];
                 DataSet ds = gp.G_Parameters2DataSet();
-                lDataSet[i+3] = ds;
+                lDataSet[i + 3] = ds;
             }
 
             return lDataSet;

@@ -12,12 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
-using System.Text;
-using System.IO;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace MultiFacetData
 {
@@ -572,7 +570,7 @@ namespace MultiFacetData
             return retLf;
         }// end ListFacetWithoutOmit
 
-        
+
         /* Descripción:
          *  Método auxiliar para el colapso de facetas.
          *  Devuelve el set de posiciones de las facetas marcadas para omitir.

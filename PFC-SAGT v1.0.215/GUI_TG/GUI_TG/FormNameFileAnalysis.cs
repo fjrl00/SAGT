@@ -11,13 +11,6 @@
  * Fecha de revisión: 11/Jun/2012                           
  * 
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT

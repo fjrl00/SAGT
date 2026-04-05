@@ -14,14 +14,12 @@
  *      Parámetros de Generalizabilidad obtenidos a partir de la TablaG_Study.
  *      Se construye con los parámetros optenidos tras una optimización.
  */
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
 using AuxMathCalcGT;
 using MultiFacetData;
+using System;
+using System.Data;
+using System.IO;
+using System.Text;
 
 namespace ProjectSSQ
 {
@@ -93,7 +91,7 @@ namespace ProjectSSQ
         /***********************************************************************************************
          * Métodos de Consulta
          ***********************************************************************************************/
-        
+
         /* Descripción:
          *  Devuelve la lista de facetas a la que pertenece los parámetros.
          */
@@ -110,8 +108,8 @@ namespace ProjectSSQ
         {
             return this.total_differentiation_var;
         }
-        
-        
+
+
         /* Descripción:
          *  Devuelve el coeficente G relativo;
          */
@@ -126,34 +124,34 @@ namespace ProjectSSQ
          */
         public double CoefG_Abs()
         {
-            return this.coefG_Abs; 
+            return this.coefG_Abs;
         }
 
-        
+
         /* Descripción:
          *  Devuelve la varianza del error relativa
          */
         public double TotalRelErrorVar()
         {
-            return this.totalRelErrorVar; 
+            return this.totalRelErrorVar;
         }
 
-        
+
         /* Descripción:
          *  Devuelve la varianza del error absoluta
          */
         public double TotalAbsErrorVar()
         {
-            return this.totalAbsErrorVar; 
+            return this.totalAbsErrorVar;
         }
 
-        
+
         /* Descripción:
          *  Devuelve la desviación típica relativa
-         */ 
+         */
         public double ErrorRelStandDev()
         {
-            return this.errorRelStandDev;         
+            return this.errorRelStandDev;
         }
 
 
@@ -162,10 +160,10 @@ namespace ProjectSSQ
          */
         public double ErrorAbsStandDev()
         {
-            return this.errorAbsStandDev; 
+            return this.errorAbsStandDev;
         }
 
-        
+
         /* Descripción:
          *  Devuelve la desviación típica de las fuentes objetivo (Varianza de diferenciación)
          */
@@ -256,7 +254,7 @@ namespace ProjectSSQ
                 {
                     throw new G_ParametersOptimizationException($"Expected '{END_G_PARAMETERS_OPT}' but found '{line}' when parsing G Parameters.");
                 }
-                
+
                 gp = new G_ParametersOptimization(lf, total_differentiation_var, coefG_Rel, coefG_Abs,
                 totalRelErrorVar, totalAbsErrorVar, errorRelStandDev, errorAbsStandDev, targetStandDev);
             }
@@ -277,13 +275,13 @@ namespace ProjectSSQ
         public G_ParametersOptimization Clone()
         {
             // Lista de Facetas a la que pertenecen los G_Parámetros
-            ListFacets copyGListFacets = this.gListFacets.DeepClone(); 
+            ListFacets copyGListFacets = this.gListFacets.DeepClone();
             // Suma total de las varianzas de las fuentes objetivo
-            double copyTotal_differentiation_var = this.total_differentiation_var; 
+            double copyTotal_differentiation_var = this.total_differentiation_var;
             double copyCoefG_Rel = this.coefG_Rel; // coeficente G relativo
             double copyCoefG_Abs = this.coefG_Abs; // Coeficiente G absoluto
-            double copyTotalRelErrorVar  = this.totalRelErrorVar; // Varianza del error relativa
-            double copyTotalAbsErrorVar  = this.totalAbsErrorVar; // Varianza del error absoluta
+            double copyTotalRelErrorVar = this.totalRelErrorVar; // Varianza del error relativa
+            double copyTotalAbsErrorVar = this.totalAbsErrorVar; // Varianza del error absoluta
             double copyErrorRelStandDev = this.errorRelStandDev; // Desviación tipica relativa
             double copyErrorAbsStandDev = this.errorAbsStandDev; // Desviación tipica absoluta
             double copyTargetStandDev = this.targetStandDev; // desviación típica de las fuentes objetivo

@@ -12,15 +12,12 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectSSQ
 {
     public class TermException : Exception
     {
-        public TermException ()
+        public TermException()
             : base()
         {
             // no es necesario añadir codigo

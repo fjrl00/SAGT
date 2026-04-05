@@ -15,9 +15,6 @@
  *      Esta librería pertenecea a Dr. Don José Luis Pastrana Brincones (Obtenida el 30 de Mayo de 2012)
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;

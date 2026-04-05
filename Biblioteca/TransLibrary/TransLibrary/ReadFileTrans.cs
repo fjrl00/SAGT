@@ -22,9 +22,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace TransLibrary
@@ -35,7 +32,7 @@ namespace TransLibrary
         private const string START_LABEL = "[";
         private const string END_LABEL = "]";
         // Etiquetas para cada uno de los idiomas
-        private string[] LANG_LABELS = {"es", "en", "fr", "po" };
+        private string[] LANG_LABELS = { "es", "en", "fr", "po" };
 
         public ReadFileTrans(String nameFile)
         {
@@ -89,13 +86,13 @@ namespace TransLibrary
                                 }
 
                             }
-                            
+
                         } // end while(*2*)
 
                         this.AddToDic(labelKey, trasl);
 
                     }// end if
-                       
+
                 } // end while
             } // end using
         } // end ReadFileTrans
@@ -109,9 +106,9 @@ namespace TransLibrary
             string[] lnames = Enum.GetNames(typeof(Language));
             string retVal = lnames[0];
             int n = LANG_LABELS.Length;
-            
+
             bool found = false;
-            
+
             for (int i = 0; i < n && !found; i++)
             {
                 found = string.Equals(code, LANG_LABELS[i], StringComparison.OrdinalIgnoreCase);
@@ -122,9 +119,9 @@ namespace TransLibrary
             {
                 throw new LabelTranslationException("Error: la expresion no pertence a ningún idioma");
             }
-            
+
             return retVal;
         }
- 
+
     } // end Class
 } // end nameSpace

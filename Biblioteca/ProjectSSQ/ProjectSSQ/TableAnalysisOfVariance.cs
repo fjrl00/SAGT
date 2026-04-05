@@ -18,16 +18,14 @@
  *      componente de varianza corregida, porcentaje de la componente de varianza corregida positiva y el error estándar.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.IO;
-using System.Data;
-using System.Linq;
-using System.Text;
 using AuxMathCalcGT;
 using MultiFacetData;
-using ProjectMeans;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace ProjectSSQ
 {
@@ -256,7 +254,7 @@ namespace ProjectSSQ
                     throw new TableAnalysisOfVarianceException
                     ("Error al crear TableAnalysisOfVariance: hay correspondencia entre lista de combinancion de facetas y lista de suma de cuadrados");
                 }
-                
+
             }
             else
             {
@@ -284,8 +282,8 @@ namespace ProjectSSQ
          *  Constructor. Le pasamos como argumento la suma de cuadrados y las componentes: aleatorias
          *  mixtas y corregidas.
          */
-        public TableAnalysisOfVariance(ListFacets listF, Dictionary<string, double?> ssq, 
-            Dictionary<string,double> d_df, 
+        public TableAnalysisOfVariance(ListFacets listF, Dictionary<string, double?> ssq,
+            Dictionary<string, double> d_df,
             Dictionary<string, double?> random,
             Dictionary<string, double?> mix, Dictionary<string, double?> correc)
             : this()
@@ -514,7 +512,7 @@ namespace ProjectSSQ
                 double value = sum_X.Value;
                 retVal = retVal * value * value;
             }
-   
+
             return retVal;
         }// end CalcResidue
 
@@ -532,7 +530,7 @@ namespace ProjectSSQ
          */
         private double? PartialSumOfSquaresByMeans(ListFacets lf, MultiFacetsObs mfo, bool zero)
         {
-            ObsTable  obsTable = new ObsTable(lf, mfo, zero);
+            ObsTable obsTable = new ObsTable(lf, mfo, zero);
             double? retVal = obsTable.SumOfData_2();
 
             retVal = this.listFacets.SubstractFacets(lf).MultOfLevels() * retVal;
@@ -610,7 +608,7 @@ namespace ProjectSSQ
                         int numFacet_of_lf_aux = lf_aux.Count();
                         end = !(numFacet_of_lf_aux <= numF);
 
-                        if ((numF== numFacet_of_lf_aux) && lf_aux.ContainsList(lf))
+                        if ((numF == numFacet_of_lf_aux) && lf_aux.ContainsList(lf))
                         {
                             d += (sign * this.msq[design_aux]);
                             l_facets_used = l_facets_used.Union(lf_aux);
@@ -672,7 +670,7 @@ namespace ProjectSSQ
                 int n = this.ldesigns.Count;
                 for (int j = 0; j < n; j++)     //For each design
                 {
-                    string design = this.ldesigns[j];                           
+                    string design = this.ldesigns[j];
                     ListFacets lf = this.listFacets.ListDesignFacets(design);
                     double d = 0;
                     for (int i = 0; i < n; i++)
@@ -680,7 +678,7 @@ namespace ProjectSSQ
                         string key_design_aux = this.ldesigns[i];
                         ListFacets lf_aux = this.listFacets.ListDesignFacets(key_design_aux);
 
-                        if(lf_aux.ContainsList(lf)) //if second design contains the first
+                        if (lf_aux.ContainsList(lf)) //if second design contains the first
                         {
                             double d2 = (double)this.randomComp[key_design_aux];
                             lf_aux = lf_aux.SubstractFacets(lf);
@@ -753,7 +751,7 @@ namespace ProjectSSQ
                     n = 0;
                 }
                 this.percentage[key] = (n * 100) / sumTotal;
-            } 
+            }
         }
 
 
@@ -774,13 +772,13 @@ namespace ProjectSSQ
                     ListFacets lf_aux = this.listFacets.ListDesignFacets(key_aux);
                     if (lf_aux.ContainsList(lf))
                     {
-                        double d1 = (double)this.msq[key_aux]; 
+                        double d1 = (double)this.msq[key_aux];
                         double d = d1 * d1 * 2;
                         double d2 = lf_aux.DegreeOfFreedom(key_aux);
                         aux += (d / (d2 + 2));
                     }
                 }
-                
+
                 this.standardError[key] = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels()) * Math.Sqrt(aux);
             }
         }
@@ -795,7 +793,7 @@ namespace ProjectSSQ
          *  - Total suma de cuadrados
          *  - Total grado de libertad
          *==============================================================================================*/
-        
+
         /*
          * Descripción:
          *  Devuelve la suma total de las sumas de los cuadrados
@@ -865,7 +863,7 @@ namespace ProjectSSQ
             ListFacets copyListFacet = this.listFacets.DeepClone(); // copia en profundidad
             // Copiamos la lista de diseños
             List<string> copyLdesign = new List<string>();
-            
+
             int n = this.ldesigns.Count;
             for (int i = 0; i < n; i++)
             {
@@ -880,7 +878,7 @@ namespace ProjectSSQ
             // Copiamos los cuadrados medios
             Dictionary<string, double?> copyMSq = ClonarDictionary(this.msq);
             // Copiamos el componente de Varianza aleatorio
-            Dictionary<string, double?> copyRandomComp = ClonarDictionary(this.randomComp); 
+            Dictionary<string, double?> copyRandomComp = ClonarDictionary(this.randomComp);
             // Copiamos el componente de Varianza Mixto
             Dictionary<string, double?> copyMixComp = ClonarDictionary(this.mixedComp);
             // Copiamos el componente de Varianza Corregido
@@ -955,7 +953,7 @@ namespace ProjectSSQ
 
             using (StreamWriter writer = new StreamWriter(fileName))
             {
-                Dictionary<string,double?> sumOfSquares = this.ssq;
+                Dictionary<string, double?> sumOfSquares = this.ssq;
                 int n = this.ldesigns.Count;
                 for (int i = 0; i < n; i++)
                 {
@@ -1000,7 +998,7 @@ namespace ProjectSSQ
                     double? porcentage = this.percentage[key];
                     double? standardError = this.standardError[key];
 
-                    string line = key + " " + ssq.ToString() + " " + df.ToString() + " " 
+                    string line = key + " " + ssq.ToString() + " " + df.ToString() + " "
                          + msq.ToString() + " " + randomComp.ToString()
                          + " " + mixComp.ToString() + " " + correcComp.ToString() + " "
                          + porcentage.ToString() + " " + standardError.ToString();
@@ -1101,12 +1099,12 @@ namespace ProjectSSQ
                     throw new TableAnalysisOfVarianceException("Unexpected end of file while reading TableAnalysisOfVariance.");
                 }
 
-                tableAnalysis = new TableAnalysisOfVariance(lf, ldesing, d_ssq, d_df, d_msq, d_randomComp, 
-                    d_mixComp, d_correcComp,d_porcentage, d_standardError);
+                tableAnalysis = new TableAnalysisOfVariance(lf, ldesing, d_ssq, d_df, d_msq, d_randomComp,
+                    d_mixComp, d_correcComp, d_porcentage, d_standardError);
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
-	            throw new TableAnalysisOfVarianceException($"Unexpected value found when parsing TableAnalysisOfVariance: {ex.Message}");
+                throw new TableAnalysisOfVarianceException($"Unexpected value found when parsing TableAnalysisOfVariance: {ex.Message}");
             }
             catch (ListFacetsException ex)
             {
@@ -1138,7 +1136,7 @@ namespace ProjectSSQ
             for (int i = 0; i < n; i++)
             {
                 string key = this.ldesigns[i];
-                res.Append(key + ": "+ this.ssq[key] + "\n");
+                res.Append(key + ": " + this.ssq[key] + "\n");
             }
             res.Append("\n\n");
 
@@ -1198,7 +1196,7 @@ namespace ProjectSSQ
             for (int i = 0; i < n; i++)
             {
                 string design = ldesign[i];
-                
+
                 string[] arrayOfString = design.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
                 int numOfFacet = arrayOfString.Length; // námero de facetas
                 List<string> l = l_ldesign[numOfFacet - 1];
@@ -1236,7 +1234,7 @@ namespace ProjectSSQ
             List<string> newldesign = newListFacets.CombinationStringWithoutRepetition();
 
             int num = newldesign.Count;
-   
+
             // Copia actualizada de la suma de cuadrados
             Dictionary<string, double?> newSsq = new Dictionary<string, double?>();
             for (int i = 0; i < num; i++)
@@ -1311,22 +1309,22 @@ namespace ProjectSSQ
             DataTable dtListFacets = dsAnalysis.Tables["TbFacets"];
             DataTable dtSkipLevels = dsAnalysis.Tables["TbSkipLevels"];
             ListFacets lf = MultiFacetData.ListFacets.DataTables2ListFacets(dtListFacets, dtSkipLevels);
-            
+
             // Extraemos el DataTable con la tabla de análisis
             DataTable dtAnalysis = dsAnalysis.Tables["TbAnalysis"];
             List<string> ldesign = new List<string>();
-            
-            Dictionary<string, double?> ssq = new Dictionary<string,double?>();
-            Dictionary<string, double> df = new Dictionary<string,double>();
-            Dictionary<string, double?> msq = new Dictionary<string,double?>();
-            Dictionary<string, double?> random = new Dictionary<string,double?>();
-            Dictionary<string, double?> mix = new Dictionary<string,double?>();
-            Dictionary<string, double?> correc = new Dictionary<string,double?>();
-            Dictionary<string, double?> porc = new Dictionary<string,double?>();
+
+            Dictionary<string, double?> ssq = new Dictionary<string, double?>();
+            Dictionary<string, double> df = new Dictionary<string, double>();
+            Dictionary<string, double?> msq = new Dictionary<string, double?>();
+            Dictionary<string, double?> random = new Dictionary<string, double?>();
+            Dictionary<string, double?> mix = new Dictionary<string, double?>();
+            Dictionary<string, double?> correc = new Dictionary<string, double?>();
+            Dictionary<string, double?> porc = new Dictionary<string, double?>();
             Dictionary<string, double?> stad_error = new Dictionary<string, double?>();
-            
+
             int numRows = dtAnalysis.Rows.Count;
-            for(int i=0; i< numRows; i++)
+            for (int i = 0; i < numRows; i++)
             {
                 DataRow row = dtAnalysis.Rows[i];
                 // Extraemos los valores

@@ -13,15 +13,9 @@
  * Descripción:
  *  Asignación de anidamientos. Los anidamientos se realizan uno a uno.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MultiFacetData;
+using System;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -50,7 +44,7 @@ namespace GUI_GT
         }
 
         public FormAddNesting(TransLibrary.Language lang, ListFacets lf)
-            :this()
+            : this()
         {
             this.lf = lf;
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
@@ -58,7 +52,7 @@ namespace GUI_GT
             this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
             this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
         }
-        
+
         /* Descripción:
          *  Inicializa los comboBox
          */
@@ -238,10 +232,10 @@ namespace GUI_GT
                     this.cBoxNestingFacet.SelectedIndex = 0;
                     this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
                     this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-                    MessageBox.Show(errorNoUse2TimesFacets +" "+f2_name);
+                    MessageBox.Show(errorNoUse2TimesFacets + " " + f2_name);
                 }
 
-                
+
             }
             else
             {

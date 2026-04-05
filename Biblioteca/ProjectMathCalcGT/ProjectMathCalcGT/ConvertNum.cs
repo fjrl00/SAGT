@@ -14,10 +14,7 @@
  *      Convierte un dato a string o un string a dato
  */
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace AuxMathCalcGT
 {
@@ -68,7 +65,7 @@ namespace AuxMathCalcGT
                     // No contiene separador decimal
                     d = double.Parse(s);    //note that this will throw if we are reading something that is not a number
                 }
-                
+
             }
             return d;
         }
@@ -92,7 +89,7 @@ namespace AuxMathCalcGT
 
             if (d != null)
             {
-                if(separator.Equals(DECIMAL_SEPARATOR_COMMA))
+                if (separator.Equals(DECIMAL_SEPARATOR_COMMA))
                 {
                     retVal = d.Value.ToString($"F{numOfDecimal}", new CultureInfo("es-ES"));
                 }

@@ -18,24 +18,14 @@
 // using System.ComponentModel;
 // using System.Data;
 
-using MultiFacetData;
-using ProjectMeans;
-using ImportEduGMeans;
-using Sagt;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
 /// Estos son los namespace de iTextSharp
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using myApp.ns.pages; // para poder usar la clase pdfPage y poder escribir encabezado y pie de página
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -179,7 +169,7 @@ namespace GUI_GT
             }
         }// end private void WriterSagtPdfDocument
 
-        
+
         /* Descripción:
          *   Genera el cuerpo del documento pdf de análisis.
          */
@@ -225,11 +215,11 @@ namespace GUI_GT
         private void GenerarDocumentoAnalysis(Document document)
         {
             // Fuente que se empleara en las tablas del informe
-            iTextSharp.text.Font fontTableReport = 
+            iTextSharp.text.Font fontTableReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTableFontFamily(),
                 this.cfgApli.GetTableFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             // Fuente que se empleara en las textos del informe
-            iTextSharp.text.Font fontTextReport = 
+            iTextSharp.text.Font fontTextReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTextFontFamily(),
                 this.cfgApli.GetTextFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
@@ -242,7 +232,7 @@ namespace GUI_GT
             document.Add(paragraphSsq1);
 
             // Linea de diseño de medida
-            Paragraph paragraphSsq2 = new Paragraph(lbAnalysis_M_Desing_EditSsq.Text 
+            Paragraph paragraphSsq2 = new Paragraph(lbAnalysis_M_Desing_EditSsq.Text
                 + " " + tbAnalysisMdesign.Text, fontTextReport);
             document.Add(paragraphSsq2);
             // Tabla de facetas
@@ -290,11 +280,11 @@ namespace GUI_GT
         private void GenerarDocumento(Document document)
         {
             // Fuente que se empleará en las tablas de documento PDF
-            iTextSharp.text.Font fontTableReport = 
+            iTextSharp.text.Font fontTableReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTableFontFamily(),
                 this.cfgApli.GetTableFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             // Fuente que se empleará en las textos de documento PDF
-            iTextSharp.text.Font fontTextReport = 
+            iTextSharp.text.Font fontTextReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTextFontFamily(),
                 this.cfgApli.GetTextFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
@@ -363,7 +353,7 @@ namespace GUI_GT
                        fontTextReport);
                     document.Add(paragraphMean2);
                 }
-                
+
                 // Línea de fichero de procedencia de los datos
                 Paragraph paragraphMean3 = new Paragraph(lbFileMeanProvede.Text + ": " + tbFileMeanProvede.Text,
                     fontTextReport);
@@ -388,7 +378,7 @@ namespace GUI_GT
                 // Título
                 Paragraph paragraphSsq1 = new Paragraph(titleSsqReport, fontTextReport);
                 document.Add(paragraphSsq1);
-                
+
                 // Línea de diseño de medida
                 Paragraph paragraphSsq2 = new Paragraph(lbMeasurementDesign.Text + " "
                     + tbMeasurementDesign.Text, fontTextReport);
@@ -446,7 +436,7 @@ namespace GUI_GT
             //se crea un objeto PdfTable con el numero de columnas del
             //dataGridView
             PdfPTable datatable = new PdfPTable(dataGridView.ColumnCount);
-            
+
             //asignamos algunas propiedades para el diseño del pdf
             datatable.DefaultCell.Padding = 3;
             float[] headerwidths = GetWidthOfColumns(dataGridView);
@@ -454,11 +444,11 @@ namespace GUI_GT
             datatable.WidthPercentage = 100;
             datatable.DefaultCell.BorderWidth = 2;
             datatable.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            
-            
+
+
             //SE GENERA EL ENCABEZADO DE LA TABLA EN EL PDF
             int numCol = dataGridView.ColumnCount;
-            
+
             for (int i = 0; i < numCol; i++)
             {
                 PdfPCell cell = new PdfPCell(new Phrase(dataGridView.Columns[i].HeaderText, fontTable));

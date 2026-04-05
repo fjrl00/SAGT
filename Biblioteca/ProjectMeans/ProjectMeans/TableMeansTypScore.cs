@@ -13,15 +13,13 @@
  * Descripción:
  *      Tabla de medias de diferenciación.
  */
+using AuxMathCalcGT;
+using MultiFacetData;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.IO;
-using MultiFacetData;
-using AuxMathCalcGT;
+using System.Text;
 
 namespace ProjectMeans
 {
@@ -182,7 +180,7 @@ namespace ProjectMeans
 
 
         public TableMeansTypScore(DataTable dt, double? grandMean, double? variance, double? stdDev, string facetDesign)
-            :this()
+            : this()
         {
             this.listF = new ListFacets();
             int r = dt.Rows.Count;
@@ -199,7 +197,7 @@ namespace ProjectMeans
             for (int j = 0; j < c; j++)
             {
                 int level = 1;
-                
+
                 for (int i = 0; i < r; i++)
                 {
                     List<double?> ld = this.matrix[i];
@@ -216,7 +214,7 @@ namespace ProjectMeans
                             level = Convert.ToInt32(Math.Max(level, (double)d));
                         }
                     }
-                    
+
                     ld.Add(d);
                 }
 
@@ -474,7 +472,7 @@ namespace ProjectMeans
             {
                 double? difMean = (Data(i, col - 5) - this.grandMean);
                 this.matrix[i][col - 2] = difMean;
-                this.matrix[i][col - 1] = (difMean/this.stdDev);
+                this.matrix[i][col - 1] = (difMean / this.stdDev);
             }
         }
 
@@ -511,16 +509,16 @@ namespace ProjectMeans
         }
 
 
-       /* Descripción:
-        *  Escribe la lista de datos de media.
-        */
+        /* Descripción:
+         *  Escribe la lista de datos de media.
+         */
         public bool WritingStreamListDataMeans(StreamWriter writerFile)
         {
             bool res = false; // variable de retorno
             writerFile.WriteLine(BEGIN_LIST_OF_DATAMEANS_TYPICAL_SCORE);
             // Escribimos los datos
             int row = this.TableRows();
-            
+
             for (int i = 0; i < row; i++)
             {
 
@@ -602,9 +600,9 @@ namespace ProjectMeans
                 }
 
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
-	            throw new TableMeansTypScoreException($"Unexpected value found when parsing TableMeansTypScore: {ex.Message}");
+                throw new TableMeansTypScoreException($"Unexpected value found when parsing TableMeansTypScore: {ex.Message}");
             }
             catch (ListFacetsException ex)
             {

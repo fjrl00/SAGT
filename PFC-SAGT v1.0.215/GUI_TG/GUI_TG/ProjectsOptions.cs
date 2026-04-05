@@ -14,20 +14,16 @@
  *      Clase parcial ("partial") del FormPrincipal. Contiene los métodos referentes a la parte de
  *      Proyectos: Creación de proyectos y su gestión.
  */
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.ServiceModel;
 using ConnectLibrary;
-using Sagt;
 using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
+using Sagt;
+using System;
+using System.Data;
+using System.ServiceModel;
 using System.Web.Services.Protocols;
+using System.Windows.Forms;
 
 
 namespace GUI_GT
@@ -315,7 +311,7 @@ namespace GUI_GT
                     DataTable dtProjects = this.sagtWS_Client.SelectProyectsForUsers(userID).Tables[0];
                     ShowFormSelectDataTable(dtProjects);
                 }
-                else if(userRol.Equals(SagtUser.UserAccess.Usuario))
+                else if (userRol.Equals(SagtUser.UserAccess.Usuario))
                 {
                     string nameUserMenpas = sagtWS_Client.ReturnNameUserMenPas(this.activeUser.GetUserID());
                     string group = sagtWS_Client.Obtener_grupo(nameUserMenpas);
@@ -351,7 +347,7 @@ namespace GUI_GT
                         }
                         ShowFormSelectDataTable(dtProjects);
                     }
-                    
+
                 }
                 else
                 {
@@ -383,7 +379,7 @@ namespace GUI_GT
             }
         }// end tsmiActionSearchProject_Click
 
-        
+
         /* Descripción:
          *  Actualiza los campos de nombre de proyecto y descripción y actualiza la base de datos
          */
@@ -397,7 +393,7 @@ namespace GUI_GT
             // indicamos si se ha cambiado el nombre.
             bool changeNameProject = !string.Equals(this.activeProject.GetNameProject(), project.GetNameProject(), StringComparison.OrdinalIgnoreCase);
             // Si existe
-            if (changeNameProject && dsSameProject.Tables[0].Rows.Count != 0 )
+            if (changeNameProject && dsSameProject.Tables[0].Rows.Count != 0)
             {
                 // Lanzamos un mensage
                 ShowMessageErrorOK(errorProyectExist);
@@ -658,7 +654,7 @@ namespace GUI_GT
                     case (DialogResult.Cancel):
                         salir = true;
                         break;
-                    case(DialogResult.OK):
+                    case (DialogResult.OK):
                         // Comprobamos que es un nombre válido y guardamos
                         string nameFile = formNameFile.TextNameFile();
 
@@ -885,9 +881,9 @@ namespace GUI_GT
                         // Si hemos seleccionado aceptar entonces tendremos nuevo proyecto activo
                         case (DialogResult.OK):
 
-                                this.checkBoxHideNulls.Enabled = false;
-                                this.checkBoxHideNulls.Checked = false;
-                                this.checkBoxHideNulls.Enabled = true;
+                            this.checkBoxHideNulls.Enabled = false;
+                            this.checkBoxHideNulls.Checked = false;
+                            this.checkBoxHideNulls.Enabled = true;
                             // Cargamos el fichero seleccionado.
                             int indx = formSelect.SelectDataTableIndex();
                             int pk_file = (int)dt.Rows[indx]["pk_file"];

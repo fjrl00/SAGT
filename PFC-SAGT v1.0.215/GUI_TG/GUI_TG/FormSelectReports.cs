@@ -13,13 +13,6 @@
  * Descripción:
  *      Permite la selección de los  elementos que se van a formar parte del informe.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -34,7 +27,7 @@ namespace GUI_GT
 
         /*=========================================================================================
          *  Constructores
-         *=========================================================================================*/ 
+         *=========================================================================================*/
 
         public FormSelectReports()
         {
@@ -44,7 +37,7 @@ namespace GUI_GT
         }
 
         public FormSelectReports(TransLibrary.Language lang, bool bData, bool bMean, bool bSsq)
-            :this()
+            : this()
         {
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
             if (bData)

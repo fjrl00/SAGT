@@ -13,13 +13,6 @@
  * Descripción:
  *      Permite la selección de los  elementos que se van a guardar.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -34,11 +27,11 @@ namespace GUI_GT
 
         /*=========================================================================================
          *  Constructores
-         *=========================================================================================*/ 
+         *=========================================================================================*/
 
         /* Descripción:
          *  Constructor por defecto.
-         */ 
+         */
         public FormSelectSaves()
         {
             InitializeComponent();
@@ -59,7 +52,7 @@ namespace GUI_GT
          *      bool bSsq: Indica si se habilitará o no la tablas de análisis.
          */
         public FormSelectSaves(TransLibrary.Language lang, bool bData, bool bMean, bool bSsq)
-            :this()
+            : this()
         {
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
             if (bData)

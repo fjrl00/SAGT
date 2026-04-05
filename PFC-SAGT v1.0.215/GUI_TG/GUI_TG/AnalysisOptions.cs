@@ -24,8 +24,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading; // permite usar hilos
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -37,7 +35,7 @@ namespace GUI_GT
          **********************************************************************************************/
         private ListFacets analysisSourceOfVarDiff; //fuentes de variación diferenciación
         private ListFacets analysisSourceOfVarInst; // fuentes de Varicion instrumentación
-        
+
         private ListFacets listFacetsAnalysis = null; // lista de facetas que se emplea para el analisis
         private List<string> llFacetsAnalysis; // Lista
         // private List<TableG_Study_Percent> listAnalysisG_Parameters;
@@ -49,7 +47,7 @@ namespace GUI_GT
          * Descripción:
          *  Pone los campos de texto vacios para aquellos label que deben mostrarse inicialmente vacios.
          */
-        private void ClearListBoxAnalysis() 
+        private void ClearListBoxAnalysis()
         {
             // Label Suma de cuadrados 
             lbAnalysisTotalSsq.Text = "";
@@ -82,7 +80,7 @@ namespace GUI_GT
             // número de facetas 
             int t = 0;
             FormAssignNumOfFacets fAssignNumFacets = new FormAssignNumOfFacets(this.dicMessage, this.LanguageActually());
-            
+
             bool salir = false;
             do
             {
@@ -168,7 +166,7 @@ namespace GUI_GT
                 btAnalysis_RemoveNesting.Enabled = true;
                 btAnalysis_RemoveNesting.Visible = true;
             }
-            else 
+            else
             {
                 btAnalysis_NestingFacet.Enabled = false;
                 btAnalysis_NestingFacet.Visible = false;
@@ -459,7 +457,7 @@ namespace GUI_GT
                         }
                     } while (!salir);
                 }// end if (* 2 *)
-                
+
 
             }// end if (* 1 *)
         }// end btActionEditSumOfSquaresOnAnalisys_Click
@@ -529,7 +527,7 @@ namespace GUI_GT
             // limpiamos el dataGridViewEx de las facetas
             this.dgvExAnalysisEditSSq.NumeroFilas = 0;
             this.dgvExAnalysisEditSSq.Rows.Clear();
-            
+
             // Optenemos la lista de combinaciones sin repetición de la lista de facetas
             // this.llFacetsAnalysis = listFacetsAnalysis.CombinationStringWithoutRepetition();
             // insertamos en la tabla de edición de suma de cuadrados
@@ -543,7 +541,7 @@ namespace GUI_GT
             this.dgvExAnalysisEditSSq.Columns[1].ReadOnly = false;
             this.dgvExAnalysisEditSSq.ReadOnly = false;
 
-            
+
             int numKeys = lKeys.Count;
             // Insertamos las filas de datos (fuente de variación suma de cuadrados)
             for (int i = 0; i < numKeys; i++)
@@ -551,7 +549,7 @@ namespace GUI_GT
                 object[] my_Row = new object[2];
                 string key = lKeys[i];
                 my_Row[0] = key;
-                my_Row[1] = tb.SSQ(key);;
+                my_Row[1] = tb.SSQ(key); ;
 
                 // insertamos la tupla
                 this.dgvExAnalysisEditSSq.Rows.Add(my_Row);
@@ -568,7 +566,7 @@ namespace GUI_GT
             /* Si estamos en el modo edición entonces la lista de fuentes de variación será la 
              * perteneciente a la tabla de análisis faceta de análisis será
              */
-            if (this.editionModeOn && this.anl_tAnalysis_G_study_opt!=null)
+            if (this.editionModeOn && this.anl_tAnalysis_G_study_opt != null)
             {
                 listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
                 llFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().SourcesOfVar();
@@ -620,12 +618,12 @@ namespace GUI_GT
                 DialogResult res = saveDialog.ShowDialog();
                 switch (res)
                 {
-                    case(DialogResult.Cancel):
+                    case (DialogResult.Cancel):
                         break;
-                    case(DialogResult.OK):
+                    case (DialogResult.OK):
                         // almacenamos el fichero
 
-                        if (this.editionModeOn && this.anl_tAnalysis_G_study_opt!=null)
+                        if (this.editionModeOn && this.anl_tAnalysis_G_study_opt != null)
                         {
                             // Si estamos en el modo edición entonces calculamos
                             this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt.UpdateSsq(ssq);
@@ -652,7 +650,7 @@ namespace GUI_GT
                         // guardamos el fichero
                         this.anl_tAnalysis_G_study_opt.WritingFileAnalysisSSQ(saveDialog.FileName);
                         // Mostramos los datos
-                        LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt,saveDialog.FileName.ToString());
+                        LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, saveDialog.FileName.ToString());
 
                         // Ocultamos el tabPage de editar suma de cuadrados y mostramos los restantes
                         disableEditingFacetAnalysis();
@@ -675,12 +673,12 @@ namespace GUI_GT
             LoadListFacetInDataGridView(listFacetsAnalysis, dgvExAnalysisFacetsOpt);
             LoadSSQ_InDataGridView(tbAnalysisVar, this.dgvExAnalysisSSq);
             LoadAnalysisTotalSSQ_TableComp(tbAnalysisVar);
-            
+
             LoadG_ParametersInDataGridView(anl_tAnalysis_G_study_opt, this.dgvExAnalysis_GP);
             TableG_Study_Percent gp = anl_tAnalysis_G_study_opt.TableG_Study_Percent();
             ListFacets list_diff = gp.LfDifferentiation();
             ListFacets list_inst = gp.LfInstrumentation();
-            ShowMeDesignInAnalysisTextBoxs(list_diff,list_inst);
+            ShowMeDesignInAnalysisTextBoxs(list_diff, list_inst);
             LoadAnalysisTotalG_Parameters(gp);
             LoadDataGridViewExOptimizationResum(anl_tAnalysis_G_study_opt,
                 this.dgvAnalysisResumOpt);
@@ -691,10 +689,10 @@ namespace GUI_GT
         }// LoadAllDataGridWithDataAnalysis
 
 
-       /* Descipción:
-        *  Se ejecuta cuando se pulsa sobre abrir en el menú vertical de Análisis. Muestra el cuadro
-        *  de dialogo para seleccionar el archivo que se va a abrir.
-        */
+        /* Descipción:
+         *  Se ejecuta cuando se pulsa sobre abrir en el menú vertical de Análisis. Muestra el cuadro
+         *  de dialogo para seleccionar el archivo que se va a abrir.
+         */
         private void tsmiActionOpenAnalysis_Click()
         {
             DialogResult res = DialogResult.OK;
@@ -825,7 +823,7 @@ namespace GUI_GT
                     this.tabControlAnalysisSSQ.SelectedIndex = 2; // El dos se corresponde con el tabPabge optimización
                     ListFacets listFacets = anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
                     // Añadimos una nueva columna
-                    AddColunmToDGVOptimization(listFacets,newG_ParametersOpt, this.dgvAnalysisResumOpt);
+                    AddColunmToDGVOptimization(listFacets, newG_ParametersOpt, this.dgvAnalysisResumOpt);
                 }
             }
         }
@@ -1003,7 +1001,7 @@ namespace GUI_GT
          */
         private void tsmiActionCloseAnalysis_Click(object sender, EventArgs e)
         {
-            if (this.anl_tAnalysis_G_study_opt!=null)
+            if (this.anl_tAnalysis_G_study_opt != null)
             {
                 TableAnalysisOfVariance tableAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
                 if (tableAnalysis != null)
@@ -1382,7 +1380,7 @@ namespace GUI_GT
                     LoadAllDataGridWithDataAnalysis(anl_tAnalysis_G_study_opt, nameFile);
                     // Asignamos la pestaña
                     ExcludeTabPages();
-                    this.tabPageAnalysis.Parent = this.tabControlOptions;                    
+                    this.tabPageAnalysis.Parent = this.tabControlOptions;
                     // Restauramos los colores
                     this.RestoreColorMenu(this.mStripMain);
                     // Asignamos el nuevo color
@@ -1407,7 +1405,7 @@ namespace GUI_GT
             {
                 this.editionModeOn = true; // Ponemos el modo edición a true
                 this.mStripAnalysis.Enabled = false; // Inhabilitamos el menú vertical de Análisis
-                
+
                 // Ocultamos las pestañas
                 foreach (TabPage tabPage in this.tabControlAnalysisSSQ.TabPages)
                 {
@@ -1415,7 +1413,7 @@ namespace GUI_GT
                 }
 
                 this.anl_tAnalysis_G_study_opt_Old = this.anl_tAnalysis_G_study_opt; // Guardamos la tabla de análisis actual por si deshacemos los cambios
-                
+
                 //Cargamos los datos de las facetas en el dataGrid
                 CleanerDataGridViewExFacets(dGridViewExAnalysis_TableFacet); // limpiamos el datagrid de facetas
                 ListFacets lf = this.anl_tAnalysis_G_study_opt.GetListFacets(); // retomamos la lista de facetas
@@ -1462,7 +1460,7 @@ namespace GUI_GT
                 this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt.ReplaceListOfFacet(newLf);
                 //********************************************************************************
                 string namePrueba = this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation();
-                    //********************************************************************************
+                //********************************************************************************
                 this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation());
                 // this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFileDataCreation);
                 this.anl_tAnalysis_G_study_opt.SetDateTime(this.anl_tAnalysis_G_study_opt_Old.GetDateTime());
@@ -1713,10 +1711,10 @@ namespace GUI_GT
                 {
                     // dGridViewExOptimizationResum.Columns[0].HeaderText = name_resum;
                     // Entonces pintamos la tabla de resumen de nuevo
-                    LoadDataGridViewExOptimizationResum(this.anl_tAnalysis_G_study_opt, 
+                    LoadDataGridViewExOptimizationResum(this.anl_tAnalysis_G_study_opt,
                         this.dgvAnalysisResumOpt);
                 }
-                
+
                 /*
                 // Traducimos las etiquetas de texto de los tabPage
                 name = lbAnalysisTotalSsq.Name.ToString();
@@ -1747,7 +1745,7 @@ namespace GUI_GT
                 lbAnalysisTextCoef_G_Rel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = lbAnalysisTextCoef_G_Abs.Name.ToString();
                 lbAnalysisTextCoef_G_Abs.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {

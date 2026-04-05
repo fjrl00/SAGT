@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SsqPY
 {
-    public class RsaSsqPY_Exception: Exception
+    public class RsaSsqPY_Exception : Exception
     {
         public RsaSsqPY_Exception()
             : base()

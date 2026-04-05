@@ -14,12 +14,6 @@
  *  Asigna el valor que tendrá el número de Facetas de la tabla de facetas
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -46,13 +40,13 @@ namespace GUI_GT
 
         public FormAssignNumOfFacets(TransLibrary.ReadFileTrans dicMessage, TransLibrary.Language lang)
         {
-            
+
             this.dicMessage = dicMessage;
             InitializeComponent();
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
             this.rbCrossed.Checked = true;
         }
-        
+
         /* Descripción:
          *  Impide que se escriba otracosa que no sean numeros en el textBox tBoxNumberOfFacets.
          */
@@ -63,7 +57,7 @@ namespace GUI_GT
             {
                 e.Handled = false;
                 return;
-            }         
+            }
 
             if (e.KeyChar >= 48 && e.KeyChar <= 57)
                 e.Handled = false;
@@ -238,7 +232,7 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                MessageBox.Show(lEx.Message +" "+ "Error al traducir:"+ " " + name);   
+                MessageBox.Show(lEx.Message + " " + "Error al traducir:" + " " + name);
             }
         }
         #endregion Traducción de la ventana

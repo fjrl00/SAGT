@@ -12,11 +12,9 @@
  * 
  * Lista de términos que definen la suma de cuadrados.
  */
+using MultiFacetData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MultiFacetData;
 
 namespace ProjectSSQ
 {
@@ -62,7 +60,7 @@ namespace ProjectSSQ
         public ListOfTerms(ListFacets lf, string design)
             : this()
         {
-            char[] delimeterChars = { '[', ']'};
+            char[] delimeterChars = { '[', ']' };
             string[] arrayOfstring = design.Trim().Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);    //e.g. "[O]:[I][C]" -> { "O", ":", "I", "C" };.
             int num = arrayOfstring.Length;
 
@@ -70,7 +68,7 @@ namespace ProjectSSQ
             for (int i = 0; i < num; i++)                           //for each arrayofstring character
             {
                 string name = arrayOfstring[i];
-                bool nest_char = name.Equals(Facet.NEST_CHAR);          
+                bool nest_char = name.Equals(Facet.NEST_CHAR);
                 if (nest_char && !first_nest_char)                      //if it's a nest char and we hadn't found any yet
                 {
                     first_nest_char = nest_char;                            //then we set that flag
@@ -80,7 +78,7 @@ namespace ProjectSSQ
                     Facet f = lf.LookingFacet(name);                        //we fetch in that lF the facet with that name/design
                     Term t1 = new Term(f, Term.PLUS);                       //we store it in a term with PLUS sign
                     if (!first_nest_char)                                   //if we haven't found a nest char yet
-                    {      
+                    {
                         ListOfTerms newlot = this.Clone();                       //copy this list of terms
                         this.Add(t1);                                            //to this list add t1. All terms in this will be turned positive, and we'll add f to their listfacets
                         newlot.Add(new Term(new ListFacets(), Term.MINUS));      //to the copy instead add empty negative. All terms in newlot will be turned negative, with no changes to their listfacets
@@ -119,7 +117,7 @@ namespace ProjectSSQ
             ListOfTerms retVal = new ListOfTerms();
             int numTerm = this.listOfTerm.Count;
 
-            for(int i=0;i<numTerm;i++)
+            for (int i = 0; i < numTerm; i++)
             {
                 Term t = this.listOfTerm[i];
                 ListFacets lf = t.ListFacets();

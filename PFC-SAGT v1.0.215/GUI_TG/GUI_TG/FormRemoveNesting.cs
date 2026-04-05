@@ -15,13 +15,7 @@
  */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MultiFacetData;
 
 namespace GUI_GT
 {
@@ -36,13 +30,13 @@ namespace GUI_GT
 
         /*=========================================================================================
          *  Constructores
-         *=========================================================================================*/ 
+         *=========================================================================================*/
         public FormRemoveNesting()
         {
             InitializeComponent();
         }
 
-        public FormRemoveNesting(TransLibrary.Language lang,  List<String> lf_desing):
+        public FormRemoveNesting(TransLibrary.Language lang, List<String> lf_desing) :
             this()
         {
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);

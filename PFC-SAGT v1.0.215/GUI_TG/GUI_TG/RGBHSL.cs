@@ -24,7 +24,6 @@
  * 
  * http://www.bobpowell.net/rgbhsb.htm
  */
-using System;
 using System.Drawing;
 
 

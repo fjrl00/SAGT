@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Sagt
 {
-    public class SagtFileException: Exception
+    public class SagtFileException : Exception
     {
         public SagtFileException()
             : base()

@@ -11,15 +11,9 @@
  * Fecha de revisión: 26/Abr/2012               
  * 
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MultiFacetData;
+using System;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -60,8 +54,8 @@ namespace GUI_GT
             {
                 Facet f = lf.FacetInPos(i);
 
-                string stringNameFacets = "["+f.Name()+"]";
-                
+                string stringNameFacets = "[" + f.Name() + "]";
+
                 this.cListBoxListsFacets.Items.Add(stringNameFacets);
             }
         }

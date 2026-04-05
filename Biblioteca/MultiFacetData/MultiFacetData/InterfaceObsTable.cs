@@ -13,12 +13,9 @@
  * Descripción:
  *      Interface para tabla de observaciones Libreria de MultiFacetData
  */
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace MultiFacetData
 {

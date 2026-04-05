@@ -13,18 +13,16 @@
  * Descripción: 
  *      Crea una lista de tabla de medias a partir de un fichero resultado de las medias de GT E 2.0 (1996)
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MultiFacetData;
 using ProjectMeans;
-using System.IO;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 
 namespace ListMeansPY
 {
-    public class ListMeansPY: ListMeans
+    public class ListMeansPY : ListMeans
     {
         // Constantes
         const string NEST_CHAR = "/";
@@ -64,7 +62,7 @@ namespace ListMeansPY
                      * mayuscula y que sus dos líneas siguientes son números.
                      */
                     line = reader.ReadLine();
-                    while(!line.Trim().Equals("N"))
+                    while (!line.Trim().Equals("N"))
                     {
                         line = reader.ReadLine();
                     }
@@ -157,7 +155,7 @@ namespace ListMeansPY
         {
             string retVal = ""; // Valor de retorno
             int n = design.Length;
-            
+
             for (int i = 0; i < n; i++)
             {
                 string s = design.Substring(i, 1);

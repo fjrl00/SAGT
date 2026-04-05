@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MultiFacetData
 {
@@ -385,7 +381,7 @@ namespace MultiFacetData
                 for (int c = 0; c < numCols; c++)
                 {
                     double? value = this.Data(r, c);
-                    if(hideNull && value == null)
+                    if (hideNull && value == null)
                     {
                         hasNull = true;
                         break;
@@ -393,7 +389,7 @@ namespace MultiFacetData
                     row[c] = value.HasValue ? (object)value.Value : DBNull.Value;
                 }
 
-                if(!hasNull)
+                if (!hasNull)
                     dt.Rows.Add(row);
             }
 

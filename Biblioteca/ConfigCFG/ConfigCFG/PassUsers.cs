@@ -14,10 +14,8 @@
  *  Almacena y recupera las claves asociadas al nombre de los usuarios.
  */
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -33,14 +31,14 @@ namespace ConfigCFG
         public const string COLUMN_USER_PASS = "userPass";
         private const string PASSWORD = "Rijndael";
         public const string FILE_USER_PASS = "user.pas";
-        
+
 
         /*=========================================================================================
          *  Variables
          *=========================================================================================*/
         // Variables
         DataTable dtUser;
-        
+
 
         /*=========================================================================================
          *  Constructores
@@ -106,7 +104,7 @@ namespace ConfigCFG
             int numRow = this.dtUser.Rows.Count;
             bool found = false;
             DataRow row;
-            
+
             for (int i = 0; i < numRow && !found; i++)
             {
                 row = this.dtUser.Rows[i];
@@ -146,7 +144,7 @@ namespace ConfigCFG
         {
             // convert string to stream
             byte[] byteArray = Encoding.ASCII.GetBytes(data);
-            MemoryStream stream = new MemoryStream(byteArray); 
+            MemoryStream stream = new MemoryStream(byteArray);
 
             FileStream fsEncrypted = new FileStream(outputFileName,
                FileMode.Create,
@@ -162,7 +160,7 @@ namespace ConfigCFG
             byte[] bytearrayinput = new byte[stream.Length];
             stream.Read(bytearrayinput, 0, bytearrayinput.Length);
             cryptostream.Write(bytearrayinput, 0, bytearrayinput.Length);
-            cryptostream.Close();            
+            cryptostream.Close();
             fsEncrypted.Close();
         }// end EncryptTextToFile
 
@@ -210,7 +208,7 @@ namespace ConfigCFG
             fsread.Close();
             return textoDesencritado;
         }
-        
+
 
 
         /* Descripción:
@@ -225,7 +223,7 @@ namespace ConfigCFG
             string text = Descrypter(inputFile, PASSWORD); // DecryptTextFromFile(inputFile, RijndaelAlg.Key, RijndaelAlg.IV);
 
             // Dividimos el texto en líneas
-            char[] delimeterLineChars = { '\n',';'};
+            char[] delimeterLineChars = { '\n', ';' };
             string[] lines = text.Split(delimeterLineChars, StringSplitOptions.RemoveEmptyEntries);
 
             // El texto tiene el formato "[nombre_usuario],[pase];"
@@ -235,13 +233,13 @@ namespace ConfigCFG
             for (int i = 0; i < numLines; i++)
             {
                 string pass = "";
-                
-                string[] line = lines[i].Split(delimiters,StringSplitOptions.RemoveEmptyEntries);
+
+                string[] line = lines[i].Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
                 switch (line.Length)
                 {
-                    case(1):
+                    case (1):
                         break;
-                    case(2):
+                    case (2):
                         pass = line[1];
                         break;
                     default:
@@ -269,7 +267,7 @@ namespace ConfigCFG
             for (int i = 0; i < numRow; i++)
             {
                 DataRow row = this.dtUser.Rows[i];
-                string line = "[" + row[COLUMN_USER_NAME] +"],[" + row[COLUMN_USER_PASS] + "];\n";
+                string line = "[" + row[COLUMN_USER_NAME] + "],[" + row[COLUMN_USER_PASS] + "];\n";
                 text = text + line;
             }
 
@@ -278,6 +276,6 @@ namespace ConfigCFG
         }
 
 
-        
+
     }// end class PassUsers
 }// end namespace ConfigCFG

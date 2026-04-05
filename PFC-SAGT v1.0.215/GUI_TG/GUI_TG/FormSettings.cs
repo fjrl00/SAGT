@@ -13,18 +13,13 @@
  * Descripción:
  *      Ventana con las opciones de configuración.
  */
+using ConfigCFG;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Text; // para poder usar InstalledFontCollection
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using ConfigCFG;
 
 namespace GUI_GT
 {
@@ -155,7 +150,7 @@ namespace GUI_GT
         {
 
             FontFamily family = this.installedFonts.Families[comboBoxTableFontFamily.SelectedIndex];
-            
+
             FontStyle style = FontStyle.Regular;
             if (!family.IsStyleAvailable(style))
                 style = FontStyle.Bold;
@@ -382,7 +377,7 @@ namespace GUI_GT
          */
         private bool ChekingChangeCheckBox()
         {
-            return !this.cfg.GetCheck_coefG_Abs().Equals(this.checkBox_coefG_Abs.Checked) 
+            return !this.cfg.GetCheck_coefG_Abs().Equals(this.checkBox_coefG_Abs.Checked)
             || !this.cfg.GetCheck_coefG_Rel().Equals(this.checkBox_coefG_Rel.Checked)
             || !this.cfg.GetCheckErrorAbsStandDev().Equals(this.checkBoxErrorAbsStandDev.Checked)
             || !this.cfg.GetCheckErrorRelStandDev().Equals(this.checkBoxErrorRelStandDev.Checked)
@@ -453,7 +448,7 @@ namespace GUI_GT
         {
             cfg.SetNull_to_Zero(this.checkBoxNull_to_zero.Checked); //What's this doing here?
             int newNumberOfDecimals = this.cBoxNumberOfDecimals.SelectedIndex;
-           
+
             if (!cfg.GetNumberOfDecimals().Equals(newNumberOfDecimals)
                 || !this.posIndexComboBox.Equals(this.cBoxDecimalSeparator.SelectedIndex))
             {
@@ -467,7 +462,7 @@ namespace GUI_GT
                         break;
                     case (1):
                         // Si el separador decimal es una coma almaceno dicho valor
-                         cfg.SetDecimalSeparator(ConfigCFG.ConfigCFG.DECIMAL_SEPARATOR_COMMA);
+                        cfg.SetDecimalSeparator(ConfigCFG.ConfigCFG.DECIMAL_SEPARATOR_COMMA);
                         break;
                 }
                 // formPrincipal.RefreshDataInAllData();
@@ -483,10 +478,10 @@ namespace GUI_GT
             int pos = this.comboBoxChartType.SelectedIndex;
             switch (pos)
             {
-                case(0):
+                case (0):
                     cfg.SetSerieChartType(SeriesChartType.Line);
                     break;
-                case(1):
+                case (1):
                     cfg.SetSerieChartType(SeriesChartType.Spline);
                     break;
             }
@@ -499,7 +494,7 @@ namespace GUI_GT
         private void LabelAlignmentStyles()
         {
             string textSeleted = this.comboBoxLabelPoint.SelectedItem.ToString();
-            ConfigCFG.LabelAlignmentStyles labelAlig = 
+            ConfigCFG.LabelAlignmentStyles labelAlig =
                 (ConfigCFG.LabelAlignmentStyles)Enum.Parse(typeof(ConfigCFG.LabelAlignmentStyles), textSeleted);
             cfg.SetLabelAlignmentStyles(labelAlig);
         }
@@ -524,7 +519,7 @@ namespace GUI_GT
         private void btHelp_Click(object sender, EventArgs e)
         {
             // this.formPrincipal.ShowWindowsHelp();
-            Help.ShowHelp(this, pathManual,HelpNavigator.KeywordIndex, "Configuración");
+            Help.ShowHelp(this, pathManual, HelpNavigator.KeywordIndex, "Configuración");
         }
 
 
@@ -714,7 +709,7 @@ namespace GUI_GT
                 // Traducimos el botón ayuda
                 name = this.btHelp.Name.ToString();
                 this.btHelp.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                
+
 
                 // Traducimos las pestañas del tabControl
                 // [TabPage Informes]

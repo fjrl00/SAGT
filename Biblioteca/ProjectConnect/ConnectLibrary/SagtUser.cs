@@ -14,9 +14,6 @@
  *      Datos de usuario
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ConnectLibrary
 {
@@ -85,7 +82,7 @@ namespace ConnectLibrary
         {
             this.userID = userId;
         }
-        
+
 
         public void SetNameUser(string nameUser)
         {
@@ -109,7 +106,7 @@ namespace ConnectLibrary
 
         public override string ToString()
         {
-            return "[userId= " + this.userID + ", name= " + this.nameUser + ", Access=" + this.authorizationToAccess.ToString() + ", Group= " +this.group +"]";
+            return "[userId= " + this.userID + ", name= " + this.nameUser + ", Access=" + this.authorizationToAccess.ToString() + ", Group= " + this.group + "]";
         }
 
 

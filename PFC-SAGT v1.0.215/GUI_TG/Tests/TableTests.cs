@@ -1,8 +1,7 @@
-﻿using System;
-using Xunit;
-using MultiFacetData;
-using System.Collections.Generic;
+﻿using MultiFacetData;
 using ProjectMeans;
+using System.Collections.Generic;
+using Xunit;
 
 namespace Tests
 {
@@ -22,10 +21,11 @@ namespace Tests
                     double? expectedValue = expected[row][col];
                     double? actualValue = table.Data(row, col);
 
-                    if(expectedValue.HasValue && actualValue.HasValue)
+                    if (expectedValue.HasValue && actualValue.HasValue)
                     {
                         Assert.Equal(expectedValue.Value, actualValue.Value, precision: 2);
-                    } else
+                    }
+                    else
                     {
                         Assert.Equal(expectedValue, actualValue);
                     }

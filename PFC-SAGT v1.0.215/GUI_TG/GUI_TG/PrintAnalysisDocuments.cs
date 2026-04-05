@@ -15,12 +15,7 @@
  *      generación de informes de la opción de Análisis.
  */
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -30,7 +25,7 @@ namespace GUI_GT
         /*=================================================================================================
          * Variables
          *=================================================================================================*/
-       
+
         // Fuente para encabezados y pies de páginas
         Font fontFootersAndHeaders = new Font("Verdana", 9F, FontStyle.Regular);
 
@@ -120,7 +115,7 @@ namespace GUI_GT
                 iRow = 0;
                 numPag = 0;
 
-                
+
                 /// Indican si estamos ante la primera página de un elemento
                 bFirstPage = true; // Primera página
                 bNewPage = true; // Nueva página
@@ -172,7 +167,7 @@ namespace GUI_GT
 
                 // imprimimos la cabecera
                 HeaderPageReport(e, this.fontFootersAndHeaders);
-                
+
                 // imprimimos el pie de página
                 FootnoteOfTheReport(e, this.fontFootersAndHeaders);
                 //************************************************************************************
@@ -261,7 +256,7 @@ namespace GUI_GT
                         iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
 
                         // SettingHeadersCell(e, dgvExAnalysisSSq);   
-                        SettingHeadersCell(e, dgvExAuxReport); 
+                        SettingHeadersCell(e, dgvExAuxReport);
                     }
                     // bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAnalysisSSq, fontReport, bShadingRows, ref isFinishTableSsq);
                     bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, fontTableReport, bShadingRows, ref isFinishTableSsq);

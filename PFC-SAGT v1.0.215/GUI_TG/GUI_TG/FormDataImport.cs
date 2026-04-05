@@ -12,14 +12,8 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -29,7 +23,7 @@ namespace GUI_GT
         // nombre del archivo que contiene las traducciones
         const string STRING_DATA_IMPORT = "formDataImport.txt"; // Dialogos y mensages
         const string LANG_PATH = "\\lang\\";
-        
+
         string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
 
         string[] typesFiles = {"Seleccione un fichero" ,
@@ -49,7 +43,7 @@ namespace GUI_GT
                               "GT E 2.0 (*.rsm)|*.rsm|Todos los archivos|*.*",
                               "Excel (*.xls)|*.xls|Todos los archivos|*.*",
                               "(*.csv)|*.csv|Todos los archivos|*.*"};
-                                
+
         string pathImportFile;
 
         TransLibrary.Language lang;
@@ -102,19 +96,19 @@ namespace GUI_GT
         private void SelectHeaderImagen()
         {
             int n = this.cBoxTypesFiles.SelectedIndex;
-            
+
             HideImagenHeader();
             switch (n)
             {
-                case(0):
+                case (0):
                     this.pictBoxNormal.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
-                case(1):
+                case (1):
                     this.pictBoxOBS.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
-                case(2):
+                case (2):
                     this.pictBoxRSM.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
@@ -171,7 +165,7 @@ namespace GUI_GT
             {
                 openDialog.InitialDirectory = sagt_initial_directory;
             }
-            
+
             openDialog.Filter = fileFilter[this.cBoxTypesFiles.SelectedIndex];
 
             if (openDialog.ShowDialog() == DialogResult.OK)
@@ -181,7 +175,7 @@ namespace GUI_GT
 
                 this.tbNameFile.Text = this.extractFileNamePath(openDialog.FileName);
                 // almacenamos el path del fichero                     
-                pathImportFile = openDialog.FileName; 
+                pathImportFile = openDialog.FileName;
             }
         }
 
@@ -206,7 +200,7 @@ namespace GUI_GT
             }
              * */
         }
-      
+
 
 
         /* Descripción:

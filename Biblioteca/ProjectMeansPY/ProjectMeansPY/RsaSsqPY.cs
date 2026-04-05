@@ -13,14 +13,13 @@
  * Descripción:
  *      Lectura de fichero suma de cuadrados (.ssq, GT E 2.0).
  */
+using MultiFacetData;
+using ProjectSSQ;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProjectSSQ;
-using MultiFacetData;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace SsqPY
 {
@@ -36,7 +35,7 @@ namespace SsqPY
          *================================================================================================*/
         private List<SSqPY> list_ssqOfFile;
         private List<TableG_Study_Percent> list_G_Paramertes;
-        
+
 
         /*================================================================================================
          * Constructores
@@ -48,14 +47,14 @@ namespace SsqPY
         }
 
         public RsaSsqPY(SSqPY ssq)
-            :this()
+            : this()
         {
             this.list_ssqOfFile.Add(ssq);
             this.list_G_Paramertes.Add(new TableG_Study_Percent(ssq.SourceOfVarDepend(), ssq.SourceOfVarInDepend(), ssq));
         }
 
         public RsaSsqPY(SSqPY ssq, TableG_Study_Percent gParam)
-            :this()
+            : this()
         {
             this.list_ssqOfFile.Add(ssq);
             this.list_G_Paramertes.Add(gParam);
@@ -91,7 +90,7 @@ namespace SsqPY
          *      SSqPY ssq: 
          *      G_Parameters gParam
          */
-        public void Add(SSqPY ssq, TableG_Study_Percent gParam) 
+        public void Add(SSqPY ssq, TableG_Study_Percent gParam)
         {
             this.list_ssqOfFile.Add(ssq);
             this.list_G_Paramertes.Add(gParam);
@@ -152,7 +151,7 @@ namespace SsqPY
                     {
                         case ("anl"):
                             // nos saltamos el path del fichero de datos y otras lineas hasta llegar al número de facetas
-                            while(!line.Equals("N"))
+                            while (!line.Equals("N"))
                             {
                                 line = reader.ReadLine();
                             }
@@ -160,7 +159,7 @@ namespace SsqPY
                             retVal = ReadFileGT_RsaSsqPY_Type1(reader, descriptionFile);
                             break;
                         case ("ssq"):
-                            
+
                             if (isN)
                             {
                                 int typeFile = int.Parse(line);
@@ -181,7 +180,7 @@ namespace SsqPY
                             throw new RsaSsqPY_Exception("Error en el formato del archivo");
                     }
 
-                    
+
                 }
                 catch (FormatException)
                 {
@@ -282,7 +281,7 @@ namespace SsqPY
                                 break;
                             default:
                                 throw new RsaSsqPY_Exception("Error al leer el archivo");
-                            // break;
+                                // break;
                         }
                     }
                     line = reader.ReadLine(); // número de observaciones
@@ -300,7 +299,7 @@ namespace SsqPY
                     {
                         // verificamos que es la linea correcta
                         line = reader.ReadLine();
-                        while(line.Trim().Equals("/"))
+                        while (line.Trim().Equals("/"))
                         {
                             /* En los ficheros que contienen anidamientos apareceran lineas
                              * que solo contienen el caracter '/'
@@ -480,12 +479,12 @@ namespace SsqPY
                                 break;
                             default:
                                 throw new RsaSsqPY_Exception("Error al leer el archivo");
-                            // break;
+                                // break;
                         }
                     }
                     line = reader.ReadLine(); // número de observaciones
-                    //line = reader.ReadLine(); // gran media
-                    
+                                              //line = reader.ReadLine(); // gran media
+
 
                     // ahora leemos las sumas de cuadrados
                     List<string> llf = SSqPY.CombSinRepPY(lf);
@@ -510,7 +509,7 @@ namespace SsqPY
                             string ss = "";
                             for (int j = 0; j < st_l; j++)
                             {
-                                ss = ss + "[" + line[j] +"]";
+                                ss = ss + "[" + line[j] + "]";
                             }
                             line = ss;
                         }
@@ -670,7 +669,7 @@ namespace SsqPY
             return stringListOfFacets;
         }
 
-        
+
         /* Descripción:
          *  Devuelve true si la cadena que se pasa como argumento puede convertirse en un número.
          */
@@ -678,7 +677,7 @@ namespace SsqPY
         {
             bool isNumber;
             double isItNumeric;
-            isNumber = Double.TryParse(Convert.ToString(st), System.Globalization.NumberStyles.Any,System.Globalization.NumberFormatInfo.InvariantInfo, out isItNumeric );
+            isNumber = Double.TryParse(Convert.ToString(st), System.Globalization.NumberStyles.Any, System.Globalization.NumberFormatInfo.InvariantInfo, out isItNumeric);
             return isNumber;
         }
 
@@ -688,7 +687,7 @@ namespace SsqPY
          *  Devuelve un double, en el caso de que el doble este representado como .xxx pasará a ser:
          *  0.xxx y en el caso de que sea -.xxx pasará a ser -0.xxx.
          */
-        private static  double StringLinePY_To_Double(string line)
+        private static double StringLinePY_To_Double(string line)
         {
             if (line.Contains("."))
             {
@@ -702,7 +701,7 @@ namespace SsqPY
                     line = "0" + line.Trim();
                 }
             }
-            return(double.Parse(line, NumberFormatInfo.InvariantInfo));
+            return (double.Parse(line, NumberFormatInfo.InvariantInfo));
         }
 
 

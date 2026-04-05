@@ -14,13 +14,10 @@
  *      Libreria de suma de cuadrados, Excepciones para la clase TableG_Study
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectSSQ
 {
-    public class TableG_StudyException: Exception
+    public class TableG_StudyException : Exception
     {
         public TableG_StudyException()
             : base()

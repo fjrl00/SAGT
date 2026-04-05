@@ -16,20 +16,16 @@
  */
 using AuxMathCalcGT;
 using MultiFacetData;
-using NPOI.SS.Formula.Functions;
 using ProjectMeans;
 using ProjectSSQ;
 using Sagt;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.Globalization; // permite leer doubles con independencia del punto decimal que usemos
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading; // permite usar hilos
 using System.Windows.Forms;
 
 
@@ -47,7 +43,7 @@ namespace GUI_GT
         const string FILTER_SAGT_FILE = " (*.sagt)|*.sagt|";
         const string FILTER_GT_OBS_FILE = " (*.obs)|*.obs|";
         const string FILTER_ALL_FILE = " (*.*)|*.*";
-        const string FILTER_ANALYSIS_FILTER  = " (*.anls)|*.anls";
+        const string FILTER_ANALYSIS_FILTER = " (*.anls)|*.anls";
         const string FILTER_EXCEL = " (*.xls)|*.xls";
         const string DEFAULT_EXT_SAGT = "sagt";
         const string DEFAULT_EXT_RSM = "rsm";
@@ -82,7 +78,7 @@ namespace GUI_GT
         // Más exactamente, se usa para seguir la pista durante la creación de facetas mixtas, 
         // dejando de ser null tras hacer un anidamiento, volviendo a null cuando hemos terminado 
         // el proceso de creacion de facetas mixtas
-        ListFacets lf_global = null;    
+        ListFacets lf_global = null;
         // Variable que indica la disposición de la facetas para el objeto multifaceta que se esta creando
         // La disposición de las facetas puede ser: cruzada, anidada o mixta.
         MultiFacetData.ProvisionOfFacets provision;
@@ -95,14 +91,14 @@ namespace GUI_GT
         const int IND_LEVEL = 1;    // indice de la columna 'Nivel' de la tabla 'Facetas'
         const int IND_SIZE_OF_UNIVERSE_FACET = 2; // indice de la columna 'Tamaño del universo' de la tabla 'Facetas'
         const int IND_COMMENT = 3;  // indice de la columna 'Descripción' de la tabla 'Facetas'
-        // const int IND_OMIT_FACET = 4; // indice para la omisión de facetas
+                                    // const int IND_OMIT_FACET = 4; // indice para la omisión de facetas
 
         // Numero de facetas que va a tener la tabla de facetas debe introducirla el usuario antes de editar la tabla
         // private int numOfFacetForTable;
 
         #endregion Variables relaccionadas con la opción de datos
 
-        
+
         /* Descripción:
          *  Inicializa la opción de Datos:
          *  oculta el boton de observaciones y el botón cancelar
@@ -118,7 +114,7 @@ namespace GUI_GT
             this.disableButtonObsTable();
         }
 
-        
+
         /* Descripción:
          *  Acción que se ejecuta tra pulsar el bóton Abrir del menú vertical de la opción Datos.
          *  Abre un archivo de datos y lo carga en la tablas del tabPage Data.
@@ -134,7 +130,7 @@ namespace GUI_GT
 
             string fileFilter = (this.sagtFiles + FILTER_SAGT_FILE + this.gtFiles + FILTER_GT_OBS_FILE + this.allFiles + FILTER_ALL_FILE);
             openDialog.Filter = fileFilter;
-            
+
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
                 this.checkBoxHideNulls.Enabled = false;
@@ -199,7 +195,7 @@ namespace GUI_GT
                     }
                 } while (!salir);
             }
-            catch(IOException)
+            catch (IOException)
             {
                 //th.Abort();
                 // Mostramos un mensaje indicando que el fichero esta siendo usado por otro programa
@@ -227,8 +223,8 @@ namespace GUI_GT
         {
             // leemos el fichero obs
             MultiFacetPY.MultiFacetPY mfpy = MultiFacetPY.MultiFacetPY.ReadFileObsPY(path);
-            
-            
+
+
             string fileNameData = extractFileNamePath(path);
             // asignamos a la variable global los valores cargados
             // multiFacets = mfpy;
@@ -279,13 +275,13 @@ namespace GUI_GT
                 this.sagtElements.SetMultiFacetsObs(mfo);
                 loadMultiFacets(path, mfo);
             }
-            catch(ObsTableException)
+            catch (ObsTableException)
             {
                 ShowMessageErrorOK(errorFormatFile);
             }
-            
 
-            
+
+
         }//end loadMultiFacetFileXls
 
 
@@ -326,7 +322,7 @@ namespace GUI_GT
             {
                 case (DEFAULT_EXT_OBS): loadFileObs(path); break;
                 case (DEFAULT_EXT_RSM): loadMultiFacetOfFileRms(path); break;
-                case (DEFAULT_EXT_EXCEL):loadMultiFacetFileXls(path); break;
+                case (DEFAULT_EXT_EXCEL): loadMultiFacetFileXls(path); break;
                 case ("csv"): loadMultiFacetFileCsv(path); break;
                 default:
                     // MessageBox.Show("No se muestra ninguno");
@@ -357,7 +353,7 @@ namespace GUI_GT
                 //loadMultiFacets(fileNameData, multiFacets);
                 loadSagtElements(fileNameData, sagtElements);
             }
-            catch(MultiFacetObsException)
+            catch (MultiFacetObsException)
             {
                 ShowMessageErrorOK(errorFormatFile);
             }
@@ -510,7 +506,7 @@ namespace GUI_GT
          *      bool viewName: variable booleana, si esta a true mostrará el nombre de la faceta, en otro
          *          caso mostrará el diseño
          */
-        private void LoadListFacetInDataGridView(ListFacets lf, DataGridViewEx.DataGridViewEx dgv, 
+        private void LoadListFacetInDataGridView(ListFacets lf, DataGridViewEx.DataGridViewEx dgv,
             bool columnOmit, bool viewName)
         {
             dgv.NumeroFilas = 0;
@@ -567,7 +563,7 @@ namespace GUI_GT
             /* Sí es true se  mostrará la columna de checkbox para señalar las facetas que se omitirán en el
              * estudio.
              */
-            if(columnOmit)
+            if (columnOmit)
             {
                 DataGridViewCheckBoxColumn d1 = new DataGridViewCheckBoxColumn();
                 d1.Name = NAME_COL_OMIT;
@@ -592,7 +588,7 @@ namespace GUI_GT
                 {
                     my_Row[IND_NAME] = f.ListFacetDesign();
                 }
-                
+
                 my_Row[IND_LEVEL] = f.Level();
                 int s = f.SizeOfUniverse();
                 if (int.MaxValue.Equals(s))
@@ -608,7 +604,7 @@ namespace GUI_GT
                 my_Row[IND_COMMENT] = f.Comment();
                 dgv.Rows.Add(my_Row);
 
-                if(columnOmit)
+                if (columnOmit)
                 {
                     dgv.Rows[i].Cells[NAME_COL_OMIT].Value = f.Omit();
                 }
@@ -710,11 +706,11 @@ namespace GUI_GT
          */
         private void CleanerDataGridViewExFacets(DataGridViewEx.DataGridViewEx dgvExFacets)
         {
-         
+
             dgvExFacets.NumeroFilas = 0;
 
             dgvExFacets.Rows.Clear();
-            
+
             // dgvExFacets.ColumnCount = 4; // numero de columnas 3 (Etiquetas,nivel,tamaño del universo,descipción)
             dgvExFacets.NumeroColumnas = 4;
 
@@ -850,8 +846,8 @@ namespace GUI_GT
                 }
 
                 int numCol = this.dataGridViewExObsTable.ColumnCount;
-                this.dataGridViewExObsTable.Columns[numCol-1].ReadOnly = true;
-                LoadListFacetInDataGridView(this.sagtElements.GetMultiFacetsObs().ListFacets() ,dataGridViewExFacets, true);
+                this.dataGridViewExObsTable.Columns[numCol - 1].ReadOnly = true;
+                LoadListFacetInDataGridView(this.sagtElements.GetMultiFacetsObs().ListFacets(), dataGridViewExFacets, true);
 
                 disableButtonsFacets();
                 disableButtonObsTable();
@@ -865,7 +861,7 @@ namespace GUI_GT
                 this.checkBoxHideNulls.Checked = false;
             }
         }// end btDataObsOkAndSaveFile
-        
+
 
         /* Descripción:
          *  Pregunta al usuario donde quiere almacenar la información, si la respuesta es afirmativa, se 
@@ -933,7 +929,7 @@ namespace GUI_GT
                             SagtFile sagtElementsSave = new SagtFile(tData, lMeans, tAnalysis);
                             // Habrimos la ventana de dialogo y guardamos
                             System.Windows.Forms.DialogResult resulDialog = DialogAndSaveSagtFile(sagtElementsSave);
-                            
+
                             btGenerateTableObsDisables();
                             salir = true;
                         }
@@ -999,7 +995,7 @@ namespace GUI_GT
             try
             {
                 List<double?> readDatas = new List<double?>();
-                int nCols = this.dataGridViewExObsTable.NumeroColumnas-1; // columna donde se encuentra los datos
+                int nCols = this.dataGridViewExObsTable.NumeroColumnas - 1; // columna donde se encuentra los datos
                 int nRows = this.dataGridViewExObsTable.RowCount; // número de filas para poder iterar
 
                 for (int i = 0; i < nRows; i++)
@@ -1114,7 +1110,7 @@ namespace GUI_GT
                 // limpiamos los campos
                 tbFileName.Text = "";
                 tbDescription.Text = "";
-                
+
                 // dataGridViewExFacets.ReadOnly = false;
                 int n = dataGridViewExFacets.Columns.Count;
                 for (int i = 0; i < n; i++)
@@ -1125,14 +1121,14 @@ namespace GUI_GT
                 CleanerDataGridViewExFacets(this.dataGridViewExFacets);
                 // permitimos que se puedan añadir filas a la tabla
                 // dataGridViewExFacets.AllowUserToAddRows = true;
-                dataGridViewExFacets.NumeroFilas = 0 ;
+                dataGridViewExFacets.NumeroFilas = 0;
                 dataGridViewExFacets.NumeroFilas = t;
                 // ocultamos el tabPage de la tabla de datos
                 tabPageObsTable.Parent = null;
                 tabPageDataInfo.Parent = null;
                 // Mostramos los botones
                 enableButtonsFacets(provision);
-                
+
                 // permitimos que pueda introducir la descripción del archivo
                 tbDescription.Enabled = true;
                 tbDescription.ReadOnly = false;
@@ -1221,7 +1217,7 @@ namespace GUI_GT
             btDataObsCancel.Enabled = true;
             btDataObsCancel.Visible = true;
         }
-        
+
 
         /* Descripción:
          *  Deshabilita el boton Generar Tabla de observaciones
@@ -1345,7 +1341,7 @@ namespace GUI_GT
                                         // error no se ha podido realizar el anidamiento correctamente
                                         ShowMessageErrorOK(errorNoOperation);
                                     }
-                                    
+
                                 }
                                 else
                                 {
@@ -1385,7 +1381,7 @@ namespace GUI_GT
                 {
                     List<string> lfSelectFacet = new List<string>();
                     n = lf_global.Count();
-                    for (int i = 0; i < n ; i++)
+                    for (int i = 0; i < n; i++)
                     {
                         Facet f = lf_global.FacetInPos(i);
                         if (f.IsNesting())
@@ -1539,7 +1535,7 @@ namespace GUI_GT
                 string pathfile = multiFacets.NameFileObs();
                 MultiFacetsObs newMultiFacet = new MultiFacetsObs(lf, obsTable, pathfile, newDescription,
                     this.richTextBoxDataComment.Text);
-                
+
                 // Actualizamos las tablas de facetas
                 //=================================== 
                 LoadListFacetInDataGridView(lf, this.dataGridViewExFacets, true);
@@ -1642,7 +1638,7 @@ namespace GUI_GT
                     // Se ha sobrepasado el número de filas de la tabla
                     ShowMessageErrorOK(errorNoTableObs);
                 }
-                               
+
             }
             this.lf_global = null;
         }// end btAccionGenerateTableObs_Click
@@ -1654,7 +1650,7 @@ namespace GUI_GT
          */
         private void tsmiActionBuildMeans_Click(object sender, EventArgs e)
         {
-            MultiFacetsObs multiFacets  = this.sagtElements.GetMultiFacetsObs();
+            MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
             if (multiFacets == null)
             {// (* 1 *)
                 ShowMessageErrorOK(errorNoTableObs);
@@ -1682,7 +1678,7 @@ namespace GUI_GT
                     {
                         lf = withoutOmit_lf; // asignación de las facetas no omitidas
                         multiFacets = multiFacets.OmitFacetInDataTable();   //this calls skipLevels btw (wonky, torework)
-                    } 
+                    }
                     else if (lf.HasSkipLevels())
                     {
                         multiFacets = multiFacets.SkipIndexLevelFacetInDataTable();
@@ -1690,9 +1686,9 @@ namespace GUI_GT
 
                     List<string> cswr = lf.CombinationStringWithoutRepetition();
                     List<string> ldesingSelected = new List<string>();
-                    
+
                     FormListFacets formListFacet = new FormListFacets(lang, cswr);
-                    
+
                     bool salir = false;
                     do
                     {
@@ -1781,7 +1777,7 @@ namespace GUI_GT
                  * cargar los valores iniciales. */
                 MultiFacetsObs multiFacets = sagtElements.GetMultiFacetsObs();
                 loadDataInTabPageObsTable(multiFacets);
-                
+
                 // Ponemos la variable editarMultiFacets
                 this.editMultiFacetObs = false;
                 // Mostramos el checkBox de "Ocultar nulos"
@@ -1794,9 +1790,9 @@ namespace GUI_GT
                 /* En este caso no estamos editando niguna tabla de facetas sino que la estamos creando,
                  * con lo cual si la cancelamos debemos dejar las tablas de facetas y observaciones
                  * vacias y las variables a null. */
-                
+
                 // limpiamos los dataGridViewEx
-                CancelAcciónEditionOfFacet();    
+                CancelAcciónEditionOfFacet();
             }
 
             // ocultamos los botones de aceptar y cancelar
@@ -1911,7 +1907,7 @@ namespace GUI_GT
                 ShowMessageErrorOK(multFactEx.Message);
                 valret = null;
             }
-            
+
             return valret;
         } // private bool validateFacetTable()
 
@@ -1922,7 +1918,8 @@ namespace GUI_GT
          */
         private void closeDataElements()
         {
-            if(this.sagtElements.GetMultiFacetsObs() != null){
+            if (this.sagtElements.GetMultiFacetsObs() != null)
+            {
                 // Deshabilitamos el checkBox de ocultar
                 this.checkBoxHideNulls.Enabled = false;
                 // limpiamos los campos
@@ -1990,7 +1987,7 @@ namespace GUI_GT
          */
         private void tsmiActionDataExportExcel_Click(object sender, EventArgs e)
         {
-            if(this.sagtElements.GetMultiFacetsObs() != null)
+            if (this.sagtElements.GetMultiFacetsObs() != null)
             {
                 SaveFileExcelDialog();
             }
@@ -2031,11 +2028,11 @@ namespace GUI_GT
                 saveDialog = null;
             }
         }// end SaveFileExcelDialog
-       
+
 
         #endregion Exportar los datos a un archivo Excel
 
-        
+
 
 
         /* Descripción:
@@ -2115,7 +2112,7 @@ namespace GUI_GT
                             n = numOfRows;
                         }
 
-                        int nCols = tableScores.ColumnCount-1;
+                        int nCols = tableScores.ColumnCount - 1;
 
                         // Número de decimales para la representación
                         int numOfDecimal = cfgApli.GetNumberOfDecimals();
@@ -2151,7 +2148,7 @@ namespace GUI_GT
          */
         private void tsmiActionDataOmitLevels_Click(object sender, EventArgs e)
         {
-            MultiFacetsObs multiFacets  = this.sagtElements.GetMultiFacetsObs();
+            MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
             if (multiFacets == null)
             {// (* 1 *)
                 ShowMessageErrorOK(errorNoTableObs);
@@ -2160,7 +2157,7 @@ namespace GUI_GT
             else
             {
                 ListFacets listFacets = multiFacets.ListFacets();
-                ListFacets lf = listFacets.DeepClone(); 
+                ListFacets lf = listFacets.DeepClone();
                 FormOmitLevelFacet formOmitLevelFacet = new FormOmitLevelFacet(cfgApli.GetConfigLanguage(), lf);
 
                 bool salir = false;
@@ -2169,23 +2166,23 @@ namespace GUI_GT
                     DialogResult res = formOmitLevelFacet.ShowDialog();
                     switch (res)
                     {
-                        case DialogResult.Cancel: 
-                            salir = true; 
+                        case DialogResult.Cancel:
+                            salir = true;
                             break;
                         case DialogResult.OK:
 
                             // Comprobamos que exista al menos un nivel de cada faceta no ha sido seleccionado
                             // en caso contrario lanzamos una excepción con el mensaje.
                             bool b = true;
-                            
+
                             int n = lf.Count();
                             int i = 0;
-                            while(b && i<n)
+                            while (b && i < n)
                             {
                                 Facet f = lf.FacetInPos(i);
                                 int levels = f.Level();
                                 int j = 0;
-                                while(b && j<levels)
+                                while (b && j < levels)
                                 {
                                     b = f.GetSkipLevels(j + 1);
                                     if (b)
@@ -2193,7 +2190,7 @@ namespace GUI_GT
                                         j++;
                                     }
                                 }
-                                
+
                                 if (j == (levels) && b)
                                 {
                                     /* Si b es true y el indice j es igual al nivel significa
@@ -2338,8 +2335,8 @@ namespace GUI_GT
                     dataGridViewExFacets.Columns["nameColOmit"].HeaderText = nameColOmit;
                 }
 
-                int n = dataGridViewExObsTable.ColumnCount-1;   // Contamos el número de columnas de la tabla de observaciones
-                                                            // esta nos indicara si contiene datos o no.
+                int n = dataGridViewExObsTable.ColumnCount - 1;   // Contamos el número de columnas de la tabla de observaciones
+                                                                  // esta nos indicara si contiene datos o no.
                 if (n > 0)
                 {
                     // Cambiamos el nombre de la columna variable observada.

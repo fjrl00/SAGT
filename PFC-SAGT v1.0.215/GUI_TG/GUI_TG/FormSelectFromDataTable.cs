@@ -13,16 +13,10 @@
  * Descripción:
  *      Muestra los proyectos seleccionables
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using ConnectLibrary;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -57,7 +51,7 @@ namespace GUI_GT
                 this.btOk.Enabled = false;
             }
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT); // Traducimos
-            
+
         }
 
         /***********************************************************************************************
@@ -127,7 +121,7 @@ namespace GUI_GT
                     name = this.dataGridViewSelectData.Columns[i].Name;
                     this.dataGridViewSelectData.Columns[name].HeaderText = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 }
-               
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {

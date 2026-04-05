@@ -15,21 +15,16 @@
  *      Medias: generación de valores estadisticos a partir de una lista de Facetas y la tabla de 
  *      observaciones.
  */
-using AuxMathCalcGT;
 using ImportEduGMeans;
 using MultiFacetData;
 using ProjectMeans;
-using ProjectSSQ;
 using Sagt;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 
@@ -99,7 +94,7 @@ namespace GUI_GT
          *      
          *      string nameFileTrans: Fichero con las traducciónes de las etiqueta y cabeceras de columnas.
          */
-        public void createMeansOfListOfListFacets(List<ListFacets> selectListFacets, List<string> ldesign, MultiFacetsObs multiFacetObsData, 
+        public void createMeansOfListOfListFacets(List<ListFacets> selectListFacets, List<string> ldesign, MultiFacetsObs multiFacetObsData,
             ConfigCFG.ConfigCFG cfgApli, string nameFileTrans)
         {
             ListMeans listMeans = new ListMeans();
@@ -108,7 +103,7 @@ namespace GUI_GT
 
             switch (cfgApli.GetTypeOfTableMeans())
             {// (*1*)
-                case(ConfigCFG.TypeOfTableMeans.Default):
+                case (ConfigCFG.TypeOfTableMeans.Default):
                     int n = selectListFacets.Count();
                     for (int i = 0; i < n; i++)
                     {
@@ -128,7 +123,7 @@ namespace GUI_GT
                     break;
                 case (ConfigCFG.TypeOfTableMeans.TableMeansTipPoint):
                     n = selectListFacets.Count();
-                    for (int i = 0; i < n ; i++)
+                    for (int i = 0; i < n; i++)
                     {
                         string design = ldesign[i];
                         ListFacets lf = selectListFacets[i];
@@ -143,7 +138,7 @@ namespace GUI_GT
             // Guardamos los datos de la creación de las tablas de medias
             string nameFile = multiFacetObsData.NameFileObs(); // obtenemos el nombre del fichero de datos.
             listMeans.SetNameFileDataCreation(nameFile); // asignamos el nombre del fichero a partir del cual hemos generado los datos.
-            
+
             DateTime date = DateTime.Now;
             listMeans.SetDateTime(date);
             this.sagtElements.SetListMeans(listMeans); // actualizamos la variable;
@@ -237,12 +232,12 @@ namespace GUI_GT
                 // Muestra un mensaje indicando que se produjo un error al traducir.
                 ShowMessageErrorOK(errorMessageTraslation);
             }
-            
+
             tabControlMeans.TabPages.Add(newTabPage);
 
         }// end AddTabPageTableMeans
 
-          
+
 
         /* Descripción:
          *  Abre un archivo de medias.
@@ -281,11 +276,12 @@ namespace GUI_GT
                         //    listOfTableMeansToTabPageMeans(listMeans, MEAN_STRINGS);
                         //}
                         loadSagtElements(openDialog.FileName, sagtElements);
-                    }catch(ListMeansException)
+                    }
+                    catch (ListMeansException)
                     {
                         // Mostramos un mensaje de error al leer el acrchivo
                         ShowMessageInfo(errorReadingFile, titleMessageError1);
-                    } 
+                    }
                 }
             }
         }// end private void tsmiActionOpenMeans_Click
@@ -316,7 +312,7 @@ namespace GUI_GT
                 //    this.sagtElements.WritingSagtFile(saveDialog.FileName);
                 //    MessageBox.Show("Las datos medias se han guardado", "Guardado");
                 //}
-               SaveFileSagt(this.sagtElements);
+                SaveFileSagt(this.sagtElements);
             }
         }// end private void tsmiActionMeansSave_Click
 
@@ -474,7 +470,7 @@ namespace GUI_GT
                 case (DEFAULT_EXT_RSM): loadListOfMeansOfFileRms(path); break;
                 case ("txt"): loadListOfMeansOfFileText_EduG(path, nameFileTras); break;
                 case ("rtf"): loadListOfMeansOfFileRtf_EduG(path); break;
-                case (DEFAULT_EXT_EXCEL): loadListTableMeansFileXls(path); break; 
+                case (DEFAULT_EXT_EXCEL): loadListTableMeansFileXls(path); break;
                 default:
                     MessageBox.Show("No se muestra ninguno");
                     break;
@@ -498,7 +494,7 @@ namespace GUI_GT
             // List<ListFacets> auxListFacets = lf.CombinationWithoutRepetition();
             List<ListFacets> auxListFacets = new List<ListFacets>();
             List<string> cswr = lf.CombinationStringWithoutRepetition();
-            foreach(string design in cswr)
+            foreach (string design in cswr)
             {
                 ListFacets newlf = lf.ListDesignFacets(design);
                 auxListFacets.Add(newlf);
@@ -600,10 +596,10 @@ namespace GUI_GT
 
                 List<ListMeansEduG> listOfListMeans = ListMeansEduG.ReadFileReportRtfEduG(path, cfgApli.GetTypeOfTableMeans());
                 List<string> listString = new List<string>();
-                
+
                 for (int i = 0; i < listOfListMeans.Count; i++)
                 {
-                    listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString()); 
+                    listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString());
                 }
 
                 //th.Abort();
@@ -615,8 +611,8 @@ namespace GUI_GT
                     DialogResult res = formSelectionOne.ShowDialog();
                     switch (res)
                     {
-                        case DialogResult.Cancel: 
-                            salir = true; 
+                        case DialogResult.Cancel:
+                            salir = true;
                             break;
                         case DialogResult.OK:
                             int pos = formSelectionOne.SelectionIndex();
@@ -640,7 +636,7 @@ namespace GUI_GT
                             }
                             break;
                     }
-                }while(!salir);
+                } while (!salir);
             }
             catch (ListMeansEduG_Exception)
             {
@@ -705,7 +701,7 @@ namespace GUI_GT
                     }
                 } while (!salir);
             }
-            
+
         }// end btActionMeanEditComment_Click
 
 
@@ -734,7 +730,7 @@ namespace GUI_GT
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
                     var sheetList = new List<(string SheetName, DataGridView Grid)>();
-                    for(int i=0; i<listMeans.Count(); i++)
+                    for (int i = 0; i < listMeans.Count(); i++)
                     {
                         TabPageMeansEx tp = (TabPageMeansEx)tabControlMeans.TabPages[i];
                         DataGridViewEx.DataGridViewEx dgvExMean = tp.GetDataGridViewEx();
@@ -765,7 +761,7 @@ namespace GUI_GT
             dgvGrandMeans.Columns.Add("variance", nameColVariance);
             dgvGrandMeans.Columns.Add("standarDev", nameColStd_Dev);
             // rellenamos la tabla
-            int n = tabControlMeans.TabPages.Count-1;
+            int n = tabControlMeans.TabPages.Count - 1;
 
             for (int i = 0; i < n; i++)
             {
@@ -773,7 +769,7 @@ namespace GUI_GT
                 InterfaceTableMeans tm = lm.TableMeansInPos(i);
 
                 object[] my_Row = new object[5];
-                my_Row[0] = "Media " + (i+1);
+                my_Row[0] = "Media " + (i + 1);
                 my_Row[1] = tp.Text;
                 my_Row[2] = tm.GrandMean();
                 my_Row[3] = tm.Variance();

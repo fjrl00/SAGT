@@ -15,11 +15,6 @@
  * no se encuentra en el enumerado original.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace ConfigCFG
 {
     public enum LabelAlignmentStyles

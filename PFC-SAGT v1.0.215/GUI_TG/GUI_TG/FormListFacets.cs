@@ -11,16 +11,10 @@
  * Fecha de revisión: 2/Nov/2011
  * 
  */
+using MultiFacetData;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MultiFacetData;
-using ProjectMeans;
 
 namespace GUI_GT
 {
@@ -28,31 +22,31 @@ namespace GUI_GT
     {
         /*========================================================================================================
          * Constantes
-         *========================================================================================================*/ 
+         *========================================================================================================*/
         // nombre del archivo que contiene las traducciones
         const string STRING_TEXT = "formListFacets.txt";
         const string LANG_PATH = "\\lang\\";
 
         /*========================================================================================================
          * Variables 
-         *========================================================================================================*/ 
+         *========================================================================================================*/
         private string txtSelectAll = ""; // guardara el texto "Seleccionar todo" en el idioma correspondiente.
         private string txtUnCheckAll = "";// guardara el texto "Desmarcar todo" en el idioma correspondiente.
-        // private string txtMessageNoSelected = "No hay seleccionado ningún elemento"; // Mensage de que no ha seleccionado ningún elemento del checkedListBox.
-        
+                                          // private string txtMessageNoSelected = "No hay seleccionado ningún elemento"; // Mensage de que no ha seleccionado ningún elemento del checkedListBox.
+
 
         private bool selectOrUchecked = true; /* Variable booleana para saber en que estado se encuentra el
                                                * boton seleccionar. Si esta a true entoces indica seleccionar 
                                                * todo, false en el caso de deseleccionar todo*/
 
         List<ListFacets> listOfListFacets; // Combinaciones de la lista de facetas para contruir las tablas de medias
-        // FormPrincipal formP;
+                                           // FormPrincipal formP;
 
 
         /*========================================================================================================
          * Constructores 
-         *========================================================================================================*/ 
-        
+         *========================================================================================================*/
+
         /*
          * Descripción:
          *  Constructror de la clase, inicializa las componentes y llama al método de traducción
@@ -66,7 +60,7 @@ namespace GUI_GT
             ListFacets listFacetsActual = multiFacets.ListFacets();
             this.listOfListFacets = listFacetsActual.CombinationWithoutRepetition();
             this.LoadListCombFacetsInCheckListBox(this.listOfListFacets);
-            
+
         }
 
 
@@ -86,14 +80,14 @@ namespace GUI_GT
 
         /*========================================================================================================
          * Métodos
-         *========================================================================================================*/ 
+         *========================================================================================================*/
         /*
          * Descripción:
          *  Carga en el CheckListBox la combinaciones sin repeticion de el objeto multifaceta.
          */
         private void LoadListCombFacetsInCheckListBox(List<ListFacets> listOfListFacets)
         {
-            
+
             // ahora agregamos una lista de facetas
             int n = listOfListFacets.Count;
             for (int i = 0; i < n; i++)
@@ -141,7 +135,7 @@ namespace GUI_GT
          */
         private void btOK_Click(object sender, EventArgs e)
         {
-           
+
 
         } // end private void btOK_Click(object sender, EventArgs e)
 
@@ -205,7 +199,7 @@ namespace GUI_GT
                 for (int i = 0; i < n; i++)
                 {
                     this.cListBoxListsFacets.SetItemChecked(i, true);
-                } 
+                }
                 this.btSelect.Text = this.txtUnCheckAll;
                 this.selectOrUchecked = false;
             }
@@ -215,7 +209,7 @@ namespace GUI_GT
                 for (int i = 0; i < n; i++)
                 {
                     this.cListBoxListsFacets.SetItemChecked(i, false);
-                } 
+                }
                 // this.cListBoxListsFacets.ClearSelected(); // desmarca todos los elementos seleccionados
                 this.btSelect.Text = this.txtSelectAll;
                 this.selectOrUchecked = true;
@@ -277,7 +271,7 @@ namespace GUI_GT
             catch (TransLibrary.LabelTranslationException lEx)
             {
                 MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
-            } 
+            }
         }
         #endregion Traducción de la ventana
 

@@ -11,14 +11,11 @@
  * Fecha de revisión: 21/Feb/2012
  * 
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
+using System;
+using System.IO;
 
 namespace Sagt
 {
@@ -70,7 +67,7 @@ namespace Sagt
         /******************************************************************************************************
          *  Métodos de instancia
          ******************************************************************************************************/
-        
+
 
         public void SetMultiFacetsObs(MultiFacetsObs multiFacets)
         {
@@ -145,7 +142,7 @@ namespace Sagt
 
             using (StreamWriter writer = new StreamWriter(path))
             {
-                if(this.multiFacets!=null)
+                if (this.multiFacets != null)
                 {
                     writer.WriteLine(BEGIN_MULTI_FACET_OBS);
                     res = this.multiFacets.WritingFileObsData(writer);
@@ -197,7 +194,7 @@ namespace Sagt
                         {
                             throw new SagtFileException($"Expected '{END_MULTI_FACET_OBS}' but found '{line}' when parsing file.");
                         }
-                        
+
                         line = reader.ReadLine();
                     }
                     if (line != null && line.Equals(BEGIN_LISTMEANS))
@@ -207,7 +204,7 @@ namespace Sagt
                         {
                             throw new SagtFileException($"Expected '{END_LISTMEANS}' but found '{line}' when parsing file.");
                         }
-                        
+
                         line = reader.ReadLine();
                     }
                     if (line != null && line.Equals(BEGIN_ANALYSIS_AND_G_STUDY))
@@ -217,7 +214,7 @@ namespace Sagt
                         {
                             throw new SagtFileException($"Expected '{END_ANALYSIS_AND_G_STUDY}' but found '{line}' when parsing file.");
                         }
-                        
+
                         line = reader.ReadLine();
                     }
                 }

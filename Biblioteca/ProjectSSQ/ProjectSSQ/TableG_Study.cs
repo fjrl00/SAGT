@@ -16,11 +16,8 @@
  *      las varianzas de instrumentación de error relativos y absolutos para las fuentes de instrumentación
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MultiFacetData;
+using System.Collections.Generic;
 
 namespace ProjectSSQ
 {
@@ -35,7 +32,7 @@ namespace ProjectSSQ
         private ListFacets lfInstrumentation; // Fuentes de instrumentación
         private Dictionary<string, double?> differentiationVar;
         private Dictionary<string, ErrorVar> errorVar;
-        
+
         private G_ParametersOptimization g_parameterOptimization;
 
 
@@ -46,7 +43,7 @@ namespace ProjectSSQ
 
         public TableG_Study()
         {
-            this.lfDifferentiation = new ListFacets(); 
+            this.lfDifferentiation = new ListFacets();
             this.lfInstrumentation = new ListFacets();
 
             this.differentiationVar = new Dictionary<string, double?>();
@@ -55,7 +52,7 @@ namespace ProjectSSQ
         }
 
 
-        public TableG_Study(ListFacets diff, ListFacets inst): this()
+        public TableG_Study(ListFacets diff, ListFacets inst) : this()
         {
             this.lfDifferentiation = diff;
             this.lfInstrumentation = inst;
@@ -63,7 +60,7 @@ namespace ProjectSSQ
 
 
         public TableG_Study(ListFacets differentiation, ListFacets instrumentation, TableAnalysisOfVariance lTSSQ)
-            :this(differentiation,instrumentation)
+            : this(differentiation, instrumentation)
         {
             List<string> llf_diff_cwr = differentiation.CombinationStringWithoutRepetition();
             List<string> llf_inst_cwr = instrumentation.CombinationStringWithoutRepetition();
@@ -74,7 +71,7 @@ namespace ProjectSSQ
             {
                 string key = llf_diff_cwr[i];
                 double? tVar = lTSSQ.CorrectedComp(key);
-                if ((tVar != null) && (double)tVar<0)
+                if ((tVar != null) && (double)tVar < 0)
                 {
                     tVar = 0;
                 }
@@ -106,9 +103,9 @@ namespace ProjectSSQ
                             ListFacets lf = totalFacets.ListDesignFacets(key);
                             absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);   // Note that we can use MixedComp, since fixed facets (the ones for which CorrecComp is relevant) will result in 0 error anyway
                         }
-                    }   
+                    }
                     else                                // If some are differentiation facets, then they do directly count towards both relative and absolute error variances
-                    { 
+                    {
                         if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         {
                             absError = 0.0;
@@ -118,11 +115,11 @@ namespace ProjectSSQ
                         else
                         {
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);  
+                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);
                             relError = absError;
                         }
                     }
-                    ErrorVar error_variance = new ErrorVar(relError,absError);
+                    ErrorVar error_variance = new ErrorVar(relError, absError);
                     this.errorVar.Add(key, error_variance);
                 }
             }
@@ -131,13 +128,13 @@ namespace ProjectSSQ
             double totalRelErrorVar = CalcTotalRelErrorVar();
             double totalAbsErrorVar = CalcTotalAbsErrorVar();
 
-            this.g_parameterOptimization = new G_ParametersOptimization(totalFacets, total_differentiation_var, 
+            this.g_parameterOptimization = new G_ParametersOptimization(totalFacets, total_differentiation_var,
             totalRelErrorVar, totalAbsErrorVar);
 
         }// end constructor G_Parameters
 
 
-        public TableG_Study(ListFacets differentiation, ListFacets instrumentation, 
+        public TableG_Study(ListFacets differentiation, ListFacets instrumentation,
             Dictionary<string, double?> diffVar, Dictionary<string, ErrorVar> errorVar,
             G_ParametersOptimization gp)
         {
@@ -147,13 +144,13 @@ namespace ProjectSSQ
             this.errorVar = errorVar;
             this.g_parameterOptimization = gp;
         }
-        
-    
+
+
         public TableG_Study(ListFacets differentiation, ListFacets instrumentation,
             double coefG_Rel, double coefG_Abs,
             double totalRelErrorVar, double totalAbsErrorVar,
             double errorRelStandDev, double errorAbsStandDev)
-                :this(differentiation,instrumentation)
+                : this(differentiation, instrumentation)
         {
 
             ListFacets totalFacets = differentiation.Concatenate(instrumentation);
@@ -275,8 +272,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.Total_differentiation_var();
         }
-        
-        
+
+
         /* Descripción:
          *  Devuelve la suma de todas la varianzas de error relativas
          */
@@ -284,8 +281,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.TotalRelErrorVar();
         }
-        
-        
+
+
         /* Descripción:
          *  Devuelve la suma de todas la varianzas de error relativas
          */
@@ -293,8 +290,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.TotalAbsErrorVar();
         }
-        
-        
+
+
         /*
          * Descripción:
          *  Devuelve la desviación estandar de la suma de las varianzas objetivo
@@ -303,8 +300,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.TargetStandDev();
         }
-        
-        
+
+
         /* Descripción:
          *  Devuelve la desviación estandar de la suma de las varianzas del error relativo
          */
@@ -312,8 +309,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.ErrorRelStandDev();
         }
-        
-        
+
+
         /* Descripción
          *  Devuelve la desviación estandar de la suma de las varianzas del error absoluto
          */
@@ -321,8 +318,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.ErrorAbsStandDev();
         }
-        
-        
+
+
         /*
          * Despcrición:
          *  Devuelve el coeficiente G relativo
@@ -331,8 +328,8 @@ namespace ProjectSSQ
         {
             return this.g_parameterOptimization.CoefG_Rel();
         }
-        
-        
+
+
         /*
         * Despcrición:
         *  Calcula el coeficiente G absoluto
@@ -344,7 +341,7 @@ namespace ProjectSSQ
 
         #endregion Métodos de consulta de la clase TableG_Study
 
-        
+
         /* Descripción:
          *  Calcula el valor total de todos los target contenidos en el objeto
          */
@@ -353,7 +350,7 @@ namespace ProjectSSQ
             double retVal = 0;
             int n = this.differentiationVar.Keys.Count;
             List<string> ldesign = new List<string>(this.differentiationVar.Keys);
-            for (int i = 0; i < n;i++ )
+            for (int i = 0; i < n; i++)
             {
                 string key = ldesign[i];
                 double? v = this.differentiationVar[key];
@@ -399,8 +396,8 @@ namespace ProjectSSQ
             }
             return retVal;
         }
-        
-        
+
+
         /* Descripción:
          *  Calcula la suma de todas la varianzas de error absolutas
          */

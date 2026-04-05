@@ -14,13 +14,10 @@
  *      Libreria Suma de cuadrados, excepciones de la clase G_ParametersOptimization.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectSSQ
 {
-    public class G_ParametersOptimizationException: Exception
+    public class G_ParametersOptimizationException : Exception
     {
         public G_ParametersOptimizationException()
             : base()

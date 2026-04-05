@@ -14,10 +14,6 @@
  *  Contiene los datos de un proyecto
  */
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace ConnectLibrary
@@ -86,8 +82,8 @@ namespace ConnectLibrary
         {
             return this.pk_project;
         }
-        
-        
+
+
         public string GetNameProject()
         {
             return this.name_project;
@@ -125,7 +121,7 @@ namespace ConnectLibrary
             this.pk_project = pk;
         }
 
-        
+
         public void SetNameProject(string name_project)
         {
             this.name_project = name_project;
@@ -146,7 +142,7 @@ namespace ConnectLibrary
 
         public void SetDescription(string description)
         {
-            this.description  = description;
+            this.description = description;
         }
 
 
@@ -219,7 +215,7 @@ namespace ConnectLibrary
             DataTable dtPrueba = dataSetProject.Tables[0];
             string nameTabla = dtPrueba.TableName;
             int numCols = dtPrueba.Columns.Count;
-            for (int i = 0; i < numCols; i++ )
+            for (int i = 0; i < numCols; i++)
             {
                 string nameCol = dtPrueba.Columns[i].ColumnName;
             }
@@ -249,7 +245,7 @@ namespace ConnectLibrary
 
         public override string ToString()
         {
-            return "[name= " + this.name_project + ", date=" + this.dateCreation.ToString() 
+            return "[name= " + this.name_project + ", date=" + this.dateCreation.ToString()
                 + ", name_director=" + this.name_director_project + ", description=" + this.description
                 + "]";
         }
@@ -270,7 +266,7 @@ namespace ConnectLibrary
 
         public override int GetHashCode()
         {
-            return (this.pk_project + this.name_project.GetHashCode())/3;
+            return (this.pk_project + this.name_project.GetHashCode()) / 3;
         }
 
 

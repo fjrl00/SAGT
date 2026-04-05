@@ -11,14 +11,12 @@
  * Fecha de revisión: 20/Jun/2012       
  * 
  */
+using AuxMathCalcGT;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.IO;
-using AuxMathCalcGT;
+using System.Text;
 
 namespace MultiFacetData
 {
@@ -126,7 +124,7 @@ namespace MultiFacetData
          *  - lF contiene el subconjunto de facetas de mfo con que crear la tabla colapsada
          *      Si una faceta está omitida según Facet.Omit no es relevante. Tan solo si está en lF
          */
-        public ObsTable(ListFacets lF, MultiFacetsObs mfo, bool zero=false)
+        public ObsTable(ListFacets lF, MultiFacetsObs mfo, bool zero = false)
         {
             this.matrix = IniIndexSubTable(lF);
             this.listF = lF;
@@ -223,7 +221,7 @@ namespace MultiFacetData
             for (int i = 0; i < n; i++)
             {
                 double? data = this.ObsData(i);
-                if(data != null)
+                if (data != null)
                 {
                     if (sum_X != null)
                     {
@@ -254,7 +252,7 @@ namespace MultiFacetData
                 {
                     if (sum_X_2 != null)
                     {
-                        sum_X_2 += data*data;
+                        sum_X_2 += data * data;
                     }
                     else
                     {

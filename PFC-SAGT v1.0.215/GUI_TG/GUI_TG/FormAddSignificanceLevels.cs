@@ -13,15 +13,10 @@
  * Descripción:
  *      Ventana para añadir los nuevos niveles de significación.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MultiFacetData;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -45,7 +40,7 @@ namespace GUI_GT
         TransLibrary.ReadFileTrans dicMeans;
         ListFacets lfInstrumentation;
         ListFacets lfDifferentiation;
-         
+
         public FormAddSignificanceLevels()
         {
             InitializeComponent();
@@ -116,7 +111,7 @@ namespace GUI_GT
             // dgv.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[2].Width = 250;
             dgv.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-  
+
             dgv.Columns[3].HeaderText = this.stringNewSizeOfUniverse;
             dgv.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[3].DefaultCellStyle.BackColor = Color.Gold;

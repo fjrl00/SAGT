@@ -13,19 +13,13 @@
  * Descripción:
  *      Muestra los datos resumenes en una gráfica creada con un chartControl
  */
+using ProjectSSQ;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MultiFacetData;
-using ProjectSSQ;
 using System.Windows.Forms.DataVisualization.Charting;
-using ConfigCFG;
 
 namespace GUI_GT
 {
@@ -222,7 +216,7 @@ namespace GUI_GT
                 this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].IsVisibleInLegend = false;
             }
 
-            
+
         }// end AddG_Parameter(int pos,G_Parameters g)
 
 
@@ -234,7 +228,7 @@ namespace GUI_GT
          *      double valor valor de la serie y etiqueta.
          *      string serie: nombre de la serie.
          */
-        private void introducirSerie(int pos, double valor,string serie)
+        private void introducirSerie(int pos, double valor, string serie)
         {
             double v = valor;
             DataPoint dataP = new DataPoint(pos, v);
@@ -261,7 +255,7 @@ namespace GUI_GT
             double b = colorHSL.L; // brillo
 
             double newB = b - (b / 8);
-            if  (newB>=0)// (newB < 360d)
+            if (newB >= 0)// (newB < 360d)
             {
                 b = newB;
             }
@@ -278,7 +272,7 @@ namespace GUI_GT
         private void btSaveChartImage_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
-            
+
             if (Directory.Exists(sagt_initial_directory))
             {
                 saveDialog.InitialDirectory = sagt_initial_directory;
@@ -292,13 +286,13 @@ namespace GUI_GT
             {
                 switch (saveDialog.FilterIndex)
                 {
-                    case(0):
+                    case (0):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
-                    case(1):
+                    case (1):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
                         break;
-                    case(2):
+                    case (2):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
                     default:
@@ -308,7 +302,7 @@ namespace GUI_GT
             }
         }
 
-        
+
 
         #region Traducción de la ventana
         /*======================================================================================

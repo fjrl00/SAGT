@@ -12,13 +12,7 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 
@@ -261,9 +255,9 @@ namespace GUI_GT
          *  Cambia de idioma los elementos de la ventana.
          */
         private void traslationElements(string pathFileTrans)
-        {            
+        {
 
-            
+
             /* Nota:
              *  Con "Application.StartupPath+ "\\" " obtenemos el path donde se ejecuta la aplicación para
              *  buscar correctamente los ficheros de traducción.
@@ -325,6 +319,6 @@ namespace GUI_GT
             }
         }
         #endregion Traducción de la venatan FormMeansImport
-        
+
     }// end public partial class FormMeansImport : Form
 }// end namespace GUI_TG

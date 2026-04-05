@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ConnectLibrary
 {
-    public class SagtUser_Exception: Exception
+    public class SagtUser_Exception : Exception
     {
         public SagtUser_Exception()
             : base()

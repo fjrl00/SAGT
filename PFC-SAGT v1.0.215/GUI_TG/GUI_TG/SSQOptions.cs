@@ -22,15 +22,10 @@ using Sagt;
 using SsqPY;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading; // permite usar hilos
 using System.Windows.Forms;
-using TransLibrary;
 
 
 namespace GUI_GT
@@ -317,7 +312,7 @@ namespace GUI_GT
             LoadG_ParametersInDataGridView(tAnalysis_tG_Study_Opt, this.dGridViewExG_Parameters);
             LoadTotalG_Parameters(tableG_Study);
             LoadDGridViewExFacetsOptimization(tAnalysis_tG_Study_Opt);
-            LoadDataGridViewExOptimizationResum(tAnalysis_tG_Study_Opt, 
+            LoadDataGridViewExOptimizationResum(tAnalysis_tG_Study_Opt,
                 this.dGridViewExOptimizationResum);
             // Los datos de la pestaña de información
             this.tbNameFileSsqInfo.Text = tAnalysis_tG_Study_Opt.GetNameFileDataCreation();
@@ -463,7 +458,7 @@ namespace GUI_GT
 
                 dgvExSSq.Rows.Add(my_Row);
             }
-            
+
         }// end LoadSSQ_InDataGridView
 
 
@@ -601,7 +596,7 @@ namespace GUI_GT
 
             // Primera columna faceta
             //dgv.Columns[IND_NAME].Name = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
-            dgv.Columns[IND_NAME].HeaderText = nameColFacet; 
+            dgv.Columns[IND_NAME].HeaderText = nameColFacet;
             dgv.Columns[IND_NAME].Width = 100;
             dgv.Columns[IND_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
 
@@ -613,7 +608,7 @@ namespace GUI_GT
 
             // tercera columna descripción/ comentario
             // dgv.Columns[IND_LEVELS_PROCESS].Name = this.levelsProcess; // Nombre de la columna Descripción (dependerá del idioma).
-            dgv.Columns[IND_LEVELS_PROCESS].HeaderText = this.levelsProcess; 
+            dgv.Columns[IND_LEVELS_PROCESS].HeaderText = this.levelsProcess;
             dgv.Columns[IND_LEVELS_PROCESS].Width = 100;
             dgv.Columns[IND_LEVELS_PROCESS].SortMode = DataGridViewColumnSortMode.NotSortable;
 
@@ -722,8 +717,8 @@ namespace GUI_GT
 
             List<G_ParametersOptimization> listG_ParametersOpt = analysis_G_Study_Opt.ListG_P_Optimization();
 
-            int l = listG_ParametersOpt.Count; 
-                // this.listG_Parameters.Count;
+            int l = listG_ParametersOpt.Count;
+            // this.listG_Parameters.Count;
             for (int i = 0; i < l; i++)
             {
                 G_ParametersOptimization gp_aux = listG_ParametersOpt[i];
@@ -764,8 +759,8 @@ namespace GUI_GT
          *  TableAnalysisOfVariance tbAnalysisVar: Tabla análisis de varianza
          *  DataGridViewEx.DataGridViewEx dgvExOptimization: Donde se mostrarán los datos.
          */
-        private void AddColunmToDGVOptimization(ListFacets newListFacets,G_ParametersOptimization newG_Parameters
-            ,DataGridViewEx.DataGridViewEx dgvExOptimization)
+        private void AddColunmToDGVOptimization(ListFacets newListFacets, G_ParametersOptimization newG_Parameters
+            , DataGridViewEx.DataGridViewEx dgvExOptimization)
         {
             // Creamos la nueva columna y la añadimos
             DataGridViewColumn dgc = new DataGridViewColumn();
@@ -777,7 +772,7 @@ namespace GUI_GT
             int num_col_pos = dgvExOptimization.ColumnCount;
             dgc.Name = resum + " " + num_col_pos.ToString();
             dgvExOptimization.Columns.Add(dgc);
-            
+
             // Usamos la nueva lista de facetas y la mostramos
             ListFacets lf = newG_Parameters.G_ListFacets();
 
@@ -834,7 +829,7 @@ namespace GUI_GT
             dgv.Columns[pos].HeaderText = label;
             dgv.Columns[pos].Width = lg;
             dgv.Columns[pos].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[pos].ReadOnly = true; 
+            dgv.Columns[pos].ReadOnly = true;
             dgv.Columns[pos].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
             dgv.Columns[pos].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
@@ -867,7 +862,7 @@ namespace GUI_GT
         private void tsmiActionAddLevelSign_Click(Analysis_and_G_Study tablesOfAnalysisG)
         {
             // Combrobamos que haya un objeto de tipo Tabla de análisis
-            if(tablesOfAnalysisG == null)
+            if (tablesOfAnalysisG == null)
             {
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -919,12 +914,12 @@ namespace GUI_GT
                 switch (res)
                 {//switch (*1*)
                     case (DialogResult.Cancel): salir = true; break;
-                        // Hemos cancelado la operación y salimos del bucle
+                    // Hemos cancelado la operación y salimos del bucle
                     case (DialogResult.OK):
                         // Para facetas de instrumentación
-                        int numInstFacets = lfInst.Count(); 
+                        int numInstFacets = lfInst.Count();
                         // Para facetas de diferenciación
-                        int numDiffFacets = lfDiff.Count(); 
+                        int numDiffFacets = lfDiff.Count();
 
                         // DataGridViewEx con las facetas de instrumentación
                         DataGridViewEx.DataGridViewEx dgvExAddInstLevelSign = formAddSign.DataGridViewExAddInstrumentationLevels();
@@ -996,7 +991,7 @@ namespace GUI_GT
                             try
                             {
                                 // lista de facetas que contedra tanto las facetas de instrumentación como de diferenciación.
-                                
+
                                 ListFacets newlf = tablesOfAnalysisG.TableAnalysisVariance().ListFacets().DeepClone();
 
                                 /* Modificamos los valores de las facetas de intrumentación en la lista clonada.
@@ -1009,7 +1004,7 @@ namespace GUI_GT
                                     // el nuevo nivel se obtiene de la tabla
                                     int newlevel = int.Parse(dgvExAddInstLevelSign.Rows[i].Cells[numCol - 1].Value.ToString());
                                     int newSizeUni = readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                    
+
                                     Facet auxF = newlf.LookingFacet(name);
                                     auxF.Level(newlevel);
                                     auxF.SizeOfUniverse(newSizeUni);
@@ -1024,11 +1019,11 @@ namespace GUI_GT
                                 {
                                     string name = dgvExAddDiffLevelSign.Rows[i].Cells[0].Value.ToString();
                                     // el nuevo nivel se obtiene de la tabla
-                                    
+
                                     int newSizeUni = readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                    
+
                                     Facet auxF = newlf.LookingFacet(name);
-                                    
+
                                     auxF.SizeOfUniverse(newSizeUni);
                                     newLevelListDiffFacets.Add(auxF);
                                 }
@@ -1061,9 +1056,9 @@ namespace GUI_GT
             } while (!salir);// (*1*)
 
             return retVal;
-            
+
         }// end AddSignificanceLevel
-      
+
 
         /* Descripción:
          *  Método auxiliar. Obtiene la nueva lista de facetas con los niveles introducidos 
@@ -1145,7 +1140,7 @@ namespace GUI_GT
 
                         if (correct)
                         {// (*4*)
-                            
+
                             /* Creamos una lista de facetas de instrumentación con los datos introducidos 
                              * por el usuario.
                              */
@@ -1198,7 +1193,7 @@ namespace GUI_GT
                             salir = true;
 
                         }// end if (*4*)
-                    break;
+                        break;
                 }//end switch (*1*)
             } while (!salir);// (*1*)
             return newlf;
@@ -1316,7 +1311,7 @@ namespace GUI_GT
         {
             ListFacets retListF = new ListFacets();
             int n = checkedLtBox.Items.Count;
-            
+
             for (int i = 0; i < n; i++)
             {
                 if (checkedLtBox.GetItemChecked(i))
@@ -1367,7 +1362,7 @@ namespace GUI_GT
 
                                     salir = true;
                                     ListFacets lfSeleted = FacetsSelectedIn_cListBox(lf, checkedLtBox);
-                                    FormShowCharts2 formShowCharts2 = 
+                                    FormShowCharts2 formShowCharts2 =
                                         new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
                                             false, this.tsmiChartCoefGRel.Text, beginning, ending, increment);
                                     formShowCharts2.Show();
@@ -1611,7 +1606,7 @@ namespace GUI_GT
 
             try
             {
-                
+
                 Analysis_and_G_Study retVal = null; // Valor de retorno
 
                 List<string> listString = new List<string>();
@@ -1654,7 +1649,8 @@ namespace GUI_GT
                     }
                 } while (!salir);
                 return retVal;
-            }catch(ImportEduGSsq.AnalysisSsqEduG_Exception)
+            }
+            catch (ImportEduGSsq.AnalysisSsqEduG_Exception)
             {
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
@@ -1675,7 +1671,7 @@ namespace GUI_GT
 
                 return ImportExcel.ImportFileXLS_to_AAGS(path, transFacets, transSSq, transG_p, transResum);
             }
-            catch(Analysis_and_G_Study_Exception)   //todo
+            catch (Analysis_and_G_Study_Exception)   //todo
             {
                 ShowMessageErrorOK(errorFormatFile);
                 return null;    //Note: functions that call this function should take this return null into account to avoid deleting data
@@ -1888,10 +1884,10 @@ namespace GUI_GT
                     {
                         bool res = false;
                         string pathFile = saveDialog.FileName;
-                        string extFile = pathFile.Substring(pathFile.LastIndexOf('.')+1);
+                        string extFile = pathFile.Substring(pathFile.LastIndexOf('.') + 1);
                         switch (extFile)
                         {
-                            case(DEFAULT_EXT_SCORE):
+                            case (DEFAULT_EXT_SCORE):
                                 res = tableAnalysis.WritingFileDataSumOfSquares(pathFile);
                                 break;
                             case (DEFAULT_EXT_SSQ_EDUG):
@@ -1918,7 +1914,7 @@ namespace GUI_GT
                     }
                 }// end if (* 2 *)
             }// enf if (* 1 *)
-            
+
         }// end tsmiActions_SSq_ExportSquares_Click
 
 
@@ -2212,7 +2208,7 @@ namespace GUI_GT
                 lbTextGeneralizabilityCoef.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = lbTextCoef_G_Rel.Name.ToString();
                 lbTextCoef_G_Rel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                
+
                 // Etiquetas del tabPage: Información
                 name = lbNameFileSsqInfo.Name.ToString();
                 lbNameFileSsqInfo.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();

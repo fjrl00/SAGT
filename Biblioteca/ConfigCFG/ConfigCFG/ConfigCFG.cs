@@ -12,14 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
-using ProjectMeans;
-using TransLibrary;
 using System.IO;
+using System.Text;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ConfigCFG
 {
@@ -38,7 +34,7 @@ namespace ConfigCFG
         const string STRING_NUM_OF_DECIMALS = "Decimals";
         const string STRING_DECIMAL_SEPARATOR = "Separator";
         const int DEFAULT_DECIMAL = 3; // Número de decimales por defecto
-        const string STRING_NULL_TO_ZERO = "Null_to_zero";  
+        const string STRING_NULL_TO_ZERO = "Null_to_zero";
         const string DEFAULT_DECIMAL_SEPARATOR = DECIMAL_SEPARATOR_PERIOD;
         const string WORKSPACE_FOLDER = "Workspace_folder";
 
@@ -121,7 +117,7 @@ namespace ConfigCFG
         // Tipo de grafica para representar la serie: Lineal o splin
         private SeriesChartType serieChartType;
         // Posición donde se mostrará el dato del punto.
-        private LabelAlignmentStyles labelAlignmentStyles; 
+        private LabelAlignmentStyles labelAlignmentStyles;
         // Marca de punto
         private MarkerStyle markerStyle;
 
@@ -144,7 +140,7 @@ namespace ConfigCFG
             this.null_to_zero = false;
             this.path_workspace = "";
 
-            
+
             // Coeficiente G relativo
             this.check_coefG_Rel = true;
             this.color_coefG_Rel = Color.Blue;
@@ -176,7 +172,7 @@ namespace ConfigCFG
             this.tableFontFamily = "Verdana";
             this.textFontSize = 12; // tamaño por defecto de la fuente
             this.textFontFamily = "Verdana";
-            
+
         }// ConfigCFG
 
 
@@ -221,7 +217,7 @@ namespace ConfigCFG
             return this.decimalSeparator;
         }
 
-        
+
         /* Descripción:
          *  Devuelve el valor de la variable booleana que indica si se interpretarán los valores nulos como
          *  cero.
@@ -807,7 +803,7 @@ namespace ConfigCFG
                 writer.WriteLine(WORKSPACE_FOLDER + "=" + this.Get_Path_Workspace());
                 writer.WriteLine();
                 writer.WriteLine();
-                
+
                 /*
                  * ======================
                  * Parámetros de Gráficos
@@ -847,7 +843,7 @@ namespace ConfigCFG
             }
         }// end WriteFileConfig
 
-        
+
         /*
          * Descripción:
          *  Lee el contenido de el archivo config.cfg y lo carga en la clase
@@ -867,7 +863,7 @@ namespace ConfigCFG
             }
         }
 
-        
+
         /*
          * Descripción:
          *  Toma los datos de la linea que se pasa como parametró los interpreta y los carga en la
@@ -1025,11 +1021,11 @@ namespace ConfigCFG
                 {
                     throw new ConfigCFGException("Error al leer la linea " + nLine.ToString());
                 }
-                
+
             }
         }// end AssigValueCfg
-        
-        
+
+
         /* Descripción:
          *  Operación auxiliar. Devuelve true si el string que se pasa como parámetro se corresponde con la cadena
          *  "true", false en el caso que la cadena sea "false" y lanzará una excepción en otro caso.
@@ -1039,10 +1035,10 @@ namespace ConfigCFG
             bool retVal = false;
             switch (b.ToLower())
             {
-                case("true"):
+                case ("true"):
                     retVal = true;
                     break;
-                case("false"):
+                case ("false"):
                     break;
                 default:
                     throw new ConfigCFGException("No es un booleano valido");
@@ -1066,7 +1062,7 @@ namespace ConfigCFG
 
             res.Append(TITLE_REPORTS + "/n");
             res.Append(STRING_LANGUAGE + " = " + this.language.ToString() + "/n");
-            res.Append(STRING_NUM_OF_DECIMALS + " = " + this.numOfDecimals.ToString()+"/n");
+            res.Append(STRING_NUM_OF_DECIMALS + " = " + this.numOfDecimals.ToString() + "/n");
             res.Append(STRING_DECIMAL_SEPARATOR + " = " + this.decimalSeparator + "/n");
             res.Append(STRING_NULL_TO_ZERO + " = " + this.null_to_zero + "/n");
             res.Append(STRING_TYPE_OF_TABLE_MEANS + " = " + this.typeMeans.ToString() + "/n");
@@ -1096,7 +1092,7 @@ namespace ConfigCFG
             res.Append(STRING_COLOR_TOTAL_ABS_ERROR_VAR + " = " + Color2String(this.colorTotalAbsErrorVar) + "/n");
             // Varianza de error relativo
             res.Append(STRING_CHECK_TOTAL_REL_ERROR_VAR + " = " + this.checkTotalRelErrorVar + "/n");
-            res.Append(STRING_COLOR_TOTAL_REL_ERROR_VAR + " = " + Color2String(this.colorTotalRelErrorVar) );
+            res.Append(STRING_COLOR_TOTAL_REL_ERROR_VAR + " = " + Color2String(this.colorTotalRelErrorVar));
             // Tipo de gráfica
             res.Append(STRING_SERIES_CHART_TYPE + " = " + this.serieChartType.ToString());
             // Posición de los valores
@@ -1127,13 +1123,13 @@ namespace ConfigCFG
          */
         private SeriesChartType StringToSeriesCharType(string type)
         {
-            SeriesChartType  retVal = SeriesChartType.Spline;
+            SeriesChartType retVal = SeriesChartType.Spline;
             switch (type)
             {
-                case("Spline"):
+                case ("Spline"):
                     retVal = SeriesChartType.Spline;
                     break;
-                case("Line"):
+                case ("Line"):
                     retVal = SeriesChartType.Line;
                     break;
                 default:
@@ -1203,7 +1199,7 @@ namespace ConfigCFG
                 + this.markerStyle.GetHashCode()
                 + this.typeMeans.GetHashCode() + this.shadingRows.GetHashCode()
                 + this.tableFontSize.GetHashCode() + this.tableFontFamily.GetHashCode()
-                + this.textFontSize.GetHashCode() + this.textFontFamily.GetHashCode())/3;
+                + this.textFontSize.GetHashCode() + this.textFontFamily.GetHashCode()) / 3;
         }
 
         #endregion Métodos redefinidos: ToString, Equals y GetHashCode

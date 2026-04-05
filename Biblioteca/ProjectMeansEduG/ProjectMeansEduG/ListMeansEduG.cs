@@ -13,18 +13,14 @@
  * Descripción: 
  *      Crea una lista de tabla de medias a partir de un fichero .txt informe de las medias de EduG 6.0
  */
+using AuxMathCalcGT;
+using ImportEduGSsq;
+using MultiFacetData;
+using ProjectMeans;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using MultiFacetData;
-using ProjectMeans;
 using System.IO;
-using System.Globalization;
-using System.Windows.Forms;
-using AuxMathCalcGT;
-using ImportEduGSsq;
 
 namespace ImportEduGMeans
 {
@@ -42,7 +38,7 @@ namespace ImportEduGMeans
 
         /* Variance */
         private const string STR_VARIANCE_EN = "Variance:";
-        private const string STR_VARIANCE_FR = "Variance:"; 
+        private const string STR_VARIANCE_FR = "Variance:";
 
         /* Standard Dev */
         private const string STR_STANDARD_SEV_EN = "Standard Dev.";
@@ -119,12 +115,12 @@ namespace ImportEduGMeans
                     foundHeaderReport = false;
                     ListMeansEduG listMeans = new ListMeansEduG(); // inicializamos
                     line = reader.ReadLine();
-                    
+
                     while (line != null && !foundHeaderReport)
                     {
                         found = IsLineHeadersTableMeansEduG(line);
                         foundHeaderReport = IsLineHeaderReportsEduG(line);
-                        
+
                         if (line.StartsWith(STR_GRAND_MEANS_EN) || line.StartsWith(STR_GRAND_MEANS_FR))
                         {
                             string str = line.Replace(STR_GRAND_MEANS_EN, "");
@@ -153,13 +149,13 @@ namespace ImportEduGMeans
                         {
                             if (found)
                             {
-                                switch(typeMeans)
+                                switch (typeMeans)
                                 {
-                                    case(ConfigCFG.TypeOfTableMeans.Default):
+                                    case (ConfigCFG.TypeOfTableMeans.Default):
                                         TableMeans tbMeans = ReadAuxTableMeansOfArrayLines(line, reader, grand_meand, variance, std_dev);
                                         listMeans.Add(tbMeans);
                                         break;
-                                    case(ConfigCFG.TypeOfTableMeans.TableMeansDif):
+                                    case (ConfigCFG.TypeOfTableMeans.TableMeansDif):
                                         TableMeansDif tbMeansDif = ReadAuxTableMeansDifOfArrayLines(line, reader, grand_meand, variance, std_dev);
                                         listMeans.Add(tbMeansDif);
                                         break;
@@ -173,7 +169,7 @@ namespace ImportEduGMeans
                             }
                             line = reader.ReadLine();
                         }
-                        
+
                     }
                     if (listMeans.Count() > 0)
                     {
@@ -185,7 +181,7 @@ namespace ImportEduGMeans
                 {
                     line = reader.ReadLine();
                 }
-                
+
             }// end while
 
             return listMeansOfReports;
@@ -202,8 +198,8 @@ namespace ImportEduGMeans
          *  double  variance: Varianza
          *  double std_dev: desviación típica
          */
-        private static TableMeans ReadAuxTableMeansOfArrayLines(string line, TextReader reader, double grandMean, 
-            double  variance, double std_dev)
+        private static TableMeans ReadAuxTableMeansOfArrayLines(string line, TextReader reader, double grandMean,
+            double variance, double std_dev)
         {
             char[] delimeterChars = { '\t', ' ' };
             string[] arrayOfShares = line.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries);
@@ -264,7 +260,7 @@ namespace ImportEduGMeans
             }
             string design = lf.StringOfListFactes();
             TableMeans tbMeans = new TableMeans(dt, grandMean, variance, std_dev, design);
-            
+
             // tbMeans.Calc_GrandMean_Variance_StdDev(true);
             /* Nota: el último parámetro de la sentencia anterior es true ya que EduG interpreta
              * los valores null como ceros.
@@ -341,13 +337,13 @@ namespace ImportEduGMeans
                 int n = arrayTableLine.Length;
                 string[] arrayTableLine2 = new string[arrayTableLine.Length + 3];
 
-                for(int j=0; j<n; j++)
+                for (int j = 0; j < n; j++)
                 {
-                    arrayTableLine2[j]=arrayTableLine[j];
+                    arrayTableLine2[j] = arrayTableLine[j];
                 }
-                arrayTableLine2[n] = ((double)ConvertNum.String2Double(arrayTableLine2[n-3])-grandMean).ToString();
-                arrayTableLine2[n+1] = ((double)ConvertNum.String2Double(arrayTableLine2[n-2])-variance).ToString();
-                arrayTableLine2[n+2] = ((double)ConvertNum.String2Double(arrayTableLine2[n-1])-std_dev).ToString();
+                arrayTableLine2[n] = ((double)ConvertNum.String2Double(arrayTableLine2[n - 3]) - grandMean).ToString();
+                arrayTableLine2[n + 1] = ((double)ConvertNum.String2Double(arrayTableLine2[n - 2]) - variance).ToString();
+                arrayTableLine2[n + 2] = ((double)ConvertNum.String2Double(arrayTableLine2[n - 1]) - std_dev).ToString();
 
                 arrayTableLine = arrayTableLine2;
 
@@ -446,7 +442,7 @@ namespace ImportEduGMeans
                     arrayTableLine2[j] = arrayTableLine[j];
                 }
                 arrayTableLine2[n] = ((double)ConvertNum.String2Double(arrayTableLine2[n - 3]) - grandMean).ToString();
-                arrayTableLine2[n + 1] = (((double)ConvertNum.String2Double(arrayTableLine2[n - 3]) - grandMean)/std_dev).ToString();
+                arrayTableLine2[n + 1] = (((double)ConvertNum.String2Double(arrayTableLine2[n - 3]) - grandMean) / std_dev).ToString();
 
 
                 arrayTableLine = arrayTableLine2;
@@ -511,7 +507,8 @@ namespace ImportEduGMeans
 
                 // devuelve el valor de retorno
                 return listMeansEduG;
-            }catch(IOException e)
+            }
+            catch (IOException e)
             {
                 throw e;
             }
@@ -538,7 +535,7 @@ namespace ImportEduGMeans
             int i = 0;
             string line = lines[i];
             foundHeaderReport = IsLineHeaderReportsEduG(line);
-            
+
             while (i < numLines)
             {
                 if (foundHeaderReport)
@@ -590,7 +587,7 @@ namespace ImportEduGMeans
                                     TableMeans tbMeans = ReadAuxTableMeansOfArrayLines(lines, i, grand_meand, variance, std_dev);
                                     listMeans.Add(tbMeans);
                                     break;
-                                case (ConfigCFG.TypeOfTableMeans.TableMeansDif): 
+                                case (ConfigCFG.TypeOfTableMeans.TableMeansDif):
                                     TableMeansDif tbMeansDif = ReadAuxTableMeansDifOfArrayLines(lines, i, grand_meand, variance, std_dev);
                                     listMeans.Add(tbMeansDif);
                                     break;
@@ -601,7 +598,7 @@ namespace ImportEduGMeans
                                 default:
                                     throw new ListMeansEduG_Exception("Error: No es un tipo de tabla de media reconocido");
                             }
-                            
+
                         }
                         i++;
                     }
@@ -689,7 +686,7 @@ namespace ImportEduGMeans
             /* Nota: el último parámetro de la sentencia anterior es true ya que EduG interpreta
              * los valores null como ceros.
              */
-            
+
             return tbMeans;
         }// end ReadAuxTableMeansOfArrayLines
 

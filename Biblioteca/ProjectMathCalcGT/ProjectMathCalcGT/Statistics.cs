@@ -14,9 +14,6 @@
  *      Cálculo de valores estadisticos: Media, varianza, desviación tipica
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AuxMathCalcGT
 {

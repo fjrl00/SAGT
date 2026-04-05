@@ -11,27 +11,20 @@
  * Fecha de revisión: 17/May/2012       Versión: 1.0 build 215.0.4
  * 
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.ServiceModel;
-using TransLibrary;
-using MultiFacetData;
-using ProjectMeans;
-using MultiFacetPY;
-using ProjectSSQ;
-using System.Threading; // permite usar hilos
-using System.Diagnostics;
-using System.IO; // para poder usar File.Exist
 using ConfigCFG;
 using ConnectLibrary;
+using MultiFacetData;
+using ProjectMeans;
+using ProjectSSQ;
+using System;
+using System.Diagnostics;
+using System.IO; // para poder usar File.Exist
+using System.ServiceModel;
+using System.Threading; // permite usar hilos
+using System.Windows.Forms;
+using TransLibrary;
 
 //============================================
-using GUI_GT.MenPasWS;
 
 
 namespace GUI_GT
@@ -61,7 +54,7 @@ namespace GUI_GT
         // string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\" + SAGT_DIR + "\\" + WORKSPACE_DIR;
 
         // fichero de ayuda chm
-        private string manual_file_chm = "Ayuda SAGT.chm"; 
+        private string manual_file_chm = "Ayuda SAGT.chm";
 
         // Constantes referentes a los archivos de idiomas
         const string MENU_OPTIONS = "idioma_menu.txt"; // etiquetas del menú principal
@@ -133,14 +126,14 @@ namespace GUI_GT
         public FormPrincipal()
         {
             InitializeComponent();
-            
+
             this.Text = this.Text + " " + this.version + this.version2;
             this.dicError = new ReadFileTrans(Application.StartupPath + LANG_PATH + ERROR_MSG);
             this.dicMessage = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + STRING_MESSAGE);
             this.dicMeans = new ReadFileTrans(Application.StartupPath + LANG_PATH + MEAN_STRINGS);
 
             LoadConfigCFG();
-            
+
             this.editMultiFacetObs = false;
 
             // Incializa la opción de suma de cuadrados ocultando el tabPage de edición de la descripción de facetas
@@ -172,7 +165,8 @@ namespace GUI_GT
             // para poder compararla. 
             switch (fileExt)
             {
-                case ("sagt"): loadFileSagt(path); 
+                case ("sagt"):
+                    loadFileSagt(path);
                     // hacemos que se muestre el primer contenido del archivo
                     ExcludeTabPages();
                     // Restauramos los colores
@@ -190,7 +184,7 @@ namespace GUI_GT
                         // Asignamos el nuevo color
                         this.tsmiMeans.BackColor = System.Drawing.SystemColors.Highlight;
                         // this.tabControlOptions.SelectedTab = this.tabPageMeans;
-                        
+
                         this.tabPageMeans.Parent = this.tabControlOptions;
                     }
                     else if (this.sagtElements.GetAnalysis_and_G_Study() != null)
@@ -201,7 +195,8 @@ namespace GUI_GT
                         this.tabPageSSQ.Parent = this.tabControlOptions;
                     }
                     break;
-                case ("anls"): LoadAnalysisFile(path); 
+                case ("anls"):
+                    LoadAnalysisFile(path);
                     // hacemos que se muestre el tabPage de análisis
                     ExcludeTabPages();
                     // Restauramos los colores
@@ -232,9 +227,9 @@ namespace GUI_GT
         private void EnableSaveWedService(bool enableOption, SagtUser user)
         {
             // Métodos para abrir
-            this.tsmiDataOpenWebService.Enabled = enableOption;            
-            this.tsmiMeansOpenWebService.Enabled = enableOption;            
-            this.tsmiSSqOpenWebService.Enabled = enableOption;            
+            this.tsmiDataOpenWebService.Enabled = enableOption;
+            this.tsmiMeansOpenWebService.Enabled = enableOption;
+            this.tsmiSSqOpenWebService.Enabled = enableOption;
             this.tsmiAnalysisOpenWebService.Enabled = enableOption;
             // Métodos para guardar 
             if (!enableOption || user.GetAuthorizationToAccess().Equals(SagtUser.UserAccess.Administrador)
@@ -382,11 +377,11 @@ namespace GUI_GT
             TranslationMenuItems(lang, Application.StartupPath + LANG_PATH + ANALYSIS_STRINGS, this.mStripAnalysis);
             // Cambia los objetos del tabPageAnalysis
             TranslationAnalysisElements(lang, Application.StartupPath + LANG_PATH + ANALYSIS_STRINGS);
-     
+
             // Cambia los dialogos
             TranslationStringDialogMessage(lang, STRING_MESSAGE);
-            
-            
+
+
         }// end changeLanguage
 
         /* Descripción:
@@ -410,7 +405,7 @@ namespace GUI_GT
                 // Se produjo un error al traducir
                 // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
-            } 
+            }
         }
 
         /*
@@ -444,21 +439,23 @@ namespace GUI_GT
                      */
                     foreach (ToolStripItem item in menu.Items)
                     {
-                        if(item.Equals(this.tsSeparator1) || item.Equals(this.tsSeparator2))
+                        if (item.Equals(this.tsSeparator1) || item.Equals(this.tsSeparator2))
                         {
                             // no hago nada
-                        }else{
+                        }
+                        else
+                        {
                             name = item.Name.ToString();
                             item.Text =
                                 dic.labelTraslation(name).GetTranslation(lang).ToString();
-                            
+
                             if (((ToolStripMenuItem)item).DropDownItems != null)
                             {
                                 this.translationDropDownItems((ToolStripMenuItem)item, dic, lang);
 
                             }
-                            
-                        
+
+
                             /*
                             name = mnuItemOpcion.Name.ToString();
                             mnuItemOpcion.Text =
@@ -479,7 +476,7 @@ namespace GUI_GT
                 // Se produjo un error al traducir mostramos el mensaje
                 // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
-            }       
+            }
         }
 
 
@@ -508,7 +505,7 @@ namespace GUI_GT
                         this.translationDropDownItems(mnuItem2, dic, lang);
                     }
                 }
-                
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
@@ -544,7 +541,7 @@ namespace GUI_GT
                 txtConfirmClose = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Mensage de la ventana de carga
-                name ="msgLoading";
+                name = "msgLoading";
                 msgLoading = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Mensage de la ventana de conexión
@@ -734,12 +731,12 @@ namespace GUI_GT
                                 string user = formPass.UserId(); // nombre de usuario
                                 string pass = formPass.UserPass(); // contaseña
 
-                                
+
                                 th.Start();
 
                                 // Inicio de conexión
                                 sagtWS_Client = new GUI_GT.MenPasWS.SagtW();
-      
+
                                 bool isUserValidate = sagtWS_Client.EstaRegistrado(user.ToLower(), pass.ToLower());
 
                                 if (isUserValidate)
@@ -926,7 +923,7 @@ namespace GUI_GT
                 // Asignamos el nuevo color
                 this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
             }
-            
+
         }
 
 
@@ -1060,7 +1057,8 @@ namespace GUI_GT
                 DialogResult res = formSetting.ShowDialog();
                 switch (res)
                 {
-                    case DialogResult.Cancel: salir = true; 
+                    case DialogResult.Cancel:
+                        salir = true;
                         break;
                     case DialogResult.OK:
                         // Optenemos el path del fichero de configuración.
@@ -1073,15 +1071,15 @@ namespace GUI_GT
                         // Si cambia el numero de decimales o el caracter separador refrescamos todos los datos.
                         if (!cfgApli.GetNumberOfDecimals().Equals(oldNumberOfDecimals)
                             || !cfgApli.GetDecimalSeparator().Equals(oldDecimalSeparator))
-                        {    
+                        {
                             this.RefreshDataInAllData();
                         }
 
                         salir = true;
                         break;
-                    //case DialogResult.Yes:
-                    //    this.ShowWindowsHelp();
-                    //    break;
+                        //case DialogResult.Yes:
+                        //    this.ShowWindowsHelp();
+                        //    break;
                 }
             } while (!salir);
 
@@ -1097,7 +1095,7 @@ namespace GUI_GT
          */
         private void FormPrincipal_Closing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (e.CloseReason == CloseReason.UserClosing)   //check para ver si el cierre es por el usuario, único caso donde la ventana de confirmación debe aparecer
             {
                 DialogResult res = ShowMessageDialog(
@@ -1134,7 +1132,7 @@ namespace GUI_GT
          */
         private void tsmiAboutOf_Click(object sender, EventArgs e)
         {
-            FormAboutOf formAboutof = new FormAboutOf(cfgApli.GetConfigLanguage(), 
+            FormAboutOf formAboutof = new FormAboutOf(cfgApli.GetConfigLanguage(),
                 Application.StartupPath + LANG_PATH + STRING_MESSAGE, version);
             formAboutof.ShowDialog();
         }
@@ -1187,7 +1185,7 @@ namespace GUI_GT
             }
             // Refrescamos los g_Parámetros del la opción suma de cuadrados
             Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if(tAnalysis_tG_Study_Opt!= null)
+            if (tAnalysis_tG_Study_Opt != null)
             {
                 LoadAllDataInDataGridViewEx_SSQOptions(tAnalysis_tG_Study_Opt);
             }
@@ -1251,7 +1249,7 @@ namespace GUI_GT
         {
             tsmiActionOpenWebService_Click(TypeFile.sagt);
         }
-        
+
 
         /* Descripción:
          *  Se activa al pulsar la acción "Importar" del menú vertical de la opción "Datos". Llama a un
@@ -1355,7 +1353,7 @@ namespace GUI_GT
         private void tsmiBuildMeans_Click(object sender, EventArgs e)
         {
             // Llama al metodo ShowWindowsBuildMeans de la clase parcial dataOptions.cs
-            tsmiActionBuildMeans_Click(sender,e);
+            tsmiActionBuildMeans_Click(sender, e);
         }
 
 
@@ -1369,7 +1367,7 @@ namespace GUI_GT
             // Este método se encuentra en SSQOptions.cs
             EstimationPlan();
         }
-        
+
 
         /* Descrpción:
          *  Generar un archivo Excel a partir de los datos contenidos en la tabla de facetas y datos.
@@ -1505,7 +1503,7 @@ namespace GUI_GT
          */
         private void btImportScores_Click(object sender, EventArgs e)
         {
-           btActionImportScores_Click(this.sagtElements.GetMultiFacetsObs(),this.dataGridViewExObsTable);
+            btActionImportScores_Click(this.sagtElements.GetMultiFacetsObs(), this.dataGridViewExObsTable);
         }
 
 
@@ -1823,7 +1821,7 @@ namespace GUI_GT
                 tsmiActionDataSavedWebService_Click();
             }
         }
-        
+
 
         /*
          * Descripción: 
@@ -1959,7 +1957,7 @@ namespace GUI_GT
 
         /* Descripción:
          *  Se activa al pulsar sobre el botón Aceptar de la pestaña editar descripción de facetas.
-         */ 
+         */
         private void btEditDescriptionFacetsAcept_Click(object sender, EventArgs e)
         {
             btActionEditDescriptionFacetsAcept_Click();
@@ -2023,7 +2021,7 @@ namespace GUI_GT
 
         /* Descripción:
          *  Recupera los datos de un fichero de análisis de la base de datos del servicio Web.
-         */ 
+         */
         private void tsmiAnalysisOpenWebService_Click(object sender, EventArgs e)
         {
             tsmiActionOpenWebService_Click(TypeFile.anls);
@@ -2177,7 +2175,7 @@ namespace GUI_GT
          */
         private void tsmiCloseAnalysis_Click(object sender, EventArgs e)
         {
-            tsmiActionCloseAnalysis_Click(sender, e);   
+            tsmiActionCloseAnalysis_Click(sender, e);
         }
 
         #endregion Botones del menú de acciones de Análisis
@@ -2205,7 +2203,7 @@ namespace GUI_GT
          */
         private void btAnalysis_NestingFacet_Click(object sender, EventArgs e)
         {
-            btActionAnalysis_NestingFacet_Click();   
+            btActionAnalysis_NestingFacet_Click();
         }
 
 
@@ -2258,7 +2256,7 @@ namespace GUI_GT
          */
         private void btImportAnalysisEditSsq_Click(object sender, EventArgs e)
         {
-            
+
             btActionImportAnalysisEditSsq_Click(this.dgvExAnalysisEditSSq);
         }
 
@@ -2282,7 +2280,7 @@ namespace GUI_GT
             btActionCancelEditSsq_Click();
         }
 
-        
+
 
         /* Descripción:
          *  Permite añadir y editar comentarios en el tabPageInfo de la opción Análisis
@@ -2540,7 +2538,7 @@ namespace GUI_GT
 
         #endregion Botones del menú de acciones de Proyectos
 
-        
+
 
         #region Botones del tapPage Proyectos
         /***************************************************************************************************
@@ -2555,15 +2553,15 @@ namespace GUI_GT
          */
         private void btProyectOk_Click(object sender, EventArgs e)
         {
-            switch(this.stateProyect)
+            switch (this.stateProyect)
             {
-                case(StateOfOptionProyects.AddProyect):
+                case (StateOfOptionProyects.AddProyect):
                     AddProyect();
                     break;
-                case(StateOfOptionProyects.Search):
+                case (StateOfOptionProyects.Search):
                     SearchProject();
                     break;
-                case(StateOfOptionProyects.Edition):
+                case (StateOfOptionProyects.Edition):
                     EditionProject();
                     break;
             }
@@ -2591,6 +2589,6 @@ namespace GUI_GT
         #endregion Botones del tapPage Proyectos
 
 
-        
+
     } // end public partial class FormPrincipal : Form
 } // end namespace GUI_TG

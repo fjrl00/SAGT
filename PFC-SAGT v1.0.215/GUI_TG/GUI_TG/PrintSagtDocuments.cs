@@ -15,17 +15,9 @@
  *      generación de informes.
  */
 
-using MultiFacetData;
-using ProjectMeans;
-using ImportEduGMeans;
-using Sagt;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -50,7 +42,7 @@ namespace GUI_GT
 
         // Nombre de los informes
         string nameSagtReport = "Informe SAGT";
-        
+
         // Variable (variará en función del idioma)
         string pag = "Página";
         string developer = "Desarrollado por";
@@ -229,9 +221,9 @@ namespace GUI_GT
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }// end printSagtDocument_BeginPrint
-        
+
 
         /* Descripción:
          *  Método auxiliar que devuelve la anchura total de la tabla que se pasa como parámetro
@@ -370,9 +362,9 @@ namespace GUI_GT
 
                             if (iLine >= arrStringLine.Count)
                             {
-                                bData = false; 
+                                bData = false;
                             }
-                            
+
                         }
 
                     }// end if  (* 5 *)
@@ -385,11 +377,11 @@ namespace GUI_GT
                 {// (* 1 *)
                     TabPageMeansEx tabPageMeansEx = null;
                     // Tiene que se menos dos ya que el ultimo tabPage es el de información
-                    while ((iPosListMeans < tabControlMeans.TabPages.Count - 1) 
+                    while ((iPosListMeans < tabControlMeans.TabPages.Count - 1)
                         && (iTopMargin < e.MarginBounds.Bottom && !bMorePagesToPrint))
                     {
                         tabPageMeansEx = (TabPageMeansEx)tabControlMeans.TabPages[iPosListMeans];
-                        
+
                         if (bNewPage)
                         {
                             iTopMargin = e.MarginBounds.Top;
@@ -413,7 +405,7 @@ namespace GUI_GT
                         // imprimos el nombre de la tabla
                         if (!isPrintNameTable)
                         {
-                            iTopMargin += textfontReport.Height+5;
+                            iTopMargin += textfontReport.Height + 5;
                             bMorePagesToPrint = PrintLineText(e, stringTable + ": " + tabPageMeansEx.Text, textfontReport, ref isPrintNameTable);
                         }
                         if (isPrintNameTable)
@@ -445,7 +437,7 @@ namespace GUI_GT
                                 }
                             }
                         }
-                        
+
                     }// end while
 
                     // Imprimos la pagina de información
@@ -472,7 +464,7 @@ namespace GUI_GT
 
 
                 // Imprimimos el informe de Suma de cuadrados
-                if(bSsq && !bData && !bMeans)
+                if (bSsq && !bData && !bMeans)
                 {// (* 1 *)
                     if (bNewPage)
                     {
@@ -507,7 +499,7 @@ namespace GUI_GT
                         // Necesito calcular el margen superior a partir del cual se escibe la siguiente tabla.
                         bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableSsq);
                         isFinishTableSsq = iRow >= dgvExAuxReport.RowCount && !bMorePagesToPrint;
-                                                    
+
                     }
                     // Imprimos la tabla de g_Parametros
                     if (isFinishTableSsq && !isFinishTableG_Parameters)
@@ -605,7 +597,7 @@ namespace GUI_GT
         /* Descripción:
          *  Realiza ajustes de las celdas de encabezado de una tabla que se pasa como parámetro.
          */
-        private void SettingHeadersCell(System.Drawing.Printing.PrintPageEventArgs e, 
+        private void SettingHeadersCell(System.Drawing.Printing.PrintPageEventArgs e,
             DataGridViewEx.DataGridViewEx dgvEx)
         {
             // Establecemos el margen izquierdo
@@ -622,7 +614,7 @@ namespace GUI_GT
 
 
                 iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
-                            GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11; 
+                            GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11;
 
                 // Save width and height of headers
                 // Guardar anchura y altura de cabecera
@@ -641,7 +633,7 @@ namespace GUI_GT
          *      DataGridViewEx.DataGridViewEx dataGridViewEx: tabla que se esta imprimiendo.
          *      ref bool isFinishTable: indica si se ha terminado de imprimir la tabla actual.
          */
-        private bool PrintDataGridViewEx(System.Drawing.Printing.PrintPageEventArgs e, 
+        private bool PrintDataGridViewEx(System.Drawing.Printing.PrintPageEventArgs e,
             DataGridViewEx.DataGridViewEx dataGridViewEx, Font fontReport, bool shadingRows, ref bool isFinishTable)
         {
             bool bMorePagesToPrint = false;
@@ -676,7 +668,7 @@ namespace GUI_GT
                     }
 
                     // Si es una nueva tabla imprimimos el encabezado
-                    if(isNewTable)
+                    if (isNewTable)
                     {
                         // Comprobamos si cabe el encabezado
                         if ((iTopMargin + iHeaderHeight) > (e.MarginBounds.Height + e.MarginBounds.Top))
@@ -708,7 +700,7 @@ namespace GUI_GT
                         iTopMargin += iHeaderHeight;
                     }
                     /************************************************************/
-                    
+
                     iCount = 0;
                     // Dibujamos el contenido de las columnas                
                     foreach (DataGridViewCell Cel in GridRow.Cells)
@@ -848,7 +840,7 @@ namespace GUI_GT
             int leftPunto2 = e.MarginBounds.Right; // +anchoCompleto; 
             int topPunto2 = e.MarginBounds.Bottom + 25;
             e.Graphics.DrawLine(Pens.Black, leftPunto1, topPunto1, leftPunto2, topPunto2);
-            
+
             // El Nombre del Programa a la derecha
             e.Graphics.DrawString(developer + ": " + NAME_STUDENT, headerPageFount, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Bottom + 25);
 
@@ -860,12 +852,12 @@ namespace GUI_GT
 
             // La universidad de málaga a la izquierda
             numPag++;
-            string num_pag = pag+" " + numPag; // Concatenamos el string "Página" con el número de página
+            string num_pag = pag + " " + numPag; // Concatenamos el string "Página" con el número de página
             e.Graphics.DrawString(num_pag, headerPageFount, Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width -
                                 e.Graphics.MeasureString(num_pag, headerPageFount, e.MarginBounds.Width).Width), e.MarginBounds.Bottom + 25);
 
             // El Nombre del Programa a la derecha
-            e.Graphics.DrawString(projectDirector + ": " + NAME_PROJECT_DIRECTOR , headerPageFount, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Bottom + 25 + alturaLetra);
+            e.Graphics.DrawString(projectDirector + ": " + NAME_PROJECT_DIRECTOR, headerPageFount, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Bottom + 25 + alturaLetra);
             e.Graphics.DrawString(academicDirector + ": " + NAME_ACADEMIC_DIRECTOR, headerPageFount, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Bottom + 25 + (alturaLetra * 2));
 
         }// end FootnoteOfTheReport
@@ -937,7 +929,7 @@ namespace GUI_GT
             newDgvEx.ColumnHeadersDefaultCellStyle.Font = fontTitle;
             newDgvEx.DefaultCellStyle.Font = fontCell;
             newDgvEx.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            
+
             // Agregarmos los titulos de las celdas
             for (int i = 0; i < numCol; i++)
             {
@@ -982,7 +974,7 @@ namespace GUI_GT
             char[] delimeterChars = { '\n' }; // nuestro delimitador será el caracter '/'
             string[] arrayline = txt.Split(delimeterChars);
             int n = arrayline.Length;
-            
+
             for (int i = 0; i < n; i++)
             {
                 string line = arrayline[i];
@@ -999,12 +991,12 @@ namespace GUI_GT
                     int lg = arrayOfSplit.Length;
 
                     string auxline = arrayOfSplit[0];
-                    for(int j=1;j<lg;j++)
+                    for (int j = 1; j < lg; j++)
                     {
                         string auxline2 = auxline + " " + arrayOfSplit[j];
                         Size auxTextSize = TextRenderer.MeasureText(auxline2, f);
 
-                        if (auxTextSize.Width  <= (e.MarginBounds.Width))
+                        if (auxTextSize.Width <= (e.MarginBounds.Width))
                         {
                             /* Si la anchura de auzxline2 es menor que la anchura de la página
                              * la añado a la linea

@@ -14,13 +14,9 @@
  *      Interface para tabla de medias Libreria de medias
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Data;
-using System.Linq;
-using System.Text;
 using MultiFacetData;
+using System.Data;
+using System.IO;
 
 namespace ProjectMeans
 {
@@ -29,7 +25,7 @@ namespace ProjectMeans
         /*=================================================================================================
          * Métodos de consulta
          *=================================================================================================*/
-        
+
         double? Data(int row, int col); // Devuelve el dato que se encuentra en la fila row, columna col
         double? MeanData(int row); // Devuelve el dato de media que se encuentra en la fila row
         double? VarianceData(int row); // Devuelve el dato de varianza que se encuentra en la fila row
@@ -42,7 +38,7 @@ namespace ProjectMeans
         double? Variance(); // Devuelve la varianza total de la tabla
         double? StdDev(); // Devuelve la desviación típica de la tabla
         DataSet TableMeans2DataSet(); // Convierte la tabla de medias en un DataSet
-        DataTable TableToDGV(bool hideNull=false);
+        DataTable TableToDGV(bool hideNull = false);
 
 
         /*=================================================================================================

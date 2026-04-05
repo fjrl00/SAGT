@@ -11,17 +11,15 @@
  * Fecha de revisión: 21/Mar/2011
  * 
  */
+using MultiFacetData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MultiFacetData;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace MultiFacetPY
 {
-    public class MultiFacetPY: MultiFacetsObs
+    public class MultiFacetPY : MultiFacetsObs
     {
         // Constantes
         /*
@@ -45,7 +43,7 @@ namespace MultiFacetPY
          *      string nameFileObs: Nombre del fichero.
          *      string description: Descripción del fichero.
          */
-        public MultiFacetPY(string path, ListFacets lF, string nameFileObs, string description) : 
+        public MultiFacetPY(string path, ListFacets lF, string nameFileObs, string description) :
             base(lF, nameFileObs, description)
         {
             //base(lF,nameFile,description);
@@ -156,7 +154,7 @@ namespace MultiFacetPY
                         design = StringDesign(design);
                         level = int.Parse(reader.ReadLine());
                         comment = reader.ReadLine();
-                        lFacets.Add(new Facet(nameFacet,level,comment,design));
+                        lFacets.Add(new Facet(nameFacet, level, comment, design));
                     }
                     // leemos la linea de descripción de fichero
                     descriptionFile = reader.ReadLine();
@@ -182,7 +180,7 @@ namespace MultiFacetPY
                             res.AssignDataToTheTableObs(ld);
                         }
                     }
-                    
+
                 }
 
                 return res;
@@ -199,7 +197,7 @@ namespace MultiFacetPY
         {
             string retVal = ""; // Valor de retorno
             int n = design.Length;
-            
+
             for (int i = 0; i < n; i++)
             {
                 string s = design.Substring(i, 1);
@@ -263,7 +261,7 @@ namespace MultiFacetPY
                 {
                     return null;
                 }
-                
+
             } // end using 
             return lDouble;
         } // public static List<double?> ReadFileData(String nameFile)

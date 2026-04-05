@@ -12,13 +12,7 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -40,7 +34,7 @@ namespace GUI_GT
         string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
 
         string[] typesFiles = {"Seleccione un fichero" ,
-                                  "Suma de cuadrados, GT E 2.0 (Pierre Ysewijn, 1996)", 
+                                  "Suma de cuadrados, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Resultado de suma de cuadrados, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Informe de análisis, EduG 6.0 - e, - f",
                                   "Análisis exportado por SAGT a Excel"};
@@ -292,7 +286,7 @@ namespace GUI_GT
          */
         private void traslationElementsSSQ_Import()
         {
-            
+
             TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + STRING_DATA_IMPORT);
             string name = "";
             try

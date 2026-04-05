@@ -15,14 +15,11 @@
  *      y generar consultas, inserciones y borrados.
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace ConnectLibrary
 {
-    public interface InterfaceConnectDB_WS: InterfaceConnectDB
+    public interface InterfaceConnectDB_WS : InterfaceConnectDB
     {
         /*=================================================================================================
          * Métodos de inserción

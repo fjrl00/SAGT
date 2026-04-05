@@ -13,20 +13,16 @@
  * Descripción:
  *      Inserta y recupera los datos de la base de datos
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Data.OleDb;
-using System.Data.SqlClient; // Para usar sqlParameter
-using System.Globalization;
-using Sagt;
+using AuxMathCalcGT;
+using ConfigCFG;
 using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
-using AuxMathCalcGT;
-using ConfigCFG;
+using Sagt;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 // using System.Windows.Forms;
 
 
@@ -63,7 +59,7 @@ namespace ConnectLibrary
         // Nombre de el dataTable Projectos
         private string DATATABLE_PROJECTS = "TbProjects";
 
-        
+
 
 
 
@@ -136,12 +132,12 @@ namespace ConnectLibrary
             cadenaInsert = "Insert into TbProjects(name_projects, date_project, description) ";
             //cadenaOleDb = "Insert into TbProjects(name_projects, date_project, description, fk_administ) ";
 
-            cadenaInsert += "VALUES('"+ project.GetNameProject() 
-                + "', '" + project.GetDateCreation().ToString() 
+            cadenaInsert += "VALUES('" + project.GetNameProject()
+                + "', '" + project.GetDateCreation().ToString()
                 + "', '" + project.GetDescription() + "');";
 
-            
-            string cadenaSelect = "  SELECT  pk_projects   FROM    TbProjects " 
+
+            string cadenaSelect = "  SELECT  pk_projects   FROM    TbProjects "
                 + "WHERE(TbProjects.name_projects = '" + project.GetNameProject()
                 + "' AND TbProjects.date_project like '" + project.GetDateCreation().ToString()
                 + "' AND TbProjects.description = '" + project.GetDescription() + "')";
@@ -162,7 +158,7 @@ namespace ConnectLibrary
          */
         public DataSet SelectSameProyects(int userID)
         {
-            string sentenciaSQL = "  SELECT  *     FROM    TbProjects WHERE (TbProjects.fk_administ = " + userID+ ")";
+            string sentenciaSQL = "  SELECT  *     FROM    TbProjects WHERE (TbProjects.fk_administ = " + userID + ")";
 
             DataTable dt = this.dataBase.Select2DataTable(sentenciaSQL);// creo un datatable con todas las tablas de mi base de datos
             dt.TableName = DATATABLE_PROJECTS;
@@ -176,7 +172,7 @@ namespace ConnectLibrary
          *  Devuelve un DataSet con los proyectos con el mismo nombre.
          */
         public DataSet SelectSameProyects(SagtProject project)
-        { 
+        {
             string sentenciaSQL = "  SELECT  *     FROM    TbProjects WHERE (TbProjects.name_projects = '" + project.GetNameProject() + "')";
 
             DataTable dt = this.dataBase.Select2DataTable(sentenciaSQL);// creo un datatable con todas las tablas de mi base de datos
@@ -202,17 +198,17 @@ namespace ConnectLibrary
             }
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(description))
             {
-                stringLike += " AND "; 
+                stringLike += " AND ";
             }
 
             if (!string.IsNullOrEmpty(description))
             {
-                stringLike += "TbProjects.description LIKE '" + description + "%'";            
+                stringLike += "TbProjects.description LIKE '" + description + "%'";
             }
 
             // sentenciaSQL = "  SELECT Alumnos.*     FROM    ((Alumnos INNER JOIN  Matricula ON Alumnos.ID_Alumno_DNI = Matricula.ID_Alumno_DNI) INNER JOIN   Cursos ON Matricula.ID_Curso = Cursos.ID_Curso) WHERE        (cursos.ID_Curso =" + codigoFPE + ")";
-            
-            if(!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(description))
+
+            if (!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(description))
             {
                 stringLike = " WHERE (" + stringLike + ")";
             }
@@ -312,8 +308,8 @@ namespace ConnectLibrary
         public DataSet SelectFiles(int fk_project, int fk_user, TypeFile typeFile)
         {
             string sentenciaSQL = "  SELECT  TbFiles.pk_file ,TbFiles.name_file, TbFiles.date_file     FROM    TbFiles WHERE ("
-                + " TbFiles.fk_project = " + fk_project + " AND TbFiles.fk_user = " + fk_user 
-                + " AND  TbFiles.type_file = '"  + typeFile.ToString() + "');";
+                + " TbFiles.fk_project = " + fk_project + " AND TbFiles.fk_user = " + fk_user
+                + " AND  TbFiles.type_file = '" + typeFile.ToString() + "');";
 
             DataSet dt = this.dataBase.Select2DataSet(sentenciaSQL);
             return dt;
@@ -341,7 +337,7 @@ namespace ConnectLibrary
             int fk_list_means = 0;
             ListMeans listMeans = sagtFile.GetListMeans();
 
-            if (listMeans!=null)
+            if (listMeans != null)
             {
                 fk_list_means = Insert_ListMeans(listMeans);
             }
@@ -373,9 +369,9 @@ namespace ConnectLibrary
         }// end Insert_Project
 
 
-         /* Descripción:
-         *  Inserta un objeto fichero Analysis en la base de datos en el proyecto especificado.
-         */
+        /* Descripción:
+        *  Inserta un objeto fichero Analysis en la base de datos en el proyecto especificado.
+        */
         public int Insert_AnalysisFile(Analysis_and_G_Study analysisFile, string nameFile, int fk_projects, int fk_user)
         {
             String cadenaInsertSagtFile;
@@ -430,9 +426,9 @@ namespace ConnectLibrary
 
             this.dataBase.Insert(insertMultiFacet);
             string select = "SELECT MAX(pk_multi_facet_obs) FROM TbMultiFacetObs ";
-            
+
             DataTable dt = this.dataBase.Select2DataTable(select);
-            int fk_multi_facet_obs= (int)dt.Rows[0][0];
+            int fk_multi_facet_obs = (int)dt.Rows[0][0];
 
 
             // Inserto la tabla de Observaciones
@@ -456,20 +452,21 @@ namespace ConnectLibrary
                     double? d = obs.Data(i, j);
 
                     string insertData = "Insert into TbDataObservation (fk_multi_facet_obs, row, name_column";
-                        if(d!=null){
-                            insertData += ", data_cell";
-                        }
-                        insertData += ") ";
-                        insertData += " VALUES (" + fk_multi_facet_obs + ", " + i + ", '" + nameColumn + "'";
-                        if(d!=null)
-                        {
-                            insertData += ", " + ConvertNum.DecimalToString(d, ConvertNum.DECIMAL_SEPARATOR_PERIOD);
-                        }
-                        insertData += ")";
+                    if (d != null)
+                    {
+                        insertData += ", data_cell";
+                    }
+                    insertData += ") ";
+                    insertData += " VALUES (" + fk_multi_facet_obs + ", " + i + ", '" + nameColumn + "'";
+                    if (d != null)
+                    {
+                        insertData += ", " + ConvertNum.DecimalToString(d, ConvertNum.DECIMAL_SEPARATOR_PERIOD);
+                    }
+                    insertData += ")";
                     this.dataBase.Insert(insertData);
                 }
             }
-            
+
             return fk_multi_facet_obs;
         }// end Insert_MultiFacetsObs
 
@@ -522,19 +519,19 @@ namespace ConnectLibrary
         public int Insert_Facet(Facet f)
         {
             string size = f.SizeOfUniverse().ToString();
-            if(f.SizeOfUniverse().Equals(int.MaxValue))
+            if (f.SizeOfUniverse().Equals(int.MaxValue))
             {
                 size = Facet.INFINITE;
             }
 
             string insertFacet = "Insert into TbFacets (name_facet, level_facet, size_of_universe, comment, omit, list_facet_design)";
             // insertFacet += "VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', '" + f.Omit() + "', '" + f.ListFacetDesing() + "')"; 
-            insertFacet += " VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', " + f.Omit() + ", '" + f.ListFacetDesign() + "')"; 
+            insertFacet += " VALUES('" + f.Name() + "', " + f.Level() + " , '" + size + "', '" + f.Comment() + "', " + f.Omit() + ", '" + f.ListFacetDesign() + "')";
             this.dataBase.Insert(insertFacet);
             string selectFacet = "SELECT MAX(TbFacets.pk_facet) FROM TbFacets";
             DataTable dt = this.dataBase.Select2DataTable(selectFacet);
             int pk_facet = (int)dt.Rows[0][0];
-            
+
             List<int> lSkipLevels = f.ListSkipLevels();
             int numSkipLevel = lSkipLevels.Count;
             for (int i = 0; i < numSkipLevel; i++)
@@ -543,7 +540,7 @@ namespace ConnectLibrary
                 string insertSkipLevel = "Insert into TbSkipLevels(skip_level, fk_facet) VALUES(" + l + " , " + pk_facet + ")";
                 this.dataBase.Insert(insertSkipLevel);
             }
-            
+
             return pk_facet;
         }// end Insert_Facet
 
@@ -576,7 +573,7 @@ namespace ConnectLibrary
             string comment = listMeans.GetTextComment();
 
             string insert_list_means = "INSERT into TbListMeans(date_creation, name_file_data_creation, text_comment)";
-            insert_list_means += " VALUES ('"+ date.ToString() + "', '" + nameFileCreation + "','" + comment + "')";
+            insert_list_means += " VALUES ('" + date.ToString() + "', '" + nameFileCreation + "','" + comment + "')";
 
             this.dataBase.Insert(insert_list_means);
 
@@ -609,7 +606,7 @@ namespace ConnectLibrary
                         + ConvertNum.DecimalToString((double)tbM.GrandMean(), ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                         + ", " + ConvertNum.DecimalToString((double)tbM.Variance(), ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                         + ", " + ConvertNum.DecimalToString((double)tbM.StdDev(), ConvertNum.DECIMAL_SEPARATOR_PERIOD)
-                        + ", '" + tbM.FacetDesign()+ "', '" + typeTbMeans + "', " + i + ")";
+                        + ", '" + tbM.FacetDesign() + "', '" + typeTbMeans + "', " + i + ")";
                     int pk_means = AuxInsertListMeans(insert_table_means);
                     // Hacemos el Mapeo de la tabla
                     Insert_TableMeans(tbM, pk_means);
@@ -650,7 +647,7 @@ namespace ConnectLibrary
                 {
                     // Se lanza un mensaje de error por no ser un tipo reconocido
                     throw new ConnectDB_Exception("Error: tabla de medias no reconocida");
-                }    
+                }
             }
 
             return pk_list_means;
@@ -702,11 +699,11 @@ namespace ConnectLibrary
                     }
                     else
                     {
-                        nameColumn = lf.FacetInPos(j).Name(); 
+                        nameColumn = lf.FacetInPos(j).Name();
                     }
 
                     Insert_TbMapMeans(fk_means, i, nameColumn, tbMeans.Data(i, j));
-                    
+
                 }
             }
         }// end Insert_TableMeans
@@ -728,27 +725,27 @@ namespace ConnectLibrary
                 {
                     string nameColumn;
 
-                    if(j==nCols - 1)
+                    if (j == nCols - 1)
                     {
                         // Diferencia de desviación típica
                         nameColumn = COLUMN_STAND_DEV_DIF;
                     }
-                    else if(j==nCols - 2)
+                    else if (j == nCols - 2)
                     {
                         // Diferencia de varianzas
                         nameColumn = COLUMN_VARIANCE_DIF;
                     }
-                    else if(j== nCols - 3)
+                    else if (j == nCols - 3)
                     {
                         // Diferencia de Medias
                         nameColumn = COLUMN_MEANS_DIF;
                     }
-                    else if(j== nCols - 4)
+                    else if (j == nCols - 4)
                     {
                         // Desviación típica
                         nameColumn = COLUMN_STAND_DEV; // Desviación típica
                     }
-                    else if(j==nCols - 5)
+                    else if (j == nCols - 5)
                     {
                         // Varianza
                         nameColumn = COLMN_VARIANCE; // Columna de varianza
@@ -760,7 +757,7 @@ namespace ConnectLibrary
                     }
                     else
                     {
-                         nameColumn = lf.FacetInPos(j).Name();
+                        nameColumn = lf.FacetInPos(j).Name();
                     }
 
                     Insert_TbMapMeans(fk_means, i, nameColumn, tbMeansDif.Data(i, j));
@@ -802,7 +799,7 @@ namespace ConnectLibrary
                         nameColumn = COLUMN_STAND_DEV; // Desviación típica
                     }
                     else if (j == nCols - 4)
-                    {   
+                    {
                         // Varianza
                         nameColumn = COLMN_VARIANCE; // Columna de varianza
                     }
@@ -920,7 +917,7 @@ namespace ConnectLibrary
 
         /* Descripción:
          *  Operación para realizar la inserción de la posción de una faceta en la lista.
-         */ 
+         */
         public void Aux_Insert_Facet_X_Pos(Facet f, ListFacets lf, int pk_facet, int pk_list_facets)
         {
             // encontramos la posición de la faceta si es que esta, si no esta no la insertamos
@@ -959,15 +956,15 @@ namespace ConnectLibrary
 
                 // Insertamos en la tabla TbAnalysisOfVariance
                 string insert_analysis_of_var = "INSERT into TbAnalysisOfVariance(source_of_var, df, ssq, msq, random_comp, mix_comp, correc_comp, porcentage, standard_error, fk_table_analysis_and_g_study) ";
-                insert_analysis_of_var += " VALUES ('" + source_of_var + "', " 
-                    + ConvertNum.DecimalToString(df, ConvertNum.DECIMAL_SEPARATOR_PERIOD) 
+                insert_analysis_of_var += " VALUES ('" + source_of_var + "', "
+                    + ConvertNum.DecimalToString(df, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + ConvertNum.DecimalToString(ssq, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + ConvertNum.DecimalToString(msq, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + ConvertNum.DecimalToString(random_comp, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
-                    + ", " + ConvertNum.DecimalToString(mix_comp, ConvertNum.DECIMAL_SEPARATOR_PERIOD) 
+                    + ", " + ConvertNum.DecimalToString(mix_comp, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + ConvertNum.DecimalToString(correc_comp, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + ConvertNum.DecimalToString(porcentage, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
-                    + ", " + ConvertNum.DecimalToString(standard_error, ConvertNum.DECIMAL_SEPARATOR_PERIOD) 
+                    + ", " + ConvertNum.DecimalToString(standard_error, ConvertNum.DECIMAL_SEPARATOR_PERIOD)
                     + ", " + fk_table_analysis_and_g_study + ")";
                 this.dataBase.Insert(insert_analysis_of_var);
             }
@@ -985,27 +982,27 @@ namespace ConnectLibrary
             for (int i = 0; i < numOfSources; i++)
             {
                 string sourceOfVar = ldesign[i];
-                
+
                 Dictionary<string, double?> differentiationVar = gStudy.Target();
                 Dictionary<string, ErrorVar> instrumentationVar = gStudy.Error();
                 Dictionary<string, ErrorVar> percent = gStudy.Percent();
- 
+
                 if (differentiationVar.ContainsKey(sourceOfVar))
                 {
                     // Si pertenece a las facetas de diferenciación
                     double? data = differentiationVar[sourceOfVar];
                     string insert_differentiation_var = "INSERT into TbDifferentiationVar(source_of_var, ";
-                    if(data!=null)
+                    if (data != null)
                     {
-                        insert_differentiation_var +=  " differentiation_var, ";
+                        insert_differentiation_var += " differentiation_var, ";
                     }
-                    insert_differentiation_var +=  " fk_table_analysis_and_g_study) ";
+                    insert_differentiation_var += " fk_table_analysis_and_g_study) ";
                     insert_differentiation_var += " VALUES ('" + sourceOfVar + "', ";
                     if (data != null)
                     {
                         insert_differentiation_var += ConvertNum.DecimalToString(data, ConvertNum.DECIMAL_SEPARATOR_PERIOD) + ", ";
                     }
-                    insert_differentiation_var +=  fk_table_analysis_and_g_study + ")";
+                    insert_differentiation_var += fk_table_analysis_and_g_study + ")";
                     this.dataBase.Insert(insert_differentiation_var);
                 }
                 else if (instrumentationVar.ContainsKey(sourceOfVar))
@@ -1018,28 +1015,28 @@ namespace ConnectLibrary
                     double? rel_error_percent = error_var_percent.RelErrorVar();
                     double? abs_error_percent = error_var_percent.AbsErrorVar();
 
-                    string insert_differentiation_var = "INSERT into TbInstrumentationVar(source_of_var,"; 
+                    string insert_differentiation_var = "INSERT into TbInstrumentationVar(source_of_var,";
 
                     if (rel_error_var != null)
                     {
-                        insert_differentiation_var += " rel_error_var,"; 
+                        insert_differentiation_var += " rel_error_var,";
                     }
 
                     if (rel_error_percent != null)
                     {
-                        insert_differentiation_var += " rel_error_percent,"; 
+                        insert_differentiation_var += " rel_error_percent,";
                     }
 
-                    if (abs_error_var  != null)
+                    if (abs_error_var != null)
                     {
-                        insert_differentiation_var += " abs_error_var,"; 
+                        insert_differentiation_var += " abs_error_var,";
                     }
 
-                    if (abs_error_percent   != null)
+                    if (abs_error_percent != null)
                     {
-                        insert_differentiation_var += " abs_error_percent,"; 
+                        insert_differentiation_var += " abs_error_percent,";
                     }
-                     
+
                     insert_differentiation_var += " fk_table_analysis_and_g_study) ";
 
                     insert_differentiation_var += "VALUES ('" + sourceOfVar + "', ";
@@ -1063,8 +1060,8 @@ namespace ConnectLibrary
                     {
                         insert_differentiation_var += ConvertNum.DecimalToString(abs_error_percent, ConvertNum.DECIMAL_SEPARATOR_PERIOD) + ", ";
                     }
- 
-                    insert_differentiation_var +=  fk_table_analysis_and_g_study + ")";
+
+                    insert_differentiation_var += fk_table_analysis_and_g_study + ")";
 
                     this.dataBase.Insert(insert_differentiation_var);
                 }
@@ -1131,7 +1128,7 @@ namespace ConnectLibrary
          */
         public SagtFile ReturnSagtFile(int pk_file)
         {
-            string cadenaSelect = "  SELECT  TbFiles.name_file, TbFiles.date_file, TbFiles.type_file,"+
+            string cadenaSelect = "  SELECT  TbFiles.name_file, TbFiles.date_file, TbFiles.type_file," +
                 " TbFiles.fk_multi_facet_obs, TbFiles.fk_list_means, TbFiles.fk_analysis_and_g_study FROM    TbFiles "
                 + "WHERE(TbFiles.pk_file = " + pk_file + ")";
 
@@ -1141,7 +1138,7 @@ namespace ConnectLibrary
             string name_file = dt.Rows[0]["name_file"].ToString();
 
 
-            DateTime date_file = (DateTime)dt.Rows[0]["date_file"]; 
+            DateTime date_file = (DateTime)dt.Rows[0]["date_file"];
             //DateTime date_file = DateTime.ParseExact(dt.Rows[0]["date_file"].ToString(), "dd/MM/yyyy HH:mm:ss",
             //                       new CultureInfo("es-ES", false));
 
@@ -1179,7 +1176,7 @@ namespace ConnectLibrary
          */
         public Analysis_and_G_Study Return_AnalysisFile(int pk_file)
         {
-            string cadenaSelect = "  SELECT  TbFiles.name_file, TbFiles.date_file, TbFiles.type_file,"+
+            string cadenaSelect = "  SELECT  TbFiles.name_file, TbFiles.date_file, TbFiles.type_file," +
                 " TbFiles.fk_multi_facet_obs, TbFiles.fk_list_means, TbFiles.fk_analysis_and_g_study FROM    TbFiles "
                 + "WHERE(TbFiles.pk_file = " + pk_file + ")";
 
@@ -1200,7 +1197,7 @@ namespace ConnectLibrary
                + "WHERE(TbMultiFacetObs.pk_multi_facet_obs = " + pk_multi_facet_obs + ")";
 
             DataTable dt = this.dataBase.Select2DataTable(cadenaSelect);
-            
+
             string name_file = dt.Rows[0]["name_file"].ToString();
             string description = dt.Rows[0]["description"].ToString();
             string comment = dt.Rows[0]["comment"].ToString();
@@ -1209,7 +1206,7 @@ namespace ConnectLibrary
             ListFacets lf = Return_ListFacets(pk_list_facets);
 
             InterfaceObsTable oTable = Return_ObsTable(lf, pk_multi_facet_obs);
-            
+
             return new MultiFacetsObs(lf, oTable, name_file, description, comment); ;
         }// end Return_MultiFacetObs
 
@@ -1245,7 +1242,7 @@ namespace ConnectLibrary
         private Facet Return_Facet(int pk_facet)
         {
             string cadenaSelect = "  SELECT  TbFacets.name_facet, TbFacets.level_facet, "
-               + "TbFacets.size_of_universe, TbFacets.comment, TbFacets.omit, TbFacets.list_facet_design " 
+               + "TbFacets.size_of_universe, TbFacets.comment, TbFacets.omit, TbFacets.list_facet_design "
                + " FROM    TbFacets "
                + "WHERE(TbFacets.pk_facet = " + pk_facet + ")";
 
@@ -1253,7 +1250,7 @@ namespace ConnectLibrary
 
             string name = dt.Rows[0]["name_facet"].ToString();
             int level = (int)dt.Rows[0]["level_facet"];
-            
+
             string size = dt.Rows[0]["size_of_universe"].ToString();
             int size_of_universe = int.MaxValue;
             if (!size.Equals(Facet.INFINITE))
@@ -1270,11 +1267,11 @@ namespace ConnectLibrary
 
             List<int> skipLevels = Return_ListSkipLevels(pk_facet);
 
-            Facet f =  new Facet(name, level, comment, size_of_universe, list_facet_design, omit);
-            
+            Facet f = new Facet(name, level, comment, size_of_universe, list_facet_design, omit);
+
             int n = skipLevels.Count;
-            
-            for(int i = 0; i < n; i++)
+
+            for (int i = 0; i < n; i++)
             {
                 int sl = skipLevels[i];
                 f.SetSkipLevels(sl);
@@ -1325,7 +1322,7 @@ namespace ConnectLibrary
 
             int nCol = lf.Count();
 
-            for (int i = 0; i < r; i++ )
+            for (int i = 0; i < r; i++)
             {
                 for (int j = 0; j < nCol; j++)
                 {
@@ -1347,7 +1344,7 @@ namespace ConnectLibrary
 
                     oTable.Data(d, i);
                 }
-                
+
             }
             return oTable;
         }// end Return_ObsTable
@@ -1387,14 +1384,14 @@ namespace ConnectLibrary
             DataTable dtMeans = this.dataBase.Select2DataTable(cadenaSelect_Means);
             // recorro uno a uno los elementos y añado la tabla
             int numRows = dtMeans.Rows.Count;
-            for (int i = 0; i < numRows; i++ )
+            for (int i = 0; i < numRows; i++)
             {
                 DataRow dtRow = dtMeans.Rows[i];
 
                 int pk_means = (int)dtRow["pk_means"];
                 // int fk_list_means = (int)dtRow["fk_list_means"];
                 int fk_list_facets = (int)dtRow["fk_list_facets"];
-                ListFacets lf = Return_ListFacets(fk_list_facets); 
+                ListFacets lf = Return_ListFacets(fk_list_facets);
                 double grand_mean = (double)dtRow["grand_mean"];
                 double variance = (double)dtRow["variance"];
                 double std_dev = (double)dtRow["std_dev"];
@@ -1421,7 +1418,7 @@ namespace ConnectLibrary
                     // Tipo de tabla de medias no reconocido lanzamos una excepción
                     throw new ConnectDB_Exception("Error al recuperar las tablas de medias");
                 }
-                
+
             }// end for
 
             return listMeans;
@@ -1440,7 +1437,7 @@ namespace ConnectLibrary
             string cadenaSelect = "  SELECT  TbMapMeans.row, TbMapMeans.name_column, TbMapMeans.data_cell "
                    + " FROM    TbMapMeans "
                    + " WHERE (TbMapMeans.fk_means = " + fk_means + ")";
-            
+
             DataTable dt = this.dataBase.Select2DataTable(cadenaSelect);
             int numCells = dt.Rows.Count;
             // El número de fila será el número de celdas entre el número de columnas
@@ -1646,7 +1643,7 @@ namespace ConnectLibrary
          */
         private Analysis_and_G_Study Return_Analysis_and_G_Study(int pk_analysis_and_g_study)
         {
-            string cadenaSelect = "  SELECT  TbAnalysisAndG_Study.date_creation, " 
+            string cadenaSelect = "  SELECT  TbAnalysisAndG_Study.date_creation, "
                    + " TbAnalysisAndG_Study.name_file_creation, TbAnalysisAndG_Study.text_comment, "
                    + " TbAnalysisAndG_Study.fk_list_facets, TbAnalysisAndG_Study.fk_list_facets_diff, "
                    + " TbAnalysisAndG_Study.fk_list_facets_inst "
@@ -1664,7 +1661,7 @@ namespace ConnectLibrary
 
             int fk_list_facets = (int)dt.Rows[0]["fk_list_facets"];
             ListFacets lf = Return_ListFacets(fk_list_facets);
-            
+
             int fk_list_facets_diff = (int)dt.Rows[0]["fk_list_facets_diff"];
             ListFacets lf_diff = Return_ListFacets(fk_list_facets_diff);
 
@@ -1707,14 +1704,14 @@ namespace ConnectLibrary
             DataTable dt = this.dataBase.Select2DataTable(cadenaSelect);
 
             List<string> ldesign = new List<string>();
-            Dictionary<string, double> df = new Dictionary<string,double>();
-            Dictionary<string, double?> ssq = new Dictionary<string,double?>();
+            Dictionary<string, double> df = new Dictionary<string, double>();
+            Dictionary<string, double?> ssq = new Dictionary<string, double?>();
             Dictionary<string, double?> msq = new Dictionary<string, double?>();
-            Dictionary<string, double?> randomComp = new Dictionary<string,double?>();
-            Dictionary<string, double?> mixComp = new Dictionary<string,double?>();
-            Dictionary<string, double?> correcComp = new Dictionary<string,double?>();
-            Dictionary<string, double?> porcentage = new Dictionary<string,double?>();
-            Dictionary<string, double?> standardError = new Dictionary<string,double?>();
+            Dictionary<string, double?> randomComp = new Dictionary<string, double?>();
+            Dictionary<string, double?> mixComp = new Dictionary<string, double?>();
+            Dictionary<string, double?> correcComp = new Dictionary<string, double?>();
+            Dictionary<string, double?> porcentage = new Dictionary<string, double?>();
+            Dictionary<string, double?> standardError = new Dictionary<string, double?>();
 
 
             int numRows = dt.Rows.Count;
@@ -1724,7 +1721,7 @@ namespace ConnectLibrary
                 string source_of_var = dt.Rows[i]["source_of_var"].ToString();
                 ldesign.Add(source_of_var);
                 double d_df = (double)dt.Rows[i]["df"];
-                df.Add(source_of_var,d_df);
+                df.Add(source_of_var, d_df);
                 double d_ssq = (double)dt.Rows[i]["ssq"];
                 ssq.Add(source_of_var, d_ssq);
                 double d_msq = (double)dt.Rows[i]["msq"];
@@ -1750,7 +1747,7 @@ namespace ConnectLibrary
          *  Devuelve un objeto que contiene la tabla G_Study recuperada de la base de datos a traves
          *  de la clave foranea
          */
-        private TableG_Study_Percent Return_Table_G_Study(int fk_table_analysis_and_g_study, ListFacets lf, 
+        private TableG_Study_Percent Return_Table_G_Study(int fk_table_analysis_and_g_study, ListFacets lf,
             ListFacets lf_diff, ListFacets lf_inst)
         {
             // Hacemos la consulata en la tabla de varianzas de diferenciación
@@ -1760,7 +1757,7 @@ namespace ConnectLibrary
 
             DataTable dt = this.dataBase.Select2DataTable(cadenaSelect);
 
-            Dictionary<string, double?> differentiationVar = new Dictionary<string,double?>();
+            Dictionary<string, double?> differentiationVar = new Dictionary<string, double?>();
 
             double total_diff_var = 0;
             int nRows = dt.Rows.Count;
@@ -1783,8 +1780,8 @@ namespace ConnectLibrary
 
             dt = this.dataBase.Select2DataTable(cadenaSelect);
 
-            Dictionary<string, ErrorVar> errorVar = new Dictionary<string,ErrorVar>();
-            Dictionary<string, ErrorVar> percentError = new Dictionary<string,ErrorVar>();
+            Dictionary<string, ErrorVar> errorVar = new Dictionary<string, ErrorVar>();
+            Dictionary<string, ErrorVar> percentError = new Dictionary<string, ErrorVar>();
 
             double total_rel_error_var = 0;
             double total_abs_error_var = 0;
@@ -1848,7 +1845,7 @@ namespace ConnectLibrary
             G_ParametersOptimization gp = new G_ParametersOptimization(lf, total_diff_var, total_rel_error_var,
                 total_abs_error_var);
 
-            return new TableG_Study_Percent(lf_diff, lf_inst, differentiationVar,errorVar, gp, percentError);
+            return new TableG_Study_Percent(lf_diff, lf_inst, differentiationVar, errorVar, gp, percentError);
         }// end Return_Table_G_Study
 
 

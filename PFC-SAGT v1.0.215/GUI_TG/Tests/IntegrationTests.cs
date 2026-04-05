@@ -1,14 +1,9 @@
 ﻿using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Tools;
-using FlaUI.Core.WindowsAPI;
 using FlaUI.UIA3;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
@@ -32,7 +27,7 @@ namespace Tests
          * - Spanish language
          * - datos.sagt must exist in workspace
          * - Don't have tabs capable of blocking our app on the foreground
-         */ 
+         */
         [Fact]
         public void BasicLoadingTest()
         {
@@ -69,7 +64,7 @@ namespace Tests
                 // Also must use FindFirstChild and not FindFirstDescendant since the second file
                 // shown in the file explorer will also have AutomationId 1.
                 // Information obtained thanks to Inspect.exe from the Windows SDK.
-                var openButton = openDialog.FindFirstChild(cf => cf.ByAutomationId("1")).AsButton();   
+                var openButton = openDialog.FindFirstChild(cf => cf.ByAutomationId("1")).AsButton();
                 openButton.Click();
 
                 //Now, test if the Description data has been laoded correctly

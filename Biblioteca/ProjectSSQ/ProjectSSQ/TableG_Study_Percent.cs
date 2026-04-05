@@ -14,14 +14,12 @@
  *      Clase TableG_Study_Percent que hereda de TableG_Study y que incorpora nuevas variable y operaciones 
  *      para el calculo del porcentaje de error
  */
+using AuxMathCalcGT;
+using MultiFacetData;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using MultiFacetData;
-using AuxMathCalcGT;
 
 namespace ProjectSSQ
 {
@@ -66,7 +64,7 @@ namespace ProjectSSQ
         }
 
         //Miscellaneous
-        public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation, 
+        public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
             Dictionary<string, double?> diffVar, Dictionary<string, ErrorVar> errorVar,
             G_ParametersOptimization gp, Dictionary<string, ErrorVar> percentError)
             : base(differentiation, instrumentation, diffVar, errorVar, gp)
@@ -75,9 +73,9 @@ namespace ProjectSSQ
         }
 
 
-        public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation, 
+        public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
             TableAnalysisOfVariance tableVariance)
-            :base(differentiation, instrumentation, tableVariance)
+            : base(differentiation, instrumentation, tableVariance)
         {
             CalcPercent();
         }
@@ -86,7 +84,7 @@ namespace ProjectSSQ
         public TableG_Study_Percent(ListFacets differentiation, ListFacets instrumentation,
             double coefG_Rel, double coefG_Abs, double totalRelErrorVar, double totalAbsErrorVar,
             double errorRelStandDev, double errorAbsStandDev)
-                : base(differentiation,instrumentation, coefG_Rel, coefG_Abs, totalRelErrorVar, totalAbsErrorVar,
+                : base(differentiation, instrumentation, coefG_Rel, coefG_Abs, totalRelErrorVar, totalAbsErrorVar,
                     errorRelStandDev, errorAbsStandDev)
         {
             CalcPercent();
@@ -151,17 +149,17 @@ namespace ProjectSSQ
                 double? percentErrorRel = err_Var.RelErrorVar();
                 if (percentErrorRel != null)
                 {
-                    percentErrorRel = ((double)percentErrorRel / totalVarErrorRel)*100;
+                    percentErrorRel = ((double)percentErrorRel / totalVarErrorRel) * 100;
                 }
-                
+
                 double? percentErrorAbs = err_Var.AbsErrorVar();
                 if (percentErrorAbs != null)
                 {
-                    percentErrorAbs = ((double)percentErrorAbs / totalVarErrorAbs)*100;
+                    percentErrorAbs = ((double)percentErrorAbs / totalVarErrorAbs) * 100;
                 }
-                ErrorVar percent_err_Var = new ErrorVar(percentErrorRel,percentErrorAbs);
+                ErrorVar percent_err_Var = new ErrorVar(percentErrorRel, percentErrorAbs);
                 this.percentError.Add(lf_key, percent_err_Var);
-            } 
+            }
         }
 
 
@@ -254,7 +252,7 @@ namespace ProjectSSQ
                 // Escribimos la marcha de comienzo de las varianzas de diferenciación
                 writerFile.WriteLine(BEGIN_DIFFERENTIATION_ROW);
 
-                foreach(string key in this.Target().Keys)
+                foreach (string key in this.Target().Keys)
                 {
                     // res = key.WritingStreamListFacets(writerFile);
                     writerFile.WriteLine(key + " " + this.Target(key));
@@ -400,7 +398,7 @@ namespace ProjectSSQ
                 {
                     throw new TableG_Study_PercentException($"Expected '{END_TABLE_G_STUDY_PERCENT}' but found '{line}' when parsing Table G_Study.");
                 }
-                
+
                 tableG_Study_P = new TableG_Study_Percent(lf_diff, lf_inst, diffVar, instVar, percent, gp);
             }
             catch (FormatException ex)
@@ -432,7 +430,7 @@ namespace ProjectSSQ
             DataTable dtSkipLevels_Dif = this.LfDifferentiation().SkipLevels2DataTable("TbSkipLevels_Diff");
             DataTable dtListFacets_Ins = this.LfInstrumentation().ListFacets2DataTable("TbListFacets_Ins");
             DataTable dtSkipLevels_Ins = this.LfInstrumentation().SkipLevels2DataTable("TbSkipLevels_Ins");
-            
+
             // Añadimos el dataTable al dataSet;
             dsTbAnalysis.Tables.Add(dtListFacets_Dif);
             dsTbAnalysis.Tables.Add(dtSkipLevels_Dif);
@@ -542,14 +540,14 @@ namespace ProjectSSQ
             }
 
             DataTable dtInstVar = dsG_Study.Tables["DataTableIns"];
-            
-            Dictionary<string, ErrorVar> errorVar = new Dictionary<string,ErrorVar>();
+
+            Dictionary<string, ErrorVar> errorVar = new Dictionary<string, ErrorVar>();
             Dictionary<string, ErrorVar> percent = new Dictionary<string, ErrorVar>();
             double totalErrorRel = 0;
             double totalErrorAbs = 0;
 
             numRows = dtInstVar.Rows.Count;
-            for(int i = 0; i < numRows; i++)
+            for (int i = 0; i < numRows; i++)
             {
                 DataRow row = dtInstVar.Rows[i];
                 string source = (string)row["source"];
@@ -569,7 +567,7 @@ namespace ProjectSSQ
                 {
                     abs_error_var = (double?)row["abs_error_var"];
                 }
-                
+
                 if (abs_error_var != null)
                 {
                     totalErrorAbs += (double)abs_error_var;
@@ -577,7 +575,7 @@ namespace ProjectSSQ
                 ErrorVar var = new ErrorVar(rel_error_var, abs_error_var);
                 errorVar.Add(source, var);
                 double? rel_error_percent = null;
-                if(!string.IsNullOrEmpty(row["rel_error_percent"].ToString()))
+                if (!string.IsNullOrEmpty(row["rel_error_percent"].ToString()))
                 {
                     rel_error_percent = (double?)row["rel_error_percent"];
                 }

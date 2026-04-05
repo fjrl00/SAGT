@@ -13,18 +13,16 @@
  * Descripción:
  *      Lectura de fichero suma de cuadrados (.ssq, GT E 2.0).
  */
+using MultiFacetData;
+using ProjectSSQ;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProjectSSQ;
-using MultiFacetData;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace SsqPY
 {
-    public class SSqPY: TableAnalysisOfVariance
+    public class SSqPY : TableAnalysisOfVariance
     {
         // Variables
 
@@ -62,13 +60,13 @@ namespace SsqPY
             Dictionary<string, double?> ssq, Dictionary<string, double> d_df,
             Dictionary<string, double?> rcomp, Dictionary<string, double?> mixcomp,
             Dictionary<string, double?> ccomp)
-            :base(lf, ssq, d_df, rcomp, mixcomp, ccomp)
+            : base(lf, ssq, d_df, rcomp, mixcomp, ccomp)
         {
             this.descriptionFile = descriptionFile;
             this.lfDepend = lfDepend;
             this.lfIndepend = lfIndepend;
         }
-        
+
 
         /* Descripción:
          *  Lee un fichero .ssq (fichero de suma de cuadrados, GT E 2.0, 1996) para obtener el objeto
@@ -102,7 +100,7 @@ namespace SsqPY
                             int level = int.Parse(reader.ReadLine());
                             int levelProces = int.Parse(reader.ReadLine());
                             string comment = "";
-                            Facet f = new Facet(name,level,comment);
+                            Facet f = new Facet(name, level, comment);
                             lf.Add(f);
                         }
                         // Ahora debemos saltarnos las lineas siguientes hasta encontra la marca N
@@ -122,7 +120,7 @@ namespace SsqPY
                             int pos = int.Parse(reader.ReadLine());
                             switch (pos)
                             {
-                                case (1): 
+                                case (1):
                                     // la faceta pertenece a la lista de facetas dependientes
                                     lfDepend.Add(f_aux);
                                     break;
@@ -139,14 +137,14 @@ namespace SsqPY
                         List<string> llf = CombSinRepPY(lf);
 
                         int numOfListFacets = llf.Count;
-                        
+
                         // Dictionary<ListFacets, int> degreeOfFreedom = new Dictionary<ListFacets, int>();
 
                         for (int i = 0; i < numOfListFacets; i++)
                         {
                             line = reader.ReadLine(); // leemos la suma de cuadrados
                             double d = double.Parse(line, NumberFormatInfo.InvariantInfo);
-                            ssq.Add(llf[i],d);
+                            ssq.Add(llf[i], d);
                             line = reader.ReadLine(); // leemos el grado de libertad
                             int df = int.Parse(line);
                             // degreeOfFreedom.Add(llf[i], df);

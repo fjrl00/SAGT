@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MultiFacetPY
 {
-    public class MultiFacetPYException:Exception
+    public class MultiFacetPYException : Exception
     {
         public MultiFacetPYException()
             : base()

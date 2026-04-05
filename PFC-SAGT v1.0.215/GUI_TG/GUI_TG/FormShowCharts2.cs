@@ -15,19 +15,15 @@
  *  segunda los datos con los que se construye el gráfico.
  */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using AuxMathCalcGT;
 using MultiFacetData;
 using ProjectSSQ;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace GUI_GT
 {
@@ -95,7 +91,7 @@ namespace GUI_GT
         {
             this.cfg = cfg;
             this.titulo = t;
-            this.abs = abs; 
+            this.abs = abs;
             // this.tabPageResum.Parent = null; // Oculta la pestaña de datos
             this.facetsSelected = facetsSelected;
             traslationElements(this.cfg.GetConfigLanguage(), Application.StartupPath + LANG_PATH + STRING_TEXT);
@@ -139,7 +135,7 @@ namespace GUI_GT
 
                 List<G_ParametersOptimization> list_gP = new List<G_ParametersOptimization>();
                 int nPoints = listInt.Count;
-                for(int j = 0; j < nPoints;j++)
+                for (int j = 0; j < nPoints; j++)
                 {
                     ListFacets estimateLF = newListFacets(lfOriginal, f, listInt[j]);
 
@@ -194,7 +190,7 @@ namespace GUI_GT
         private List<int> ListPoints(int pBegin, int pEnd, int increment)
         {
             List<int> retListVal = new List<int>();
-            int n = pEnd-pBegin;
+            int n = pEnd - pBegin;
             int i = pBegin;
             while (i <= pEnd)
             {
@@ -557,7 +553,7 @@ namespace GUI_GT
 
         /* Descripción:
          *  Evento que se ejecuta al seleccionar una faceta en el comboBox
-         */ 
+         */
         private void cBoxSelectFacet_SelectedIndexChanged(object sender, EventArgs e)
         {
             int ind = this.cBoxSelectFacet.SelectedIndex;

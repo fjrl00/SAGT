@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using Xunit;
 
@@ -25,7 +24,7 @@ namespace Tests
             //STEP 1: Build all our stuff (MFO, ListMeans, AAGS)
 
             string comment = "";
-            if(toggleComment)
+            if (toggleComment)
             {
                 comment = @"
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Users might enter emojis like 😃, 
@@ -151,7 +150,7 @@ namespace Tests
         }
 
         [Fact]
-        public void BasicCircle() 
+        public void BasicCircle()
         {
             SagtFile sagtFile = ejemplo1full(true);
 

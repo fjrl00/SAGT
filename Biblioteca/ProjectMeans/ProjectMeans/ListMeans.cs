@@ -11,15 +11,14 @@
  * Fecha de revisión: 10/Jul/2012
  * 
  */
+using MultiFacetData;
 using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using MultiFacetData;
 
 namespace ProjectMeans
 {
@@ -421,10 +420,10 @@ namespace ProjectMeans
             // Creamos el Datatable
             DataTable dtListMeans = new DataTable("TbListMeans");
             // Añadimos los datos
-            dtListMeans.Columns.Add(new DataColumn("name_file_data_creation" ,System.Type.GetType("System.String")));
+            dtListMeans.Columns.Add(new DataColumn("name_file_data_creation", System.Type.GetType("System.String")));
             dtListMeans.Columns.Add(new DataColumn("date_creation", System.Type.GetType("System.DateTime")));
             dtListMeans.Columns.Add(new DataColumn("text_comment", System.Type.GetType("System.String")));
-            
+
             // Insertamos los datos
             DataRow row = dtListMeans.NewRow();
             row["name_file_data_creation"] = this.nameFileDataCreation;
@@ -440,9 +439,9 @@ namespace ProjectMeans
             for (int i = 0; i < nMeans; i++)
             {
                 DataSet newDataSet = this.listTableMeans[i].TableMeans2DataSet();
-                lDataSet[i+1] = newDataSet;
+                lDataSet[i + 1] = newDataSet;
             }
-            
+
             return lDataSet;
         }// end ListMeans2DataSet
 
@@ -467,7 +466,7 @@ namespace ProjectMeans
                 text_comment = (string)dt.Rows[0]["text_comment"];
             }
             listMeans.SetTextComment(text_comment);
-            
+
             int numDataSet = lDataSets.Length;
             for (int i = 1; i < numDataSet; i++)
             {

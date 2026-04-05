@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 
 namespace MultiFacetData
 {
@@ -503,7 +500,8 @@ namespace MultiFacetData
             return level;
         }
 
-        public int Level_skipped() {             
+        public int Level_skipped()
+        {
             return level - skipLevels.Count;
         }
 
@@ -596,7 +594,7 @@ namespace MultiFacetData
         /* Descripción:
          *  Devuelve el valor de faceta colapsada, es decir, el valor ajustado al eliminar los niveles
          */
-        public int CollapsedValue( int value)
+        public int CollapsedValue(int value)
         {
             foreach (int l in this.skipLevels)
             {

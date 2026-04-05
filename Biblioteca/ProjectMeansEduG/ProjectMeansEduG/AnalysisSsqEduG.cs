@@ -13,15 +13,13 @@
  * Descripción:
  *      Lectura de informes de análisis de suma de cuadrados (*.txt, *.rtf; EduG 6.0 - e, - f).
  */
+using AuxMathCalcGT;
+using MultiFacetData;
+using ProjectSSQ;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProjectSSQ;
-using MultiFacetData;
 using System.IO;
-using System.Globalization;
-using AuxMathCalcGT;
+using System.Linq;
 
 namespace ImportEduGSsq
 {
@@ -37,7 +35,7 @@ namespace ImportEduGSsq
         /******************************************************************************************
          * Títulos y etiquetas del informe en ingles.
          ******************************************************************************************/
-        
+
         // Etiquetas de la tablas Facetas
         //===============================
         public const string TITLE_OBS_EXT_DESING_ENG = "Observation and Estimation Designs";
@@ -58,7 +56,7 @@ namespace ImportEduGSsq
         public const string LABEL_COLUM_CORRECT_ENG = "Corrected";
         public const string END_TABLE_ANALYSIS_ENG = "Total";
         public const string TITLE_MEASUR_DESIGN_ENG = "(Measurement design";
-        
+
         // Etiquetas de la tabla G Parameters
         //===================================
         public const string LABEL_VARIANCE_ENG = "variance";
@@ -149,7 +147,7 @@ namespace ImportEduGSsq
          * Constructores
          * =============
          ************************************************************************************************/
-        public AnalysisSsqEduG(TableAnalysisOfVariance tableAnalysis, TableG_Study_Percent tableG)            
+        public AnalysisSsqEduG(TableAnalysisOfVariance tableAnalysis, TableG_Study_Percent tableG)
             : base(tableAnalysis, tableG)
         {
         }
@@ -416,7 +414,7 @@ namespace ImportEduGSsq
                     double? se = StringToDouble(arrayOfShares[8]);
                     standardError.Add(design, se);
                 }
-                
+
                 line = reader.ReadLine();
                 arrayOfShares = line.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
 
@@ -461,10 +459,10 @@ namespace ImportEduGSsq
                         string source = NormalizateDesign(arrayOfShares[1]);
                         double? relErrorVar = StringToDouble(arrayOfShares[2]); // Varianza del error relativo
                         double? perct_rel = StringToDouble(arrayOfShares[3]);
-                        
+
                         double? absErrorVar = StringToDouble(arrayOfShares[4]); ; // Varianza del error absoluto
                         double? perct_abs = StringToDouble(arrayOfShares[5]);
-                        
+
                         ErrorVar error = new ErrorVar(relErrorVar, absErrorVar);
                         errorVar.Add(source, error);
                         ErrorVar perct_error = new ErrorVar(perct_rel, perct_abs);
@@ -478,12 +476,12 @@ namespace ImportEduGSsq
                         differentiationVar.Add(source, var_diff);
                     }
                 }
-                
+
                 line = reader.ReadLine();
                 arrayOfShares = line.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
                 // arrayOfShares = lineFacets.Split(delimeterCharsFacets);
             }// end while
-            G_ParametersOptimization gP = AuxReaderResumG_Study(reader,  lf);
+            G_ParametersOptimization gP = AuxReaderResumG_Study(reader, lf);
             return new TableG_Study_Percent(lf_diff, lf_inst, differentiationVar, errorVar, percentError, gP);
         }// end AuxReportG_StudyToTableG_Study
 
@@ -591,12 +589,12 @@ namespace ImportEduGSsq
 
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfCoef_G_rel.Insert(0, (double)StringToDouble(arrayOfShares[j-1]));
+                listOfCoef_G_rel.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             // Coeficiente G Absoluto
             List<double> listOfCoef_G_abs = new List<double>();
-            
+
             // saltamos la linea de redondeo
             line = reader.ReadLine();
             line = reader.ReadLine();
@@ -605,7 +603,7 @@ namespace ImportEduGSsq
             limit = arrayOfShares.Length - numOfColumns;
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfCoef_G_abs.Insert(0,(double)StringToDouble(arrayOfShares[j-1]));
+                listOfCoef_G_abs.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             // Varianza de error relativa
@@ -618,43 +616,43 @@ namespace ImportEduGSsq
 
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfErrorVarRel.Insert(0, (double)StringToDouble(arrayOfShares[j-1]));
+                listOfErrorVarRel.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             // Varianza de estandar relativa
             List<double> listOfStadarDevRel = new List<double>();
-            
+
             line = reader.ReadLine();
             arrayOfShares = line.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
             limit = arrayOfShares.Length - numOfColumns;
 
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfStadarDevRel.Insert(0, (double)StringToDouble(arrayOfShares[j-1]));
+                listOfStadarDevRel.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             // Varianza de error absoluta
             List<double> listOfErrorVarAbs = new List<double>();
-            
+
             line = reader.ReadLine();
             arrayOfShares = line.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
             limit = arrayOfShares.Length - numOfColumns;
 
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfErrorVarAbs.Insert(0, (double)StringToDouble(arrayOfShares[j-1]));
+                listOfErrorVarAbs.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             // Varianza de estandar relativa
             List<double> listOfStadarDevAbs = new List<double>();
-            
+
             line = reader.ReadLine();
             arrayOfShares = line.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
             limit = arrayOfShares.Length - numOfColumns;
 
             for (int j = arrayOfShares.Length; j > limit; j--)
             {
-                listOfStadarDevAbs.Insert(0, (double)StringToDouble(arrayOfShares[j-1]));
+                listOfStadarDevAbs.Insert(0, (double)StringToDouble(arrayOfShares[j - 1]));
             }
 
             for (int j = 0; j < numOfColumns; j++)
@@ -710,7 +708,8 @@ namespace ImportEduGSsq
 
                 // devuelve el valor de retorno
                 return analysisEduG;
-            }catch(IOException e)
+            }
+            catch (IOException e)
             {
                 throw e;
             }
@@ -726,7 +725,7 @@ namespace ImportEduGSsq
             char[] delimeterLineChars = { '\n' };
             string[] lines = text.Split(delimeterLineChars);
 
-            int numLines = lines.Length-1;
+            int numLines = lines.Length - 1;
 
             List<AnalysisSsqEduG> listAnalysisEduG = new List<AnalysisSsqEduG>();
 
@@ -735,7 +734,7 @@ namespace ImportEduGSsq
 
             bool foundHeaderReport = false;
 
-            while ((line != null) && (i<numLines))
+            while ((line != null) && (i < numLines))
             {
                 DateTime sDate = DateTime.Now;
                 foundHeaderReport = ImportEduGMeans.ListMeansEduG.IsLineHeaderReportsEduG(line);
@@ -845,7 +844,7 @@ namespace ImportEduGSsq
                     }
                 }// end if
             }// end while
-            
+
 
             return listAnalysisEduG;
         }// end ReadFileRtfPaintTextEduGAux
@@ -885,7 +884,7 @@ namespace ImportEduGSsq
         }// end ReadAuxTableFacetsOfArrayLines
 
 
-     
+
 
         /* Descripción:
          *  Devuelve un elemento TableAnalysisOfVariance recuperado de un informe su suma de cuadrados
@@ -898,14 +897,14 @@ namespace ImportEduGSsq
 
             // Variables
             List<string> ldesign = new List<string>();
-            Dictionary<string, double?> dicSsq  = new Dictionary<string,double?>();
-            Dictionary<string, double> dicDf = new Dictionary<string,double>();
-            Dictionary<string, double?> dicMsq = new Dictionary<string,double?>();
-            Dictionary<string, double?> dicRandomComp = new Dictionary<string,double?>();
-            Dictionary<string, double?> dicMixComp = new Dictionary<string,double?>();
-            Dictionary<string, double?> dicCorrecComp = new Dictionary<string,double?>();
+            Dictionary<string, double?> dicSsq = new Dictionary<string, double?>();
+            Dictionary<string, double> dicDf = new Dictionary<string, double>();
+            Dictionary<string, double?> dicMsq = new Dictionary<string, double?>();
+            Dictionary<string, double?> dicRandomComp = new Dictionary<string, double?>();
+            Dictionary<string, double?> dicMixComp = new Dictionary<string, double?>();
+            Dictionary<string, double?> dicCorrecComp = new Dictionary<string, double?>();
             Dictionary<string, double?> porcentage = new Dictionary<string, double?>();
-            Dictionary<string, double?> standardError = new Dictionary<string,double?>();
+            Dictionary<string, double?> standardError = new Dictionary<string, double?>();
 
             bool foundEndTableAnalysis = false;
             while (!string.IsNullOrEmpty(lineFacets) && !foundEndTableAnalysis)
@@ -946,7 +945,7 @@ namespace ImportEduGSsq
                     lineFacets = lines[i];
                     arrayOfShares = lineFacets.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
                 }
-                
+
             }// end while
 
             return new TableAnalysisOfVariance(lf, ldesign, dicSsq, dicDf, dicMsq, dicRandomComp, dicMixComp,
@@ -963,7 +962,7 @@ namespace ImportEduGSsq
          * Como aun no ha cargado la tabla de parámetros de optimización esta contendrá el valor null.
          * Ha de ser sustituida por los datos correctos.
          */
-        private static TableG_Study_Percent AuxReportG_StudyToTableG_Study(string[] lines, int i, 
+        private static TableG_Study_Percent AuxReportG_StudyToTableG_Study(string[] lines, int i,
             ListFacets lf_diff, ListFacets lf_inst, ListFacets lf)
         {
             string lineFacets = lines[i];
@@ -972,9 +971,9 @@ namespace ImportEduGSsq
             // string[] arrayOfShares = lineFacets.Split(delimeterCharsFacets);
 
             // Variables
-            Dictionary<string, double?> differentiationVar = new Dictionary<string,double?>();
-            Dictionary<string, ErrorVar> errorVar  = new Dictionary<string,ErrorVar>();
-            Dictionary<string, ErrorVar> percentError = new Dictionary<string,ErrorVar>();
+            Dictionary<string, double?> differentiationVar = new Dictionary<string, double?>();
+            Dictionary<string, ErrorVar> errorVar = new Dictionary<string, ErrorVar>();
+            Dictionary<string, ErrorVar> percentError = new Dictionary<string, ErrorVar>();
 
             while (!string.IsNullOrEmpty(lineFacets) && !IsHeaderTableResumRtfTableG_Study(lineFacets))
             {
@@ -982,7 +981,7 @@ namespace ImportEduGSsq
                 {
                     // Entonces contiene facetas de intrumentación
                     string source = NormalizateDesign(arrayOfShares[1]);
-                    double? relErrorVar = StringToDouble(arrayOfShares[2]) ; // Varianza del error relativo
+                    double? relErrorVar = StringToDouble(arrayOfShares[2]); // Varianza del error relativo
                     double? perct_rel = null;
                     int posAbsErrorVar = 4;
                     if (relErrorVar != null)
@@ -998,9 +997,9 @@ namespace ImportEduGSsq
                     double? perct_abs = null;
                     if (absErrorVar != null)
                     {
-                        perct_abs = StringToDouble(arrayOfShares[posAbsErrorVar+1]);
+                        perct_abs = StringToDouble(arrayOfShares[posAbsErrorVar + 1]);
                     }
-                    
+
                     ErrorVar error = new ErrorVar(relErrorVar, absErrorVar);
                     errorVar.Add(source, error);
                     ErrorVar perct_error = new ErrorVar(perct_rel, perct_abs);
@@ -1021,7 +1020,7 @@ namespace ImportEduGSsq
             }// end while
 
             G_ParametersOptimization gP = AuxReaderResumG_Study(lines, i, lf);
-            return new TableG_Study_Percent(lf_diff,lf_inst,differentiationVar, errorVar, percentError, gP);
+            return new TableG_Study_Percent(lf_diff, lf_inst, differentiationVar, errorVar, percentError, gP);
         }// end AuxReportG_StudyToTableG_Study
 
 
@@ -1040,7 +1039,7 @@ namespace ImportEduGSsq
             double totalRelErrorVar = (double)StringToDouble(arrayOfShares[2]); // Varianza del error relativa
             double totalAbsErrorVar = (double)StringToDouble(arrayOfShares[4]); // Varianza del error absoluta
 
-            lineFacets = lines[i+1];
+            lineFacets = lines[i + 1];
             arrayOfShares = lineFacets.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
 
             double targetStandDev = (double)StringToDouble(arrayOfShares[1]); // desviación típica de las fuentes objetivo
@@ -1118,7 +1117,7 @@ namespace ImportEduGSsq
             lineFacets = lines[i];
             arrayOfShares = lineFacets.Split(delimeterCharsFacets, StringSplitOptions.RemoveEmptyEntries);
 
-            for(int j=1; j <= numOfColumns; j++)
+            for (int j = 1; j <= numOfColumns; j++)
             {
                 listOfCoef_G_rel.Add((double)StringToDouble(arrayOfShares[j]));
             }
@@ -1183,11 +1182,11 @@ namespace ImportEduGSsq
             for (int j = 0; j < numOfColumns; j++)
             {
                 G_ParametersOptimization gp = new G_ParametersOptimization(listOfListFacets[j], 0,
-                    listOfCoef_G_rel[j], listOfCoef_G_abs[j], listOfErrorVarRel[j], listOfErrorVarAbs[j], 
+                    listOfCoef_G_rel[j], listOfCoef_G_abs[j], listOfErrorVarRel[j], listOfErrorVarAbs[j],
                     listOfStadarDevRel[j], listOfStadarDevAbs[j], 0);
                 listG_p.Add(gp);
             }
-                
+
             return listG_p;
         }// end AuxReadTableOptimizationResum
 
@@ -1435,13 +1434,13 @@ namespace ImportEduGSsq
         private static bool IsHeaderTableSquare(string line)
         {
             return (line.Contains(LABEL_COLUM_SOURCE_ENG) && line.Contains(LABEL_COLUM_SS_ENG)
-                && line.Contains(LABEL_COLUM_DF_ENG) && line.Contains(LABEL_COLUM_MS_ENG) 
+                && line.Contains(LABEL_COLUM_DF_ENG) && line.Contains(LABEL_COLUM_MS_ENG)
                 && line.Contains(LABEL_COLUM_RANDOM_ENG) && line.Contains(LABEL_COLUM_MIXED_ENG)
                 && line.Contains(LABEL_COLUM_CORRECT_ENG))
                 ||
                 (line.Contains(LABEL_COLUM_SOURCE_FR) && line.Contains(LABEL_COLUM_SS_FR)
                 && line.Contains(LABEL_COLUM_DF_FR) && line.Contains(LABEL_COLUM_MS_FR)
-                && (line.Contains(LABEL_COLUM_RANDOM_RTF_FR) || line.Contains(LABEL_COLUM_RANDOM_TXT_FR)) 
+                && (line.Contains(LABEL_COLUM_RANDOM_RTF_FR) || line.Contains(LABEL_COLUM_RANDOM_TXT_FR))
                 && line.Contains(LABEL_COLUM_MIXED_FR) && line.Contains(LABEL_COLUM_CORRECT_FR));
         }
 
@@ -1473,7 +1472,7 @@ namespace ImportEduGSsq
          */
         private static bool IsHeaderTableG_ParametersTxtReport(string line)
         {
-            return ((line.Contains(LABEL_VARIANCE_ENG) && line.Contains(LABEL_VAR_ENG) 
+            return ((line.Contains(LABEL_VARIANCE_ENG) && line.Contains(LABEL_VAR_ENG)
                 && line.Contains(LABEL_REL_ENG) && line.Contains(LABEL_ABS_ENG))
                 ||
                 (line.Contains(LABEL_VAR_ENG) && line.Contains(LABEL_REL_ENG)
@@ -1528,7 +1527,7 @@ namespace ImportEduGSsq
          */
         private static bool IsHeaderTableResumTxtfTableG_Study(string line)
         {
-            return (line.Contains(END_OF_TABLE_STUDY_TXT) && line.Contains(LABEL_PERCENT_ENG)); 
+            return (line.Contains(END_OF_TABLE_STUDY_TXT) && line.Contains(LABEL_PERCENT_ENG));
         }
 
 
@@ -1538,7 +1537,7 @@ namespace ImportEduGSsq
         private static bool IsHeaderTableResumOpt(string line)
         {
             return (line.Contains(LABEL_BEGIN_1_ENG) && line.Contains(LABEL_BEGIN_2_ENG))
-                || 
+                ||
                 (line.Contains(LABEL_BEGIN_1_FR) && line.Contains(LABEL_BEGIN_2_FR));
         }
 
@@ -1553,7 +1552,7 @@ namespace ImportEduGSsq
         {
             int pos = line.LastIndexOf('[');
             string sDate = line.Substring(pos);
-            char[] charDelimiters = {'[', '-', ' ', ':', ']' };
+            char[] charDelimiters = { '[', '-', ' ', ':', ']' };
             string[] arrayShares = sDate.Split(charDelimiters, StringSplitOptions.RemoveEmptyEntries);
             int year = int.Parse(arrayShares[0]);
             int month = int.Parse(arrayShares[1]);
@@ -1611,7 +1610,7 @@ namespace ImportEduGSsq
          *          los datos que vamos a exportar.
          *      string pathFile: nombre y ruta del fichero al que vamos a exportar los datos.
          */
-        public static bool WritingFileExportEduG_Ssq(TableAnalysisOfVariance tbAnalysis , string pathFile)
+        public static bool WritingFileExportEduG_Ssq(TableAnalysisOfVariance tbAnalysis, string pathFile)
         {
             bool res = false; // variable de retorno
 
@@ -1620,7 +1619,7 @@ namespace ImportEduGSsq
                 List<string> lt_keys = tbAnalysis.ListFacets().CombinationStringWithoutRepetition();
                 int numKeys = lt_keys.Count;
 
-                for(int i =0; i < numKeys; i++)
+                for (int i = 0; i < numKeys; i++)
                 {
                     string key = lt_keys[i];
                     string design = key.Replace("[", "");

@@ -13,17 +13,11 @@
  * Descripción:
  *  Introducción de la clave para la conexión por parte del usuario.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Windows.Forms;
 using ConfigCFG;
+using System;
+using System.Data;
+using System.IO;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -51,7 +45,7 @@ namespace GUI_GT
         }
 
         public FormPass(TransLibrary.Language lang, string file_user_pass)
-            :this()
+            : this()
         {
             traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
             this.file_user_pass = file_user_pass;
@@ -179,7 +173,7 @@ namespace GUI_GT
         //    return found;
         //}
 
-         
+
         /* Descripción:
          *  Ejecuta el explorador de internet asignado por defecto con la página de recuperación 
          *  de contraseña indicada en la plataforma MenPas
@@ -237,7 +231,7 @@ namespace GUI_GT
             this.m_tbPassword.Text = dtUser.ReturnPass(this.tbUserId.Text);
         }
 
-        
+
 
     }// end public partial class FormPass : Form
 }// end namespace GUI_TG

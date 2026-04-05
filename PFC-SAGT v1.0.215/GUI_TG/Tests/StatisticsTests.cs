@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AuxMathCalcGT;
+using System;
 using Xunit;
-using AuxMathCalcGT;
 
 namespace Tests
 {

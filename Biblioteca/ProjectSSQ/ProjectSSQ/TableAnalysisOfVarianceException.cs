@@ -14,13 +14,10 @@
  *      Libreria de suma de cuadrados
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectSSQ
 {
-    public class TableAnalysisOfVarianceException: Exception
+    public class TableAnalysisOfVarianceException : Exception
     {
         public TableAnalysisOfVarianceException()
             : base()

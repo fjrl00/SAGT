@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace ConnectLibrary
@@ -12,13 +9,13 @@ namespace ConnectLibrary
          * Constructores
          *=================================================================================*/
         public ConnectDB_WS()
-            :base()
+            : base()
         {
         }
 
 
         public ConnectDB_WS(string pathDB)
-            :base(pathDB)
+            : base(pathDB)
         {
         }
 

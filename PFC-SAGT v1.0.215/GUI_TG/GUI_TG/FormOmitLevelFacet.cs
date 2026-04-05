@@ -13,15 +13,9 @@
  * Descripción:
  *      Ventana en la que se selecciona los niveles que se va a omitir para el estudio.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MultiFacetData;
+using System;
+using System.Windows.Forms;
 
 namespace GUI_GT
 {
@@ -42,7 +36,7 @@ namespace GUI_GT
 
         // variables 
         private ListFacets listFacets;
-        
+
 
         /*-------------------------------------------------------------------------------------
          * Constructores
@@ -76,9 +70,9 @@ namespace GUI_GT
             checkedListBoxSelectShipLevels.Items.Clear();
             for (int i = 0; i < level; i++)
             {
-                checkedListBoxSelectShipLevels.Items.Add(i+1);
+                checkedListBoxSelectShipLevels.Items.Add(i + 1);
                 bool b = f.GetSkipLevels(i + 1);
-                checkedListBoxSelectShipLevels.SetItemChecked(i,b);
+                checkedListBoxSelectShipLevels.SetItemChecked(i, b);
             }
         }
 
@@ -92,7 +86,7 @@ namespace GUI_GT
             int indLevel = this.checkedListBoxSelectShipLevels.SelectedIndex;
             Facet f = this.listFacets.FacetInPos(indFacet);
 
-            f.SetSkipLevels(indLevel+1);
+            f.SetSkipLevels(indLevel + 1);
         }
 
         #endregion Eventos de ComboBox Seleccionar faceta
@@ -168,7 +162,7 @@ namespace GUI_GT
                 this.lbSelectFacet.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbSelectSkipLevels.Name.ToString();
                 this.lbSelectSkipLevels.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
@@ -178,7 +172,7 @@ namespace GUI_GT
 
 
         #endregion Traducción de la ventana
-        
+
 
     }// end public partial class FormOmitLevelFacet
 }// end namespace GUI_TG

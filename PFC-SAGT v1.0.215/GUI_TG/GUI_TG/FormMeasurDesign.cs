@@ -11,9 +11,9 @@
  * Fecha de revisión: 4/Jul/2011           
  * 
  */
+using MultiFacetData;
 using System;
 using System.Windows.Forms;
-using MultiFacetData;
 
 namespace GUI_GT
 {
@@ -74,9 +74,9 @@ namespace GUI_GT
                 }
             }
             this.lfParent = lfParent;
-                
+
             LoadSourceOfInstListBox();
-            this.listBoxSourceInst.SetSelected(0,true);
+            this.listBoxSourceInst.SetSelected(0, true);
             WriteSourceOfVarInTextBox();
         }
 
@@ -118,7 +118,7 @@ namespace GUI_GT
             this.tbMeasurementDesign.Text = "";
             if ((this.lfDiff.Count() > 0) && (this.lfInst.Count() > 0))
             {
-                this.tbMeasurementDesign.Text = this.lfDiff.StringOfListFactes() + "/" + this.lfInst.StringOfListFactes(); 
+                this.tbMeasurementDesign.Text = this.lfDiff.StringOfListFactes() + "/" + this.lfInst.StringOfListFactes();
             }
         }
 
@@ -145,14 +145,14 @@ namespace GUI_GT
                 else
                 {
                     // si no hay elementos en el listBox seleccionaremos los del otro listBox
-                    this.listBoxSourceDiff.SetSelected(0,true);
+                    this.listBoxSourceDiff.SetSelected(0, true);
                 }
             }
             else
             {
                 MessageBox.Show(txtMessageNoSourceOfInst, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            
+
         }
 
 

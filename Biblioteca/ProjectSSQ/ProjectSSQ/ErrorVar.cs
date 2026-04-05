@@ -18,11 +18,6 @@
  *      instrumentación esta tendrá dos pares de valores que pueden ser nulos. 
  *      Un valor se corresponde con el valor relativo y otro con el valor absoluto.
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace ProjectSSQ
 {
     public class ErrorVar
@@ -32,7 +27,7 @@ namespace ProjectSSQ
         private double? absErrorVar; // Varianza del error absoluto
 
         // Constructor de la clase
-        public ErrorVar(double? rel,double? abs)
+        public ErrorVar(double? rel, double? abs)
         {
             this.relErrorVar = rel;
             this.absErrorVar = abs;
@@ -78,11 +73,11 @@ namespace ProjectSSQ
             {
                 relString = this.relErrorVar.ToString();
             }
-            return "Varianza de error absoluta: "+absString+"\n"+
-                "Varianza de error relativo: "+relString;
+            return "Varianza de error absoluta: " + absString + "\n" +
+                "Varianza de error relativo: " + relString;
         }
 
-         #region Clonación
+        #region Clonación
 
         /* Descripción:
          *  Devuelve una copy en profundidad del objeto.

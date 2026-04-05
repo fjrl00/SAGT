@@ -12,12 +12,6 @@
  *      Ventana de inicio con el titulo y la versión.
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -30,7 +24,7 @@ namespace GUI_GT
         }
 
         public FormSplashScreen(string version)
-            :this()
+            : this()
         {
             int pos = version.LastIndexOf('.');
             string textVersion = version.Remove(pos);

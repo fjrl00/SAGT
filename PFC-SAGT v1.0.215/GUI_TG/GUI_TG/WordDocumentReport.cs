@@ -16,7 +16,6 @@
  */
 
 using NPOI.OpenXmlFormats.Wordprocessing;
-using NPOI.SS.Formula.Functions;
 using NPOI.WP.UserModel;
 using NPOI.XWPF.UserModel;
 using System;
@@ -337,11 +336,11 @@ namespace GUI_GT
 
             // Create a new table with header row
             XWPFTable table = doc.CreateTable(rowCount + 1, colCount);
-            
+
 
             // Make table occupy full width
             table.Width = 5000; // 5000 = 100% full width of the page (PCT)
-            var tblLayout1 = table.GetCTTbl().tblPr.AddNewTblLayout();  
+            var tblLayout1 = table.GetCTTbl().tblPr.AddNewTblLayout();
             tblLayout1.type = ST_TblLayoutType.@fixed;  //disable autofit
             //ulong colWidth = 5000UL / (ulong)colCount; //all columns take equal space
 
@@ -373,7 +372,7 @@ namespace GUI_GT
                     XWPFTableCell cell = table.GetRow(r + 1).GetCell(c);
                     string text = dgv.Rows[r].Cells[c].Value?.ToString() ?? "";
 
-                    
+
 
                     XWPFParagraph paragraph = cell.Paragraphs[0];
                     paragraph.RemoveRun(0); // Remove any existing default run

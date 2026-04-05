@@ -15,11 +15,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -58,7 +53,7 @@ namespace GUI_GT
         public FormSelectionOneItemReport(List<string> lst, TransLibrary.Language lang, TypeSelectReport typeSelect)
             : this(lst, lang)
         {
-            if(typeSelect.Equals(TypeSelectReport.Analysis))
+            if (typeSelect.Equals(TypeSelectReport.Analysis))
             {
                 this.Text = this.titleAnalysis;
             }
@@ -67,7 +62,7 @@ namespace GUI_GT
 
         /*========================================================================================================
          * Métodos
-         *========================================================================================================*/ 
+         *========================================================================================================*/
 
         /* Descripción:
          *  Rellena el listBox

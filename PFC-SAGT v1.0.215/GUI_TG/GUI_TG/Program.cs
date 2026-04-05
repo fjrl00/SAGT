@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -29,7 +27,7 @@ namespace GUI_GT
             {
                 Application.Run(new FormPrincipal());
             }
-            
+
         }
     }
 }

@@ -14,11 +14,6 @@
  *  Muestra una ventana (FormWaiting) con un mesage mientras el usuario espera y el programa principal completa
  *  una operación.
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace GUI_GT
 {
     class CWait

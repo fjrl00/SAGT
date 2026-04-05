@@ -13,8 +13,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TransLibrary
 {
@@ -46,7 +44,7 @@ namespace TransLibrary
         /*================================================================================================
          * Métodos de Consulta
          *================================================================================================*/
-        
+
         /* Descripción:
          *  Devuelve la palabra en el idioma especificado como parámetro
          * Excepción:
@@ -102,7 +100,7 @@ namespace TransLibrary
             {
                 found = found || string.Equals(this.wordTranslation[l], w, StringComparison.OrdinalIgnoreCase);
             }
-            
+
             return found;
         }
 
@@ -162,7 +160,7 @@ namespace TransLibrary
         public override string ToString()
         {
             string tras = "";
-            foreach(Language l in this.wordTranslation.Keys)
+            foreach (Language l in this.wordTranslation.Keys)
             {
                 tras = tras + l.ToString() + "=" + this.wordTranslation[l] + ";";
             }

@@ -16,14 +16,12 @@
  *  LisFacets y ListFacets2. Esta última contiene las operaciones necesarias para generar las
  *  combinaciones sin repetición de una lista de facetas).
  */
+using AuxMathCalcGT;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Globalization;
-using AuxMathCalcGT;
+using System.Text;
 
 namespace MultiFacetData
 {

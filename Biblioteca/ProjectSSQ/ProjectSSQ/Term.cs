@@ -15,10 +15,6 @@
  * (positivo o negativo) y por una lista de facetas.
  * 
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MultiFacetData;
 
 namespace ProjectSSQ
@@ -62,12 +58,12 @@ namespace ProjectSSQ
         public Term(ListFacets lf, char sign)
         {
             this.lf = lf;
-            if(!sign.Equals(PLUS) && !sign.Equals(MINUS))
+            if (!sign.Equals(PLUS) && !sign.Equals(MINUS))
             {
                 throw new TermException("Signo incorrecto");
             }
             this.sign = sign;
-            
+
         }
 
         /*======================================================================================
@@ -131,7 +127,7 @@ namespace ProjectSSQ
          *======================================================================================*/
         public override string ToString()
         {
-            return this.sign + "(" + this.lf.StringOfListFactes() +")" ;
+            return this.sign + "(" + this.lf.StringOfListFactes() + ")";
         }
 
     }// end class Term

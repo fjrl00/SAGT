@@ -13,13 +13,6 @@
  * Descripción:
  *  Ventana para editar los comentarios que se añaden a los ficheros.
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -102,6 +95,6 @@ namespace GUI_GT
             }
         }
         #endregion Traducción de la ventana
-        
+
     }// end public partial class FormEditFileComment
 }// end namespace GUI_TG

@@ -13,15 +13,12 @@
  * Descripción:
  *      Interface para establecer conexión con la base de datos y generar consultas, inserciones y borrados
  */
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
 using MultiFacetData;
-using Sagt;
 using ProjectMeans;
 using ProjectSSQ;
+using Sagt;
+using System;
+using System.Collections.Generic;
 
 namespace ConnectLibrary
 {

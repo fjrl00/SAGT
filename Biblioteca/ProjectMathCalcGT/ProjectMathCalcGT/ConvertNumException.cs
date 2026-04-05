@@ -13,13 +13,10 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AuxMathCalcGT
 {
-    public class ConvertNumException: Exception
+    public class ConvertNumException : Exception
     {
         public ConvertNumException()
             : base()

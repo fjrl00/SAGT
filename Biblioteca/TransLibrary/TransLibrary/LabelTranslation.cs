@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace TransLibrary
@@ -22,7 +21,7 @@ namespace TransLibrary
     public class LabelTranslation
     {
 
-         private Dictionary<String, WordTranslation> dic;
+        private Dictionary<String, WordTranslation> dic;
         // private Dictionary<Language, Translation> d;
         /*
          * Constructor de la clase.
@@ -81,12 +80,13 @@ namespace TransLibrary
          */
         public override string ToString()
         {
-            StringBuilder res= new StringBuilder();
-            foreach(string key in dic.Keys)
-            {   res.Append("[");
+            StringBuilder res = new StringBuilder();
+            foreach (string key in dic.Keys)
+            {
+                res.Append("[");
                 res.Append(key);
                 res.Append("]\n");
-                res.Append(this.labelTraslation(key).ToString()+"\n");
+                res.Append(this.labelTraslation(key).ToString() + "\n");
             }
             return res.ToString();
         }

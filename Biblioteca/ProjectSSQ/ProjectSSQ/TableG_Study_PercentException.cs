@@ -14,9 +14,6 @@
  *      Libreria de suma de cuadrados, Excepciones para la clase TableG_Study_Percent
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectSSQ
 {

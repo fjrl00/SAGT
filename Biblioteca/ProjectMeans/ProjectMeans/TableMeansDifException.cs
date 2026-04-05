@@ -12,13 +12,10 @@
  * 
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProjectMeans
 {
-    public class TableMeansDifException: Exception
+    public class TableMeansDifException : Exception
     {
         public TableMeansDifException()
             : base()
