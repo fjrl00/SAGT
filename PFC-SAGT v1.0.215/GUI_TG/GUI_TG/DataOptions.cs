@@ -348,9 +348,6 @@ namespace GUI_GT
                 // MultiFacetsObs multiFacets = MultiFacetsObs.ReadingFileObsData(path);
                 sagtElements = SagtFile.ReadingSagtFile(path);
                 // Cargamos los elementos
-                MultiFacetsObs multiFacets = sagtElements.GetMultiFacetsObs();  //why?
-                // sagtElements.SetMultiFacetsObs(multiFacets);
-                //loadMultiFacets(fileNameData, multiFacets);
                 loadSagtElements(fileNameData, sagtElements);
             }
             catch (MultiFacetObsException)

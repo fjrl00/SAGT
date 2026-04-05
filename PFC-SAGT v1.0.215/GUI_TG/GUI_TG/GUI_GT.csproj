@@ -216,7 +216,6 @@
     <Compile Include="PrintSagtDocuments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataGridViewPrinter.cs" />
     <Compile Include="FormSelectSaves.cs">
       <SubType>Form</SubType>
     </Compile>

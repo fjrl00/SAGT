@@ -186,19 +186,7 @@ namespace GUI_GT
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            //if (String.IsNullOrEmpty(this.tbNameFile.Text))
-            //{
-            //    // lanzamos un mensaje de error: no hay fichero seleccionado
-            //    formPrincipal.ShowMessageErrorOK(this.txtMessageNoFileSelected);
-            //}
-            //else
-            //{
-            //    //cerramos la ventana y abrimos el fichero
-            //    // this.Close();
-            //    this.Visible = false;
-            //    this.formPrincipal.importMeansFile(pathImportFile);
-
-            //}
+            // Relevant code in MeansOption.tsmiActionImportMeans_Click
         }
 
         /*
@@ -207,7 +195,7 @@ namespace GUI_GT
          */
         private void btCancel_Click(object sender, EventArgs e)
         {
-            //this.Close();
+            // Relevant code in MeansOption.tsmiActionImportMeans_Click
         }
 
         #region Operaciones auxiliares sobre el path

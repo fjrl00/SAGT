@@ -12,11 +12,6 @@ namespace GUI_GT
         [STAThread]
         static void Main(string[] args)
         {
-            //for (int i = 0; i < args.Length; i++)
-            //{
-            //    string s = args[i];
-            //    MessageBox.Show(s);
-            //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Length > 0)

@@ -73,6 +73,7 @@ namespace GUI_GT
             initComboBoxTypesFiles();
             this.cBoxTypesFiles.SelectedIndex = 0;
             btBrowse.Enabled = false;
+            LoadImagenHeader();
         }
 
 

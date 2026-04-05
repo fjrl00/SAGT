@@ -210,16 +210,7 @@ namespace GUI_GT
          */
         private void btOK_Click(object sender, EventArgs e)
         {
-            /*
-            if (this.lfLeft.Count() == 0 || this.lfRight.Count() == 0)
-            {
-                MessageBox.Show(txtMessageNoValidate, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            else
-            {
-               this.Close();
-            }
-            */
+            // Relevant code in SSQQOptions.EstimationPlan
         }
 
 

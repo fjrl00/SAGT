@@ -9,6 +9,8 @@
  *          Dr. Don Antonio Hernandez Mendo
  * 
  * Fecha de revisión: 02/May/2012
+ * 
+ * Helper class for charts
  */
 
 

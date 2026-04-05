@@ -110,11 +110,8 @@ namespace GUI_GT
          *  Cierra la ventana sin guardar los cambios
          */
         private void btCancel_Click(object sender, EventArgs e)
-        {/*
-            this.formPrincipal.SetNumOfFacetForTable(0);
-            this.formPrincipal.CancelAcciónEditionOfFacet();
-            this.Close();
-          */
+        {
+            // Relevant code found in ataOptions.tsmiActionNewMultiFacetData_Click
         }
 
         /* Descripción:
@@ -122,37 +119,7 @@ namespace GUI_GT
          */
         private void btOk_Click(object sender, EventArgs e)
         {
-            /*
-            if (String.IsNullOrEmpty(TextBoxNumOfFacets()))
-            {
-                // Si el textBox esta vació avisamos del error
-                TransLibrary.Language lang = this.formPrincipal.LanguageActually();
-                string ok = this.dicMessage.labelTraslation("btOk").LangTraslation(lang).ToString();
-
-                MsgBoxUtil.HackMessageBox(ok);
-
-                MessageBox.Show(messageError2, this.titleMessageError1, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            else
-            {
-                int t = int.Parse(this.tBoxNumberOfFacets.Text);
-                if (t < 2)
-                {
-                    TransLibrary.Language lang = this.formPrincipal.LanguageActually();
-                    string ok = this.dicMessage.labelTraslation("btOk").LangTraslation(lang).ToString();
-
-                    MsgBoxUtil.HackMessageBox(ok);
-
-                    MessageBox.Show(messageError1, this.titleMessageError1, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-                else
-                {
-                    this.formPrincipal.SetNumOfFacetForTable(t);                  
-                    this.Close();
-                    // lanzamos la carga de la ventana
-                }
-            }
-             */
+            // Relevant code found in ataOptions.tsmiActionNewMultiFacetData_Click
         }
 
         /* Descripción:

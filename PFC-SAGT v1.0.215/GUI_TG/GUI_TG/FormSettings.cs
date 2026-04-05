@@ -391,7 +391,7 @@ namespace GUI_GT
          */
         private void btCancel_Click(object sender, EventArgs e)
         {
-            // this.Close();
+            // Relevant code in FormPrincipal.tsmiSettings_Click
         }
 
 
@@ -426,17 +426,7 @@ namespace GUI_GT
          */
         private void btOk_Click(object sender, EventArgs e)
         {
-            //CheckedGroupBoxTypeOfTableMeans();
-            //// Optenemos el path del fichero de configuración.
-            //string pathDocuments = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            //string pathSagtDir = pathDocuments + "\\" + FormPrincipal.SAGT_DIR;
-
-            //// cfg.WriteFileConfig(pathSagtDir);
-
-            //cfg = this.UpdateConfig();
-            //// Guardamos el archivo de configuración en el directorio "\Documents\SAGT"
-            //cfg.WriteFileConfig(pathSagtDir);
-            // this.Close();
+            // Relevant code in FormPrincipal.tsmiSettings_Click
         }// end btOk_Click
 
 

@@ -101,50 +101,6 @@ namespace GUI_GT
         private void cBoxSelectFacet_SelectedIndexChanged(object sender, EventArgs e)
         {
             change_C_Box();
-            //int pos = cBoxSelectFacet.SelectedIndex ;
-            //if (pos != 0)
-            //{
-            //    Facet f = this.lf.FacetInPos(pos-1);
-            //    string desing = f.ListFacetDesing();
-            //    if (desing.Contains(Facet.NETES_CHAR))
-            //    {
-            //        this.gBoxOperation.Enabled = true;
-            //        int pos2 = cBoxNestingFacet.SelectedIndex;
-            //        if (pos2 != 0)
-            //        {
-            //            Facet f2 = this.lf.FacetInPos(pos2-1);
-            //            string f2_name = "[" + f2.Name() + "]"; 
-            //            string oper = "";
-            //            if (!desing.Contains(f2_name))
-            //            {
-            //                if (this.rbNest.Checked == true)
-            //                {
-            //                    oper = Facet.NETES_CHAR;
-            //                }
-            //                tbResult.Text = desing + oper + f2_name;
-            //            }
-            //            else
-            //            {
-            //                // error no podemos usar dos veces la faceta de anidamiento
-            //                cBoxSelectFacet.SelectedIndex = 0;
-            //                this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //                this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-            //                MessageBox.Show("Error: No podemos usar dos veces la misma faceta");
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //        this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-            //    }
-            //}
-            //else
-            //{
-            //    this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //    this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-            //    this.tbResult.Text = "";
-            //}
         }
 
         /* Descripción:
@@ -154,44 +110,6 @@ namespace GUI_GT
         private void cBoxNestingFacet_SelectedIndexChanged(object sender, EventArgs e)
         {
             change_C_Box();
-            //int pos_nesting = this.cBoxNestingFacet.SelectedIndex;
-            //if (pos_nesting != 0)
-            //{
-            //    Facet f2 = this.lf.FacetInPos(pos_nesting-1);
-            //    int pos_select_facet = this.cBoxSelectFacet.SelectedIndex;
-            //    if(pos_select_facet != 0)
-            //    {
-            //        Facet f = this.lf.FacetInPos(pos_select_facet-1);
-            //        string desing = f.ListFacetDesing();
-            //        string oper = Facet.NETES_CHAR;
-            //        if (desing.Contains(Facet.NETES_CHAR))
-            //        {
-            //            this.gBoxOperation.Enabled = true;
-            //            if (this.rbNest.Checked == true)
-            //            {
-            //                oper = "";
-            //            }
-            //        }
-            //        else
-            //        {
-            //            this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //            this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-
-            //        }
-            //        tbResult.Text = desing + oper + "[" + f2.Name() + "]";
-            //    }
-            //    else
-            //    {
-            //        this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //        this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-            //    }
-            //}
-            //else
-            //{
-            //    this.rbNest.Checked = true;// Marcamos la operación anidar por defecto
-            //    this.gBoxOperation.Enabled = false; // por defecto el groupBox esta desactivado
-            //    this.tbResult.Text = "";
-            //}
         }
 
         private void change_C_Box()

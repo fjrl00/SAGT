@@ -93,6 +93,12 @@ namespace GUI_GT
         /// <param name="textoBotones">lista de labels para los botones</param>
         /// <remarks>Internamente se llama a EsperarYCambiarMsgBoxWC
         /// que es un WaitCallBack que llama a EsperarYCambiarMsgBox</remarks>
+        /// /*
+        ///     Later note: what this thing is actually use for is exclusively to be able to generate
+        ///     MessageBox's with custom button text, namely translated button text.
+        ///     But this is pointless since MessageBox already has button text that is decided by the user's OS's language.
+        ///     This is just hacky and not worth the risks.
+        /// */
         public static void HackMessageBox(params string[] textoBotones)
         {
             //guardar referencia global a la lista

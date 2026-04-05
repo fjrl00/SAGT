@@ -66,7 +66,7 @@ namespace GUI_GT
          */
         private void btCancel_Click(object sender, EventArgs e)
         {
-            // this.Close();
+            // Relevant code found in SSQQOptions.AddSignificanceLevel
         }
 
         /* Descripción:
@@ -244,63 +244,7 @@ namespace GUI_GT
          */
         private void btOk_Click(object sender, EventArgs e)
         {
-            /*
-            int numFacets = this.lfIndepend.Count();
-            ListFacets lf = this.lfIndepend;
-
-            bool correct = true;
-            try
-            {
-                for (int i = 0; i < numFacets && correct; i++)
-                {
-                    DataGridViewRow my_row = this.dgvExAddLevelSign.Rows[i];
-                    int n = int.Parse(my_row.Cells[3].Value.ToString());
-                    Facet f = lf.FacetInPos(i);
-                    if(n>f.SizeOfUniverse())
-                    {
-                        correct =false;
-                        MessageBox.Show("El tamaño de el nivel es mayor que el universo");
-                    }else if(n<0){
-                        correct = false;
-                        MessageBox.Show("El tamaño de el nivel no puede ser negativo");
-                    }else{
-                        f.Level(n);
-                    }
-                }
-            }
-            catch (FormatException formEx)
-            {
-                // Se produjo la excepción al obtener el nivel de la faceta
-                MessageBox.Show(formEx.Message);
-                correct = false;
-            }
-
-            if (correct)
-            {
-                // Creamos nuevas facetas que son copias de las anterioeres pero con los nuevos
-                // niveles.
-                 
-                
-                ListFacets newLevelListFacets = new ListFacets();
-                for (int i = 0; i < numFacets; i++)
-                {
-                    Facet f = lf.FacetInPos(i);
-                    string name = f.Name();
-                    // el nuevo nivel se obtiene de la tabla
-                    // DataGridViewRow my_row =
-                    int numCol = this.dgvExAddLevelSign.Columns.Count - 1;
-                    int level = int.Parse(this.dgvExAddLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                    int sizeUni = f.SizeOfUniverse();
-                    string comment = f.Comment();
-                    Facet auxF = new Facet(name,level,comment,sizeUni);
-                    newLevelListFacets.Add(auxF);
-                }
-
-                this.formPrincipal.AddG_Parameters(newLevelListFacets);
-                this.Close();
-                
-            }// end if
-            */
+            // Relevant code found in SSQQOptions.AddSignificanceLevel
         }// private void btOk_Click(object sender, EventArgs e)
 
         /* Descripción:

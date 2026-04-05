@@ -159,23 +159,6 @@ namespace GUI_GT
             }
             return selectedListFacets;
         }
-        //public List<ListFacets> SelectedListFacets()
-        //{
-        //    // bool encontrado = false;
-        //    int n = this.cListBoxListsFacets.Items.Count;
-        //    // int ret = -1;
-        //    List<ListFacets> selectedListFacets = new List<ListFacets>();
-
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        // encontrado = this.cListBoxListsFacets.GetItemChecked(i);
-        //        if (this.cListBoxListsFacets.GetItemChecked(i))
-        //        {
-        //            selectedListFacets.Add(this.listOfListFacets[i]);
-        //        }
-        //    }
-        //    return selectedListFacets;
-        //}
 
         /* Descripción:
          *  Devuelve el CheckedListBox para que pueda ser consulatado

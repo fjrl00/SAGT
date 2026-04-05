@@ -185,20 +185,7 @@ namespace GUI_GT
          */
         private void btOk_Click(object sender, EventArgs e)
         {
-            /*
-            if (String.IsNullOrEmpty(this.tbNameFile.Text))
-            {
-                // lanzamos un mensaje de error: no hay fichero seleccionado
-                formPrincipal.ShowMessageErrorOK(this.txtMessageNoFileSelected);
-            }
-            else
-            {
-                //cerramos la ventana y abrimos el fichero
-                this.Close();
-                this.formPrincipal.importDataFile(pathImportFile);
-                
-            }
-             * */
+            // Relevant code found in DataOptions.tsmiActionDataImport_Click
         }
 
 
@@ -208,7 +195,7 @@ namespace GUI_GT
          */
         private void btCancel_Click(object sender, EventArgs e)
         {
-            //this.Close();
+            // Relevant code found in DataOptions.tsmiActionDataImport_Click
         }
 
 
@@ -326,8 +313,6 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                // Se produjo un error al traducir
-                MsgBoxUtil.HackMessageBox(this.btOk.Text);
                 MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
             }
         }

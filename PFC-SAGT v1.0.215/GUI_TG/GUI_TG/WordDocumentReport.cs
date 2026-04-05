@@ -151,35 +151,6 @@ namespace GUI_GT
             run2 = paragraph.CreateRun();
             run2.SetText(strDate);
 
-            /* // Invisible 2 cell table version (works badly in the header)
-            // Create a table with 1 row and 2 cells
-            table = doc.CreateTable(1, 2);
-
-            // Set table to full page width (approx full width in twentieths of a point)
-            table.Width = 5000;
-
-            // Remove all borders
-            table.SetInsideHBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-            table.SetInsideVBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-            table.SetLeftBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-            table.SetRightBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-            table.SetTopBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-            table.SetBottomBorder(XWPFTable.XWPFBorderType.NONE, 0, 0, "FFFFFF");
-
-            // Left cell:
-            table.GetRow(0).GetCell(0).RemoveParagraph(0);
-            leftPara = table.GetRow(0).GetCell(0).AddParagraph();
-            leftPara.Alignment = ParagraphAlignment.LEFT;
-            leftRun = leftPara.CreateRun();
-            leftRun.SetText(issuanceOfReport + ": ");
-
-            // Right cell:
-            table.GetRow(0).GetCell(1).RemoveParagraph(0);
-            rightPara = table.GetRow(0).GetCell(1).AddParagraph();
-            rightPara.Alignment = ParagraphAlignment.RIGHT;
-            rightRun = rightPara.CreateRun();
-            rightRun.SetText(strDate);*/
-
             // ===== Tablas de datos =====
             if (bData)
             {
