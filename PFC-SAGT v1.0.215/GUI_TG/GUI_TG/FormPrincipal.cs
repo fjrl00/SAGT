@@ -1538,14 +1538,8 @@ namespace GUI_GT
          */
         private void checkBoxHideNulls_CheckedChanged(object sender, EventArgs e)
         {
-            CWait fw = new CWait(msgLoading);
-            fw.Show();
-            Application.DoEvents();
-
             MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
             loadDataInTabPageObsTable(multiFacets, this.checkBoxHideNulls.Checked);
-            fw.Close();
-
         }// end checkBoxHideNulls_CheckedChanged
 
         #endregion Botones de los tabPage: Tabla de Facetas y Tabla de observaciones
