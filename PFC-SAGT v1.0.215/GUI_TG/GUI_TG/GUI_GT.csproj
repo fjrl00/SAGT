@@ -320,7 +320,6 @@
     <Compile Include="FormWaiting.Designer.cs">
       <DependentUpon>FormWaiting.cs</DependentUpon>
     </Compile>
-    <Compile Include="MsgBoxUtil.cs" />
     <Compile Include="SSQOptions.cs">
       <SubType>Form</SubType>
     </Compile>

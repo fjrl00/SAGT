@@ -188,7 +188,7 @@ namespace GUI_GT
                 PdfWriter pdfWriter = PdfWriter.GetInstance(doc, file);
 
                 // OnEndPage(writer, doc);
-                pdfPage ev = new pdfPage(SAGT + " " + this.version, UNIV_UMA,
+                pdfPage ev = new pdfPage(SAGT + this.version, UNIV_UMA,
                     developer + ": " + NAME_STUDENT, projectDirector + ": " + NAME_PROJECT_DIRECTOR,
                     academicDirector + ": " + NAME_ACADEMIC_DIRECTOR, pag);
                 pdfWriter.PageEvent = ev; //After the Open

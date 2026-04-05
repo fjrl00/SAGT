@@ -21,8 +21,6 @@ namespace GUI_GT
     public partial class FormPrincipal : Form
     {
 
-        private string btOkWindowsMessage = "Aceptar"; // Texto botón "Aceptar" de la ventana de dialogo
-        private string btCancelWindowsMessage = "Cancelar"; // Texto botón  "Cancelar" de la ventana de dialogo
         private string titleMessageError1 = "Error"; // Titulo de la ventana de error
         private string titleAdvice = "Aviso"; // título de la ventana de aviso
         private string titleSaved = "Guardado";
@@ -114,10 +112,6 @@ namespace GUI_GT
             string name = "";
             try
             {
-                name = "btOk"; // Usamos esta clave ya que coincide con los valores
-                btOkWindowsMessage = this.dicMessage.labelTraslation("btOk").GetTranslation(lang).ToString();
-                name = "btCancel";
-                btCancelWindowsMessage = this.dicMessage.labelTraslation("btCancel").GetTranslation(lang).ToString();
                 name = "titleMessageError1";
                 titleMessageError1 = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "titleAdvice";
@@ -258,7 +252,6 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
-                // MessageBox.Show(lEx.Message + " " + errorMessageTraslation + " " + name);
                 ShowMessageErrorOK(lEx.Message + " " + errorMessageTraslation + " " + name);
             }
         }
@@ -269,7 +262,6 @@ namespace GUI_GT
          */
         public void ShowMessageInfo(string msg)
         {
-            MsgBoxUtil.HackMessageBox(btOkWindowsMessage);
             MessageBox.Show(msg);
         }
 
@@ -278,7 +270,6 @@ namespace GUI_GT
          */
         public void ShowMessageInfo(string msg, string title)
         {
-            MsgBoxUtil.HackMessageBox(btOkWindowsMessage);
             MessageBox.Show(msg, title);
         }
 
@@ -290,7 +281,6 @@ namespace GUI_GT
          */
         public void ShowMessageErrorOK(string msg)
         {
-            MsgBoxUtil.HackMessageBox(btOkWindowsMessage);
             MessageBox.Show(msg, this.titleMessageError1, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -303,7 +293,6 @@ namespace GUI_GT
          */
         public void ShowMessageErrorOK(string msg, string titleMsg, MessageBoxIcon iconMessage)
         {
-            MsgBoxUtil.HackMessageBox(btOkWindowsMessage);
             MessageBox.Show(msg, titleMsg, MessageBoxButtons.OK, iconMessage);
         }
 
@@ -318,7 +307,6 @@ namespace GUI_GT
          */
         public DialogResult ShowMessageDialog(string titleConfirm, string txtDialog, MessageBoxIcon icon)
         {
-            MsgBoxUtil.HackMessageBox(btOkWindowsMessage, btCancelWindowsMessage);
             DialogResult res = MessageBox.Show(txtDialog, titleConfirm, MessageBoxButtons.OKCancel,
                 icon);
             return res;
