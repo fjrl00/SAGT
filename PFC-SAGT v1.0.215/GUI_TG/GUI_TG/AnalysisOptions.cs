@@ -292,10 +292,10 @@ namespace GUI_GT
                                         LoadListFacetInDataGridView(this.listFacetsAnalysis, dGridViewExAnalysis_TableFacet);
                                         salir = true;
                                     }
-                                    catch (FacetException)
+                                    catch (FacetException ex)
                                     {
                                         // error no se ha podido realizar el anidamiento correctamente
-                                        ShowMessageErrorOK(errorNoOperation);
+                                        ShowMessageErrorOK($"{errorNoOperation}\n\n{ex.Message}");
                                     }
                                 }
                                 else
@@ -1328,10 +1328,10 @@ namespace GUI_GT
 
                     }
                 }
-                catch (MultiFacetObsException)
+                catch (MultiFacetObsException ex)
                 {
                     // Mostramos un mensaje de error informando de que no se han podido extraer los datos
-                    ShowMessageErrorOK(errorReadingFileScore, titleMessageError1, MessageBoxIcon.Error);
+                    ShowMessageErrorOK($"{errorReadingFileScore}\n\n{ex.Message}", titleMessageError1, MessageBoxIcon.Error);
                 }
             }
         }// end btActionsImportScores_Click
