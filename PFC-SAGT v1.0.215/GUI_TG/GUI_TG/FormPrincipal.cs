@@ -1277,7 +1277,6 @@ namespace GUI_GT
             if (sagtElements.GetMultiFacetsObs() == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {

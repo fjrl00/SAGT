@@ -165,18 +165,6 @@ namespace GUI_GT
             }
             else
             {
-                //// Preguntamos al usuario por el archivo
-                //SaveFileDialog saveDialog = new SaveFileDialog();
-                //saveDialog.DefaultExt = "tssq";
-                //saveDialog.Filter = "SSQ SAGT file(*.tssq)|*.tssq";
-                //saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
-                //saveDialog.AddExtension = true;
-                //if (saveDialog.ShowDialog() == DialogResult.OK)
-                //{
-                //    // this.tAnalysis_tG_Study_Opt.WritingFileAnalysisSSQ(saveDialog.FileName);
-                //    this.sagtElements.WritingSagtFile(saveDialog.FileName);
-                //    MessageBox.Show("Las datos se han guardado", "Guardado");
-                //}
                 SaveFileSagt(this.sagtElements);
             }
         }// end private void tsmiActionSSQSave_Click
@@ -193,7 +181,6 @@ namespace GUI_GT
             if (multiFacets == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {// (* 1 *)
@@ -980,7 +967,6 @@ namespace GUI_GT
                         {
                             // Se produjo la excepción al obtener el nivel de la faceta
                             ShowMessageErrorOK(errorLevelFormat);
-                            //MessageBox.Show(formEx.Message);
                             correct = false;
                         }
 
@@ -1037,14 +1023,12 @@ namespace GUI_GT
                             {
                                 // Se produjo la excepción al obtener el nivel de la faceta
                                 ShowMessageErrorOK(errorLevelFormat);
-                                //MessageBox.Show(formEx.Message);
                                 correct = false;
                             }
                             catch (FacetException)
                             {
                                 // Se produjo la excepción al obtener el nivel de la faceta
                                 ShowMessageErrorOK(errorLevelFormat);
-                                //MessageBox.Show(formEx.Message);
                                 correct = false;
                             }
 
@@ -1130,7 +1114,6 @@ namespace GUI_GT
                         {
                             // Se produjo la excepción al obtener el nivel de la faceta
                             ShowMessageErrorOK(errorLevelFormat);
-                            //MessageBox.Show(formEx.Message);
                             correct = false;
                         }
 
@@ -1857,7 +1840,6 @@ namespace GUI_GT
                 if (tableAnalysis == null)
                 {// (* 2 *)
                     ShowMessageErrorOK(errorNoSSQ);
-                    //MessageBox.Show(errorNoSSQ);
                 }
                 else
                 {

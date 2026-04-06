@@ -867,7 +867,6 @@ namespace GUI_GT
             if (sagtElements.GetMultiFacetsObs() == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {
@@ -2031,7 +2030,6 @@ namespace GUI_GT
             if (multiFacet == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {
@@ -2071,7 +2069,6 @@ namespace GUI_GT
             if (multiFacet == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {
@@ -2138,7 +2135,6 @@ namespace GUI_GT
             if (multiFacets == null)
             {// (* 1 *)
                 ShowMessageErrorOK(errorNoTableObs);
-                //MessageBox.Show(errorNoTableObs);
             }
             else
             {

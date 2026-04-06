@@ -292,18 +292,6 @@ namespace GUI_GT
             }
             else
             {
-                //// Preguntamos al usuario por el archivo
-                //SaveFileDialog saveDialog = new SaveFileDialog();
-                //saveDialog.DefaultExt = "mean";
-                //saveDialog.Filter = "mean file(*.mean)|*.mean";
-                //saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
-                //saveDialog.AddExtension = true;
-                //if (saveDialog.ShowDialog() == DialogResult.OK)
-                //{
-                //    // listMeans.WritingFileListMeans(saveDialog.FileName);
-                //    this.sagtElements.WritingSagtFile(saveDialog.FileName);
-                //    MessageBox.Show("Las datos medias se han guardado", "Guardado");
-                //}
                 SaveFileSagt(this.sagtElements);
             }
         }// end private void tsmiActionMeansSave_Click
@@ -866,7 +854,7 @@ namespace GUI_GT
                         }
                         else
                         {
-                            MessageBox.Show("Se produjo un error al traducir ");
+                            MessageBox.Show("Se produjo un error al traducir. Tabla de medias no encontrada");
                         }
 
                         TranslationTContextualMenu(dgvEx, dicMeans, lang);
