@@ -401,7 +401,7 @@ namespace GUI_GT
 
                                     // Start the thread
                                     // th.Start();
-                                    this.importMeansFile(formImport.pathFile(), MEAN_STRINGS);
+                                    this.importMeansFile(formImport.pathFile());
                                     // th.Abort();
                                 }
                                 salir = true;
@@ -429,7 +429,7 @@ namespace GUI_GT
         /* Descripción:
          *  Importa un fichero de medias para construir el objeto lista de medias.
          */
-        public void importMeansFile(string path, string nameFileTras)
+        public void importMeansFile(string path)
         {
             //this.formImport.Close();
 
@@ -442,7 +442,7 @@ namespace GUI_GT
             switch (fileExt)
             {
                 case (DEFAULT_EXT_RSM): loadListOfMeansOfFileRms(path); break;
-                case ("txt"): loadListOfMeansOfFileText_EduG(path, nameFileTras); break;
+                case ("txt"): loadListOfMeansOfFileText_EduG(path); break;
                 case ("rtf"): loadListOfMeansOfFileRtf_EduG(path); break;
                 case (DEFAULT_EXT_EXCEL): loadListTableMeansFileXls(path); break;
                 default:
@@ -482,76 +482,22 @@ namespace GUI_GT
          *  medias.
          * Parámetros:
          *      string path: Path donde se encuentra el fichero
-         *      string nameFileTras: nombre del fichero donde estan las traducciónes para mostrar las
-         *          cabeceras de las columnas y las etiquetas en el idioma correspondiente.
          */
-        private void loadListOfMeansOfFileText_EduG(string path, string nameFileTras)
+        private void loadListOfMeansOfFileText_EduG(string path)
         {
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-
-            try
-            {
-                // fw.Refresh();
-                // Start the thread
-                //th.Start();
-
-                List<ListMeansEduG> listOfListMeans = ListMeansEduG.ReadFileReportTxtEduG(path, cfgApli.GetTypeOfTableMeans());
-                List<string> listString = new List<string>();
-
-                for (int i = 0; i < listOfListMeans.Count; i++)
-                {
-                    listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString());
-                }
-
-                //th.Abort();
-
-                TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
-                FormSelectionOneItemReport formSelectionOne = new FormSelectionOneItemReport(listString, lang);
-                bool salir = false;
-                do
-                {
-                    DialogResult res = formSelectionOne.ShowDialog();
-                    switch (res)
-                    {
-                        case DialogResult.Cancel:
-                            salir = true;
-                            break;
-                        case DialogResult.OK:
-                            int pos = formSelectionOne.SelectionIndex();
-                            if (pos >= 0 && pos <= listOfListMeans.Count)
-                            {
-                                ListMeans listMeans = listOfListMeans[pos];
-                                // ListMeans listMeans = ListMeansEduG.ReadFileReportRtfEduG(path);
-                                listMeans.SetNameFileDataCreation(path);
-                                DateTime date = DateTime.Now;
-                                listMeans.SetDateTime(date);
-                                this.sagtElements.SetListMeans(listMeans);
-                                listOfTableMeansToTabPageMeans(listMeans);
-                                salir = true;
-                            }
-                            else
-                            {
-                                // Mostramos un mensaje de error mostrando que no se ha seleccionado ninguno
-                                ShowMessageErrorOK(txtMessageNoSelected);
-                            }
-                            break;
-                    }
-                } while (!salir);
-            }
-            catch (ListMeansEduG_Exception)
-            {
-                //th.Abort();
-                ShowMessageErrorOK(errorFormatFile);
-            }
-        }// end loadListOfMeansOfFileText_EduG
-
+            loadListOfMeans_EduG(path, ListMeansEduG.ReadFileReportTxtEduG);
+        }
 
         /* Descripción:
          *  Lee los datos del fichero que se pasa como parámetro y crea una lista de tablas de
          *  medias.
          */
         private void loadListOfMeansOfFileRtf_EduG(string path)
+        {
+            loadListOfMeans_EduG(path, ListMeansEduG.ReadFileReportRtfEduG);
+        }
+
+        private void loadListOfMeans_EduG(string path, Func<string, ConfigCFG.TypeOfTableMeans, List<ListMeansEduG>> fileReader)
         {
             //CWait fw = new CWait(msgLoading);
             //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
@@ -561,10 +507,9 @@ namespace GUI_GT
             try
             {
                 // fw.Refresh();
-                // Start the thread
                 //th.Start();
 
-                List<ListMeansEduG> listOfListMeans = ListMeansEduG.ReadFileReportRtfEduG(path, cfgApli.GetTypeOfTableMeans());
+                List<ListMeansEduG> listOfListMeans = fileReader(path, cfgApli.GetTypeOfTableMeans());
                 List<string> listString = new List<string>();
 
                 for (int i = 0; i < listOfListMeans.Count; i++)
@@ -573,6 +518,7 @@ namespace GUI_GT
                 }
 
                 //th.Abort();
+                
                 TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
                 FormSelectionOneItemReport formSelectionOne = new FormSelectionOneItemReport(listString, lang);
                 bool salir = false;
@@ -590,7 +536,6 @@ namespace GUI_GT
                             {
                                 //th2.Start();
                                 ListMeans listMeans = listOfListMeans[pos];
-                                // ListMeans listMeans = ListMeansEduG.ReadFileReportRtfEduG(path);
                                 listMeans.SetNameFileDataCreation(path);
                                 DateTime date = DateTime.Now;
                                 listMeans.SetDateTime(date);
