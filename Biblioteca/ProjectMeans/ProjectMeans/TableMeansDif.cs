@@ -536,7 +536,7 @@ namespace ProjectMeans
                 string design;
 
                 // Leemos la lista de facetas
-                if ((line = reader.ReadLine()) == null || line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
+                if ((line = reader.ReadLine()) == null || !line.Equals(MultiFacetData.ListFacets.BEGIN_LISTFACETS))
                 {
                     throw new TableMeansDifException($"Expected '{MultiFacetData.ListFacets.BEGIN_LISTFACETS}' but found '{line}' when parsing TableMeansDif.");
                 }
