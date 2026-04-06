@@ -4311,7 +4311,6 @@
             this.Text = "SAGT";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_Closing);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
-            this.SizeChanged += new System.EventHandler(this.FormPrincipal_SizeChanged);
             this.mStripMain.ResumeLayout(false);
             this.mStripMain.PerformLayout();
             this.tabControlOptions.ResumeLayout(false);

@@ -167,9 +167,6 @@ namespace GUI_GT
                 do
                 {
                     DialogResult res = formDataImport.ShowDialog();
-                    // quitamos y ponemos el foco en la ventana para que esta se actualize
-                    this.Enabled = false;
-                    this.Enabled = true;
 
                     switch (res)
                     {

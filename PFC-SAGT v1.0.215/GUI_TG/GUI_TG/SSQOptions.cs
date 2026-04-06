@@ -1407,9 +1407,6 @@ namespace GUI_GT
                 do
                 {
                     DialogResult res = formSSQ_Import.ShowDialog();
-                    // quitamos y ponemos el foco en la ventana para que esta se actualize
-                    this.Enabled = false;
-                    this.Enabled = true;
 
                     switch (res)
                     {
@@ -1601,8 +1598,6 @@ namespace GUI_GT
                 bool salir = false;
                 do
                 {
-
-                    // Refrescamos la ventana
                     DialogResult res = formSelectionOne.ShowDialog();
                     switch (res)
                     {
@@ -1764,7 +1759,6 @@ namespace GUI_GT
                     // MessageBox.Show("Fin");
                     Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
-                    saveDialog = null;
                 }
             }
         }// end tsmiActionSSq_ExportExcel_Click

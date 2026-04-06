@@ -359,9 +359,6 @@ namespace GUI_GT
                 do
                 {
                     DialogResult res = formImport.ShowDialog();
-                    // quitamos y ponemos el foco en la ventana para que esta se actualize
-                    this.Enabled = false;
-                    this.Enabled = true;
 
                     switch (res)
                     {
@@ -389,10 +386,7 @@ namespace GUI_GT
                                         // cerramos todos los tabPage
                                         ClearTabPageMeans();
                                         this.sagtElements.SetListMeans(null);
-                                        // Refrescamos la ventana
                                         this.Refresh();
-
-                                        Application.DoEvents();
                                     }
                                     else
                                     {
@@ -498,9 +492,7 @@ namespace GUI_GT
 
             try
             {
-                // Refrescamos la ventana
-                this.Refresh();
-                Application.DoEvents();
+                // fw.Refresh();
                 // Start the thread
                 //th.Start();
 
@@ -568,9 +560,7 @@ namespace GUI_GT
 
             try
             {
-                // Refrescamos la ventana
-                this.Refresh();
-                Application.DoEvents();
+                // fw.Refresh();
                 // Start the thread
                 //th.Start();
 
@@ -722,7 +712,6 @@ namespace GUI_GT
                     // MessageBox.Show("Fin");
                     Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
-                    saveDialog = null;
                 }
             }
         }// end tsmiActionMeansExportExcel_Click

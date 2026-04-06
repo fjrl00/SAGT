@@ -2276,7 +2276,6 @@ namespace GUI_GT
          * Eventos sobre el form principal
          * ===============================
          *  - FormPrincipal_Load (cargar la ventana)
-         *  - FormPrincipal_SizeChanged (cambiar el tamaño)
          *=================================================================================================*/
 
         /* Descripción:
@@ -2286,18 +2285,6 @@ namespace GUI_GT
         {
             FormSplashScreen splashScreen = new FormSplashScreen(version);
             splashScreen.Show();
-        }
-
-
-        /* Descripción:
-         *  Refresca la ventana tras cambiar el tamaño de la ventana. Evita que aparezcan marcas raras.
-         */
-        private void FormPrincipal_SizeChanged(object sender, EventArgs e)
-        {
-            // Refrescamos la ventana
-            this.Refresh();
-
-            Application.DoEvents();
         }
 
         #endregion Eventos sobre el form principal
