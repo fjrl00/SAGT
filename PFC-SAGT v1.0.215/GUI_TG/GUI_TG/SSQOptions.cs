@@ -1213,10 +1213,42 @@ namespace GUI_GT
 
 
         /* Descripción:
+         *  Devuelve la lista con las facetas seleccionadas.
+         */
+        private ListFacets FacetsSelectedIn_cListBox(ListFacets lf, CheckedListBox checkedLtBox)
+        {
+            ListFacets retListF = new ListFacets();
+            int n = checkedLtBox.Items.Count;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (checkedLtBox.GetItemChecked(i))
+                {
+                    retListF.Add(lf.FacetInPos(i));
+                }
+            }
+            return retListF;
+        }
+
+        /* Descripción:
          *  Se ejecuta al seleccióna la opción "Gráfico Coef. G Abs" del menú de acciónes de suma de cuadrados.
          *  Muestra una gráfica de representación lineal.
          */
         private void tsmiActionChartCoefGAbs_Click(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
+        {
+            ShowChartCoefG(tAnalysis_tG_Study_Opt, true, this.tsmiChartCoefGAbs.Text);
+        }
+
+        /* Descripción:
+         *  Se ejecuta al seleccióna la opción "Gráfico Coef. G Rel" del menú de acciónes de suma de cuadrados.
+         *  Muestra una gráfica de representación lineal.
+         */
+        private void tsmiActionChartCoefGRel_Click(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
+        {
+            ShowChartCoefG(tAnalysis_tG_Study_Opt, false, this.tsmiChartCoefGRel.Text);
+        }
+
+        private void ShowChartCoefG(Analysis_and_G_Study tAnalysis_tG_Study_Opt, bool isAbs, string text)
         {
             // Combrobamos que haya un objeto de tipo Tabla de análisis
             if (tAnalysis_tG_Study_Opt == null)
@@ -1226,7 +1258,6 @@ namespace GUI_GT
             else if (this.formShowCharts == null)
             {
                 TableG_Study_Percent tableG_Study = tAnalysis_tG_Study_Opt.TableG_Study_Percent();
-                // primero preguntamos al ususario
                 TransLibrary.Language lang = this.LanguageActually();
                 ListFacets lf = tableG_Study.LfInstrumentation();
                 FormOptionsForChart_Two formOptioms = new FormOptionsForChart_Two(lang, lf);
@@ -1256,7 +1287,7 @@ namespace GUI_GT
                                     {
                                         FormShowCharts2 formShowCharts2 =
                                             new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
-                                                true, this.tsmiChartCoefGAbs.Text, beginning, ending, increment);
+                                                isAbs, text, beginning, ending, increment);
                                         formShowCharts2.Show();
                                     }
                                     catch (InvalidOperationException inv_ex)
@@ -1280,89 +1311,7 @@ namespace GUI_GT
 
                 } while (!salir);
             }
-        }// end tsmiActionCharts2_Click
-
-
-        /* Descripción:
-         *  Devuelve la lista con las facetas seleccionadas.
-         */
-        private ListFacets FacetsSelectedIn_cListBox(ListFacets lf, CheckedListBox checkedLtBox)
-        {
-            ListFacets retListF = new ListFacets();
-            int n = checkedLtBox.Items.Count;
-
-            for (int i = 0; i < n; i++)
-            {
-                if (checkedLtBox.GetItemChecked(i))
-                {
-                    retListF.Add(lf.FacetInPos(i));
-                }
-            }
-            return retListF;
         }
-
-
-        /* Descripción:
-         *  Se ejecuta al seleccióna la opción "Gráfico Coef. G Rel" del menú de acciónes de suma de cuadrados.
-         *  Muestra una gráfica de representación lineal.
-         */
-        private void tsmiActionChartCoefGRel_Click(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
-        {
-            // Combrobamos que haya un objeto de tipo Tabla de análisis
-            if (tAnalysis_tG_Study_Opt == null)
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else if (this.formShowCharts == null)
-            {
-                TableG_Study_Percent tableG_Study = tAnalysis_tG_Study_Opt.TableG_Study_Percent();
-                TransLibrary.Language lang = this.LanguageActually();
-                ListFacets lf = tableG_Study.LfInstrumentation();
-                FormOptionsForChart_Two formOptioms = new FormOptionsForChart_Two(lang, lf);
-                bool salir = false;
-                do
-                {
-                    DialogResult res = formOptioms.ShowDialog();
-
-                    switch (res)
-                    {
-                        case DialogResult.Cancel: salir = true; break;
-                        case DialogResult.OK:
-                            CheckedListBox checkedLtBox = formOptioms.CheckedListBoxListFacets();
-                            int beginning = formOptioms.Beginning(); // Comienzo de la representación
-                            int ending = formOptioms.Ending(); // final de la representación
-                            int increment = formOptioms.Increment(); // Valor del incremento
-
-                            // Debe haber al menos una faceta seleccionada
-                            if (checkedLtBox.CheckedItems.Count > 0)
-                            {
-                                if (beginning > 0 && ending > 0 && beginning < ending)
-                                {
-
-                                    salir = true;
-                                    ListFacets lfSeleted = FacetsSelectedIn_cListBox(lf, checkedLtBox);
-                                    FormShowCharts2 formShowCharts2 =
-                                        new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
-                                            false, this.tsmiChartCoefGRel.Text, beginning, ending, increment);
-                                    formShowCharts2.Show();
-                                }
-                                else
-                                {
-                                    // El intervalo no es valido
-                                    ShowMessageErrorOK(errorInvalidRange);
-                                }
-                            }
-                            else
-                            {
-                                // Lanzamos un mensaje indicando que no hay ningún elemento seleccionado
-                                ShowMessageErrorOK(errorNoFacetSelected);
-                            }
-                            break;
-                    }
-
-                } while (!salir);
-            }
-        }// end gráfico3ActionToolStripMenuItem_Click
 
 
         /* Descripción:
