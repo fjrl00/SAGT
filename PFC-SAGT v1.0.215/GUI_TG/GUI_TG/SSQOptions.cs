@@ -1899,7 +1899,7 @@ namespace GUI_GT
          */
         private void tsmiActionEditFacetDescription_Click()
         {
-            this.editionModeOn = true; // Ponemos el modo edición a true
+            this.disableTopLeftButtons = true; // Ponemos el modo edición a true
             this.mStripSSQ.Enabled = false; // Inhabilitamos el menú vertical de suma de cuadrados
 
             Analysis_and_G_Study ssqEditDescriptionFacet = this.sagtElements.GetAnalysis_and_G_Study();
@@ -1994,7 +1994,7 @@ namespace GUI_GT
             this.tabPageG_Parameters.Parent = this.tabControlSSQ;
             this.tabPageOptimization.Parent = this.tabControlSSQ;
             this.tbPageSsqInfo.Parent = this.tabControlSSQ;
-            this.editionModeOn = false; // hemos finalizado la edición de facetas
+            this.disableTopLeftButtons = false; // hemos finalizado la edición de facetas
             this.mStripSSQ.Enabled = true; // habilitamos el uso del menu
         }
         #endregion Métodos referentes a la edición de descripción de facetas desde la opción de suma de cuadrados

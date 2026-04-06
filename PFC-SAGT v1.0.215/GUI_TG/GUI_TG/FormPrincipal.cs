@@ -87,7 +87,7 @@ namespace GUI_GT
 
         // Variables de control
         //=====================
-        private bool editionModeOn = false;
+        private bool disableTopLeftButtons = false; // Setting this to True stops the user from switching between top row menú principal categories (Conectar, Proyectos, Datos, Medias, SSQQ, Análisis). Meant to be used when we're editing data
         private bool conected = false; // Indica cuando  el programa se encuentra conectado a la aplicación
                                        // de servidor.
 
@@ -134,7 +134,7 @@ namespace GUI_GT
 
             LoadConfigCFG();
 
-            this.editMultiFacetObs = false;
+            this.editingObsTable = false;
 
             // Incializa la opción de suma de cuadrados ocultando el tabPage de edición de la descripción de facetas
             this.tabPageEditDescriptionFacets.Parent = null;
@@ -682,7 +682,7 @@ namespace GUI_GT
          */
         private void tsmiConnect_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 string pathDocuments = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 string filepass = pathDocuments + "\\" + SAGT_DIR + "\\" + PassUsers.FILE_USER_PASS;
@@ -809,7 +809,7 @@ namespace GUI_GT
          */
         private void tsmiDisconnect_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 // Pedimos confirmación
                 DialogResult res = ShowMessageDialog(titleAdvice, txtConfirmCloseConnect);
@@ -844,7 +844,7 @@ namespace GUI_GT
          */
         private void tsmiProjects_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 ExcludeTabPages();
                 // Restauramos los colores
@@ -868,7 +868,7 @@ namespace GUI_GT
          */
         private void tsmiDat_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 ExcludeTabPages();
                 // Restauramos los colores
@@ -887,7 +887,7 @@ namespace GUI_GT
          */
         private void tsmiMeans_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 ExcludeTabPages();
                 this.tabPageMeans.Parent = this.tabControlOptions;
@@ -905,7 +905,7 @@ namespace GUI_GT
          */
         private void tsmiSSQ_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 ExcludeTabPages();
                 // Asignamos el tabPage de suma de cuadrados al tabControl de opciones
@@ -926,7 +926,7 @@ namespace GUI_GT
          */
         private void tsmiAnalyses_Click(object sender, EventArgs e)
         {
-            if (!this.editionModeOn)
+            if (!this.disableTopLeftButtons)
             {
                 ExcludeTabPages();
                 // Restauramos los colores

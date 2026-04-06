@@ -114,7 +114,7 @@ namespace GUI_GT
             try
             {
                 // entramos en el modo edición
-                this.editionModeOn = true;
+                this.disableTopLeftButtons = true;
                 // inhabilitamos el menú vertical de proyectos
                 this.mStripProjects.Enabled = false;
                 // Estado actual de proyecto de normal pasa a AddProject
@@ -182,7 +182,7 @@ namespace GUI_GT
                     // Habilitamos el menú vertical de proyectos
                     this.mStripProjects.Enabled = true;
                     // Salimos del modo edición
-                    this.editionModeOn = false;
+                    this.disableTopLeftButtons = false;
                     // Inhabilitamos los botones
                     EnabledOrDisabledButtonOkCancel(false);
 
@@ -245,7 +245,7 @@ namespace GUI_GT
             // Habilitamos el menú vertical de proyectos
             this.mStripProjects.Enabled = true;
             // Salimos del modo edición
-            this.editionModeOn = false;
+            this.disableTopLeftButtons = false;
             // Inhabilitamos los botones
             EnabledOrDisabledButtonOkCancel(false);
             this.stateProyect = StateOfOptionProyects.Normal;
@@ -263,7 +263,7 @@ namespace GUI_GT
                 {
                     this.stateProyect = StateOfOptionProyects.Edition;
                     // Introducimos el modo edición
-                    this.editionModeOn = true;
+                    this.disableTopLeftButtons = true;
                     // Habilitamos los textBox;
                     this.rTextBoxDescriptionProject.Enabled = true;
                     this.rTextBoxDescriptionProject.ReadOnly = false;
@@ -353,7 +353,7 @@ namespace GUI_GT
                     // Cambio el estado de proyectos de normal a busqueda
                     this.stateProyect = StateOfOptionProyects.Search;
                     // Bloqueo el menú principal
-                    this.editionModeOn = true;
+                    this.disableTopLeftButtons = true;
                     // Inhabilito el menú vertical
                     this.mStripProjects.Enabled = false;
                     // Borro los campos

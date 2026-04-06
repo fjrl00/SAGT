@@ -73,8 +73,8 @@ namespace GUI_GT
          */
         private void tsmiActionNewFileAnalysisSSQ_Click(object sender, EventArgs e)
         {
-            // Deshabilitamos el menú principal poniendo la variable booleana editionModeOn a true.
-            this.editionModeOn = true;
+            // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
+            this.disableTopLeftButtons = true;
             // desactivamos el menú de acciones de análisis
             this.mStripAnalysis.Enabled = false;
             // número de facetas 
@@ -135,7 +135,7 @@ namespace GUI_GT
          */
         private void CancelAcciónAnalisysEditionOfFacet()
         {
-            this.editionModeOn = false; // hemos finalizado la edición de facetas
+            this.disableTopLeftButtons = false; // hemos finalizado la edición de facetas
             this.mStripAnalysis.Enabled = true; // habilitamos el uso del menu
         }
 
@@ -201,8 +201,8 @@ namespace GUI_GT
          */
         private void enableEditingFacetAnalysis()
         {
-            // Deshabilitamos el menú principal poniendo la variable booleana editionModeOn a true.
-            this.editionModeOn = true;
+            // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
+            this.disableTopLeftButtons = true;
             this.mStripAnalysis.Enabled = false;
             // Mostramos la pestaña de edición  de facetas
             this.tabPageAnalysisFacetas.Parent = this.tabControlAnalysisSSQ;
@@ -220,8 +220,8 @@ namespace GUI_GT
          */
         private void enableEditingSSqAnalysis()
         {
-            // Deshabilitamos el menú principal poniendo la variable booleana editionModeOn a true.
-            this.editionModeOn = true;
+            // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
+            this.disableTopLeftButtons = true;
             this.mStripAnalysis.Enabled = false;
             this.tabPageAnalysisFacetas.Parent = null;
             this.tabPageAnalysisEditingSSq.Parent = this.tabControlAnalysisSSQ;
@@ -418,7 +418,7 @@ namespace GUI_GT
                 /* Si estamos en el modo edición entonces introducimos la suma de cuadrados
                  * permitir modificarla.
                  */
-                if (this.editionModeOn && false)
+                if (this.disableTopLeftButtons && false)
                 {
                     Aux_EditSsqValues(this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets());
                 }
@@ -564,7 +564,7 @@ namespace GUI_GT
             /* Si estamos en el modo edición entonces la lista de fuentes de variación será la 
              * perteneciente a la tabla de análisis faceta de análisis será
              */
-            if (this.editionModeOn && this.anl_tAnalysis_G_study_opt != null)
+            if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
             {
                 listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
                 llFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().SourcesOfVar();
@@ -621,7 +621,7 @@ namespace GUI_GT
                     case (DialogResult.OK):
                         // almacenamos el fichero
 
-                        if (this.editionModeOn && this.anl_tAnalysis_G_study_opt != null)
+                        if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
                         {
                             // Si estamos en el modo edición entonces calculamos
                             this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt.UpdateSsq(ssq);
@@ -913,8 +913,8 @@ namespace GUI_GT
          */
         private void disableEditingFacetAnalysis()
         {
-            // Deshabilitamos el menú principal poniendo la variable booleana editionModeOn a true.
-            this.editionModeOn = false;
+            // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
+            this.disableTopLeftButtons = false;
             this.mStripAnalysis.Enabled = true;
             // Ocultamos la pestaña de edición  de facetas
             this.tabPageAnalysisFacetas.Parent = null;
@@ -938,7 +938,7 @@ namespace GUI_GT
         {
             disableEditingFacetAnalysis();
             // Ponemos el modo edición a false para poder usar el menú principal
-            this.editionModeOn = false;
+            this.disableTopLeftButtons = false;
             // Activamos el menú de acciones de Análisis
             this.mStripAnalysis.Enabled = true;
             // limpiamos todos los campos de Análisis
@@ -1394,7 +1394,7 @@ namespace GUI_GT
             }
             else
             {
-                this.editionModeOn = true; // Ponemos el modo edición a true
+                this.disableTopLeftButtons = true; // Ponemos el modo edición a true
                 this.mStripAnalysis.Enabled = false; // Inhabilitamos el menú vertical de Análisis
 
                 // Ocultamos las pestañas
@@ -1490,8 +1490,6 @@ namespace GUI_GT
             }
             else
             {
-                // this.editionModeOn = true;
-                // mStripData.Enabled = false;// desactivamos el menu
                 enableEditingSSqAnalysis();
                 /* Mostramos el tabPage de edición con las suma de cuadrados editables.
                  * Soló la suma de cuadrados no las fuentes de variación.

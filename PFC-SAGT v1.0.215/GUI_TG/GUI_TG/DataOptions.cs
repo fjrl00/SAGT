@@ -83,8 +83,8 @@ namespace GUI_GT
         // La disposición de las facetas puede ser: cruzada, anidada o mixta.
         MultiFacetData.ProvisionOfFacets provision;
 
-        // Variable booleana que estará a true cuando se edita un objeto
-        bool editMultiFacetObs;
+        // Variable booleana que estará a true cuando se están actualmente editando facetas previamente creadas (botón Editar facetas)
+        bool editingObsTable;
 
         // CONSTANTES: indices de la tabla Facetas
         const int IND_NAME = 0;     // indice de la columna 'Nombre' de la tabla 'Facetas'
@@ -848,8 +848,8 @@ namespace GUI_GT
                 disableButtonObsTable();
                 // Habilitamos el menú de acciones del menú vertical datos.
                 mStripData.Enabled = true;
-                // Activamos el menú principal poniendo la variable editionModeOn a false.
-                this.editionModeOn = false;
+                // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
+                this.disableTopLeftButtons = false;
                 // Mostramos el checkBox "Ocultar nulos"
                 this.checkBoxHideNulls.Visible = true;
                 this.checkBoxHideNulls.Enabled = true;
@@ -1053,8 +1053,8 @@ namespace GUI_GT
          */
         private void tsmiActionNewMultiFacetData_Click(object sender, EventArgs e)
         {
-            // Deshabilitamos el menú principal poniendo la variable booleana editionModeOn a true.
-            this.editionModeOn = true;
+            // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
+            this.disableTopLeftButtons = true;
             // desactivamos el menu de acciones
             mStripData.Enabled = false;
             int t = 0; // número de facetas
@@ -1253,8 +1253,8 @@ namespace GUI_GT
             disableButtonsFacets();
             // ponemos la lista de facetas a null
             this.lf_global = null;
-            // Activamos el menú principal poniendo la variable editionModeOn a false.
-            this.editionModeOn = false;
+            // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
+            this.disableTopLeftButtons = false;
             tbDescription.Text = "";
             tbDescription.ReadOnly = true;
             tbFileName.Enabled = false;
@@ -1448,8 +1448,8 @@ namespace GUI_GT
             else
             {
 
-                this.editionModeOn = true;
-                this.editMultiFacetObs = true;
+                this.disableTopLeftButtons = true;
+                this.editingObsTable = true;
                 mStripData.Enabled = false;
                 tabControlData.SelectedIndex = 1;
                 int numCol = this.dataGridViewExObsTable.ColumnCount;
@@ -1475,8 +1475,7 @@ namespace GUI_GT
             }
             else
             {
-                this.editionModeOn = true;
-                this.editMultiFacetObs = true;
+                this.disableTopLeftButtons = true;
                 mStripData.Enabled = false;
                 tabControlData.SelectedIndex = 0;
                 // Ocultamos las pestaña de facetas y tabla de observaciones
@@ -1560,8 +1559,7 @@ namespace GUI_GT
             // El textBox de descripción lo ponemos en solo lectura
             this.tbDescription.ReadOnly = true;
 
-            this.editionModeOn = false;
-            this.editMultiFacetObs = false;
+            this.disableTopLeftButtons = false;
             mStripData.Enabled = true;
             this.lf_global = null;
         }
@@ -1756,21 +1754,23 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Cancelación de la edición de una tabla de observaciones. Si la tabla esta siendo creada
-         *  se debe volver a dejar las tablas vacias y los objetos a null. Si la tabla estaba editando 
-         *  un objeto creado se debe restaurar sus valores.
+         *  Cancelación de la edición de una tabla de observaciones.
+         *  Este mismo botón tiene dos conductas distintas dependiendo del estado:
+         *  1. Por defecto (aka editingObsTable=false) y durante la creación de una tabla de observaciones (Nuevo->Generar tabla de observaciones), 
+         *      aborta completamente el proceso. se debe volver a dejar las tablas vacias y los objetos a null.
+         *  2. Durante la edición de una tabla de observaciones (Editar datos, aka editingObsTable=true) restaura sus valores a los originales.
          */
         private void btActionCancelGenerateTableObs_Click()
         {
-            if (this.editMultiFacetObs)
+            if (this.editingObsTable)
             {
                 /* En este caso estamos editando la tabla de observaciones y por tanto debemos volver a 
                  * cargar los valores iniciales. */
                 MultiFacetsObs multiFacets = sagtElements.GetMultiFacetsObs();
                 loadDataInTabPageObsTable(multiFacets);
 
-                // Ponemos la variable editarMultiFacets
-                this.editMultiFacetObs = false;
+                // Restauramos editingObsTable
+                this.editingObsTable = false;
                 // Mostramos el checkBox de "Ocultar nulos"
                 this.checkBoxHideNulls.Visible = true;
                 this.checkBoxHideNulls.Enabled = true;
@@ -1788,8 +1788,8 @@ namespace GUI_GT
 
             // ocultamos los botones de aceptar y cancelar
             disableButtonObsTable();
-            // Activamos el menú principal poniendo la variable editionModeOn a false.
-            this.editionModeOn = false;
+            // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
+            this.disableTopLeftButtons = false;
             this.mStripData.Enabled = true;
             this.lf_global = null;
         }// end btActionCancelGenerateTableObs_Click
