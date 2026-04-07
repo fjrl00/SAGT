@@ -49,15 +49,6 @@ namespace GUI_GT
         List<List<G_ParametersOptimization>> list_of_list_g_parameters = new List<List<G_ParametersOptimization>>();
 
 
-        // Cabeceras de las columnas pertenecientes al tabPage de Optimization
-        // ===================================================================
-        // private string sizeOfUniverse = "Tamaño del universo";
-        //private string levelsProcess = "Niveles procesados";
-        // indice de la posición en la tabla de optimización de la columna Niveles de procesamiento
-        //private int IND_LEVELS_PROCESS = 2;
-        // indice de la posición en la tabla de optimización de la columna Tamaño del universo
-        //private int IND_SIZE_OF_UNIVERSE = 3;
-
         // String para la columna de resumen de datos
         //=============================================
         private string total_nb_obs = "Total de observaciones";
@@ -416,27 +407,6 @@ namespace GUI_GT
         }// end AddColunmToDGVOptimization
 
 
-        /* Descripción:
-         *  Actua sobre las propiedades de una columna de un dataGridView indicandole su etiqueta y logitud
-         *  que se pasan como parámetros.
-         * Parámetros:
-         *      DataGridView dgv: el dataGridView sobre el que queremos actuar.
-         *      int pos: columna sobre la que queremos actuar.
-         *      string label: Etiqueta de la columna.
-         */
-        private void PropertyColumnDGV(DataGridViewEx.DataGridViewEx dgv, int pos, string label)
-        {
-            // dgv.Columns[pos].Name = label; // Nombre de la columna Descripción (dependerá del idioma).
-            dgv.Columns[pos].HeaderText = label;
-            // dgv.Columns[pos].Width = lg;
-            // dgv.Columns[pos].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[pos].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[pos].ReadOnly = true;
-            dgv.Columns[pos].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
-            dgv.Columns[pos].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        }
-
-
         /*
          * Descripción:
          *  Actua sobre las propiedades de una columna de un dataGridView indicandole su etiqueta y logitud
@@ -494,17 +464,6 @@ namespace GUI_GT
 
                 name = this.lbSelectFacet.Name.ToString();
                 this.lbSelectFacet.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                // Traducimos las etiquestas de la leyenda
-                /*
-                int n = this.chartG_Parameters.Series.Count;
-                for (int i = 0; i < n; i++)
-                {
-                    name = this.chartG_Parameters.Series[i].Name.ToString();
-                    this.chartG_Parameters.Series[i].LegendText = dic.labelTraslation(name).LangTraslation(lang).ToString();
-                }
-                 */
-
 
                 // Cambiamos los valores de la tabla de datos
                 // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum
