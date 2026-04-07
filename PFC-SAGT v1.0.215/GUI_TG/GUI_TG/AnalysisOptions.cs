@@ -1101,7 +1101,7 @@ namespace GUI_GT
                         //th.Abort();
                         break;
                     default:
-                        ShowMessageErrorOK("No se muestra ninguno");
+                        ShowMessageErrorOK(errorInvalidExtension);
                         break;
                 }
                 if (tAnalysis_tG_Study_Opt != null)

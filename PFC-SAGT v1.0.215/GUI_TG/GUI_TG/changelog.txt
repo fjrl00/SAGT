@@ -26,7 +26,7 @@ OPTIMIZATION
 - Greatly improved the speed of calculating omitting of facets.
 - Greatly improved the speed of generating means and sums of squares.
 - Greatly improved the speed at which data is rendered inside tables.
-- cacheing improvements during some calculations
+- Cacheing improvements during some calculations
 - Plenty of minor performance improvements throughout the app
 
 LOCALIZATION
@@ -36,6 +36,7 @@ LOCALIZATION
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization
 - Some Spanish typos fixed
+- Some previously untranslated text throughout the app has been translated
 
 OTHERS
 

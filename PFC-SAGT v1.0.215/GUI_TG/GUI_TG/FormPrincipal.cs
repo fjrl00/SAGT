@@ -208,7 +208,7 @@ namespace GUI_GT
                     // this.tabControlOptions.SelectedTab = this.tabPageAnalysis;
                     break;
                 default:
-                    ShowMessageErrorOK("No se muestra ninguno");
+                    ShowMessageErrorOK(errorInvalidExtension);
                     break;
             }
         }

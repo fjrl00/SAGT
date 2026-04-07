@@ -63,6 +63,7 @@ namespace GUI_GT
         private string errorNoExistWorkspace = "No se ha encontrado el espacio de trabajo. Se usará el espacio de trabajo por defecto.";
         private string errorValueNullOrEmpty = "Hay campos vacios";
         private string errorDuplicateNameFacet = "Nombre de faceta duplicado";
+        private string errorInvalidExtension = "No se ha reconocido una extensión de archivo válida.";
 
         // Errores de Proyecto
         private string errorNoNameProject = "Nombre de proyecto no válido";
@@ -185,6 +186,8 @@ namespace GUI_GT
                 errorValueNullOrEmpty = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorDuplicateNameFacet";
                 errorDuplicateNameFacet = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorInvalidExtension";
+                errorInvalidExtension = dicError.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Errores de Proyecto
                 name = "errorNoNameProject";

@@ -446,7 +446,7 @@ namespace GUI_GT
                 case ("rtf"): loadListOfMeansOfFileRtf_EduG(path); break;
                 case (DEFAULT_EXT_EXCEL): loadListTableMeansFileXls(path); break;
                 default:
-                    MessageBox.Show("No se muestra ninguno");
+                    ShowMessageErrorOK(errorInvalidExtension);
                     break;
             }
             //fw.Close();

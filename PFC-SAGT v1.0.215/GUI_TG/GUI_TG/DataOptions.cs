@@ -321,7 +321,7 @@ namespace GUI_GT
                 case (DEFAULT_EXT_EXCEL): loadMultiFacetFileXls(path); break;
                 case ("csv"): loadMultiFacetFileCsv(path); break;
                 default:
-                    ShowMessageInfo("No se muestra ninguno");
+                    ShowMessageErrorOK(errorInvalidExtension);
                     break;
             }
         }

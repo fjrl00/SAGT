@@ -1446,7 +1446,7 @@ namespace GUI_GT
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
                         break;
                     default:
-                        ShowMessageErrorOK("No se muestra ninguno");
+                        ShowMessageErrorOK(errorInvalidExtension);
                         break;
                 }// end switch
 
@@ -2103,8 +2103,8 @@ namespace GUI_GT
                 lbTextCoef_G_Rel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = lbTextGeneralizabilityCoef.Name.ToString();
                 lbTextGeneralizabilityCoef.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextCoef_G_Rel.Name.ToString();
-                lbTextCoef_G_Rel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = lbTextCoef_G_Abs.Name.ToString();
+                lbTextCoef_G_Abs.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Etiquetas del tabPage: Información
                 name = lbNameFileSsqInfo.Name.ToString();
