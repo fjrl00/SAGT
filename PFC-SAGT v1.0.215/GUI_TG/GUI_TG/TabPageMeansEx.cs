@@ -95,7 +95,7 @@ namespace GUI_GT
             dgvExTableMean.RowHeadersVisible = false;
 
             dgvExTableMean.ScrollBars = ScrollBars.Both;
-            dgvExTableMean.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // INTERESTING FACT: UPGRADING .NET FRAMEWORK TO 4.8.1 CAUSED THIS TO BEHAVE SLIGHTLY DIFFERENTLY, now it also causes the column header to glow
+            dgvExTableMean.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // hay que traducir cada uno de los menu contextuales de los dataGridViewEx
             TranslationTContextualMenu(cut, copy, paste, remove, selectAll);
 

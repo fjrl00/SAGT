@@ -62,13 +62,13 @@
             series1.EmptyPointStyle.Label = "h";
             series1.EmptyPointStyle.LegendText = "n";
             series1.Legend = "Legend_coefG_Rel";
-            series1.LegendText = "Coeficiente G Rel.";
+            series1.LegendText = "Coeficiente G Relativo";
             series1.MarkerColor = System.Drawing.Color.Red;
             series1.Name = "Series_coefG_Rel";
             series2.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
             series2.ChartArea = "ChartAreaG_Parameters";
             series2.Legend = "Legend_coefG_Rel";
-            series2.LegendText = "Coeficiente G Abs.";
+            series2.LegendText = "Coeficiente G Absoluto";
             series2.Name = "Series_coefG_Abs";
             series3.ChartArea = "ChartAreaG_Parameters";
             series3.Legend = "Legend_coefG_Rel";
