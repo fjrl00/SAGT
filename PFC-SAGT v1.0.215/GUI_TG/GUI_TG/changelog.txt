@@ -34,6 +34,7 @@ LOCALIZATION
 
 - Solved incorrect terminology "frequency table" which actually refers to "observation table"
 - Solved English translation error where "standard deviation of relative error" was instead translated as "relative standard error"
+- Solved error where the string "% relative" (percentage of the relative error variance an instrumentation source contributes) would be incorrectly output as "absolute error variance" under certain circunstances
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization
 - Some Spanish typos fixed
