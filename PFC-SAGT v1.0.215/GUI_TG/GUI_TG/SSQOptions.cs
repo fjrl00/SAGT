@@ -70,11 +70,10 @@ namespace GUI_GT
         // Cabeceras de las columnas pertenecientes al tabPage de Optimization
         // ===================================================================
         // private string sizeOfUniverse = "Tamaño del universo";
-        private string levelsProcess = "Niveles procesados";
-        // indice de la posición en la tabla de optimización de la columna Niveles de procesamiento
-        private int IND_LEVELS_PROCESS = 2;
         // indice de la posición en la tabla de optimización de la columna Tamaño del universo
-        private int IND_SIZE_OF_UNIVERSE = 3;
+        private int IND_SIZE_OF_UNIVERSE = 2;
+        // indice de la posición en la tabla de optimización de la columna Descripción
+        private int IND_SSQQDESC = 3;
 
         // String para la columna de resumen de datos
         //=============================================
@@ -582,28 +581,24 @@ namespace GUI_GT
             DataGridViewEx.DataGridViewEx dgv = this.dGridViewExFacetsOptimization;
 
             // Primera columna faceta
-            //dgv.Columns[IND_NAME].Name = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
             dgv.Columns[IND_NAME].HeaderText = nameColFacet;
             dgv.Columns[IND_NAME].Width = 100;
             dgv.Columns[IND_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             // segunda columna nivel
-            // dgv.Columns[IND_LEVEL].Name = nameColLevel; // Nombre de la columna Niveles (dependerá del idioma).
             dgv.Columns[IND_LEVEL].HeaderText = nameColLevel;
             dgv.Columns[IND_LEVEL].Width = 100;
             dgv.Columns[IND_LEVEL].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             // tercera columna descripción/ comentario
-            // dgv.Columns[IND_LEVELS_PROCESS].Name = this.levelsProcess; // Nombre de la columna Descripción (dependerá del idioma).
-            dgv.Columns[IND_LEVELS_PROCESS].HeaderText = this.levelsProcess;
-            dgv.Columns[IND_LEVELS_PROCESS].Width = 100;
-            dgv.Columns[IND_LEVELS_PROCESS].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            // tercera columna descripción/ comentario
-            // dgv.Columns[IND_SIZE_OF_UNIVERSE].Name = this.sizeOfUniverse; // Nombre de la columna Descripción (dependerá del idioma).
             dgv.Columns[IND_SIZE_OF_UNIVERSE].HeaderText = this.nameColSizeOfUniverse;
             dgv.Columns[IND_SIZE_OF_UNIVERSE].Width = 100;
             dgv.Columns[IND_SIZE_OF_UNIVERSE].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            // tercera columna descripción/ comentario
+            dgv.Columns[IND_SSQQDESC].HeaderText = this.nameColComment;
+            dgv.Columns[IND_SSQQDESC].Width = 100;
+            dgv.Columns[IND_SSQQDESC].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             for (int i = 0; i < 4; i++)
             {
@@ -620,8 +615,6 @@ namespace GUI_GT
 
                 my_Row[IND_NAME] = f.Name();
                 my_Row[IND_LEVEL] = f.Level();
-                my_Row[IND_LEVELS_PROCESS] = f.Level();
-
                 if (f.SizeOfUniverse().Equals(int.MaxValue))
                 {
                     my_Row[IND_SIZE_OF_UNIVERSE] = Facet.INFINITE;
@@ -630,6 +623,7 @@ namespace GUI_GT
                 {
                     my_Row[IND_SIZE_OF_UNIVERSE] = f.SizeOfUniverse();
                 }
+                my_Row[IND_SSQQDESC] = f.Comment();
 
                 dgv.Rows.Add(my_Row);
             }
@@ -2040,17 +2034,13 @@ namespace GUI_GT
                     dGridViewExG_Parameters.Columns[4].HeaderText = abs_err_var;
                 }
 
-                // Cabecera de las columnas de dGridViewExFacetsOptimization
-                name = "levelsProcess";
-                levelsProcess = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
                 // Actuamos sobre dGridViewExFacetsOptimization
                 if (dGridViewExFacetsOptimization.ColumnCount != 0)
                 {
                     dGridViewExFacetsOptimization.Columns[IND_NAME].HeaderText = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
                     dGridViewExFacetsOptimization.Columns[IND_LEVEL].HeaderText = nameColLevel; // Nombre de la columna Niveles (dependerá del idioma).
-                    dGridViewExFacetsOptimization.Columns[IND_LEVELS_PROCESS].HeaderText = levelsProcess;
                     dGridViewExFacetsOptimization.Columns[IND_SIZE_OF_UNIVERSE].HeaderText = this.nameColSizeOfUniverse;
+                    dGridViewExFacetsOptimization.Columns[IND_SSQQDESC].HeaderText = this.nameColComment;
                 }
 
                 // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum

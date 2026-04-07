@@ -1665,8 +1665,8 @@ namespace GUI_GT
                 {
                     dgvExAnalysisFacetsOpt.Columns[IND_NAME].HeaderText = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
                     dgvExAnalysisFacetsOpt.Columns[IND_LEVEL].HeaderText = nameColLevel; // Nombre de la columna Niveles (dependerá del idioma).
-                    dgvExAnalysisFacetsOpt.Columns[IND_LEVELS_PROCESS].HeaderText = levelsProcess;
                     dgvExAnalysisFacetsOpt.Columns[IND_SIZE_OF_UNIVERSE].HeaderText = this.nameColSizeOfUniverse;
+                    dgvExAnalysisFacetsOpt.Columns[IND_SSQQDESC].HeaderText = this.nameColComment;
                 }
 
 
