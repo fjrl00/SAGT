@@ -241,13 +241,13 @@ namespace GUI_GT
             {
                 switch (saveDialog.FilterIndex)
                 {
-                    case (0):
+                    case (1):
                         this.chartCoef_G.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
-                    case (1):
+                    case (2):
                         this.chartCoef_G.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
                         break;
-                    case (2):
+                    case (3):
                         this.chartCoef_G.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
                     default:

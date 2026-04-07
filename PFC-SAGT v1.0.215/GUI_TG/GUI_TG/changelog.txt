@@ -15,6 +15,8 @@ BUGFIXES
 - Overhauled how the app works in different culture settings, bugs that would've been triggered regarding handling text data in certain cultures like Turkish have been solved.
 - Solved other minor bugs throughout the app related to handling null values
 - Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
+- Solved bug where, in certain cases, the relative and absolute error of an instrumentation source would be swapped out
+- Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them
 
 OPTIMIZATION
 
@@ -42,4 +44,4 @@ OTHERS
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
 
-Last updated: 04/04/2026
+Last updated: 07/04/2026
