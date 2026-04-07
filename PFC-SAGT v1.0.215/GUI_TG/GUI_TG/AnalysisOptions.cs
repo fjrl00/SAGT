@@ -1656,7 +1656,9 @@ namespace GUI_GT
                     dgvExAnalysis_GP.Columns[1].HeaderText = diff_var;
                     dgvExAnalysis_GP.Columns[2].HeaderText = source;
                     dgvExAnalysis_GP.Columns[3].HeaderText = rel_err_var;
-                    dgvExAnalysis_GP.Columns[4].HeaderText = abs_err_var;
+                    dgvExAnalysis_GP.Columns[4].HeaderText = percent_rel_err;
+                    dgvExAnalysis_GP.Columns[5].HeaderText = abs_err_var;
+                    dgvExAnalysis_GP.Columns[6].HeaderText = percent_abs_err;
                 }
 
 

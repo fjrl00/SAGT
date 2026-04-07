@@ -2021,8 +2021,12 @@ namespace GUI_GT
                 diff_var = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "rel_err_var";
                 rel_err_var = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "percent_rel_err";
+                percent_rel_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "abs_err_var";
                 abs_err_var = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "percent_abs_err";
+                percent_abs_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // actuamos sobre el dGridViewExG_Parameters
                 if (dGridViewExG_Parameters.ColumnCount != 0)
@@ -2031,7 +2035,9 @@ namespace GUI_GT
                     dGridViewExG_Parameters.Columns[1].HeaderText = diff_var;
                     dGridViewExG_Parameters.Columns[2].HeaderText = source;
                     dGridViewExG_Parameters.Columns[3].HeaderText = rel_err_var;
-                    dGridViewExG_Parameters.Columns[4].HeaderText = abs_err_var;
+                    dGridViewExG_Parameters.Columns[4].HeaderText = percent_rel_err;
+                    dGridViewExG_Parameters.Columns[5].HeaderText = abs_err_var;
+                    dGridViewExG_Parameters.Columns[6].HeaderText = percent_abs_err;
                 }
 
                 // Actuamos sobre dGridViewExFacetsOptimization
