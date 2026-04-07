@@ -52,7 +52,6 @@ namespace GUI_GT
         private string nameColDiffMean = "Diferencia de medias";
         private string nameColDiffVar = "Diferencia de varianzas";
         private string nameColDiffStd_dev = "Dif. de la desv. típica";
-
         // Nombre de las columnas adicionales de Tabla de medias de puntuación típica.
         private string nameColTypScore = "Puntuación típica";
 
@@ -165,6 +164,11 @@ namespace GUI_GT
             string var = dic.labelTraslation(nameColVariance).GetTranslation(lang).ToString();
             string stdv = dic.labelTraslation(nameColStd_Dev).GetTranslation(lang).ToString();
 
+            string ncdf = dic.labelTraslation(nameColDiffMean).GetTranslation(lang).ToString();
+            string ncdv = dic.labelTraslation(nameColDiffVar).GetTranslation(lang).ToString();
+            string ncds = dic.labelTraslation(nameColDiffStd_dev).GetTranslation(lang).ToString();
+            string typScore = dic.labelTraslation(nameColTypScore).GetTranslation(lang).ToString();
+
             string cut = dicMeans.labelTraslation("Cut").GetTranslation(lang).ToString();
             string copy = dicMeans.labelTraslation("Copy").GetTranslation(lang).ToString();
             string paste = dicMeans.labelTraslation("Paste").GetTranslation(lang).ToString();
@@ -178,7 +182,8 @@ namespace GUI_GT
 
             foreach (InterfaceTableMeans tmeans in listMeans)
             {
-                AddTabPageTableMeans(tmeans, blackground, gm, means, var, stdv, cut, copy, paste, remove, selectAll);
+                AddTabPageTableMeans(tmeans, blackground, gm, means, var, stdv,
+                   ncdf, ncdv, ncds, typScore, cut, copy, paste, remove, selectAll);
             }
 
             // this.tableMeans = new TableMeans(lf,this.multiFacets);
@@ -199,12 +204,14 @@ namespace GUI_GT
          * Parámetros:
          *      TableMeans tmeans: Tabla con los datos que vamos a escribir en el dataGridViewEx
          */
-        private void AddTabPageTableMeans(InterfaceTableMeans tmeans, Image blackground, string grandMean, string mean, string var,
-            string stdv, string cut, string copy, string paste, string remove, string selectAll)
+        private void AddTabPageTableMeans(InterfaceTableMeans tmeans, Image blackground, string grandMean, string mean, string var, string stdv,
+            string nameColDiffMean, string nameColDiffVar, string nameColDiffStd_dev, string typScore,
+            string cut, string copy, string paste, string remove, string selectAll)
         {
             TabPageMeansEx newTabPage = new TabPageMeansEx(blackground, tmeans.FacetDesign(),
-                this.txtGrandMean, this.lbGrandMean.Location, grandMean, mean, var, stdv, cut, copy,
-                paste, remove, selectAll);
+                this.txtGrandMean, this.lbGrandMean.Location, grandMean, mean, var, stdv,
+                nameColDiffMean, nameColDiffVar, nameColDiffStd_dev, typScore, 
+                cut, copy, paste, remove, selectAll);
 
             // Determinamos el tipo al que pertenece
             // tomamos el tipo original;

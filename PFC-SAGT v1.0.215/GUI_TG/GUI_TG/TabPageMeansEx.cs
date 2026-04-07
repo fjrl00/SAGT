@@ -51,86 +51,12 @@ namespace GUI_GT
          *====================================================================================================*/
 
         /* Descripción:
-         *  Constructor para la tabla de medias por defecto.
+         *  Constructor para la tabla de medias.
          */
         public TabPageMeansEx(Image blackground, string name, string txtGrandMeans, Point point_label1, string gm,
-            string m, string variance, string stdv, string cut, string copy,
-            string paste, string remove, string selectAll) :
-            base()
-        {
-            this.BackgroundImage = blackground;
-            // Textos
-            this.grandMean = gm;
-            this.nameColMeans = m;
-            this.nameColVariance = variance;
-            this.nameColStd_Dev = stdv;
-
-            // creamos el tabPage
-            this.Text = name;
-            this.MinimumSize = new System.Drawing.Size(568, 444);
-            this.MaximumSize = new Size(1200, 700);
-
-            // creamos el dataGridViewEx
-            dgvExTableMean = new DataGridViewEx.DataGridViewEx();
-
-            dgvExTableMean.Location = new System.Drawing.Point(13, 7);
-
-            // dgvExTableMean.Size = new System.Drawing.Size(500, 400);
-            dgvExTableMean.Size = new System.Drawing.Size(this.Width - 50, this.Height - 100);
-            dgvExTableMean.MaximumSize = new Size(1100, 400);
-
-            // newDataGridViewEx.Anchor = this.tabControlMeans.Anchor;// (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right );
-            dgvExTableMean.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-            dgvExTableMean.Dock = DockStyle.Fill; // esta propiedad permite mostrar el scrollbar
-
-            // Añadimos el dataGridViewEx creado en la lista de datagridViewEx
-            // this.listOfDataGridViewEx.Add(newDataGridViewEx);
-
-            dgvExTableMean.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dgvExTableMean.Margin = new Padding(3, 3, 3, 3);
-
-            dgvExTableMean.AllowUserToAddRows = false;
-
-            // dgvExTableMean.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvExTableMean.RowHeadersVisible = false;
-
-            dgvExTableMean.ScrollBars = ScrollBars.Both;
-            dgvExTableMean.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            // hay que traducir cada uno de los menu contextuales de los dataGridViewEx
-            TranslationTContextualMenu(cut, copy, paste, remove, selectAll);
-
-            // Añadimos la etiqueta el texto "Gran Media"
-            this.lb_txt_GrandMeans = new Label();
-            this.lb_txt_GrandMeans.AutoSize = true;
-            this.lb_txt_GrandMeans.Font = new Font("Verdana", 10, FontStyle.Bold);
-            this.lb_txt_GrandMeans.MinimumSize = new Size(0, 0);
-            this.lb_txt_GrandMeans.MaximumSize = new Size(0, 0);
-            // this.lb_txt_GrandMeans.
-            this.lb_txt_GrandMeans.Text = txtGrandMeans;
-            // this.lb_txt_GrandMeans.Location = new System.Drawing.Point(point_label1.X, point_label1.Y);
-            this.lb_txt_GrandMeans.Location = new System.Drawing.Point(point_label1.X, this.Height - 25);
-            this.lb_txt_GrandMeans.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
-
-            // añadimos el dataGridView
-            this.Controls.Add(dgvExTableMean);
-            this.Controls.Add(lb_txt_GrandMeans);
-            // this.Controls.Add(lb_GrandMeans);
-
-            // añadimos el nuevo tabPage
-            // loadMeansInDataGridView(tmeans, dgvExTableMean);
-
-            // tabControlMeans.TabPages.Add(newTabPage);
-        }// end (constructor 1) public TabPageMeansEx
-
-        /* Descripción:
-         *  Constructor para la tabla diferencias de medias.
-         *  
-         *  DOES THE EXACT SAME THING AS THE OTHER CONSTRUCTOR EXCEPT IT ALSO RECEIVES 
-         *  TRANSLATION DATA FOR THE LAST COLUMNS
-         */
-        public TabPageMeansEx(Image blackground, string name, string txtGrandMeans, Point point_label1, string gm,
-            string m, string variance, string stdv, string nameColDiffMean, string nameColDiffVar,
-            string nameColDiffStd_dev, string cut, string copy, string paste, string remove, string selectAll) :
+            string m, string variance, string stdv, 
+            string nameColDiffMean, string nameColDiffVar, string nameColDiffStd_dev, string typScore, 
+            string cut, string copy, string paste, string remove, string selectAll) :
             base()
         {
             this.BackgroundImage = blackground;
@@ -139,10 +65,11 @@ namespace GUI_GT
             this.nameColMeans = m;
             this.nameColVariance = variance;
             this.nameColStd_Dev = stdv;
-            // Textos de diferencia de medias
+            // Textos de otras medias
             this.nameColDiffMean = nameColDiffMean;
             this.nameColDiffVar = nameColDiffVar;
             this.nameColDiffStd_dev = nameColDiffStd_dev;
+            this.nameColTypScore = typScore;
 
             // creamos el tabPage
             this.Text = name;
