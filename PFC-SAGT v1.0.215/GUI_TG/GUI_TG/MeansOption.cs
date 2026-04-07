@@ -786,12 +786,11 @@ namespace GUI_GT
                         }
                         else if (tb.GetType() == tbPointScore.GetType())
                         {
-                            dgvEx.Columns[n - 6].HeaderText = means;
-                            dgvEx.Columns[n - 5].HeaderText = variance;
-                            dgvEx.Columns[n - 4].HeaderText = stdv;
-                            dgvEx.Columns[n - 3].HeaderText = diffMean;
-                            dgvEx.Columns[n - 2].HeaderText = diffVar;
-                            dgvEx.Columns[n - 1].HeaderText = diffStd_Dev;
+                            dgvEx.Columns[n - 5].HeaderText = means;
+                            dgvEx.Columns[n - 4].HeaderText = variance;
+                            dgvEx.Columns[n - 3].HeaderText = stdv;
+                            dgvEx.Columns[n - 2].HeaderText = diffMean;
+                            dgvEx.Columns[n - 1].HeaderText = TypScore;
                         }
                         else
                         {

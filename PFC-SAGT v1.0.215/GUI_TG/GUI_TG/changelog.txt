@@ -16,7 +16,8 @@ BUGFIXES
 - Solved other minor bugs throughout the app related to handling null values
 - Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
 - Solved bug where, in certain cases, the relative and absolute error of an instrumentation source would be swapped out
-- Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them
+- Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them in certain image viewers
+- Solved bug where changing language in the Means section would bug out Typical Score means tables' headers
 
 OPTIMIZATION
 
