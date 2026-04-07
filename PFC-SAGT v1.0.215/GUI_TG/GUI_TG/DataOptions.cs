@@ -1833,7 +1833,15 @@ namespace GUI_GT
                         }
                         else
                         {
-                            size = int.Parse(my_row.Cells[IND_SIZE_OF_UNIVERSE_FACET].Value.ToString());
+                            double parsedDouble = double.Parse(my_row.Cells[IND_SIZE_OF_UNIVERSE_FACET].Value.ToString());
+                            if (parsedDouble >= int.MaxValue)
+                            {
+                                size = int.MaxValue;
+                            }
+                            else
+                            {
+                                size = (int)parsedDouble;
+                            }
                         }
                     }
 

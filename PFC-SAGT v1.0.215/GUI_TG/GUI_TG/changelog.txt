@@ -18,6 +18,7 @@ BUGFIXES
 - Solved bug where, in certain cases, the relative and absolute error of an instrumentation source would be swapped out
 - Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them in certain image viewers
 - Solved bug where changing language in the Means section would bug out Typical Score means tables' headers
+- Solved bug where invalid inputs in New Sum Of Squares would trigger both an error message and an exception
 
 OPTIMIZATION
 
@@ -46,6 +47,7 @@ OTHERS
 - Overhauled error feedback when reading or writing files
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
+- Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
 
 UI
 

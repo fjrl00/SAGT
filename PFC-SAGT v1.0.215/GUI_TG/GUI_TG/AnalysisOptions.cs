@@ -402,44 +402,44 @@ namespace GUI_GT
             // Leemos la lista de facetas del dataGridView
             this.listFacetsAnalysis = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
 
-            /* Si los datos son correctos continuamos las comprobaciones.
-                * Si es necesario realizamos el anidamiento total de las facetas */
-            if (this.provision.Equals(ProvisionOfFacets.Nested))
+            // Si los datos son correctos continuamos las comprobaciones.
+            if(this.listFacetsAnalysis != null)
             {
-                // Hacemos un anidamiento de las facetas
-                this.listFacetsAnalysis.NestingAllFacet();
-            }
-
-            // Si no estamos en modo edición significa que estamos introduciendo los valores por primera vez
-            // Pedimos al usuario que inserte el diseño de medida
-            this.analysisSourceOfVarDiff = new ListFacets();
-            this.analysisSourceOfVarInst = new ListFacets();
-
-
-            // Creamos la ventana para introducir el diseño de medida
-            FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
-            bool salir = false; // variable de control del bucle
-
-            do
-            {
-                DialogResult res = formMeasurDesign.ShowDialog();
-                switch (res)
+                // Si es necesario realizamos el anidamiento total de las facetas 
+                if (this.provision.Equals(ProvisionOfFacets.Nested))
                 {
-                    case (DialogResult.Cancel): salir = true; break;
-                    case (DialogResult.OK):
-                        if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
-                        {
-                            ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
-                        }
-                        else
-                        {
-                            salir = true;
-                            Aux_IntroduceSsqValues();
-
-                        }
-                        break;
+                    // Hacemos un anidamiento de las facetas
+                    this.listFacetsAnalysis.NestingAllFacet();
                 }
-            } while (!salir);
+
+                // Pedimos al usuario que inserte el diseño de medida
+                this.analysisSourceOfVarDiff = new ListFacets();
+                this.analysisSourceOfVarInst = new ListFacets();
+                // Creamos la ventana para introducir el diseño de medida
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
+                bool salir = false; // variable de control del bucle
+
+                do
+                {
+                    DialogResult res = formMeasurDesign.ShowDialog();
+                    switch (res)
+                    {
+                        case (DialogResult.Cancel): salir = true; break;
+                        case (DialogResult.OK):
+                            if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
+                            {
+                                ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
+                            }
+                            else
+                            {
+                                salir = true;
+                                Aux_IntroduceSsqValues();
+
+                            }
+                            break;
+                    }
+                } while (!salir);
+            }
         }// end btActionEditSumOfSquaresOnAnalisys_Click
 
 
