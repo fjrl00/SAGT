@@ -115,7 +115,7 @@ namespace GUI_GT
                 double v = (double)g.CoefG_Rel();
                 introducirSerie(pos, v, SERIE_COEFG_REL);
                 this.chartG_Parameters.Series[SERIE_COEFG_REL].Color = this.cfg.GetColor_coefG_Rel();
-                this.chartG_Parameters.Series[SERIE_COEFG_REL].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColor_coefG_Rel());
+                this.chartG_Parameters.Series[SERIE_COEFG_REL].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColor_coefG_Rel());
                 this.chartG_Parameters.Series[SERIE_COEFG_REL].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_COEFG_REL].BorderColor = borderColor;
                 this.chartG_Parameters.Series[SERIE_COEFG_REL].BorderWidth = borderWith;
@@ -133,7 +133,7 @@ namespace GUI_GT
                 double v = (double)g.CoefG_Abs();
                 introducirSerie(pos, v, SERIE_COEFG_ABS);
                 this.chartG_Parameters.Series[SERIE_COEFG_ABS].Color = this.cfg.GetColor_coefG_Abs();
-                this.chartG_Parameters.Series[SERIE_COEFG_ABS].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColor_coefG_Abs());
+                this.chartG_Parameters.Series[SERIE_COEFG_ABS].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColor_coefG_Abs());
                 this.chartG_Parameters.Series[SERIE_COEFG_ABS].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_COEFG_ABS].BorderColor = borderColor;
                 this.chartG_Parameters.Series[SERIE_COEFG_ABS].BorderWidth = borderWith;
@@ -151,7 +151,7 @@ namespace GUI_GT
                 double v = (double)g.TotalRelErrorVar();
                 introducirSerie(pos, v, SERIE_TOTAL_REL_ERROR_VAR);
                 this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].Color = this.cfg.GetColorTotalRelErrorVar();
-                this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColorTotalRelErrorVar());
+                this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColorTotalRelErrorVar());
                 this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].BorderColor = borderColor;
                 this.chartG_Parameters.Series[SERIE_TOTAL_REL_ERROR_VAR].BorderWidth = borderWith;
@@ -169,7 +169,7 @@ namespace GUI_GT
                 double v = (double)g.TotalAbsErrorVar();
                 introducirSerie(pos, v, SERIE_TOTAL_ABS_ERROR_VAR);
                 this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].Color = this.cfg.GetColorTotalAbsErrorVar();
-                this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColorTotalAbsErrorVar());
+                this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColorTotalAbsErrorVar());
                 this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].BorderColor = borderColor;
                 this.chartG_Parameters.Series[SERIE_TOTAL_ABS_ERROR_VAR].BorderWidth = borderWith;
@@ -187,7 +187,7 @@ namespace GUI_GT
                 double v = (double)g.ErrorRelStandDev();
                 introducirSerie(pos, v, SERIE_ERROR_REL_STAND);
                 this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].Color = this.cfg.GetColorErrorRelStandDev();
-                this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColorErrorRelStandDev());
+                this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColorErrorRelStandDev());
                 this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].BorderColor = borderColor;
                 this.chartG_Parameters.Series[SERIE_ERROR_REL_STAND].BorderWidth = borderWith;
@@ -205,7 +205,7 @@ namespace GUI_GT
                 double v = (double)g.ErrorAbsStandDev();
                 introducirSerie(pos, v, SERIE_ERROR_ABS_STAND);
                 this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].Color = this.cfg.GetColorErrorAbsStandDev();
-                this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].BackSecondaryColor = ColorMoreBrightness(this.cfg.GetColorErrorAbsStandDev());
+                this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].BackSecondaryColor = ColorLowerBrightness(this.cfg.GetColorErrorAbsStandDev());
                 this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].BackGradientStyle = gStyle;
                 this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].BorderColor = borderColor; // color de borde de la barra
                 this.chartG_Parameters.Series[SERIE_ERROR_ABS_STAND].BorderWidth = borderWith; // grosor de la linea de borde
@@ -246,15 +246,15 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Devuelve un color un poco más claro que el que se pasa como parámetro
+         *  Devuelve un color un poco más oscuro que el que se pasa como parámetro.
          */
-        private static Color ColorMoreBrightness(Color colorF)
+        private static Color ColorLowerBrightness(Color colorF)
         {
             RGBHSL.HSL colorHSL = RGBHSL.RGB_to_HSL(colorF);
 
             double b = colorHSL.L; // brillo
 
-            double newB = b - (b / 8);
+            double newB = b;
             if (newB >= 0)// (newB < 360d)
             {
                 b = newB;
@@ -286,13 +286,13 @@ namespace GUI_GT
             {
                 switch (saveDialog.FilterIndex)
                 {
-                    case (0):
+                    case (1):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
-                    case (1):
+                    case (2):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
                         break;
-                    case (2):
+                    case (3):
                         this.chartG_Parameters.SaveImage(saveDialog.FileName, System.Drawing.Imaging.ImageFormat.Gif);
                         break;
                     default:
