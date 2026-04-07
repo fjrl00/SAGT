@@ -400,64 +400,46 @@ namespace GUI_GT
         private void btActionEditSumOfSquaresOnAnalisys_Click()
         {
             // Leemos la lista de facetas del dataGridView
-            if (this.listFacetsAnalysis == null)
+            this.listFacetsAnalysis = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
+
+            /* Si los datos son correctos continuamos las comprobaciones.
+                * Si es necesario realizamos el anidamiento total de las facetas */
+            if (this.provision.Equals(ProvisionOfFacets.Nested))
             {
-                this.listFacetsAnalysis = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
+                // Hacemos un anidamiento de las facetas
+                this.listFacetsAnalysis.NestingAllFacet();
             }
-            if (listFacetsAnalysis != null && listFacetsAnalysis.Count() > 1)
-            {/* 1 */
-                /* Si los datos son correctos continuamos las comprobaciones.
-                 * Si es necesario realizamos el anidamiento total de las facetas */
-                if (this.provision.Equals(ProvisionOfFacets.Nested))
+
+            // Si no estamos en modo edición significa que estamos introduciendo los valores por primera vez
+            // Pedimos al usuario que inserte el diseño de medida
+            this.analysisSourceOfVarDiff = new ListFacets();
+            this.analysisSourceOfVarInst = new ListFacets();
+
+
+            // Creamos la ventana para introducir el diseño de medida
+            FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
+            bool salir = false; // variable de control del bucle
+
+            do
+            {
+                DialogResult res = formMeasurDesign.ShowDialog();
+                switch (res)
                 {
-                    // Hacemos un anidamiento de las facetas
-                    this.listFacetsAnalysis.NestingAllFacet();
-                }
-
-
-                /* Si estamos en el modo edición entonces introducimos la suma de cuadrados
-                 * permitir modificarla.
-                 */
-                if (this.disableTopLeftButtons && false)
-                {
-                    Aux_EditSsqValues(this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets());
-                }
-                else
-                {// (* 2 *)
-                    // Si no estamos en modo edición significa que estamos introduciendo los valores por primera vez
-                    // Pedimos al usuario que inserte el diseño de medida
-                    this.analysisSourceOfVarDiff = new ListFacets();
-                    this.analysisSourceOfVarInst = new ListFacets();
-
-
-                    // Creamos la ventana para introducir el diseño de medida
-                    FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
-                    bool salir = false; // variable de control del bucle
-
-                    do
-                    {
-                        DialogResult res = formMeasurDesign.ShowDialog();
-                        switch (res)
+                    case (DialogResult.Cancel): salir = true; break;
+                    case (DialogResult.OK):
+                        if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
                         {
-                            case (DialogResult.Cancel): salir = true; break;
-                            case (DialogResult.OK):
-                                if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
-                                {
-                                    ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
-                                }
-                                else
-                                {
-                                    salir = true;
-                                    Aux_IntroduceSsqValues();
-
-                                }
-                                break;
+                            ShowMessageErrorOK(errorM_DesignNoValidate, "", MessageBoxIcon.Stop);
                         }
-                    } while (!salir);
-                }// end if (* 2 *)
+                        else
+                        {
+                            salir = true;
+                            Aux_IntroduceSsqValues();
 
-
-            }// end if (* 1 *)
+                        }
+                        break;
+                }
+            } while (!salir);
         }// end btActionEditSumOfSquaresOnAnalisys_Click
 
 
