@@ -929,7 +929,7 @@ namespace GUI_GT
                                 else
                                 {
                                     int level = int.Parse(my_row.Cells[3].Value.ToString());
-                                    int size = readSizeOfUniverse(my_row.Cells[4].Value.ToString());
+                                    int size = Facet.readSizeOfUniverse(my_row.Cells[4].Value.ToString());
 
                                     if (level > size)
                                     {// (*2*)
@@ -952,7 +952,7 @@ namespace GUI_GT
                                 else
                                 {
                                     int level = int.Parse(my_row.Cells[1].Value.ToString());
-                                    int newSize = readSizeOfUniverse(my_row.Cells[3].Value.ToString());
+                                    int newSize = Facet.readSizeOfUniverse(my_row.Cells[3].Value.ToString());
 
                                     if (level > newSize)
                                     {// (*3*)
@@ -987,7 +987,7 @@ namespace GUI_GT
                                     string name = dgvExAddInstLevelSign.Rows[i].Cells[0].Value.ToString();
                                     // el nuevo nivel se obtiene de la tabla
                                     int newlevel = int.Parse(dgvExAddInstLevelSign.Rows[i].Cells[numCol - 1].Value.ToString());
-                                    int newSizeUni = readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
+                                    int newSizeUni = Facet.readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
 
                                     Facet auxF = newlf.LookingFacet(name);
                                     auxF.Level(newlevel);
@@ -1004,7 +1004,7 @@ namespace GUI_GT
                                     string name = dgvExAddDiffLevelSign.Rows[i].Cells[0].Value.ToString();
                                     // el nuevo nivel se obtiene de la tabla
 
-                                    int newSizeUni = readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
+                                    int newSizeUni = Facet.readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
 
                                     Facet auxF = newlf.LookingFacet(name);
 
@@ -1084,7 +1084,7 @@ namespace GUI_GT
                             {
                                 DataGridViewRow my_row = dgvExAddInstLevelSign.Rows[i];
                                 int level = int.Parse(my_row.Cells[3].Value.ToString());
-                                int size = readSizeOfUniverse(my_row.Cells[4].Value.ToString());
+                                int size = Facet.readSizeOfUniverse(my_row.Cells[4].Value.ToString());
                                 // Facet f = lfInst.FacetInPos(i);
                                 if (level > size)
                                 {// (*2*)
@@ -1099,7 +1099,7 @@ namespace GUI_GT
                             {
                                 DataGridViewRow my_row = dgvExAddDiffLevelSign.Rows[i];
                                 int level = int.Parse(my_row.Cells[1].Value.ToString());
-                                int newSize = readSizeOfUniverse(my_row.Cells[3].Value.ToString());
+                                int newSize = Facet.readSizeOfUniverse(my_row.Cells[3].Value.ToString());
                                 // Facet f = lfDiff.FacetInPos(i);
                                 if (level > newSize)
                                 {// (*3*)
@@ -1131,7 +1131,7 @@ namespace GUI_GT
                                 string name = f.Name();
                                 // el nuevo nivel se obtiene de la tabla
                                 int level = int.Parse(dgvExAddInstLevelSign.Rows[i].Cells[numCol - 1].Value.ToString());
-                                int sizeUni = readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
+                                int sizeUni = Facet.readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
                                 string comment = f.Comment();
                                 string design = f.ListFacetDesign();
                                 Facet auxF = new Facet(name, level, comment, sizeUni, design);
@@ -1151,7 +1151,7 @@ namespace GUI_GT
                                 // el nuevo nivel se obtiene de la tabla
                                 int level = f.Level();
                                 // int sizeUni = int.Parse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                int sizeUni = readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
+                                int sizeUni = Facet.readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
                                 string comment = f.Comment();
                                 string design = f.ListFacetDesign();
                                 Facet auxF = new Facet(name, level, comment, sizeUni, design);
@@ -1746,26 +1746,6 @@ namespace GUI_GT
                 } while (!salir);
             }
         }// end btActionSSQEditComment_Click
-
-
-        /* Descripción:
-         *  Devuelve un entero con el tamaño del universo o lanza una excepción de tipo FormatException
-         *  que debe tratar el método que lo llame.
-         */
-        public static int readSizeOfUniverse(string s)
-        {
-            int retVal = 0;
-            s = s.ToUpper();
-            if (s.Equals(Facet.INFINITE))
-            {
-                retVal = int.MaxValue;
-            }
-            else
-            {
-                retVal = int.Parse(s);
-            }
-            return retVal;
-        }
 
 
         /* Descipción:

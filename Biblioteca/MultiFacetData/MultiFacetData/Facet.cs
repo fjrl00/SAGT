@@ -748,6 +748,26 @@ namespace MultiFacetData
             }
         }
 
+
+        /* Descripción:
+         *  Convierte un tamaño del universo guardado como string de vuelta a un entero, 
+         *  teniendo en cuenta que el valor "INF" se corresponde con el valor int.MaxValue.
+         */
+        public static int readSizeOfUniverse(string s)
+        {
+            int retVal = 0;
+            s = s.ToUpper();
+            if (s.Equals(Facet.INFINITE))
+            {
+                retVal = int.MaxValue;
+            }
+            else
+            {
+                retVal = int.Parse(s);
+            }
+            return retVal;
+        }
+
         #endregion Métodos IO
 
 
