@@ -212,6 +212,13 @@ namespace GUI_GT
             this.tabPageAnalysisG_P.Parent = null;
             this.tabPageAnalysisOpt.Parent = null;
             this.tabPageAnalysisInf.Parent = null;
+
+            // We ensure all cells are editable
+            int nCol = dGridViewExAnalysis_TableFacet.ColumnCount;
+            for (int i = 0; i < nCol; i++)
+            {
+                dGridViewExAnalysis_TableFacet.Columns[i].ReadOnly = false;
+            }
         }
 
 
