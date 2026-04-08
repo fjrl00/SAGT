@@ -73,6 +73,9 @@ namespace GUI_GT
          */
         private void tsmiActionNewFileAnalysisSSQ_Click(object sender, EventArgs e)
         {
+            // We start out by closing everything and removing all data in Analysis
+            cleanerAllTabPageAnalysis();
+
             // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
             this.disableTopLeftButtons = true;
             // desactivamos el menú de acciones de análisis

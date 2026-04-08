@@ -20,6 +20,7 @@ BUGFIXES
 - Solved bug where changing language in the Means section would bug out Typical Score means tables' headers
 - Solved bug where invalid inputs in New Sum Of Squares would trigger both an error message and an exception
 - Solved bug(s) where you would be locked out of creating new sums of squares in Analysis under certain circunstances
+- Solved bug where the app incorrectly believed it was editing Analysis data instead of creating it whenever Analysis data was already loaded
 
 OPTIMIZATION
 
