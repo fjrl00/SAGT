@@ -1250,6 +1250,7 @@ namespace GUI_GT
             disableButtonsFacets();
             // ponemos la lista de facetas a null
             this.lf_global = null;
+            this.sagtElements.SetMultiFacetsObs(null);
             // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
             this.disableTopLeftButtons = false;
             tbDescription.Text = "";
