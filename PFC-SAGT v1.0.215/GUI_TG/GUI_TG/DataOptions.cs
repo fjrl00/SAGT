@@ -1050,6 +1050,18 @@ namespace GUI_GT
          */
         private void tsmiActionNewMultiFacetData_Click(object sender, EventArgs e)
         {
+            // Ventana de confirmación
+            if (this.sagtElements.GetMultiFacetsObs() != null)
+            {
+                DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
+
+                if (res != DialogResult.OK)
+                {
+                    return; // user cancelled → stop method execution completely
+                }
+            }
+
+
             // Deshabilitamos el menú principal poniendo la variable booleana disableTopLeftButtons a true.
             this.disableTopLeftButtons = true;
             // desactivamos el menu de acciones

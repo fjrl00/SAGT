@@ -1412,10 +1412,22 @@ namespace GUI_GT
          */
         private void tsmiDataClose_Click(object sender, EventArgs e)
         {
-            this.checkBoxHideNulls.Checked = false;
-            this.checkBoxHideNulls.Enabled = false;
-            // este método se encuentra en la clase parcial DataOptions
-            closeDataElements();
+            // Ventana de confirmación
+            if (this.sagtElements.GetMultiFacetsObs() != null)
+            {
+                DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
+                switch (res)
+                {
+                    case (DialogResult.OK):
+                        // Si se confirma:
+                        this.checkBoxHideNulls.Checked = false;
+                        this.checkBoxHideNulls.Enabled = false;
+                        closeDataElements();
+                        break;
+                }
+            }
+
+            
         }
 
 

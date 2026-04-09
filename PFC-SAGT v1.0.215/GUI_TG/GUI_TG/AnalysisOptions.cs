@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 
 namespace GUI_GT
 {
@@ -73,6 +74,21 @@ namespace GUI_GT
          */
         private void tsmiActionNewFileAnalysisSSQ_Click(object sender, EventArgs e)
         {
+            // First: confirmation screen triggers in case there's analysis data loaded. If the user cancels, we stop the method execution and do not lose the data.
+            if (this.anl_tAnalysis_G_study_opt != null)
+            {
+                TableAnalysisOfVariance tableAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
+                if (tableAnalysis != null)
+                {
+                    DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
+
+                    if (res != DialogResult.OK)
+                    {
+                        return; // user cancelled → stop method execution completely
+                    }
+                }
+            }
+
             // We start out by closing everything and removing all data in Analysis
             cleanerAllTabPageAnalysis();
 
@@ -469,6 +485,15 @@ namespace GUI_GT
 
             // Optenemos la lista de combinaciones sin repetición de la lista de facetas
             this.llFacetsAnalysis = listFacetsAnalysis.CombinationStringWithoutRepetition();
+
+            // Set the column header style.
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+            columnHeaderStyle.BackColor = Color.Aqua;
+            columnHeaderStyle.Font = new Font("Verdana", 9, FontStyle.Bold);
+            this.dgvExAnalysisEditSSq.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+            this.dgvExAnalysisEditSSq.DefaultCellStyle.Font = fontCellTable;
+            this.dgvExAnalysisEditSSq.ColumnHeadersVisible = true;
+
             // insertamos en la tabla de edición de suma de cuadrados
             this.dgvExAnalysisEditSSq.NumeroColumnas = 2;
             // Primera columna [0] (Fuentes de variación)
@@ -520,6 +545,15 @@ namespace GUI_GT
 
             // Optenemos la lista de combinaciones sin repetición de la lista de facetas
             // this.llFacetsAnalysis = listFacetsAnalysis.CombinationStringWithoutRepetition();
+
+            // Set the column header style.
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+            columnHeaderStyle.BackColor = Color.Aqua;
+            columnHeaderStyle.Font = new Font("Verdana", 9, FontStyle.Bold);
+            this.dgvExAnalysisEditSSq.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+            this.dgvExAnalysisEditSSq.DefaultCellStyle.Font = fontCellTable;
+            this.dgvExAnalysisEditSSq.ColumnHeadersVisible = true;
+
             // insertamos en la tabla de edición de suma de cuadrados
             this.dgvExAnalysisEditSSq.NumeroColumnas = 2;
             // Primera columna [0] (Fuentes de variación)

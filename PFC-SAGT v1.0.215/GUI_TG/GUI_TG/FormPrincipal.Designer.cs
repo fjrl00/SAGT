@@ -2306,6 +2306,7 @@
             // 
             // dGridViewExFacetsOptimization
             // 
+            this.dGridViewExFacetsOptimization.ReadOnly = true;
             this.dGridViewExFacetsOptimization.AllowUserToAddRows = false;
             this.dGridViewExFacetsOptimization.AllowUserToResizeRows = false;
             dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
