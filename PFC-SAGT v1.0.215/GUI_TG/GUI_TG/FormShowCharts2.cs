@@ -37,7 +37,7 @@ namespace GUI_GT
 
 
         // Directorio de trabajo por defecto
-        string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
+        string workspace = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
 
         private ConfigCFG.ConfigCFG cfg;
         bool abs = true;
@@ -81,6 +81,7 @@ namespace GUI_GT
             : this()
         {
             this.cfg = cfg;
+            this.workspace = cfg.Get_Path_Workspace();
             this.titulo = t;
             this.abs = abs;
             // this.tabPageResum.Parent = null; // Oculta la pestaña de datos
@@ -219,9 +220,9 @@ namespace GUI_GT
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
 
-            if (Directory.Exists(sagt_initial_directory))
+            if (Directory.Exists(workspace))
             {
-                saveDialog.InitialDirectory = sagt_initial_directory;
+                saveDialog.InitialDirectory = workspace;
             }
 
             saveDialog.DefaultExt = "jpg";

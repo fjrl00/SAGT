@@ -160,7 +160,7 @@ namespace GUI_GT
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
-                FormDataImport formDataImport = new FormDataImport(lang);
+                FormDataImport formDataImport = new FormDataImport(lang, this.cfgApli.Get_Path_Workspace());
 
                 bool salir = false;
 

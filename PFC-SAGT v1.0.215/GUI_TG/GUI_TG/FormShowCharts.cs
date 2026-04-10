@@ -44,7 +44,7 @@ namespace GUI_GT
          * variables 
          *=================================================================================*/
         // Directorio de trabajo por defecto
-        string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
+        string workspace = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
 
         private ConfigCFG.ConfigCFG cfg;
         private string resum = "Resumen";
@@ -70,6 +70,7 @@ namespace GUI_GT
         {
             InitializeComponent();
             this.cfg = cfg;
+            this.workspace = cfg.Get_Path_Workspace();
             this.formP = formP;
             traslationElements(this.cfg.GetConfigLanguage(), Application.StartupPath + LANG_PATH + STRING_TEXT);
             LoadPointsInSerie(lG_Parameters);
@@ -273,9 +274,9 @@ namespace GUI_GT
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
 
-            if (Directory.Exists(sagt_initial_directory))
+            if (Directory.Exists(workspace))
             {
-                saveDialog.InitialDirectory = sagt_initial_directory;
+                saveDialog.InitialDirectory = workspace;
             }
 
             saveDialog.DefaultExt = "jpg";

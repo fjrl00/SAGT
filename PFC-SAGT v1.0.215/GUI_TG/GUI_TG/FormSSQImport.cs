@@ -31,7 +31,7 @@ namespace GUI_GT
          *=================================================================================*/
 
         // Directorio de trabajo por defecto
-        string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
+        string workspace;
 
         string[] typesFiles = {"Seleccione un fichero" ,
                                   "Suma de cuadrados, GT E 2.0 (Pierre Ysewijn, 1996)",
@@ -65,10 +65,11 @@ namespace GUI_GT
             InitializeComponent();
         }
 
-        public FormSSQImport(TransLibrary.Language lang)
+        public FormSSQImport(TransLibrary.Language lang, string workspace)
         {
             InitializeComponent();
             this.lang = lang;
+            this.workspace = workspace;
             traslationElementsSSQ_Import();
             initComboBoxTypesFiles();
             this.cBoxTypesFiles.SelectedIndex = 0;
@@ -170,9 +171,9 @@ namespace GUI_GT
         {
             OpenFileDialog openDialog = new OpenFileDialog();
 
-            if (Directory.Exists(sagt_initial_directory))
+            if (Directory.Exists(workspace))
             {
-                openDialog.InitialDirectory = sagt_initial_directory;
+                openDialog.InitialDirectory = workspace;
             }
 
             openDialog.Filter = fileFilter[this.cBoxTypesFiles.SelectedIndex];

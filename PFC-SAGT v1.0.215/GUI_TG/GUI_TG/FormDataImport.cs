@@ -24,7 +24,7 @@ namespace GUI_GT
         const string STRING_DATA_IMPORT = "formDataImport.txt"; // Dialogos y mensages
         const string LANG_PATH = "\\lang\\";
 
-        string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
+        string workspace;
 
         string[] typesFiles = {"Seleccione un fichero" ,
                                   "Datos observados, GT E 2.0 (Pierre Ysewijn, 1996)",
@@ -56,11 +56,11 @@ namespace GUI_GT
             InitializeComponent();
         }
 
-        public FormDataImport(TransLibrary.Language lang)
+        public FormDataImport(TransLibrary.Language lang, string workspace)
         {
             InitializeComponent();
             this.lang = lang;
-            // this.formPrincipal = formP;
+            this.workspace = workspace;
             traslationElements(Application.StartupPath + LANG_PATH + STRING_DATA_IMPORT);
             initComboBoxTypesFiles();
             this.cBoxTypesFiles.SelectedIndex = 0;
@@ -161,9 +161,9 @@ namespace GUI_GT
         {
             OpenFileDialog openDialog = new OpenFileDialog();
 
-            if (Directory.Exists(sagt_initial_directory))
+            if (Directory.Exists(workspace))
             {
-                openDialog.InitialDirectory = sagt_initial_directory;
+                openDialog.InitialDirectory = workspace;
             }
 
             openDialog.Filter = fileFilter[this.cBoxTypesFiles.SelectedIndex];

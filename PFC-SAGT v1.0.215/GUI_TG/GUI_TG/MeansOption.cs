@@ -359,7 +359,7 @@ namespace GUI_GT
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
-                FormMeansImport formImport = new FormMeansImport(lang);
+                FormMeansImport formImport = new FormMeansImport(lang, this.cfgApli.Get_Path_Workspace());
                 //this.Visible = false;
                 bool salir = false;
 

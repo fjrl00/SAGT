@@ -1053,7 +1053,7 @@ namespace GUI_GT
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
-                FormSSQImport formSSQ_Import = new FormSSQImport(lang);
+                FormSSQImport formSSQ_Import = new FormSSQImport(lang, this.cfgApli.Get_Path_Workspace());
                 bool salir = false;
                 do
                 {

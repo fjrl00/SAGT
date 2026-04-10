@@ -26,7 +26,7 @@ namespace GUI_GT
         const string LANG_PATH = "\\lang\\";
 
         // Directorio de tabajo por defecto.
-        string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\SAGT\\Workspace";
+        string workspace;
 
         string[] typesFiles = {"Seleccione un fichero" ,
                               "Resultado de medias, GT E 2.0 (Pierre Ysewijn, 1996)",
@@ -54,10 +54,11 @@ namespace GUI_GT
             InitializeComponent();
         }
 
-        public FormMeansImport(TransLibrary.Language lang)
+        public FormMeansImport(TransLibrary.Language lang, string workspace)
         {
             InitializeComponent();
             this.lang = lang;
+            this.workspace = workspace;
             traslationElements(Application.StartupPath + LANG_PATH + STRING_MEANS_IMPORT);
             initComboBoxTypesFiles();
             this.cBoxTypesFiles.SelectedIndex = 0;
@@ -151,9 +152,9 @@ namespace GUI_GT
         {
             OpenFileDialog openDialog = new OpenFileDialog();
 
-            if (Directory.Exists(sagt_initial_directory))
+            if (Directory.Exists(workspace))
             {
-                openDialog.InitialDirectory = sagt_initial_directory;
+                openDialog.InitialDirectory = workspace;
             }
 
             openDialog.Filter = fileFilter[this.cBoxTypesFiles.SelectedIndex];
