@@ -74,11 +74,10 @@ namespace GUI_GT
         // variable pertenecientes al proyecto MultiFacetData
         // MultiFacetsObs multiFacets = null;
 
-        // variable para la inserción/edición de facetas 
-        // Más exactamente, se usa para seguir la pista durante la creación de facetas mixtas, 
-        // dejando de ser null tras hacer un anidamiento, volviendo a null cuando hemos terminado 
-        // el proceso de creacion de facetas mixtas
-        ListFacets lf_global = null;
+        // Variable que se usa durante la creación de facetas mixtas para seguir la pista de los anidamientos que llevamos.
+        // Debe estar a null fuera del proceso de creación de facetas mixtas.
+        ListFacets lf_nestings = null;
+
         // Variable que indica la disposición de la facetas para el objeto multifaceta que se esta creando
         // La disposición de las facetas puede ser: cruzada, anidada o mixta.
         MultiFacetData.ProvisionOfFacets provision;
@@ -1261,7 +1260,7 @@ namespace GUI_GT
             // deshabilitamos los botones 'Cancelar' y 'Generar tabla de observaciones'
             disableButtonsFacets();
             // ponemos la lista de facetas a null
-            this.lf_global = null;
+            this.lf_nestings = null;
             this.sagtElements.SetMultiFacetsObs(null);
             // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
             this.disableTopLeftButtons = false;
@@ -1272,177 +1271,170 @@ namespace GUI_GT
 
         #endregion Habilita deshabilita botones ok y cancel de los tabpages
 
+        private void HandleAddNesting(DataGridViewEx.DataGridViewEx dgv)
+        {
+            if (this.lf_nestings == null)
+            {
+                ListFacets lf = validateFacetTable(dgv);
+                if (lf != null)
+                {
+                    // Lanzamos una advertencia: Ya no podrá editar las facetas
+                    DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmBuildNesting);
+                    if (res != DialogResult.OK)
+                        return;
+
+                    this.lf_nestings = lf;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            FormAddNesting fAddNesting = new FormAddNesting(this.LanguageActually(), this.lf_nestings);
+
+            bool salir = false;
+            do
+            {
+                DialogResult res = fAddNesting.ShowDialog();
+                switch (res)
+                {
+                    case DialogResult.Cancel:
+                        salir = true;
+                        break;
+
+                    case DialogResult.OK:
+                        int posSelectFacet = fAddNesting.ComboBoxSelectFacet();
+                        if (posSelectFacet < 0)
+                        {
+                            ShowMessageErrorOK(errorNoSelectFacetNested);
+                            break;
+                        }
+
+                        int posNestedFacet = fAddNesting.ComboBoxNestingFacet();
+                        if (posNestedFacet < 0)
+                        {
+                            ShowMessageErrorOK(errorNoSelectFacetNesting);
+                            break;
+                        }
+
+                        try
+                        {
+                            Facet f = this.lf_nestings.FacetInPos(posSelectFacet);
+                            Facet fNested = this.lf_nestings.FacetInPos(posNestedFacet);
+
+                            if (fAddNesting.RadioButtonNest())
+                                f.ListFacetsDesignNesting(fNested);
+                            else if (fAddNesting.RadioButtonCross())
+                                f.ListFacetsDesignCrossed(fNested);
+                            else
+                            {
+                                ShowMessageErrorOK(errorNoOperation);
+                                break;
+                            }
+
+                            LoadListFacetInDataGridView(this.lf_nestings, dgv);
+                            salir = true;
+                        }
+                        catch (FacetException ex)
+                        {
+                            ShowMessageErrorOK($"{errorNoOperation}\n\n{ex.Message}");
+                        }
+
+                        break;
+                }
+            } while (!salir);
+        }
+
+        private void HandleRemoveNesting(DataGridViewEx.DataGridViewEx dgv)
+        {
+            if (this.lf_nestings == null)
+            {
+                ShowMessageErrorOK(errorNoNesting);
+                return;
+            }
+
+            bool nestingExists = false;
+            int n = this.lf_nestings.Count();
+
+            for (int i = 0; i < n && !nestingExists; i++)
+            {
+                nestingExists = this.lf_nestings.FacetInPos(i).IsNesting();
+            }
+
+            if (!nestingExists)
+            {
+                ShowMessageErrorOK(errorNoNesting);
+                return;
+            }
+
+            List<string> lfSelectFacet = new List<string>();
+
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = this.lf_nestings.FacetInPos(i);
+                if (f.IsNesting())
+                {
+                    lfSelectFacet.Add(f.ListFacetDesign());
+                }
+            }
+
+            FormRemoveNesting fRemoveNesting = new FormRemoveNesting(this.LanguageActually(), lfSelectFacet);
+
+            bool salir = false;
+            do
+            {
+                DialogResult res = fRemoveNesting.ShowDialog();
+
+                switch (res)
+                {
+                    case DialogResult.Cancel:
+                        salir = true;
+                        break;
+
+                    case DialogResult.OK:
+                        CheckedListBox ckListBox = fRemoveNesting.CheckedListBoxSelectNestingRemove();
+
+                        if (ckListBox.CheckedIndices.Count == 0)
+                        {
+                            ShowMessageErrorOK(txtMessageNoSelected);
+                            break;
+                        }
+
+                        foreach (int indexChecked in ckListBox.CheckedIndices)
+                        {
+                            string design = lfSelectFacet[indexChecked];
+                            int pos = design.IndexOf("]") - 1;
+                            string name = design.Substring(1, pos);
+
+                            Facet fNesting = this.lf_nestings.LookingFacet(name);
+                            fNesting.ListFacetsDesignRemove();
+                        }
+
+                        LoadListFacetInDataGridView(this.lf_nestings, dgv);
+                        salir = true;
+                        break;
+                }
+
+            } while (!salir);
+        }
 
         /* Descripción:
          *  Abre la ventana para la inserción de un anidamiento. Este botón solo esta disponible cuando
          *  se selecciona la disposición de facetas mixta.
          */
-        private void btActionNestingFacet_Click(object sender, EventArgs e)
+        private void btActionNestingFacet_Click()
         {
-            // bool editionFacet = false;
-            if (this.lf_global == null)
-            {
-                ListFacets lf = validateFacetTable(dataGridViewExFacets);
-                if (lf != null)
-                {
-                    // Lanzamos una advertencia: Ya no podrá editar las facetas
-                    DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmBuildNesting);
-                    if (res.Equals(DialogResult.OK))
-                    {
-                        this.lf_global = lf;
-                    }
-                }
-            }
-
-
-            if (this.lf_global != null)
-            {
-                FormAddNesting fAddNesting = new FormAddNesting(this.LanguageActually(), this.lf_global);
-
-                bool salir = false;
-                do
-                {
-                    DialogResult res = fAddNesting.ShowDialog();
-                    switch (res)
-                    {
-                        case DialogResult.Cancel:
-                            salir = true;
-                            break;
-                        case DialogResult.OK:
-                            // Asignamos el anidamiento
-                            int posSelctFacet = fAddNesting.ComboBoxSelectFacet();
-                            if (posSelctFacet >= 0)
-                            {
-                                int posNestedFacet = fAddNesting.ComboBoxNestingFacet();
-                                if (posNestedFacet >= 0)
-                                {
-                                    // Tenemos tanto la faceta anidada como la anidante
-                                    Facet f = this.lf_global.FacetInPos(posSelctFacet);
-                                    Facet f_Nested = this.lf_global.FacetInPos(posNestedFacet);
-                                    // anidamos
-                                    try
-                                    {
-                                        if (fAddNesting.RadioButtonNest())
-                                        {
-                                            f.ListFacetsDesignNesting(f_Nested);
-                                        }
-                                        else if (fAddNesting.RadioButtonCross())
-                                        {
-                                            f.ListFacetsDesignCrossed(f_Nested);
-                                        }
-                                        else
-                                        {
-                                            // operación no valida
-                                            ShowMessageErrorOK(errorNoOperation);
-                                        }
-                                        // pintamos de nuevo las facetas en la tabla
-                                        LoadListFacetInDataGridView(this.lf_global, dataGridViewExFacets);
-                                        salir = true;
-                                    }
-                                    catch (FacetException)
-                                    {
-                                        // error no se ha podido realizar el anidamiento correctamente
-                                        ShowMessageErrorOK(errorNoOperation);
-                                    }
-
-                                }
-                                else
-                                {
-                                    // error no ha seleccionado la faceta anidante
-                                    ShowMessageErrorOK(errorNoSelectFacetNesting);
-                                }
-                            }
-                            else
-                            {
-                                // error no ha seleccionado la faceta
-                                ShowMessageErrorOK(errorNoSelectFacetNested);
-                            }
-
-                            break;
-                    }
-                } while (!salir);
-            }
+            HandleAddNesting(dataGridViewExFacets);
         }// end btActionNestingFacet_Click
 
 
         /* Descripción:
          *  Abrer la ventana para la eliminación de anidamientos.
          */
-        private void btActionRemoveNesting_Click(object sender, EventArgs e)
+        private void btActionRemoveNesting_Click()
         {
-            if (lf_global != null)
-            {
-                bool nesting = false;
-                int n = lf_global.Count();
-                for (int i = 0; i < n && !nesting; i++)
-                {
-                    Facet f = lf_global.FacetInPos(i);
-                    nesting = f.IsNesting();
-                }
-
-                if (nesting)
-                {
-                    List<string> lfSelectFacet = new List<string>();
-                    n = lf_global.Count();
-                    for (int i = 0; i < n; i++)
-                    {
-                        Facet f = lf_global.FacetInPos(i);
-                        if (f.IsNesting())
-                        {
-                            string aux = f.ListFacetDesign();
-                            int m = aux.Count();
-                            lfSelectFacet.Add(aux);
-                        }
-                    }
-
-                    FormRemoveNesting fRemoveNesting = new FormRemoveNesting(this.LanguageActually(), lfSelectFacet);
-
-                    bool salir = false;
-                    do
-                    {
-                        DialogResult res = fRemoveNesting.ShowDialog();
-                        switch (res)
-                        {
-                            case DialogResult.Cancel:
-                                salir = true;
-
-                                break;
-                            case DialogResult.OK:
-                                CheckedListBox ckListBox = fRemoveNesting.CheckedListBoxSelectNestingRemove();
-                                if (ckListBox.CheckedIndices.Count > 0)
-                                {
-                                    foreach (int indexChecked in ckListBox.CheckedIndices)
-                                    {
-                                        string desing = lfSelectFacet[indexChecked];
-                                        int pos = desing.IndexOf("]") - 1;
-                                        string name = desing.Substring(1, pos);
-                                        Facet f_nesting = lf_global.LookingFacet(name);
-                                        f_nesting.ListFacetsDesignRemove();
-                                        // Pintamos de nuevo la tabla
-                                        LoadListFacetInDataGridView(this.lf_global, dataGridViewExFacets);
-                                        salir = true;
-                                    }
-                                }
-                                else
-                                {
-                                    // Error no se ha seleccionado ningún elemento
-                                    ShowMessageErrorOK(txtMessageNoSelected);
-                                }
-                                break;
-                        }
-                    } while (!salir);
-                }
-                else
-                {
-                    // avisamos al usuario de que no puede eliminar ningún anidamiento porque no existen.
-                    ShowMessageErrorOK(errorNoNesting);
-                }
-            }
-            else
-            {
-                // avisamos al usuario de que no puede eliminar ningún anidamiento porque no existen.
-                ShowMessageErrorOK(errorNoNesting);
-            }
+            HandleRemoveNesting(dataGridViewExFacets);
         } // end btActionRemoveNesting_Click
 
 
@@ -1571,7 +1563,7 @@ namespace GUI_GT
 
             this.disableTopLeftButtons = false;
             mStripData.Enabled = true;
-            this.lf_global = null;
+            this.lf_nestings = null;
         }
 
 
@@ -1584,14 +1576,14 @@ namespace GUI_GT
         private void btAccionGenerateTableObs_Click(object sender, EventArgs e)
         {
             ListFacets lf = null;
-            if (this.lf_global == null) // Comprobamos si hay datos en la varible de edición de facetas (aka hay anidamientos de facetas mixtas)
+            if (this.lf_nestings == null) // Comprobamos si hay datos en la varible de edición de facetas (aka hay anidamientos de facetas mixtas)
             {
                 // comprobamos que los datos de la tabla son correctos y los obtenemos de la tabla.
                 lf = validateFacetTable(this.dataGridViewExFacets);
             }
             else    //si hay anidamientos de facetas mixtas
             {
-                lf = this.lf_global;    //pasamos esa información directamente
+                lf = this.lf_nestings;    //pasamos esa información directamente
             }
 
             if (lf != null) // si los datos son correctos...
@@ -1639,7 +1631,7 @@ namespace GUI_GT
                 }
 
             }
-            this.lf_global = null;
+            this.lf_nestings = null;
         }// end btAccionGenerateTableObs_Click
 
 
@@ -1801,7 +1793,7 @@ namespace GUI_GT
             // Activamos el menú principal poniendo la variable disableTopLeftButtons a false.
             this.disableTopLeftButtons = false;
             this.mStripData.Enabled = true;
-            this.lf_global = null;
+            this.lf_nestings = null;
         }// end btActionCancelGenerateTableObs_Click
 
 

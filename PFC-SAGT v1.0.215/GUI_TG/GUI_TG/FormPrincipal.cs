@@ -1468,7 +1468,7 @@ namespace GUI_GT
          */
         private void btNestingFacet_Click(object sender, EventArgs e)
         {
-            btActionNestingFacet_Click(sender, e);
+            btActionNestingFacet_Click();
         }
 
 
@@ -1477,7 +1477,7 @@ namespace GUI_GT
          */
         private void btRemoveNesting_Click(object sender, EventArgs e)
         {
-            btActionRemoveNesting_Click(sender, e);
+            btActionRemoveNesting_Click();
         }
 
 
