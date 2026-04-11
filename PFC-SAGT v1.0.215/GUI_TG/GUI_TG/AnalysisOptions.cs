@@ -463,13 +463,14 @@ namespace GUI_GT
                 {
                     DataGridViewRow my_Row = this.dgvExAnalysisEditSSq.Rows[i];
                     // el valor uno se corresponde con la columna que contiene la suma de los cuadrados
-                    if (my_Row.Cells[1].Value != null)
+                    // si la celda se dejó vacía, la convertimos en 0
+                    if(my_Row.Cells[1].Value == null || my_Row.Cells[1].Value.ToString() == "")
                     {
-                        string s = my_Row.Cells[1].Value.ToString();
-                        // double d = double.Parse(s);
-                        double d = (double)ConvertNum.String2Double(s);
-                        ssq.Add(llFacetsAnalysis[i], d);
+                        my_Row.Cells[1].Value = "0";
                     }
+                    string s = my_Row.Cells[1].Value.ToString();
+                    double d = (double)ConvertNum.String2Double(s);
+                    ssq.Add(llFacetsAnalysis[i], d);
                 }
             }
             catch (FormatException)
