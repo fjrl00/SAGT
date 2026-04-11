@@ -1338,9 +1338,7 @@ namespace GUI_GT
          */
         private void tsmiActionSSQImport_Click(object sender, EventArgs e)
         {
-            // Esta ventana se mostrará mientras se carga el fichero
-            // CWait fw = new CWait(msgLoading);
-            // Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //FormWaiting fw = null;
 
             try
             {
@@ -1362,9 +1360,9 @@ namespace GUI_GT
                             }
                             else
                             {
-                                // th.Start();
+                                //fw = ShowLoadingScreen(msgLoading);
                                 this.importSSqFile(formSSQ_Import.pathFile());
-                                // th.Abort();
+                                //CloseLoadingScreen(fw);
                                 salir = true;
                             }
                             break;
@@ -1373,18 +1371,18 @@ namespace GUI_GT
             }
             catch (SSqPY_Exception)
             {
-                // th.Abort();
+                //CloseLoadingScreen(fw);
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }
             catch (IOException)
             {
-                // th.Abort();
+                //CloseLoadingScreen(fw);
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
             {
-                // th.Abort();
+                //CloseLoadingScreen(fw);
                 // Mostramos un mensaje indicando que el fichero no tiene el formato correcto
                 ShowMessageErrorOK(ex.Message);
             }
@@ -1396,11 +1394,7 @@ namespace GUI_GT
          */
         public void importSSqFile(string path)
         {
-            // Esta ventana se mostrará mientras se carga el fichero
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            //CWait fw2 = new CWait(msgLoading);
-            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            FormWaiting fw = null;
 
             try
             {
@@ -1424,15 +1418,15 @@ namespace GUI_GT
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileRsa(path);
                         break;
                     case (TypeOfFile.txt):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         List<AnalysisSsqEduG> listAnalysisEduG = AnalysisSsqEduG.ReadFileReportTxtEduG(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG);
                         break;
                     case (TypeOfFile.rtf):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         List<AnalysisSsqEduG> listAnalysisEduG2 = AnalysisSsqEduG.ReadFileReportRtfEduG(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
@@ -1446,7 +1440,7 @@ namespace GUI_GT
 
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    //th2.Start();
+                    fw = ShowLoadingScreen(msgLoading);
                     date = DateTime.Now;
                     tAnalysis_tG_Study_Opt.SetDateTime(date);
                     tAnalysis_tG_Study_Opt.SetNameFileDataCreation(path);
@@ -1460,13 +1454,12 @@ namespace GUI_GT
                     this.sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
                     // mostramos el tabPage de suma de cuadrados
                     this.tabPageSSQ.Parent = this.tabControlOptions;
-                    //th2.Abort();
+                    CloseLoadingScreen(fw);
                 }
             }
             catch (ImportEduGSsq.AnalysisSsqEduG_Exception)
             {
-                //th.Abort();
-                //th2.Abort();
+                CloseLoadingScreen(fw);
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }

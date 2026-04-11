@@ -353,8 +353,7 @@ namespace GUI_GT
          */
         private void tsmiActionImportMeans_Click(object sender, EventArgs e)
         {
-            // CWait fw = new CWait(msgLoading);
-            // Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //FormWaiting fw = null;
 
             try
             {
@@ -403,13 +402,9 @@ namespace GUI_GT
 
                                 if (bReadfile)
                                 {
-                                    //CWait fw = new CWait(msgLoading);
-                                    //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-
-                                    // Start the thread
-                                    // th.Start();
+                                    //fw = ShowLoadingScreen(msgLoading);
                                     this.importMeansFile(formImport.pathFile());
-                                    // th.Abort();
+                                    //CloseLoadingScreen(fw);
                                 }
                                 salir = true;
                             }
@@ -419,13 +414,13 @@ namespace GUI_GT
             }
             catch (TransLibrary.LabelTranslationException l)
             {
-                //th.Abort();
+                //CloseLoadingScreen(fw);
                 /* Mostramos un mensaje de error al traducir*/
                 MessageBox.Show(l.Message);
             }
             catch (Exception ex)
             {
-                // th.Abort();
+                //CloseLoadingScreen(fw);
                 /* Mostramos un mensaje de error en el que se indicará que el 
                  * fichero no esta en el fomato correcto. */
                 MessageBox.Show(ex.Message);
@@ -506,15 +501,11 @@ namespace GUI_GT
 
         private void loadListOfMeans_EduG(string path, Func<string, ConfigCFG.TypeOfTableMeans, List<ListMeansEduG>> fileReader)
         {
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            //CWait fw2 = new CWait(msgLoading);
-            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            FormWaiting fw = null;
 
             try
             {
-                // fw.Refresh();
-                //th.Start();
+                fw = ShowLoadingScreen(msgLoading);
 
                 List<ListMeansEduG> listOfListMeans = fileReader(path, cfgApli.GetTypeOfTableMeans());
                 List<string> listString = new List<string>();
@@ -524,7 +515,7 @@ namespace GUI_GT
                     listString.Add(nameColMeans + " " + (i + 1) + ";   " + listOfListMeans[i].GetDateTime().ToString());
                 }
 
-                //th.Abort();
+                CloseLoadingScreen(fw);
                 
                 TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
                 FormSelectionOneItemReport formSelectionOne = new FormSelectionOneItemReport(listString, lang);
@@ -541,14 +532,14 @@ namespace GUI_GT
                             int pos = formSelectionOne.SelectionIndex();
                             if (pos >= 0 && pos <= listOfListMeans.Count)
                             {
-                                //th2.Start();
+                                fw = ShowLoadingScreen(msgLoading);
                                 ListMeans listMeans = listOfListMeans[pos];
                                 listMeans.SetNameFileDataCreation(path);
                                 DateTime date = DateTime.Now;
                                 listMeans.SetDateTime(date);
                                 this.sagtElements.SetListMeans(listMeans);
                                 listOfTableMeansToTabPageMeans(listMeans);
-                                //th2.Abort();
+                                CloseLoadingScreen(fw);
                                 salir = true;
                             }
                             else
@@ -562,8 +553,7 @@ namespace GUI_GT
             }
             catch (ListMeansEduG_Exception)
             {
-                //th.Abort();
-                //th2.Abort();
+                CloseLoadingScreen(fw);
                 ShowMessageErrorOK(errorFormatFile);
             }
         }

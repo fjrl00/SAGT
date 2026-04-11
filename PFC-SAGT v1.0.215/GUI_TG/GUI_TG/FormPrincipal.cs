@@ -342,6 +342,40 @@ namespace GUI_GT
             }
         }// end LoadConfigCFG
 
+        /*
+         * Descripción:
+         *  Muestra una pantalla de carga, y devuelve la referencia a ella para que posteriormente se pueda cerrar.
+         */
+        private FormWaiting ShowLoadingScreen(string msg)
+        {
+            FormWaiting fw = null;  // We store a reference to fw here so that we can return it at the end of the method
+            ManualResetEventSlim formReady = new ManualResetEventSlim(false);   // We use this to wait until the form is ready before returning it
+
+            Thread uiThread = new Thread(() =>
+            {
+                fw = new FormWaiting(msg);  //FormWaiting is initialized here in order to avoid cross-reference operations
+                fw.Show();
+                fw.Refresh();
+                formReady.Set();                // Sets the signal that the form is ready and to stop waiting
+                Application.Run(fw);
+            });
+
+            uiThread.SetApartmentState(ApartmentState.STA); // Forms that create UI elements need to be STA
+            uiThread.IsBackground = true;   // Ensures that if the main thread closes, this also closes
+            uiThread.Start();
+
+            formReady.Wait();                   // Waits until the form is ready before proceeding (aka until formReady.Set() is called in the thread)
+            return fw;
+        }
+
+        /*
+         * Descripción:
+         *  Cierra la pantalla de carga que se le pasa como parámetro.
+         */
+        private void CloseLoadingScreen(FormWaiting fw)
+        {
+            fw.Invoke(new Action(() => fw.Close()));
+        }
 
         #region Operaciones para crear los dicionarios y realizar el cambio de idioma
         /*=======================================================================================================
@@ -705,10 +739,7 @@ namespace GUI_GT
                             salir = true;
                             break;
                         case DialogResult.OK:
-                            // Esta ventana se mostrará mientras se carga el fichero
-                            CWait fw = new CWait(msgConnecting);
-                            Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-
+                            FormWaiting fw = null;
                             try
                             {
                                 // Ocultamos y deshabilitamos el botón de conectar
@@ -725,7 +756,7 @@ namespace GUI_GT
                                 string pass = formPass.UserPass(); // contaseña
 
 
-                                th.Start();
+                                fw = ShowLoadingScreen(msgConnecting);
 
                                 // Inicio de conexión
                                 sagtWS_Client = new GUI_GT.MenPasWS.SagtW();
@@ -759,25 +790,25 @@ namespace GUI_GT
                                 {
                                     sagtWS_Client = null;
                                 }
-                                th.Abort();
+                                CloseLoadingScreen(fw);
 
                                 ShowMessageInfo(mensage);
                             }
                             catch (EndpointNotFoundException)
                             {
-                                th.Abort();
+                                CloseLoadingScreen(fw);
                                 AuxNoConection();
                                 salir = true;
                             }
                             catch (InvalidOperationException)
                             {
-                                th.Abort();
+                                CloseLoadingScreen(fw);
                                 AuxNoConection();
                                 salir = true;
                             }
                             catch (ArgumentException)
                             {
-                                th.Abort();
+                                CloseLoadingScreen(fw);
                                 AuxNoConection();
                                 salir = true;
                             }
@@ -1298,28 +1329,21 @@ namespace GUI_GT
         /* Descripción:
          *  Este método se lanza cuando seleccionamos la acción de editar datos en el menú vertical 
          *  de la opción datos.
+         *  Edita los datos de la tabla de observaciones.
          */
         private void tsmiDataEditObs_Click(object sender, EventArgs e)
         {
-            // Llama al método (...) de la clase parcial DataOptions
-            // Se encaga de editar los datos de la tabla de observaciones.
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
             try
             {
-                // Start the thread
-                //th.Start();
                 MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
                 if (this.checkBoxHideNulls.Checked)
                 {
                     // Si la propiedad checked esta a false se muestran todos los valores
                     loadDataInTabPageObsTable(multiFacets);
                 }
-                //th.Abort();
             }
             catch (IOException ex)
             {
-                //th.Abort();
                 ShowMessageErrorOK(ex.Message);
             }
             EditDataObsTable();

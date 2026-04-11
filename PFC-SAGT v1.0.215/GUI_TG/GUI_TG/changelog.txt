@@ -6,6 +6,7 @@ BUGFIXES
 - Solved bug where clicking on the content of certain cells would trigger an exception
 - Solved bug where storing files that contained the number "NaN" would render them impossible to load
 - Solved multiple bugs where the app would sometimes crash when executing tasks that used a loading screen way too fast
+- Added safeguard to stop catastrophic errors from spawning uncloseable loading screens that can only be removed from task manager (this happened for example in Analysis->Import->Import excel file in modern PC's)
 - Solved importing and exporting Excel files not working in modern PC's
 - Solved bug where differentiation and instrumentation facets wouldn't be imported correctly in Excel
 - Solved a bug where putting facets of differentiation and instrumentation in certain orders could trigger an exception

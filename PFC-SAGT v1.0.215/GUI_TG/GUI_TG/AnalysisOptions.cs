@@ -908,9 +908,7 @@ namespace GUI_GT
          */
         private void tsmiActionImportAnalysis_Click()
         {
-            //// Ventana de carga
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
+            //FormWaiting fw = null;
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
@@ -931,9 +929,9 @@ namespace GUI_GT
                             }
                             else
                             {
-                                // th.Start();
+                                //fw = ShowLoadingScreen(msgLoading);
                                 this.importAnalysis_SSqFile(formSSQ_Import.pathFile());
-                                // th.Abort();
+                                //CloseLoadingScreen(fw);
                                 salir = true;
                             }
                             break;
@@ -942,15 +940,13 @@ namespace GUI_GT
             }
             catch (IOException)
             {
-                // th.Abort();
                 // Mostramos un mensage indicando que el fichero esta siendo usado
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
             {
-                // th.Abort();
                 // Mostramos un mensage indicando que el fichero no esta en formato correcto.
-                // MessageBox.Show(errorFormatFile);
+                // ShowMessageErrorOK(errorFormatFile);
                 ShowMessageErrorOK("Error tsmiActionImportAnalysis_Click():" + ex.Message);
             }
         }// end tsmiActionImportAnalysis_Click
@@ -961,11 +957,7 @@ namespace GUI_GT
          */
         public void importAnalysis_SSqFile(string path)
         {
-            // Ventana de carga
-            //CWait fw = new CWait(msgLoading);
-            //Thread th = new Thread(new ThreadStart(fw.CWaitShowDialog));
-            //CWait fw2 = new CWait(msgLoading);
-            //Thread th2 = new Thread(new ThreadStart(fw2.CWaitShowDialog));
+            FormWaiting fw = null;
 
             try
             {
@@ -978,32 +970,32 @@ namespace GUI_GT
                 switch (typeOfFile)
                 {
                     case (TypeOfFile.ssq):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileSsq(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         break;
                     case (TypeOfFile.rsa):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileRsa(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         break;
                     case (TypeOfFile.txt):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         List<AnalysisSsqEduG> listAnalysisEduG = AnalysisSsqEduG.ReadFileReportTxtEduG(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG);
                         break;
                     case (TypeOfFile.rtf):
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         List<AnalysisSsqEduG> listAnalysisEduG2 = AnalysisSsqEduG.ReadFileReportRtfEduG(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
                         // Ficheros xls de excel
-                        //th.Start();
+                        fw = ShowLoadingScreen(msgLoading);
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
-                        //th.Abort();
+                        CloseLoadingScreen(fw);
                         break;
                     default:
                         ShowMessageErrorOK(errorInvalidExtension);
@@ -1011,19 +1003,18 @@ namespace GUI_GT
                 }
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    //th2.Start();
+                    fw = ShowLoadingScreen(msgLoading);
                     DateTime date = DateTime.Now;
                     this.anl_tAnalysis_G_study_opt = tAnalysis_tG_Study_Opt;
                     this.anl_tAnalysis_G_study_opt.SetDateTime(date);
                     this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(path);
                     LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, path);
-                    //th2.Abort();
+                    CloseLoadingScreen(fw);
                 }
             }
             catch (SSqPY_Exception)
             {
-                //th.Abort();
-                //th2.Abort();
+                CloseLoadingScreen(fw);
                 // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }
