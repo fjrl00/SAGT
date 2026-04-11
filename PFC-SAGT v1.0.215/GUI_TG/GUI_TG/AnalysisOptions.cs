@@ -260,7 +260,7 @@ namespace GUI_GT
          */
         private void btActionAnalysis_NestingFacet_Click()
         {
-            if (this.listFacetsAnalysis == null)
+            if (this.lf_global == null)
             {
                 ListFacets lf = validateFacetTable(dGridViewExAnalysis_TableFacet);
                 if (lf != null)
@@ -269,15 +269,15 @@ namespace GUI_GT
                     DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmBuildNesting);
                     if (res.Equals(DialogResult.OK))
                     {
-                        this.listFacetsAnalysis = lf;
+                        this.lf_global = lf;
                     }
                 }
             }
 
 
-            if (this.listFacetsAnalysis != null)
+            if (this.lf_global != null)
             {
-                FormAddNesting fAddNesting = new FormAddNesting(this.LanguageActually(), this.listFacetsAnalysis);
+                FormAddNesting fAddNesting = new FormAddNesting(this.LanguageActually(), this.lf_global);
 
                 bool salir = false;
                 do
@@ -297,8 +297,8 @@ namespace GUI_GT
                                 if (posNestedFacet >= 0)
                                 {
                                     // Tenemos tanto la faceta anidada como la anidante
-                                    Facet f = this.listFacetsAnalysis.FacetInPos(posSelctFacet);
-                                    Facet f_Nested = this.listFacetsAnalysis.FacetInPos(posNestedFacet);
+                                    Facet f = this.lf_global.FacetInPos(posSelctFacet);
+                                    Facet f_Nested = this.lf_global.FacetInPos(posNestedFacet);
                                     try
                                     {
                                         if (fAddNesting.RadioButtonNest())
@@ -315,13 +315,13 @@ namespace GUI_GT
                                             ShowMessageErrorOK(errorNoOperation);
                                         }
                                         // pintamos de nuevo las facetas en la tabla
-                                        LoadListFacetInDataGridView(this.listFacetsAnalysis, dGridViewExAnalysis_TableFacet);
+                                        LoadListFacetInDataGridView(this.lf_global, dGridViewExAnalysis_TableFacet);
                                         salir = true;
                                     }
                                     catch (FacetException ex)
                                     {
                                         // error no se ha podido realizar el anidamiento correctamente
-                                        ShowMessageErrorOK($"{errorNoOperation}\n\n{ex.Message}");
+                                        ShowMessageErrorOK(errorNoOperation);
                                     }
                                 }
                                 else
@@ -350,23 +350,23 @@ namespace GUI_GT
          */
         private void btActionAnalysis_RemoveNesting_Click()
         {
-            if (this.listFacetsAnalysis != null)
+            if (this.lf_global != null)
             {
                 bool nesting = false;
-                int n = this.listFacetsAnalysis.Count();
+                int n = this.lf_global.Count();
                 for (int i = 0; i < n && !nesting; i++)
                 {
-                    Facet f = this.listFacetsAnalysis.FacetInPos(i);
+                    Facet f = this.lf_global.FacetInPos(i);
                     nesting = f.IsNesting();
                 }
 
                 if (nesting)
                 {
                     List<string> lfSelectFacet = new List<string>();
-                    n = this.listFacetsAnalysis.Count();
+                    n = this.lf_global.Count();
                     for (int i = 0; i < n; i++)
                     {
-                        Facet f = this.listFacetsAnalysis.FacetInPos(i);
+                        Facet f = this.lf_global.FacetInPos(i);
                         if (f.IsNesting())
                         {
                             string aux = f.ListFacetDesign();
@@ -394,10 +394,10 @@ namespace GUI_GT
                                     string desing = lfSelectFacet[indexChecked];
                                     int pos = desing.IndexOf("]") - 1;
                                     string name = desing.Substring(1, pos);
-                                    Facet f_nesting = this.listFacetsAnalysis.LookingFacet(name);
+                                    Facet f_nesting = this.lf_global.LookingFacet(name);
                                     f_nesting.ListFacetsDesignRemove();
                                     // Pintamos de nuevo la tabla
-                                    LoadListFacetInDataGridView(this.listFacetsAnalysis, dGridViewExAnalysis_TableFacet);
+                                    LoadListFacetInDataGridView(this.lf_global, dGridViewExAnalysis_TableFacet);
                                     salir = true;
                                 }
 
@@ -425,11 +425,13 @@ namespace GUI_GT
          */
         private void btActionEditSumOfSquaresOnAnalisys_Click()
         {
-            // Leemos la lista de facetas del dataGridView
-            this.listFacetsAnalysis = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
+            if (this.lf_global == null)     //Si no tenemos facetas anidadas mediante método mixto
+                this.listFacetsAnalysis = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);   // Leemos de la tabla
+            else                            //De lo contrario
+                this.listFacetsAnalysis = this.lf_global;                                           // Cogemos lo que hemos ido rellenando ya
 
             // Si los datos son correctos continuamos las comprobaciones.
-            if(this.listFacetsAnalysis != null)
+            if (this.listFacetsAnalysis != null)
             {
                 // Si es necesario realizamos el anidamiento total de las facetas 
                 if (this.provision.Equals(ProvisionOfFacets.Nested))
@@ -466,6 +468,7 @@ namespace GUI_GT
                     }
                 } while (!salir);
             }
+            this.lf_global = null;
         }// end btActionEditSumOfSquaresOnAnalisys_Click
 
 
@@ -930,6 +933,7 @@ namespace GUI_GT
         private void btActionCancelEditFacetOnAnalysis_Click(object sender, EventArgs e)
         {
             this.anl_tAnalysis_G_study_opt_Old = null;
+            this.lf_global = null;
             disableEditingFacetAnalysis();
         }
 
@@ -962,6 +966,7 @@ namespace GUI_GT
          */
         private void btActionCancelEditSsq_Click()
         {
+            this.lf_global = null;
             disableEditingFacetAnalysis();
             // Ponemos el modo edición a false para poder usar el menú principal
             this.disableTopLeftButtons = false;
