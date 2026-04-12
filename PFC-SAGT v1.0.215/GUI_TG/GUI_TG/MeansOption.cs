@@ -433,11 +433,6 @@ namespace GUI_GT
          */
         public void importMeansFile(string path)
         {
-            //this.formImport.Close();
-
-            //FormWaiting fw = new FormWaiting();
-            //fw.Show();
-
             // Extraemos el nombre del fichero del path
             string fileExt = fileExtension(path).ToLower(); // Pasamos a minúsculas la extensión
             // para poder compararla. 
@@ -446,12 +441,15 @@ namespace GUI_GT
                 case (DEFAULT_EXT_RSM): loadListOfMeansOfFileRms(path); break;
                 case ("txt"): loadListOfMeansOfFileText_EduG(path); break;
                 case ("rtf"): loadListOfMeansOfFileRtf_EduG(path); break;
-                case (DEFAULT_EXT_EXCEL): loadListTableMeansFileXls(path); break;
+                case (DEFAULT_EXT_EXCEL): 
+                    FormWaiting fw = ShowLoadingScreen(msgLoading);
+                    loadListTableMeansFileXls(path); 
+                    CloseLoadingScreen(fw);
+                    break;
                 default:
                     ShowMessageErrorOK(errorInvalidExtension);
                     break;
             }
-            //fw.Close();
         }
 
 

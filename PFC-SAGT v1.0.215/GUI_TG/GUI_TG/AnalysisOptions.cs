@@ -992,7 +992,6 @@ namespace GUI_GT
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
-                        // Ficheros xls de excel
                         fw = ShowLoadingScreen(msgLoading);
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
                         CloseLoadingScreen(fw);
@@ -1003,19 +1002,16 @@ namespace GUI_GT
                 }
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    fw = ShowLoadingScreen(msgLoading);
                     DateTime date = DateTime.Now;
                     this.anl_tAnalysis_G_study_opt = tAnalysis_tG_Study_Opt;
                     this.anl_tAnalysis_G_study_opt.SetDateTime(date);
                     this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(path);
                     LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, path);
-                    CloseLoadingScreen(fw);
                 }
             }
             catch (SSqPY_Exception)
             {
                 CloseLoadingScreen(fw);
-                // Se producjo un error al leer el archivo
                 ShowMessageErrorOK(errorFormatFile);
             }
         }// end importAnalysis_SSqFile

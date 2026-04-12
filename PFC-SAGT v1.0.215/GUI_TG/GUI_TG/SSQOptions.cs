@@ -1430,8 +1430,9 @@ namespace GUI_GT
                         tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
                         break;
                     case (TypeOfFile.xls):
-                        // Ficheros xls de excel
+                        fw = ShowLoadingScreen(msgLoading);
                         tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
+                        CloseLoadingScreen(fw);
                         break;
                     default:
                         ShowMessageErrorOK(errorInvalidExtension);
@@ -1440,7 +1441,6 @@ namespace GUI_GT
 
                 if (tAnalysis_tG_Study_Opt != null)
                 {
-                    fw = ShowLoadingScreen(msgLoading);
                     date = DateTime.Now;
                     tAnalysis_tG_Study_Opt.SetDateTime(date);
                     tAnalysis_tG_Study_Opt.SetNameFileDataCreation(path);
@@ -1454,7 +1454,6 @@ namespace GUI_GT
                     this.sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
                     // mostramos el tabPage de suma de cuadrados
                     this.tabPageSSQ.Parent = this.tabControlOptions;
-                    CloseLoadingScreen(fw);
                 }
             }
             catch (ImportEduGSsq.AnalysisSsqEduG_Exception)

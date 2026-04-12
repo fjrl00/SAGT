@@ -243,9 +243,9 @@ namespace GUI_GT
         public static ListMeans ImportFileXLS_to_ListMeans(string path, WordTranslation tras)
         {
             List<string> namesTables = ImportExcel.GetTableExcel(path);
-            if (namesTables.Count < 2)
+            if(namesTables.Count < 2 || !namesTables.Contains("Grand Mean"))
             {
-                // No esta en el formato correcto
+                // No esta en el formato correcto. Note: not fully robust, and bad language practices
                 throw new ListMeansException();
             }
 

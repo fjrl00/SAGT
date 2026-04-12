@@ -62,5 +62,7 @@ UI
 - Solved oversight where confirmation popups for actions that could cause loss of data in the Data section weren't added
 - Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
 - leaving sums of squares cells empty in Analysis->sum of squares section will now substitute them with 0 instead of launching an exception
+- Analysis->Import operations now result in a single loading screen, rather than multiple ones blinking in and out of existence
+- Overhauled which actions result in a loading screen and which ones don't
 
 Last updated: 11/04/2026
