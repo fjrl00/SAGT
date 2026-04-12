@@ -225,7 +225,6 @@
     <Compile Include="ProjectsOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CWait.cs" />
     <Compile Include="ErrorMessages.cs">
       <SubType>Form</SubType>
     </Compile>
