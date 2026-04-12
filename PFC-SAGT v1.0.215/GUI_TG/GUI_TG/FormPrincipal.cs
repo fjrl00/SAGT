@@ -2496,12 +2496,12 @@ namespace GUI_GT
             {
                 if (e.KeyChar == 'i' || e.KeyChar == 'I')
                 {
-                    celda.Value = "Inf";// Facet.INFINITE;
+                    celda.Value = Facet.INFINITE;
                     int pos = dgvEx.CurrentRow.Index;
                     dgvEx.CurrentCell = dgvEx.Rows[pos].Cells[0];
                     dgvEx.CurrentCell = dgvEx.Rows[pos].Cells[columnIndex];
                     e.Handled = false;
-                    dgvEx.CurrentCell.Value = "INF";
+                    dgvEx.CurrentCell.Value = Facet.INFINITE;
                 }
                 else
                 {

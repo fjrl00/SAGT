@@ -1757,7 +1757,7 @@ namespace GUI_GT
                     }
                     else
                     {
-                        if (my_row.Cells[IND_SIZE_OF_UNIVERSE_FACET].Value.ToString().ToUpper().Equals("INF"))
+                        if (my_row.Cells[IND_SIZE_OF_UNIVERSE_FACET].Value.ToString().Equals(Facet.INFINITE))
                         {
                             size = int.MaxValue;
                         }

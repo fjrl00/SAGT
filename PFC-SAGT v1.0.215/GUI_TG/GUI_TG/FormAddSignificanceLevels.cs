@@ -366,7 +366,7 @@ namespace GUI_GT
             {
                 if (e.KeyChar == 'i' || e.KeyChar == 'I')
                 {
-                    celda.Value = Facet.INFINITE;// Facet.INFINITE;
+                    celda.Value = Facet.INFINITE;
                     this.dgvExInstFacts.CurrentCell = this.dgvExInstFacts.Rows[this.dgvExInstFacts.CurrentRow.Index].Cells[0];
                     this.dgvExInstFacts.CurrentCell = this.dgvExInstFacts.Rows[this.dgvExInstFacts.CurrentRow.Index].Cells[columnIndex];
                     e.Handled = false;
@@ -403,7 +403,7 @@ namespace GUI_GT
             {
                 if (e.KeyChar == 'i' || e.KeyChar == 'I')
                 {
-                    celda.Value = Facet.INFINITE;// Facet.INFINITE;
+                    celda.Value = Facet.INFINITE;
                     this.dgvExDiffFacts.CurrentCell = this.dgvExDiffFacts.Rows[this.dgvExDiffFacts.CurrentRow.Index].Cells[0];
                     this.dgvExDiffFacts.CurrentCell = this.dgvExDiffFacts.Rows[this.dgvExDiffFacts.CurrentRow.Index].Cells[columnIndex];
                     e.Handled = false;
