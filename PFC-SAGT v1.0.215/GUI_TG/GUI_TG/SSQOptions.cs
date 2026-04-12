@@ -101,53 +101,6 @@ namespace GUI_GT
         #endregion Variables relaccionadas con la opción SSQ
 
 
-        /* Descripción:
-         *  Abre un archivo de suma de cuadrados de SAGT.
-         */
-        private void tsmiActionOpenSSQ_Click(object sender, EventArgs e)
-        {
-            DialogResult res = DialogResult.OK;
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt != null)
-            {
-                res = ShowMessageDialog(titleConfirm, txtConfirmClose);
-            }
-            if (res == DialogResult.OK)
-            {
-                OpenFileDialog openDialog = new OpenFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                string fileFilter = (FILTER_SAGT_FILE + this.allFiles + FILTER_ALL_FILE);
-                openDialog.Filter = fileFilter;
-
-                if (openDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        // Analysis_and_G_Study tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(openDialog.FileName);
-                        this.sagtElements = SagtFile.ReadingSagtFile(openDialog.FileName);
-                        //if (tAnalysis_tG_Study_Opt != null)
-                        //{
-                        //    // Limpiamos todas las tablas
-                        //    ClearTabPageSSQ();
-                        //}
-                        //// tAnalysis_tG_Study_Opt = tb_aux;
-                        //LoadAllDataInDataGridViewEx_SSQOptions();
-                        loadSagtElements(openDialog.FileName, sagtElements);
-                    }
-                    catch (Analysis_and_G_Study_Exception)
-                    {
-                        // Mostramos un mensaje de error
-                        MessageBox.Show(errorReadingFile, titleMessageError1);
-                    }
-                }
-            }
-        }// end private void tsmiActionOpenSSQ_Click
-
 
         /* Descripción:
          *  Salva los datos los datos de las tablas de sumas de cuadrados en un archivo de SAGT.
@@ -1596,20 +1549,15 @@ namespace GUI_GT
          */
         private void tsmiActionSSQClose_Click(object sender, EventArgs e)
         {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt != null)
+            if (this.sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                TableAnalysisOfVariance tableAnalysis = tAnalysis_tG_Study_Opt.TableAnalysisVariance();
-                if (tableAnalysis != null)
+                DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
+                switch (res)
                 {
-                    DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
-                    switch (res)
-                    {
-                        case (DialogResult.OK):
-                            // Llamamos al método que lo limpia los elementos
-                            ClearTabPageSSQ();
-                            break;
-                    }
+                    case (DialogResult.OK):
+                        // Llamamos al método que lo limpia los elementos
+                        ClearTabPageSSQ();
+                        break;
                 }
             }
         }// end tsmiActionSSQClose_Click

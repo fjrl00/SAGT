@@ -245,47 +245,6 @@ namespace GUI_GT
         }// end AddTabPageTableMeans
 
 
-
-        /* Descripción:
-         *  Abre un archivo de medias.
-         */
-        private void tsmiActionOpenMeans_Click(object sender, EventArgs e)
-        {
-            DialogResult res = DialogResult.OK;
-            ListMeans listMeans = this.sagtElements.GetListMeans();
-            if (listMeans != null)
-            {
-                res = ShowMessageDialog(titleConfirm, txtConfirmClose);
-            }
-            if (res == DialogResult.OK)
-            {
-                OpenFileDialog openDialog = new OpenFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                string fileFilter = ("SAGT file" + FILTER_SAGT_FILE + this.allFiles + FILTER_ALL_FILE);
-                openDialog.Filter = fileFilter;
-
-                if (openDialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        this.sagtElements = SagtFile.ReadingSagtFile(openDialog.FileName);
-                        loadSagtElements(openDialog.FileName, sagtElements);
-                    }
-                    catch (ListMeansException)
-                    {
-                        // Mostramos un mensaje de error al leer el acrchivo
-                        ShowMessageInfo(errorReadingFile, titleMessageError1);
-                    }
-                }
-            }
-        }// end private void tsmiActionOpenMeans_Click
-
-
         /* Descripción:
          *  Salva los datos los datos de las tablas de medias en un archivo.
          */
@@ -323,8 +282,7 @@ namespace GUI_GT
          */
         private void tsmiActionMeansClose_Click(object sender, EventArgs e)
         {
-            ListMeans listMeans = this.sagtElements.GetListMeans();
-            if (listMeans != null)
+            if (this.sagtElements.GetListMeans() != null)
             {
                 DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
 

@@ -16,6 +16,7 @@ using ConnectLibrary;
 using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
+using Sagt;
 using System;
 using System.Diagnostics;
 using System.IO; // para poder usar File.Exist
@@ -376,6 +377,91 @@ namespace GUI_GT
         {
             fw.Invoke(new Action(() => fw.Close()));
         }
+
+
+        /* Descripción:
+         *  Carga un fichero sagt;
+         * Parámetros:
+         *      string path: ubicación del fichero.
+         * Excepciones:
+         *     MultiFacetObsException: si no ha podido crear el objeto correctamente. Avisará
+         *          al usuario de que el fichero no esta en el formato correcto.
+         */
+        private void loadFileSagt(string path)
+        {
+            FormWaiting fw = ShowLoadingScreen(msgLoading);
+
+            string fileNameData = extractFileNamePath(path);
+            try
+            {
+                // MultiFacetsObs multiFacets = MultiFacetsObs.ReadingFileObsData(path);
+                sagtElements = SagtFile.ReadingSagtFile(path);
+                // Cargamos los elementos
+                loadSagtElements(fileNameData, sagtElements);
+            }
+            catch (MultiFacetObsException)
+            {
+                ShowMessageErrorOK(errorFormatFile);
+            }
+            catch (ListMeansException)
+            {
+                // Mostramos un mensaje de error al leer el acrchivo
+                ShowMessageInfo(errorReadingFile, titleMessageError1);
+            }
+            catch (Analysis_and_G_Study_Exception)
+            {
+                // Mostramos un mensaje de error
+                MessageBox.Show(errorReadingFile, titleMessageError1);
+            }
+            finally
+            {
+                this.CloseLoadingScreen(fw);
+            }
+        }
+
+        /* Descripción:
+         *  Acción que se ejecuta tras pulsar los botones de Abrir del menú vertical.
+         *  Carga un archivo .sagt y muestra su contenido en la aplicación. Si ya hay un archivo cargado se muestra un mensaje de confirmación.
+         */
+        private void OpenSagtFile()
+        {
+            DialogResult res = DialogResult.OK;
+
+            if (this.sagtElements.GetMultiFacetsObs() != null
+                || this.sagtElements.GetListMeans() != null
+                || this.sagtElements.GetAnalysis_and_G_Study() != null)
+            {
+                res = ShowMessageDialog(titleConfirm, txtConfirmClose);
+            }
+
+            if (res != DialogResult.OK)
+                return;
+
+            using (OpenFileDialog openDialog = new OpenFileDialog())
+            {
+                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
+                {
+                    openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
+                }
+
+                string fileFilter = (this.sagtFiles + FILTER_SAGT_FILE + this.allFiles + FILTER_ALL_FILE);
+                openDialog.Filter = fileFilter;
+
+                if (openDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.checkBoxHideNulls.Enabled = false;
+                    this.checkBoxHideNulls.Checked = false;
+                    this.checkBoxHideNulls.Enabled = true;
+
+                    loadFileSagt(openDialog.FileName);
+
+                    // nos posicionamos en los tabPage iniciales.
+                    tabControlData.SelectedIndex = 0;
+                    tabControlSSQ.SelectedIndex = 0;
+                }
+            }
+        }
+
 
         #region Operaciones para crear los dicionarios y realizar el cambio de idioma
         /*=======================================================================================================
@@ -1256,12 +1342,11 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Se activa al pulsar la acción "Abrir" del menú de datos. Llama a un método que se encuentra 
-         *  en la clase parcial dataOptions
+         *  Botón de abrir de la sección de Datos
          */
         private void tsmiDataOpenLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionOpenFile_Click(sender, e);
+            OpenSagtFile();
         }
 
 
@@ -1597,11 +1682,11 @@ namespace GUI_GT
          *===============================================================================================*/
 
         /* Descripción:
-         *  Abre un archivo de medias.
+         *  Botón de Abrir de la sección de Medias
          */
         private void tsmiMeansOpenLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionOpenMeans_Click(sender, e);
+            OpenSagtFile();
         }
 
 
@@ -1764,11 +1849,11 @@ namespace GUI_GT
          *===============================================================================================*/
 
         /* Descripción:
-         *  Permite abrir un fichero de suma de cuadrados
+         *  Botón de Abrir de la sección de SSQQ
          */
         private void tsmiSSqOpenLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionOpenSSQ_Click(sender, e);
+            OpenSagtFile();
         }
 
 

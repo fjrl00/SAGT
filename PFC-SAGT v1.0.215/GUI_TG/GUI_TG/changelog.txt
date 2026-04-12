@@ -6,7 +6,7 @@ BUGFIXES
 - Solved bug where clicking on the content of certain cells would trigger an exception
 - Solved bug where storing files that contained the number "NaN" would render them impossible to load
 - Solved multiple bugs where the app would sometimes crash when executing tasks that used a loading screen way too fast
-- Added safeguard to stop catastrophic errors from spawning uncloseable loading screens that can only be removed from task manager (this happened for example in Analysis->Import->Import excel file in modern PC's)
+- Added safeguard to stop the possibility of exceptions and catastrophic errors from spawning uncloseable loading screens that can only be removed from the task manager, which happened during multiple of these bugs
 - Solved importing and exporting Excel files not working in modern PC's
 - Solved bug where differentiation and instrumentation facets wouldn't be imported correctly in Excel
 - Solved a bug where putting facets of differentiation and instrumentation in certain orders could trigger an exception
@@ -27,6 +27,7 @@ BUGFIXES
 - Solved oversight where the user was allowed to edit the content of the cells of Sum of Squares->Optimization->Facets table
 - Solved bug where the user's selected workspace would be ignored and replaced with a generic one in some contexts
 - Fixed adding nestings in mixed facets in the analysis section being impossible
+- Solved bug where loading .sagt files without Data section while the 'Hide null' checkbox was marked could result in an exception
 
 OPTIMIZATION
 
@@ -48,6 +49,7 @@ LOCALIZATION
 - Completely overhauled previous machine-translated Portuguese localization
 - Some Spanish typos fixed
 - Some previously untranslated text throughout the app has been translated
+- Some missing text added
 
 OTHERS
 
@@ -59,10 +61,12 @@ OTHERS
 UI
 
 - Removed column "Processed levels" from Sum of Squares->Optimization. It was for a planned feature that never got added. Replaced with the facet's description.
-- Solved oversight where confirmation popups for actions that could cause loss of data in the Data section weren't added
+- Solved oversights where confirmation popups for some actions that could cause loss of data weren't added
 - Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
 - leaving sums of squares cells empty in Analysis->sum of squares section will now substitute them with 0 instead of launching an exception
 - Analysis->Import operations now result in a single loading screen, rather than multiple ones blinking in and out of existence
 - Overhauled which actions result in a loading screen and which ones don't
+- Removed the ability to import GT E 2.0 files from Open Data File. Option now only available from Import
+- Loading .sagt files now returns back to the initial tabs
 
-Last updated: 11/04/2026
+Last updated: 12/04/2026

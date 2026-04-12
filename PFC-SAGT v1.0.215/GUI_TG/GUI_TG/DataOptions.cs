@@ -114,39 +114,6 @@ namespace GUI_GT
         }
 
 
-        /* Descripción:
-         *  Acción que se ejecuta tra pulsar el bóton Abrir del menú vertical de la opción Datos.
-         *  Abre un archivo de datos y lo carga en la tablas del tabPage Data.
-         */
-        private void tsmiActionOpenFile_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openDialog = new OpenFileDialog();
-
-            if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-            {
-                openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-            }
-
-            string fileFilter = (this.sagtFiles + FILTER_SAGT_FILE + this.gtFiles + FILTER_GT_OBS_FILE + this.allFiles + FILTER_ALL_FILE);
-            openDialog.Filter = fileFilter;
-
-            if (openDialog.ShowDialog() == DialogResult.OK)
-            {
-                this.checkBoxHideNulls.Enabled = false;
-                this.checkBoxHideNulls.Checked = false;
-                this.checkBoxHideNulls.Enabled = true;
-                // Extraemos el nombre del fichero del path
-                string fileExt = fileExtension(openDialog.FileName).ToLower(); // Pasamos a minúsculas la extensión
-                // para poder compararla.                     
-                switch (fileExt)
-                {
-                    case (DEFAULT_EXT_SAGT): loadFileSagt(openDialog.FileName); break;
-                    case (DEFAULT_EXT_OBS): loadFileObs(openDialog.FileName); break;
-                }
-                // nos posicionamos en el tabPage de las facetas.
-                tabControlData.SelectedIndex = 0;
-            }
-        }
 
 
         /* Descripción:
@@ -320,30 +287,6 @@ namespace GUI_GT
             }
         }
 
-
-        /* Descripción:
-         *  Carga un fichero sagt;
-         * Parámetros:
-         *      string path: ubicación del fichero.
-         * Excepciones:
-         *     MultiFacetObsException: si no ha podido crear el objeto correctamente. Avisará
-         *          al usuario de que el fichero no esta en el formato correcto.
-         */
-        private void loadFileSagt(string path)
-        {
-            string fileNameData = extractFileNamePath(path);
-            try
-            {
-                // MultiFacetsObs multiFacets = MultiFacetsObs.ReadingFileObsData(path);
-                sagtElements = SagtFile.ReadingSagtFile(path);
-                // Cargamos los elementos
-                loadSagtElements(fileNameData, sagtElements);
-            }
-            catch (MultiFacetObsException)
-            {
-                ShowMessageErrorOK(errorFormatFile);
-            }
-        }
 
 
         /* Descripción:
