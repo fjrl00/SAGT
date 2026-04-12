@@ -786,7 +786,6 @@ namespace GUI_GT
                         }
                         else
                         {
-                            // No hay ningún elemento seleccionado, mostramos un mensaje
                             // no hay ningún elemento seleccionado.
                             ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
 

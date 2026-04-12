@@ -920,7 +920,6 @@ namespace GUI_GT
                         }
                         else
                         {
-                            // No hay ningún elemento seleccionado, mostramos un mensaje
                             // no hay ningún elemento seleccionado.
                             ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
 
@@ -1683,7 +1682,7 @@ namespace GUI_GT
                         {// (* 1 *)
                             case DialogResult.Cancel: salir = true; break;
                             case DialogResult.OK:
-
+                            
                                 List<ListFacets> selectedListFacets = new List<ListFacets>();
 
                                 CheckedListBox ckListBox = formListFacet.CheckedListBoxListsFacets();
@@ -1700,47 +1699,35 @@ namespace GUI_GT
                                     }
                                 }
 
-                                if (selectedListFacets.Count > 0)
-                                {// (* 3 *)
-                                    if (this.ListMeans() != null)
-                                    {
-                                        DialogResult res2 = ShowMessageDialog(titleConfirm, txtConfirmClearMeans);
-
-                                        if (res2 == DialogResult.OK)
-                                        {
-                                            this.ClearTabPageMeans();
-                                            // hay al menos algún elemento seleccionado
-                                            createMeansOfListOfListFacets(selectedListFacets, ldesingSelected, multiFacets, this.cfgApli, MEAN_STRINGS);
-                                            salir = true;
-
-                                            ExcludeTabPages();
-                                            this.tabPageMeans.Parent = this.tabControlOptions;
-                                            // Restauramos los colores
-                                            this.RestoreColorMenu(this.mStripMain);
-                                            // Asignamos el nuevo color
-                                            this.tsmiMeans.BackColor = System.Drawing.SystemColors.Highlight;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // hay al menos algún elemento seleccionado
-                                        createMeansOfListOfListFacets(selectedListFacets, ldesingSelected, multiFacets, this.cfgApli, MEAN_STRINGS);
-
-                                        ExcludeTabPages();
-                                        this.tabPageMeans.Parent = this.tabControlOptions;
-                                        // Restauramos los colores
-                                        this.RestoreColorMenu(this.mStripMain);
-                                        // Asignamos el nuevo color
-                                        this.tsmiMeans.BackColor = System.Drawing.SystemColors.Highlight;
-                                        salir = true;
-                                    }
-                                }
-                                else
+                                if (selectedListFacets.Count == 0)
                                 {
-                                    // no hay ningún elemento seleccionado.
                                     ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
-                                }// end if (* 3 *)
+                                    break; // go back to formListFacet.ShowDialog
+                                }
 
+                                // Confirmation only if needed
+                                if (this.ListMeans() != null)
+                                {
+                                    DialogResult res2 = ShowMessageDialog(titleConfirm, txtConfirmClearMeans);
+
+                                    if (res2 != DialogResult.OK)
+                                        break; // go back to formListFacet.ShowDialog
+                                }
+
+                                FormWaiting fw = ShowLoadingScreen(msgLoading);
+
+                                this.ClearTabPageMeans();
+
+                                createMeansOfListOfListFacets(selectedListFacets, ldesingSelected, multiFacets, this.cfgApli, MEAN_STRINGS);
+
+                                // UI updates
+                                ExcludeTabPages();
+                                this.tabPageMeans.Parent = this.tabControlOptions;
+                                this.RestoreColorMenu(this.mStripMain);
+                                this.tsmiMeans.BackColor = System.Drawing.SystemColors.Highlight;
+
+                                salir = true;
+                                CloseLoadingScreen(fw);
                                 break;
                         }// end switch(* 1 *)
                     } while (!salir);
@@ -2007,6 +1994,8 @@ namespace GUI_GT
             saveDialog.Title = titleSave;
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
+                FormWaiting fw = ShowLoadingScreen(msgLoading);
+
                 var sheetList = new List<(string SheetName, DataGridView Grid)>
                 {
                     (tabPagMultiFacet.Text, dataGridViewExFacets),
@@ -2017,7 +2006,8 @@ namespace GUI_GT
                 // MessageBox.Show("Fin");
                 Process.Start(saveDialog.FileName); //opens the file
                 saveDialog.Dispose();
-                saveDialog = null;
+
+                CloseLoadingScreen(fw);
             }
         }// end SaveFileExcelDialog
 

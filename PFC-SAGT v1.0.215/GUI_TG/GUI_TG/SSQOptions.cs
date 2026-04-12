@@ -228,10 +228,12 @@ namespace GUI_GT
                             case (DialogResult.OK):
                                 if (formMeasurDesign.ListFacetDiff() == 0 || formMeasurDesign.ListFacetInst() == 0)
                                 {
-                                    MessageBox.Show(errorM_DesignNoValidate, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    ShowMessageErrorOK(errorM_DesignNoValidate);
                                 }
                                 else
                                 {
+                                    FormWaiting fw = ShowLoadingScreen(msgLoading);
+
                                     salir = true;
                                     // Mostramos el diseño de medida en el textBox de los tabPage de suma de cuadrados
                                     // ShowMeDessingInTextBoxs(sourceOfDifferentiation, sourceOfInstrumentation);
@@ -265,6 +267,8 @@ namespace GUI_GT
                                     this.RestoreColorMenu(this.mStripMain);
                                     // Asignamos el nuevo color
                                     this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
+
+                                    CloseLoadingScreen(fw);
                                 }
                                 break;
                         }// end switch
@@ -1682,6 +1686,8 @@ namespace GUI_GT
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
+                    // FormWaiting fw = ShowLoadingScreen(msgLoading); // seemingly loads too fast
+
                     var sheetList = new List<(string SheetName, DataGridView Grid)>
                     {
                         (tabPagMultiFacet.Text, dGridViewExSourceOfVar),
@@ -1694,6 +1700,8 @@ namespace GUI_GT
                     // MessageBox.Show("Fin");
                     Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
+
+                    // CloseLoadingScreen(fw);
                 }
             }
         }// end tsmiActionSSq_ExportExcel_Click

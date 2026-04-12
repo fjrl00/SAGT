@@ -326,15 +326,6 @@ namespace GUI_GT
             ListMeans listMeans = this.sagtElements.GetListMeans();
             if (listMeans != null)
             {
-                /*
-                TransLibrary.Language lang = this.cfgApli.GetConfigLanguage();
-
-                string ok = this.dicMessage.labelTraslation("btOk").LangTraslation(lang).ToString();
-                string cancel = this.dicMessage.labelTraslation("btCancel").LangTraslation(lang).ToString();
-                MsgBoxUtil.HackMessageBox(ok, cancel);
-                DialogResult res = MessageBox.Show(txtConfirmClose,
-                    titleConfirm, MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                 */
                 DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
 
                 if (res == DialogResult.OK)
@@ -639,6 +630,8 @@ namespace GUI_GT
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
+                    FormWaiting fw = ShowLoadingScreen(msgLoading);
+
                     var sheetList = new List<(string SheetName, DataGridView Grid)>();
                     for (int i = 0; i < listMeans.Count(); i++)
                     {
@@ -652,6 +645,8 @@ namespace GUI_GT
                     // MessageBox.Show("Fin");
                     Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
+
+                    CloseLoadingScreen(fw);
                 }
             }
         }// end tsmiActionMeansExportExcel_Click

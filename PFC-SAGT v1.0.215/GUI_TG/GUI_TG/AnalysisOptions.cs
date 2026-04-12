@@ -1044,6 +1044,8 @@ namespace GUI_GT
                 saveDialog.Title = titleSave; // Título de la ventana de salvado
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
+                    // FormWaiting fw = ShowLoadingScreen(msgLoading);  // seemingly loads too fast
+
                     var sheetList = new List<(string SheetName, DataGridView Grid)>
                     {
                         (tabPagMultiFacet.Text, dgvExAnalysisSourceOfVarSsq),
@@ -1056,6 +1058,8 @@ namespace GUI_GT
                     // MessageBox.Show("Fin");
                     Process.Start(saveDialog.FileName); //opens the file
                     saveDialog.Dispose();
+
+                    // CloseLoadingScreen(fw);
                 }
             }
         }// end tsmiActionAnalysisExportExcel_Click

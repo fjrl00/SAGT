@@ -83,13 +83,16 @@ namespace GUI_GT
                             System.Windows.Forms.DialogResult resulDialog = saveDialog.ShowDialog();
                             if (resulDialog == DialogResult.OK)
                             {
+                                FormWaiting fw = ShowLoadingScreen(msgLoading);
+
                                 WriterSagtPdfDocument(saveDialog.FileName);
                                 salir = true;
+
+                                CloseLoadingScreen(fw);
                             }
                         }
                         else
                         {
-                            // No hay ningún elemento seleccionado, mostramos un mensaje
                             // no hay ningún elemento seleccionado.
                             ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
                         }// end if (* 1 *)
