@@ -53,7 +53,7 @@ LOCALIZATION
 
 OTHERS
 
-- Updated project from .NET Framework 3.5 to 4.8.1
+- Updated project from .NET Framework 3.5 to 4.8.1, updated external dependencies
 - Overhauled error feedback when reading or writing files
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
