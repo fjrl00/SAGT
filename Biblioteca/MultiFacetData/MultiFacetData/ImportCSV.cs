@@ -51,13 +51,15 @@ namespace MultiFacetData
         private static MultiFacetsObs ReaderCSV_to_MultiFacetsObs(StreamReader reader, string path)
         {
             MultiFacetsObs retVal = null;// valor de retorno
-            // Leemos la primera linea (encabezado de columnas)
-            string line = reader.ReadLine();
 
-            string[] stringDelimiter = { "\",\"", "\"" }; // ",", " "
-            /* Nota: El orden en que se definen los delimitadores influye en la manera en la que se realizan 
-             * las particiones.
-             */
+            
+            /* =====================
+            * Header
+            * ====================== */
+
+            string line = reader.ReadLine();    // Leemos la primera linea (encabezado de columnas)
+
+            string[] stringDelimiter = { "\",\"", "\"" }; // ",", " ". Nota: El orden en que se definen los delimitadores influye en la manera en la que se realizan las particiones.
             string[] arrayHeadersColumns = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);
             int numColumns = arrayHeadersColumns.Length;
             if (numColumns < 2)   //in case we've detected that we weren't able to split the header line correctly (with ",", " ")
@@ -68,25 +70,22 @@ namespace MultiFacetData
                 numColumns = arrayHeadersColumns.Length;
             }
 
-            /* Los n-1 valores contendrá los nombres de las facetas (el último valor es la medición)
-             */
-            int numFacet = arrayHeadersColumns.Length - 1;
+            int numFacet = arrayHeadersColumns.Length - 1;  // Los n-1 valores contendrá los nombres de las facetas (el último valor es la medición)
 
-            int[] arrayLevels = new int[numFacet];// almacenará el nivel de cada faceta.
+            int[] arrayLevels = new int[numFacet]; // almacenará el nivel de cada faceta.
+
+            /* ======================
+            * Body
+            * ======================= */
 
             ObsTable tableObs = new ObsTable();// construimos la tabla por filas
 
-            // Creamos la estructura que almacerá los valores de los niveles (one whole dictionary for each facet)
-            Dictionary<string, int>[] arrayLevelVal = new Dictionary<string, int>[numFacet];
-
-            // La inicializamos
+            Dictionary<string, int>[] arrayLevelVal = new Dictionary<string, int>[numFacet];    // Creamos la estructura que almacerá los ID numéricos que le damos a los niveles de cada faceta (un diccionario por faceta)
             for (int i = 0; i < numFacet; i++)
             {
                 arrayLevelVal[i] = new Dictionary<string, int>();
             }
 
-            /* Nos encontramos en un bucle de lectura de tabla
-             */
             while ((line = reader.ReadLine()) != null)                                                          //Iterate over the entire document
             {
                 string[] arrayLineShare = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);   //split line
@@ -96,17 +95,16 @@ namespace MultiFacetData
                 {
                     if (i < numColumns - 1)                                                                     //facet data
                     {
-                        int l = arrayLevelVal[i].Count;                                                         //read number of possible different symbols of this facet seen thus far
-                        bool contains = arrayLevelVal[i].ContainsKey(arrayLineShare[i]);
-                        if (!contains)                                                                          //if this symbol is new
+                        int l = arrayLevelVal[i].Count;                                                             //read number of different levels of this facet seen thus far
+                        if (!arrayLevelVal[i].ContainsKey(arrayLineShare[i]))                                       //if this symbol is new
                         {
-                            arrayLevelVal[i].Add(arrayLineShare[i], l + 1);                                     //we add the entry to the dictionary (symbol -> assigned numeric code)
+                            arrayLevelVal[i].Add(arrayLineShare[i], l + 1);                                         //we add the entry to the dictionary (symbol -> assigned numeric code)
                         }
-                        row.Add(arrayLevelVal[i][arrayLineShare[i]]);                                           //dictionary for our column -> entry corresponding to the current symbol -> append to the row its numeric code
+                        row.Add(arrayLevelVal[i][arrayLineShare[i]]);                                               //dictionary for our column -> entry corresponding to the current symbol -> append to the row its numeric ID
                     }
-                    else
+                    else                                                                                        // frequency/measure data
                     {
-                        row.Add(double.Parse(arrayLineShare[i]));                                               // frequency/measure data
+                        row.Add(double.Parse(arrayLineShare[i]));                                               
                     }
                 }
                 tableObs.Add(row);                                                                              //store in obstable
@@ -115,7 +113,6 @@ namespace MultiFacetData
             string comment = BuildInfo(arrayHeadersColumns, arrayLevelVal);
 
             ListFacets lf = new ListFacets();
-
             for (int i = 0; i < numFacet; i++)
             {
                 Facet f = new Facet(arrayHeadersColumns[i], arrayLevelVal[i].Keys.Count);
@@ -136,6 +133,7 @@ namespace MultiFacetData
 
                 int n_items = tableObs.TableRows();              //number of entries for which there's data
 
+                // More optimal algorithm (O(m)), but assumes ordered data
                 //int pos = 0;
                 //for (int i = 0; (i < mul) && (pos < n_items); i++)
                 //{
@@ -152,6 +150,7 @@ namespace MultiFacetData
                 //    }
                 //}
 
+                // Less optimal algorithm (O(n*m)) but safe
                 for (int i = 0; i < n_items; i++)                   //iterate over tableObs (the entries for which there's data)
                 {
                     for (int r = 0; r < mul; r++)                   //iterate looking for in which row of obsT to insert it
@@ -167,7 +166,6 @@ namespace MultiFacetData
                             obsT.Data(d, r);                        //we asign it the frequency/measure value
                         }
                     }
-
                 }
             }// end if
 
@@ -182,24 +180,18 @@ namespace MultiFacetData
          */
         private static string BuildInfo(string[] arrayHeadersColumns, Dictionary<String, int>[] lDic)
         {
-            string text = ""; // Variable de retorno
-            int n = lDic.Length;
-
-            for (int i = 0; i < n; i++)
+            var sb = new System.Text.StringBuilder();
+            for (int i = 0; i < lDic.Length; i++)
             {
-                string nameFacet = arrayHeadersColumns[i];
-                text = text + nameFacet + ":\n";
-
-                Dictionary<String, int> dic = lDic[i];
-
-                foreach (string key in dic.Keys)
+                sb.AppendLine($"{arrayHeadersColumns[i]}:");        // FacetName:
+                foreach (var kvp in lDic[i])
                 {
-                    text = text + "\t" + key + " = " + dic[key] + "\n";
+                    sb.AppendLine($"\t{kvp.Key} = {kvp.Value}");    //      [ID numérico] = [título original]
                 }
-                text += "\n";
+                sb.AppendLine();
             }
 
-            return text;
+            return sb.ToString();
         }//end BuildInfo
 
     }// end class ImportCSV
