@@ -30,19 +30,22 @@ namespace GUI_GT
                                   "Datos observados, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Resultado de medias, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Tabla de observaciones exportada por SAGT a Excel",
-                                  "Ficheros .csv"};
+                                  "Ficheros .csv",
+                                  "Tabla de observaciones de SAS"};
 
         string[] fileDescriptions = {"",
                             "Tabla de observaciones extraída de un fichero de observaciones (.obs) generado con el software GT 2.0 E. Este archivo contiene los datos de las facetas además del nombre del fichero de datos (.dat) que contiene las observaciones. El fichero de observaciones y el de datos debe encontrarse en el mismo directorio para que pueda ser leído.",
                             "Obtiene la tabla de observaciones a partir de un fichero de medias (.rsm) generado con el software GT 2.0 E. Se aprovecha de que la última tabla de medias coincide con la tabla de observaciones para obtenerla.",
                             "Importa los datos de un fichero Excel siempre que este tenga el mismo formato que los ficheros exportados por esta misma aplicación.",
-                            "Ficheros .csv exportados por la aplicación de José Antonio López López."};
+                            "Ficheros .csv exportados por la aplicación de José Antonio López López.",
+                            "Ficheros .sas que contienen un comando 'data' con una tabla de observaciones. Nótese que todo anidamiento debe ajustarse luego en 'Editar Facetas'."};
 
         string[] fileFilter = {"Todos los archivos|*.*",
                               "GT E 2.0 (*.obs)|*.obs|Todos los archivos|*.*",
                               "GT E 2.0 (*.rsm)|*.rsm|Todos los archivos|*.*",
                               "Excel (*.xls)|*.xls|Todos los archivos|*.*",
-                              "(*.csv)|*.csv|Todos los archivos|*.*"};
+                              "(*.csv)|*.csv|Todos los archivos|*.*",
+                              "SAS (*.sas)|*.sas|Todos los archivos|*.*"};
 
         string pathImportFile;
 
@@ -118,6 +121,10 @@ namespace GUI_GT
                     break;
                 case (4):
                     this.pictBoxCSv.Visible = true;
+                    tbComment.Text = fileDescriptions[n];
+                    break;
+                case (5):
+                    this.pictBoxNormal.Visible = true;  //PLACEHOLDER
                     tbComment.Text = fileDescriptions[n];
                     break;
             }
@@ -289,6 +296,8 @@ namespace GUI_GT
                 this.typesFiles[2] = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "typesFiles3";
                 this.typesFiles[3] = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "typesFiles4";
+                this.typesFiles[4] = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Traducimos la descripción de los ficheros
                 name = "fileDescriptions1";
@@ -299,6 +308,8 @@ namespace GUI_GT
                 this.fileDescriptions[3] = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "fileDescriptions4";
                 this.fileDescriptions[4] = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "fileDescriptions5";
+                this.fileDescriptions[5] = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // traducimos los filtros
                 name = "fileFilter0";
@@ -309,6 +320,8 @@ namespace GUI_GT
                 this.fileFilter[2] = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "fileFilter3";
                 this.fileFilter[3] = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "fileFilter4";
+                this.fileFilter[4] = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
             }
             catch (TransLibrary.LabelTranslationException lEx)

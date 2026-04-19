@@ -32,6 +32,24 @@ namespace MultiFacetData
          * MÉTODOS PÚBLICOS
          ***************************************************************************************************/
 
+        public static List<string> ReadColumns(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string sasContent = reader.ReadToEnd();
+
+                // 1. Extraer la sentencia INPUT para conocer todas las variables
+                string inputStatement = ExtractInputStatement(sasContent);
+                if (string.IsNullOrEmpty(inputStatement))
+                    throw new Exception("No se encontró la sentencia INPUT en el fichero SAS.");
+
+                // 2. Obtener lista de todas las variables en el INPUT
+                List<string> allVariables = GetAllVariablesFromInput(inputStatement);
+
+                return allVariables;
+            }
+        }
+
         /* Descripción:
          *  Importa la tabla de observaciones desde un fichero .sas (con bloque datalines)
          *  y devuelve un objeto multifaceta para la variable dependiente especificada.

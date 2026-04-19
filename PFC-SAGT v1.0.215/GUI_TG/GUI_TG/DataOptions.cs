@@ -266,6 +266,45 @@ namespace GUI_GT
             }
         }// end loadMultiFacetFileCsv
 
+        private void loadMultiFacetFileSAS(string path)
+        {
+            try
+            {
+                // Step 1: Extract list of columns of the table of observations
+                List<string> listColumns = ImportSAS.ReadColumns(path);
+
+                // Step 2: Have user select which columns correspond to the facets and which one corresponds to the measurement variable
+                List<string> listSelectedFacets = new List<string>();
+                string measurementVariable = null;
+
+                using (FormSelectSASColumns formSelectSASColumns = new FormSelectSASColumns(listColumns, listSelectedFacets))
+                {
+                    DialogResult res = formSelectSASColumns.ShowDialog();
+                
+                    if (res != DialogResult.OK)
+                        return; // User cancelled — abort the import entirely.
+                
+                    measurementVariable = formSelectSASColumns.SelectedDependent;
+                    // listSelectedFacets is modified inside the form
+                }
+
+                // Step 3: Import  the data
+                MultiFacetsObs multiFacets = ImportSAS.ImportSAS_to_MultiFacetsObs(path, listSelectedFacets, measurementVariable);
+                this.sagtElements.SetMultiFacetsObs(multiFacets);
+                string fileNameData = extractFileNamePath(path);
+                // asignamos a la variable global los valores cargados
+                loadMultiFacets(fileNameData, multiFacets);
+            }
+            catch (MultiFacetPY.MultiFacetPYException)
+            {
+                ShowMessageErrorOK(errorFormatFile);
+            }
+            catch (MultiFacetObsException)
+            {
+                ShowMessageErrorOK(errorFormatFile);
+            }
+        }
+
 
         /* Descripción:
          *  Importa un fichero de datos/medias para construir el objeto multifaceta.
@@ -281,6 +320,7 @@ namespace GUI_GT
                 case (DEFAULT_EXT_RSM): loadMultiFacetOfFileRms(path); break;
                 case (DEFAULT_EXT_EXCEL): loadMultiFacetFileXls(path); break;
                 case ("csv"): loadMultiFacetFileCsv(path); break;
+                case ("sas"): loadMultiFacetFileSAS(path); break;
                 default:
                     ShowMessageErrorOK(errorInvalidExtension);
                     break;
