@@ -59,7 +59,7 @@
             this.Name = "FormWaiting";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.TopMost = true;
+            this.TopMost = false;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

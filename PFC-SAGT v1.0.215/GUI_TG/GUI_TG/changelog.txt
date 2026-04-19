@@ -66,6 +66,7 @@ UI
 - leaving sums of squares cells empty in Analysis->sum of squares section will now substitute them with 0 instead of launching an exception
 - Analysis->Import operations now result in a single loading screen, rather than multiple ones blinking in and out of existence
 - Overhauled which actions result in a loading screen and which ones don't
+- Loading screen is now hidable and doesn't outprioritize other forms
 - Removed the ability to import GT E 2.0 files from Open Data File. Option now only available from Import
 - Loading .sagt files now returns back to the initial tabs
 - Nested facet type now nests each facet into the following ones, instead of into the previous ones

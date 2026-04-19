@@ -355,7 +355,7 @@ namespace GUI_GT
             Thread uiThread = new Thread(() =>
             {
                 fw = new FormWaiting(msg);  //FormWaiting is initialized here in order to avoid cross-reference operations
-                fw.Show();
+                fw.Show(this);
                 fw.Refresh();
                 formReady.Set();                // Sets the signal that the form is ready and to stop waiting
                 Application.Run(fw);
@@ -376,6 +376,26 @@ namespace GUI_GT
         private void CloseLoadingScreen(FormWaiting fw)
         {
             fw.Invoke(new Action(() => fw.Close()));
+        }
+
+        /*
+         * Descripción:
+         *  Helper method para automáticamente mostrar y cerrar pantalla de carga alrededor de la ejecución de una acción.
+         *  Usado actualmente solo en importDataFile
+         */
+        private void RunWithLoading(Action action)
+        {
+            FormWaiting fw = null;
+
+            try
+            {
+                fw = ShowLoadingScreen(msgLoading);
+                action();
+            }
+            finally // This ensures that the loading screen is closed even if an exception is thrown in the action. Exceptions still need to be caught and processed outside however
+            {
+                CloseLoadingScreen(fw);
+            }
         }
 
 

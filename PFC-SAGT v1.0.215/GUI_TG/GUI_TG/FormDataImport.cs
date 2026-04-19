@@ -298,6 +298,8 @@ namespace GUI_GT
                 this.typesFiles[3] = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "typesFiles4";
                 this.typesFiles[4] = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "typesFiles5";
+                this.typesFiles[5] = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Traducimos la descripción de los ficheros
                 name = "fileDescriptions1";
@@ -322,6 +324,8 @@ namespace GUI_GT
                 this.fileFilter[3] = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "fileFilter4";
                 this.fileFilter[4] = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "fileFilter5";
+                this.fileFilter[5] = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
             }
             catch (TransLibrary.LabelTranslationException lEx)

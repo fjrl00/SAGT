@@ -121,7 +121,6 @@ namespace GUI_GT
          */
         private void tsmiActionDataImport_Click(object sender, EventArgs e)
         {
-            FormWaiting fw = null;
             try
             {
                 TransLibrary.Language lang = this.LanguageActually();
@@ -144,9 +143,7 @@ namespace GUI_GT
                             }
                             else
                             {
-                                fw = ShowLoadingScreen(msgLoading);
                                 this.importDataFile(formDataImport.pathFile());
-                                CloseLoadingScreen(fw);
                                 salir = true;
                             }
                             break;
@@ -155,13 +152,11 @@ namespace GUI_GT
             }
             catch (IOException)
             {
-                CloseLoadingScreen(fw);
                 // Mostramos un mensaje indicando que el fichero esta siendo usado por otro programa
                 ShowMessageErrorOK(errorFileInUse);
             }
             catch (Exception ex)
             {
-                CloseLoadingScreen(fw);
                 // Mostramos un mensaje indicando que el fichero no esta en el formato correcto
                 ShowMessageErrorOK(ex.Message);
             }
@@ -288,12 +283,22 @@ namespace GUI_GT
                     // listSelectedFacets is modified inside the form
                 }
 
-                // Step 3: Import  the data
-                MultiFacetsObs multiFacets = ImportSAS.ImportSAS_to_MultiFacetsObs(path, listSelectedFacets, measurementVariable);
-                this.sagtElements.SetMultiFacetsObs(multiFacets);
-                string fileNameData = extractFileNamePath(path);
-                // asignamos a la variable global los valores cargados
-                loadMultiFacets(fileNameData, multiFacets);
+                FormWaiting fw = null;
+                try
+                {
+                    fw = ShowLoadingScreen(msgLoading);
+                        
+                    // Step 3: Import  the data
+                    MultiFacetsObs multiFacets = ImportSAS.ImportSAS_to_MultiFacetsObs(path, listSelectedFacets, measurementVariable);
+                    this.sagtElements.SetMultiFacetsObs(multiFacets);
+                    string fileNameData = extractFileNamePath(path);
+                    // asignamos a la variable global los valores cargados
+                    loadMultiFacets(fileNameData, multiFacets);
+                }
+                finally
+                {
+                    CloseLoadingScreen(fw);
+                }
             }
             catch (MultiFacetPY.MultiFacetPYException)
             {
@@ -311,16 +316,24 @@ namespace GUI_GT
          */
         private void importDataFile(string path)
         {
-            // Extraemos el nombre del fichero del path
-            string fileExt = fileExtension(path).ToLower(); // Pasamos a minúsculas la extensión
-            // para poder compararla. 
+            string fileExt = fileExtension(path).ToLower(); // Extraemos el nombre del fichero del path. Pasamos a minúsculas la extensión para poder compararla. 
             switch (fileExt)
             {
-                case (DEFAULT_EXT_OBS): loadFileObs(path); break;
-                case (DEFAULT_EXT_RSM): loadMultiFacetOfFileRms(path); break;
-                case (DEFAULT_EXT_EXCEL): loadMultiFacetFileXls(path); break;
-                case ("csv"): loadMultiFacetFileCsv(path); break;
-                case ("sas"): loadMultiFacetFileSAS(path); break;
+                case DEFAULT_EXT_OBS:
+                    RunWithLoading(() => loadFileObs(path));
+                    break;
+                case DEFAULT_EXT_RSM:
+                    RunWithLoading(() => loadMultiFacetOfFileRms(path));
+                    break;
+                case DEFAULT_EXT_EXCEL:
+                    RunWithLoading(() => loadMultiFacetFileXls(path));
+                    break;
+                case "csv":
+                    RunWithLoading(() => loadMultiFacetFileCsv(path));
+                    break;
+                case "sas":
+                    loadMultiFacetFileSAS(path);
+                    break;
                 default:
                     ShowMessageErrorOK(errorInvalidExtension);
                     break;
