@@ -249,18 +249,24 @@ namespace MultiFacetData
         }
 
         /* Descripción:
-         *  Realiza un anidamiento de la lista de facetas, es decir cada faceta estará anidada 
-         *  en la siguiente.
+         *  Realiza un anidamiento de la lista de facetas, es decir, 
+         *  cada faceta estará anidada en las siguientes.
          */
         public void NestingAllFacet()
         {
             int n = this.Count();
-            for (int i = 1; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
-                Facet f = this.FacetInPos(i - 1);
-                Facet s = this.FacetInPos(i);
-                string design = "[" + s.Name() + "]:" + f.ListFacetDesign();
-                s.ListFacetsDesignNesting(design);
+                List<string> parts = new List<string>();
+
+                for (int j = i; j < n; j++)
+                {
+                    parts.Add("[" + this.FacetInPos(j).Name() + "]");
+                }
+
+                string design = string.Join(":", parts);
+
+                this.FacetInPos(i).ListFacetsDesignNesting(design);
             }
         }
 
