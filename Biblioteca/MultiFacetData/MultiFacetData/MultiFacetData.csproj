@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CartesianProductTable.cs" />
     <Compile Include="ImportCSV.cs" />
+    <Compile Include="ImportSAS.cs" />
     <Compile Include="InterfaceObsTable.cs" />
     <Compile Include="ProvisionOfFacets.cs" />
     <Compile Include="FacetException.cs" />
