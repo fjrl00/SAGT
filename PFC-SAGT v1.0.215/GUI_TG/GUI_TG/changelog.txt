@@ -69,4 +69,8 @@ UI
 - Removed the ability to import GT E 2.0 files from Open Data File. Option now only available from Import
 - Loading .sagt files now returns back to the initial tabs
 
-Last updated: 12/04/2026
+NEW FEATURES
+
+- Facet nestings can now be edited in the Data section after having been created/imported
+
+Last updated: 19/04/2026

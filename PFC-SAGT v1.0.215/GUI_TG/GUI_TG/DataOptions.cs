@@ -1374,6 +1374,22 @@ namespace GUI_GT
             HandleRemoveNesting(dataGridViewExFacets);
         } // end btActionRemoveNesting_Click
 
+        /* Descripción:
+         *  Add Nesting pero en editar datos
+         */
+        private void btNestingFacetEdit_Click(object sender, EventArgs e)
+        {
+            this.provision = ProvisionOfFacets.Mixed;
+            HandleAddNesting(dGridViewExDataEditFacets);
+        }
+
+        /* Descripción:
+         *  Remove Nesting pero en editar datos
+         */
+        private void btRemoveNestingEdit_Click(object sender, EventArgs e)
+        {
+            HandleRemoveNesting(dGridViewExDataEditFacets);
+        }
 
         /* Descripción:
          *  Edición de la tabla de varibles observadas (Tabla de observaciones)
@@ -1454,15 +1470,25 @@ namespace GUI_GT
         {
             // primero debemos verificar que todas las facetas sigan siendo validas
             MultiFacetsObs multiFacets = this.sagtElements.GetMultiFacetsObs();
-            InterfaceObsTable obsTable = multiFacets.ObservationTable();
-            ListFacets lf = validateFacetTable(this.dGridViewExDataEditFacets);
+
+            ListFacets lf = null;
+            if (this.lf_nestings == null) // Comprobamos si hay datos en la varible de edición de facetas (aka hay anidamientos de facetas mixtas)
+            {
+                // comprobamos que los datos de la tabla son correctos y los obtenemos de la tabla.
+                lf = validateFacetTable(this.dGridViewExDataEditFacets);
+            }
+            else    //si hay anidamientos de facetas mixtas
+            {
+                lf = this.lf_nestings;    //pasamos esa información directamente
+            }
+
             if (lf != null) // si los datos son correctos...
             {
                 // Recuperamos las facetas modificadas de la tabla y la descripción
                 string newDescription = tbEditFacetDescription.Text;
 
                 string pathfile = multiFacets.NameFileObs();
-                MultiFacetsObs newMultiFacet = new MultiFacetsObs(lf, obsTable, pathfile, newDescription,
+                MultiFacetsObs newMultiFacet = new MultiFacetsObs(lf, multiFacets.ObservationTable(), pathfile, newDescription,
                     this.richTextBoxDataComment.Text);
 
                 // Actualizamos las tablas de facetas
@@ -1479,6 +1505,7 @@ namespace GUI_GT
                 // "Cerramos" la edición mediante el siguiente método
                 btActionDataEditFacetsCancel_Click();
             }
+            lf_nestings = null;
         }// end btActionDataEditFacetsSave_Click
 
 
