@@ -70,7 +70,17 @@ namespace GUI_GT
             {
                 listBoxExcludedColumns.Items.Remove(selected);
                 listBoxFacets.Items.Add(selected);
-                listBoxExcludedColumns.SelectedIndex = -1;
+
+                if (listBoxExcludedColumns.Items.Count > 0)
+                {
+                    // mientras haya elementos en el listBox selecionaremos el primero
+                    this.listBoxExcludedColumns.SetSelected(0, true);
+                }
+                else
+                {
+                    // si no hay elementos en el listBox seleccionaremos los del otro listBox
+                    this.listBoxFacets.SetSelected(0, true);
+                }
             }
 
             RefreshButtonStates();
@@ -83,7 +93,17 @@ namespace GUI_GT
             {
                 listBoxFacets.Items.Remove(selected);
                 listBoxExcludedColumns.Items.Add(selected);
-                listBoxFacets.SelectedIndex = -1;
+
+                if (listBoxFacets.Items.Count > 0)
+                {
+                    // mientras haya elementos en el listBox selecionaremos el primero
+                    this.listBoxFacets.SetSelected(0, true);
+                }
+                else
+                {
+                    // si no hay elementos en el listBox seleccionaremos los del otro listBox
+                    this.listBoxExcludedColumns.SetSelected(0, true);
+                }
             }
 
             RefreshButtonStates();
@@ -100,7 +120,14 @@ namespace GUI_GT
 
                 listBoxExcludedColumns.Items.Remove(selected);
                 tbDependent.Text = selected;
-                listBoxExcludedColumns.SelectedIndex = -1;
+
+                if (listBoxExcludedColumns.Items.Count > 0)
+                {
+                    // mientras haya elementos en el listBox selecionaremos el primero
+                    this.listBoxExcludedColumns.SetSelected(0, true);
+                }
+                
+                listBoxExcludedColumns.Focus();
 
                 btOK.Enabled = true;
             }
@@ -115,6 +142,9 @@ namespace GUI_GT
             {
                 listBoxExcludedColumns.Items.Add(tbDependent.Text);
                 tbDependent.Text = string.Empty;
+
+                this.listBoxExcludedColumns.SetSelected(0, true);
+                
                 btOK.Enabled = false;
             }
 
@@ -154,8 +184,6 @@ namespace GUI_GT
             btExcludedToDependent.Enabled = excludedSelected;
             btFacetsToExcluded.Enabled = facetSelected;
             btDependentToExcluded.Enabled = hasDependant;
-
-            listBoxExcludedColumns.Focus();
         }
 
         /*
