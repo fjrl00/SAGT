@@ -91,6 +91,7 @@ namespace GUI_GT
             this.pictBoxRSM.Visible = false;
             this.pictBoxExcel.Visible = false;
             this.pictBoxCSv.Visible = false;
+            this.pictBoxSAS.Visible = false;
         }
 
         /* Descrpición:
@@ -124,7 +125,7 @@ namespace GUI_GT
                     tbComment.Text = fileDescriptions[n];
                     break;
                 case (5):
-                    this.pictBoxNormal.Visible = true;  //PLACEHOLDER
+                    this.pictBoxSAS.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
             }

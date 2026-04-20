@@ -1,0 +1,35 @@
+[FormSelectSASColumns]
+es=Seleccionar Columnas
+en=Select Columns
+fr=Sélectionner les colonnes
+po=Selecionar Colunas
+
+[labelExcludedColumns]
+es=Columnas Excluidas
+en=Excluded Columns
+fr=Colonne exclues
+po=Colunas Excluídas
+
+[labelFacets]
+es=Facetas
+en=Facets
+fr=Facettes
+po=Facetas
+
+[lbDependent]
+es=Variable de Medida
+en=Measurement Variable
+fr=Variable de mesure
+po=Variável de medida
+
+[btOK]
+es=Aceptar
+en=OK
+fr=OK
+po=OK
+
+[btCancel]
+es=Cancelar
+en=Cancel
+fr=Annuler
+po=Cancelar

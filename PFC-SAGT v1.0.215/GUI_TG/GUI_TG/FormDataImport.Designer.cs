@@ -37,11 +37,13 @@
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.pictBoxCSv = new System.Windows.Forms.PictureBox();
+            this.pictBoxSAS = new System.Windows.Forms.PictureBox();
             this.pictBoxExcel = new System.Windows.Forms.PictureBox();
             this.pictBoxRSM = new System.Windows.Forms.PictureBox();
             this.pictBoxOBS = new System.Windows.Forms.PictureBox();
             this.pictBoxNormal = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxCSv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictBoxSAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxRSM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxOBS)).BeginInit();
@@ -68,21 +70,21 @@
             // 
             // cBoxTypesFiles
             // 
-            this.cBoxTypesFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBoxTypesFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cBoxTypesFiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxTypesFiles.FormattingEnabled = true;
             this.cBoxTypesFiles.Location = new System.Drawing.Point(8, 91);
             this.cBoxTypesFiles.Name = "cBoxTypesFiles";
             this.cBoxTypesFiles.Size = new System.Drawing.Size(453, 21);
             this.cBoxTypesFiles.TabIndex = 12;
-            this.cBoxTypesFiles.SelectionChangeCommitted += new System.EventHandler(this.Selection_cBoxtypeFile);
             this.cBoxTypesFiles.SelectedIndexChanged += new System.EventHandler(this.cBoxTypesFiles_SelectedIndexChanged);
+            this.cBoxTypesFiles.SelectionChangeCommitted += new System.EventHandler(this.Selection_cBoxtypeFile);
             // 
             // tbNameFile
             // 
-            this.tbNameFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNameFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbNameFile.BackColor = System.Drawing.Color.White;
             this.tbNameFile.Location = new System.Drawing.Point(8, 238);
             this.tbNameFile.Name = "tbNameFile";
@@ -135,6 +137,15 @@
             this.pictBoxCSv.TabIndex = 21;
             this.pictBoxCSv.TabStop = false;
             // 
+            // pictBoxSAS
+            // 
+            this.pictBoxSAS.Image = global::GUI_GT.Properties.Resources.barra_de_sas;
+            this.pictBoxSAS.Location = new System.Drawing.Point(0, 0);
+            this.pictBoxSAS.Name = "pictBoxSAS";
+            this.pictBoxSAS.Size = new System.Drawing.Size(473, 69);
+            this.pictBoxSAS.TabIndex = 22;
+            this.pictBoxSAS.TabStop = false;
+            // 
             // pictBoxExcel
             // 
             this.pictBoxExcel.Image = global::GUI_GT.Properties.Resources.barra_para_importar_excel;
@@ -179,6 +190,7 @@
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(469, 319);
             this.Controls.Add(this.pictBoxCSv);
+            this.Controls.Add(this.pictBoxSAS);
             this.Controls.Add(this.pictBoxExcel);
             this.Controls.Add(this.pictBoxRSM);
             this.Controls.Add(this.pictBoxOBS);
@@ -197,6 +209,7 @@
             this.Name = "FormDataImport";
             this.Text = "Importar datos";
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxCSv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictBoxSAS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxRSM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxOBS)).EndInit();
@@ -220,5 +233,6 @@
         private System.Windows.Forms.PictureBox pictBoxRSM;
         private System.Windows.Forms.PictureBox pictBoxExcel;
         private System.Windows.Forms.PictureBox pictBoxCSv;
+        private System.Windows.Forms.PictureBox pictBoxSAS;
     }
 }

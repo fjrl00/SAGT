@@ -676,6 +676,7 @@
     <None Include="Resources\Cambiar Diseño h32.png" />
     <None Include="Resources\File TextDocument edition h32.png" />
     <None Include="Resources\File TextDocument edition 2 h32.png" />
+    <None Include="Resources\barra de sas.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="changelog.txt">
@@ -760,6 +761,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lang\formSelectReports.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lang\formSelectSASColumns.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lang\formSelectSaves.txt">

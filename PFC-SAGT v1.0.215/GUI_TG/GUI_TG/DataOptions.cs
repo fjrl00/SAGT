@@ -272,16 +272,30 @@ namespace GUI_GT
                 List<string> listSelectedFacets = new List<string>();
                 string measurementVariable = null;
 
-                using (FormSelectSASColumns formSelectSASColumns = new FormSelectSASColumns(listColumns, listSelectedFacets))
+                bool salir = false;
+                do
                 {
-                    DialogResult res = formSelectSASColumns.ShowDialog();
-                
-                    if (res != DialogResult.OK)
-                        return; // User cancelled — abort the import entirely.
-                
-                    measurementVariable = formSelectSASColumns.SelectedDependent;
-                    // listSelectedFacets is modified inside the form
+                    using (FormSelectSASColumns formSelectSASColumns = new FormSelectSASColumns(listColumns, listSelectedFacets, cfgApli.GetConfigLanguage()))
+                    {
+                        DialogResult res = formSelectSASColumns.ShowDialog();
+
+                        if (res != DialogResult.OK)
+                            return; // User cancelled — abort the import entirely.
+
+                        if (listSelectedFacets.Count < 2)
+                        {
+                            ShowMessageErrorOK(errorMinNumFacet);
+                        }
+                        else
+                        {
+                            salir = true;
+
+                            measurementVariable = formSelectSASColumns.SelectedDependent;
+                            // listSelectedFacets is modified inside the form
+                        }
+                    }
                 }
+                while(!salir);
 
                 FormWaiting fw = null;
                 try

@@ -6,6 +6,10 @@ namespace GUI_GT
 {
     public partial class FormSelectSASColumns : Form
     {
+        // nombre del archivo que contiene las traducciones
+        const string STRING_TEXT = "formSelectSASColumns.txt";
+        const string LANG_PATH = "\\lang\\";
+
         // The caller passes its own List<string> for facets — we populate it in-place on OK.
         // For the dependent variable, callers read the SelectedDependent property after ShowDialog().
         private readonly List<string> _facets;
@@ -18,9 +22,10 @@ namespace GUI_GT
          *      allColumns: All columns loaded from the imported table.
          *      facets: Caller-supplied list that will be filled with selected facets on OK.
          */
-        public FormSelectSASColumns(List<string> allColumns, List<string> facets)
+        public FormSelectSASColumns(List<string> allColumns, List<string> facets, TransLibrary.Language lang)
         {
             InitializeComponent();
+            this.traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
 
             _facets = facets;
 
@@ -122,17 +127,6 @@ namespace GUI_GT
 
         private void btOK_Click(object sender, EventArgs e)
         {
-            // Guard — should never be reachable with btOK.Enabled = false, but be safe.
-            if (string.IsNullOrEmpty(tbDependent.Text))
-            {
-                MessageBox.Show(
-                    "Selecciona una variable de medida para continuar.",
-                    "Variable de medida requerida",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
             // Write results back to the caller's references.
             SelectedDependent = tbDependent.Text;
 
@@ -160,6 +154,45 @@ namespace GUI_GT
             btExcludedToDependent.Enabled = excludedSelected;
             btFacetsToExcluded.Enabled = facetSelected;
             btDependentToExcluded.Enabled = hasDependant;
+
+            listBoxExcludedColumns.Focus();
+        }
+
+        /*
+        * Descripción:
+        *  Traduce todos los textos de la ventana al idioma que se encuentre activo
+        */
+        private void traslationElements(TransLibrary.Language lang, string pathFileTrans)
+        {
+            TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(pathFileTrans);
+            string name = "";
+            try
+            {
+                // Traducimos los Textos de la ventana
+                //====================================
+
+                // Traducimos el título de la ventana
+                name = this.Name.ToString();
+                this.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                // Traducimos el boton aceptar
+                name = this.btOK.Name.ToString();
+                this.btOK.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                // Traducimos el boton cancelar
+                name = this.btCancel.Name.ToString();
+                this.btCancel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+
+                // traducimos las etiquetas
+                name = this.labelExcludedColumns.Name.ToString();
+                this.labelExcludedColumns.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = this.labelFacets.Name.ToString();
+                this.labelFacets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = this.lbDependent.Name.ToString();
+                this.lbDependent.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+            }
+            catch (TransLibrary.LabelTranslationException lEx)
+            {
+                MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
+            }
         }
     }
 }
