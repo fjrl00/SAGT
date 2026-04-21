@@ -56,17 +56,20 @@ namespace MultiFacetData
          *  
          * Parámetros:
          *  path: Ruta al fichero .sas
-         *  allDependentVars: Lista de TODAS las variables dependientes (para excluirlas de las facetas)
-         *  selectedDependentVar: La variable dependiente que se usará como medición
+         *  facetVariables: Lista de TODAS las variables que serán tratadas como facetas
+         *  dependentVariable: La variable dependiente que se usará como medición
+         *  
+         * Nota: Cualquier variable en el INPUT que no esté en facetVariables ni sea dependentVariable
+         *       se ignora (son otras variables dependientes no seleccionadas).
          */
         public static MultiFacetsObs ImportSAS_to_MultiFacetsObs(string path,
-                                                                   List<string> allDependentVars,
-                                                                   string selectedDependentVar)
+                                                                   List<string> facetVariables,
+                                                                   string dependentVariable)
         {
             MultiFacetsObs retVal = null;
             using (StreamReader reader = new StreamReader(path))
             {
-                retVal = ParseSAS_to_MultiFacetsObs(reader, path, allDependentVars, selectedDependentVar);
+                retVal = ParseSAS_to_MultiFacetsObs(reader, path, facetVariables, dependentVariable);
             }
             return retVal;
         }
@@ -77,8 +80,8 @@ namespace MultiFacetData
 
         private static MultiFacetsObs ParseSAS_to_MultiFacetsObs(StreamReader reader,
                                                                    string path,
-                                                                   List<string> allDependentVars,
-                                                                   string selectedDependentVar)
+                                                                   List<string> facetVariables,
+                                                                   string dependentVariable)
         {
             string sasContent = reader.ReadToEnd();
 
@@ -87,34 +90,49 @@ namespace MultiFacetData
             if (string.IsNullOrEmpty(inputStatement))
                 throw new Exception("No se encontró la sentencia INPUT en el fichero SAS.");
 
-            // 2. Obtener lista de todas las variables en el INPUT
+            // 2. Obtener lista de todas las variables en el INPUT (en orden)
             List<string> allVariables = GetAllVariablesFromInput(inputStatement);
 
-            // 3. Las facetas son todas las variables que NO son dependientes
-            List<string> facetVariables = allVariables
-                .Where(v => !allDependentVars.Contains(v, StringComparer.InvariantCultureIgnoreCase))
-                .ToList();
+            /*
+            // 3. Validaciones
+            //    - La variable dependiente debe existir en el INPUT
+            if (!allVariables.Contains(dependentVariable, StringComparer.InvariantCultureIgnoreCase))
+                throw new Exception($"La variable dependiente '{dependentVariable}' no existe en la sentencia INPUT.");
 
-            // Validar que la variable seleccionada sea una dependiente
-            if (!allDependentVars.Contains(selectedDependentVar, StringComparer.InvariantCultureIgnoreCase))
-                throw new Exception($"La variable '{selectedDependentVar}' no está en la lista de variables dependientes.");
+            //    - Todas las facetas especificadas deben existir en el INPUT
+            var missingFacets = facetVariables
+                .Where(f => !allVariables.Contains(f, StringComparer.InvariantCultureIgnoreCase))
+                .ToList();
+            if (missingFacets.Any())
+                throw new Exception($"Las siguientes facetas no existen en la sentencia INPUT: {string.Join(", ", missingFacets)}");
+
+            //    - La variable dependiente no debe estar en la lista de facetas
+            if (facetVariables.Contains(dependentVariable, StringComparer.InvariantCultureIgnoreCase))
+                throw new Exception($"La variable dependiente '{dependentVariable}' no puede ser también una faceta.");
+            */
+
+            // 4. Determinar qué variables se ignoran (otras dependientes no seleccionadas)
+            var facetSet = new HashSet<string>(facetVariables, StringComparer.InvariantCultureIgnoreCase);
+            var ignoredVariables = allVariables
+                .Where(v => !facetSet.Contains(v) && 
+                           !string.Equals(v, dependentVariable, StringComparison.InvariantCultureIgnoreCase))
+                .ToList();
 
             int numFacets = facetVariables.Count;
 
-            // 4. Extraer el bloque de datos (datalines)
+            // 5. Extraer el bloque de datos (datalines)
             string datalinesBlock = ExtractDatalinesBlock(sasContent);
             if (string.IsNullOrEmpty(datalinesBlock))
                 throw new Exception("No se encontró el bloque DATALINES en el fichero SAS.");
 
-            // 5. Determinar el orden de las columnas en el INPUT
-            //    Necesitamos saber en qué posición está cada variable
+            // 6. Determinar el orden de las columnas en el INPUT
             Dictionary<string, int> variablePosition = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
             for (int i = 0; i < allVariables.Count; i++)
             {
                 variablePosition[allVariables[i]] = i;
             }
 
-            // 6. Parsear las líneas de datos
+            // 7. Parsear las líneas de datos
             string[] lines = datalinesBlock.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
             // Estructuras para almacenar niveles únicos por faceta
@@ -126,8 +144,9 @@ namespace MultiFacetData
             ObsTable tableObs = new ObsTable();
 
             // Posición de la variable dependiente seleccionada
-            int selectedDependentPosition = variablePosition[selectedDependentVar];
-            // Posiciones de las facetas
+            int dependentPosition = variablePosition[dependentVariable];
+            
+            // Posiciones de las facetas (en el orden especificado por el usuario)
             int[] facetPositions = facetVariables.Select(f => variablePosition[f]).ToArray();
 
             foreach (string line in lines)
@@ -141,13 +160,13 @@ namespace MultiFacetData
                 // Verificar que la línea tiene suficientes columnas
                 if (tokens.Length < allVariables.Count)
                 {
-                    // Algunas líneas podrían tener valores faltantes; se omite o loguea
+                    // Algunas líneas podrían tener valores faltantes; se omite o registra advertencia
                     continue;
                 }
 
                 List<double?> row = new List<double?>();
 
-                // Procesar cada faceta (según su posición real en el INPUT).
+                // Procesar cada faceta (según su posición real en el INPUT)
                 for (int i = 0; i < numFacets; i++)
                 {
                     int pos = facetPositions[i];
@@ -166,7 +185,7 @@ namespace MultiFacetData
                 }
 
                 // Procesar variable dependiente seleccionada
-                if (double.TryParse(tokens[selectedDependentPosition],
+                if (double.TryParse(tokens[dependentPosition],
                                     System.Globalization.NumberStyles.Any,
                                     System.Globalization.CultureInfo.InvariantCulture,
                                     out double depValue))
@@ -175,13 +194,13 @@ namespace MultiFacetData
                 }
                 else
                 {
-                    row.Add(null); // Valor no válido
+                    throw new Exception($"El valor de la variable dependiente '{dependentVariable}' en la línea '{line}' no es un número válido.");
                 }
 
                 tableObs.Add(row);
             }
 
-            // Construir objetos Facet
+            // 8. Construir objetos Facet
             ListFacets lf = new ListFacets();
             for (int i = 0; i < numFacets; i++)
             {
@@ -189,16 +208,16 @@ namespace MultiFacetData
                 lf.Add(f);
             }
 
-            // Crear MultiFacetsObs (producto cartesiano o no)
+            // 9. Crear MultiFacetsObs (producto cartesiano o no)
             MultiFacetsObs retVal;
             int expectedRows = (int)lf.MultOfLevels();
             if (expectedRows == tableObs.TableRows())
             {
-                retVal = new MultiFacetsObs(lf, tableObs, path, selectedDependentVar, "");
+                retVal = new MultiFacetsObs(lf, tableObs, path, dependentVariable, "");
             }
             else
             {
-                retVal = new MultiFacetsObs(lf, path, selectedDependentVar, "");
+                retVal = new MultiFacetsObs(lf, path, dependentVariable, "");
                 InterfaceObsTable obsT = retVal.ObservationTable();
                 int n_items = tableObs.TableRows();
 
