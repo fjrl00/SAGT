@@ -866,50 +866,6 @@ namespace GUI_GT
         #endregion Print Page Event
 
 
-
-        /* Descripción:
-         *  Selecciona los elementos del informe y muestra la vista preliminar de los elementos
-         */
-        private void tsmiDataPrintPreview_Click(object sender, EventArgs e)
-        {
-            bData = !(sagtElements.GetMultiFacetsObs() == null);
-            bMeans = !(sagtElements.GetListMeans() == null);
-            bSsq = !(sagtElements.GetAnalysis_and_G_Study() == null);
-            FormSelectReports formSelectReports = new FormSelectReports(this.LanguageActually(), bData, bMeans, bSsq);
-
-            bool salir = false;
-            do
-            {
-                DialogResult res = formSelectReports.ShowDialog();
-                switch (res)
-                {
-                    case DialogResult.Cancel: salir = true; break;
-                    case DialogResult.OK:
-                        // comprobamos las pestañas marcadas
-                        bData = formSelectReports.IsDataSelected();
-                        bMeans = formSelectReports.IsMeansSelected();
-                        bSsq = formSelectReports.IsSsqSelected();
-
-                        if (bData || bMeans || bSsq)
-                        {// (* 1 *)
-
-                            PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
-                            MyPrintPreviewDialog.Document = printSagtDocument;
-                            MyPrintPreviewDialog.ShowDialog();
-                            salir = true;
-                        }
-                        else
-                        {
-                            // no hay ningún elemento seleccionado.
-                            ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
-                        }// end if (* 1 *)
-
-                        break;
-                }
-            } while (!salir);
-        }// end tsmiDataPrintPreview_Click
-
-
         /* Descripción:
          *  Devuelve un DataGridView con los ajustes de fuente que se pasan como parámetro. Estos
          *  se hace para facilitar la impresión.

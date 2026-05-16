@@ -68,27 +68,6 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Se ejecuta al seleccionar la opción vista previa del menú vertical de análisis. Muestra
-         *  la vista previa del informe de análisis de varianzas.
-         */
-        private void tsmiAnalysisPrintPreview_Click(object sender, EventArgs e)
-        {
-            if (this.anl_tAnalysis_G_study_opt != null)
-            {// (* 1 *)
-
-                PrintPreviewDialog MyPrintPreviewDialog = new PrintPreviewDialog();
-                MyPrintPreviewDialog.Document = printAnalysisDocument;
-                MyPrintPreviewDialog.ShowDialog();
-            }
-            else
-            {
-                // no hay ningún elemento seleccionado.
-                ShowMessageErrorOK(txtMessageNoSelected, "", MessageBoxIcon.Stop);
-            }// end if (* 1 *)
-        }
-
-
-        /* Descripción:
          *  Evento BeginPrint de la impresión del informe de la opción de análisis.
          */
         private void printAnalysisDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)

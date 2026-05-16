@@ -1803,16 +1803,6 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Llama al método que se encuentra en la clase parcial PrintSagtDocuments.cs 
-         *  Muestra la ventana de selección de informes y un a vez seleccionados muestra la vista previa.
-         */
-        private void tsmiMeansPrintPreview_Click(object sender, EventArgs e)
-        {
-            tsmiDataPrintPreview_Click(sender, e);
-        }
-
-
-        /* Descripción:
          *  Llama al método que se encarga de exportar los datos del informe en un documento Word.
          */
         private void tsmiMeansWordExport_Click(object sender, EventArgs e)
@@ -1867,7 +1857,6 @@ namespace GUI_GT
          *  - Exportar a excel
          *  - Exportar cuadrados
          *  - Imprimir (tsmiSsqPrinter_Click)
-         *  - Vista previa (tsmiSsqPrintPreview_Click)
          *  - Exportar a Word (tsmiSSqWordExport_Click)
          *  - Exportar a PDF (tsmiSSqPdfExport_Click)
          *  - Cerrar suma de cuadrados
@@ -2027,16 +2016,6 @@ namespace GUI_GT
         private void tsmiSsqPrinter_Click(object sender, EventArgs e)
         {
             tsmiDataPrinter_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         *  Llama al método que se encuentra en la clase parcial PrintSagtDocuments.cs 
-         *  Muestra la ventana de selección de informes y un a vez seleccionados muestra la vista previa.
-         */
-        private void tsmiSsqPrintPreview_Click(object sender, EventArgs e)
-        {
-            tsmiDataPrintPreview_Click(sender, e);
         }
 
 
@@ -2697,8 +2676,5 @@ namespace GUI_GT
 
 
         #endregion Botones del tapPage Proyectos
-
-
-
     } // end public partial class FormPrincipal : Form
 } // end namespace GUI_TG
