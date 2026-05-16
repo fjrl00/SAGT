@@ -355,7 +355,7 @@ namespace GUI_GT
             Thread uiThread = new Thread(() =>
             {
                 fw = new FormWaiting(msg);  //FormWaiting is initialized here in order to avoid cross-reference operations
-                fw.Show(this);
+                fw.Show();
                 fw.Refresh();
                 formReady.Set();                // Sets the signal that the form is ready and to stop waiting
                 Application.Run(fw);

@@ -13,8 +13,8 @@
  * Descripción:
  *  Contiene los string con los mensages de error
  */
+using System.Drawing;
 using System.Windows.Forms;
-//
 
 namespace GUI_GT
 {
@@ -279,24 +279,48 @@ namespace GUI_GT
 
         /* Descripción:
          *  Muestra una ventana de message de error con los textos traducidos.
+         *  TopMostForm es un "hack" para hacer que MessageBox sea funcionalmente TopMost.
          * Parámetros:
          *      string msg: Texto que mostraremos en la ventana de error.
          */
         public void ShowMessageErrorOK(string msg)
         {
-            MessageBox.Show(msg, this.titleMessageError1, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            using (Form topMostForm = new Form())
+            {
+                topMostForm.TopMost = true;
+                topMostForm.Size = new Size(0, 0);
+                topMostForm.StartPosition = FormStartPosition.Manual;
+                topMostForm.Location = new Point(-32000, -32000);
+                topMostForm.ShowInTaskbar = false;
+                topMostForm.Show();
+                topMostForm.Activate();
+
+                MessageBox.Show(topMostForm, msg, this.titleMessageError1, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
         /* Descripción:
          *  Muestra una ventana de message de error con los textos traducidos.
+         *  TopMostForm es un "hack" para hacer que MessageBox sea funcionalmente TopMost.
          * Parámetros:
          *      string msg: Texto que mostraremos en la ventana de error.
          *      MessageBoxIcon : Icono que se mostrará
          */
         public void ShowMessageErrorOK(string msg, string titleMsg, MessageBoxIcon iconMessage)
         {
-            MessageBox.Show(msg, titleMsg, MessageBoxButtons.OK, iconMessage);
+            using (Form topMostForm = new Form())
+            {
+                topMostForm.TopMost = true;
+                topMostForm.Size = new Size(0, 0);
+                topMostForm.StartPosition = FormStartPosition.Manual;
+                topMostForm.Location = new Point(-32000, -32000);
+                topMostForm.ShowInTaskbar = false;
+                topMostForm.Show();
+                topMostForm.Activate();
+
+                MessageBox.Show(topMostForm, msg, titleMsg, MessageBoxButtons.OK, iconMessage);
+            }
         }
 
 
