@@ -19,6 +19,7 @@ using ProjectSSQ;
 using Sagt;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO; // para poder usar File.Exist
 using System.ServiceModel;
 using System.Threading; // permite usar hilos
@@ -355,6 +356,11 @@ namespace GUI_GT
             Thread uiThread = new Thread(() =>
             {
                 fw = new FormWaiting(msg);  //FormWaiting is initialized here in order to avoid cross-reference operations
+                fw.StartPosition = FormStartPosition.Manual;
+                fw.Location = new Point(    // Makes form appear at the center of the screen, without needing to pass a reference to this form
+                    this.Location.X + (this.Width - fw.Width) / 2,
+                    this.Location.Y + (this.Height - fw.Height) / 2
+                );
                 fw.Show();
                 fw.Refresh();
                 formReady.Set();                // Sets the signal that the form is ready and to stop waiting
