@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -103,6 +104,17 @@ namespace GUI_GT
         int iHeaderHeight = 0; //Used for the header height
 
         int numPag = 0;// Número de página
+
+        Font tablefontReport;
+        Font textfontReport;
+
+        // Pre-built DataGridViews for printing (built once in BeginPrint)
+        DataGridViewEx.DataGridViewEx dgvExFacetsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExObsReport = null;
+        List<DataGridViewEx.DataGridViewEx> dgvExMeansReports = null;
+        DataGridViewEx.DataGridViewEx dgvExSsqReport = null;
+        DataGridViewEx.DataGridViewEx dgvExGParamsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExOptReport = null;
 
         #endregion
 
@@ -212,6 +224,49 @@ namespace GUI_GT
                 isFinishTableOptResume = false;
                 isPrintLineDesign = false;
 
+                // Fuente que se empleara en el resto del informe para las tablas
+                tablefontReport = new Font(this.cfgApli.GetTableFontFamily(), this.cfgApli.GetTableFontSize(), FontStyle.Bold);
+
+                // Fuente que se empleara en el resto del informe para los textos
+                textfontReport = new Font(this.cfgApli.GetTextFontFamily(), this.cfgApli.GetTextFontSize(), FontStyle.Bold);
+
+                // Pre-build all DataGridViews
+                if (bData)
+                {
+                    dgvExFacetsReport?.Dispose();
+                    dgvExFacetsReport = CreateNewDataGridView(dataGridViewExFacets, tablefontReport, tablefontReport);
+
+                    dgvExObsReport?.Dispose();
+                    dgvExObsReport = CreateNewDataGridView(dataGridViewExObsTable, tablefontReport, tablefontReport);
+                }
+
+                if (bMeans)
+                {
+                    if (dgvExMeansReports != null)
+                        foreach (var dgv in dgvExMeansReports) dgv?.Dispose();
+
+                    dgvExMeansReports = new List<DataGridViewEx.DataGridViewEx>();
+                    int numTabs = tabControlMeans.TabPages.Count - 1;
+                    for (int i = 0; i < numTabs; i++)
+                    {
+                        TabPageMeansEx tab = (TabPageMeansEx)tabControlMeans.TabPages[i];
+                        dgvExMeansReports.Add(CreateNewDataGridView(tab.GetDataGridViewEx(),
+                            tablefontReport, tablefontReport));
+                    }
+                }
+
+                if (bSsq)
+                {
+                    dgvExSsqReport?.Dispose();
+                    dgvExSsqReport = CreateNewDataGridView(dataGridViewExSSQ, tablefontReport, tablefontReport);
+
+                    dgvExGParamsReport?.Dispose();
+                    dgvExGParamsReport = CreateNewDataGridView(dGridViewExG_Parameters, tablefontReport, tablefontReport);
+
+                    dgvExOptReport?.Dispose();
+                    dgvExOptReport = CreateNewDataGridView(dGridViewExOptimizationResum, tablefontReport, tablefontReport);
+                }
+
                 // Calculating Total Widths
                 // Calculando ancho total
                 // iTotalWidth = CaulatingTotalWidths(dataGridViewExFacets);
@@ -267,13 +322,7 @@ namespace GUI_GT
                 FootnoteOfTheReport(e, fontFootersAndHeaders);
                 //************************************************************************************
 
-                // Fuente que se empleara en el resto del informe para las tablas
-                int n = this.cfgApli.GetTableFontSize();
-                Font tablefontReport = new Font(this.cfgApli.GetTableFontFamily(), n, FontStyle.Bold);
 
-                // Fuente que se empleara en el resto del informe para los textos
-                n = this.cfgApli.GetTextFontSize();
-                Font textfontReport = new Font(this.cfgApli.GetTextFontFamily(), n, FontStyle.Bold);
 
                 //For the first page to print set the cell width and header height ??
                 // Para la primera página para ajustar el ancho de las celdas de encabezado y altura
@@ -312,7 +361,7 @@ namespace GUI_GT
                             iLine = 0;
                             arrStringLine = ArrayOfStrings(text, textfontReport, e);
                             bNewPage = false;
-                            dgvExAuxReport = CreateNewDataGridView(dataGridViewExFacets, tablefontReport, tablefontReport);
+                            dgvExAuxReport = dgvExFacetsReport;
                             // Calculando ancho total
                             iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             SettingHeadersCell(e, dgvExAuxReport);
@@ -334,7 +383,7 @@ namespace GUI_GT
                             iRow = 0;
                             bFirstPage = true; // primera página
 
-                            dgvExAuxReport = CreateNewDataGridView(dataGridViewExObsTable, tablefontReport, tablefontReport);
+                            dgvExAuxReport = dgvExObsReport;
                             // Calculando ancho total
                             iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             // Establecemos la anchura de la tabla
@@ -410,7 +459,7 @@ namespace GUI_GT
                         if (isPrintNameTable)
                         {
                             DataGridViewEx.DataGridViewEx dgvExTableMean = tabPageMeansEx.GetDataGridViewEx();
-                            dgvExAuxReport = CreateNewDataGridView(dgvExTableMean, tablefontReport, tablefontReport);
+                            dgvExAuxReport = dgvExMeansReports[iPosListMeans];
                             // Calculando ancho total
                             iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             // Establecemos la anchura de la tabla
@@ -487,7 +536,7 @@ namespace GUI_GT
                         arrColumnWidths.Clear();
                         iCellHeight = 0;
                         iRow = 0;
-                        dgvExAuxReport = CreateNewDataGridView(dataGridViewExSSQ, tablefontReport, tablefontReport);
+                        dgvExAuxReport = dgvExSsqReport;
                         // Calculando ancho total
                         iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                         SettingHeadersCell(e, dgvExAuxReport);
@@ -511,7 +560,7 @@ namespace GUI_GT
                             arrColumnWidths.Clear();
                             iCellHeight = 0;
                             iRow = 0;
-                            dgvExAuxReport = CreateNewDataGridView(dGridViewExG_Parameters, tablefontReport, tablefontReport);
+                            dgvExAuxReport = dgvExGParamsReport;
                             // Calculando ancho total
                             iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             SettingHeadersCell(e, dgvExAuxReport);
@@ -543,7 +592,7 @@ namespace GUI_GT
                             iCellHeight = 0;
                             iRow = 0;
 
-                            dgvExAuxReport = CreateNewDataGridView(dGridViewExOptimizationResum, tablefontReport, tablefontReport);
+                            dgvExAuxReport = dgvExOptReport;
 
                             // Calculando ancho total
                             if (dgvExAuxReport.ColumnCount > 4)
@@ -592,6 +641,23 @@ namespace GUI_GT
 
         }// end printSagtDocument_PrintPage
 
+        private void printSagtDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            dgvExFacetsReport?.Dispose(); dgvExFacetsReport = null;
+            dgvExObsReport?.Dispose(); dgvExObsReport = null;
+            dgvExSsqReport?.Dispose(); dgvExSsqReport = null;
+            dgvExGParamsReport?.Dispose(); dgvExGParamsReport = null;
+            dgvExOptReport?.Dispose(); dgvExOptReport = null;
+
+            if (dgvExMeansReports != null)
+            {
+                foreach (var dgv in dgvExMeansReports) dgv?.Dispose();
+                dgvExMeansReports = null;
+            }
+
+            tablefontReport?.Dispose();
+            textfontReport?.Dispose();
+        }
 
         /* Descripción:
          *  Realiza ajustes de las celdas de encabezado de una tabla que se pasa como parámetro.
@@ -679,7 +745,7 @@ namespace GUI_GT
                         foreach (DataGridViewColumn GridCol in dataGridViewEx.Columns)
                         {
                             // Dibuja el fondo gris del encabezado (Color.LightGray)
-                            e.Graphics.FillRectangle(new SolidBrush(Color.Silver),
+                            e.Graphics.FillRectangle(Brushes.Silver,
                                 new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
                                 (int)arrColumnWidths[iCount], iHeaderHeight));
 
@@ -688,10 +754,13 @@ namespace GUI_GT
                                 (int)arrColumnWidths[iCount], iHeaderHeight));
 
                             // e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font,
-                            e.Graphics.DrawString(GridCol.HeaderText, fontReport,
-                                new SolidBrush(GridCol.InheritedStyle.ForeColor),
-                                new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
-                                (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                            using (var headerBrush = new SolidBrush(GridCol.InheritedStyle.ForeColor))
+                            {
+                                e.Graphics.DrawString(GridCol.HeaderText, fontReport,
+                                    headerBrush,
+                                    new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                            }
                             iCount++;
                         }// end foreach
                         bNewPage = false;
@@ -708,7 +777,7 @@ namespace GUI_GT
                         if (shadingRows && (iRow % 2 == 1))
                         {
                             // Dibuja el fondo gris (Color.LightGray)
-                            e.Graphics.FillRectangle(new SolidBrush(Color.WhiteSmoke),
+                            e.Graphics.FillRectangle(Brushes.WhiteSmoke,
                                 new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
                                     (int)arrColumnWidths[iCount], iCellHeight));
                         }
@@ -719,9 +788,12 @@ namespace GUI_GT
 
 
                             // e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font,
-                            e.Graphics.DrawString(Cel.Value.ToString(), fontReport,
-                                        new SolidBrush(Cel.InheritedStyle.ForeColor),
-                                        CellBounds, strFormat);
+                            using (var cellBrush = new SolidBrush(Cel.InheritedStyle.ForeColor))
+                            {
+                                e.Graphics.DrawString(Cel.Value.ToString(), fontReport,
+                                    cellBrush,
+                                    CellBounds, strFormat);
+                            }
                         }
                         // Dibujamos el borde de las celdas
                         e.Graphics.DrawRectangle(Pens.Black, new Rectangle((int)arrColumnLefts[iCount],
@@ -909,7 +981,8 @@ namespace GUI_GT
             }
 
             // Realizamos el ajuste de las celdas
-            newDgvEx.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            newDgvEx.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            newDgvEx.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             return newDgvEx;
         }// end CreateNewDataGridView
