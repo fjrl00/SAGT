@@ -28,6 +28,7 @@ BUGFIXES
 - Solved bug where the user's selected workspace would be ignored and replaced with a generic one in some contexts
 - Fixed adding nestings in mixed facets in the analysis section being impossible
 - Solved bug where loading .sagt files without Data section while the 'Hide null' checkbox was marked could result in an exception
+- Solved bug where printing the Analysis section's report would instead try to print the report of the rest of the app
 
 OPTIMIZATION
 
@@ -67,14 +68,19 @@ UI
 - Analysis->Import operations now result in a single loading screen, rather than multiple ones blinking in and out of existence
 - Overhauled which actions result in a loading screen and which ones don't
 - Loading screen is now hidable and doesn't outprioritize other forms
-- Loading screen now appears in the middle of the app's window instead of the middle of the screen
+- Loading screen now appears in the middle of the app's main window instead of the middle of the screen
 - Removed the ability to import GT E 2.0 files from Open Data File. Option now only available from Import
 - Loading .sagt files now returns back to the initial tabs
 - Nested facet type now nests each facet into the following ones, instead of into the previous ones
 - PrintPreviewDialog feature removed, as it's superfluous in modern Windows
+- Solved "Printing page X of document" form appearing hidden behind the main form
 
 NEW FEATURES
 
 - Facet nestings can now be edited in the Data section after having been created/imported
+
+KNOWN ISSUES
+
+- The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 
 Last updated: 16/05/2026

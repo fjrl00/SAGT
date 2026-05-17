@@ -666,7 +666,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 495);
+            this.mStripData.Size = new System.Drawing.Size(175, 476);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -845,7 +845,7 @@
             // 
             this.tsmiDataPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiDataPrinter.Name = "tsmiDataPrinter";
-            this.tsmiDataPrinter.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataPrinter.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataPrinter.Text = "Imprimir";
             this.tsmiDataPrinter.Click += new System.EventHandler(this.tsmiDataPrinter_Click);
             // 
@@ -853,7 +853,7 @@
             // 
             this.tsmiDataWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiDataWordExport.Name = "tsmiDataWordExport";
-            this.tsmiDataWordExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataWordExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataWordExport.Text = "Word";
             this.tsmiDataWordExport.Click += new System.EventHandler(this.tsmiDataWordExport_Click);
             // 
@@ -861,7 +861,7 @@
             // 
             this.tsmiDataPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiDataPdfExport.Name = "tsmiDataPdfExport";
-            this.tsmiDataPdfExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataPdfExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataPdfExport.Text = "PDF";
             this.tsmiDataPdfExport.Click += new System.EventHandler(this.tsmiDataPdfExport_Click);
             // 
@@ -1679,7 +1679,7 @@
             // 
             this.tsmiMeansPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiMeansPrinter.Name = "tsmiMeansPrinter";
-            this.tsmiMeansPrinter.Size = new System.Drawing.Size(184, 26);
+            this.tsmiMeansPrinter.Size = new System.Drawing.Size(120, 22);
             this.tsmiMeansPrinter.Text = "Imprimir";
             this.tsmiMeansPrinter.Click += new System.EventHandler(this.tsmiMeansPrinter_Click);
             // 
@@ -1687,7 +1687,7 @@
             // 
             this.tsmiMeansWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiMeansWordExport.Name = "tsmiMeansWordExport";
-            this.tsmiMeansWordExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiMeansWordExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiMeansWordExport.Text = "Word";
             this.tsmiMeansWordExport.Click += new System.EventHandler(this.tsmiMeansWordExport_Click);
             // 
@@ -1695,7 +1695,7 @@
             // 
             this.tsmiMeansPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiMeansPdfExport.Name = "tsmiMeansPdfExport";
-            this.tsmiMeansPdfExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiMeansPdfExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiMeansPdfExport.Text = "PDF";
             this.tsmiMeansPdfExport.Click += new System.EventHandler(this.tsmiMeansPdfExport_Click);
             // 
@@ -2667,7 +2667,7 @@
             // 
             this.tsmiSsqPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiSsqPrinter.Name = "tsmiSsqPrinter";
-            this.tsmiSsqPrinter.Size = new System.Drawing.Size(184, 26);
+            this.tsmiSsqPrinter.Size = new System.Drawing.Size(120, 22);
             this.tsmiSsqPrinter.Text = "Imprimir";
             this.tsmiSsqPrinter.Click += new System.EventHandler(this.tsmiSsqPrinter_Click);
             // 
@@ -2675,7 +2675,7 @@
             // 
             this.tsmiSSqWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiSSqWordExport.Name = "tsmiSSqWordExport";
-            this.tsmiSSqWordExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiSSqWordExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiSSqWordExport.Text = "Word";
             this.tsmiSSqWordExport.Click += new System.EventHandler(this.tsmiSSqWordExport_Click);
             // 
@@ -2683,7 +2683,7 @@
             // 
             this.tsmiSSqPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiSSqPdfExport.Name = "tsmiSSqPdfExport";
-            this.tsmiSSqPdfExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiSSqPdfExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiSSqPdfExport.Text = "PDF";
             this.tsmiSSqPdfExport.Click += new System.EventHandler(this.tsmiSSqPdfExport_Click);
             // 
@@ -3884,7 +3884,7 @@
             // 
             this.tsmiAnalysisPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiAnalysisPrinter.Name = "tsmiAnalysisPrinter";
-            this.tsmiAnalysisPrinter.Size = new System.Drawing.Size(184, 26);
+            this.tsmiAnalysisPrinter.Size = new System.Drawing.Size(120, 22);
             this.tsmiAnalysisPrinter.Text = "Imprimir";
             this.tsmiAnalysisPrinter.Click += new System.EventHandler(this.tsmiAnalysisPrinter_Click);
             // 
@@ -3892,7 +3892,7 @@
             // 
             this.tsmiAnalysisWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiAnalysisWordExport.Name = "tsmiAnalysisWordExport";
-            this.tsmiAnalysisWordExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiAnalysisWordExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiAnalysisWordExport.Text = "Word";
             this.tsmiAnalysisWordExport.Click += new System.EventHandler(this.tsmiAnalysisWordExport_Click);
             // 
@@ -3900,7 +3900,7 @@
             // 
             this.tsmiAnalysisPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiAnalysisPdfExport.Name = "tsmiAnalysisPdfExport";
-            this.tsmiAnalysisPdfExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiAnalysisPdfExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiAnalysisPdfExport.Text = "PDF";
             this.tsmiAnalysisPdfExport.Click += new System.EventHandler(this.tsmiAnalysisPdfExport_Click);
             // 
@@ -4122,6 +4122,7 @@
             // printSagtDocument
             // 
             this.printSagtDocument.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printSagtDocument_BeginPrint);
+            this.printSagtDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.printSagtDocument_EndPrint);
             this.printSagtDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printSagtDocument_PrintPage);
             // 
             // printAnalysisDocument
