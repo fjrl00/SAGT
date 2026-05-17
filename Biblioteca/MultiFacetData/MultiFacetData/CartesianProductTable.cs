@@ -115,7 +115,7 @@ namespace MultiFacetData
          * Devuelve:
          *      int[] res: un array con las veces que se repite cada uno de los indices.
          */
-        protected static int[] IndexRepeats(int[] levelOfFacets)
+        public static int[] IndexRepeats(int[] levelOfFacets)
         {
             // Necesitamos saber la longitud de vector para crear el nuevo vector
             int sizeVector = levelOfFacets.Length;

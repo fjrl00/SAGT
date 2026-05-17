@@ -10,6 +10,7 @@
  * 
  */
 
+using AuxMathCalcGT;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -149,6 +150,8 @@ namespace MultiFacetData
             // Posiciones de las facetas (en el orden especificado por el usuario)
             int[] facetPositions = facetVariables.Select(f => variablePosition[f]).ToArray();
 
+            // 7.1. Sweep inicial convirtiendo el bloque en ObsTable por conveniencia y colectando datos de facetas
+            // (Pueden haber múltiples obsesrvaciones para cada combinación de facetas a la que luego debemos hacer la media)
             foreach (string line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith(";"))
@@ -200,7 +203,7 @@ namespace MultiFacetData
                 tableObs.Add(row);
             }
 
-            // 8. Construir objetos Facet
+            // Construir objetos Facet
             ListFacets lf = new ListFacets();
             for (int i = 0; i < numFacets; i++)
             {
@@ -208,38 +211,39 @@ namespace MultiFacetData
                 lf.Add(f);
             }
 
-            // 9. Crear MultiFacetsObs (producto cartesiano o no)
-            MultiFacetsObs retVal;
-            int expectedRows = (int)lf.MultOfLevels();
-            if (expectedRows == tableObs.TableRows())
-            {
-                retVal = new MultiFacetsObs(lf, tableObs, path, dependentVariable, "");
-            }
-            else
-            {
-                retVal = new MultiFacetsObs(lf, path, dependentVariable, "");
-                InterfaceObsTable obsT = retVal.ObservationTable();
-                int n_items = tableObs.TableRows();
+            // 7.2 Crear tabla plantilla donde insertar los datos
+            ObsTable tableTemplate = new ObsTable(lf);
 
-                int pos = 0;
-                for (int i = 0; (i < expectedRows) && (pos < n_items); i++)
-                {
-                    bool match = true;
-                    for (int j = 0; j < numFacets && match; j++)
-                    {
-                        match = obsT.Data(i, j).Equals(tableObs.Data(pos, j));
-                    }
-                    if (match)
-                    {
-                        double? d = tableObs.ObsData(pos);
-                        if (d.HasValue)
-                            obsT.Data(d.Value, i);
-                        pos++;
-                    }
-                }
+            // 7.3 Segundo sweep llenando el array de StatisticsData (inspirado por la función en CartesianProductTable)
+            Statistics[] groups = new Statistics[tableTemplate.TableRows()];
+            for (int i = 0; i < groups.Length; i++)
+            {
+                groups[i] = new Statistics();
             }
 
-            return retVal;
+            int[] indexRepeats = CartesianProductTable.IndexRepeats(lf.levelOfFacets());
+
+            for (int i = 0; i < tableObs.TableRows(); i++)
+            {
+                //Calculate index of this row in the new table. We can since 
+                //row positions in our cartesian product tables are deterministic from their facets' values
+                int index = 0;
+                for (int j = 0; j < lf.Count(); j++)
+                    index += indexRepeats[j]*((int)tableObs.Data(i,j) - 1);
+
+                groups[index].Add(tableObs.ObsData(i), true);
+            }
+
+            // 7.4 pasar StatisticsData a la tabla plantilla para conseguir la tabla final
+            List<double?> ldata = new List<double?>();
+            for (int i = 0; i < tableTemplate.TableRows(); i++)
+            {
+                ldata.Add(groups[i].Mean());
+            }
+            tableTemplate.AssignListData(ldata);
+
+
+            return new MultiFacetsObs(lf, tableTemplate, path, dependentVariable, "");
         }
 
         /// <summary>
