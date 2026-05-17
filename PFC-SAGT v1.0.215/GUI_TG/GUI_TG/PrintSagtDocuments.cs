@@ -158,6 +158,7 @@ namespace GUI_GT
                             if (DialogResult.OK == printDialog.ShowDialog())
                             {
                                 printSagtDocument.DocumentName = nameSagtReport;
+                                this.SendToBack();
                                 printSagtDocument.Print();
                             }
 
@@ -186,8 +187,10 @@ namespace GUI_GT
         /// <param name="e"></param>
         private void printSagtDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            FormWaiting fw = null;
             try
             {
+                fw = ShowLoadingScreen(msgLoading);
                 traslationElementsReports(this.cfgApli.GetConfigLanguage(),
                     Application.StartupPath + LANG_PATH + FILE_STRING_REPORT);
 
@@ -274,6 +277,10 @@ namespace GUI_GT
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                CloseLoadingScreen(fw);
             }
 
         }// end printSagtDocument_BeginPrint

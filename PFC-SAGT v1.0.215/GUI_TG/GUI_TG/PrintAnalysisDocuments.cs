@@ -61,8 +61,8 @@ namespace GUI_GT
             {
                 if (this.anl_tAnalysis_G_study_opt != null)
                 {// (* 1 *)
-
                     printAnalysisDocument.DocumentName = nameAnalysisDocument;
+                    this.SendToBack();
                     printAnalysisDocument.Print();
                 }
                 else
@@ -79,8 +79,10 @@ namespace GUI_GT
          */
         private void printAnalysisDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            FormWaiting fw = null;
             try
             {
+                fw = ShowLoadingScreen(msgLoading);
                 traslationElementsReports(this.cfgApli.GetConfigLanguage(), Application.StartupPath + LANG_PATH + FILE_STRING_REPORT);
 
                 strFormat = new StringFormat();
@@ -145,6 +147,10 @@ namespace GUI_GT
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                CloseLoadingScreen(fw);
             }
         }// end printAnalysisDocument_BeginPrint
 
