@@ -286,6 +286,10 @@ namespace GUI_GT
                         {
                             ShowMessageErrorOK(errorMinNumFacet);
                         }
+                        if (ImportSAS.isTextVariable(formSelectSASColumns.SelectedDependent, path))
+                        {
+                            ShowMessageErrorOK(errorDependentIsText);
+                        }
                         else
                         {
                             salir = true;

@@ -64,6 +64,7 @@ namespace GUI_GT
         private string errorValueNullOrEmpty = "Hay campos vacios";
         private string errorDuplicateNameFacet = "Nombre de faceta duplicado";
         private string errorInvalidExtension = "No se ha reconocido una extensión de archivo válida.";
+        private string errorDependentIsText = "La variable de medida no puede ser una variable de texto ($)";
 
         // Errores de Proyecto
         private string errorNoNameProject = "Nombre de proyecto no válido";
@@ -188,6 +189,8 @@ namespace GUI_GT
                 errorDuplicateNameFacet = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorInvalidExtension";
                 errorInvalidExtension = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorDependentIsText";
+                errorDependentIsText = dicError.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Errores de Proyecto
                 name = "errorNoNameProject";

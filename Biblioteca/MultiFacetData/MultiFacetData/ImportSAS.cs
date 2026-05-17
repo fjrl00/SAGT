@@ -51,6 +51,66 @@ namespace MultiFacetData
             }
         }
 
+        /// <summary>
+        /// Determines whether a variable in a SAS INPUT statement is a text (character) variable.
+        /// Handles formats like $, $15., $CHAR10., etc.
+        /// </summary>
+        /// <returns>True if the variable is a text/character variable, false otherwise.</returns>
+        public static bool isTextVariable(string variableName, string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string sasContent = reader.ReadToEnd();
+
+                string inputStatement = ExtractInputStatement(sasContent);
+                if (string.IsNullOrEmpty(inputStatement))
+                    throw new Exception("No se encontró la sentencia INPUT en el fichero SAS.");
+
+                return IsTextVariable(variableName, inputStatement);
+            }
+        }
+
+        private static bool IsTextVariable(string variableName, string inputStatement)
+        {
+            if (string.IsNullOrWhiteSpace(variableName) || string.IsNullOrWhiteSpace(inputStatement))
+                return false;
+
+            // Remove the "input" keyword and the trailing semicolon
+            string cleaned = Regex.Replace(inputStatement, @"^\s*input\s+", "", RegexOptions.IgnoreCase);
+            cleaned = Regex.Replace(cleaned, @";\s*$", "");
+            
+            // Split by whitespace and commas
+            string[] tokens = Regex.Split(cleaned.Trim(), @"[\s,]+");
+            
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                string token = tokens[i];
+                
+                // Check if this token is the variable name (case-insensitive)
+                if (string.Equals(token, variableName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    // Look ahead to check for $ or $format
+                    if (i + 1 < tokens.Length)
+                    {
+                        string nextToken = tokens[i + 1];
+                        // $ by itself, or $ followed by format like $15., $CHAR10., etc.
+                        if (nextToken.StartsWith("$", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                
+                // Skip $ and format tokens (they belong to previous variable)
+                if (token.StartsWith("$", StringComparison.InvariantCultureIgnoreCase))
+                    continue;
+            }
+            
+            // Variable not found in INPUT statement
+            return false;
+        }
+
         /* Descripción:
          *  Importa la tabla de observaciones desde un fichero .sas (con bloque datalines)
          *  y devuelve un objeto multifaceta para la variable dependiente especificada.
