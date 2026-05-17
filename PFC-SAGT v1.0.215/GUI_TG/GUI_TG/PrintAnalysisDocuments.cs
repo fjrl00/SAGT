@@ -37,6 +37,13 @@ namespace GUI_GT
         private bool isFinishAnalysisComment = false;
         // Las ariables para la impresión de los comentarios de análisis han sido definidas en PrintSagtDocuments.cs
 
+        DataGridViewEx.DataGridViewEx dgvExAnalysisFacetsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisSsqReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisGParamsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisOptReport = null;
+
+        Font fontTableReport = null;
+        Font fontTextReport = null;
 
         /* Descripción:
          *  Se ejecuta al seleccionar la impción imprimir del menú vertical de análisis. Muestra
@@ -55,8 +62,8 @@ namespace GUI_GT
                 if (this.anl_tAnalysis_G_study_opt != null)
                 {// (* 1 *)
 
-                    printSagtDocument.DocumentName = nameAnalysisDocument;
-                    printSagtDocument.Print();
+                    printAnalysisDocument.DocumentName = nameAnalysisDocument;
+                    printAnalysisDocument.Print();
                 }
                 else
                 {
@@ -108,6 +115,32 @@ namespace GUI_GT
                 isFinishTableOptResume = false;
                 isPrintLineDesign = false;
                 isFinishAnalysisComment = false;
+
+                // Fuente que se empleara en el resto del informe en las tablas
+                fontTableReport?.Dispose();
+                fontTableReport = new Font(this.cfgApli.GetTableFontFamily(),
+                    this.cfgApli.GetTableFontSize(), FontStyle.Bold);
+
+                // Fuente que se empleara en el resto del informe en los textos
+                fontTextReport?.Dispose();
+                fontTextReport = new Font(this.cfgApli.GetTextFontFamily(),
+                    this.cfgApli.GetTextFontSize(), FontStyle.Bold);
+
+                dgvExAnalysisFacetsReport?.Dispose();
+                dgvExAnalysisFacetsReport = CreateNewDataGridView(dgvExAnalysisSourceOfVarSsq,
+                    fontTableReport, fontTableReport);
+
+                dgvExAnalysisSsqReport?.Dispose();
+                dgvExAnalysisSsqReport = CreateNewDataGridView(dgvExAnalysisSSq,
+                    fontTableReport, fontTableReport);
+
+                dgvExAnalysisGParamsReport?.Dispose();
+                dgvExAnalysisGParamsReport = CreateNewDataGridView(dgvExAnalysis_GP,
+                    fontTableReport, fontTableReport);
+
+                dgvExAnalysisOptReport?.Dispose();
+                dgvExAnalysisOptReport = CreateNewDataGridView(dgvAnalysisResumOpt,
+                    fontTableReport, fontTableReport);
             }
             catch (Exception ex)
             {
@@ -121,7 +154,15 @@ namespace GUI_GT
          */
         private void printAnalysisDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            dgvExAuxReport = null; // lo ponesmos a null para ahorrar memoria.
+            dgvExAnalysisFacetsReport?.Dispose(); dgvExAnalysisFacetsReport = null;
+            dgvExAnalysisSsqReport?.Dispose(); dgvExAnalysisSsqReport = null;
+            dgvExAnalysisGParamsReport?.Dispose(); dgvExAnalysisGParamsReport = null;
+            dgvExAnalysisOptReport?.Dispose(); dgvExAnalysisOptReport = null;
+
+            fontTableReport?.Dispose(); fontTableReport = null;
+            fontTextReport?.Dispose(); fontTextReport = null;
+
+            dgvExAuxReport = null;
         }
 
 
@@ -132,8 +173,6 @@ namespace GUI_GT
         {
             try
             {
-                // Es una nueva página
-                bool bNewPage = true;
                 // Establecemos el margen superior
                 iTopMargin = e.MarginBounds.Top;
                 // Si hay más páginas tiene que imprimir o no
@@ -148,14 +187,6 @@ namespace GUI_GT
                 // imprimimos el pie de página
                 FootnoteOfTheReport(e, this.fontFootersAndHeaders);
                 //************************************************************************************
-
-                // Fuente que se empleara en el resto del informe en las tablas
-                int n = this.cfgApli.GetTableFontSize();
-                Font fontTableReport = new Font(this.cfgApli.GetTableFontFamily(), n, FontStyle.Bold);
-
-                // Fuente que se empleara en el resto del informe en los textos
-                n = this.cfgApli.GetTextFontSize();
-                Font fontTextReport = new Font(this.cfgApli.GetTextFontFamily(), n, FontStyle.Bold);
 
                 // For the first page to print set the cell width and header height ??
                 // Para la primera página para ajustar el ancho de las celdas de encabezado y altura
@@ -196,7 +227,7 @@ namespace GUI_GT
                         iCellHeight = 0;
                         iRow = 0;
                         // Calculando ancho total
-                        dgvExAuxReport = CreateNewDataGridView(dgvExAnalysisSourceOfVarSsq, fontTableReport, fontTableReport);
+                        dgvExAuxReport = dgvExAnalysisFacetsReport;
                         // iTotalWidth = CaulatingTotalWidths(dgvExAnalysisSourceOfVarSsq);
                         iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                         // SettingHeadersCell(e, dgvExAnalysisSourceOfVarSsq);
@@ -227,7 +258,7 @@ namespace GUI_GT
                         iCellHeight = 0;
                         iRow = 0;
 
-                        dgvExAuxReport = CreateNewDataGridView(dgvExAnalysisSSq, fontTableReport, fontTableReport);
+                        dgvExAuxReport = dgvExAnalysisSsqReport;
                         // Calculando ancho total
                         // iTotalWidth = CaulatingTotalWidths(dgvExAnalysisSSq);
                         iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
@@ -258,7 +289,7 @@ namespace GUI_GT
                         iCellHeight = 0;
                         iRow = 0;
 
-                        dgvExAuxReport = CreateNewDataGridView(dgvExAnalysis_GP, fontTableReport, fontTableReport);
+                        dgvExAuxReport = dgvExAnalysisGParamsReport;
                         // Calculando ancho total
                         // iTotalWidth = CaulatingTotalWidths(dgvExAnalysis_GP);
                         iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
@@ -290,7 +321,7 @@ namespace GUI_GT
                         iCellHeight = 0;
                         iRow = 0;
 
-                        dgvExAuxReport = CreateNewDataGridView(dgvAnalysisResumOpt, fontTableReport, fontTableReport);
+                        dgvExAuxReport = dgvExAnalysisOptReport;
 
                         // Calculando ancho total
                         if (dgvAnalysisResumOpt.ColumnCount > 4)
