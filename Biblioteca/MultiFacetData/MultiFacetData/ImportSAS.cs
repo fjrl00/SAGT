@@ -243,7 +243,7 @@ namespace MultiFacetData
             tableTemplate.AssignListData(ldata);
 
 
-            return new MultiFacetsObs(lf, tableTemplate, path, dependentVariable, "");
+            return new MultiFacetsObs(lf, tableTemplate, path, dependentVariable, BuildInfo(facetVariables,facetLevelDicts));
         }
 
         /// <summary>
@@ -300,5 +300,25 @@ namespace MultiFacetData
             }
             return null;
         }
+
+        /* Descripción:
+         *  Toma el diccionario con los valores y devuelve la leyenda para mostrar en la pestaña de 
+         *  información.
+         */
+        private static string BuildInfo(List<String> arrayHeadersColumns, Dictionary<String, int>[] lDic)
+        {
+            var sb = new System.Text.StringBuilder();
+            for (int i = 0; i < lDic.Length; i++)
+            {
+                sb.AppendLine($"{arrayHeadersColumns[i]}:");        // FacetName:
+                foreach (var kvp in lDic[i])
+                {
+                    sb.AppendLine($"\t{kvp.Key} = {kvp.Value}");    //      [ID numérico] = [título original]
+                }
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }//end BuildInfo
     }
 }
