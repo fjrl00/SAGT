@@ -1,16 +1,4 @@
-﻿/* 
- * Proyecto: SOFTWARE PARA LA APLICACIÓN DE LA TEORÍA DE LA GENERALIZABILIDAD
- * Nº de orden: 4778
- * 
- * Alumno:   Francisco Jesús Ramos Pérez
- * 
- * Extensión: Importador desde ficheros SAS (datalines)
- * 
- * Fecha de revisión: 14/Abr/2026
- * 
- */
-
-using AuxMathCalcGT;
+﻿using AuxMathCalcGT;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,14 +9,6 @@ namespace MultiFacetData
 {
     public class ImportSAS
     {
-        /***************************************************************************************************
-         * CONSTANTES
-         ***************************************************************************************************/
-        private const string DATALINES_KEYWORD = "datalines";
-        private const string CARDS_KEYWORD = "cards";
-        private const string INPUT_KEYWORD = "input";
-        private const string SEMICOLON = ";";
-
         /***************************************************************************************************
          * MÉTODOS PÚBLICOS
          ***************************************************************************************************/
@@ -112,7 +92,7 @@ namespace MultiFacetData
         }
 
         /* Descripción:
-         *  Importa la tabla de observaciones desde un fichero .sas (con bloque datalines)
+         *  Importa la primera tabla de observaciones desde un fichero .sas (con bloque datalines)
          *  y devuelve un objeto multifaceta para la variable dependiente especificada.
          *  
          * Parámetros:
@@ -154,7 +134,6 @@ namespace MultiFacetData
             // 2. Obtener lista de todas las variables en el INPUT (en orden)
             List<string> allVariables = GetAllVariablesFromInput(inputStatement);
 
-            /*
             // 3. Validaciones
             //    - La variable dependiente debe existir en el INPUT
             if (!allVariables.Contains(dependentVariable, StringComparer.InvariantCultureIgnoreCase))
@@ -170,7 +149,6 @@ namespace MultiFacetData
             //    - La variable dependiente no debe estar en la lista de facetas
             if (facetVariables.Contains(dependentVariable, StringComparer.InvariantCultureIgnoreCase))
                 throw new Exception($"La variable dependiente '{dependentVariable}' no puede ser también una faceta.");
-            */
 
             // 4. Determinar qué variables se ignoran (otras dependientes no seleccionadas)
             var facetSet = new HashSet<string>(facetVariables, StringComparer.InvariantCultureIgnoreCase);
@@ -247,6 +225,9 @@ namespace MultiFacetData
                     row.Add(levelId);
                 }
 
+                string depToken = tokens[dependentPosition].Trim();
+                if (depToken == ".")    // SAS missing numeric value → skip this observation
+                    continue;
                 // Procesar variable dependiente seleccionada
                 if (double.TryParse(tokens[dependentPosition],
                                     System.Globalization.NumberStyles.Any,
@@ -322,8 +303,7 @@ namespace MultiFacetData
         private static List<string> GetAllVariablesFromInput(string inputStatement)
         {
             List<string> variables = new List<string>();
-
-            // Dividir por espacios, tabs, o comas
+            // Split by spaces, tabs, and commas
             string[] parts = Regex.Split(inputStatement, @"[\s,]+");
 
             foreach (string part in parts)
@@ -331,19 +311,16 @@ namespace MultiFacetData
                 if (string.IsNullOrWhiteSpace(part))
                     continue;
 
-                // Eliminar posibles especificaciones de formato (ej. $, 5., etc.)
-                string varName = Regex.Replace(part, @"\$", "");
-                varName = Regex.Replace(varName, @"\d+\.?\d*", "").Trim();
+                // Remove leading/trailing non-identifier characters, but keep digits and underscores
+                string varName = Regex.Replace(part, @"^[^a-zA-Z_]+", "");           // strip leading non‑alpha/underscore
+                varName = Regex.Replace(varName, @"[^a-zA-Z0-9_]+$", "");           // strip trailing non‑identifier
+                                                                                    // Skip tokens that are pure formats (e.g. $, $15., 8.)
+                if (varName.Length == 0 || Regex.IsMatch(varName, @"^[\d\.]+$"))
+                    continue;
 
-                // Eliminar caracteres no alfabéticos al inicio/fin
-                varName = Regex.Replace(varName, @"^[^a-zA-Z]+|[^a-zA-Z0-9_]+$", "");
-
-                if (!string.IsNullOrEmpty(varName) && !variables.Contains(varName, StringComparer.InvariantCultureIgnoreCase))
-                {
+                if (!variables.Contains(varName, StringComparer.InvariantCultureIgnoreCase))
                     variables.Add(varName);
-                }
             }
-
             return variables;
         }
 

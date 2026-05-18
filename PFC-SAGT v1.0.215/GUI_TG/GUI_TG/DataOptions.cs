@@ -313,6 +313,10 @@ namespace GUI_GT
                     // asignamos a la variable global los valores cargados
                     loadMultiFacets(fileNameData, multiFacets);
                 }
+                catch(Exception ex)
+                {
+                    ShowMessageErrorOK(ex.Message);
+                }
                 finally
                 {
                     CloseLoadingScreen(fw);
