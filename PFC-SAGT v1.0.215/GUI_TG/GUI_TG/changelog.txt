@@ -76,6 +76,7 @@ UI
 - Nested facet type now nests each facet into the following ones, instead of into the previous ones
 - PrintPreviewDialog feature removed, as it's superfluous in modern Windows
 - Solved "Printing page X of document" form appearing hidden behind the main form
+- Solved "Relative G Coefficient" text appearing cut off in Analysis
 
 NEW FEATURES
 

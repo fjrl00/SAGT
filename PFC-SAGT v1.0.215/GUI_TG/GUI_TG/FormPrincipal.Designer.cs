@@ -3170,6 +3170,7 @@
             this.tabPageAnalysisG_P.BackColor = System.Drawing.Color.Transparent;
             this.tabPageAnalysisG_P.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotalTargetVar);
+            this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextCoef_G_Rel);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextCoef_G_Abs);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextAbsoluteSE);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotalAbsErr);
@@ -3183,7 +3184,6 @@
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextStandDev);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisCoef_G_Abs);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisCoef_G_Rel);
-            this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextCoef_G_Rel);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTextGeneralizabilityCoef);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotal_Error_Abs);
             this.tabPageAnalysisG_P.Controls.Add(this.lbAnalysisTotal_Error_Rel);
