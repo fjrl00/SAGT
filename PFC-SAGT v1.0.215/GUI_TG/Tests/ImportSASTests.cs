@@ -497,5 +497,23 @@ datalines;
             Assert.Equal(1, table.TableRows()); // only one row
             Assert.Equal(10.0, table.Data(0, 2));
         }
+
+        [Fact]
+        public void ImportSAS_TrailingAtSign_ThrowsNotSupportedException()
+        {
+            string sas = @"
+data test;
+input a b y @@;
+datalines;
+1 1 10 2 2 20
+;
+";
+            string path = CreateTempSasFile(sas);
+
+            var ex = Assert.Throws<Exception>(() =>
+                ImportSAS.ImportSAS_to_MultiFacetsObs(path, new List<string> { "a", "b" }, "y"));
+
+            Assert.Contains("@@", ex.Message);
+        }
     }
 }

@@ -302,6 +302,10 @@ namespace MultiFacetData
         /// </summary>
         private static List<string> GetAllVariablesFromInput(string inputStatement)
         {
+            // Detect the line‑hold specifier @@ which is not supported
+            if (inputStatement.Contains("@@"))
+                throw new Exception("El specificador '@@' en la sentencia Input de SAS no es soportado.");
+
             List<string> variables = new List<string>();
             // Split by spaces, tabs, and commas
             string[] parts = Regex.Split(inputStatement, @"[\s,]+");
