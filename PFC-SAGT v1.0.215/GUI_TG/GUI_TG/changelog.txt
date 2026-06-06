@@ -1,7 +1,8 @@
 BUGFIXES
 
 - Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
-- Solved bug where omitting rows of omitted facets had no effect
+- Solved bug where omitting rows of omitted facets had no effect on calculations
+- Solved bug where certain outdated calculations were reused by mistake in graphs/Optimization Levels instead of recalculated
 - Solved bug where cancelling exiting the program after encountering an exception resulted in exiting anyway
 - Solved bug where clicking on the content of certain cells would trigger an exception
 - Solved bug where saving savefiles that contained the number "NaN" would render them impossible to load
