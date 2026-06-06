@@ -690,7 +690,7 @@ namespace ProjectSSQ
 
                 while ((line = reader.ReadLine()) != null && !line.Equals(END_LIST_G_PARAMETERS_OPT))
                 {
-                    if ((line = reader.ReadLine()).Equals(G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
+                    if (!line.Equals(G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT))
                     {
                         throw new Analysis_and_G_Study_Exception(
                             $"Expected '{G_ParametersOptimization.BEGIN_G_PARAMETERS_OPT}' but found '{line}' when parsing Analysis_and_G_Study.");

@@ -4,7 +4,8 @@ BUGFIXES
 - Solved bug where omitting rows of omitted facets had no effect
 - Solved bug where cancelling exiting the program after encountering an exception resulted in exiting anyway
 - Solved bug where clicking on the content of certain cells would trigger an exception
-- Solved bug where storing files that contained the number "NaN" would render them impossible to load
+- Solved bug where saving savefiles that contained the number "NaN" would render them impossible to load
+- Solved bug where using the Optimization Levels functionality would render resulting savefiles impossible to load
 - Solved multiple bugs where the app would sometimes crash when executing tasks that used a loading screen way too fast
 - Added safeguard to stop the possibility of exceptions and catastrophic errors spawning uncloseable loading screens that can only be removed from the task manager, which happened during multiple of these bugs
 - Solved importing and exporting Excel files not working in modern PC's
@@ -88,4 +89,4 @@ KNOWN ISSUES
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
 
-Last updated: 18/05/2026
+Last updated: 06/06/2026
