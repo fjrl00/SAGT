@@ -340,18 +340,37 @@ namespace ProjectSSQ
 
             TableG_Study_Percent newGp;
 
-            // obtenemos la suma de cuadrados para crear la nueva tabla de análisis
-            Dictionary<string, double?> ssq = new Dictionary<string, double?>();
-            List<string> newllf = newlf.CombinationStringWithoutRepetition();
 
-            for (int i = 0; i < newllf.Count; i++)
+            /* Si todas las facetas de análisis y de optimización son infinitas
+             * entoces uso la tabla de análisis original 
+             * o 
+             * si ninguna de las facetas es fija y todas tienen el mismo universo que el original
+             */
+            if ((originalLF.HasAllFacetsSizeInfinite() && newlf.HasAllFacetsSizeInfinite())
+                || (!originalLF.AtLeastOneIsFixed() && (originalLF.EqualsSizeOfUniverse(newlf))))
             {
-                string iLF = newllf[i];
-                ssq.Add(iLF, tableAnalysis.SSQ(iLF));
+                newGp = new TableG_Study_Percent(lfDiff, lfInst, this.tableAnalysisVariance);
             }
+            /* Si ni las facetas de análisis ni las de optimización tienen facetas fijas y 
+             * se produce en cambio de facetas finita a infinita entonces se utilizan las componentes de
+             * varianza aleatorios no los infinitos
+             */
+            else
+            {
+                // obtenemos la suma de cuadrados para crear la nueva tabla de análisis
+                Dictionary<string, double?> ssq = new Dictionary<string, double?>();
+                List<string> newllf = newlf.CombinationStringWithoutRepetition();
 
-            TableAnalysisOfVariance newTbAnalysisVar = new TableAnalysisOfVariance(newlf, ssq);
-            newGp = new TableG_Study_Percent(lfDiff, lfInst, newTbAnalysisVar);
+                int numllf = newllf.Count;
+                for (int i = 0; i < numllf; i++)
+                {
+                    string iLF = newllf[i];
+                    ssq.Add(iLF, tableAnalysis.SSQ(iLF));
+                }
+
+                TableAnalysisOfVariance newTbAnalysisVar = new TableAnalysisOfVariance(newlf, ssq);
+                newGp = new TableG_Study_Percent(lfDiff, lfInst, newTbAnalysisVar);
+            }
 
             return newGp.G_ParametersOptimization();
         }// Calc_G_ParametersOptimización
