@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -149,6 +150,17 @@ namespace GUI_GT
                 }
                 // guardamos la lista
                 list_of_list_g_parameters.Add(list_gP);
+
+                // compute which observation count gave max and min G-coefficient
+                Func<G_ParametersOptimization, double> coef;
+                if (abs)
+                    coef = (g => (double)g.CoefG_Abs());
+                else
+                    coef = (g => (double)g.CoefG_Rel());
+
+                int maxObs = listInt[list_gP.IndexOf(list_gP.OrderByDescending(coef).First())];
+                int minObs = listInt[list_gP.IndexOf(list_gP.OrderBy(coef).First())];
+                chartCoef_G.Series[f.Name()].LegendText = $"{f.Name()}\n (↑{maxObs}, ↓{minObs})";
             }
 
         }// end private void CreatedCharts5Points
