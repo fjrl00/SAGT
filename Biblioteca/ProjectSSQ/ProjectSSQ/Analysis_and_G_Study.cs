@@ -341,10 +341,10 @@ namespace ProjectSSQ
             TableG_Study_Percent newGp;
 
 
-            /* Si todas las facetas de análisis y de optimización son infinitas
+            /* si ninguna de las facetas es fija y todas tienen el mismo universo que el original
              * entoces uso la tabla de análisis original 
-             * o 
-             * si ninguna de las facetas es fija y todas tienen el mismo universo que el original
+             * 
+             * (la primera clausula sirve solo de seguro en caso de que un usuario hubiese puesto int.MaxValue como nivel)
              */
             if ((originalLF.HasAllFacetsSizeInfinite() && newlf.HasAllFacetsSizeInfinite())
                 || (!originalLF.AtLeastOneIsFixed() && (originalLF.EqualsSizeOfUniverse(newlf))))

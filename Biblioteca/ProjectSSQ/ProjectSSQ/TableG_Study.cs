@@ -101,7 +101,9 @@ namespace ProjectSSQ
                         else
                         {
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);   // Note that we can use MixedComp, since fixed facets (the ones for which CorrecComp is relevant) will result in 0 error anyway
+                            ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+
+                            absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
                         }
                     }
                     else                                // If some are differentiation facets, then they do directly count towards both relative and absolute error variances
@@ -115,7 +117,9 @@ namespace ProjectSSQ
                         else
                         {
                             ListFacets lf = totalFacets.ListDesignFacets(key);
-                            absError = lTSSQ.MixedComp(key) * lf.ErrorVarianceFacetTypeModifier(differentiation);
+                            ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+
+                            absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
                             relError = absError;
                         }
                     }

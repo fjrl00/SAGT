@@ -223,12 +223,15 @@ namespace MultiFacetData
 
         /*
          * Descripción:
-         *  Helper function for calculating error variances.
+         *  Applies the Finite Population Correction (FPC) factor to the error variance of a design.
+         *  We use (u - l) / (u - 1) as it's what's most appropriate since the variance components are calculated from N-1, not N
+         *  This is despite sources like Brennan using 1-l/u, which is incorrect.
+         *  
          * Parámetros:
          *      ListFacets de este objeto: es asumido que es la lista de facetas del diseño del que queremos calcular (su contribución a) la varianza del error.
          *      ListFacets lf: lista de facetas de diferenciación del modelo.
          */
-        public double ErrorVarianceFacetTypeModifier(ListFacets lf)
+        public double FPCFactor(ListFacets lf)
         {
             ListFacets aux = this.SubstractFacets(lf);
 
@@ -239,20 +242,11 @@ namespace MultiFacetData
                 for (int i = 0; i < n; i++)
                 {
                     Facet f = aux.FacetInPos(i);
-                    if (f.IsInfinite())
-                    {
-                        retVal *= 1 / (double)f.Level();    // Random facets contribute at a rate of 1/level.
-                    }
-                    else if (f.IsFixed())
-                    {
-                        retVal = 0;     // Fixed facets do not contribute to the error variance.
-                        break;          // No need to continue the loop, multipying further won't change the result
-                    }
-                    else if (f.IsRamdonFinite())
+                    if (!f.IsInfinite())
                     {
                         double l = f.Level();
                         double u = f.SizeOfUniverse();
-                        retVal = retVal * (1 / l) * ((u - l) / (u - 1));    // Facets inbetween contribute to the error at a weighted rate according to the Finite Population Correction (FPC) factor. The 'infiniter' they are the more like infinite facets they contribute (1/level), the 'fixed-er' they are the more like fixed facets they contribute (0)
+                        retVal = retVal * ((u - l) / (u - 1));
                     }
                 }
             }
@@ -529,6 +523,20 @@ namespace MultiFacetData
             return listReturn;
         }
 
+        /* Descripción: 
+         *  Devuelve la lista de facetas primarias (es decir, que aparecen antes de cualquier ':') 
+         *  que contiene todas las facetas del diseño que se pasa como parámetro.
+         */
+        public ListFacets ListDesignPrimaryFacets(string lDesignFacets)
+        {
+            int idx = lDesignFacets.IndexOf(':');
+            if (idx != -1)
+            {
+                lDesignFacets = lDesignFacets.Substring(0, idx);
+            }
+
+            return this.ListDesignFacets(lDesignFacets);
+        }
 
         /* Descripción:
          *  Devuelve un clon de esta lista de facetas donde todas las facetas estes sin omitir y donde los diseños
