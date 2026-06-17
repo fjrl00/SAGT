@@ -1,6 +1,7 @@
 BUGFIXES
 
-- Solved methodological error where D-studies over fixed nesting facets would yield incorrect results
+- Solved methodological error where G-optimization over fixed nesting facets would yield incorrect results
+- Solved methodological error where D-studies when at least one facet was fixed would result in in the whole G-study being recalculated, yielding inaccurate results specially for small level sizes
 - Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
 - Solved bug where omitting rows of omitted facets had no effect on calculations
 - Solved bug where cancelling exiting the program after encountering an exception resulted in exiting anyway

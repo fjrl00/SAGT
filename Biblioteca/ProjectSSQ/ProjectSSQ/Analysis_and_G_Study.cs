@@ -341,19 +341,13 @@ namespace ProjectSSQ
             TableG_Study_Percent newGp;
 
 
-            /* si ninguna de las facetas es fija y todas tienen el mismo universo que el original
-             * entoces uso la tabla de análisis original 
-             * 
-             * (la primera clausula sirve solo de seguro en caso de que un usuario hubiese puesto int.MaxValue como nivel)
+            /* si no se han hecho cambios de universo entoces uso la tabla de análisis original 
              */
-            if ((originalLF.HasAllFacetsSizeInfinite() && newlf.HasAllFacetsSizeInfinite())
-                || (!originalLF.AtLeastOneIsFixed() && (originalLF.EqualsSizeOfUniverse(newlf))))
+            if (originalLF.EqualsSizeOfUniverse(newlf))
             {
                 newGp = new TableG_Study_Percent(lfDiff, lfInst, this.tableAnalysisVariance);
             }
-            /* Si ni las facetas de análisis ni las de optimización tienen facetas fijas y 
-             * se produce en cambio de facetas finita a infinita entonces se utilizan las componentes de
-             * varianza aleatorios no los infinitos
+            /* Si no, se recalcula
              */
             else
             {
