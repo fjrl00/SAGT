@@ -63,7 +63,6 @@ namespace ProjectSSQ
             : this(differentiation, instrumentation)
         {
             List<string> llf_diff_cwr = differentiation.CombinationStringWithoutRepetition();
-            List<string> llf_inst_cwr = instrumentation.CombinationStringWithoutRepetition();
 
             // We officially take the differentiation variance to be the corrected variance component, and consider negative variance components to be 0.
             int n = llf_diff_cwr.Count;
@@ -92,37 +91,17 @@ namespace ProjectSSQ
 
                 if (!differentiationVar.ContainsKey(key))   // Only applies when not all facets in this design are differentiation facets
                 {
-                    if (llf_inst_cwr.Contains(key))     // If all facets in this design are instrumentation facets, they only count towards the absolute error variance
-                    {
-                        if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
-                        {
-                            absError = 0.0;
-                        }
-                        else
-                        {
-                            ListFacets lf = totalFacets.ListDesignFacets(key);
-                            ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+                    ListFacets lf = totalFacets.ListDesignFacets(key);
+                    ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
 
-                            absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
-                        }
-                    }
-                    else                                // If some are differentiation facets, then they do directly count towards both relative and absolute error variances
-                    {
-                        if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
-                        {
-                            absError = 0.0;
-                            relError = 0.0;
+                    if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
+                        absError = 0.0;
+                    else
+                        absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
 
-                        }
-                        else
-                        {
-                            ListFacets lf = totalFacets.ListDesignFacets(key);
-                            ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+                    if(lf.ContainsAnyOf(differentiation)) // Only calculate relative error if the design contains any differentiation facets
+                        relError = absError;
 
-                            absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
-                            relError = absError;
-                        }
-                    }
                     ErrorVar error_variance = new ErrorVar(relError, absError);
                     this.errorVar.Add(key, error_variance);
                 }

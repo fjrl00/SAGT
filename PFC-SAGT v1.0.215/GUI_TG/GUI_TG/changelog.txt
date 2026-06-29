@@ -1,9 +1,14 @@
-BUGFIXES
+CALCULATION FIXES
 
 - Solved methodological error where G-optimization over non-random infinite nesting facets would yield incorrect results
 - Solved methodological error where D-studies when at least one facet was fixed would result in in the whole G-study being recalculated, yielding inaccurate results specially for small level sizes
+- Solved methodological error where the contribution of effects with a nesting to the relative error would be often missed
 - Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
 - Solved bug where omitting rows of omitted facets had no effect on calculations
+- Solved bug where, in certain cases, the relative and absolute error contributed by an effect would be swapped out
+
+OTHER BUGFIXES
+
 - Solved bug where cancelling exiting the program after encountering an exception resulted in exiting anyway
 - Solved bug where clicking on the content of certain cells would trigger an exception
 - Solved bug where saving savefiles that contained the number "NaN" would render them impossible to load
@@ -19,7 +24,6 @@ BUGFIXES
 - Overhauled how the app works in different culture settings, bugs that would've been triggered regarding handling text data in certain cultures like Turkish have been solved.
 - Solved other minor bugs throughout the app related to handling null values
 - Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
-- Solved bug where, in certain cases, the relative and absolute error of an instrumentation source would be swapped out
 - Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them in certain image viewers
 - Solved bug where changing language in the Means section would bug out Typical Score means tables' headers
 - Solved bug where invalid inputs in New Sum Of Squares would trigger both an error message and an exception
@@ -91,4 +95,4 @@ KNOWN ISSUES
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
 
-Last updated: 17/06/2026
+Last updated: 29/06/2026

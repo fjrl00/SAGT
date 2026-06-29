@@ -285,6 +285,24 @@ namespace MultiFacetData
             return retVal;
         }
 
+        /*
+         * Descripción:
+         *  Devuelve true si alguna faceta de la lista de facetas que se pasa como parámetro esta 
+         *  contenida en la lista de facetas que se pasa como parámetro implicito.
+         * Parámetros:
+         *      ListFacets lf: Lista de facetas que queremos comprobar.
+         */
+        public bool ContainsAnyOf(ListFacets lf)
+        {
+            bool retVal = false; // valor de retorno
+            int lg = lf.Count();
+            for (int i = 0; i < lg && !retVal; i++)
+            {
+                retVal = this.listFacets.Contains(lf.FacetInPos(i));
+            }
+            return retVal;
+        }
+
 
         /* Descripción:
          *  Devuelve una lista a la que se le han sustituido los niveles de aquellas facetas que  
