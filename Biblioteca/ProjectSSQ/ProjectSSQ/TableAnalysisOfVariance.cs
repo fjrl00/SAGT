@@ -52,6 +52,8 @@ namespace ProjectSSQ
         private Dictionary<string, double?> ssq; // suma de cuadrados
         private Dictionary<string, double?> msq; // Suma de cuadrados medios (M.S.C.)
 
+        private Dictionary<string, Dictionary<string, double>> msqCoefficients; // Auxiliary for standard error calculation
+
         // Varianzas
         // =========
         // Componente de Varianza aleatorio
@@ -84,6 +86,9 @@ namespace ProjectSSQ
             this.df = new Dictionary<string, double>();
             /* inicalizamos el vector cuadrados medios de las desviaciones (msq)*/
             this.msq = new Dictionary<string, double?>();
+
+            this.msqCoefficients = new Dictionary<string, Dictionary<string, double>>();
+
             /* inicializamos el vector de componentes de varianza aleatorios */
             this.randomComp = new Dictionary<string, double?>();
             this.mixedComp = new Dictionary<string, double?>();
@@ -585,8 +590,11 @@ namespace ProjectSSQ
 
             for (int j = 0; j < n; j++)     //for each design
             {
+                Dictionary<string, double> msqc = new Dictionary<string, double>(); // stores the coefficients of each ms coefficient along the way
+
                 string design = sortl[j];
                 double? d = this.msq[design];   // STEP 0
+                msqc.Add(design, 1);
                 ListFacets lf = this.listFacets.ListDesignFacets(design);
                 int sign = (-1);
 
@@ -594,6 +602,8 @@ namespace ProjectSSQ
                 int numF = lf.Count();
 
                 ListFacets l_facets_used = new ListFacets();    // Lista de facetas usadas
+
+                
 
                 // STEP 1
                 if (numF != this.listFacets.Count())
@@ -611,6 +621,7 @@ namespace ProjectSSQ
                         if ((numF == numFacet_of_lf_aux) && lf_aux.ContainsList(lf))
                         {
                             d += (sign * this.msq[design_aux]);
+                            msqc.Add(design_aux, sign);
                             l_facets_used = l_facets_used.Union(lf_aux);
                             numOfTerm++;
                         }
@@ -635,6 +646,7 @@ namespace ProjectSSQ
                             if ((numF == numFacet_of_lf_aux) && l_facets_used.ContainsList(lf_aux) && lf_aux.ContainsList(lf))
                             {
                                 d += (sign * this.msq[design_aux]);
+                                msqc.Add(design_aux, sign);
                                 l_facets_used2 = l_facets_used2.Union(lf_aux);
                                 numOfTerm++;
                             }
@@ -644,8 +656,15 @@ namespace ProjectSSQ
                 }
 
                 // Calculo la componente de varianza aleatoria y la añado a la estructura de datos
-                d = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels()) * d;
+                double coef = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels());
+                d = coef * d;
                 this.randomComp.Add(design, d);
+
+                foreach (string key in msqc.Keys.ToList())
+                {
+                    msqc[key] = msqc[key] * coef;
+                }
+                this.msqCoefficients.Add(design, msqc);
             }
         }// end CalcRandomComp
 
@@ -764,22 +783,18 @@ namespace ProjectSSQ
             for (int i = 0; i < pos; i++)       //for each design
             {
                 string key = this.ldesigns[i];
-                ListFacets lf = this.listFacets.ListDesignFacets(key);
-                double aux = 0;
-                for (int j = 0; j < pos; j++)
+                double retVal = 0;
+                Dictionary<string, double> msqc = msqCoefficients[key];
+                foreach (string key_aux in msqc.Keys)
                 {
-                    string key_aux = this.ldesigns[j];
-                    ListFacets lf_aux = this.listFacets.ListDesignFacets(key_aux);
-                    if (lf_aux.ContainsList(lf))
-                    {
-                        double d1 = (double)this.msq[key_aux];
-                        double d = d1 * d1 * 2;
-                        double d2 = lf_aux.DegreeOfFreedom(key_aux);
-                        aux += (d / (d2 + 2));
-                    }
-                }
+                    double ms = (double)this.msq[key_aux];
+                    double coef = msqc[key_aux];
+                    ListFacets lf_key = this.listFacets.ListDesignFacets(key_aux);
+                    double df = lf_key.DegreeOfFreedom(key_aux);
 
-                this.standardError[key] = (1 / this.listFacets.SubstractFacets(lf).MultOfLevels()) * Math.Sqrt(aux);
+                    retVal += 2 * Math.Pow(coef * ms, 2) / (df + 2);
+                }
+                this.standardError[key] = Math.Sqrt(retVal);
             }
         }
 
