@@ -92,14 +92,13 @@ namespace ProjectSSQ
                 if (!differentiationVar.ContainsKey(key))   // Only applies when not all facets in this design are differentiation facets
                 {
                     ListFacets lf = totalFacets.ListDesignFacets(key);
-                    ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
 
                     if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
                         absError = 0.0;
                     else
-                        absError = lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
+                        absError = CalcDStudyVarComp(ldesign, key, lTSSQ, totalFacets, differentiation, lf);
 
-                    if(lf.ContainsAnyOf(differentiation)) // Only calculate relative error if the design contains any differentiation facets
+                    if (lf.ContainsAnyOf(differentiation)) // Only calculate relative error if the design contains any differentiation facets
                         relError = absError;
 
                     ErrorVar error_variance = new ErrorVar(relError, absError);
@@ -324,6 +323,45 @@ namespace ProjectSSQ
 
         #endregion Métodos de consulta de la clase TableG_Study
 
+        /* Descripción:
+         *  Calcula el componente de varianza del D estudio 
+         *  Fuente: Brennan (2001) 5.1.1 (5.6)
+         *  
+         * lTSSQ contiene los antiguos datos
+         * totalFacets contiene los nuevos
+         *  
+         * lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();  // Simplified version only valid for universe size staying unchanged
+         */
+        private double? CalcDStudyVarComp(List<string> ldesign, string key, TableAnalysisOfVariance lTSSQ, ListFacets totalFacets, ListFacets differentiation, ListFacets lf)
+        {
+            ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+
+            double? retVal = 0;
+
+            int n = ldesign.Count;
+            for (int i = 0; i < n; i++)
+            {
+                string key_aux = ldesign[i];
+                ListFacets lf_aux = totalFacets.ListDesignFacets(key_aux);
+                ListFacets primaryLf_aux = totalFacets.ListDesignPrimaryFacets(key_aux);
+
+                if (lf_aux.ContainsList(lf))
+                {
+                    double K = primaryLf_aux.FPCFactor_N(lf, lTSSQ.ListFacets());
+                    double pi = lf_aux.SubstractFacets(lf).MultSizeOfUniverse();
+
+                    if(pi != 0) // i.e. pi didn't come up infinite, in which case we'dd add 0
+                    {
+                        retVal = retVal + lTSSQ.MixedComp(key_aux) * K / pi;
+                    }
+                    
+                }
+            }
+
+            retVal = retVal * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
+
+            return retVal;
+        }
 
         /* Descripción:
          *  Calcula el valor total de todos los target contenidos en el objeto

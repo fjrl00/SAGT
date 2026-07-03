@@ -256,6 +256,48 @@ namespace MultiFacetData
 
         /*
          * Descripción:
+         *  FPCFactor applied to universe sizes. Brennan (2001) 5.1.1 (5.7)
+         *  Assumed that the new universe can't be bigger than the first.
+         *  
+         * Parámetros:
+         *      ListFacets de este objeto: es asumido que es la lista de facetas del diseño del que queremos calcular (su contribución a) la varianza del error.
+         *      ListFacets old: contiene los antiguos tamaños de universo
+         *      ListFacets lf: lista de facetas que sustraer.
+         */
+        public double FPCFactor_N(ListFacets lf, ListFacets old)
+        {
+            ListFacets aux = this.SubstractFacets(lf);
+
+            double retVal = 1;
+            int n = aux.Count();
+            if (n != 0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    Facet f = aux.FacetInPos(i);
+                    Facet f_old = old.FacetInPos(old.IndexOf(f));
+
+                    if(f_old.IsInfinite())
+                    {
+                        if(f.IsInfinite())
+                        {
+                            retVal *= 0;    // retVal * (1 - inf/inf) = retVal * (1 - 1) = retVal * 0
+                        }   // else: retVal * (1 - finite/inf) = retVal * (1 - 0) = retVal * 1 = retVal
+                    } else
+                    {
+                        double u = f.SizeOfUniverse();
+                        double u_old = f_old.SizeOfUniverse();
+
+                        retVal = retVal * (1 - u / u_old);
+                    }
+                }
+            }
+            return retVal;
+        }
+
+
+        /*
+         * Descripción:
          *  Devuelve true si la faceta se encuentra en la lista, false en caso contrario.
          * Parámetros:
          *      Facet f: faceta que queremos comprobar si pertenece o no a la lista

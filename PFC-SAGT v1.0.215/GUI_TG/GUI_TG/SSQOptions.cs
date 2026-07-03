@@ -963,7 +963,7 @@ namespace GUI_GT
                                     newLevelListDiffFacets.Add(auxF);
                                 }
 
-                                retVal = tablesOfAnalysisG.Calc_G_ParametersOptimización(newlf, newLevelListDiffFacets, newLevelListInstFacets);
+                                retVal = tablesOfAnalysisG.D_Study(newlf, newLevelListDiffFacets, newLevelListInstFacets);
 
 
                                 /*===============================================================================================*/

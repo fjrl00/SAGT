@@ -4,6 +4,7 @@ CALCULATION FIXES
 - Solved methodological error where D-studies when at least one facet was fixed would result in in the whole G-study being recalculated, yielding inaccurate results specially for small level sizes
 - Solved methodological error where the contribution of effects with a nesting to the relative error would be often missed
 - Solved methodological error where the standard error calculation would be incorrect for non-random infinite designs and some nested designs
+- Solved methodological error where D-study calculations for changed universe sizes were inaccurate
 - Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
 - Solved bug where omitting rows of omitted facets had no effect on calculations
 - Solved bug where, in certain cases, the relative and absolute error contributed by an effect would be swapped out

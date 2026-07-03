@@ -310,20 +310,17 @@ namespace ProjectSSQ
                 newLfInst.Add(newLf.LookingFacet(f.Name()));
             }
 
-            return this.Calc_G_ParametersOptimización(newLf, newLfDiff, newLfInst);
+            return this.D_Study(newLf, newLfDiff, newLfInst);
         }// end Calc_G_ParametersOptimización
 
 
         /* Descripción:
-         *  Calcula los G_Parámetros de optimización a partir de los nuevos niveles pasados como parámetros.
+         *  Realiza un D Estudio a partir del G estudio en this.tableAnalysisVariance, 
+         *  con los datos editados contenidos en newLf
          *  
-         * NOTA 1: No comprueba que las lista de facetas que se pasan como parámetros sean "legales" para su uso
-         * 
-         * ¡¡MUY IMPORTANTE!!
-         * ==================
-         * NOTA 2: Es necesario revisar la estimación de los nuevos niveles cuando se trata de fijo o finito aleatorio.
+         * NOTA: No comprueba que las lista de facetas que se pasan como parámetros sean "legales" para su uso
          */
-        public G_ParametersOptimization Calc_G_ParametersOptimización(ListFacets newlf, ListFacets lfDiff, ListFacets lfInst)
+        public G_ParametersOptimization D_Study(ListFacets newlf, ListFacets lfDiff, ListFacets lfInst)
         {
             /* Tenemos que ordenar la lista de facetas newlf en el mismo orden que la original
              * para luego no tener problemas para encontrar los datos.
@@ -338,33 +335,7 @@ namespace ProjectSSQ
             lfDiff = this.List_Facets_Differentiation().SortByListFacets(lfDiff);
             lfInst = this.List_Facets_Intrumentation().SortByListFacets(lfInst);
 
-            TableG_Study_Percent newGp;
-
-
-            /* si no se han hecho cambios de universo entoces uso la tabla de análisis original 
-             */
-            if (originalLF.EqualsSizeOfUniverse(newlf))
-            {
-                newGp = new TableG_Study_Percent(lfDiff, lfInst, this.tableAnalysisVariance);
-            }
-            /* Si no, se recalcula
-             */
-            else
-            {
-                // obtenemos la suma de cuadrados para crear la nueva tabla de análisis
-                Dictionary<string, double?> ssq = new Dictionary<string, double?>();
-                List<string> newllf = newlf.CombinationStringWithoutRepetition();
-
-                int numllf = newllf.Count;
-                for (int i = 0; i < numllf; i++)
-                {
-                    string iLF = newllf[i];
-                    ssq.Add(iLF, tableAnalysis.SSQ(iLF));
-                }
-
-                TableAnalysisOfVariance newTbAnalysisVar = new TableAnalysisOfVariance(newlf, ssq);
-                newGp = new TableG_Study_Percent(lfDiff, lfInst, newTbAnalysisVar);
-            }
+            TableG_Study_Percent newGp = new TableG_Study_Percent(lfDiff, lfInst, this.tableAnalysisVariance);
 
             return newGp.G_ParametersOptimization();
         }// Calc_G_ParametersOptimización
