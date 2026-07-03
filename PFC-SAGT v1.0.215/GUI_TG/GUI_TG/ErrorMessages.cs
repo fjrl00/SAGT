@@ -35,6 +35,7 @@ namespace GUI_GT
         private string errorVarTableObs = "Error: uno o más varibles observadas no contiene datos numéricos.";
         private string errorNoNumFacet = "No ha especificado el número de facetas.";
         private string errorOverUniverse = "El tamaño del nivel es mayor que el universo.";
+        private string errorDUniverse = "Los tamaños de universo no pueden aumentarse en D-Estudios. Crea un nuevo G-Estudio con los tamaños de universo deseados primero.";
         private string errorLevelFormat = "Los niveles no han sido especificados correctamente.";
         private string errorOverMaxRows = "Se ha sobrepasado el tamaño máximo de la tabla";
         private string errorInvalidRange = "Intervalo no valido";
@@ -131,6 +132,8 @@ namespace GUI_GT
                 errorNoNumFacet = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorOverUniverse";
                 errorOverUniverse = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorDUniverse";
+                errorDUniverse = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorLevelFormat";
                 errorLevelFormat = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorOverMaxRows";

@@ -881,8 +881,14 @@ namespace GUI_GT
                                 {
                                     int level = int.Parse(my_row.Cells[3].Value.ToString());
                                     int size = Facet.readSizeOfUniverse(my_row.Cells[4].Value.ToString());
+                                    int old_size = Facet.readSizeOfUniverse(my_row.Cells[2].Value.ToString());
 
-                                    if (level > size)
+                                    if (size > old_size)
+                                    {
+                                        correct = false;
+                                        ShowMessageErrorOK(errorDUniverse);
+                                    } 
+                                    else if (level > size)
                                     {// (*2*)
                                         correct = false;
                                         ShowMessageErrorOK(errorOverUniverse);
@@ -904,8 +910,14 @@ namespace GUI_GT
                                 {
                                     int level = int.Parse(my_row.Cells[1].Value.ToString());
                                     int newSize = Facet.readSizeOfUniverse(my_row.Cells[3].Value.ToString());
+                                    int old_size = Facet.readSizeOfUniverse(my_row.Cells[2].Value.ToString());
 
-                                    if (level > newSize)
+                                    if (newSize > old_size)
+                                    {
+                                        correct = false;
+                                        ShowMessageErrorOK(errorDUniverse);
+                                    } 
+                                    else if (level > newSize)
                                     {// (*3*)
                                         correct = false;
                                         ShowMessageErrorOK(errorOverUniverse);
@@ -1231,19 +1243,31 @@ namespace GUI_GT
                             {
                                 if (beginning > 0 && ending > 0 && beginning < ending)
                                 {
-                                    salir = true;
                                     ListFacets lfSeleted = FacetsSelectedIn_cListBox(lf, checkedLtBox);
-
-                                    try
+                                    bool foundError = false;
+                                    foreach (Facet f in lfSeleted)
                                     {
-                                        FormShowCharts2 formShowCharts2 =
-                                            new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
-                                                isAbs, text, beginning, ending, increment);
-                                        formShowCharts2.Show();
+                                        if (f.SizeOfUniverse() < ending)
+                                        {
+                                            foundError = true;
+                                            ShowMessageErrorOK(errorDUniverse);
+                                            break;
+                                        }
                                     }
-                                    catch (InvalidOperationException inv_ex)
+                                    if(!foundError)
                                     {
-                                        ShowMessageErrorOK(inv_ex.Message);
+                                        salir = true;
+                                        try
+                                        {
+                                            FormShowCharts2 formShowCharts2 =
+                                                new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
+                                                    isAbs, text, beginning, ending, increment);
+                                            formShowCharts2.Show();
+                                        }
+                                        catch (InvalidOperationException inv_ex)
+                                        {
+                                            ShowMessageErrorOK(inv_ex.Message);
+                                        }
                                     }
                                 }
                                 else
