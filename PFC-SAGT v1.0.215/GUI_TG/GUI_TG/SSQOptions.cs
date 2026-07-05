@@ -1241,33 +1241,35 @@ namespace GUI_GT
                             // Debe haber al menos una faceta seleccionada
                             if (checkedLtBox.CheckedItems.Count > 0)
                             {
-                                if (beginning > 0 && ending > 0 && beginning < ending)
+                                if (beginning > 0 && beginning < ending)
                                 {
                                     ListFacets lfSeleted = FacetsSelectedIn_cListBox(lf, checkedLtBox);
-                                    bool foundError = false;
+
+                                    bool allUniversesBelow = true;
                                     foreach (Facet f in lfSeleted)
                                     {
-                                        if (f.SizeOfUniverse() < ending)
+                                        if (ending < f.SizeOfUniverse())
                                         {
-                                            foundError = true;
-                                            ShowMessageErrorOK(errorDUniverse);
-                                            break;
+                                            allUniversesBelow = false;
                                         }
                                     }
-                                    if(!foundError)
+                                    if(allUniversesBelow)
                                     {
-                                        salir = true;
-                                        try
-                                        {
-                                            FormShowCharts2 formShowCharts2 =
-                                                new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
-                                                    isAbs, text, beginning, ending, increment);
-                                            formShowCharts2.Show();
-                                        }
-                                        catch (InvalidOperationException inv_ex)
-                                        {
-                                            ShowMessageErrorOK(inv_ex.Message);
-                                        }
+                                        ShowMessageErrorOK(errorDUniverse);
+                                        break;
+                                    }
+                                    
+                                    salir = true;
+                                    try
+                                    {
+                                        FormShowCharts2 formShowCharts2 =
+                                            new FormShowCharts2(cfgApli, tAnalysis_tG_Study_Opt, lfSeleted,
+                                                isAbs, text, beginning, ending, increment);
+                                        formShowCharts2.Show();
+                                    }
+                                    catch (InvalidOperationException inv_ex)
+                                    {
+                                        ShowMessageErrorOK(inv_ex.Message);
                                     }
                                 }
                                 else

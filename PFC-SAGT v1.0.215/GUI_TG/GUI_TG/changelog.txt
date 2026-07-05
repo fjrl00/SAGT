@@ -92,10 +92,11 @@ NEW FEATURES
 
 - Facet nestings can now be edited in the Data section after having been created/imported
 - SAS datasets can now be imported
+- Curves in graphics now follow the exact function the G-coefficients follow instead of being an approximation from connecting the dots. The function of such curve is now also printed on the screen.
 
 KNOWN ISSUES
 
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
 
-Last updated: 04/07/2026
+Last updated: 05/07/2026
