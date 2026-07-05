@@ -16,6 +16,9 @@
  */
 
 using AuxMathCalcGT;
+using MathNet.Numerics;
+using MathNet.Numerics.Optimization;
+using MathNet.Numerics.LinearAlgebra;
 using MultiFacetData;
 using ProjectSSQ;
 using System;
@@ -111,7 +114,7 @@ namespace GUI_GT
                 Facet f = this.facetsSelected.FacetInPos(i);
                 chartCoef_G.Series.Add(f.Name());
                 chartCoef_G.Series[f.Name()].Name = f.Name();
-                chartCoef_G.Series[f.Name()].ChartType = this.cfg.GetSerieChartType();
+                chartCoef_G.Series[f.Name()].ChartType = SeriesChartType.Point;
                 chartCoef_G.Series[f.Name()].BorderWidth = 3;
                 chartCoef_G.Series[f.Name()].MarkerSize = 9;
                 // Marca de estilo de representación del punto
@@ -151,16 +154,59 @@ namespace GUI_GT
                 // guardamos la lista
                 list_of_list_g_parameters.Add(list_gP);
 
-                // compute which observation count gave max and min G-coefficient
+
+                // --- curve fitting ---
                 Func<G_ParametersOptimization, double> coef;
                 if (abs)
                     coef = (g => (double)g.CoefG_Abs());
                 else
                     coef = (g => (double)g.CoefG_Rel());
 
-                int maxObs = listInt[list_gP.IndexOf(list_gP.OrderByDescending(coef).First())];
-                int minObs = listInt[list_gP.IndexOf(list_gP.OrderBy(coef).First())];
-                chartCoef_G.Series[f.Name()].LegendText = $"{f.Name()}\n (↑{maxObs}, ↓{minObs})";
+                double[] xs = listInt.Select(n => (double)n).ToArray();
+                double[] ys = list_gP.Select(g => coef(g)).ToArray();
+
+                // Fit G(n) = G∞ * n / (n + K)
+                var fitResult = new LevenbergMarquardtMinimizer().FindMinimum(
+                    ObjectiveFunction.NonlinearModel(
+                        (p, xv) =>
+                        {
+                            var result = Vector<double>.Build.Dense(xv.Count);
+                            for (int m = 0; m < xv.Count; m++)
+                                result[m] = (p[0] * xv[m]) / (xv[m] + p[1]);
+                            return result;
+                        },
+                        Vector<double>.Build.DenseOfArray(xs),
+                        Vector<double>.Build.DenseOfArray(ys)),
+                    Vector<double>.Build.DenseOfArray(new[] { ys.Max(), xs[xs.Length / 2] }));
+
+                double Ginf = fitResult.MinimizingPoint[0];
+                double K = fitResult.MinimizingPoint[1];
+
+                int dec = cfg.GetNumberOfDecimals();
+                string sep = cfg.GetDecimalSeparator();
+                chartCoef_G.Series[f.Name()].LegendText =
+                    $"{f.Name()} | G∞={ConvertNum.DecimalToString(Ginf, dec, sep)}, K={ConvertNum.DecimalToString(K, dec, sep)}";
+
+                chartCoef_G.ApplyPaletteColors();
+                string fitSeriesName = f.Name() + "_fit";
+                chartCoef_G.Series.Add(fitSeriesName);
+                chartCoef_G.Series[fitSeriesName].ChartType = SeriesChartType.Line;
+                chartCoef_G.Series[fitSeriesName].BorderWidth = chartCoef_G.Series[f.Name()].BorderWidth;
+                chartCoef_G.Series[fitSeriesName].BorderDashStyle = ChartDashStyle.Solid;
+                chartCoef_G.Series[fitSeriesName].Color = chartCoef_G.Series[f.Name()].Color;
+                chartCoef_G.Series[fitSeriesName].MarkerStyle = MarkerStyle.None;
+                chartCoef_G.Series[fitSeriesName].IsValueShownAsLabel = false;
+                chartCoef_G.Series[fitSeriesName].IsVisibleInLegend = false;
+
+                int fitPointCount = nPoints * 5;
+                for (int m = 0; m < fitPointCount; m++)
+                {
+                    double fracIndex = m * (nPoints - 1.0) / (fitPointCount - 1.0);
+                    double nx = xs[0] + fracIndex * (xs[xs.Length - 1] - xs[0]) / (nPoints - 1.0);
+                    DataPoint dp = new DataPoint(fracIndex, (Ginf * nx) / (nx + K));
+                    dp.AxisLabel = m % 5 == 0 ? ((int)Math.Round(nx)).ToString() : "";
+                    chartCoef_G.Series[fitSeriesName].Points.Add(dp);
+                }
             }
 
         }// end private void CreatedCharts5Points
