@@ -292,11 +292,6 @@ namespace GUI_GT
          */
         private void InitChartComboBox()
         {
-            this.comboBoxChartType.Items.AddRange(new object[] {
-            "Line",
-            "Spline"});
-            this.comboBoxChartType.SelectedIndex = this.comboBoxChartType.FindStringExact(cfg.GetSerieChartType().ToString());
-
             this.comboBoxLabelPoint.Items.AddRange(new object[] {
             "None",
             "Top",
@@ -414,7 +409,6 @@ namespace GUI_GT
             }
             this.cfg.Set_Path_Workspace(this.tbPath_Workspace.Text);
             // Actualizamos el tipo de gráfico
-            SerieChartTypeSetting();
             LabelAlignmentStyles();
             MarkerStyle();
             return this.cfg;
@@ -456,24 +450,6 @@ namespace GUI_GT
                         break;
                 }
                 // formPrincipal.RefreshDataInAllData();
-            }
-        }
-
-
-        /* Descripción:
-         *  Actualiza la variable de tipo de gráfica
-         */
-        private void SerieChartTypeSetting()
-        {
-            int pos = this.comboBoxChartType.SelectedIndex;
-            switch (pos)
-            {
-                case (0):
-                    cfg.SetSerieChartType(SeriesChartType.Line);
-                    break;
-                case (1):
-                    cfg.SetSerieChartType(SeriesChartType.Spline);
-                    break;
             }
         }
 
@@ -808,8 +784,6 @@ namespace GUI_GT
                 // Traducimos los textos de groupBoxSettingChart
                 name = this.groupBoxChartSetting.Name.ToString();
                 groupBoxChartSetting.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = this.lbChartType.Name.ToString();
-                lbChartType.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbLabelPoint.Name.ToString();
                 lbLabelPoint.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbMarkerStyle.Name.ToString();

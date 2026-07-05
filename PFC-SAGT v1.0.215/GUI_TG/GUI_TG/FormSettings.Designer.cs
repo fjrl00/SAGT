@@ -57,29 +57,27 @@
             this.comboBoxMarkerStyle = new System.Windows.Forms.ComboBox();
             this.comboBoxLabelPoint = new System.Windows.Forms.ComboBox();
             this.lbLabelPoint = new System.Windows.Forms.Label();
-            this.comboBoxChartType = new System.Windows.Forms.ComboBox();
-            this.lbChartType = new System.Windows.Forms.Label();
             this.checkBoxErrorAbsStandDev = new System.Windows.Forms.CheckBox();
             this.checkBoxErrorRelStandDev = new System.Windows.Forms.CheckBox();
             this.checkBoxTotalAbsErrorVar = new System.Windows.Forms.CheckBox();
             this.checkBoxTotalRelErrorVar = new System.Windows.Forms.CheckBox();
             this.checkBox_coefG_Abs = new System.Windows.Forms.CheckBox();
             this.checkBox_coefG_Rel = new System.Windows.Forms.CheckBox();
-            this.tabPageConect = new System.Windows.Forms.TabPage();
-            this.tbPath_Workspace = new System.Windows.Forms.TextBox();
-            this.lbWorkspace = new System.Windows.Forms.Label();
-            this.colorChartDialog = new System.Windows.Forms.ColorDialog();
-            this.btOk = new System.Windows.Forms.Button();
-            this.btCancel = new System.Windows.Forms.Button();
             this.pictBoxColorErrorAbsStandDev = new System.Windows.Forms.PictureBox();
             this.pictBoxColorErrorRelStandDev = new System.Windows.Forms.PictureBox();
             this.pictBoxColorTotalAbsErrorVar = new System.Windows.Forms.PictureBox();
             this.pictBoxColorTotalRelErrorVar = new System.Windows.Forms.PictureBox();
             this.pictBoxColor_Coef_G_Abs = new System.Windows.Forms.PictureBox();
             this.pictBoxColor_Coef_G_Rel = new System.Windows.Forms.PictureBox();
+            this.tabPageConect = new System.Windows.Forms.TabPage();
             this.btSelectWorkspace = new System.Windows.Forms.Button();
             this.btRemoveUserPass = new System.Windows.Forms.Button();
+            this.tbPath_Workspace = new System.Windows.Forms.TextBox();
+            this.lbWorkspace = new System.Windows.Forms.Label();
             this.btLoadDefaultSetting = new System.Windows.Forms.Button();
+            this.colorChartDialog = new System.Windows.Forms.ColorDialog();
+            this.btOk = new System.Windows.Forms.Button();
+            this.btCancel = new System.Windows.Forms.Button();
             this.btHelp = new System.Windows.Forms.Button();
             this.tabControlSettings.SuspendLayout();
             this.tabPageReports.SuspendLayout();
@@ -88,13 +86,13 @@
             this.groupBoxTypeOfTableMeans.SuspendLayout();
             this.tabPageGraphics.SuspendLayout();
             this.groupBoxChartSetting.SuspendLayout();
-            this.tabPageConect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorErrorAbsStandDev)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorErrorRelStandDev)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorTotalAbsErrorVar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorTotalRelErrorVar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColor_Coef_G_Abs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColor_Coef_G_Rel)).BeginInit();
+            this.tabPageConect.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlSettings
@@ -401,11 +399,9 @@
             this.groupBoxChartSetting.Controls.Add(this.comboBoxMarkerStyle);
             this.groupBoxChartSetting.Controls.Add(this.comboBoxLabelPoint);
             this.groupBoxChartSetting.Controls.Add(this.lbLabelPoint);
-            this.groupBoxChartSetting.Controls.Add(this.comboBoxChartType);
-            this.groupBoxChartSetting.Controls.Add(this.lbChartType);
             this.groupBoxChartSetting.Location = new System.Drawing.Point(342, 12);
             this.groupBoxChartSetting.Name = "groupBoxChartSetting";
-            this.groupBoxChartSetting.Size = new System.Drawing.Size(199, 225);
+            this.groupBoxChartSetting.Size = new System.Drawing.Size(199, 204);
             this.groupBoxChartSetting.TabIndex = 12;
             this.groupBoxChartSetting.TabStop = false;
             this.groupBoxChartSetting.Text = "Gráfico Coeficiente G";
@@ -413,7 +409,7 @@
             // lbMarkerStyle
             // 
             this.lbMarkerStyle.AutoSize = true;
-            this.lbMarkerStyle.Location = new System.Drawing.Point(9, 128);
+            this.lbMarkerStyle.Location = new System.Drawing.Point(7, 77);
             this.lbMarkerStyle.Name = "lbMarkerStyle";
             this.lbMarkerStyle.Size = new System.Drawing.Size(52, 13);
             this.lbMarkerStyle.TabIndex = 5;
@@ -423,7 +419,7 @@
             // 
             this.comboBoxMarkerStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMarkerStyle.FormattingEnabled = true;
-            this.comboBoxMarkerStyle.Location = new System.Drawing.Point(10, 145);
+            this.comboBoxMarkerStyle.Location = new System.Drawing.Point(10, 97);
             this.comboBoxMarkerStyle.Name = "comboBoxMarkerStyle";
             this.comboBoxMarkerStyle.Size = new System.Drawing.Size(168, 21);
             this.comboBoxMarkerStyle.TabIndex = 4;
@@ -432,7 +428,7 @@
             // 
             this.comboBoxLabelPoint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLabelPoint.FormattingEnabled = true;
-            this.comboBoxLabelPoint.Location = new System.Drawing.Point(10, 93);
+            this.comboBoxLabelPoint.Location = new System.Drawing.Point(10, 43);
             this.comboBoxLabelPoint.Name = "comboBoxLabelPoint";
             this.comboBoxLabelPoint.Size = new System.Drawing.Size(168, 21);
             this.comboBoxLabelPoint.TabIndex = 3;
@@ -440,29 +436,11 @@
             // lbLabelPoint
             // 
             this.lbLabelPoint.AutoSize = true;
-            this.lbLabelPoint.Location = new System.Drawing.Point(7, 77);
+            this.lbLabelPoint.Location = new System.Drawing.Point(7, 23);
             this.lbLabelPoint.Name = "lbLabelPoint";
             this.lbLabelPoint.Size = new System.Drawing.Size(133, 13);
             this.lbLabelPoint.TabIndex = 2;
             this.lbLabelPoint.Text = "Etiquetas de puntuaciones";
-            // 
-            // comboBoxChartType
-            // 
-            this.comboBoxChartType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxChartType.FormattingEnabled = true;
-            this.comboBoxChartType.Location = new System.Drawing.Point(10, 43);
-            this.comboBoxChartType.Name = "comboBoxChartType";
-            this.comboBoxChartType.Size = new System.Drawing.Size(168, 21);
-            this.comboBoxChartType.TabIndex = 1;
-            // 
-            // lbChartType
-            // 
-            this.lbChartType.AutoSize = true;
-            this.lbChartType.Location = new System.Drawing.Point(7, 23);
-            this.lbChartType.Name = "lbChartType";
-            this.lbChartType.Size = new System.Drawing.Size(78, 13);
-            this.lbChartType.TabIndex = 0;
-            this.lbChartType.Text = "Tipo de gráfico";
             // 
             // checkBoxErrorAbsStandDev
             // 
@@ -524,65 +502,6 @@
             this.checkBox_coefG_Rel.Text = "Coeficiente G Rel.";
             this.checkBox_coefG_Rel.UseVisualStyleBackColor = true;
             // 
-            // tabPageConect
-            // 
-            this.tabPageConect.Controls.Add(this.btSelectWorkspace);
-            this.tabPageConect.Controls.Add(this.btRemoveUserPass);
-            this.tabPageConect.Controls.Add(this.tbPath_Workspace);
-            this.tabPageConect.Controls.Add(this.lbWorkspace);
-            this.tabPageConect.Controls.Add(this.btLoadDefaultSetting);
-            this.tabPageConect.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConect.Name = "tabPageConect";
-            this.tabPageConect.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConect.Size = new System.Drawing.Size(570, 289);
-            this.tabPageConect.TabIndex = 2;
-            this.tabPageConect.Text = "Conexión";
-            this.tabPageConect.UseVisualStyleBackColor = true;
-            // 
-            // tbPath_Workspace
-            // 
-            this.tbPath_Workspace.BackColor = System.Drawing.SystemColors.Window;
-            this.tbPath_Workspace.Location = new System.Drawing.Point(19, 51);
-            this.tbPath_Workspace.Name = "tbPath_Workspace";
-            this.tbPath_Workspace.ReadOnly = true;
-            this.tbPath_Workspace.Size = new System.Drawing.Size(533, 20);
-            this.tbPath_Workspace.TabIndex = 2;
-            // 
-            // lbWorkspace
-            // 
-            this.lbWorkspace.AutoSize = true;
-            this.lbWorkspace.Location = new System.Drawing.Point(17, 35);
-            this.lbWorkspace.Name = "lbWorkspace";
-            this.lbWorkspace.Size = new System.Drawing.Size(95, 13);
-            this.lbWorkspace.TabIndex = 1;
-            this.lbWorkspace.Text = "Espacio de trabajo";
-            // 
-            // btOk
-            // 
-            this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
-            this.btOk.Location = new System.Drawing.Point(285, 340);
-            this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(92, 32);
-            this.btOk.TabIndex = 0;
-            this.btOk.Text = "Aceptar";
-            this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btOk.UseVisualStyleBackColor = true;
-            this.btOk.Click += new System.EventHandler(this.btOk_Click);
-            // 
-            // btCancel
-            // 
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
-            this.btCancel.Location = new System.Drawing.Point(384, 340);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(92, 32);
-            this.btCancel.TabIndex = 1;
-            this.btCancel.Text = "Cancelar";
-            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btCancel.UseVisualStyleBackColor = true;
-            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
-            // 
             // pictBoxColorErrorAbsStandDev
             // 
             this.pictBoxColorErrorAbsStandDev.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -643,6 +562,21 @@
             this.pictBoxColor_Coef_G_Rel.TabStop = false;
             this.pictBoxColor_Coef_G_Rel.Click += new System.EventHandler(this.pictBoxColor_Coef_G_Rel_Click);
             // 
+            // tabPageConect
+            // 
+            this.tabPageConect.Controls.Add(this.btSelectWorkspace);
+            this.tabPageConect.Controls.Add(this.btRemoveUserPass);
+            this.tabPageConect.Controls.Add(this.tbPath_Workspace);
+            this.tabPageConect.Controls.Add(this.lbWorkspace);
+            this.tabPageConect.Controls.Add(this.btLoadDefaultSetting);
+            this.tabPageConect.Location = new System.Drawing.Point(4, 22);
+            this.tabPageConect.Name = "tabPageConect";
+            this.tabPageConect.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageConect.Size = new System.Drawing.Size(570, 289);
+            this.tabPageConect.TabIndex = 2;
+            this.tabPageConect.Text = "Conexión";
+            this.tabPageConect.UseVisualStyleBackColor = true;
+            // 
             // btSelectWorkspace
             // 
             this.btSelectWorkspace.Image = global::GUI_GT.Properties.Resources.open_folder_h22;
@@ -667,6 +601,24 @@
             this.btRemoveUserPass.UseVisualStyleBackColor = true;
             this.btRemoveUserPass.Click += new System.EventHandler(this.btRemoveUserPass_Click);
             // 
+            // tbPath_Workspace
+            // 
+            this.tbPath_Workspace.BackColor = System.Drawing.SystemColors.Window;
+            this.tbPath_Workspace.Location = new System.Drawing.Point(19, 51);
+            this.tbPath_Workspace.Name = "tbPath_Workspace";
+            this.tbPath_Workspace.ReadOnly = true;
+            this.tbPath_Workspace.Size = new System.Drawing.Size(533, 20);
+            this.tbPath_Workspace.TabIndex = 2;
+            // 
+            // lbWorkspace
+            // 
+            this.lbWorkspace.AutoSize = true;
+            this.lbWorkspace.Location = new System.Drawing.Point(17, 35);
+            this.lbWorkspace.Name = "lbWorkspace";
+            this.lbWorkspace.Size = new System.Drawing.Size(95, 13);
+            this.lbWorkspace.TabIndex = 1;
+            this.lbWorkspace.Text = "Espacio de trabajo";
+            // 
             // btLoadDefaultSetting
             // 
             this.btLoadDefaultSetting.Image = global::GUI_GT.Properties.Resources.Configuration_Settings_22x22;
@@ -678,6 +630,32 @@
             this.btLoadDefaultSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btLoadDefaultSetting.UseVisualStyleBackColor = true;
             this.btLoadDefaultSetting.Click += new System.EventHandler(this.btLoadDefaultSetting_Click);
+            // 
+            // btOk
+            // 
+            this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
+            this.btOk.Location = new System.Drawing.Point(285, 340);
+            this.btOk.Name = "btOk";
+            this.btOk.Size = new System.Drawing.Size(92, 32);
+            this.btOk.TabIndex = 0;
+            this.btOk.Text = "Aceptar";
+            this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btOk.UseVisualStyleBackColor = true;
+            this.btOk.Click += new System.EventHandler(this.btOk_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
+            this.btCancel.Location = new System.Drawing.Point(384, 340);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(92, 32);
+            this.btCancel.TabIndex = 1;
+            this.btCancel.Text = "Cancelar";
+            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // btHelp
             // 
@@ -720,14 +698,14 @@
             this.tabPageGraphics.PerformLayout();
             this.groupBoxChartSetting.ResumeLayout(false);
             this.groupBoxChartSetting.PerformLayout();
-            this.tabPageConect.ResumeLayout(false);
-            this.tabPageConect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorErrorAbsStandDev)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorErrorRelStandDev)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorTotalAbsErrorVar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColorTotalRelErrorVar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColor_Coef_G_Abs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxColor_Coef_G_Rel)).EndInit();
+            this.tabPageConect.ResumeLayout(false);
+            this.tabPageConect.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -781,8 +759,6 @@
         private System.Windows.Forms.GroupBox groupBoxChartSetting;
         private System.Windows.Forms.ComboBox comboBoxLabelPoint;
         private System.Windows.Forms.Label lbLabelPoint;
-        private System.Windows.Forms.ComboBox comboBoxChartType;
-        private System.Windows.Forms.Label lbChartType;
         private System.Windows.Forms.Label lbMarkerStyle;
         private System.Windows.Forms.ComboBox comboBoxMarkerStyle;
         private System.Windows.Forms.Button btSelectWorkspace;

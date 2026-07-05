@@ -69,8 +69,6 @@ namespace ConfigCFG
         // Error standar absoluto
         const string STRING_CHECK_ERROR_ABS_STAND_DEV = "Check_Error_Abs_Stand_Dev";
         const string STRING_COLOR_ERROR_ABS_STAND_DEV = "Color_Error_Abs_Stand_Dev";
-        // Tipo de manera en la que se representarán las graficas de Coef G (lineal o splin)
-        const string STRING_SERIES_CHART_TYPE = "SeriesChartType";
         // Posición donde se mostrará el punto
         const string STRING_POINT_LABEL = "PointLabel";
         // Simbolo con el que se representará el punto
@@ -114,8 +112,6 @@ namespace ConfigCFG
         private bool checkErrorAbsStandDev;
         private Color colorErrorAbsStandDev;
 
-        // Tipo de grafica para representar la serie: Lineal o splin
-        private SeriesChartType serieChartType;
         // Posición donde se mostrará el dato del punto.
         private LabelAlignmentStyles labelAlignmentStyles;
         // Marca de punto
@@ -159,8 +155,6 @@ namespace ConfigCFG
             // Error estandar absoluto
             this.checkErrorAbsStandDev = true;
             this.colorErrorAbsStandDev = Color.Orange;
-            // Estilo en el que se mostrarán los gráficos de Coeficiente G
-            this.serieChartType = SeriesChartType.Spline; // por defecto lo representamos por splin
             // posición en la que se mostrarán el valor de los puntos.
             this.labelAlignmentStyles = LabelAlignmentStyles.Top;
             // Marca de punto
@@ -449,14 +443,6 @@ namespace ConfigCFG
          * ===================================
          */
 
-        /* Descripción:
-         *  Devuelve el tipo de gráfica con la que se representa la serie.
-         */
-        public SeriesChartType GetSerieChartType()
-        {
-            return this.serieChartType;
-        }
-
 
         /* Descripción:
          *  Devuelve la posición en la que se mostrará el valor del punto representado
@@ -744,14 +730,6 @@ namespace ConfigCFG
          * ===================================
          */
 
-        /* Descripción:
-         *  Asigna el tipo de gráfica con la que se representa la serie.
-         */
-        public void SetSerieChartType(SeriesChartType type)
-        {
-            this.serieChartType = type;
-        }
-
 
         /* Descripción:
          *  Posición en la que se mostrarán los datos respecto al punto de la serie
@@ -834,8 +812,6 @@ namespace ConfigCFG
                  * Tipo de gráfica
                  * ===================================
                  */
-                // Tipo de grafica
-                writer.WriteLine(STRING_SERIES_CHART_TYPE + "=" + this.serieChartType.ToString());
                 // Posición del valor del punto
                 writer.WriteLine(STRING_POINT_LABEL + "=" + this.labelAlignmentStyles.ToString());
                 // Marca de representación del punto
@@ -961,9 +937,6 @@ namespace ConfigCFG
                          * Tipo de gráfica
                          * ===================================
                          */
-                        case (STRING_SERIES_CHART_TYPE):
-                            this.SetSerieChartType(StringToSeriesCharType(l));
-                            break;
                         case (STRING_POINT_LABEL):
                             this.SetLabelAlignmentStyles((LabelAlignmentStyles)Enum.Parse(typeof(LabelAlignmentStyles), l));
                             break;
@@ -1093,8 +1066,6 @@ namespace ConfigCFG
             // Varianza de error relativo
             res.Append(STRING_CHECK_TOTAL_REL_ERROR_VAR + " = " + this.checkTotalRelErrorVar + "/n");
             res.Append(STRING_COLOR_TOTAL_REL_ERROR_VAR + " = " + Color2String(this.colorTotalRelErrorVar));
-            // Tipo de gráfica
-            res.Append(STRING_SERIES_CHART_TYPE + " = " + this.serieChartType.ToString());
             // Posición de los valores
             res.Append(STRING_POINT_LABEL + " = " + this.labelAlignmentStyles.ToString());
             // Tipo de signo con el que se representará el punto
@@ -1171,7 +1142,6 @@ namespace ConfigCFG
                     && this.tableFontFamily.Equals(cfg.tableFontFamily)
                     && this.textFontSize == cfg.textFontSize
                     && this.textFontFamily.Equals(cfg.textFontFamily)
-                    && this.serieChartType.Equals(cfg.serieChartType)
                     && this.labelAlignmentStyles.Equals(cfg.labelAlignmentStyles)
                     && this.markerStyle.Equals(cfg.markerStyle);
 
@@ -1195,7 +1165,7 @@ namespace ConfigCFG
                 + this.checkErrorRelStandDev.GetHashCode() + this.colorErrorRelStandDev.GetHashCode()
                 + this.checkTotalAbsErrorVar.GetHashCode() + this.colorTotalAbsErrorVar.GetHashCode()
                 + this.checkTotalRelErrorVar.GetHashCode() + this.colorTotalRelErrorVar.GetHashCode()
-                + this.serieChartType.GetHashCode() + this.labelAlignmentStyles.GetHashCode()
+                + this.labelAlignmentStyles.GetHashCode()
                 + this.markerStyle.GetHashCode()
                 + this.typeMeans.GetHashCode() + this.shadingRows.GetHashCode()
                 + this.tableFontSize.GetHashCode() + this.tableFontFamily.GetHashCode()
