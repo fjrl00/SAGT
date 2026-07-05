@@ -283,8 +283,10 @@ namespace MultiFacetData
             foreach (string part in parts)
             {
                 string trimmed = part.Trim().Trim('"');
-                if (!string.IsNullOrEmpty(trimmed) && !columns.Contains(trimmed))
-                    columns.Add(trimmed);
+                if (string.IsNullOrEmpty(trimmed))
+                    throw new Exception("La cabecera del CSV contiene una columna sin nombre.");
+
+                columns.Add(trimmed);
             }
             return columns;
         }

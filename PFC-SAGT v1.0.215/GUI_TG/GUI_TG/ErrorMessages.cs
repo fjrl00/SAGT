@@ -65,6 +65,8 @@ namespace GUI_GT
         private string errorValueNullOrEmpty = "Hay campos vacios";
         private string errorDuplicateNameFacet = "Nombre de faceta duplicado";
         private string errorInvalidExtension = "No se ha reconocido una extensión de archivo válida.";
+        private string errorMinNumColumns = "El número de columnas debe ser al menos 2.";
+        private string errorRepeatedColumn = "Los nombres de las columnas no pueden repetirse.";
         private string errorDependentIsText = "La variable de medida no puede ser una variable de texto ($)";
 
         // Errores de Proyecto
@@ -192,6 +194,10 @@ namespace GUI_GT
                 errorDuplicateNameFacet = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorInvalidExtension";
                 errorInvalidExtension = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorMinNumColumns";
+                errorMinNumColumns = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorRepeatedColumn";
+                errorRepeatedColumn = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorDependentIsText";
                 errorDependentIsText = dicError.labelTraslation(name).GetTranslation(lang).ToString();
 

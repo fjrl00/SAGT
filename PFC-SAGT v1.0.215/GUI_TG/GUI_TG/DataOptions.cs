@@ -247,6 +247,16 @@ namespace GUI_GT
             {
                 // Step 1: Extract list of columns of the table of observations
                 List<string> listColumns = ImportCSV.ReadColumns(path);
+                if(listColumns.Count < 3)
+                {
+                    ShowMessageErrorOK(errorMinNumColumns);
+                    return;
+                }
+                if(listColumns.Distinct().Count() != listColumns.Count)
+                {
+                    ShowMessageErrorOK(errorRepeatedColumn);
+                    return;
+                }
 
                 // Step 2: Have user select which columns correspond to the facets and which one corresponds to the measurement variable
                 List<string> listSelectedFacets = new List<string>();

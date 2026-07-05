@@ -493,5 +493,17 @@ namespace Tests
             Assert.True(ImportCSV.isTextVariable("name", path));
             Assert.False(ImportCSV.isTextVariable("age", path));
         }
+
+        [Fact]
+        public void ImportCSV_NamelessColumn_ThrowsException()
+        {
+            // Header has an empty column name between commas
+            string csv = "a,,b,y\n1,2,3,10";
+            string path = CreateTempCsvFile(csv);
+
+            var ex = Assert.Throws<Exception>(() =>
+                ImportCSV.ImportCSV_to_MultiFacetsObs(path, new List<string> { "a", "b" }, "y"));
+            Assert.Contains("columna sin nombre", ex.Message);
+        }
     }
 }
