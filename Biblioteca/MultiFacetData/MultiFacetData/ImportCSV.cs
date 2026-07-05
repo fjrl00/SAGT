@@ -1,184 +1,331 @@
-﻿/* 
- * Proyecto: SOFTWARE PARA LA APLICACIÓN DE LA TEORÍA DE LA GENERALIZABILIDAD
- * Nº de orden: 4778
- * 
- * Alumno:   Francisco Jesús Ramos Pérez
- * 
- * Directores de Proyecto:
- *          Dr. Don José Luis Pastrana Brincones
- *          Dr. Don Antonio Hernández Mendo
- * 
- * Fecha de revisión: 02/Dic/2012
- * 
- */
+﻿using AuxMathCalcGT;
 using System;
-// using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MultiFacetData
 {
     public class ImportCSV
     {
         /***************************************************************************************************
-         * CONSTANTES
-         ***************************************************************************************************/
-        public const char CHAR_DELIMITER_CELL = '"';
+        * MÉTODOS PÚBLICOS
+        ***************************************************************************************************/
 
+        public static List<string> ReadColumns(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string headerLine = reader.ReadLine();
+                if (string.IsNullOrEmpty(headerLine))
+                    throw new Exception("No se encontró la línea de cabecera en el fichero CSV.");
 
-        /***************************************************************************************************
-         * MÉTODOS
-         ***************************************************************************************************/
+                char delimiter = DetectDelimiter(headerLine);
+                List<string> columns = ParseCSVHeader(headerLine, delimiter);
+                return columns;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether a variable in a CSV file is a text (character) variable.
+        /// A column is considered text if any of its non‑empty cells cannot be parsed as a number.
+        /// Empty cells are ignored (they don't determine type).
+        /// </summary>
+        public static bool isTextVariable(string variableName, string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                // 1. Read header and find the column index
+                string headerLine = reader.ReadLine();
+                if (string.IsNullOrEmpty(headerLine))
+                    return false;
+
+                char delimiter = DetectDelimiter(headerLine);
+                List<string> headers = ParseCSVHeader(headerLine, delimiter);
+                int colIndex = headers.IndexOf(variableName);
+                if (colIndex < 0)
+                    return false;
+
+                // 2. Scan data rows until we find a non‑numeric, non‑empty value
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+
+                    string[] tokens = ParseCSVLine(line, delimiter);
+                    if (tokens.Length <= colIndex)
+                        continue;
+
+                    string value = tokens[colIndex].Trim();
+
+                    // Empty cell → skip, doesn't tell us anything
+                    if (string.IsNullOrEmpty(value))
+                        continue;
+
+                    // Try parsing as double; if it fails → text column
+                    if (!double.TryParse(value,
+                                         System.Globalization.NumberStyles.Any,
+                                         System.Globalization.CultureInfo.InvariantCulture,
+                                         out _))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // All non‑empty cells were numeric → not a text column
+            return false;
+        }
 
         /* Descripción:
-         *  Importa la tabla de observaciones de un fichero .csv y devuelve un objeto multifaceta.
-         */
-        public static MultiFacetsObs ImportFileCSV_to_MultiFacetsObs(string path)
+        *  Importa la tabla de observaciones desde un fichero .csv
+        *  y devuelve un objeto multifaceta para la variable dependiente especificada.
+        *  
+        * Parámetros:
+        *  path: Ruta al fichero .csv
+        *  facetVariables: Lista de TODAS las variables que serán tratadas como facetas
+        *  dependentVariable: La variable dependiente que se usará como medición
+        *  
+        * Nota: Cualquier variable en el CSV que no esté en facetVariables ni sea dependentVariable
+        *       se ignora (son otras variables dependientes no seleccionadas).
+        */
+        public static MultiFacetsObs ImportCSV_to_MultiFacetsObs(string path,
+                                                                List<string> facetVariables,
+                                                                string dependentVariable)
         {
             MultiFacetsObs retVal = null;
             using (StreamReader reader = new StreamReader(path))
             {
-                retVal = ReaderCSV_to_MultiFacetsObs(reader, path);
+                retVal = ParseCSV_to_MultiFacetsObs(reader, path, facetVariables, dependentVariable);
             }
             return retVal;
-        }// end ImportFileCSV_to_MultiFacetsObs
+        }
 
+        /***************************************************************************************************
+        * MÉTODOS PRIVADOS
+        ***************************************************************************************************/
 
-        /* Descripción:
-         *  Importa los datos de una tabla de observaciones con formato csv (del inglés comma-separated values)
-         *  y devuelve un objeto multifaceta.
-         */
-        private static MultiFacetsObs ReaderCSV_to_MultiFacetsObs(StreamReader reader, string path)
+        private static MultiFacetsObs ParseCSV_to_MultiFacetsObs(StreamReader reader,
+                                                                string path,
+                                                                List<string> facetVariables,
+                                                                string dependentVariable)
         {
-            MultiFacetsObs retVal = null;// valor de retorno
+            // 1. Leer la línea de cabecera y detectar delimitador
+            string headerLine = reader.ReadLine();
+            if (string.IsNullOrEmpty(headerLine))
+                throw new Exception("No se encontró la línea de cabecera en el fichero CSV.");
 
-            
-            /* =====================
-            * Header
-            * ====================== */
+            char delimiter = DetectDelimiter(headerLine);
+            List<string> allVariables = ParseCSVHeader(headerLine, delimiter);
+            if (allVariables.Count == 0)
+                throw new Exception("No se encontraron columnas en la cabecera del fichero CSV.");
 
-            string line = reader.ReadLine();    // Leemos la primera linea (encabezado de columnas)
+            // 2. Validaciones
+            //    - La variable dependiente debe existir en la cabecera
+            if (!allVariables.Contains(dependentVariable))
+                throw new Exception($"La variable dependiente '{dependentVariable}' no existe en la cabecera del CSV.");
 
-            string[] stringDelimiter = { "\",\"", "\"" }; // ",", " ". Nota: El orden en que se definen los delimitadores influye en la manera en la que se realizan las particiones.
-            string[] arrayHeadersColumns = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);
-            int numColumns = arrayHeadersColumns.Length;
-            if (numColumns < 2)   //in case we've detected that we weren't able to split the header line correctly (with ",", " ")
+            //    - Todas las facetas especificadas deben existir en la cabecera
+            var missingFacets = facetVariables
+                .Where(f => !allVariables.Contains(f))
+                .ToList();
+            if (missingFacets.Any())
+                throw new Exception($"Las siguientes facetas no existen en la cabecera del CSV: {string.Join(", ", missingFacets)}");
+
+            //    - La variable dependiente no debe estar en la lista de facetas
+            if (facetVariables.Contains(dependentVariable))
+                throw new Exception($"La variable dependiente '{dependentVariable}' no puede ser también una faceta.");
+
+            // 3. Determinar qué variables se ignoran
+            var facetSet = new HashSet<string>(facetVariables);
+            var ignoredVariables = allVariables
+                .Where(v => !facetSet.Contains(v) && v != dependentVariable)
+                .ToList();
+
+            int numFacets = facetVariables.Count;
+
+            // 4. Determinar el orden de las columnas
+            Dictionary<string, int> variablePosition = new Dictionary<string, int>();
+            for (int i = 0; i < allVariables.Count; i++)
             {
-                stringDelimiter = new string[1];
-                stringDelimiter[0] = ";";            //we try again but with ";". Which we'll then also use in the table body
-                arrayHeadersColumns = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);
-                numColumns = arrayHeadersColumns.Length;
+                variablePosition[allVariables[i]] = i;
             }
 
-            int numFacet = arrayHeadersColumns.Length - 1;  // Los n-1 valores contendrá los nombres de las facetas (el último valor es la medición)
+            // 5. Estructuras para almacenar niveles únicos por faceta
+            Dictionary<string, int>[] facetLevelDicts = new Dictionary<string, int>[numFacets];
+            for (int i = 0; i < numFacets; i++)
+                facetLevelDicts[i] = new Dictionary<string, int>();
 
-            int[] arrayLevels = new int[numFacet]; // almacenará el nivel de cada faceta.
+            // Tabla de observaciones
+            ObsTable tableObs = new ObsTable();
 
-            /* ======================
-            * Body
-            * ======================= */
+            // Posición de la variable dependiente seleccionada
+            int dependentPosition = variablePosition[dependentVariable];
 
-            ObsTable tableObs = new ObsTable();// construimos la tabla por filas
+            // Posiciones de las facetas (en el orden especificado por el usuario)
+            int[] facetPositions = facetVariables.Select(f => variablePosition[f]).ToArray();
 
-            Dictionary<string, int>[] arrayLevelVal = new Dictionary<string, int>[numFacet];    // Creamos la estructura que almacerá los ID numéricos que le damos a los niveles de cada faceta (un diccionario por faceta)
-            for (int i = 0; i < numFacet; i++)
+            // 5.1. Leer y procesar cada línea de datos
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
-                arrayLevelVal[i] = new Dictionary<string, int>();
-            }
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
 
-            while ((line = reader.ReadLine()) != null)                                                          //Iterate over the entire document
-            {
-                string[] arrayLineShare = line.Split(stringDelimiter, StringSplitOptions.RemoveEmptyEntries);   //split line
-                List<double?> row = new List<double?>();                                                        //prepare to store it as a row fitting for our ObsTable class
+                string[] tokens = ParseCSVLine(line, delimiter);
 
-                for (int i = 0; i < numColumns; i++)                                                            //iterate over line
+                // Verificar que la línea tiene suficientes columnas
+                if (tokens.Length < allVariables.Count)
+                    continue;
+
+                List<double?> row = new List<double?>();
+
+                // Procesar cada faceta (según su posición real)
+                for (int i = 0; i < numFacets; i++)
                 {
-                    if (i < numColumns - 1)                                                                     //facet data
+                    int pos = facetPositions[i];
+                    string facetValue = tokens[pos];
+                    int levelId;
+                    if (!facetLevelDicts[i].ContainsKey(facetValue))
                     {
-                        int l = arrayLevelVal[i].Count;                                                             //read number of different levels of this facet seen thus far
-                        if (!arrayLevelVal[i].ContainsKey(arrayLineShare[i]))                                       //if this symbol is new
-                        {
-                            arrayLevelVal[i].Add(arrayLineShare[i], l + 1);                                         //we add the entry to the dictionary (symbol -> assigned numeric code)
-                        }
-                        row.Add(arrayLevelVal[i][arrayLineShare[i]]);                                               //dictionary for our column -> entry corresponding to the current symbol -> append to the row its numeric ID
+                        levelId = facetLevelDicts[i].Count + 1;
+                        facetLevelDicts[i].Add(facetValue, levelId);
                     }
-                    else                                                                                        // frequency/measure data
+                    else
                     {
-                        row.Add(double.Parse(arrayLineShare[i]));                                               
+                        levelId = facetLevelDicts[i][facetValue];
                     }
+                    row.Add(levelId);
                 }
-                tableObs.Add(row);                                                                              //store in obstable
 
-            }// end while
-            string comment = BuildInfo(arrayHeadersColumns, arrayLevelVal);
+                // Procesar variable dependiente seleccionada
+                string depToken = tokens[dependentPosition].Trim();
 
+                // Empty cell → skip this observation (like SAS missing ".")
+                if (string.IsNullOrEmpty(depToken))
+                    continue;
+
+                if (double.TryParse(depToken,
+                                    System.Globalization.NumberStyles.Any,
+                                    System.Globalization.CultureInfo.InvariantCulture,
+                                    out double depValue))
+                {
+                    row.Add(depValue);
+                }
+                else
+                {
+                    throw new Exception($"El valor de la variable dependiente '{dependentVariable}' en la línea '{line}' no es un número válido.");
+                }
+
+                tableObs.Add(row);
+            }
+
+            // Construir objetos Facet
             ListFacets lf = new ListFacets();
-            for (int i = 0; i < numFacet; i++)
+            for (int i = 0; i < numFacets; i++)
             {
-                Facet f = new Facet(arrayHeadersColumns[i], arrayLevelVal[i].Keys.Count);
+                Facet f = new Facet(facetVariables[i], facetLevelDicts[i].Count);
                 lf.Add(f);
             }
-            int mul = (int)lf.MultOfLevels(); // devuelve el número de filas que tendrá la tabla
-            if (mul == tableObs.TableRows()) //if we have data for all rows
+
+            // 5.2. Crear tabla plantilla donde insertar los datos
+            ObsTable tableTemplate = new ObsTable(lf);
+
+            // 5.3. Calcular medias usando Statistics
+            Statistics[] groups = new Statistics[tableTemplate.TableRows()];
+            for (int i = 0; i < groups.Length; i++)
             {
-                // entonces la tablaObs es producto cartesiano (aka there's data for each combination of facet values)
-                retVal = new MultiFacetsObs(lf, tableObs, path, "", comment);
+                groups[i] = new Statistics();
             }
-            else
+
+            int[] indexRepeats = CartesianProductTable.IndexRepeats(lf.levelOfFacets());
+
+            for (int i = 0; i < tableObs.TableRows(); i++)
             {
-                // entonces la tablaObs no es producto cartesiano y debemos ajustarla
-                retVal = new MultiFacetsObs(lf, path, "", comment);
+                int index = 0;
+                for (int j = 0; j < lf.Count(); j++)
+                    index += indexRepeats[j] * ((int)tableObs.Data(i, j) - 1);
 
-                InterfaceObsTable obsT = retVal.ObservationTable(); //full observation table for these facets (but without frequency/measure)
+                groups[index].Add(tableObs.ObsData(i), true);
+            }
 
-                int n_items = tableObs.TableRows();              //number of entries for which there's data
+            // 5.4. Pasar medias a la tabla plantilla
+            List<double?> ldata = new List<double?>();
+            for (int i = 0; i < tableTemplate.TableRows(); i++)
+            {
+                ldata.Add(groups[i].Mean());
+            }
+            tableTemplate.AssignListData(ldata);
 
-                // More optimal algorithm (O(m)), but assumes ordered data
-                //int pos = 0;
-                //for (int i = 0; (i < mul) && (pos < n_items); i++)
-                //{
-                //    bool b = true;
-                //    for (int j = 0; j < numFacet && b; j++)
-                //    {
-                //        b = obsT.Data(i, j).Equals(tableObs.Data(pos, j));
-                //    }
-                //    if (b)
-                //    {
-                //        double d = (double)tableObs.Data(pos);
-                //        obsT.Data(d, i);
-                //        pos++;
-                //    }
-                //}
+            return new MultiFacetsObs(lf, tableTemplate, path, dependentVariable, BuildInfo(facetVariables, facetLevelDicts));
+        }
 
-                // Less optimal algorithm (O(n*m)) but safe
-                for (int i = 0; i < n_items; i++)                   //iterate over tableObs (the entries for which there's data)
+        /// <summary>
+        /// Detecta el delimitador del CSV basándose en la línea de cabecera.
+        /// Prueba primero con coma (,); si produce menos de 2 columnas, usa punto y coma (;).
+        /// </summary>
+        private static char DetectDelimiter(string headerLine)
+        {
+            if (headerLine.Split(',').Length >= 2)
+                return ',';
+            return ';';
+        }
+
+        /// <summary>
+        /// Parsea la línea de cabecera del CSV y devuelve la lista de nombres de columna.
+        /// </summary>
+        private static List<string> ParseCSVHeader(string headerLine, char delimiter)
+        {
+            List<string> columns = new List<string>();
+            string[] parts = headerLine.Split(delimiter);
+
+            foreach (string part in parts)
+            {
+                string trimmed = part.Trim().Trim('"');
+                if (!string.IsNullOrEmpty(trimmed) && !columns.Contains(trimmed))
+                    columns.Add(trimmed);
+            }
+            return columns;
+        }
+
+        /// <summary>
+        /// Parsea una línea de datos CSV, manejando comillas opcionales.
+        /// </summary>
+        private static string[] ParseCSVLine(string line, char delimiter)
+        {
+            List<string> tokens = new List<string>();
+            bool inQuotes = false;
+            string currentToken = "";
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                char c = line[i];
+
+                if (c == '"')
                 {
-                    for (int r = 0; r < mul; r++)                   //iterate looking for in which row of obsT to insert it
-                    {
-                        bool b = true;                              //seems promising
-                        for (int j = 0; j < numFacet && b; j++)     //iterate over facets of this row, so long as it still seems promising
-                        {
-                            b = obsT.Data(r, j).Equals(tableObs.Data(i, j));    //we'll go over the entire facet data looking up whether all values match
-                        }
-                        if (b)                                      //if we've found a hit
-                        {
-                            double d = (double)tableObs.ObsData(i);
-                            obsT.Data(d, r);                        //we asign it the frequency/measure value
-                        }
-                    }
+                    inQuotes = !inQuotes;
                 }
-            }// end if
+                else if (c == delimiter && !inQuotes)
+                {
+                    tokens.Add(currentToken.Trim());
+                    currentToken = "";
+                }
+                else
+                {
+                    currentToken += c;
+                }
+            }
+            tokens.Add(currentToken.Trim());
 
-
-            return retVal;
-        }// ReaderCSV_to_MultiFacetsObs
-
+            return tokens.ToArray();
+        }
 
         /* Descripción:
-         *  Toma el diccionario con los valores y devuelve la leyenda para mostrar en la pestaña de 
-         *  información.
-         */
-        private static string BuildInfo(string[] arrayHeadersColumns, Dictionary<String, int>[] lDic)
+        *  Toma el diccionario con los valores y devuelve la leyenda para mostrar en la pestaña de 
+        *  información.
+        */
+        private static string BuildInfo(List<String> arrayHeadersColumns, Dictionary<String, int>[] lDic)
         {
             var sb = new System.Text.StringBuilder();
             for (int i = 0; i < lDic.Length; i++)
@@ -186,13 +333,12 @@ namespace MultiFacetData
                 sb.AppendLine($"{arrayHeadersColumns[i]}:");        // FacetName:
                 foreach (var kvp in lDic[i])
                 {
-                    sb.AppendLine($"\t{kvp.Key} = {kvp.Value}");    //      [ID numérico] = [título original]
+                    sb.AppendLine($"\t{kvp.Key} = {kvp.Value}");    //      [título original] = [ID numérico]
                 }
                 sb.AppendLine();
             }
 
             return sb.ToString();
-        }//end BuildInfo
-
-    }// end class ImportCSV
+        }
+    }
 }// end namespace MultiFacetData
