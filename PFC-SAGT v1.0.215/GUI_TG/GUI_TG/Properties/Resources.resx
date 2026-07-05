@@ -433,7 +433,4 @@
   <data name="graph.svg_bar.med" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\graph.svg_bar.med.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="barra de sas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\barra de sas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

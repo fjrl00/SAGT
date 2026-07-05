@@ -286,11 +286,11 @@
     <Compile Include="FormMeasurDesign.Designer.cs">
       <DependentUpon>FormMeasurDesign.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSelectSASColumns.cs">
+    <Compile Include="FormSelectCSVColumns.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSelectSASColumns.Designer.cs">
-      <DependentUpon>FormSelectSASColumns.cs</DependentUpon>
+    <Compile Include="FormSelectCSVColumns.Designer.cs">
+      <DependentUpon>FormSelectCSVColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
@@ -433,8 +433,8 @@
       <DependentUpon>FormMeasurDesign.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSelectSASColumns.resx">
-      <DependentUpon>FormSelectSASColumns.cs</DependentUpon>
+    <EmbeddedResource Include="FormSelectCSVColumns.resx">
+      <DependentUpon>FormSelectCSVColumns.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -676,7 +676,6 @@
     <None Include="Resources\Cambiar Diseño h32.png" />
     <None Include="Resources\File TextDocument edition h32.png" />
     <None Include="Resources\File TextDocument edition 2 h32.png" />
-    <None Include="Resources\barra de sas.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="changelog.txt">
@@ -763,7 +762,7 @@
     <Content Include="lang\formSelectReports.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lang\formSelectSASColumns.txt">
+    <Content Include="lang\formSelectCSVColumns.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lang\formSelectSaves.txt">

@@ -213,16 +213,6 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap barra_de_sas {
-            get {
-                object obj = ResourceManager.GetObject("barra de sas", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap barra_para_importar_csv {
             get {
                 object obj = ResourceManager.GetObject("barra para importar csv", resourceCulture);

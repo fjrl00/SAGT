@@ -1,4 +1,4 @@
-[FormSelectSASColumns]
+[FormSelectCSVColumns]
 es=Seleccionar Columnas
 en=Select Columns
 fr=Sélectionner les colonnes

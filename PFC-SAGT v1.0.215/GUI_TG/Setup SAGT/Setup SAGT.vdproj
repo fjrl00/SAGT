@@ -2906,8 +2906,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B548693A65274E4F8A9409194379C505"
             {
-            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\lang\\formSelectSASColumns.txt"
-            "TargetName" = "8:formSelectSASColumns.txt"
+            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\lang\\formSelectCSVColumns.txt"
+            "TargetName" = "8:formSelectCSVColumns.txt"
             "Tag" = "8:"
             "Folder" = "8:_0A0011D00CA648789C8DFD0E976B07D3"
             "Condition" = "8:"

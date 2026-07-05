@@ -54,7 +54,6 @@
     <Compile Include="TableTests.cs" />
     <Compile Include="ReadingAndWritingTests.cs" />
     <Compile Include="StatisticsTests.cs" />
-    <Compile Include="ImportSASTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

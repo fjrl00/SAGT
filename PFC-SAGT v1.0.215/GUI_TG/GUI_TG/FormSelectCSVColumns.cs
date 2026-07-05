@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace GUI_GT
 {
-    public partial class FormSelectSASColumns : Form
+    public partial class FormSelectCSVColumns : Form
     {
         // nombre del archivo que contiene las traducciones
-        const string STRING_TEXT = "formSelectSASColumns.txt";
+        const string STRING_TEXT = "formSelectCSVColumns.txt";
         const string LANG_PATH = "\\lang\\";
 
         // The caller passes its own List<string> for facets — we populate it in-place on OK.
@@ -22,7 +22,7 @@ namespace GUI_GT
          *      allColumns: All columns loaded from the imported table.
          *      facets: Caller-supplied list that will be filled with selected facets on OK.
          */
-        public FormSelectSASColumns(List<string> allColumns, List<string> facets, TransLibrary.Language lang)
+        public FormSelectCSVColumns(List<string> allColumns, List<string> facets, TransLibrary.Language lang)
         {
             InitializeComponent();
             this.traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);

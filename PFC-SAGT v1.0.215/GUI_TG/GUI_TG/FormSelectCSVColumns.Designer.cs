@@ -1,6 +1,6 @@
 ﻿namespace GUI_GT
 {
-    partial class FormSelectSASColumns
+    partial class FormSelectCSVColumns
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSelectSASColumns));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSelectCSVColumns));
             this.listBoxExcludedColumns = new System.Windows.Forms.ListBox();
             this.listBoxFacets = new System.Windows.Forms.ListBox();
             this.btOK = new System.Windows.Forms.Button();
@@ -178,7 +178,7 @@
             this.tbDependent.Size = new System.Drawing.Size(193, 20);
             this.tbDependent.TabIndex = 14;
             // 
-            // FormSelectSASColumns
+            // FormSelectCSVColumns
             // 
             this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,7 +201,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormSelectSASColumns";
+            this.Name = "FormSelectCSVColumns";
             this.Text = "Seleccionar Columnas";
             this.ResumeLayout(false);
             this.PerformLayout();

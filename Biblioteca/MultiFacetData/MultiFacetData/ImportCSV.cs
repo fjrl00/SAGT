@@ -202,7 +202,7 @@ namespace MultiFacetData
                 // Procesar variable dependiente seleccionada
                 string depToken = tokens[dependentPosition].Trim();
 
-                // Empty cell → skip this observation (like SAS missing ".")
+                // Empty cell → skip this observation
                 if (string.IsNullOrEmpty(depToken))
                     continue;
 

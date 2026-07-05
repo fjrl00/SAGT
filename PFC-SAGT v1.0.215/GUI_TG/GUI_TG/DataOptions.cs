@@ -265,7 +265,7 @@ namespace GUI_GT
                 bool salir = false;
                 do
                 {
-                    using (FormSelectSASColumns formSelectCSVColumns = new FormSelectSASColumns(listColumns, listSelectedFacets, cfgApli.GetConfigLanguage()))
+                    using (FormSelectCSVColumns formSelectCSVColumns = new FormSelectCSVColumns(listColumns, listSelectedFacets, cfgApli.GetConfigLanguage()))
                     {
                         DialogResult res = formSelectCSVColumns.ShowDialog();
 
@@ -322,77 +322,6 @@ namespace GUI_GT
             }
         }// end loadMultiFacetFileCsv
 
-        private void loadMultiFacetFileSAS(string path)
-        {
-            try
-            {
-                // Step 1: Extract list of columns of the table of observations
-                List<string> listColumns = ImportSAS.ReadColumns(path);
-
-                // Step 2: Have user select which columns correspond to the facets and which one corresponds to the measurement variable
-                List<string> listSelectedFacets = new List<string>();
-                string measurementVariable = null;
-
-                bool salir = false;
-                do
-                {
-                    using (FormSelectSASColumns formSelectSASColumns = new FormSelectSASColumns(listColumns, listSelectedFacets, cfgApli.GetConfigLanguage()))
-                    {
-                        DialogResult res = formSelectSASColumns.ShowDialog();
-
-                        if (res != DialogResult.OK)
-                            return; // User cancelled — abort the import entirely.
-
-                        if (listSelectedFacets.Count < 2)
-                        {
-                            ShowMessageErrorOK(errorMinNumFacet);
-                        }
-                        if (ImportSAS.isTextVariable(formSelectSASColumns.SelectedDependent, path))
-                        {
-                            ShowMessageErrorOK(errorDependentIsText);
-                        }
-                        else
-                        {
-                            salir = true;
-
-                            measurementVariable = formSelectSASColumns.SelectedDependent;
-                            // listSelectedFacets is modified inside the form
-                        }
-                    }
-                }
-                while(!salir);
-
-                FormWaiting fw = null;
-                try
-                {
-                    fw = ShowLoadingScreen(msgLoading);
-                        
-                    // Step 3: Import  the data
-                    MultiFacetsObs multiFacets = ImportSAS.ImportSAS_to_MultiFacetsObs(path, listSelectedFacets, measurementVariable);
-                    this.sagtElements.SetMultiFacetsObs(multiFacets);
-                    string fileNameData = extractFileNamePath(path);
-                    // asignamos a la variable global los valores cargados
-                    loadMultiFacets(fileNameData, multiFacets);
-                }
-                catch(Exception ex)
-                {
-                    ShowMessageErrorOK(ex.Message);
-                }
-                finally
-                {
-                    CloseLoadingScreen(fw);
-                }
-            }
-            catch (MultiFacetPY.MultiFacetPYException)
-            {
-                ShowMessageErrorOK(errorFormatFile);
-            }
-            catch (MultiFacetObsException)
-            {
-                ShowMessageErrorOK(errorFormatFile);
-            }
-        }
-
 
         /* Descripción:
          *  Importa un fichero de datos/medias para construir el objeto multifaceta.
@@ -413,9 +342,6 @@ namespace GUI_GT
                     break;
                 case "csv":
                     loadMultiFacetFileCsv(path);
-                    break;
-                case "sas":
-                    loadMultiFacetFileSAS(path);
                     break;
                 default:
                     ShowMessageErrorOK(errorInvalidExtension);
