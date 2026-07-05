@@ -5,7 +5,7 @@ CALCULATION FIXES
 - Solved methodological error where the contribution of effects with a nesting to the relative error would be often missed
 - Solved methodological error where the standard error calculation would be incorrect for non-infinite designs and some nested designs
 - Solved methodological error where D-study calculations for changed universe sizes were inaccurate
-- Revoked the user's ability to increase universe sizes during D-studies. Trying to partially do so in graphics will result in the line being cut off midway.
+- Revoked the user's ability to increase universe sizes during D-studies (mathematically dubious). Trying to partially do so in graphics will result in the line being cut off midway.
 - Solved bug where omitting facets resulted in the remaining rows having their data points added up instead of their arithmetic mean being calculated
 - Solved bug where omitting rows of omitted facets had no effect on calculations
 - Solved bug where, in certain cases, the relative and absolute error contributed by an effect would be swapped out
@@ -41,6 +41,7 @@ OTHER BUGFIXES
 - Solved massive memory and handle leaks that rendered the Print functionality unusable for large datasets
 - Solved bug where printing the Analysis section's report would instead try to print the report of the rest of the app
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
+- Solved bug where the CSV importer would fail to correctly interpret decimal numbers in Spanish locale (and other decimal comma-using locales)
 
 OPTIMIZATION
 
@@ -88,11 +89,12 @@ UI
 - PrintPreviewDialog feature removed, as it's superfluous in modern Windows
 - Solved "Printing page X of document" form appearing hidden behind the main form
 - Solved "Relative G Coefficient" text appearing cut off in Analysis
+- .CSV format displayed more prominently in the data importing screen to denote its more useful status
 
 NEW FEATURES
 
 - Facet nestings can now be edited in the Data section after having been created/imported
-- SAS datasets can now be imported
+- CSV dateset importer overhauled to accept essentially any valid csv dataset from any source
 - Curves in graphics now follow the exact function the G-coefficients follow instead of being an approximation from connecting the dots. The function of such curve is now also printed on the screen.
 
 KNOWN ISSUES

@@ -27,22 +27,25 @@ namespace GUI_GT
         string workspace;
 
         string[] typesFiles = {"Seleccione un fichero" ,
+                                  "Ficheros .csv",
                                   "Datos observados, GT E 2.0 (Pierre Ysewijn, 1996)",
                                   "Resultado de medias, GT E 2.0 (Pierre Ysewijn, 1996)",
-                                  "Tabla de observaciones exportada por SAGT a Excel",
-                                  "Ficheros .csv"};
+                                  "Tabla de observaciones exportada por SAGT a Excel"
+                                  };
 
         string[] fileDescriptions = {"",
+                            "Ficheros .csv exportados por la aplicación de José Antonio López López.",
                             "Tabla de observaciones extraída de un fichero de observaciones (.obs) generado con el software GT 2.0 E. Este archivo contiene los datos de las facetas además del nombre del fichero de datos (.dat) que contiene las observaciones. El fichero de observaciones y el de datos debe encontrarse en el mismo directorio para que pueda ser leído.",
                             "Obtiene la tabla de observaciones a partir de un fichero de medias (.rsm) generado con el software GT 2.0 E. Se aprovecha de que la última tabla de medias coincide con la tabla de observaciones para obtenerla.",
-                            "Importa los datos de un fichero Excel siempre que este tenga el mismo formato que los ficheros exportados por esta misma aplicación.",
-                            "Ficheros .csv exportados por la aplicación de José Antonio López López."};
+                            "Importa los datos de un fichero Excel siempre que este tenga el mismo formato que los ficheros exportados por esta misma aplicación."
+                            };
 
         string[] fileFilter = {"Todos los archivos|*.*",
+                              "(*.csv)|*.csv|Todos los archivos|*.*",
                               "GT E 2.0 (*.obs)|*.obs|Todos los archivos|*.*",
                               "GT E 2.0 (*.rsm)|*.rsm|Todos los archivos|*.*",
-                              "Excel (*.xls)|*.xls|Todos los archivos|*.*",
-                              "(*.csv)|*.csv|Todos los archivos|*.*"};
+                              "Excel (*.xls)|*.xls|Todos los archivos|*.*"
+                              };
 
         string pathImportFile;
 
@@ -105,19 +108,19 @@ namespace GUI_GT
                     tbComment.Text = fileDescriptions[n];
                     break;
                 case (1):
-                    this.pictBoxOBS.Visible = true;
+                    this.pictBoxCSv.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
                 case (2):
-                    this.pictBoxRSM.Visible = true;
+                    this.pictBoxOBS.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
                 case (3):
-                    this.pictBoxExcel.Visible = true;
+                    this.pictBoxRSM.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
                 case (4):
-                    this.pictBoxCSv.Visible = true;
+                    this.pictBoxExcel.Visible = true;
                     tbComment.Text = fileDescriptions[n];
                     break;
             }
