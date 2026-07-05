@@ -1241,7 +1241,7 @@ namespace GUI_GT
                             // Debe haber al menos una faceta seleccionada
                             if (checkedLtBox.CheckedItems.Count > 0)
                             {
-                                if (beginning > 0 && beginning < ending)
+                                if (beginning > 0 && beginning < ending && beginning + increment <= ending)
                                 {
                                     ListFacets lfSeleted = FacetsSelectedIn_cListBox(lf, checkedLtBox);
 

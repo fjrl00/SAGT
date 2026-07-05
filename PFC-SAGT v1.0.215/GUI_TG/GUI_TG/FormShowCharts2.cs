@@ -118,22 +118,26 @@ namespace GUI_GT
                 chartCoef_G.Series[f.Name()].BorderWidth = 3;
                 chartCoef_G.Series[f.Name()].MarkerSize = 9;
                 // Marca de estilo de representación del punto
-                chartCoef_G.Series[f.Name()].MarkerStyle = this.cfg.GetMarkerStyle(); //System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+                chartCoef_G.Series[f.Name()].MarkerStyle = this.cfg.GetMarkerStyle();
                 if (cfg.GetLabelAlignmentStyles().Equals(ConfigCFG.LabelAlignmentStyles.None))
                 {
                     chartCoef_G.Series[f.Name()].IsValueShownAsLabel = false;
                 }
                 else
                 {
-                    chartCoef_G.Series[f.Name()]["LabelStyle"] = cfg.GetLabelAlignmentStyles().ToString();// LabelAlignmentStyles.Bottom.ToString();
+                    chartCoef_G.Series[f.Name()]["LabelStyle"] = cfg.GetLabelAlignmentStyles().ToString();
                     chartCoef_G.Series[f.Name()].IsValueShownAsLabel = true;
                 }
 
                 List<G_ParametersOptimization> list_gP = new List<G_ParametersOptimization>();
-                int nPoints = listInt.Count;
+                // Trim the point list to this facet's universe size
+                List<int> facetListInt = f.IsInfinite()
+                    ? listInt
+                    : listInt.Where(n => n <= f.SizeOfUniverse()).ToList();
+                int nPoints = facetListInt.Count;
                 for (int j = 0; j < nPoints; j++)
                 {
-                    ListFacets estimateLF = newListFacets(lfOriginal, f, listInt[j]);
+                    ListFacets estimateLF = newListFacets(lfOriginal, f, facetListInt[j]);
 
                     G_ParametersOptimization estimateGP = tAnalysis_GStudy_Opt.Calc_G_ParametersOptimización(estimateLF);
                     // lo introducimos en la lista
@@ -143,12 +147,12 @@ namespace GUI_GT
                     if (abs)
                     {
                         double d = Math.Round((double)estimateGP.CoefG_Abs(), numDecimal, MidpointRounding.AwayFromZero);
-                        introducirSerie(j, d, f.Name(), listInt[j]);
+                        introducirSerie(j, d, f.Name(), facetListInt[j]);
                     }
                     else
                     {
                         double d = Math.Round((double)estimateGP.CoefG_Rel(), numDecimal, MidpointRounding.AwayFromZero);
-                        introducirSerie(j, d, f.Name(), listInt[j]);
+                        introducirSerie(j, d, f.Name(), facetListInt[j]);
                     }
                 }
                 // guardamos la lista
@@ -162,7 +166,7 @@ namespace GUI_GT
                 else
                     coef = (g => (double)g.CoefG_Rel());
 
-                double[] xs = listInt.Select(n => (double)n).ToArray();
+                double[] xs = facetListInt.Select(n => (double)n).ToArray();
                 double[] ys = list_gP.Select(g => coef(g)).ToArray();
 
                 // Fit G(n) = G∞ * n / (n + K)
