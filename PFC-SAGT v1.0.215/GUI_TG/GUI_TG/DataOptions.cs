@@ -39,6 +39,7 @@ namespace GUI_GT
         // ==========
         const string NAME_COL_OMIT = "nameColOmit";
         const string FILTER_DATA = " (*.dat)|*.dat|"; // Filtro del fichero de datos
+        const string FILTER_CSV = " (*.csv)|*.csv|";
         const string FILTER_SSQ_EDUG = " (*.edug)|*.edug|"; // Filtro de fichero de suma de cuadrados EduG
         const string FILTER_SAGT_FILE = " (*.sagt)|*.sagt|";
         const string FILTER_GT_OBS_FILE = " (*.obs)|*.obs|";
@@ -48,6 +49,7 @@ namespace GUI_GT
         const string DEFAULT_EXT_SAGT = "sagt";
         const string DEFAULT_EXT_RSM = "rsm";
         const string DEFAULT_EXT_EXCEL = "xls";
+        const string DEFAULT_EXT_CSV = "csv";
         const string DEFAULT_EXT_SCORE = "dat";
         const string DEFAULT_EXT_SSQ_EDUG = "edug";
         const string DEFAULT_EXT_OBS = "obs";
@@ -2047,7 +2049,43 @@ namespace GUI_GT
         #endregion Exportar los datos a un archivo Excel
 
 
+        /* Descripción:
+         *  Exporta los datos en un fichero csv
+         */
+        private void tsmiActionExportCsv_Click(MultiFacetsObs multiFacet)
+        {
+            if (multiFacet == null)
+            {
+                ShowMessageErrorOK(errorNoTableObs);
+            }
+            else
+            {
+                SaveFileDialog saveDialog = new SaveFileDialog();
 
+                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
+                {
+                    saveDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
+                }
+
+                saveDialog.DefaultExt = DEFAULT_EXT_CSV;
+                string filter = ("Comma-separated values" + FILTER_CSV + this.allFiles + FILTER_ALL_FILE);
+                saveDialog.Filter = filter;
+                saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
+                saveDialog.AddExtension = true;
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        multiFacet.WritingFileObsTableCsv(saveDialog.FileName);
+                        ShowMessageInfo(txtSaveCsv, titleSaved);
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowMessageErrorOK($"{txtNoSaveCsv}\n\n{ex.Message}");
+                    }
+                }
+            }
+        }// end tsmiActionExportScore_Click
 
         /* Descripción:
          *  Exporta los datos en un fichero de texto que pueda ser recuperado por EduG

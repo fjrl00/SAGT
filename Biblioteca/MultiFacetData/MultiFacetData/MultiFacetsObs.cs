@@ -20,6 +20,7 @@ using AuxMathCalcGT;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -379,6 +380,78 @@ namespace MultiFacetData
         /********************************************************************************************
          * Escritura y Lectura de ficheros 
          ********************************************************************************************/
+
+        /* Descripción:
+         *  Escribe un fichero CSV que contiene la tabla de observaciones completa
+         *  (facetas + medición), incluyendo una fila de cabecera con los nombres de las facetas
+         *  y la variable dependiente. Los valores nulos se escriben como celdas vacías.
+         *  
+         * Parámetros:
+         *  fileName: Ruta del fichero CSV de salida.
+         *  lf: Lista de facetas (para los nombres de columna).
+         */
+        public void WritingFileObsTableCsv(string fileName)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                InterfaceObsTable table = this.ObservationTable();
+
+                // 1. Escribir cabecera: nombres de facetas + variable dependiente
+                List<string> headers = new List<string>();
+                for (int i = 0; i < this.listFacets.Count(); i++)
+                {
+                    headers.Add(EscapeCsvField(this.listFacets.FacetInPos(i).Name()));
+                }
+                headers.Add(EscapeCsvField("Measurement Variable"));
+                writer.WriteLine(string.Join(",", headers));
+
+                // 2. Escribir filas de datos
+                int numFacets = this.listFacets.Count();
+                int rows = table.TableRows();
+                int cols = table.TableColumns(); // facets + 1 (measurement)
+
+                for (int r = 0; r < rows; r++)
+                {
+                    List<string> fields = new List<string>();
+
+                    for (int c = 0; c < cols; c++)
+                    {
+                        double? value = table.Data(r, c);
+                        if (value.HasValue)
+                        {
+                            // Facet columns are integers, measurement may be fractional
+                            if (c < numFacets)
+                                fields.Add(((int)value.Value).ToString());
+                            else
+                                fields.Add(value.Value.ToString(CultureInfo.InvariantCulture));
+                        }
+                        else
+                        {
+                            fields.Add(""); // null → empty cell
+                        }
+                    }
+
+                    writer.WriteLine(string.Join(",", fields));
+                }
+            }
+        }
+
+        /*  Descripción:
+         *   Escapa un valor para CSV: si contiene comas, comillas o saltos de línea, 
+         *   lo envuelve entre comillas y duplica las comillas internas.
+         */
+        private static string EscapeCsvField(string field)
+        {
+            if (string.IsNullOrEmpty(field))
+                return "";
+
+            if (field.Contains(",") || field.Contains("\"") || field.Contains("\n") || field.Contains("\r"))
+            {
+                return "\"" + field.Replace("\"", "\"\"") + "\"";
+            }
+
+            return field;
+        }
 
         /* Descripción:
          *  Escribe un fichero que contiene las puntuaciones almacenadas en la tabla de observaciones.

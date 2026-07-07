@@ -1504,6 +1504,12 @@ namespace GUI_GT
         }
 
 
+        private void tsmiExportCsv_Click(object sender, EventArgs e)
+        {
+            tsmiActionExportCsv_Click(this.sagtElements.GetMultiFacetsObs());
+        }
+
+
         /* Descripción:
          *  Exporta los datos en un fichero de texto que pueda ser recuperado por EduG
          */

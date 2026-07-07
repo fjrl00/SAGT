@@ -699,7 +699,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -707,7 +707,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -739,7 +739,7 @@
             // 
             this.tsmiDataSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiDataSavedLocal.Name = "tsmiDataSavedLocal";
-            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(129, 22);
             this.tsmiDataSavedLocal.Text = "Guardar";
             this.tsmiDataSavedLocal.Click += new System.EventHandler(this.tsmiDataSavedLocal_Click);
             // 
@@ -747,7 +747,7 @@
             // 
             this.tsmiDataSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiDataSavedWebService.Name = "tsmiDataSavedWebService";
-            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(129, 22);
             this.tsmiDataSavedWebService.Text = "Guardado ";
             this.tsmiDataSavedWebService.Click += new System.EventHandler(this.tsmiDataSavedWebService_Click);
             // 
@@ -826,6 +826,7 @@
             this.tsmiExportCsv.Name = "tsmiExportCsv";
             this.tsmiExportCsv.Size = new System.Drawing.Size(198, 26);
             this.tsmiExportCsv.Text = "Exportar CSV";
+            this.tsmiExportCsv.Click += new System.EventHandler(this.tsmiExportCsv_Click);
             // 
             // tsmiDataExportExcel
             // 
@@ -862,7 +863,7 @@
             // 
             this.tsmiDataPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiDataPrinter.Name = "tsmiDataPrinter";
-            this.tsmiDataPrinter.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataPrinter.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataPrinter.Text = "Imprimir";
             this.tsmiDataPrinter.Click += new System.EventHandler(this.tsmiDataPrinter_Click);
             // 
@@ -870,7 +871,7 @@
             // 
             this.tsmiDataWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiDataWordExport.Name = "tsmiDataWordExport";
-            this.tsmiDataWordExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataWordExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataWordExport.Text = "Word";
             this.tsmiDataWordExport.Click += new System.EventHandler(this.tsmiDataWordExport_Click);
             // 
@@ -878,7 +879,7 @@
             // 
             this.tsmiDataPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiDataPdfExport.Name = "tsmiDataPdfExport";
-            this.tsmiDataPdfExport.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataPdfExport.Size = new System.Drawing.Size(120, 22);
             this.tsmiDataPdfExport.Text = "PDF";
             this.tsmiDataPdfExport.Click += new System.EventHandler(this.tsmiDataPdfExport_Click);
             // 

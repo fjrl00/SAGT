@@ -96,6 +96,7 @@ NEW FEATURES
 
 - Facet nestings can now be edited in the Data section after having been created/imported
 - CSV dateset importer overhauled to accept essentially any valid csv dataset from any source
+- CSV dataset exporter added
 - Curves in graphics now follow the exact function the G-coefficients follow instead of being an approximation from connecting the dots. The function of such curve is now also printed on the screen.
 
 KNOWN ISSUES
