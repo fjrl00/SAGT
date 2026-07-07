@@ -120,6 +120,8 @@
             this.tsmiDataOmitLevels = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBuildMeans = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDataToSSQ = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDataExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExportCsv = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDataExportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExportScore = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDataReports = new System.Windows.Forms.ToolStripMenuItem();
@@ -282,6 +284,7 @@
             this.lbAnalysisMeasurDesignSsq = new System.Windows.Forms.Label();
             this.tabPageAnalysisG_P = new System.Windows.Forms.TabPage();
             this.lbAnalysisTotalTargetVar = new System.Windows.Forms.Label();
+            this.lbAnalysisTextCoef_G_Rel = new System.Windows.Forms.Label();
             this.lbAnalysisTextCoef_G_Abs = new System.Windows.Forms.Label();
             this.lbAnalysisTextAbsoluteSE = new System.Windows.Forms.Label();
             this.lbAnalysisTotalAbsErr = new System.Windows.Forms.Label();
@@ -295,7 +298,6 @@
             this.lbAnalysisTextStandDev = new System.Windows.Forms.Label();
             this.lbAnalysisCoef_G_Abs = new System.Windows.Forms.Label();
             this.lbAnalysisCoef_G_Rel = new System.Windows.Forms.Label();
-            this.lbAnalysisTextCoef_G_Rel = new System.Windows.Forms.Label();
             this.lbAnalysisTextGeneralizabilityCoef = new System.Windows.Forms.Label();
             this.lbAnalysisTotal_Error_Abs = new System.Windows.Forms.Label();
             this.lbAnalysisTotal_Error_Rel = new System.Windows.Forms.Label();
@@ -657,8 +659,7 @@
             this.tsmiDataOmitLevels,
             this.tsmiBuildMeans,
             this.tsmiDataToSSQ,
-            this.tsmiDataExportExcel,
-            this.tsmiExportScore,
+            this.tsmiDataExport,
             this.tsmiDataReports,
             this.tsmiDataClose});
             this.mStripData.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
@@ -666,7 +667,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 476);
+            this.mStripData.Size = new System.Drawing.Size(175, 459);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -698,7 +699,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -706,7 +707,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -738,7 +739,7 @@
             // 
             this.tsmiDataSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiDataSavedLocal.Name = "tsmiDataSavedLocal";
-            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(129, 22);
+            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(184, 26);
             this.tsmiDataSavedLocal.Text = "Guardar";
             this.tsmiDataSavedLocal.Click += new System.EventHandler(this.tsmiDataSavedLocal_Click);
             // 
@@ -746,7 +747,7 @@
             // 
             this.tsmiDataSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiDataSavedWebService.Name = "tsmiDataSavedWebService";
-            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(129, 22);
+            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(184, 26);
             this.tsmiDataSavedWebService.Text = "Guardado ";
             this.tsmiDataSavedWebService.Click += new System.EventHandler(this.tsmiDataSavedWebService_Click);
             // 
@@ -805,26 +806,42 @@
             this.tsmiDataToSSQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataToSSQ.Click += new System.EventHandler(this.tsmiDataToSSQ_Click);
             // 
+            // tsmiDataExport
+            // 
+            this.tsmiDataExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiExportCsv,
+            this.tsmiDataExportExcel,
+            this.tsmiExportScore});
+            this.tsmiDataExport.Image = global::GUI_GT.Properties.Resources.Export_h32;
+            this.tsmiDataExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmiDataExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiDataExport.Name = "tsmiDataExport";
+            this.tsmiDataExport.Size = new System.Drawing.Size(170, 36);
+            this.tsmiDataExport.Text = "Exportar";
+            this.tsmiDataExport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tsmiExportCsv
+            // 
+            this.tsmiExportCsv.Image = global::GUI_GT.Properties.Resources.csv_22;
+            this.tsmiExportCsv.Name = "tsmiExportCsv";
+            this.tsmiExportCsv.Size = new System.Drawing.Size(198, 26);
+            this.tsmiExportCsv.Text = "Exportar CSV";
+            // 
             // tsmiDataExportExcel
             // 
             this.tsmiDataExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
-            this.tsmiDataExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmiDataExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataExportExcel.Name = "tsmiDataExportExcel";
-            this.tsmiDataExportExcel.Size = new System.Drawing.Size(170, 36);
+            this.tsmiDataExportExcel.Size = new System.Drawing.Size(198, 26);
             this.tsmiDataExportExcel.Text = "Exportar Excel";
-            this.tsmiDataExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataExportExcel.Click += new System.EventHandler(this.tsmiDataExportExcel_Click);
             // 
             // tsmiExportScore
             // 
-            this.tsmiExportScore.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h32;
-            this.tsmiExportScore.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmiExportScore.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h22;
             this.tsmiExportScore.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiExportScore.Name = "tsmiExportScore";
-            this.tsmiExportScore.Size = new System.Drawing.Size(170, 36);
+            this.tsmiExportScore.Size = new System.Drawing.Size(198, 26);
             this.tsmiExportScore.Text = "Exportar puntuaciones";
-            this.tsmiExportScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiExportScore.Click += new System.EventHandler(this.tsmiExportScore_Click);
             // 
             // tsmiDataReports
@@ -845,7 +862,7 @@
             // 
             this.tsmiDataPrinter.Image = global::GUI_GT.Properties.Resources.SYSTEM_PRINTERS_h32;
             this.tsmiDataPrinter.Name = "tsmiDataPrinter";
-            this.tsmiDataPrinter.Size = new System.Drawing.Size(120, 22);
+            this.tsmiDataPrinter.Size = new System.Drawing.Size(184, 26);
             this.tsmiDataPrinter.Text = "Imprimir";
             this.tsmiDataPrinter.Click += new System.EventHandler(this.tsmiDataPrinter_Click);
             // 
@@ -853,7 +870,7 @@
             // 
             this.tsmiDataWordExport.Image = global::GUI_GT.Properties.Resources.word8_h32;
             this.tsmiDataWordExport.Name = "tsmiDataWordExport";
-            this.tsmiDataWordExport.Size = new System.Drawing.Size(120, 22);
+            this.tsmiDataWordExport.Size = new System.Drawing.Size(184, 26);
             this.tsmiDataWordExport.Text = "Word";
             this.tsmiDataWordExport.Click += new System.EventHandler(this.tsmiDataWordExport_Click);
             // 
@@ -861,7 +878,7 @@
             // 
             this.tsmiDataPdfExport.Image = global::GUI_GT.Properties.Resources.Adobe_v2_h32;
             this.tsmiDataPdfExport.Name = "tsmiDataPdfExport";
-            this.tsmiDataPdfExport.Size = new System.Drawing.Size(120, 22);
+            this.tsmiDataPdfExport.Size = new System.Drawing.Size(184, 26);
             this.tsmiDataPdfExport.Text = "PDF";
             this.tsmiDataPdfExport.Click += new System.EventHandler(this.tsmiDataPdfExport_Click);
             // 
@@ -3207,6 +3224,18 @@
             this.lbAnalysisTotalTargetVar.TabIndex = 21;
             this.lbAnalysisTotalTargetVar.Text = "Total (Objetivo de la varianza): ";
             // 
+            // lbAnalysisTextCoef_G_Rel
+            // 
+            this.lbAnalysisTextCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbAnalysisTextCoef_G_Rel.AutoSize = true;
+            this.lbAnalysisTextCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbAnalysisTextCoef_G_Rel.Location = new System.Drawing.Point(214, 422);
+            this.lbAnalysisTextCoef_G_Rel.Name = "lbAnalysisTextCoef_G_Rel";
+            this.lbAnalysisTextCoef_G_Rel.Size = new System.Drawing.Size(111, 13);
+            this.lbAnalysisTextCoef_G_Rel.TabIndex = 28;
+            this.lbAnalysisTextCoef_G_Rel.Text = "Coeficiente G relativo:";
+            this.lbAnalysisTextCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lbAnalysisTextCoef_G_Abs
             // 
             this.lbAnalysisTextCoef_G_Abs.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -3387,18 +3416,6 @@
             this.lbAnalysisCoef_G_Rel.TabIndex = 29;
             this.lbAnalysisCoef_G_Rel.Text = "lbCoef_G_Rel";
             this.lbAnalysisCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lbAnalysisTextCoef_G_Rel
-            // 
-            this.lbAnalysisTextCoef_G_Rel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lbAnalysisTextCoef_G_Rel.AutoSize = true;
-            this.lbAnalysisTextCoef_G_Rel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTextCoef_G_Rel.Location = new System.Drawing.Point(214, 422);
-            this.lbAnalysisTextCoef_G_Rel.Name = "lbAnalysisTextCoef_G_Rel";
-            this.lbAnalysisTextCoef_G_Rel.Size = new System.Drawing.Size(111, 13);
-            this.lbAnalysisTextCoef_G_Rel.TabIndex = 28;
-            this.lbAnalysisTextCoef_G_Rel.Text = "Coeficiente G relativo:";
-            this.lbAnalysisTextCoef_G_Rel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbAnalysisTextGeneralizabilityCoef
             // 
@@ -4265,7 +4282,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDataEditObs;
         private System.Windows.Forms.ToolStripMenuItem tsmiBuildMeans;
         private System.Windows.Forms.ToolStripMenuItem tsmiDataToSSQ;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDataExportExcel;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDataExport;
         private System.Windows.Forms.ToolStripMenuItem tsmiDataClose;
         private System.Windows.Forms.TabControl tabControlData;
         private System.Windows.Forms.TabPage tabPagMultiFacet;
@@ -4438,7 +4455,6 @@
         private System.Windows.Forms.TextBox tbNameProject;
         private System.Windows.Forms.Label lbNameProject;
         private System.Windows.Forms.Label lbDescriptionProject;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExportScore;
         private System.Windows.Forms.ToolStripMenuItem tsmiSSq_ExportSquares;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysis_ExportSquares;
         private System.Windows.Forms.Button btImportScores;
@@ -4504,6 +4520,9 @@
         private System.Windows.Forms.CheckBox checkBoxHideNulls;
         private System.Windows.Forms.Button btRemoveNestingEdit;
         private System.Windows.Forms.Button btNestingFacetEdit;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExportCsv;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDataExportExcel;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExportScore;
     }
 }
 

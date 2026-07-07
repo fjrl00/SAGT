@@ -89,7 +89,8 @@ UI
 - PrintPreviewDialog feature removed, as it's superfluous in modern Windows
 - Solved "Printing page X of document" form appearing hidden behind the main form
 - Solved "Relative G Coefficient" text appearing cut off in Analysis
-- .CSV format displayed more prominently in the data importing screen to denote its more useful status
+- .CSV format displayed more prominently in the data importing screen to denote its more useful status, its banner has also been updated for more distinction and emphasis
+- "Export" items in the data section's menu have been grouped into one. New icons created to keep them readable
 
 NEW FEATURES
 
@@ -102,4 +103,4 @@ KNOWN ISSUES
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
 
-Last updated: 05/07/2026
+Last updated: 07/07/2026

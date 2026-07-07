@@ -676,6 +676,10 @@
     <None Include="Resources\Cambiar Diseño h32.png" />
     <None Include="Resources\File TextDocument edition h32.png" />
     <None Include="Resources\File TextDocument edition 2 h32.png" />
+    <None Include="Resources\Export_h32.png" />
+    <None Include="Resources\csv_h32.png" />
+    <None Include="Resources\AQUA ICONS FILE GENERIC DOCUMENT 1_dat_h22.png" />
+    <None Include="Resources\csv_22.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="changelog.txt">

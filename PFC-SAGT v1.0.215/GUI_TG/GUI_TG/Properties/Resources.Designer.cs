@@ -103,6 +103,16 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h22 {
+            get {
+                object obj = ResourceManager.GetObject("AQUA ICONS FILE GENERIC DOCUMENT 1_dat_h22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h32 {
             get {
                 object obj = ResourceManager.GetObject("AQUA ICONS FILE GENERIC DOCUMENT 1_dat_h32", resourceCulture);
@@ -493,6 +503,16 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap csv_22 {
+            get {
+                object obj = ResourceManager.GetObject("csv_22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Datos_Facets_Pencil_h32 {
             get {
                 object obj = ResourceManager.GetObject("Datos_Facets_Pencil_h32", resourceCulture);
@@ -656,6 +676,16 @@ namespace GUI_GT.Properties {
         internal static System.Drawing.Bitmap Excel_Document_h32 {
             get {
                 object obj = ResourceManager.GetObject("Excel Document h32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Export_h32 {
+            get {
+                object obj = ResourceManager.GetObject("Export_h32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
