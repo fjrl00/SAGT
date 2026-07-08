@@ -1603,6 +1603,8 @@ namespace GUI_GT
          */
         private void btAccionGenerateTableObs_Click(object sender, EventArgs e)
         {
+            tbDescription.ReadOnly = true;
+
             ListFacets lf = null;
             if (this.lf_nestings == null) // Comprobamos si hay datos en la varible de edición de facetas (aka hay anidamientos de facetas mixtas)
             {

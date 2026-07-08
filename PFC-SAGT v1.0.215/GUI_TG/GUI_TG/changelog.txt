@@ -58,7 +58,7 @@ OPTIMIZATION
 LOCALIZATION
 
 - Solved incorrect terminology "frequency table" which actually refers to "observation table"
-- Solved terminology error where "standard error of measurement" was labeled in English as just "standard error" and in other languages as "standard deviation" or even worse as just "deviation"
+- Fixed terminology error where "standard error of measurement" was labeled in English as just "standard error" and in other languages as "standard deviation" or even worse as just "deviation"
 - Solved error where the string "% relative" (percentage of the relative error variance an instrumentation source contributes) would be incorrectly output as "absolute error variance" under certain circunstances
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization
@@ -91,6 +91,7 @@ UI
 - Solved "Relative G Coefficient" text appearing cut off in Analysis
 - .CSV format displayed more prominently in the data importing screen to denote its more useful status, its banner has also been updated for more distinction and emphasis
 - "Export" items in the data section's menu have been grouped into one. New icons created to keep them readable
+- Fixed Data->Facets->Description field not going back to ReadOnly mode after creating a new Data section
 
 NEW FEATURES
 
@@ -104,4 +105,4 @@ KNOWN ISSUES
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
 
-Last updated: 07/07/2026
+Last updated: 08/07/2026
