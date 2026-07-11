@@ -449,7 +449,7 @@
             this.checkBoxErrorAbsStandDev.Name = "checkBoxErrorAbsStandDev";
             this.checkBoxErrorAbsStandDev.Size = new System.Drawing.Size(132, 17);
             this.checkBoxErrorAbsStandDev.TabIndex = 5;
-            this.checkBoxErrorAbsStandDev.Text = "Desv. Típica Absoluta";
+            this.checkBoxErrorAbsStandDev.Text = "Error estándar de medición absoluto";
             this.checkBoxErrorAbsStandDev.UseVisualStyleBackColor = true;
             // 
             // checkBoxErrorRelStandDev
@@ -459,7 +459,7 @@
             this.checkBoxErrorRelStandDev.Name = "checkBoxErrorRelStandDev";
             this.checkBoxErrorRelStandDev.Size = new System.Drawing.Size(130, 17);
             this.checkBoxErrorRelStandDev.TabIndex = 4;
-            this.checkBoxErrorRelStandDev.Text = "Desv. Típica Relativa";
+            this.checkBoxErrorRelStandDev.Text = "Error estándar de medición relativo";
             this.checkBoxErrorRelStandDev.UseVisualStyleBackColor = true;
             // 
             // checkBoxTotalAbsErrorVar

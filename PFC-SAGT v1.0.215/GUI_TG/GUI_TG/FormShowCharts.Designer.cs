@@ -82,12 +82,12 @@
             series5.ChartArea = "ChartAreaG_Parameters";
             series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             series5.Legend = "Legend_coefG_Rel";
-            series5.LegendText = "Desv. Típica Relativa";
+            series5.LegendText = "Error estándar de medición relativo";
             series5.Name = "SeriesErrorRelStandDev";
             series6.ChartArea = "ChartAreaG_Parameters";
             series6.Color = System.Drawing.Color.Silver;
             series6.Legend = "Legend_coefG_Rel";
-            series6.LegendText = "Desv. Típica Absoluta";
+            series6.LegendText = "Error estándar de medición absoluto";
             series6.Name = "SeriesErrorAbsStandDev";
             this.chartG_Parameters.Series.Add(series1);
             this.chartG_Parameters.Series.Add(series2);

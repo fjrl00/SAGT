@@ -1984,9 +1984,9 @@
             this.lbTextAbsoluteSE.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lbTextAbsoluteSE.Location = new System.Drawing.Point(395, 396);
             this.lbTextAbsoluteSE.Name = "lbTextAbsoluteSE";
-            this.lbTextAbsoluteSE.Size = new System.Drawing.Size(98, 13);
+            this.lbTextAbsoluteSE.Size = new System.Drawing.Size(76, 13);
             this.lbTextAbsoluteSE.TabIndex = 16;
-            this.lbTextAbsoluteSE.Text = "Desv. tip. absoluta:";
+            this.lbTextAbsoluteSE.Text = "SEM absoluto:";
             this.lbTextAbsoluteSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbTextRelSE
@@ -1997,9 +1997,9 @@
             this.lbTextRelSE.Location = new System.Drawing.Point(214, 396);
             this.lbTextRelSE.Name = "lbTextRelSE";
             this.lbTextRelSE.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbTextRelSE.Size = new System.Drawing.Size(92, 13);
+            this.lbTextRelSE.Size = new System.Drawing.Size(70, 13);
             this.lbTextRelSE.TabIndex = 14;
-            this.lbTextRelSE.Text = "Desv. tip. relativa:";
+            this.lbTextRelSE.Text = "SEM relativo:";
             this.lbTextRelSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbTextCoef_G_Abs

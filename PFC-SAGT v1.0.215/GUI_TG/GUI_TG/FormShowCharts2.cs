@@ -60,8 +60,8 @@ namespace GUI_GT
         private string absol_measmt = "Coeficiente G absoluto";
         private string relat_err_var = "Error relativo";
         private string absol_err_var = "Error absoluto";
-        private string stand_relat_err = "Desv. típica del error relativo";
-        private string stand_absol_err = "Desv. típica del error absoluto";
+        private string stand_relat_err = "Error estándar de medición relativo";
+        private string stand_absol_err = "Error estándar de medición absoluto";
 
         // Cabecera de las columnas resumen de datos
         //==========================================
