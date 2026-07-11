@@ -267,6 +267,7 @@
             this.dGridViewExAnalysis_TableFacet = new DataGridViewEx.DataGridViewEx();
             this.btEditSumOfSquaresOnAnalisys = new System.Windows.Forms.Button();
             this.tabPageAnalysisEditingSSq = new System.Windows.Forms.TabPage();
+            this.btImportAnalysisVCA = new System.Windows.Forms.Button();
             this.btImportAnalysisEditSsq = new System.Windows.Forms.Button();
             this.btSaveAnalysisSsq = new System.Windows.Forms.Button();
             this.btCancelEditSsq = new System.Windows.Forms.Button();
@@ -667,7 +668,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 459);
+            this.mStripData.Size = new System.Drawing.Size(175, 440);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -824,7 +825,7 @@
             // 
             this.tsmiExportCsv.Image = global::GUI_GT.Properties.Resources.csv_22;
             this.tsmiExportCsv.Name = "tsmiExportCsv";
-            this.tsmiExportCsv.Size = new System.Drawing.Size(198, 26);
+            this.tsmiExportCsv.Size = new System.Drawing.Size(198, 22);
             this.tsmiExportCsv.Text = "Exportar CSV";
             this.tsmiExportCsv.Click += new System.EventHandler(this.tsmiExportCsv_Click);
             // 
@@ -832,7 +833,7 @@
             // 
             this.tsmiDataExportExcel.Image = global::GUI_GT.Properties.Resources.Excel_Document_h32;
             this.tsmiDataExportExcel.Name = "tsmiDataExportExcel";
-            this.tsmiDataExportExcel.Size = new System.Drawing.Size(198, 26);
+            this.tsmiDataExportExcel.Size = new System.Drawing.Size(198, 22);
             this.tsmiDataExportExcel.Text = "Exportar Excel";
             this.tsmiDataExportExcel.Click += new System.EventHandler(this.tsmiDataExportExcel_Click);
             // 
@@ -841,7 +842,7 @@
             this.tsmiExportScore.Image = global::GUI_GT.Properties.Resources.AQUA_ICONS_FILE_GENERIC_DOCUMENT_1_dat_h22;
             this.tsmiExportScore.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiExportScore.Name = "tsmiExportScore";
-            this.tsmiExportScore.Size = new System.Drawing.Size(198, 26);
+            this.tsmiExportScore.Size = new System.Drawing.Size(198, 22);
             this.tsmiExportScore.Text = "Exportar puntuaciones";
             this.tsmiExportScore.Click += new System.EventHandler(this.tsmiExportScore_Click);
             // 
@@ -2874,6 +2875,7 @@
             // tabPageAnalysisEditingSSq
             // 
             this.tabPageAnalysisEditingSSq.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisVCA);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisEditSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btSaveAnalysisSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btCancelEditSsq);
@@ -2887,6 +2889,21 @@
             this.tabPageAnalysisEditingSSq.TabIndex = 4;
             this.tabPageAnalysisEditingSSq.Text = "Suma de cuadrados";
             this.tabPageAnalysisEditingSSq.UseVisualStyleBackColor = true;
+            // 
+            // btImportAnalysisVCA
+            // 
+            this.btImportAnalysisVCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btImportAnalysisVCA.Image = global::GUI_GT.Properties.Resources.importcsv_h20;
+            this.btImportAnalysisVCA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btImportAnalysisVCA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btImportAnalysisVCA.Location = new System.Drawing.Point(84, 405);
+            this.btImportAnalysisVCA.Name = "btImportAnalysisVCA";
+            this.btImportAnalysisVCA.Size = new System.Drawing.Size(128, 35);
+            this.btImportAnalysisVCA.TabIndex = 23;
+            this.btImportAnalysisVCA.Text = "Importar análisis VCA";
+            this.btImportAnalysisVCA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btImportAnalysisVCA.UseVisualStyleBackColor = true;
+            this.btImportAnalysisVCA.Click += new System.EventHandler(this.btImportAnalysisVCA_Click);
             // 
             // btImportAnalysisEditSsq
             // 
@@ -4524,6 +4541,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiExportCsv;
         private System.Windows.Forms.ToolStripMenuItem tsmiDataExportExcel;
         private System.Windows.Forms.ToolStripMenuItem tsmiExportScore;
+        private System.Windows.Forms.Button btImportAnalysisVCA;
     }
 }
 

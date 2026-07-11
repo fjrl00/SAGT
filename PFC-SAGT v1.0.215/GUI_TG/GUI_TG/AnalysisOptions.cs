@@ -1212,6 +1212,83 @@ namespace GUI_GT
 
 
         /* Descripción:
+         *  - Lee análisis de componentes de varianza generado por la librería VCA de R
+         *  - Crea y guarda el análisis resultante
+         */
+        private void btActionImportAnalysisVCA_Click()
+        {
+            // Si estamos en el modo edición entonces actualizamos estos valores temporales
+            if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
+            {
+                listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
+                analysisSourceOfVarDiff = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfDifferentiation();
+                analysisSourceOfVarInst = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfInstrumentation();
+            }
+
+            // Select VCA CSV
+            OpenFileDialog openDialog = new OpenFileDialog();
+
+            if (Directory.Exists(cfgApli.Get_Path_Workspace()))
+                openDialog.InitialDirectory = cfgApli.Get_Path_Workspace();
+
+            openDialog.Filter = ("Comma-separated values" + FILTER_CSV + this.allFiles + FILTER_ALL_FILE);
+
+            if (openDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                // Read VCA analysis
+                TableAnalysisOfVariance tbAnalysisVar =
+                    new TableAnalysisOfVariance(listFacetsAnalysis, openDialog.FileName);
+
+                // Build G-study
+                TableG_Study_Percent gp =
+                    new TableG_Study_Percent(
+                        analysisSourceOfVarDiff,
+                        analysisSourceOfVarInst,
+                        tbAnalysisVar);
+
+                Analysis_and_G_Study analysis =
+                    new Analysis_and_G_Study(tbAnalysisVar, gp);
+
+                // Ask where to save
+                SaveFileDialog saveDialog = new SaveFileDialog();
+
+                if (Directory.Exists(cfgApli.Get_Path_Workspace()))
+                    saveDialog.InitialDirectory = cfgApli.Get_Path_Workspace();
+
+                saveDialog.DefaultExt = "anls";
+                saveDialog.Filter = "Analysis file" + FILTER_ANALYSIS_FILTER;
+                saveDialog.AddExtension = true;
+                saveDialog.OverwritePrompt = true;
+
+                if (saveDialog.ShowDialog() != DialogResult.OK)
+                    return;
+
+                analysis.SetDateTime(DateTime.Now);
+                analysis.SetNameFileDataCreation(saveDialog.FileName);
+
+                analysis.WritingFileAnalysisSSQ(saveDialog.FileName);
+
+                anl_tAnalysis_G_study_opt = analysis;
+
+                showMeDesignInAllAnalysisTextBoxs(tbAnalysisMdesign.Text);
+
+                LoadAllDataGridWithDataAnalysis(
+                    anl_tAnalysis_G_study_opt,
+                    saveDialog.FileName);
+
+                disableEditingFacetAnalysis();
+            }
+            catch (Exception ex)
+            {
+                ShowMessageErrorOK("Error importing VCA analysis.\n\n" + ex.Message);
+            }
+        }
+
+
+        /* Descripción:
          *  Toma el objeto de Tabla de análisis de la opción suma de cuadrados y realiza una copia en 
          *  profundidad que luego se mostrará en la opción de análisis.
          */
@@ -1489,6 +1566,8 @@ namespace GUI_GT
                 // Botón Importar suma de cuadrados del tabPage edición de suma de cuadrados
                 name = this.btImportAnalysisEditSsq.Name.ToString();
                 this.btImportAnalysisEditSsq.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = this.btImportAnalysisVCA.Name.ToString();
+                this.btImportAnalysisVCA.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Botón Editar del tabPage Información
                 name = this.btAnalysisEditComment.Name.ToString();
                 this.btAnalysisEditComment.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();

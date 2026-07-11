@@ -811,6 +811,7 @@
     <Content Include="Manual\PDF\Manual SAGT español.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\importcsv_h20.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="VBIDE">

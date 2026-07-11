@@ -158,6 +158,15 @@ namespace MultiFacetData
             return this.listFacets.Count;
         }
 
+        /*
+         * Descripción:
+         *  Devuelve la lista de facetas.
+         */
+        public List<Facet> RetListFacets()
+        {
+            return this.listFacets;
+        }
+
         public int IndexOf(Facet f)
         {
             return this.listFacets.IndexOf(f);

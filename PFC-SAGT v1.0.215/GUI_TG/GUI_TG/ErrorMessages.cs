@@ -88,6 +88,7 @@ namespace GUI_GT
         private string txtSaveDataObserved = "La tabla de observaciones se ha guardado";
         private string txtNoSaveCsv = "La tabla de observaciones no ha conseguido exportarse";
         private string txtSaveCsv = "La tabla de observaciones se ha exportado con éxito";
+        private string txtCvaError = "Error al importar el análisis VCA.";
         private string txtNoSaveScores = "Las puntuaciones no se han guardado";
         private string txtSaveScores = "Las puntuaciones se han guardado";
         private string txtNoSaveSumOfSquares = "Las sumas de cuadrados no se han guardado";
@@ -241,6 +242,8 @@ namespace GUI_GT
                 txtNoSaveCsv = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "txtSaveCsv";
                 txtSaveCsv = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "txtCvaError";
+                txtCvaError = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "txtNoSaveScores";
                 txtNoSaveScores = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "txtSaveScores";

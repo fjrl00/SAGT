@@ -19,10 +19,12 @@
  */
 
 using AuxMathCalcGT;
+using Microsoft.VisualBasic.FileIO;
 using MultiFacetData;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -349,6 +351,35 @@ namespace ProjectSSQ
             this.percentage = porc;
             this.standardError = stad_error;
         }
+
+        /* Descripción:
+         *  Constructor para el importador VCA
+         */
+        public TableAnalysisOfVariance(ListFacets listF, string csvPath)
+            : this()
+        {
+            this.listFacets = listF;
+            this.ldesigns = listF.CombinationStringWithoutRepetition();
+
+            // Initialize dictionaries
+            foreach (string design in ldesigns)
+            {
+                df[design] = listFacets.DegreeOfFreedom(design);
+                ssq[design] = null;
+                msq[design] = null;
+                randomComp[design] = null;
+                standardError[design] = null; // Not possible to calculate because we don't have access to the coefficients of MSQ in this case when designs are unbalanced (without implementing new methodology), see Brennan 7.1.1
+            }
+
+            ReadVCACsv(csvPath);
+
+            CalcMixComp();
+            CalcCorrecComp();
+            CalcPercentage();
+        }
+
+
+
         #endregion Constructores de la clase TableAnalysisOfVariance
 
 
@@ -1260,7 +1291,123 @@ namespace ProjectSSQ
             return new TableAnalysisOfVariance(newListFacets, newSsq);
         }// end;
 
+        #region Importación VCA
 
+        private void ReadVCACsv(string csvPath)
+        {
+            // First pass: collect the source names present in the CSV
+            List<string> csvNames = new List<string>();
+
+            using (TextFieldParser parser = new TextFieldParser(csvPath))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+
+                parser.ReadFields(); // header
+
+                while (!parser.EndOfData)
+                {
+                    string[] row = parser.ReadFields();
+
+                    string vcaName = row[0].Trim('"');
+
+                    if (vcaName == "total" || vcaName == "error")
+                        continue;
+
+                    csvNames.Add(vcaName);
+                }
+            }
+
+            // Build the translation table
+            Dictionary<string, string> map = BuildVCAMapping(csvNames);
+
+            // Second pass: actually read the values
+            using (TextFieldParser parser = new TextFieldParser(csvPath))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+
+                parser.ReadFields(); // header
+
+                while (!parser.EndOfData)
+                {
+                    string[] row = parser.ReadFields();
+
+                    string vcaName = row[0].Trim('"');
+
+                    if (vcaName == "total" || vcaName == "error")
+                        continue;
+
+                    string design = map[vcaName];
+
+                    df[design] = ParseDouble(row[1]) ?? df[design];
+                    ssq[design] = ParseDouble(row[2]);
+                    msq[design] = ParseDouble(row[3]);
+                    randomComp[design] = ParseDouble(row[4]);
+                }
+            }
+        }
+
+        // Mientras que tenemos diseños como [O]:[I][C], VCA usa O:I:C. Esto traduce entre ambos
+        private Dictionary<string, string> BuildVCAMapping(List<string> csvNames)
+        {
+            Dictionary<string, string> mapping = new Dictionary<string, string>();
+
+            foreach (string csvName in csvNames)
+            {
+                HashSet<string> csvFacets =
+                    new HashSet<string>(
+                        csvName.Split(':')
+                               .Select(s => s.Trim().ToLower()));
+
+                bool found = false;
+
+                foreach (string design in ldesigns)
+                {
+                    ListFacets lf = listFacets.ListDesignFacets(design);
+
+                    HashSet<string> designFacets =
+                        new HashSet<string>(
+                            lf.RetListFacets()
+                              .Select(f => f.Name()
+                                            .Trim('[', ']')
+                                            .ToLower()));
+
+                    if (csvFacets.SetEquals(designFacets))
+                    {
+                        mapping.Add(csvName, design);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new TableAnalysisOfVarianceException(
+                        $"Could not match VCA source '{csvName}' to any internal design.");
+                }
+            }
+
+            return mapping;
+        }
+
+        private static double? ParseDouble(string s)
+        {
+            s = s.Trim('"');
+
+            if (String.IsNullOrWhiteSpace(s))
+                return null;
+
+            if (s == "NA")
+                return null;
+
+            if (s == "Inf" || s == "-Inf")
+                return null;
+
+            return Double.Parse(s, CultureInfo.InvariantCulture);
+        }
+
+        #endregion Importación VCA
 
         #region Conversión con DataSet
         /* Descripción:

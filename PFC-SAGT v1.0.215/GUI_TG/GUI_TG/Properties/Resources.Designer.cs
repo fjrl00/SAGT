@@ -933,6 +933,16 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap importcsv_h20 {
+            get {
+                object obj = ResourceManager.GetObject("importcsv_h20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap loading36 {
             get {
                 object obj = ResourceManager.GetObject("loading36", resourceCulture);

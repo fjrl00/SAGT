@@ -2368,6 +2368,11 @@ namespace GUI_GT
             btActionImportAnalysisEditSsq_Click(this.dgvExAnalysisEditSSq);
         }
 
+        private void btImportAnalysisVCA_Click(object sender, EventArgs e)
+        {
+            btActionImportAnalysisVCA_Click();
+        }
+
 
         /* Descripción:
          *  Guarda los datos tras introducir la suma de cuadrados. Este llama 
