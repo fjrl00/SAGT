@@ -28,6 +28,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using AuxMathCalcGT;
 
 namespace ProjectSSQ
 {
@@ -1044,10 +1045,15 @@ namespace ProjectSSQ
                     double? porcentage = this.percentage[key];
                     double? standardError = this.standardError[key];
 
-                    string line = key + " " + ssq.ToString() + " " + df.ToString() + " "
-                         + msq.ToString() + " " + randomComp.ToString()
-                         + " " + mixComp.ToString() + " " + correcComp.ToString() + " "
-                         + porcentage.ToString() + " " + standardError.ToString();
+                    string line = key + " " 
+                        + ConvertNum.Double2String(ssq) + " "
+                        + ConvertNum.Double2String(df) + " "
+                        + ConvertNum.Double2String(msq) + " "
+                        + ConvertNum.Double2String(randomComp) + " "
+                        + ConvertNum.Double2String(mixComp) + " "
+                        + ConvertNum.Double2String(correcComp) + " "
+                        + ConvertNum.Double2String(porcentage) + " "
+                        + ConvertNum.Double2String(standardError);
 
                     writerFile.WriteLine(line);
                 }

@@ -25,7 +25,7 @@ OTHER BUGFIXES
 - Solved bug where duplicated error screens could be created when generating nested facets
 - Solved bug where changing language after loading and unloading Sums Of Squares data would cause an exception
 - Overhauled how the app works in different culture settings, bugs that would've been triggered regarding handling text data in certain cultures like Turkish have been solved.
-- Solved other minor bugs throughout the app related to handling null values
+- Solved various minor bugs throughout the app related to handling null values
 - Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
 - Solved bug where exported PNG files came out encoded as GIFs but with .png file extension, corrupting them in certain image viewers
 - Solved bug where changing language in the Means section would bug out Typical Score means tables' headers
@@ -106,6 +106,6 @@ KNOWN ISSUES
 
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
-- treatment of unbalanced designs is allowed. However, calculations for them are not at all accurate.
+- treatment of unbalanced designs is allowed. However, calculations for them are not accurate at all.
 
 Last updated: 08/07/2026
