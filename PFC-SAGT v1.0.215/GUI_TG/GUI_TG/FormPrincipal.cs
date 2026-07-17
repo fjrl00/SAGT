@@ -2373,6 +2373,11 @@ namespace GUI_GT
             btActionImportAnalysisVCA_Click();
         }
 
+        private void btImportAnalysisSAS_Click(object sender, EventArgs e)
+        {
+            btActionImportAnalysisSAS_Click();
+        }
+
 
         /* Descripción:
          *  Guarda los datos tras introducir la suma de cuadrados. Este llama 

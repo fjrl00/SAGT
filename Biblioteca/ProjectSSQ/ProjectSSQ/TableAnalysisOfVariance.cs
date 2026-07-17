@@ -28,7 +28,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using AuxMathCalcGT;
+using System.Text.RegularExpressions;
 
 namespace ProjectSSQ
 {
@@ -354,9 +354,11 @@ namespace ProjectSSQ
         }
 
         /* Descripción:
-         *  Constructor para el importador VCA
+         *  Constructor para el importador VCA/SAS
+         *  
+         *  bool VCA: true -> VCA, false -> SAS
          */
-        public TableAnalysisOfVariance(ListFacets listF, string csvPath)
+        public TableAnalysisOfVariance(ListFacets listF, string filePath, bool VCA)
             : this()
         {
             this.listFacets = listF;
@@ -368,11 +370,20 @@ namespace ProjectSSQ
                 df[design] = listFacets.DegreeOfFreedom(design);
                 ssq[design] = null;
                 msq[design] = null;
-                randomComp[design] = null;
+                if (VCA == true)
+                    randomComp[design] = null;
                 standardError[design] = null; // Not possible to calculate because we don't have access to the coefficients of MSQ in this case when designs are unbalanced (without implementing new methodology), see Brennan 7.1.1
             }
 
-            ReadVCACsv(csvPath);
+            if (VCA == true)
+                ReadVCACsv(filePath);
+            else
+            {
+                ReadSASLst(filePath);
+                CalcRandomComp();
+            }
+
+
 
             CalcMixComp();
             CalcCorrecComp();
@@ -1297,7 +1308,7 @@ namespace ProjectSSQ
             return new TableAnalysisOfVariance(newListFacets, newSsq);
         }// end;
 
-        #region Importación VCA
+        #region Importación VCA/SAS
 
         private void ReadVCACsv(string csvPath)
         {
@@ -1325,7 +1336,7 @@ namespace ProjectSSQ
             }
 
             // Build the translation table
-            Dictionary<string, string> map = BuildVCAMapping(csvNames);
+            Dictionary<string, string> map = BuildSourceMapping(csvNames);
 
             // Second pass: actually read the values
             using (TextFieldParser parser = new TextFieldParser(csvPath))
@@ -1355,7 +1366,7 @@ namespace ProjectSSQ
         }
 
         // Mientras que tenemos diseños como [O]:[I][C], VCA usa O:I:C. Esto traduce entre ambos
-        private Dictionary<string, string> BuildVCAMapping(List<string> csvNames)
+        private Dictionary<string, string> BuildSourceMapping(List<string> csvNames)
         {
             Dictionary<string, string> mapping = new Dictionary<string, string>();
 
@@ -1394,6 +1405,16 @@ namespace ProjectSSQ
                 }
             }
 
+            // Missing source check
+            foreach (string design in ldesigns)
+            {
+                if (!mapping.ContainsValue(design))
+                {
+                    throw new TableAnalysisOfVarianceException(
+                        $"The imported file is missing the source corresponding to '{design}'.");
+                }
+            }
+
             return mapping;
         }
 
@@ -1413,7 +1434,98 @@ namespace ProjectSSQ
             return Double.Parse(s, CultureInfo.InvariantCulture);
         }
 
-        #endregion Importación VCA
+        private void ReadSASLst(string lstPath)
+        {
+            List<string> sasNames = new List<string>();
+            bool insideTable = false;
+
+            // First pass: collect source names
+            foreach (string rawLine in File.ReadLines(lstPath))
+            {
+                string line = rawLine.Trim();
+
+                if (!insideTable)
+                {
+                    if (line.Contains("Tipo I SS") || line.Contains("Type I SS"))
+                    {
+                        insideTable = true;
+                    }
+
+                    continue;
+                }
+
+                if (line.Contains("Tipo III SS") ||
+                    line.Contains("Type III SS") ||
+                    line.StartsWith("Sistema SAS") ||
+                    line.StartsWith("SAS System"))
+                {
+                    break;
+                }
+
+                if (String.IsNullOrWhiteSpace(line))
+                    continue;
+
+                string[] parts = Regex.Split(line, @"\s+");
+
+                if (parts.Length < 4)
+                    continue;
+
+                // Skip the header row ("Fuente DF Tipo I SS...")
+                if (!Int32.TryParse(parts[1], out _))
+                    continue;
+
+                sasNames.Add(parts[0].Replace("*", ":"));
+            }
+
+            Dictionary<string, string> map = BuildSourceMapping(sasNames);
+
+            // Second pass: read the numerical values
+            insideTable = false;
+
+            foreach (string rawLine in File.ReadLines(lstPath))
+            {
+                string line = rawLine.Trim();
+
+                if (!insideTable)
+                {
+                    if (line.Contains("Tipo I SS") || line.Contains("Type I SS"))
+                    {
+                        insideTable = true;
+                    }
+
+                    continue;
+                }
+
+                if (line.Contains("Tipo III SS") ||
+                    line.Contains("Type III SS") ||
+                    line.StartsWith("Sistema SAS") ||
+                    line.StartsWith("SAS System"))
+                {
+                    break;
+                }
+
+                if (String.IsNullOrWhiteSpace(line))
+                    continue;
+
+                string[] parts = Regex.Split(line, @"\s+");
+
+                if (parts.Length < 4)
+                    continue;
+
+                if (!Int32.TryParse(parts[1], out _))
+                    continue;
+
+                string sasName = parts[0].Replace("*", ":");
+
+                string design = map[sasName];
+
+                df[design] = ParseDouble(parts[1]) ?? df[design];
+                ssq[design] = ParseDouble(parts[2]);
+                msq[design] = ParseDouble(parts[3]) ?? 0;
+            }
+        }
+
+        #endregion Importación VCA/SAS
 
         #region Conversión con DataSet
         /* Descripción:

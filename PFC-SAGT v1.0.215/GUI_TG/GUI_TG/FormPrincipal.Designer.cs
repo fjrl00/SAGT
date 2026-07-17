@@ -267,6 +267,7 @@
             this.dGridViewExAnalysis_TableFacet = new DataGridViewEx.DataGridViewEx();
             this.btEditSumOfSquaresOnAnalisys = new System.Windows.Forms.Button();
             this.tabPageAnalysisEditingSSq = new System.Windows.Forms.TabPage();
+            this.btImportAnalysisSAS = new System.Windows.Forms.Button();
             this.btImportAnalysisVCA = new System.Windows.Forms.Button();
             this.btImportAnalysisEditSsq = new System.Windows.Forms.Button();
             this.btSaveAnalysisSsq = new System.Windows.Forms.Button();
@@ -2875,6 +2876,7 @@
             // tabPageAnalysisEditingSSq
             // 
             this.tabPageAnalysisEditingSSq.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
+            this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisSAS);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisVCA);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btImportAnalysisEditSsq);
             this.tabPageAnalysisEditingSSq.Controls.Add(this.btSaveAnalysisSsq);
@@ -2890,15 +2892,30 @@
             this.tabPageAnalysisEditingSSq.Text = "Suma de cuadrados";
             this.tabPageAnalysisEditingSSq.UseVisualStyleBackColor = true;
             // 
+            // btImportAnalysisSAS
+            // 
+            this.btImportAnalysisSAS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btImportAnalysisSAS.Image = global::GUI_GT.Properties.Resources.importlst_h20;
+            this.btImportAnalysisSAS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btImportAnalysisSAS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btImportAnalysisSAS.Location = new System.Drawing.Point(12, 405);
+            this.btImportAnalysisSAS.Name = "btImportAnalysisSAS";
+            this.btImportAnalysisSAS.Size = new System.Drawing.Size(118, 35);
+            this.btImportAnalysisSAS.TabIndex = 24;
+            this.btImportAnalysisSAS.Text = "Importar análisis SAS";
+            this.btImportAnalysisSAS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btImportAnalysisSAS.UseVisualStyleBackColor = true;
+            this.btImportAnalysisSAS.Click += new System.EventHandler(this.btImportAnalysisSAS_Click);
+            // 
             // btImportAnalysisVCA
             // 
             this.btImportAnalysisVCA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btImportAnalysisVCA.Image = global::GUI_GT.Properties.Resources.importcsv_h20;
             this.btImportAnalysisVCA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btImportAnalysisVCA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btImportAnalysisVCA.Location = new System.Drawing.Point(84, 405);
+            this.btImportAnalysisVCA.Location = new System.Drawing.Point(136, 405);
             this.btImportAnalysisVCA.Name = "btImportAnalysisVCA";
-            this.btImportAnalysisVCA.Size = new System.Drawing.Size(128, 35);
+            this.btImportAnalysisVCA.Size = new System.Drawing.Size(118, 35);
             this.btImportAnalysisVCA.TabIndex = 23;
             this.btImportAnalysisVCA.Text = "Importar análisis VCA";
             this.btImportAnalysisVCA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2911,11 +2928,11 @@
             this.btImportAnalysisEditSsq.Image = global::GUI_GT.Properties.Resources.importat__data_h20;
             this.btImportAnalysisEditSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btImportAnalysisEditSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btImportAnalysisEditSsq.Location = new System.Drawing.Point(218, 405);
+            this.btImportAnalysisEditSsq.Location = new System.Drawing.Point(260, 405);
             this.btImportAnalysisEditSsq.Name = "btImportAnalysisEditSsq";
-            this.btImportAnalysisEditSsq.Size = new System.Drawing.Size(128, 35);
+            this.btImportAnalysisEditSsq.Size = new System.Drawing.Size(88, 35);
             this.btImportAnalysisEditSsq.TabIndex = 22;
-            this.btImportAnalysisEditSsq.Text = "Importar sumas de cuadrados";
+            this.btImportAnalysisEditSsq.Text = "Importar cuadrados";
             this.btImportAnalysisEditSsq.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btImportAnalysisEditSsq.UseVisualStyleBackColor = true;
             this.btImportAnalysisEditSsq.Click += new System.EventHandler(this.btImportAnalysisEditSsq_Click);
@@ -2925,9 +2942,9 @@
             this.btSaveAnalysisSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveAnalysisSsq.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.btSaveAnalysisSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSaveAnalysisSsq.Location = new System.Drawing.Point(358, 405);
+            this.btSaveAnalysisSsq.Location = new System.Drawing.Point(374, 405);
             this.btSaveAnalysisSsq.Name = "btSaveAnalysisSsq";
-            this.btSaveAnalysisSsq.Size = new System.Drawing.Size(95, 35);
+            this.btSaveAnalysisSsq.Size = new System.Drawing.Size(87, 35);
             this.btSaveAnalysisSsq.TabIndex = 21;
             this.btSaveAnalysisSsq.Text = "Guardar";
             this.btSaveAnalysisSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2940,9 +2957,9 @@
             this.btCancelEditSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btCancelEditSsq.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btCancelEditSsq.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCancelEditSsq.Location = new System.Drawing.Point(465, 405);
+            this.btCancelEditSsq.Location = new System.Drawing.Point(467, 405);
             this.btCancelEditSsq.Name = "btCancelEditSsq";
-            this.btCancelEditSsq.Size = new System.Drawing.Size(90, 35);
+            this.btCancelEditSsq.Size = new System.Drawing.Size(87, 35);
             this.btCancelEditSsq.TabIndex = 20;
             this.btCancelEditSsq.Text = "Cancelar";
             this.btCancelEditSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4542,6 +4559,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDataExportExcel;
         private System.Windows.Forms.ToolStripMenuItem tsmiExportScore;
         private System.Windows.Forms.Button btImportAnalysisVCA;
+        private System.Windows.Forms.Button btImportAnalysisSAS;
     }
 }
 
