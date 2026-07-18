@@ -60,7 +60,7 @@ namespace ConfigCFG
         // Varianza de error relativo
         const string STRING_CHECK_TOTAL_REL_ERROR_VAR = "Check_Total_Rel_Error_Var";
         const string STRING_COLOR_TOTAL_REL_ERROR_VAR = "Color_Total_Rel_Error_Var";
-        // Varianza de error absoluto
+        // varianza del error absoluto
         const string STRING_CHECK_TOTAL_ABS_ERROR_VAR = "Check_Total_Abs_Error_Var";
         const string STRING_COLOR_TOTAL_ABS_ERROR_VAR = "Color_Total_Abs_Error_Var";
         // Error standar relativo
@@ -146,7 +146,7 @@ namespace ConfigCFG
             // Varianza de error relativo
             this.checkTotalRelErrorVar = true;
             this.colorTotalRelErrorVar = Color.Green;
-            // Varianza de error absoluto
+            // varianza del error absoluto
             this.checkTotalAbsErrorVar = true;
             this.colorTotalAbsErrorVar = Color.Yellow;
             // Error estandar relativo
@@ -804,7 +804,7 @@ namespace ConfigCFG
                 // Varianza de error absoluta
                 writer.WriteLine(STRING_CHECK_TOTAL_ABS_ERROR_VAR + "=" + this.GetCheckTotalAbsErrorVar().ToString());
                 writer.WriteLine(STRING_COLOR_TOTAL_ABS_ERROR_VAR + "=" + this.GetColorTotalAbsErrorVar().ToArgb().ToString());
-                // Varianza de error relativa
+                // varianza del error relativo
                 writer.WriteLine(STRING_CHECK_TOTAL_REL_ERROR_VAR + "=" + this.GetCheckTotalRelErrorVar().ToString());
                 writer.WriteLine(STRING_COLOR_TOTAL_REL_ERROR_VAR + "=" + this.GetColorTotalRelErrorVar().ToArgb().ToString());
                 /*
@@ -916,7 +916,7 @@ namespace ConfigCFG
                             Color colorError_Rel_stand = Color.FromArgb(int.Parse(l));
                             this.SetColorErrorRelStandDev(colorError_Rel_stand);
                             break;
-                        // Varianza de Error Absoluto
+                        // varianza del error absoluto
                         case (STRING_CHECK_TOTAL_ABS_ERROR_VAR):
                             this.SetCheckTotalAbsErrorVar(this.StringToBool(l));
                             break;
@@ -1060,7 +1060,7 @@ namespace ConfigCFG
             // Error relativo standar
             res.Append(STRING_CHECK_ERROR_REL_STAND_DEV + " = " + this.checkErrorRelStandDev + "/n");
             res.Append(STRING_COLOR_ERROR_REL_STAND_DEV + " = " + Color2String(this.colorErrorRelStandDev) + "/n");
-            // Varianza de error absoluto
+            // varianza del error absoluto
             res.Append(STRING_CHECK_TOTAL_ABS_ERROR_VAR + " = " + this.checkTotalAbsErrorVar + "/n");
             res.Append(STRING_COLOR_TOTAL_ABS_ERROR_VAR + " = " + Color2String(this.colorTotalAbsErrorVar) + "/n");
             // Varianza de error relativo

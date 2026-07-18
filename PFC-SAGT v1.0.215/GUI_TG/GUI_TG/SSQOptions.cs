@@ -62,9 +62,9 @@ namespace GUI_GT
         // ===================================================================
         private string source = "Fuente";
         private string diff_var = "Varianza de diferenciación";
-        private string rel_err_var = "Varianza de error relativa";
+        private string rel_err_var = "Varianza del error relativo";
         private string percent_rel_err = "% relativo";
-        private string abs_err_var = "Varianza de error absoluta";
+        private string abs_err_var = "Varianza del error absoluto";
         private string percent_abs_err = "% absoluto";
 
         // Cabeceras de las columnas pertenecientes al tabPage de Optimization
@@ -303,7 +303,7 @@ namespace GUI_GT
         /*
          * Descripción:
          *  Carga los valores totales de los G-Parmeters en las etiquetas de total suma de fuentes 
-         *  objetivo, total varianza de error relativo y total varianza de error absoluto.
+         *  objetivo, total varianza de error relativo y total varianza del error absoluto.
          * Parámetros:
          *  TableG_Study_Percent tableG_Study: Tabla de G parámetros.
          */

@@ -599,7 +599,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Selecciona el color para representar la Varianza de Error Relativa haciendo doble click en 
+         *  Selecciona el color para representar la varianza del error relativo haciendo doble click en 
          *  el cuadro de color.
          */
         private void pictBoxColorTotalRelErrorVar_Click(object sender, EventArgs e)

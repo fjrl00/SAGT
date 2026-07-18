@@ -60,6 +60,8 @@ LOCALIZATION
 
 - Solved incorrect terminology "frequency table" which actually refers to "observation table"
 - Fixed terminology error where "standard error of measurement" was labeled in English as just "standard error" and in other languages as "standard deviation" or even worse as just "deviation"
+- Fixed terminology error where "target variance" was used as a confusing shorthand to mean "variance of the targets of measurement", unexplained and also inconsistent with the terminology of the rest of the app
+- Fixed terminology localization error: in "absolute error variance" the adjective "absolute" applies to "error", not to "error variance"
 - Solved error where the string "% relative" (percentage of the relative error variance an instrumentation source contributes) would be incorrectly output as "absolute error variance" under certain circunstances
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization

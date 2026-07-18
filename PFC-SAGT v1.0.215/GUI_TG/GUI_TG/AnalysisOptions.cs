@@ -758,7 +758,7 @@ namespace GUI_GT
         /*
          * Descripción:
          *  Carga los valores totales de los G-Parmeters en las etiquetas de total suma de fuentes 
-         *  objetivo, total varianza de error relativo y total varianza de error absoluto. Los datos
+         *  objetivo, total varianza de error relativo y total varianza del error absoluto. Los datos
          *  se muestran el tabPageAnalysisG_Parameters
          *  
          */
