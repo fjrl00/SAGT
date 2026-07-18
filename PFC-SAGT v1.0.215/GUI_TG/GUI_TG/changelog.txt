@@ -42,6 +42,7 @@ OTHER BUGFIXES
 - Solved bug where printing the Analysis section's report would instead try to print the report of the rest of the app
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
 - Solved bug where the CSV importer would fail to correctly interpret decimal numbers in Spanish locale (and other decimal comma-using locales)
+- Solved bug where trying to select or copy sections of tables in non-conventional ways (selecting a few corners manually with control-clicking, shift-clicking starting from bottom, etc) could result in an exception
 
 OPTIMIZATION
 
