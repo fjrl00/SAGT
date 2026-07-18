@@ -111,6 +111,7 @@ KNOWN ISSUES
 
 - The printing UI can send the app to the background of the screen and/or freeze it for a minute or so under certain circumstances.
 - Error messages in the more backend part of the app are still untranslated
-- treatment of unbalanced designs is allowed. However, calculations for them are not accurate at all.
+- Treatment of unbalanced designs is allowed. However, calculations for them are not accurate at all.
+- Various minor bugs seemingly native to WinForms, like AutoEllipsis not triggering correctly, or column widths not being properly resized when resizing the app's screen.
 
-Last updated: 17/07/2026
+Last updated: 18/07/2026
