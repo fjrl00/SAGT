@@ -79,7 +79,7 @@ OTHERS
 UI
 
 - Removed column "Processed levels" from Sum of Squares->Optimization. It was for a planned feature that never got added. Replaced with the facet's description.
-- Solved oversights where confirmation popups for some actions that could cause loss of data weren't added
+- Solved oversights where confirmation popups for some actions that could cause loss of data weren't added. And also cases where incorrect confirmation popups were added
 - Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
 - leaving sums of squares cells empty in Analysis->sum of squares section will now substitute them with 0 instead of launching an exception
 - Analysis->Import operations now result in a single loading screen, rather than multiple ones blinking in and out of existence
@@ -96,6 +96,7 @@ UI
 - "Export" items in the data section's menu have been grouped into one.
 - Fixed Data->Facets->Description field not going back to ReadOnly mode after creating a new Data section
 - New icons added for various new buttons/features
+- Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring values irrevocably.
 
 NEW FEATURES
 
