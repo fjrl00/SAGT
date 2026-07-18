@@ -520,8 +520,7 @@ namespace GUI_GT
                             TableG_Study_Percent gp = new TableG_Study_Percent(analysisSourceOfVarDiff, analysisSourceOfVarInst, tbAnalysisVar);
 
                             // Cargamos los datos en los textBox
-                            string mDesing = tbAnalysisMdesign.Text;
-                            showMeDesignInAllAnalysisTextBoxs(mDesing);
+                            ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                             // Actualizamos la variable global de análisis con los nuevos valores
                             this.anl_tAnalysis_G_study_opt = new Analysis_and_G_Study(tbAnalysisVar, gp);
@@ -567,6 +566,7 @@ namespace GUI_GT
                 this.dgvAnalysisResumOpt);
             // Mostramos los datos de el tabPage de información
             this.tbFileAnalysisProvede.Text = nameFile;
+            this.tbFileAnalysisProvede_SSQ.Text = nameFile;
             this.tbDateAnalysisCreated.Text = anl_tAnalysis_G_study_opt.GetDateTime().ToString();
             this.rTextBoxAnalysisInfo.Text = anl_tAnalysis_G_study_opt.GetTextComment();
         }// LoadAllDataGridWithDataAnalysis
@@ -732,26 +732,9 @@ namespace GUI_GT
         private void ShowMeDesignInAnalysisTextBoxs(ListFacets analysisSourceOfVarDiff, ListFacets analysisSourceOfVarInst)
         {
             string mDesing = analysisSourceOfVarDiff.StringOfListFactes() +
-                        "/" + analysisSourceOfVarInst.StringOfListFactes();
-            tbAnalysisMdesign.Text = mDesing;
-            // Resto de textBox
-            tbAnalysisMeasurDesignSsq.Text = mDesing;
+                        "/ " + analysisSourceOfVarInst.StringOfListFactes();
             tbAnalysisMeasDesignG_P.Text = mDesing;
             tbAnalysisMesurDesignOpt.Text = mDesing;
-        }
-
-
-        /* Descripción:
-         *  Copia el diseño de medida previamente calculado y almacenado en el textBox de edición de 
-         *  suma de cuadrados y lo copia al resto de textBox de los otros tabPage de Análisis. Esto
-         *  debe hacerse cuando se ha concluido afirmativamente la edición de suma de cuadrados.
-         */
-        private void showMeDesignInAllAnalysisTextBoxs(string mDesign)
-        {
-            //string mDesing = tbAnalysisMdesign.Text;
-            tbAnalysisMeasurDesignSsq.Text = mDesign;
-            tbAnalysisMeasDesignG_P.Text = mDesign;
-            tbAnalysisMesurDesignOpt.Text = mDesign;
         }
 
 
@@ -850,13 +833,15 @@ namespace GUI_GT
         {
             string mDesign = "";
             // Limpiamos los TextBox de diseño de medida
-            showMeDesignInAllAnalysisTextBoxs(mDesign);
+            tbAnalysisMeasDesignG_P.Text = mDesign;
+            tbAnalysisMesurDesignOpt.Text = mDesign;
 
             // Limpiamos los label de los tabPage G-Parámetros y suma de cudrados
             ClearListBoxAnalysis();
 
             // Limpiamos los textBox del tabPage de información
             this.tbFileAnalysisProvede.Text = mDesign;
+            this.tbFileAnalysisProvede_SSQ.Text = mDesign;
             this.tbDateAnalysisCreated.Text = mDesign;
             this.rTextBoxAnalysisInfo.Text = mDesign;
             // Limpiamos el dgvEx del tabPage edición de Facetas
@@ -1273,7 +1258,7 @@ namespace GUI_GT
 
                 anl_tAnalysis_G_study_opt = analysis;
 
-                showMeDesignInAllAnalysisTextBoxs(tbAnalysisMdesign.Text);
+                ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                 LoadAllDataGridWithDataAnalysis(
                     anl_tAnalysis_G_study_opt,
@@ -1353,7 +1338,7 @@ namespace GUI_GT
 
                 anl_tAnalysis_G_study_opt = analysis;
 
-                showMeDesignInAllAnalysisTextBoxs(tbAnalysisMdesign.Text);
+                ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                 LoadAllDataGridWithDataAnalysis(
                     anl_tAnalysis_G_study_opt,
@@ -1657,15 +1642,14 @@ namespace GUI_GT
                 // Etiquetas del tabPageInformación
                 name = this.lbFileAnalysisProvede.Name.ToString();
                 this.lbFileAnalysisProvede.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                this.lbFileAnalysisProvede_SSQ.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbDateAnalysisCreated.Name.ToString();
                 this.lbDateAnalysisCreated.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Etiqueta de diseño de medida
-                name = lbAnalysisMeasurDesignSsq.Name.ToString();
-                lbAnalysisMeasurDesignSsq.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = lbAnalysisMeasDesignG_P.Name.ToString();
                 lbAnalysisMeasDesignG_P.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 lbAnalysisMesurDesignOpt.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                lbAnalysis_M_Desing_EditSsq.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Traducimos los menú contextuales de los dataGridViewEx
                 TranslationTContextualMenu(this.dGridViewExAnalysis_TableFacet, dicMeans, lang);

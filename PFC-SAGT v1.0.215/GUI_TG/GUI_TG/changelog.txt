@@ -91,12 +91,12 @@ UI
 - Nested facet type now nests each facet into the following ones, instead of into the previous ones
 - PrintPreviewDialog feature removed, as it's superfluous in modern Windows
 - Solved "Printing page X of document" form appearing hidden behind the main form
-- Solved "Relative G Coefficient" text appearing cut off in Analysis
 - .CSV format displayed more prominently in the data importing screen to denote its more useful status, its banner has also been updated for more distinction and emphasis
 - "Export" items in the data section's menu have been grouped into one.
 - Fixed Data->Facets->Description field not going back to ReadOnly mode after creating a new Data section
-- New icons added for various new buttons/features
-- Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring values irrevocably.
+- New graphics added for various new buttons/features
+- Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring keys and values sometimes needlessly and irrevocably.
+- Removed the Measurement Design info from the Sum of Squares tab, as it's irrelevant to that tab. Replaced with the source file
 
 NEW FEATURES
 

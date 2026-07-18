@@ -118,7 +118,7 @@ namespace GUI_GT
             this.tbMeasurementDesign.Text = "";
             if ((this.lfDiff.Count() > 0) && (this.lfInst.Count() > 0))
             {
-                this.tbMeasurementDesign.Text = this.lfDiff.StringOfListFactes() + "/" + this.lfInst.StringOfListFactes();
+                this.tbMeasurementDesign.Text = this.lfDiff.StringOfListFactes() + "/ " + this.lfInst.StringOfListFactes();
             }
         }
 

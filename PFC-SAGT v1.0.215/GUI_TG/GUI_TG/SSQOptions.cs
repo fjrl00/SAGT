@@ -1300,7 +1300,7 @@ namespace GUI_GT
         private void ShowMeDessingInTextBoxs(ListFacets sourceOfDifferentiation, ListFacets sourceOfInstrumentation)
         {
             this.tbMeasurementDesign.Text = sourceOfDifferentiation.StringOfListFactes() +
-                        "/" + sourceOfInstrumentation.StringOfListFactes();
+                        "/ " + sourceOfInstrumentation.StringOfListFactes();
             this.tbMesurDesign2.Text = this.tbMeasurementDesign.Text;
             this.tbMeasurementDesign2.Text = this.tbMeasurementDesign.Text;
         }

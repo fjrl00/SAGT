@@ -235,8 +235,8 @@ namespace GUI_GT
             document.Add(paragraphSsq1);
 
             // Linea de diseño de medida
-            Paragraph paragraphSsq2 = new Paragraph(lbAnalysis_M_Desing_EditSsq.Text
-                + " " + tbAnalysisMdesign.Text, fontTextReport);
+            Paragraph paragraphSsq2 = new Paragraph(lbAnalysisMeasDesignG_P.Text
+                + " " + tbAnalysisMeasDesignG_P.Text, fontTextReport);
             document.Add(paragraphSsq2);
             // Tabla de facetas
             PdfPTable datatableSsqFacet = GeneratePdfPTable(dgvExAnalysisSourceOfVarSsq,
