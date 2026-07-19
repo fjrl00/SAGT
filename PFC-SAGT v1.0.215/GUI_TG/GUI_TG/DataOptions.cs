@@ -403,25 +403,22 @@ namespace GUI_GT
                 // seleccionamos el tabPage datos
                 tabPageMeans.Parent = this.tabControlOptions;
             }
+            // Limpiamos todas las tablas de sumas de cuadrados
+            cleanerAllTabPageAnalysis();
             // Cargamos los elementos de tablas de análisis
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt == null)
-            {
-                // Limpiamos los tabPage de sumas de cuadrados
-                ClearTabPageSSQ();
-            }
-            else
+            this.anl_tAnalysis_G_study_opt = sagtElements.GetAnalysis_and_G_Study();
+            if (this.anl_tAnalysis_G_study_opt != null)
             {
                 // Cargamos los datos de las tablas de las tablas de análisis de varianza
-                LoadAllDataInDataGridViewEx_SSQOptions(tAnalysis_tG_Study_Opt);
+                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, fileNameData);
 
                 ExcludeTabPages();
                 // Restauramos los colores
                 this.RestoreColorMenu(this.mStripMain);
                 // Asignamos el color para la opción del menú datos
-                this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
+                this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
                 // seleccionamos el tabPage datos
-                tabPageSSQ.Parent = this.tabControlOptions;
+                tabPageAnalysis.Parent = this.tabControlOptions;
             }
         }// end LoadSagtElements
 

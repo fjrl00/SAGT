@@ -595,13 +595,21 @@ namespace GUI_GT
 
                 string fileFilter = (
                     this.sagtFiles + FILTER_SAGT_FILE +
-                    "Legacy Analysis" + FILTER_ANALYSIS_FILTER + "|" + 
+                    "Legacy Analysis File" + FILTER_ANALYSIS_FILTER + "|" + 
                     this.allFiles + FILTER_ALL_FILE);
                 openDialog.Filter = fileFilter;
 
                 if (openDialog.ShowDialog() == DialogResult.OK)
                 {
-                    LoadAnalysisFile(openDialog.FileName);
+                    switch (System.IO.Path.GetExtension(openDialog.FileName).ToLowerInvariant())
+                    {
+                        case ".anls":
+                            LoadAnalysisFile(openDialog.FileName);
+                            break;
+                        default:
+                            loadFileSagt(openDialog.FileName);
+                            break;
+                    }
                 }
             }
         }// end tsmiActionOpenAnalysis_Click
@@ -616,21 +624,7 @@ namespace GUI_GT
         {
             try
             {
-                Analysis_and_G_Study tb_aux;
-
-                switch (Path.GetExtension(path).ToLowerInvariant())
-                {
-                    case ".sagt":
-                        tb_aux = SagtFile.ReadingSagtFile(path).GetAnalysis_and_G_Study();
-                        break;
-                    case ".anls":
-                        tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(path);
-                        break;
-                    default:
-                        throw new NotSupportedException(
-                            $"Unsupported file extension: {Path.GetExtension(path)}\n\nPlease change file's extension to either .sagt or .anls, whichever one the file was generated with.");
-                }
-
+                Analysis_and_G_Study tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(path);
                 if (this.anl_tAnalysis_G_study_opt != null)
                 {
                     // Limpiamos todas las tablas
