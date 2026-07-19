@@ -57,6 +57,8 @@ namespace GUI_GT
         string titleSsqReport = "Informe de análisis de varianzas";
         string titleG_ParametersReport = "G Parámetros";
 
+        private string nameAnalysisDocument = "Análisis";
+
         // Tabla
         string stringTable = "Tabla";
 
@@ -81,6 +83,10 @@ namespace GUI_GT
         bool bFirsPageOfCommentSSq = false;
         bool isPrintNameTable = false; // indica si se ha imprimido el nombre de la tabla
         bool isPrintLineDesign = false; // indica si se ha imprimido la linea de diseño de medida
+
+        private bool isFinishTableOptResume = false;
+        private bool bNewTable = true;
+        bool isFinishTableFacetAnalysis = false;
 
         int iPosListMeans = 0; // Posición de la lista de medias
         int iTopMargin = 0; // Margen superior de escritura
@@ -107,14 +113,18 @@ namespace GUI_GT
 
         Font tablefontReport;
         Font textfontReport;
+        // Fuente para encabezados y pies de páginas
+        Font fontFootersAndHeaders = new Font("Verdana", 9F, FontStyle.Regular);
 
         // Pre-built DataGridViews for printing (built once in BeginPrint)
         DataGridViewEx.DataGridViewEx dgvExFacetsReport = null;
         DataGridViewEx.DataGridViewEx dgvExObsReport = null;
         List<DataGridViewEx.DataGridViewEx> dgvExMeansReports = null;
-        DataGridViewEx.DataGridViewEx dgvExSsqReport = null;
-        DataGridViewEx.DataGridViewEx dgvExGParamsReport = null;
-        DataGridViewEx.DataGridViewEx dgvExOptReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisFacetsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisSsqReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisGParamsReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAnalysisOptReport = null;
+        DataGridViewEx.DataGridViewEx dgvExAuxReport = null;
 
         #endregion
 
@@ -226,6 +236,10 @@ namespace GUI_GT
                 isFinishTableG_Parameters = false;
                 isFinishTableOptResume = false;
                 isPrintLineDesign = false;
+                isFinishTableFacetAnalysis = false;
+                isPrintNameTable = false;
+                isFinishTableMean = false;
+                bNewTable = true;
 
                 // Fuente que se empleara en el resto del informe para las tablas
                 tablefontReport = new Font(this.cfgApli.GetTableFontFamily(), this.cfgApli.GetTableFontSize(), FontStyle.Bold);
@@ -260,14 +274,21 @@ namespace GUI_GT
 
                 if (bSsq)
                 {
-                    dgvExSsqReport?.Dispose();
-                    dgvExSsqReport = CreateNewDataGridView(dataGridViewExSSQ, tablefontReport, tablefontReport);
+                    dgvExAnalysisFacetsReport?.Dispose();
+                    dgvExAnalysisFacetsReport = CreateNewDataGridView(dgvExAnalysisSourceOfVarSsq,
+                        tablefontReport, tablefontReport);
 
-                    dgvExGParamsReport?.Dispose();
-                    dgvExGParamsReport = CreateNewDataGridView(dGridViewExG_Parameters, tablefontReport, tablefontReport);
+                    dgvExAnalysisSsqReport?.Dispose();
+                    dgvExAnalysisSsqReport = CreateNewDataGridView(dgvExAnalysisSSq,
+                        tablefontReport, tablefontReport);
 
-                    dgvExOptReport?.Dispose();
-                    dgvExOptReport = CreateNewDataGridView(dGridViewExOptimizationResum, tablefontReport, tablefontReport);
+                    dgvExAnalysisGParamsReport?.Dispose();
+                    dgvExAnalysisGParamsReport = CreateNewDataGridView(dgvExAnalysis_GP,
+                        tablefontReport, tablefontReport);
+
+                    dgvExAnalysisOptReport?.Dispose();
+                    dgvExAnalysisOptReport = CreateNewDataGridView(dgvAnalysisResumOpt,
+                        tablefontReport, tablefontReport);
                 }
 
                 // Calculating Total Widths
@@ -521,53 +542,99 @@ namespace GUI_GT
                 // Imprimimos el informe de Suma de cuadrados
                 if (bSsq && !bData && !bMeans)
                 {// (* 1 *)
-                    if (bNewPage)
-                    {
-                        iTopMargin = e.MarginBounds.Top;
-                    }
-                    else
-                    {
-                        iTopMargin += 20;
-                    }
                     // Imprimimos la cabecera del informe
-                    if (bFirstPageReportSsq)
+                    if (!bFirstPageReportSsq)
                     {
+                        if (bNewPage)
+                        {
+                            iTopMargin = e.MarginBounds.Top;
+                        }
+                        else
+                        {
+                            iTopMargin += 20;
+                        }
                         // titleSsqReport
                         bMorePagesToPrint = PrintLineText(e, titleSsqReport, textfontReport, ref bFirstPageReportSsq);
+                        bNewPage = false;
                     }
                     if (!isPrintLineDesign)
                     {
-                        string lineStringDesign = lbMeasurementDesign.Text + " " + tbMeasurementDesign.Text;
+                        if (bNewPage)
+                        {
+                            iTopMargin = e.MarginBounds.Top;
+                        }
+                        else
+                        {
+                            iTopMargin += 20;
+                        }
+                        string lineStringDesign = lbAnalysisMeasDesignG_P.Text + " " + tbAnalysisMeasDesignG_P.Text;
                         bMorePagesToPrint = PrintLineText(e, lineStringDesign, textfontReport, ref isPrintLineDesign);
-                        arrColumnLefts.Clear();
-                        arrColumnWidths.Clear();
-                        iCellHeight = 0;
-                        iRow = 0;
-                        dgvExAuxReport = dgvExSsqReport;
-                        // Calculando ancho total
-                        iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
-                        SettingHeadersCell(e, dgvExAuxReport);
+                        bNewPage = false;
                     }
-                    if (!isFinishTableSsq)
-                    {
-                        iTopMargin += 20;
-                        // Necesito calcular el margen superior a partir del cual se escibe la siguiente tabla.
-                        bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableSsq);
-                        isFinishTableSsq = iRow >= dgvExAuxReport.RowCount && !bMorePagesToPrint;
 
+                    if (!isFinishTableFacetAnalysis)
+                    {
+                        if (bNewTable)
+                        {
+                            if (bNewPage)
+                            {
+                                iTopMargin = e.MarginBounds.Top;
+                            }
+                            else
+                            {
+                                iTopMargin += 20;
+                            }
+                            arrColumnLefts.Clear();
+                            arrColumnWidths.Clear();
+                            iCellHeight = 0;
+                            iRow = 0;
+                            dgvExAuxReport = dgvExAnalysisFacetsReport;
+                            // Calculando ancho total
+                            iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
+                            SettingHeadersCell(e, dgvExAuxReport);
+                            bNewTable = false;
+                        }
+                        bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableFacetAnalysis);
+                        bNewTable = isFinishTableFacetAnalysis;
+                        bNewPage = false;
+                    }
+                    if (isFinishTableFacetAnalysis && !isFinishTableSsq)
+                    {
+                        if (bNewTable)
+                        {
+                            if (bNewPage)
+                            {
+                                iTopMargin = e.MarginBounds.Top;
+                            }
+                            else
+                            {
+                                iTopMargin += 20;
+                            }
+                            arrColumnLefts.Clear();
+                            arrColumnWidths.Clear();
+                            iCellHeight = 0;
+                            iRow = 0;
+                            dgvExAuxReport = dgvExAnalysisSsqReport;
+                            // Calculando ancho total
+                            iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
+                            SettingHeadersCell(e, dgvExAuxReport);
+                        }
+                        bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableSsq);
+                        bNewTable = isFinishTableSsq;
+                        bNewPage = false;
                     }
                     // Imprimos la tabla de g_Parametros
-                    if (isFinishTableSsq && !isFinishTableG_Parameters)
+                    if (isFinishTableFacetAnalysis && isFinishTableSsq && !isFinishTableG_Parameters)
                     {
                         if (bFirstPageG_Parameters)
                         {
-                            bMorePagesToPrint = PrintLineText(e, this.tabPageG_Parameters.Text, textfontReport, ref bFirstPageG_Parameters);
+                            bMorePagesToPrint = PrintLineText(e, this.tabPageAnalysisG_P.Text, textfontReport, ref bFirstPageG_Parameters);
                             bFirstPageG_Parameters = !bFirstPageG_Parameters;
                             arrColumnLefts.Clear();
                             arrColumnWidths.Clear();
                             iCellHeight = 0;
                             iRow = 0;
-                            dgvExAuxReport = dgvExGParamsReport;
+                            dgvExAuxReport = dgvExAnalysisGParamsReport;
                             // Calculando ancho total
                             iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             SettingHeadersCell(e, dgvExAuxReport);
@@ -576,13 +643,17 @@ namespace GUI_GT
                         {
                             iTopMargin += 20;
                         }
-                        // Necesito calcular el margen superior a partir del cual se escibe la siguiente tabla.
+                        else
+                        {
+                            iTopMargin = e.MarginBounds.Top;
+                        }
                         bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableG_Parameters);
                         bNewTable = isFinishTableG_Parameters;
+                        bNewPage = false;
                     }
 
                     // Imprimimos la tabla de resumen
-                    if (isFinishTableSsq && isFinishTableG_Parameters && !isFinishTableOptResume)
+                    if (isFinishTableFacetAnalysis && isFinishTableSsq && isFinishTableG_Parameters && !isFinishTableOptResume)
                     {
                         if (bNewTable)
                         {
@@ -599,35 +670,42 @@ namespace GUI_GT
                             iCellHeight = 0;
                             iRow = 0;
 
-                            dgvExAuxReport = dgvExOptReport;
+                            dgvExAuxReport = dgvExAnalysisOptReport;
 
                             // Calculando ancho total
                             if (dgvExAuxReport.ColumnCount > 4)
                             {
-                                // iTotalWidth = CaulatingTotalWidths(dgvAnalysisResumOpt);
                                 iTotalWidth = CaulatingTotalWidths(dgvExAuxReport);
                             }
-                            // SettingHeadersCell(e, dgvAnalysisResumOpt);
                             SettingHeadersCell(e, dgvExAuxReport);
                         }
-                        // bMorePagesToPrint = PrintDataGridViewEx(e, dgvAnalysisResumOpt, fontReport, bShadingRows, ref isFinishTableOptResume);
                         bMorePagesToPrint = PrintDataGridViewEx(e, dgvExAuxReport, tablefontReport, bShadingRows, ref isFinishTableOptResume);
                         bNewTable = isFinishTableOptResume;
                         bNewPage = false;
                     }
-                    if (isFinishTableSsq && isFinishTableG_Parameters && isFinishTableOptResume)
+                    if (isFinishTableFacetAnalysis && isFinishTableSsq && isFinishTableG_Parameters && isFinishTableOptResume)
                     {
                         if (bFirsPageOfCommentSSq)
                         {
-                            string text = "\n" + lbNameFileSsqInfo.Text + ": " + tbNameFileSsqInfo.Text;
-                            text = text + "\n" + lbDateFileSsqInfo.Text + ": " + tbDateFileSsqInfo.Text;
-                            text = text + "\n" + richTextBoxSsqComment.Text;
+                            if (bNewPage)
+                            {
+                                iTopMargin = e.MarginBounds.Top;
+                            }
+                            else
+                            {
+                                iTopMargin += 20;
+                            }
+
+                            string text = "\n" + lbFileAnalysisProvede.Text + ": " + tbFileAnalysisProvede.Text;
+                            text = text + "\n" + lbDateAnalysisCreated.Text + ": " + tbDateAnalysisCreated.Text;
+                            text = text + "\n" + rTextBoxAnalysisInfo.Text;
                             iLine = 0;
                             arrStringLine = ArrayOfStrings(text, textfontReport, e);
                             bFirsPageOfCommentSSq = false;
                         }
 
                         bMorePagesToPrint = PrintComment(e, arrStringLine, textfontReport, bMorePagesToPrint);
+                        bNewPage = false;
                     }
                 }// end if (* 1 *)
 
@@ -652,9 +730,10 @@ namespace GUI_GT
         {
             dgvExFacetsReport?.Dispose(); dgvExFacetsReport = null;
             dgvExObsReport?.Dispose(); dgvExObsReport = null;
-            dgvExSsqReport?.Dispose(); dgvExSsqReport = null;
-            dgvExGParamsReport?.Dispose(); dgvExGParamsReport = null;
-            dgvExOptReport?.Dispose(); dgvExOptReport = null;
+            dgvExAnalysisFacetsReport?.Dispose(); dgvExAnalysisFacetsReport = null;
+            dgvExAnalysisSsqReport?.Dispose(); dgvExAnalysisSsqReport = null;
+            dgvExAnalysisGParamsReport?.Dispose(); dgvExAnalysisGParamsReport = null;
+            dgvExAnalysisOptReport?.Dispose(); dgvExAnalysisOptReport = null;
 
             if (dgvExMeansReports != null)
             {
@@ -664,6 +743,8 @@ namespace GUI_GT
 
             tablefontReport?.Dispose();
             textfontReport?.Dispose();
+
+            dgvExAuxReport = null;
         }
 
         /* Descripción:
@@ -841,7 +922,6 @@ namespace GUI_GT
                 else
                 {
                     salir = true;
-                    bNewTable = isPrintLine; ;
                 }
             }
             return bMorePagesToPrint;

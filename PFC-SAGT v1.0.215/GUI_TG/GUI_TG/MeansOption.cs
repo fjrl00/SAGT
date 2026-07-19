@@ -245,24 +245,6 @@ namespace GUI_GT
         }// end AddTabPageTableMeans
 
 
-        /* Descripción:
-         *  Salva los datos los datos de las tablas de medias en un archivo.
-         */
-        private void tsmiActionMeansSave_Click(object sender, EventArgs e)
-        {
-            ListMeans listMeans = this.sagtElements.GetListMeans();
-            if (listMeans == null)
-            {
-                // si no tenemos lista de medias lanzamos un mensaje de error
-                ShowMessageErrorOK(errorNoListMeans);
-            }
-            else
-            {
-                SaveFileSagt(this.sagtElements);
-            }
-        }// end private void tsmiActionMeansSave_Click
-
-
         /*
          * Descripción:
          *  Elimina los tabPage y vacia los dataGridViewEx de medias.

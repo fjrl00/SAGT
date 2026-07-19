@@ -78,8 +78,7 @@ namespace GUI_GT
             // First: confirmation screen triggers in case there's analysis data loaded. If the user cancels, we stop the method execution and do not lose the data.
             if (this.anl_tAnalysis_G_study_opt != null)
             {
-                TableAnalysisOfVariance tableAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
-                if (tableAnalysis != null)
+                if (this.anl_tAnalysis_G_study_opt.TableAnalysisVariance() != null)
                 {
                     DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
 
@@ -1046,9 +1045,9 @@ namespace GUI_GT
                     var sheetList = new List<(string SheetName, DataGridView Grid)>
                     {
                         (tabPagMultiFacet.Text, dgvExAnalysisSourceOfVarSsq),
-                        (tabPageSSQ_TableComp.Text, dgvExAnalysisSSq),
-                        (tabPageG_Parameters.Text, dgvExAnalysis_GP),
-                        (tabPageOptimization.Text, dgvAnalysisResumOpt),
+                        (tabPageAnalysisSSQ.Text, dgvExAnalysisSSq),
+                        (tabPageAnalysisG_P.Text, dgvExAnalysis_GP),
+                        (tabPageAnalysisOpt.Text, dgvAnalysisResumOpt),
                     };
                     ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
 

@@ -855,11 +855,11 @@ namespace GUI_GT
 
         /* Descripción:
          *  Pregunta al usuario donde quiere almacenar la información, si la respuesta es afirmativa, se 
-         *  guarda las facetas y la tabla de observaciones en un fichero.
+         *  guardan los dato en un fichero.
          */
         private void saveFileData(SagtFile sagtElements)
         {
-            if (sagtElements.GetMultiFacetsObs() == null)
+            if (sagtElements.GetMultiFacetsObs() == null && this.anl_tAnalysis_G_study_opt == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
             }

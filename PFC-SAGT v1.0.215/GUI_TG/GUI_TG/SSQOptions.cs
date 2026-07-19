@@ -199,27 +199,27 @@ namespace GUI_GT
                                     // Inicializamos la lista de G_Parámetros de Optimización
                                     List<G_ParametersOptimization> listG_ParametersOpt = new List<G_ParametersOptimization>();
 
-                                    Analysis_and_G_Study tAnalysis_tG_Study_Opt = new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt);
+                                    anl_tAnalysis_G_study_opt = new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt);
 
                                     // Guardamos los datos referentes a la creación de la suma de cuadrados
                                     string nameFile = multiFacets.NameFileObs();
-                                    tAnalysis_tG_Study_Opt.SetNameFileDataCreation(nameFile);
+                                    anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFile);
 
                                     DateTime date = DateTime.Now;
-                                    tAnalysis_tG_Study_Opt.SetDateTime(date);
+                                    anl_tAnalysis_G_study_opt.SetDateTime(date);
                                     // Actualizamos los datos
-                                    this.sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
+                                    this.sagtElements.SetAnalysis_and_G_Study(anl_tAnalysis_G_study_opt);
 
                                     // Mostramos todos los datos en los dataGridView
-                                    LoadAllDataInDataGridViewEx_SSQOptions(tAnalysis_tG_Study_Opt);
+                                    LoadAllDataGridWithDataAnalysis(anl_tAnalysis_G_study_opt, nameFile);
 
                                     // mostramos el tabPage de suma de cuadrados
                                     ExcludeTabPages();
-                                    this.tabPageSSQ.Parent = this.tabControlOptions;
+                                    this.tabPageAnalysis.Parent = this.tabControlOptions;
                                     // Restauramos los colores
                                     this.RestoreColorMenu(this.mStripMain);
                                     // Asignamos el nuevo color
-                                    this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
+                                    this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
 
                                     CloseLoadingScreen(fw);
                                 }
@@ -229,101 +229,6 @@ namespace GUI_GT
                 }
             }// end if  (* 1 *)
         }//private void EstimationPlan()
-
-
-        /*
-         * Descripción:
-         *  Muestra los datos en todos los dataGridView de la opcionSSQ
-         */
-        public void LoadAllDataInDataGridViewEx_SSQOptions(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
-        {
-            // Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-
-            TableAnalysisOfVariance tableAnalysis = tAnalysis_tG_Study_Opt.TableAnalysisVariance();
-            TableG_Study_Percent tableG_Study = tAnalysis_tG_Study_Opt.TableG_Study_Percent();
-            // Mostramos el diseño en el taexBox
-            ListFacets sourceOfVarInstrumentation = tableG_Study.LfInstrumentation();
-            ListFacets sourceOfDifferentiation = tableG_Study.LfDifferentiation();
-            ShowMeDessingInTextBoxs(sourceOfDifferentiation, sourceOfVarInstrumentation);
-            //mostramos los datos de las facetas
-            this.LoadListFacetInDataGridView(tableAnalysis.ListFacets(), this.dGridViewExSourceOfVar);
-            // ahora debemos rellenar la tabla.
-            LoadSSQ_InDataGridView(tableAnalysis, this.dataGridViewExSSQ);
-            // los valores totales de la tabla
-            LoadTotalSSQ_TableComp(tableAnalysis);
-            // ahora los GParameters
-            LoadG_ParametersInDataGridView(tAnalysis_tG_Study_Opt, this.dGridViewExG_Parameters);
-            LoadTotalG_Parameters(tableG_Study);
-            LoadDGridViewExFacetsOptimization(tAnalysis_tG_Study_Opt);
-            LoadDataGridViewExOptimizationResum(tAnalysis_tG_Study_Opt,
-                this.dGridViewExOptimizationResum);
-            // Los datos de la pestaña de información
-            this.tbNameFileSsqInfo.Text = tAnalysis_tG_Study_Opt.GetNameFileDataCreation();
-            this.tbDateFileSsqInfo.Text = tAnalysis_tG_Study_Opt.GetDateTime().ToString();
-            this.richTextBoxSsqComment.Text = tAnalysis_tG_Study_Opt.GetTextComment();
-
-        }// end LoadAllDataInDataGridViewEx_SSQOptions
-
-
-        /*
-         * Descripción:
-         *  Limpia los campos de texto de los label que deben mostrarse inicialmente vacios.
-         */
-        private void ClearListBoxSSQ()
-        {
-            lbToltalSSQ.Text = "";
-            lbTotalDF.Text = "";
-            lbTotal_Target.Text = "";
-            lbTotal_Error_Rel.Text = "";
-            lbTotal_Error_Abs.Text = "";
-            lbStandDev.Text = "";
-            lbRelativeSE.Text = "";
-            lbAbsoluteSE.Text = "";
-            lbCoef_G_Rel.Text = "";
-            lbCoef_G_Abs.Text = "";
-        }
-
-
-        /*
-         * Descripción:
-         *  Carga los valores de la suma total de la suma de cuadrados y los grados de libertad en
-         *  sus respetivas etiquetas en el tabPageSSQ_TableComp.
-         * Parámetros:
-         *      TableAnalysisOfVariance tableAnalysis: Tabla de Análisis de varianza.
-         */
-        private void LoadTotalSSQ_TableComp(TableAnalysisOfVariance tableAnalysis)
-        {
-            int numOfDecimal = cfgApli.GetNumberOfDecimals();
-            string puntoDecimal = this.cfgApli.GetDecimalSeparator();
-            this.lbToltalSSQ.Text = ConvertNum.DecimalToString(tableAnalysis.CalcTotalSSQ(), numOfDecimal, puntoDecimal);
-            this.lbTotalDF.Text = tableAnalysis.CalcTotalDF().ToString();
-        }
-
-
-        /*
-         * Descripción:
-         *  Carga los valores totales de los G-Parmeters en las etiquetas de total suma de fuentes 
-         *  objetivo, total varianza de error relativo y total varianza del error absoluto.
-         * Parámetros:
-         *  TableG_Study_Percent tableG_Study: Tabla de G parámetros.
-         */
-        private void LoadTotalG_Parameters(TableG_Study_Percent tableG_Study)
-        {
-            int numOfDecimal = cfgApli.GetNumberOfDecimals();
-            string puntoDecimal = this.cfgApli.GetDecimalSeparator();
-            this.lbTotal_Target.Text = ConvertNum.DecimalToString(tableG_Study.TotalDifferentiationVariance(), numOfDecimal, puntoDecimal);
-            this.lbTotal_Error_Rel.Text = ConvertNum.DecimalToString(tableG_Study.TotalRelErrorVar(), numOfDecimal, puntoDecimal);
-            this.lbTotal_Error_Abs.Text = ConvertNum.DecimalToString(tableG_Study.TotalAbsErrorVar(), numOfDecimal, puntoDecimal);
-
-            // Calculamos las desviaciones tipicas
-            this.lbStandDev.Text = ConvertNum.DecimalToString(tableG_Study.TargetStandDev(), numOfDecimal, puntoDecimal);
-            this.lbRelativeSE.Text = ConvertNum.DecimalToString(tableG_Study.ErrorRelStandDev(), numOfDecimal, puntoDecimal);
-            this.lbAbsoluteSE.Text = ConvertNum.DecimalToString(tableG_Study.ErrorAbsStandDev(), numOfDecimal, puntoDecimal);
-
-            // calculamos los coeficientes de generalizabilidad
-            this.lbCoef_G_Rel.Text = ConvertNum.DecimalToString(tableG_Study.CoefG_Rel(), numOfDecimal, puntoDecimal);
-            this.lbCoef_G_Abs.Text = ConvertNum.DecimalToString(tableG_Study.CoefG_Abs(), numOfDecimal, puntoDecimal);
-        }
 
 
         /*
@@ -512,79 +417,6 @@ namespace GUI_GT
 
             dgvExG_P.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         }// end LoadG_ParametersInDataGridView
-
-
-        /* Descripción:
-         *  Carga las facetas en el dGridViewExFacetsOptimization para que esten presentes durante la optimización
-         */
-        private void LoadDGridViewExFacetsOptimization(Analysis_and_G_Study analysis_GStudy_Opt)
-        {
-            this.dGridViewExFacetsOptimization.Rows.Clear();
-            this.dGridViewExFacetsOptimization.ColumnHeadersVisible = true;
-
-            int num_col = 4;
-            // this.dGridViewExFacetsOptimization.ColumnCount = num_col;
-            this.dGridViewExFacetsOptimization.NumeroColumnas = num_col;
-
-            this.dGridViewExFacetsOptimization.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            // Set the column header style.
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Aqua;
-            columnHeaderStyle.Font = new Font("Verdana", 8, FontStyle.Bold);
-            this.dGridViewExFacetsOptimization.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
-            this.dGridViewExFacetsOptimization.DefaultCellStyle.Font = this.fontCellTable;
-
-            DataGridViewEx.DataGridViewEx dgv = this.dGridViewExFacetsOptimization;
-
-            // Primera columna faceta
-            dgv.Columns[IND_NAME].HeaderText = nameColFacet;
-            dgv.Columns[IND_NAME].Width = 100;
-            dgv.Columns[IND_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            // segunda columna nivel
-            dgv.Columns[IND_LEVEL].HeaderText = nameColLevel;
-            dgv.Columns[IND_LEVEL].Width = 100;
-            dgv.Columns[IND_LEVEL].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            // tercera columna descripción/ comentario
-            dgv.Columns[IND_SIZE_OF_UNIVERSE].HeaderText = this.nameColSizeOfUniverse;
-            dgv.Columns[IND_SIZE_OF_UNIVERSE].Width = 100;
-            dgv.Columns[IND_SIZE_OF_UNIVERSE].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            // tercera columna descripción/ comentario
-            dgv.Columns[IND_SSQQDESC].HeaderText = this.nameColComment;
-            dgv.Columns[IND_SSQQDESC].Width = 100;
-            dgv.Columns[IND_SSQQDESC].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            for (int i = 0; i < 4; i++)
-            {
-                dgv.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            TableAnalysisOfVariance tableAnalysis = analysis_GStudy_Opt.TableAnalysisVariance();
-
-            foreach (Facet f in tableAnalysis.ListFacets())
-            {
-                object[] my_Row = new object[num_col];
-
-                my_Row[IND_NAME] = f.Name();
-                my_Row[IND_LEVEL] = f.Level();
-                if (f.SizeOfUniverse().Equals(int.MaxValue))
-                {
-                    my_Row[IND_SIZE_OF_UNIVERSE] = Facet.INFINITE;
-                }
-                else
-                {
-                    my_Row[IND_SIZE_OF_UNIVERSE] = f.SizeOfUniverse();
-                }
-                my_Row[IND_SSQQDESC] = f.Comment();
-
-                dgv.Rows.Add(my_Row);
-            }
-        }// end LoadDGridViewExFacetsOptimization
 
 
         /*
@@ -792,34 +624,6 @@ namespace GUI_GT
             dgv.Columns[pos].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
             dgv.Columns[pos].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
-
-
-        /* Descripción:
-         *  Añadimos un nuevo nivel de optimización al estudió.
-         */
-        private void tsmiActionAddLevelSign_Click(Analysis_and_G_Study tablesOfAnalysisG)
-        {
-            // Combrobamos que haya un objeto de tipo Tabla de análisis
-            if (tablesOfAnalysisG == null)
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                G_ParametersOptimization newG_ParametersOpt = AddSignificanceLevel(tablesOfAnalysisG);
-
-                if (newG_ParametersOpt != null)
-                {
-                    tablesOfAnalysisG.AddG_Parameter(newG_ParametersOpt);
-
-                    // Posicionamos el tabPage de optimización
-                    this.tabControlSSQ.SelectedIndex = 2; // El dos se corresponde con el tabPabge optimización
-                    ListFacets listFactes = tablesOfAnalysisG.TableAnalysisVariance().ListFacets();
-                    // Añadimos una nueva columna
-                    AddColunmToDGVOptimization(listFactes, newG_ParametersOpt, this.dGridViewExOptimizationResum);
-                }
-            }
-        }// end tsmiActionAddLevelSign_Click
 
 
         /*
@@ -1199,7 +1003,7 @@ namespace GUI_GT
          */
         private void tsmiActionChartCoefGAbs_Click(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
         {
-            ShowChartCoefG(tAnalysis_tG_Study_Opt, true, this.tsmiChartCoefGAbs.Text);
+            ShowChartCoefG(tAnalysis_tG_Study_Opt, true, this.tsmiAnalysisChartCoefGAbs.Text);
         }
 
         /* Descripción:
@@ -1208,7 +1012,7 @@ namespace GUI_GT
          */
         private void tsmiActionChartCoefGRel_Click(Analysis_and_G_Study tAnalysis_tG_Study_Opt)
         {
-            ShowChartCoefG(tAnalysis_tG_Study_Opt, false, this.tsmiChartCoefGRel.Text);
+            ShowChartCoefG(tAnalysis_tG_Study_Opt, false, this.tsmiAnalysisChartCoefGRel.Text);
         }
 
         private void ShowChartCoefG(Analysis_and_G_Study tAnalysis_tG_Study_Opt, bool isAbs, string text)
@@ -1292,160 +1096,12 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Muestra el diseño de medida en los textBox
-         * Parámetros:
-         *  ListFacets sourceOfDifferentiation: Lista de facetas de diferenciación.
-         *  ListFacets sourceOfInstrumentation: Lista de facetas de intrumentación.
-         */
-        private void ShowMeDessingInTextBoxs(ListFacets sourceOfDifferentiation, ListFacets sourceOfInstrumentation)
-        {
-            this.tbMeasurementDesign.Text = sourceOfDifferentiation.StringOfListFactes() +
-                        "/ " + sourceOfInstrumentation.StringOfListFactes();
-            this.tbMesurDesign2.Text = this.tbMeasurementDesign.Text;
-            this.tbMeasurementDesign2.Text = this.tbMeasurementDesign.Text;
-        }
-
-
-        /* Descripción:
          *  Cuando la ventana se cierra se encarga de volver a porner la variable formShowCharts a null.
          */
         public void FormShowChartsClosed()
         {
             this.formShowCharts = null;
         }
-
-
-        /* Descripción:
-         *  Muestra la ventana para la importación de los datos de suma de cuadrados de archivos .rsa (resultado de analisis
-         *  GT E 2.0)
-         */
-        private void tsmiActionSSQImport_Click(object sender, EventArgs e)
-        {
-            //FormWaiting fw = null;
-
-            try
-            {
-                TransLibrary.Language lang = this.LanguageActually();
-                FormSSQImport formSSQ_Import = new FormSSQImport(lang, this.cfgApli.Get_Path_Workspace());
-                bool salir = false;
-                do
-                {
-                    DialogResult res = formSSQ_Import.ShowDialog();
-
-                    switch (res)
-                    {
-                        case DialogResult.Cancel: salir = true; break;
-                        case DialogResult.OK:
-                            if (String.IsNullOrEmpty(formSSQ_Import.fileName()))
-                            {
-                                // lanzamos un mensaje de error: no hay fichero seleccionado
-                                this.ShowMessageErrorOK(errorNoFileSelected);
-                            }
-                            else
-                            {
-                                //fw = ShowLoadingScreen(msgLoading);
-                                this.importSSqFile(formSSQ_Import.pathFile());
-                                //CloseLoadingScreen(fw);
-                                salir = true;
-                            }
-                            break;
-                    }
-                } while (!salir);
-            }
-            catch (SSqPY_Exception)
-            {
-                //CloseLoadingScreen(fw);
-                // Se producjo un error al leer el archivo
-                ShowMessageErrorOK(errorFormatFile);
-            }
-            catch (IOException)
-            {
-                //CloseLoadingScreen(fw);
-                ShowMessageErrorOK(errorFileInUse);
-            }
-            catch (Exception ex)
-            {
-                //CloseLoadingScreen(fw);
-                // Mostramos un mensaje indicando que el fichero no tiene el formato correcto
-                ShowMessageErrorOK(ex.Message);
-            }
-        }// end tsmiActionSSQImport_Click
-
-
-        /* Descripción:
-         *  Importa un fichero de suma de cuadrados.
-         */
-        public void importSSqFile(string path)
-        {
-            FormWaiting fw = null;
-
-            try
-            {
-                ListFacets sourceOfDifferentiation; // Lista de facetas de diferenciación
-                ListFacets sourceOfInstrumentation; // Lista de facetas de intrumentación
-
-                // Extraemos el nombre del fichero del path
-                string fileExt = fileExtension(path).ToLower(); // Pasamos a minúsculas la extensión
-                TypeOfFile typeOfFile = (TypeOfFile)Enum.Parse(typeof(TypeOfFile), fileExt, true);
-                DateTime date = DateTime.Now;
-
-                Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-                // para poder compararla. 
-                switch (typeOfFile)
-                {
-                    case (TypeOfFile.ssq):
-                        // Mostramos todos los datos en los dataGridView
-                        tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileSsq(path);
-                        break;
-                    case (TypeOfFile.rsa):
-                        tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileRsa(path);
-                        break;
-                    case (TypeOfFile.txt):
-                        fw = ShowLoadingScreen(msgLoading);
-                        List<AnalysisSsqEduG> listAnalysisEduG = AnalysisSsqEduG.ReadFileReportTxtEduG(path);
-                        CloseLoadingScreen(fw);
-                        tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG);
-                        break;
-                    case (TypeOfFile.rtf):
-                        fw = ShowLoadingScreen(msgLoading);
-                        List<AnalysisSsqEduG> listAnalysisEduG2 = AnalysisSsqEduG.ReadFileReportRtfEduG(path);
-                        CloseLoadingScreen(fw);
-                        tAnalysis_tG_Study_Opt = Aux_SelectAnalysisOfListAnalyisReports(listAnalysisEduG2);
-                        break;
-                    case (TypeOfFile.xls):
-                        fw = ShowLoadingScreen(msgLoading);
-                        tAnalysis_tG_Study_Opt = Aux_loadListTableSSqOfFileXls(path);
-                        CloseLoadingScreen(fw);
-                        break;
-                    default:
-                        ShowMessageErrorOK(errorInvalidExtension);
-                        break;
-                }// end switch
-
-                if (tAnalysis_tG_Study_Opt != null)
-                {
-                    date = DateTime.Now;
-                    tAnalysis_tG_Study_Opt.SetDateTime(date);
-                    tAnalysis_tG_Study_Opt.SetNameFileDataCreation(path);
-                    // Mostramos el diseño de medida en los textBox
-                    sourceOfDifferentiation = tAnalysis_tG_Study_Opt.List_Facets_Differentiation();
-                    sourceOfInstrumentation = tAnalysis_tG_Study_Opt.List_Facets_Intrumentation();
-                    ShowMeDessingInTextBoxs(sourceOfDifferentiation, sourceOfInstrumentation);
-                    // Mostramos todos los datos en los dataGridView
-                    LoadAllDataInDataGridViewEx_SSQOptions(tAnalysis_tG_Study_Opt);
-                    // Actualizamos
-                    this.sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
-                    // mostramos el tabPage de suma de cuadrados
-                    this.tabPageSSQ.Parent = this.tabControlOptions;
-                }
-            }
-            catch (ImportEduGSsq.AnalysisSsqEduG_Exception)
-            {
-                CloseLoadingScreen(fw);
-                // Se producjo un error al leer el archivo
-                ShowMessageErrorOK(errorFormatFile);
-            }
-        }// end importSSqFile
 
 
         /* Descripción:
@@ -1555,9 +1211,9 @@ namespace GUI_GT
                 TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + DATA_STRINGS);
                 TransLibrary.WordTranslation transFacets = dic.labelTraslation(tabPagMultiFacet.Name.ToString());
                 dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + SSQ_STRINGS);
-                TransLibrary.WordTranslation transSSq = dic.labelTraslation(tabPageSSQ_TableComp.Name.ToString());
-                TransLibrary.WordTranslation transG_p = dic.labelTraslation(tabPageG_Parameters.Name.ToString());
-                TransLibrary.WordTranslation transResum = dic.labelTraslation(tabPageOptimization.Name.ToString());
+                TransLibrary.WordTranslation transSSq = dic.labelTraslation(tabPageAnalysisSSQ.Name.ToString());
+                TransLibrary.WordTranslation transG_p = dic.labelTraslation(tabPageAnalysisG_P.Name.ToString());
+                TransLibrary.WordTranslation transResum = dic.labelTraslation(tabPageAnalysisOpt.Name.ToString());
 
                 return ImportExcel.ImportFileXLS_to_AAGS(path, transFacets, transSSq, transG_p, transResum);
             }
@@ -1567,55 +1223,6 @@ namespace GUI_GT
                 return null;    //Note: functions that call this function should take this return null into account to avoid deleting data
             }
         }
-
-
-
-        /* Descripción:
-         *  Cierra todos los elementos abiertos en suma de cuadrados.
-         */
-        private void tsmiActionSSQClose_Click(object sender, EventArgs e)
-        {
-            if (this.sagtElements.GetAnalysis_and_G_Study() != null)
-            {
-                DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
-                switch (res)
-                {
-                    case (DialogResult.OK):
-                        // Llamamos al método que lo limpia los elementos
-                        ClearTabPageSSQ();
-                        break;
-                }
-            }
-        }// end tsmiActionSSQClose_Click
-
-
-        /*
-         * Descripción:
-         *  Limpia los dataGridView de los tabPageSSQ y libera recursos de memoria liberados para tal fin.
-         */
-        private void ClearTabPageSSQ()
-        {
-            // limpiamos los label
-            ClearListBoxSSQ();
-            // limpiamos los label de diseño de medida
-            string mDesign = "";
-            this.tbMeasurementDesign.Text = mDesign;
-            this.tbMesurDesign2.Text = mDesign;
-            this.tbMeasurementDesign2.Text = mDesign;
-            // Limpiamos los campos del tabPage de información
-            this.tbNameFileSsqInfo.Text = mDesign;
-            this.tbDateFileSsqInfo.Text = mDesign;
-            this.richTextBoxSsqComment.Text = mDesign;
-            // Limpiamos los dataGridViewEx;
-            ClearDataGridViewEx(dGridViewExSourceOfVar);
-            ClearDataGridViewEx(dataGridViewExSSQ);
-            ClearDataGridViewEx(dGridViewExG_Parameters);
-            ClearDataGridViewEx(dGridViewExFacetsOptimization);
-            ClearDataGridViewEx(dGridViewExOptimizationResum);
-            // Ponemos las variables a null
-            this.sagtElements.SetAnalysis_and_G_Study(null);
-
-        }// end ClearTabPageSSQ()
 
 
         /* Descripción:
@@ -1630,90 +1237,6 @@ namespace GUI_GT
             dgvEx.Rows.Clear();
             dgvEx.ColumnHeadersVisible = false; // Ocultamos el encabezado de una tabla
         }
-
-
-        /* Descrpción:
-         *  Generar un archivo Excel a partir de los datos contenidos en las tablas de suma de cuadrados.
-         */
-        private void tsmiActionSSq_ExportExcel_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt == null)
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                // ---------- cuadro de dialogo para Guardar
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    saveDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                saveDialog.DefaultExt = DEFAULT_EXT_EXCEL; // extensión por defecto del fichero
-                string fileFilter = "xls file" + FILTER_EXCEL;
-                saveDialog.Filter = fileFilter;
-                saveDialog.AddExtension = true;
-                saveDialog.RestoreDirectory = true;
-                saveDialog.Title = titleSave; // Título de la ventana de salvado
-                if (saveDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // FormWaiting fw = ShowLoadingScreen(msgLoading); // seemingly loads too fast
-
-                    var sheetList = new List<(string SheetName, DataGridView Grid)>
-                    {
-                        (tabPagMultiFacet.Text, dGridViewExSourceOfVar),
-                        (tabPageSSQ_TableComp.Text, dataGridViewExSSQ),
-                        (tabPageG_Parameters.Text, dGridViewExG_Parameters),
-                        (tabPageOptimization.Text, dGridViewExOptimizationResum),
-                    };
-                    ExportExcel.ExportMultipleSheets(sheetList, saveDialog.FileName);
-
-                    // MessageBox.Show("Fin");
-                    Process.Start(saveDialog.FileName); //opens the file
-                    saveDialog.Dispose();
-
-                    // CloseLoadingScreen(fw);
-                }
-            }
-        }// end tsmiActionSSq_ExportExcel_Click
-
-
-        /* Descripción:
-         *  Muestra la ventana para editar los comentarios en la pestaña información de la opción
-         *  suma de cuadrados.
-         */
-        private void btActionSSQEditComment_Click(object sender, EventArgs e)
-        {
-            if ((sagtElements.GetAnalysis_and_G_Study() == null))
-            {
-                ShowMessageErrorOK(errorNoFileSelected);
-            }
-            else
-            {
-                TransLibrary.Language lang = this.LanguageActually();
-                string text = this.richTextBoxSsqComment.Text;
-                FormEditFileComment formEditComment = new FormEditFileComment(text, lang);
-                bool salir = false;
-                do
-                {
-                    DialogResult res = formEditComment.ShowDialog();
-                    switch (res)
-                    {
-                        case DialogResult.Cancel: salir = true; break;
-                        case DialogResult.OK:
-                            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-                            tAnalysis_tG_Study_Opt.SetTextComment(formEditComment.GetRichTextBoxText());
-                            this.richTextBoxSsqComment.Text = tAnalysis_tG_Study_Opt.GetTextComment();
-
-                            salir = true;
-                            break;
-                    }
-                } while (!salir);
-            }
-        }// end btActionSSQEditComment_Click
 
 
         /* Descipción:
@@ -1783,114 +1306,6 @@ namespace GUI_GT
         }// end tsmiActions_SSq_ExportSquares_Click
 
 
-        #region Métodos referentes a la edición de descripción de facetas desde la opción de suma de cuadrados
-        /* Descripción:
-         *  Se ejecuta al pulsar sobre el botón "Editar descripción". Permite modificar la descripción de
-         *  las facetas desde la opción de suma de cuadrados.
-         */
-        private void tsmiActionEditFacetDescription_Click()
-        {
-            this.disableTopLeftButtons = true; // Ponemos el modo edición a true
-            this.mStripSSQ.Enabled = false; // Inhabilitamos el menú vertical de suma de cuadrados
-
-            Analysis_and_G_Study ssqEditDescriptionFacet = this.sagtElements.GetAnalysis_and_G_Study();
-
-            // Ocultamos las pestañas
-            foreach (TabPage tabPage in this.tabControlSSQ.TabPages)
-            {
-                tabPage.Parent = null;
-            }
-
-            // this.anl_tAnalysis_G_study_opt_Old = this.anl_tAnalysis_G_study_opt; // Guardamos la tabla de análisis actual por si deshacemos los cambios
-
-            //Cargamos los datos de las facetas en el dataGrid
-            CleanerDataGridViewExFacets(dgvExSSQ_EditDescriptionFacets); // limpiamos el datagrid de facetas
-            ListFacets lf = ssqEditDescriptionFacet.GetListFacets(); // retomamos la lista de facetas
-            LoadListFacetInDataGridView(lf, dgvExSSQ_EditDescriptionFacets, false, true); // cargamos la lista de facetas en el datagrid
-            // Permitimos la edición de las columnas
-            int nCol = dgvExSSQ_EditDescriptionFacets.ColumnCount;
-            dgvExSSQ_EditDescriptionFacets.Columns["col_Description"].ReadOnly = false; // columna de descripción
-
-            // Mostramos solo la pestaña de facetas
-            this.tabPageEditDescriptionFacets.Parent = this.tabControlSSQ;
-        }// end tsmiActionEditFacetDescription_Click
-
-
-
-        /* Descripción:
-         *  Se activa al pulsar sobre el botón Aceptar de la pestaña editar descripción de facetas.
-         */
-        private void btActionEditDescriptionFacetsAcept_Click()
-        {
-            Analysis_and_G_Study ssqEditDescriptionFacet = this.sagtElements.GetAnalysis_and_G_Study();
-            string nameFileDataCreation = ssqEditDescriptionFacet.GetNameFileDataCreation();
-            DateTime dateCreation = ssqEditDescriptionFacet.GetDateTime();
-
-            try
-            {
-                // Leer las facetas;
-                ListFacets newLf = dgvExToListFacets(dgvExSSQ_EditDescriptionFacets);
-
-                // Actualizar la lista actual con los valores de la nueva
-                ListFacets oldLf = ssqEditDescriptionFacet.TableAnalysisVariance().ListFacets();
-                newLf = oldLf.RemplaceListFacets(newLf);
-
-                // generar la tabla de análisis partiendo de la suma de cuadrados anterior
-                // actualizar los valores de optimización
-                ssqEditDescriptionFacet = ssqEditDescriptionFacet.ReplaceListOfFacet(newLf);
-                ssqEditDescriptionFacet.SetNameFileDataCreation(nameFileDataCreation);
-                // this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFileDataCreation);
-                ssqEditDescriptionFacet.SetDateTime(dateCreation);
-                //this.anl_tAnalysis_G_study_opt.SetDateTime(dateCreation);
-                this.anl_tAnalysis_G_study_opt_Old = null;
-
-                // Actualizamos el valor
-                this.sagtElements.SetAnalysis_and_G_Study(ssqEditDescriptionFacet);
-                // cargar los valores nuevos.
-                LoadAllDataInDataGridViewEx_SSQOptions(ssqEditDescriptionFacet);
-
-                // Restauramos las pestañas y salimos del modo edición
-                disableEditDescriptionFacet();
-            }
-            catch (ListFacetsException)
-            {
-                // Mostramos un mensaje de error indicando que no puede haber facetas repetidas
-                ShowMessageErrorOK(errorDuplicateNameFacet);
-            }
-            catch (Exception ex)
-            {
-                // Capturamos la excepción y mostramos el problema
-                ShowMessageErrorOK("Error btActionEditDescriptionFacetsAcept_Click(): " + ex.Message);
-            }
-        }
-
-
-        /* Descripción:
-         *  Se activa al pulsar sobre el botón Cancelar de la pestaña editar descripción de facetas.
-         */
-        private void btActionEditDescriptionFacetsCancel_Click()
-        {
-            disableEditDescriptionFacet();
-        }
-
-
-        /* Descripción:
-         *  Restaura el estado de los elementos necesarios tras la edición de las facetas de la Oción Ananlisis.
-         */
-        private void disableEditDescriptionFacet()
-        {
-            // Ocultamos la pestaña facetas y mostramos todas las demas
-            this.tabPageEditDescriptionFacets.Parent = null;
-            this.tabPageSSQ_TableComp.Parent = this.tabControlSSQ;
-            this.tabPageG_Parameters.Parent = this.tabControlSSQ;
-            this.tabPageOptimization.Parent = this.tabControlSSQ;
-            this.tbPageSsqInfo.Parent = this.tabControlSSQ;
-            this.disableTopLeftButtons = false; // hemos finalizado la edición de facetas
-            this.mStripSSQ.Enabled = true; // habilitamos el uso del menu
-        }
-        #endregion Métodos referentes a la edición de descripción de facetas desde la opción de suma de cuadrados
-
-
         #region Cambio de idioma de los elementos del tabPageSSQ
         /*
          * Descripción:
@@ -1905,58 +1320,13 @@ namespace GUI_GT
             string name = "";
             try
             {
-                // traducimos las etiquetas de las pestañas
-                // Traducimos el tabPage: Suma de cuadrados
-                name = this.tabPageSSQ_TableComp.Name.ToString();
-                this.tabPageSSQ_TableComp.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos el tabPage: G-Parámetros
-                name = this.tabPageG_Parameters.Name.ToString();
-                this.tabPageG_Parameters.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos el tabPage: Optimización
-                name = this.tabPageOptimization.Name.ToString();
-                this.tabPageOptimization.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos el tabPage: Intormación
-                name = this.tbPageSsqInfo.Name.ToString();
-                this.tbPageSsqInfo.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos la pestaña de edición de facetas
-                name = this.tabPageEditDescriptionFacets.Name.ToString();
-                this.tabPageEditDescriptionFacets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                // Botones aceptar y cancelar de la pestaña edición de descripción de facetas
-                name = this.btEditDescriptionFacetsAcept.Name.ToString();
-                this.btEditDescriptionFacetsAcept.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = this.btEditDescriptionFacetsCancel.Name.ToString();
-                this.btEditDescriptionFacetsCancel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
                 // Traducimos la ventan de gráficos   
                 if (this.formShowCharts != null)
                 {
                     this.formShowCharts.traslationElements(lang, Application.StartupPath + LANG_PATH + FormShowCharts.STRING_TEXT);
                 }
 
-                // Traducimos los menú contextuales de los dataGridViewEx
-                TranslationTContextualMenu(this.dGridViewExSourceOfVar, dicMeans, lang);
-                TranslationTContextualMenu(this.dataGridViewExSSQ, dicMeans, lang);
-                TranslationTContextualMenu(this.dGridViewExG_Parameters, dicMeans, lang);
-                TranslationTContextualMenu(this.dGridViewExFacetsOptimization, dicMeans, lang);
-                TranslationTContextualMenu(this.dGridViewExOptimizationResum, dicMeans, lang);
-                TranslationTContextualMenu(this.dgvExSSQ_EditDescriptionFacets, dicMeans, lang);
-
-                // Etiqueta de diseño de medida
-                name = lbMeasurementDesign.Name.ToString();
-                lbMeasurementDesign.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                lbMeasuDesignGP.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                lbMesurDesign2.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                if (dGridViewExSourceOfVar.ColumnCount != 0)
-                {
-                    // Cambiamos el nombre de las columnas
-                    dGridViewExSourceOfVar.Columns[0].HeaderText = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
-                    dGridViewExSourceOfVar.Columns[1].HeaderText = nameColLevel; // Nombre de la columna Niveles (dependerá del idioma).
-                    dGridViewExSourceOfVar.Columns[2].HeaderText = nameColSizeOfUniverse; // Nombre de la columna Descripción (dependerá del idioma).
-                    dGridViewExSourceOfVar.Columns[3].HeaderText = nameColComment; // Nombre de la columna Descripción
-                }
-                // Columnas del dataGridViewEx Suma de cuadrados
+                // Columnas del dataGridViewEx Suma de cuadrados (CHECK)
                 name = "sourceOfVarString";
                 sourceOfVarString = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "ssqString";
@@ -1974,21 +1344,7 @@ namespace GUI_GT
                 name = "standardErrorString";
                 standardErrorString = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
-                // actuamos sobre el dataGridViewEx
-                if (dataGridViewExSSQ.ColumnCount != 0)
-                {
-                    // Cambiamos el nombre de las columnas
-                    dataGridViewExSSQ.Columns[IND_SOURCE_OF_VAR].HeaderText = sourceOfVarString; // Nombre de la columna "Fuentes de variación".
-                    dataGridViewExSSQ.Columns[IND_SSQ].HeaderText = ssqString; // Nombre de la columna Niveles (dependerá del idioma).
-                    dataGridViewExSSQ.Columns[IND_DEGREE_OF_FREEDOM].HeaderText = degreeOfFreedomString; // Nombre de la columna Descripción (dependerá del idioma).
-                    dataGridViewExSSQ.Columns[IND_MSQ].HeaderText = msqString;
-                    dataGridViewExSSQ.Columns[IND_RANDOM_COMP].HeaderText = randomCompString;
-                    dataGridViewExSSQ.Columns[IND_MIX_COMP].HeaderText = mixCompString;
-                    dataGridViewExSSQ.Columns[IND_CORRECTED_COMP].HeaderText = correctedComp;
-                    dataGridViewExSSQ.Columns[IND_STANDARD_ERROR].HeaderText = standardErrorString;
-                }
-
-                // Cabecera de las columnas del dataGridViewEx G-Parametros
+                // Cabecera de las columnas del dataGridViewEx G-Parametros (CHECK)
                 name = "source";
                 source = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "diff_var";
@@ -2002,28 +1358,7 @@ namespace GUI_GT
                 name = "percent_abs_err";
                 percent_abs_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
-                // actuamos sobre el dGridViewExG_Parameters
-                if (dGridViewExG_Parameters.ColumnCount != 0)
-                {
-                    dGridViewExG_Parameters.Columns[0].HeaderText = source;
-                    dGridViewExG_Parameters.Columns[1].HeaderText = diff_var;
-                    dGridViewExG_Parameters.Columns[2].HeaderText = source;
-                    dGridViewExG_Parameters.Columns[3].HeaderText = rel_err_var;
-                    dGridViewExG_Parameters.Columns[4].HeaderText = percent_rel_err;
-                    dGridViewExG_Parameters.Columns[5].HeaderText = abs_err_var;
-                    dGridViewExG_Parameters.Columns[6].HeaderText = percent_abs_err;
-                }
-
-                // Actuamos sobre dGridViewExFacetsOptimization
-                if (dGridViewExFacetsOptimization.ColumnCount != 0)
-                {
-                    dGridViewExFacetsOptimization.Columns[IND_NAME].HeaderText = nameColFacet; // Nombre de la columna Etiquetas (dependerá del idioma).
-                    dGridViewExFacetsOptimization.Columns[IND_LEVEL].HeaderText = nameColLevel; // Nombre de la columna Niveles (dependerá del idioma).
-                    dGridViewExFacetsOptimization.Columns[IND_SIZE_OF_UNIVERSE].HeaderText = this.nameColSizeOfUniverse;
-                    dGridViewExFacetsOptimization.Columns[IND_SSQQDESC].HeaderText = this.nameColComment;
-                }
-
-                // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum
+                // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum (CHECK)
                 name = "name_resum";
                 name_resum = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "resum";
@@ -2042,48 +1377,6 @@ namespace GUI_GT
                 stand_relat_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "stand_absol_err";
                 stand_absol_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                // Actuamos sobre el dGridViewExOptimizationResum
-                if (this.sagtElements.GetAnalysis_and_G_Study() != null)
-                {
-                    // dGridViewExOptimizationResum.Columns[0].HeaderText = name_resum;
-                    // Entonces pintamos la tabla de resumen de nuevo
-                    Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-                    LoadDataGridViewExOptimizationResum(tAnalysis_tG_Study_Opt, this.dGridViewExOptimizationResum);
-                }
-
-                // Traducimos las etiquetas de texto de los tabPage
-                name = lbTextTotalSSQ.Name.ToString();
-                lbTextTotalSSQ.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTotalTargetVar.Name.ToString();
-                lbTotalTargetVar.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTotalRelErr.Name.ToString();
-                lbTotalRelErr.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTotalAbsErr.Name.ToString();
-                lbTotalAbsErr.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextStandDev.Name.ToString();
-                lbTextStandDev.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextRelSE.Name.ToString();
-                lbTextRelSE.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextAbsoluteSE.Name.ToString();
-                lbTextAbsoluteSE.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextGeneralizabilityCoef.Name.ToString();
-                lbTextGeneralizabilityCoef.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextCoef_G_Rel.Name.ToString();
-                lbTextCoef_G_Rel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextGeneralizabilityCoef.Name.ToString();
-                lbTextGeneralizabilityCoef.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbTextCoef_G_Abs.Name.ToString();
-                lbTextCoef_G_Abs.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                // Etiquetas del tabPage: Información
-                name = lbNameFileSsqInfo.Name.ToString();
-                lbNameFileSsqInfo.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = lbDateFileSsqInfo.Name.ToString();
-                lbDateFileSsqInfo.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Boton Editar del tabPage: Información
-                name = btSsqEditComment.Name.ToString();
-                btSsqEditComment.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {

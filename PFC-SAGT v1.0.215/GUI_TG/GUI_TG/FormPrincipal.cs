@@ -138,12 +138,9 @@ namespace GUI_GT
 
             this.editingObsTable = false;
 
-            // Incializa la opción de suma de cuadrados ocultando el tabPage de edición de la descripción de facetas
-            this.tabPageEditDescriptionFacets.Parent = null;
             InitializeProjectsOption(); // Inicializa la opción de proyectos
             InitializeDataOption(); // Inicializa la opción de datos
             InitializeMeansOptions(); // Inicializa la opción de medias
-            ClearListBoxSSQ(); // Limpiamos los listBox 
             ClearListBoxAnalysis(); // Limpiamos los listBox de analysis
             ExcludeTabPages();
             this.tabPageData.Parent = this.tabControlOptions;
@@ -192,9 +189,9 @@ namespace GUI_GT
                     else if (this.sagtElements.GetAnalysis_and_G_Study() != null)
                     {
                         // Asignamos el nuevo color
-                        this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
+                        this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
                         // this.tabControlOptions.SelectedTab = this.tabPageSSQ;
-                        this.tabPageSSQ.Parent = this.tabControlOptions;
+                        this.tabPageAnalysis.Parent = this.tabControlOptions;
                     }
                     break;
                 case ("anls"):
@@ -230,7 +227,6 @@ namespace GUI_GT
             // Métodos para abrir
             this.tsmiDataOpenWebService.Enabled = enableOption;
             this.tsmiMeansOpenWebService.Enabled = enableOption;
-            this.tsmiSSqOpenWebService.Enabled = enableOption;
             this.tsmiAnalysisOpenWebService.Enabled = enableOption;
             // Métodos para guardar 
             if (!enableOption || user.GetAuthorizationToAccess().Equals(SagtUser.UserAccess.Administrador)
@@ -238,7 +234,6 @@ namespace GUI_GT
             {
                 this.tsmiDataSavedWebService.Enabled = enableOption;
                 this.tsmiMeansSavedWebService.Enabled = enableOption;
-                this.tsmiSSqSavedWebService.Enabled = enableOption;
                 this.tsmiAnalysisvedWebService.Enabled = enableOption;
             }
 
@@ -483,7 +478,7 @@ namespace GUI_GT
 
                     // nos posicionamos en los tabPage iniciales.
                     tabControlData.SelectedIndex = 0;
-                    tabControlSSQ.SelectedIndex = 0;
+                    tabControlAnalysisSSQ.SelectedIndex = 0;
                 }
             }
         }
@@ -513,8 +508,6 @@ namespace GUI_GT
             TranslationMenuItems(lang, Application.StartupPath + LANG_PATH + MEAN_STRINGS, this.mStripMeans);
             // Traducimos las etiqueta del tabPage y los dataGridView
             TranslationMeansElements(lang, Application.StartupPath + LANG_PATH + MEAN_STRINGS);
-            // Cambia de idioma el menú del tabPage de la opcion SSQ
-            TranslationMenuItems(lang, Application.StartupPath + LANG_PATH + SSQ_STRINGS, this.mStripSSQ);
             // Cambia los objetos del tabPage de suma de cuadrados
             TranslationSSQElements(lang, Application.StartupPath + LANG_PATH + SSQ_STRINGS);
             // Cambia de idioma el menú del tabPage de la opcion Analysis
@@ -1044,26 +1037,6 @@ namespace GUI_GT
 
         /*
          * Descripción:
-         *  Selecciona el tabPaage correspondiente a suma de cuadrados
-         */
-        private void tsmiSSQ_Click(object sender, EventArgs e)
-        {
-            if (!this.disableTopLeftButtons)
-            {
-                ExcludeTabPages();
-                // Asignamos el tabPage de suma de cuadrados al tabControl de opciones
-                this.tabPageSSQ.Parent = this.tabControlOptions;
-                // Restauramos los colores
-                this.RestoreColorMenu(this.mStripMain);
-                // Asignamos el nuevo color
-                this.tsmiSSQ.BackColor = System.Drawing.SystemColors.Highlight;
-            }
-
-        }
-
-
-        /*
-         * Descripción:
          *  Pusamos sobre la opción Analisis del menu de opciones. Se muestra el tabPage de analisis
          *  con su menú vertical.
          */
@@ -1318,13 +1291,6 @@ namespace GUI_GT
                 ClearTabPageMeans();
                 listOfTableMeansToTabPageMeans(listMeans);
             }
-            // Refrescamos los g_Parámetros del la opción suma de cuadrados
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt != null)
-            {
-                LoadAllDataInDataGridViewEx_SSQOptions(tAnalysis_tG_Study_Opt);
-            }
-
             // Refrescamos los datos de la opción de análisis
             if (anl_tAnalysis_G_study_opt != null)
             {
@@ -1748,7 +1714,7 @@ namespace GUI_GT
          */
         private void tsmiMeansSavedLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionMeansSave_Click(sender, e);
+            saveFileData(this.sagtElements);
         }
 
 
@@ -1807,6 +1773,15 @@ namespace GUI_GT
             tsmiDataPrinter_Click(sender, e);
         }
 
+        /* Descripción:
+         *  Se ejecuta al seleccionar la impción imprimir del menú vertical de análisis. Muestra
+         *  la ventana de seleción de impresora e imprime el informe de análisis.
+         */
+        private void tsmiAnalysisPrinter_Click(object sender, EventArgs e)
+        {
+            tsmiDataPrinter_Click(sender, e);
+        }
+
 
         /* Descripción:
          *  Llama al método que se encarga de exportar los datos del informe en un documento Word.
@@ -1847,240 +1822,6 @@ namespace GUI_GT
 
         #endregion Botones del menú de acciones de Medias
 
-
-        #region Botones del menú de acciones de Suma de cuadrados
-        /*===============================================================================================
-         * Botones del menú vertical de la opción Suma de cuadrados
-         *  - Abrir (tsmiSSqOpenLocal_Click)
-         *  - Importar (tsmiSSQImport_Click)
-         *  - Guardar (tsmiSSqSave_Click)
-         *  - Editar descripción (tsmiEditFacetDescription_Click)
-         *  - Añadir nivel de significación (tsmiAddLevelSign_Click)
-         *  - Muestra gráfico de barras (tsmiChartOptimization_Click)
-         *  - Muestra gráfico de Coef G Abs (tsmiChartCoefGAbs_Click)
-         *  - Muestra gráfico de Coef G Rel (tsmiChartCoefGRel_Click)
-         *  - Analizar (tsmiSSqToAnalysis_Click)
-         *  - Exportar a excel
-         *  - Exportar cuadrados
-         *  - Imprimir (tsmiSsqPrinter_Click)
-         *  - Exportar a Word (tsmiSSqWordExport_Click)
-         *  - Exportar a PDF (tsmiSSqPdfExport_Click)
-         *  - Cerrar suma de cuadrados
-         *  - Editar (Botón editar comentario)
-         *===============================================================================================*/
-
-        /* Descripción:
-         *  Botón de Abrir de la sección de SSQQ
-         */
-        private void tsmiSSqOpenLocal_Click(object sender, EventArgs e)
-        {
-            OpenSagtFile();
-        }
-
-
-        /* Descripción:
-         *  Permite abrir un fichero almacenado en una base de datos.
-         */
-        private void tsmiSSqOpenWebService_Click(object sender, EventArgs e)
-        {
-            tsmiActionOpenWebService_Click(TypeFile.sagt);
-        }
-
-
-        /* Descripción:
-         *  Al pulsar el la opción del menú importar muestra la ventana para seleccionar el tipo
-         *  de archivo del que se quieren leer los datos para importar la suma de cuadrado.
-         */
-        private void tsmiSSQImport_Click(object sender, EventArgs e)
-        {
-            // el siguiente metodo se encuentra en la clase parcial SSQOptions.cs
-            tsmiActionSSQImport_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         *  Guarda en un archivo los datos de la tabla de análisis de varianza, G_studie y lista de
-         *  parámetros de optimización (nuevos niveles de optimización.)
-         */
-        private void tsmiSSqSavedLocal_Click(object sender, EventArgs e)
-        {
-            tsmiActionSSQSave_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         *  Se ejecuta al pulsar sobre el botón "Editar descripción". Permite modificar la descripción de
-         *  las facetas desde la opción de suma de cuadrados.
-         */
-        private void tsmiEditFacetDescription_Click(object sender, EventArgs e)
-        {
-            if ((sagtElements.GetAnalysis_and_G_Study() == null))
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                tsmiActionEditFacetDescription_Click();
-            }
-        }
-
-
-        /* Descripción: 
-         *  Almacena los datos de un archivo en un servicio Web.
-         */
-        private void tsmiSSqSavedWebService_Click(object sender, EventArgs e)
-        {
-            if ((sagtElements.GetAnalysis_and_G_Study() == null))
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                tsmiActionDataSavedWebService_Click();
-            }
-        }
-
-
-        /*
-         * Descripción: 
-         *  Llama al método que añade el nuevo nivel de significación en la clase parcial SSQOptions.cs
-         */
-        private void tsmiAddLevelSign_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            tsmiActionAddLevelSign_Click(tAnalysis_tG_Study_Opt);
-            //AddSignificanceLevel(this.tAnalysis_tG_Study_Opt);
-        }
-
-
-        /* Descripción:
-         *  Se ejecuta al seleccióna la opción "Gráfico 1" del menú de acciónes de suma de cuadrados.
-         *  Muestra un gráfico de barras.
-         */
-        private void tsmiChartOptimization_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            ShowMeTheGraphics(tAnalysis_tG_Study_Opt);
-        }
-
-
-        /* Descripción:
-         *  Se ejecuta al seleccióna la opción "Gráfico Coef. G Abs" del menú de acciónes de suma de cuadrados.
-         *  Muestra una gráfica de representación lineal.
-         */
-        private void tsmiChartCoefGAbs_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            tsmiActionChartCoefGAbs_Click(tAnalysis_tG_Study_Opt);
-        }
-
-
-        /* Descripción:
-         *  Se ejecuta al seleccióna la opción "Gráfico Coef. G Rel" del menú de acciónes de suma de cuadrados.
-         *  Muestra una gráfica de representación lineal.
-         */
-        private void tsmiChartCoefGRel_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            tsmiActionChartCoefGRel_Click(tAnalysis_tG_Study_Opt);
-        }
-
-
-        /* Descripción:
-         *  Se ejecuta al pulsar el botón Analizar en el  menú  horizontal de suma de cuadrados. Llama
-         *  al método que crea un objeto de analysis de suma de cuadrados.
-         */
-        private void tsmiSSqToAnalysis_Click(object sender, EventArgs e)
-        {
-            tsmiActionSSqToAnalysis_Click();
-        }
-
-
-        /* Descrpción:
-         *  Generar un archivo Excel a partir de los datos contenidos en las tablas de suma de cuadrados.
-         */
-        private void tsmiSSq_ExportExcel_Click(object sender, EventArgs e)
-        {
-            tsmiActionSSq_ExportExcel_Click(sender, e);
-        }
-
-
-        /* Descipción:
-         *  Exporta la lista de suma de cuadrados en un fichero de texto.
-         */
-        private void tsmiSSq_ExportSquares_Click(object sender, EventArgs e)
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            tsmiAction_SSq_ExportSquares_Click(tAnalysis_tG_Study_Opt);
-        }
-
-
-        /* Descripción:
-         *  Llama al método que se encuentra en la clase parcial PrintSagtDocuments.cs que se encarga de
-         *  mostrar una ventana de selección de impresora y luego imprime el documento.
-         */
-        private void tsmiSsqPrinter_Click(object sender, EventArgs e)
-        {
-            tsmiDataPrinter_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         *  Llama al método que se encarga de exportar los datos del informe en un documento Word.
-         */
-        private void tsmiSSqWordExport_Click(object sender, EventArgs e)
-        {
-            SelectElementsAndCreateWordDocument();
-        }
-
-
-        /* Descripción:
-         *  Llama al método que se encarga de exportar los datos del informe en un documento PDF.
-         */
-        private void tsmiSSqPdfExport_Click(object sender, EventArgs e)
-        {
-            SelectElementsAndCreatePDFDocument();
-        }
-
-
-        /* Descripción:
-         *  Cierra todos los elementos abiertos en suma de cuadrados. Llama al método tsmiActionSSQClose_Click
-         *  que se encuentra en la clase parcial SSQOptions.cs
-         */
-        private void tsmiSSQClose_Click(object sender, EventArgs e)
-        {
-            tsmiActionSSQClose_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         * Botón editar, permite editar comentarios en el richTextBox de suma de cuadrados.
-         */
-        private void btSsqEditComment_Click(object sender, EventArgs e)
-        {
-            // Llama al método que se encuetra en la clase parcial SSQOptions.cs
-            btActionSSQEditComment_Click(sender, e);
-        }
-
-
-        /* Descripción:
-         *  Se activa al pulsar sobre el botón Aceptar de la pestaña editar descripción de facetas.
-         */
-        private void btEditDescriptionFacetsAcept_Click(object sender, EventArgs e)
-        {
-            btActionEditDescriptionFacetsAcept_Click();
-        }
-
-
-        /* Descripción:
-         *  Se activa al pulsar sobre el botón Cancelar de la pestaña editar descripción de facetas.
-         */
-        private void btEditDescriptionFacetsCancel_Click(object sender, EventArgs e)
-        {
-            btActionEditDescriptionFacetsCancel_Click();
-        }
-
-        #endregion Botones del menu de acciones de Suma de cuadrados
 
 
         #region Botones del menú de acciones de Análisis
@@ -2153,7 +1894,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisSavedLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionAnalysis_Save_Click();
+            saveFileData(this.sagtElements);
         }
 
 
@@ -2273,7 +2014,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisPdfExport_Click(object sender, EventArgs e)
         {
-            CreateAnalysisPdfDocument();
+            SelectElementsAndCreatePDFDocument();
         }
 
 

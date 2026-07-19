@@ -40,6 +40,7 @@ OTHER BUGFIXES
 - Solved bug where loading .sagt files without Data section while the 'Hide null' checkbox was marked could result in an exception
 - Solved massive memory and handle leaks that rendered the Print functionality unusable for large datasets
 - Solved bug where printing the Analysis section's report would instead try to print the report of the rest of the app
+- Solved various minor bugs in the printing output (missing text that was intended to be printed, miscalculated table widths on certain occasions, wrong margins at the top of the page on certain occasions)
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
 - Solved bug where the CSV importer would fail to correctly interpret decimal numbers in Spanish locale (and other decimal comma-using locales)
 - Solved bug where trying to select or copy sections of tables in non-conventional ways (selecting a few corners manually with control-clicking, shift-clicking starting from bottom, etc) could result in an exception
@@ -78,6 +79,7 @@ OTHERS
 
 UI
 
+- Sums of Squares and Analysis tabs fused together
 - Removed column "Processed levels" from Sum of Squares->Optimization. It was for a planned feature that never got added.
 - Solved oversights where confirmation popups for some actions that could cause loss of data weren't added. And also cases where incorrect confirmation popups were added
 - Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
@@ -97,6 +99,7 @@ UI
 - New graphics added for various new buttons/features
 - Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring keys and values sometimes needlessly and irrevocably.
 - Removed the Measurement Design info from the Sum of Squares tab, as it's irrelevant to that tab. Replaced with the source file
+- Saving from any tab is now permitted so long as any tab has loaded data
 
 NEW FEATURES
 
@@ -114,4 +117,4 @@ KNOWN ISSUES
 - Treatment of unbalanced designs is allowed. However, calculations for them are not accurate at all.
 - Various minor bugs seemingly native to WinForms, like AutoEllipsis not triggering correctly, or column widths not being properly resized when resizing the app's screen.
 
-Last updated: 18/07/2026
+Last updated: 19/07/2026

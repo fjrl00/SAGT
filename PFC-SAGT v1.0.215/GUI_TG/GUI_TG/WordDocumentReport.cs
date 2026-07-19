@@ -199,16 +199,16 @@ namespace GUI_GT
             if (bSsq)
             {
                 AddParagraph(doc, titleSsqReport, spacingAfter: 6);
-                AddParagraph(doc, lbMeasurementDesign.Text + " " + tbMeasurementDesign.Text, spacingAfter: 6);
+                AddParagraph(doc, lbAnalysisMeasDesignG_P.Text + " " + tbAnalysisMeasDesignG_P.Text, spacingAfter: 6);
 
-                InsertTable(doc, dGridViewExSourceOfVar, fontTableReport, this.cfgApli.GetShadingRows());
-                InsertTable(doc, dataGridViewExSSQ, fontTableReport, this.cfgApli.GetShadingRows());
-                InsertTable(doc, dGridViewExG_Parameters, fontTableReport, this.cfgApli.GetShadingRows());
-                InsertTable(doc, dGridViewExOptimizationResum, fontTableReport, this.cfgApli.GetShadingRows());
+                InsertTable(doc, dgvExAnalysisSourceOfVarSsq, fontTableReport, this.cfgApli.GetShadingRows());
+                InsertTable(doc, dgvExAnalysisSSq, fontTableReport, this.cfgApli.GetShadingRows());
+                InsertTable(doc, dgvExAnalysis_GP, fontTableReport, this.cfgApli.GetShadingRows());
+                InsertTable(doc, dgvAnalysisResumOpt, fontTableReport, this.cfgApli.GetShadingRows());
 
-                string textInfoSSq = "\n" + lbNameFileSsqInfo.Text + ": " + tbNameFileSsqInfo.Text;
-                textInfoSSq += "\n" + lbDateFileSsqInfo.Text + ": " + tbDateFileSsqInfo.Text;
-                textInfoSSq += "\n" + richTextBoxSsqComment.Text;
+                string textInfoSSq = "\n" + lbFileAnalysisProvede.Text + ": " + tbFileAnalysisProvede.Text;
+                textInfoSSq = textInfoSSq + "\n" + lbDateAnalysisCreated.Text + ": " + tbDateAnalysisCreated.Text;
+                textInfoSSq = textInfoSSq + "\n" + rTextBoxAnalysisInfo.Text;
                 AddParagraph(doc, textInfoSSq, spacingAfter: 6);
             }
 

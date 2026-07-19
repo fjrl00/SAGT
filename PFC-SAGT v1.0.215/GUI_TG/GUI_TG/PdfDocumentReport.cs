@@ -104,37 +104,6 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Crea un fichero pdf de análisis.
-         */
-        private void CreateAnalysisPdfDocument()
-        {
-            if (this.anl_tAnalysis_G_study_opt == null)
-            {
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    saveDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                saveDialog.DefaultExt = pdfDefaultExt; // extensión por defecto del archivo
-                saveDialog.Filter = pdfFilter; // filtro pdf inicado en las variables globales 
-                saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
-                saveDialog.AddExtension = true;
-                System.Windows.Forms.DialogResult resulDialog = saveDialog.ShowDialog();
-                if (resulDialog == DialogResult.OK)
-                {
-                    WriterAnalysisPdfDocument(saveDialog.FileName);
-                }
-            }
-        }
-
-
-        /* Descripción:
          *  Genera un informe en Pdf a partir de los datos seleccionados para el informe.
          */
         private void WriterSagtPdfDocument(string nameFilePdf)
@@ -171,112 +140,6 @@ namespace GUI_GT
                 MessageBox.Show(ex.Message);
             }
         }// end private void WriterSagtPdfDocument
-
-
-        /* Descripción:
-         *   Genera el cuerpo del documento pdf de análisis.
-         */
-        private void WriterAnalysisPdfDocument(string nameFilePdf)
-        {
-            try
-            {
-                // Document doc = new Document(PageSize.A4.Rotate(), 10, 10, 10, 10);
-                Document doc = new Document(PageSize.A4, 50, 50, 60, 60);
-                // Margenes: izquierdo, derecho, superior e inferior
-
-
-                FileStream file = new FileStream(nameFilePdf, FileMode.Create,
-                    FileAccess.ReadWrite, FileShare.ReadWrite);
-
-                PdfWriter pdfWriter = PdfWriter.GetInstance(doc, file);
-
-                // OnEndPage(writer, doc);
-                pdfPage ev = new pdfPage(SAGT + this.version, UNIV_UMA,
-                    developer + ": " + NAME_STUDENT, projectDirector + ": " + NAME_PROJECT_DIRECTOR,
-                    academicDirector + ": " + NAME_ACADEMIC_DIRECTOR, pag);
-                pdfWriter.PageEvent = ev; //After the Open
-
-                doc.Open();
-
-                GenerarDocumentoAnalysis(doc);
-
-                doc.Close();
-
-                Process.Start(nameFilePdf);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-        /* Descripción:
-         *  Genera un documento Pdf de Análisis.
-         */
-        private void GenerarDocumentoAnalysis(Document document)
-        {
-            // Fuente que se empleara en las tablas del informe
-            iTextSharp.text.Font fontTableReport =
-                iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTableFontFamily(),
-                this.cfgApli.GetTableFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-            // Fuente que se empleara en las textos del informe
-            iTextSharp.text.Font fontTextReport =
-                iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTextFontFamily(),
-                this.cfgApli.GetTextFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
-            // Linea de emisión del informe
-            PdfPTable data = FechaDeEmision(fontTextReport);
-            document.Add(data);
-
-            // Título
-            Paragraph paragraphSsq1 = new Paragraph(titleSsqReport, fontTextReport);
-            document.Add(paragraphSsq1);
-
-            // Linea de diseño de medida
-            Paragraph paragraphSsq2 = new Paragraph(lbAnalysisMeasDesignG_P.Text
-                + " " + tbAnalysisMeasDesignG_P.Text, fontTextReport);
-            document.Add(paragraphSsq2);
-            // Tabla de facetas
-            PdfPTable datatableSsqFacet = GeneratePdfPTable(dgvExAnalysisSourceOfVarSsq,
-                this.cfgApli.GetShadingRows(), fontTableReport);
-            document.Add(datatableSsqFacet);
-
-            // Tabla de suma de cuadrados 
-            PdfPTable datatableSsq_SSQ = GeneratePdfPTable(dgvExAnalysisSSq,
-                this.cfgApli.GetShadingRows(), fontTableReport);
-            document.Add(datatableSsq_SSQ);
-
-            // Tabla de G-Parámetros
-            PdfPTable datatableSsq_Gp = GeneratePdfPTable(dgvExAnalysis_GP,
-                this.cfgApli.GetShadingRows(), fontTableReport);
-            document.Add(datatableSsq_Gp);
-
-            // Tabla de resumen datos optimizados
-            PdfPTable datatableSsq_opt = GeneratePdfPTable(dgvAnalysisResumOpt,
-                this.cfgApli.GetShadingRows(), fontTableReport);
-            document.Add(datatableSsq_opt);
-
-            // Linea de fichero de procedencia de los datos
-            Paragraph paragraphSsq3 = new Paragraph(lbFileAnalysisProvede.Text
-                + ": " + tbFileAnalysisProvede.Text, fontTextReport);
-            document.Add(paragraphSsq3);
-
-            // Linea de fecha de obtencíón de los datos
-            Paragraph paragraphSsq4 = new Paragraph(lbDateAnalysisCreated.Text
-                + ": " + tbDateAnalysisCreated.Text, fontTextReport);
-            document.Add(paragraphSsq4);
-
-            // Comentarios
-            string textSsqInfoComment = "";
-            if (rTextBoxAnalysisInfo.Text != null)
-            {
-                textSsqInfoComment = rTextBoxAnalysisInfo.Text;
-            }
-            Paragraph paragraphSsq5 = new Paragraph(textSsqInfoComment, fontTextReport);
-            document.Add(paragraphSsq5);
-        }// end GenerarDocumentoAnalysis
 
 
         //Función que genera el documento Pdf
@@ -379,51 +242,51 @@ namespace GUI_GT
             if (bSsq)
             {
                 // Título
-                Paragraph paragraphSsq1 = new Paragraph(titleSsqReport, fontTextReport);
-                document.Add(paragraphSsq1);
+            Paragraph paragraphSsq1 = new Paragraph(titleSsqReport, fontTextReport);
+            document.Add(paragraphSsq1);
 
-                // Línea de diseño de medida
-                Paragraph paragraphSsq2 = new Paragraph(lbMeasurementDesign.Text + " "
-                    + tbMeasurementDesign.Text, fontTextReport);
-                document.Add(paragraphSsq2);
-                // Tabla de facetas
-                PdfPTable datatableSsqFacet = GeneratePdfPTable(dGridViewExSourceOfVar,
-                    this.cfgApli.GetShadingRows(), fontTableReport);
-                document.Add(datatableSsqFacet);
+            // Linea de diseño de medida
+            Paragraph paragraphSsq2 = new Paragraph(lbAnalysisMeasDesignG_P.Text
+                + " " + tbAnalysisMeasDesignG_P.Text, fontTextReport);
+            document.Add(paragraphSsq2);
+            // Tabla de facetas
+            PdfPTable datatableSsqFacet = GeneratePdfPTable(dgvExAnalysisSourceOfVarSsq,
+                this.cfgApli.GetShadingRows(), fontTableReport);
+            document.Add(datatableSsqFacet);
 
-                // Tabla de suma de cuadrados 
-                PdfPTable datatableSsq_SSQ = GeneratePdfPTable(dataGridViewExSSQ,
-                    this.cfgApli.GetShadingRows(), fontTableReport);
-                document.Add(datatableSsq_SSQ);
+            // Tabla de suma de cuadrados 
+            PdfPTable datatableSsq_SSQ = GeneratePdfPTable(dgvExAnalysisSSq,
+                this.cfgApli.GetShadingRows(), fontTableReport);
+            document.Add(datatableSsq_SSQ);
 
-                // Tabla de G-Parámetros
-                PdfPTable datatableSsq_Gp = GeneratePdfPTable(dGridViewExG_Parameters,
-                    this.cfgApli.GetShadingRows(), fontTableReport);
-                document.Add(datatableSsq_Gp);
+            // Tabla de G-Parámetros
+            PdfPTable datatableSsq_Gp = GeneratePdfPTable(dgvExAnalysis_GP,
+                this.cfgApli.GetShadingRows(), fontTableReport);
+            document.Add(datatableSsq_Gp);
 
-                // Tabla de resumen datos optimizados
-                PdfPTable datatableSsq_opt = GeneratePdfPTable(dGridViewExOptimizationResum,
-                    this.cfgApli.GetShadingRows(), fontTableReport);
-                document.Add(datatableSsq_opt);
+            // Tabla de resumen datos optimizados
+            PdfPTable datatableSsq_opt = GeneratePdfPTable(dgvAnalysisResumOpt,
+                this.cfgApli.GetShadingRows(), fontTableReport);
+            document.Add(datatableSsq_opt);
 
-                // Línea de fichero de procedencia de los datos
-                Paragraph paragraphSsq3 = new Paragraph(lbNameFileSsqInfo.Text + ": "
-                    + tbNameFileSsqInfo.Text, fontTextReport);
-                document.Add(paragraphSsq3);
+            // Linea de fichero de procedencia de los datos
+            Paragraph paragraphSsq3 = new Paragraph(lbFileAnalysisProvede.Text
+                + ": " + tbFileAnalysisProvede.Text, fontTextReport);
+            document.Add(paragraphSsq3);
 
-                // Línea de fecha de obtencíón de las tablas de medias
-                Paragraph paragraphSsq4 = new Paragraph(lbDateFileSsqInfo.Text + ": "
-                    + tbDateFileSsqInfo.Text, fontTextReport);
-                document.Add(paragraphSsq4);
+            // Linea de fecha de obtencíón de los datos
+            Paragraph paragraphSsq4 = new Paragraph(lbDateAnalysisCreated.Text
+                + ": " + tbDateAnalysisCreated.Text, fontTextReport);
+            document.Add(paragraphSsq4);
 
-                // Commentarios
-                string textSsqInfoComment = "";
-                if (richTextBoxSsqComment.Text != null)
-                {
-                    textSsqInfoComment = richTextBoxSsqComment.Text;
-                }
-                Paragraph paragraphSsq5 = new Paragraph(textSsqInfoComment, fontTextReport);
-                document.Add(paragraphSsq5);
+            // Comentarios
+            string textSsqInfoComment = "";
+            if (rTextBoxAnalysisInfo.Text != null)
+            {
+                textSsqInfoComment = rTextBoxAnalysisInfo.Text;
+            }
+            Paragraph paragraphSsq5 = new Paragraph(textSsqInfoComment, fontTextReport);
+            document.Add(paragraphSsq5);
             }
         }// end GenerarDocumento
 
