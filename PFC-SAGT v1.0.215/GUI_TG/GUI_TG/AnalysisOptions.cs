@@ -18,14 +18,15 @@ using AuxMathCalcGT;
 using ImportEduGSsq;
 using MultiFacetData;
 using ProjectSSQ;
+using Sagt;
 using SsqPY;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 
 namespace GUI_GT
 {
@@ -592,7 +593,10 @@ namespace GUI_GT
                     openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
                 }
 
-                string fileFilter = ("Analysis" + FILTER_ANALYSIS_FILTER + "|" + this.allFiles + FILTER_ALL_FILE);
+                string fileFilter = (
+                    this.sagtFiles + FILTER_SAGT_FILE +
+                    "Legacy Analysis" + FILTER_ANALYSIS_FILTER + "|" + 
+                    this.allFiles + FILTER_ALL_FILE);
                 openDialog.Filter = fileFilter;
 
                 if (openDialog.ShowDialog() == DialogResult.OK)
@@ -612,7 +616,21 @@ namespace GUI_GT
         {
             try
             {
-                Analysis_and_G_Study tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(path);
+                Analysis_and_G_Study tb_aux;
+
+                switch (Path.GetExtension(path).ToLowerInvariant())
+                {
+                    case ".sagt":
+                        tb_aux = SagtFile.ReadingSagtFile(path).GetAnalysis_and_G_Study();
+                        break;
+                    case ".anls":
+                        tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(path);
+                        break;
+                    default:
+                        throw new NotSupportedException(
+                            $"Unsupported file extension: {Path.GetExtension(path)}\n\nPlease change file's extension to either .sagt or .anls, whichever one the file was generated with.");
+                }
+
                 if (this.anl_tAnalysis_G_study_opt != null)
                 {
                     // Limpiamos todas las tablas

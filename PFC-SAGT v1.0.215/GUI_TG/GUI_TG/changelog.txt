@@ -78,7 +78,7 @@ OTHERS
 
 UI
 
-- Removed column "Processed levels" from Sum of Squares->Optimization. It was for a planned feature that never got added. Replaced with the facet's description.
+- Removed column "Processed levels" from Sum of Squares->Optimization. It was for a planned feature that never got added.
 - Solved oversights where confirmation popups for some actions that could cause loss of data weren't added. And also cases where incorrect confirmation popups were added
 - Guardrail added in case the user tries to input a massive number as the universe size of a facet in order to mean "infinite"
 - leaving sums of squares cells empty in Analysis->sum of squares section will now substitute them with 0 instead of launching an exception
