@@ -199,8 +199,6 @@
             this.dgvExAnalysisEditSSq = new DataGridViewEx.DataGridViewEx();
             this.dgvExAnalysis_FacetEditSsq = new DataGridViewEx.DataGridViewEx();
             this.tabPageAnalysisSSQ = new System.Windows.Forms.TabPage();
-            this.tbFileAnalysisProvede_SSQ = new System.Windows.Forms.TextBox();
-            this.lbFileAnalysisProvede_SSQ = new System.Windows.Forms.Label();
             this.dgvExAnalysisSSq = new DataGridViewEx.DataGridViewEx();
             this.dgvExAnalysisSourceOfVarSsq = new DataGridViewEx.DataGridViewEx();
             this.lbAnalysisTotalDF = new System.Windows.Forms.Label();
@@ -1595,7 +1593,7 @@
             // 
             this.tsmiMeansSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiMeansSavedLocal.Name = "tsmiMeansSavedLocal";
-            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(202, 22);
+            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(206, 26);
             this.tsmiMeansSavedLocal.Text = "Guardar";
             this.tsmiMeansSavedLocal.Click += new System.EventHandler(this.tsmiMeansSavedLocal_Click);
             // 
@@ -1603,7 +1601,7 @@
             // 
             this.tsmiMeansSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiMeansSavedWebService.Name = "tsmiMeansSavedWebService";
-            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(202, 22);
+            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(206, 26);
             this.tsmiMeansSavedWebService.Text = "Guardar en servicio Web";
             this.tsmiMeansSavedWebService.Click += new System.EventHandler(this.tsmiMeansSavedWebService_Click);
             // 
@@ -1961,7 +1959,7 @@
             dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExAnalysisEditSSq.DefaultCellStyle = dataGridViewCellStyle22;
-            this.dgvExAnalysisEditSSq.Location = new System.Drawing.Point(12, 220);
+            this.dgvExAnalysisEditSSq.Location = new System.Drawing.Point(12, 178);
             this.dgvExAnalysisEditSSq.MinNumeracionFilas = 0;
             this.dgvExAnalysisEditSSq.Name = "dgvExAnalysisEditSSq";
             this.dgvExAnalysisEditSSq.NumeracionFilas = true;
@@ -1977,7 +1975,7 @@
             this.dgvExAnalysisEditSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgvExAnalysisEditSSq.RowHeadersVisible = false;
             this.dgvExAnalysisEditSSq.RowHeadersWidth = 50;
-            this.dgvExAnalysisEditSSq.Size = new System.Drawing.Size(542, 173);
+            this.dgvExAnalysisEditSSq.Size = new System.Drawing.Size(542, 215);
             this.dgvExAnalysisEditSSq.TabIndex = 19;
             this.dgvExAnalysisEditSSq.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dgvExAnalysisEditSSq_KeyPressEditorCelda);
             // 
@@ -2024,14 +2022,12 @@
             this.dgvExAnalysis_FacetEditSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dgvExAnalysis_FacetEditSsq.RowHeadersVisible = false;
             this.dgvExAnalysis_FacetEditSsq.RowHeadersWidth = 50;
-            this.dgvExAnalysis_FacetEditSsq.Size = new System.Drawing.Size(542, 188);
+            this.dgvExAnalysis_FacetEditSsq.Size = new System.Drawing.Size(542, 146);
             this.dgvExAnalysis_FacetEditSsq.TabIndex = 18;
             // 
             // tabPageAnalysisSSQ
             // 
             this.tabPageAnalysisSSQ.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
-            this.tabPageAnalysisSSQ.Controls.Add(this.tbFileAnalysisProvede_SSQ);
-            this.tabPageAnalysisSSQ.Controls.Add(this.lbFileAnalysisProvede_SSQ);
             this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSSq);
             this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSourceOfVarSsq);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotalDF);
@@ -2044,26 +2040,6 @@
             this.tabPageAnalysisSSQ.TabIndex = 1;
             this.tabPageAnalysisSSQ.Text = "Suma de cuadrados";
             this.tabPageAnalysisSSQ.UseVisualStyleBackColor = true;
-            // 
-            // tbFileAnalysisProvede_SSQ
-            // 
-            this.tbFileAnalysisProvede_SSQ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFileAnalysisProvede_SSQ.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tbFileAnalysisProvede_SSQ.Location = new System.Drawing.Point(71, 16);
-            this.tbFileAnalysisProvede_SSQ.Name = "tbFileAnalysisProvede_SSQ";
-            this.tbFileAnalysisProvede_SSQ.ReadOnly = true;
-            this.tbFileAnalysisProvede_SSQ.Size = new System.Drawing.Size(429, 20);
-            this.tbFileAnalysisProvede_SSQ.TabIndex = 17;
-            // 
-            // lbFileAnalysisProvede_SSQ
-            // 
-            this.lbFileAnalysisProvede_SSQ.AutoSize = true;
-            this.lbFileAnalysisProvede_SSQ.Location = new System.Drawing.Point(9, 19);
-            this.lbFileAnalysisProvede_SSQ.Name = "lbFileAnalysisProvede_SSQ";
-            this.lbFileAnalysisProvede_SSQ.Size = new System.Drawing.Size(43, 13);
-            this.lbFileAnalysisProvede_SSQ.TabIndex = 16;
-            this.lbFileAnalysisProvede_SSQ.Text = "Archivo";
             // 
             // dgvExAnalysisSSq
             // 
@@ -2093,7 +2069,7 @@
             dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExAnalysisSSq.DefaultCellStyle = dataGridViewCellStyle30;
-            this.dgvExAnalysisSSq.Location = new System.Drawing.Point(12, 234);
+            this.dgvExAnalysisSSq.Location = new System.Drawing.Point(12, 178);
             this.dgvExAnalysisSSq.MinNumeracionFilas = 0;
             this.dgvExAnalysisSSq.Name = "dgvExAnalysisSSq";
             this.dgvExAnalysisSSq.NumeracionFilas = true;
@@ -2109,7 +2085,7 @@
             this.dgvExAnalysisSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvExAnalysisSSq.RowHeadersVisible = false;
             this.dgvExAnalysisSSq.RowHeadersWidth = 50;
-            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(542, 173);
+            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(542, 215);
             this.dgvExAnalysisSSq.TabIndex = 15;
             // 
             // dgvExAnalysisSourceOfVarSsq
@@ -2139,7 +2115,7 @@
             dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.MenuText;
             dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvExAnalysisSourceOfVarSsq.DefaultCellStyle = dataGridViewCellStyle34;
-            this.dgvExAnalysisSourceOfVarSsq.Location = new System.Drawing.Point(12, 53);
+            this.dgvExAnalysisSourceOfVarSsq.Location = new System.Drawing.Point(12, 16);
             this.dgvExAnalysisSourceOfVarSsq.MinNumeracionFilas = 0;
             this.dgvExAnalysisSourceOfVarSsq.Name = "dgvExAnalysisSourceOfVarSsq";
             this.dgvExAnalysisSourceOfVarSsq.NumeracionFilas = true;
@@ -2155,7 +2131,7 @@
             this.dgvExAnalysisSourceOfVarSsq.RowHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.dgvExAnalysisSourceOfVarSsq.RowHeadersVisible = false;
             this.dgvExAnalysisSourceOfVarSsq.RowHeadersWidth = 50;
-            this.dgvExAnalysisSourceOfVarSsq.Size = new System.Drawing.Size(542, 162);
+            this.dgvExAnalysisSourceOfVarSsq.Size = new System.Drawing.Size(542, 146);
             this.dgvExAnalysisSourceOfVarSsq.TabIndex = 14;
             // 
             // lbAnalysisTotalDF
@@ -2928,7 +2904,7 @@
             // 
             this.tsmiAnalysisSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiAnalysisSavedLocal.Name = "tsmiAnalysisSavedLocal";
-            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(202, 22);
+            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(206, 26);
             this.tsmiAnalysisSavedLocal.Text = "Guardar";
             this.tsmiAnalysisSavedLocal.Click += new System.EventHandler(this.tsmiAnalysisSavedLocal_Click);
             // 
@@ -2936,7 +2912,7 @@
             // 
             this.tsmiAnalysisvedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiAnalysisvedWebService.Name = "tsmiAnalysisvedWebService";
-            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(202, 22);
+            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(206, 26);
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 
@@ -3613,8 +3589,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox tbFileAnalysisProvede_SSQ;
-        private System.Windows.Forms.Label lbFileAnalysisProvede_SSQ;
     }
 }
 

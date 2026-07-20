@@ -1050,7 +1050,7 @@ namespace GUI_GT
             {
                 TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + DATA_STRINGS);
                 TransLibrary.WordTranslation transFacets = dic.labelTraslation(tabPagMultiFacet.Name.ToString());
-                dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + SSQ_STRINGS);
+                dic = new TransLibrary.ReadFileTrans(Application.StartupPath + LANG_PATH + ANALYSIS_STRINGS);
                 TransLibrary.WordTranslation transSSq = dic.labelTraslation(tabPageAnalysisSSQ.Name.ToString());
                 TransLibrary.WordTranslation transG_p = dic.labelTraslation(tabPageAnalysisG_P.Name.ToString());
                 TransLibrary.WordTranslation transResum = dic.labelTraslation(tabPageAnalysisOpt.Name.ToString());
@@ -1153,6 +1153,7 @@ namespace GUI_GT
          * Parámetros:
          *  TransLibrary.Language lang: idioma al que vamos a traducir los elementos.
          *  string nameFileTrans: Nombre del fichero que contiene las traducciones.
+         * NOTE: Some of the variables here may be currently unused
          */
         private void TranslationSSQElements(TransLibrary.Language lang, string nameFileTrans)
         {
@@ -1166,7 +1167,7 @@ namespace GUI_GT
                     this.formShowCharts.traslationElements(lang, Application.StartupPath + LANG_PATH + FormShowCharts.STRING_TEXT);
                 }
 
-                // Columnas del dataGridViewEx Suma de cuadrados (CHECK)
+                // Columnas del dataGridViewEx Suma de cuadrados
                 name = "sourceOfVarString";
                 sourceOfVarString = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "ssqString";
@@ -1184,7 +1185,7 @@ namespace GUI_GT
                 name = "standardErrorString";
                 standardErrorString = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
-                // Cabecera de las columnas del dataGridViewEx G-Parametros (CHECK)
+                // Cabecera de las columnas del dataGridViewEx G-Parametros
                 name = "source";
                 source = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "diff_var";
@@ -1198,7 +1199,7 @@ namespace GUI_GT
                 name = "percent_abs_err";
                 percent_abs_err = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
-                // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum (CHECK)
+                // Cabecera de las columnas y etiquetas de dGridViewExOptimizationResum
                 name = "name_resum";
                 name_resum = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "resum";

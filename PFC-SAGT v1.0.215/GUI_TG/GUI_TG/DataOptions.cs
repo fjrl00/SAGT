@@ -957,8 +957,14 @@ namespace GUI_GT
             System.Windows.Forms.DialogResult resulDialog = saveDialog.ShowDialog();
             if (resulDialog == DialogResult.OK)
             {
-                // multiFacet.WritingFileObsData(saveDialog.FileName);
+                // Si hay análisis actualizamos el nombre
+                if (sagtElements.GetAnalysis_and_G_Study() != null)
+                {
+                    sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(saveDialog.FileName);
+                }
+
                 sagtElementsSave.WritingSagtFile(saveDialog.FileName);
+
                 // Si tenemos la tabla de observaciones abierta actualizamos el nombre
                 MultiFacetsObs multiFacet = sagtElements.GetMultiFacetsObs();
                 if (multiFacet != null)

@@ -86,7 +86,7 @@ namespace GUI_GT
          ****************************************************************************************************/
         private string txtConfirmBuildNesting = "No podrá seguir editando las facetas \nhasta que el proceso finalice ¿Desea continuar?";
         private string txtAdvise = "No está conectado al servidor";
-        private string txtSaveDataObserved = "La tabla de observaciones se ha guardado";
+        private string txtSaveDataObserved = "Los datos se han guardado con éxito";
         private string txtNoSaveCsv = "La tabla de observaciones no ha conseguido exportarse";
         private string txtSaveCsv = "La tabla de observaciones se ha exportado con éxito";
         private string txtCvaError = "Error al importar el análisis VCA.";

@@ -537,7 +537,6 @@ namespace GUI_GT
                 this.dgvAnalysisResumOpt);
             // Mostramos los datos de el tabPage de información
             this.tbFileAnalysisProvede.Text = nameFile;
-            this.tbFileAnalysisProvede_SSQ.Text = nameFile;
             this.tbDateAnalysisCreated.Text = anl_tAnalysis_G_study_opt.GetDateTime().ToString();
             this.rTextBoxAnalysisInfo.Text = anl_tAnalysis_G_study_opt.GetTextComment();
         }// LoadAllDataGridWithDataAnalysis
@@ -784,7 +783,6 @@ namespace GUI_GT
 
             // Limpiamos los textBox del tabPage de información
             this.tbFileAnalysisProvede.Text = mDesign;
-            this.tbFileAnalysisProvede_SSQ.Text = mDesign;
             this.tbDateAnalysisCreated.Text = mDesign;
             this.rTextBoxAnalysisInfo.Text = mDesign;
             // Limpiamos el dgvEx del tabPage edición de Facetas
@@ -1540,7 +1538,6 @@ namespace GUI_GT
                 // Etiquetas del tabPageInformación
                 name = this.lbFileAnalysisProvede.Name.ToString();
                 this.lbFileAnalysisProvede.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                this.lbFileAnalysisProvede_SSQ.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbDateAnalysisCreated.Name.ToString();
                 this.lbDateAnalysisCreated.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
