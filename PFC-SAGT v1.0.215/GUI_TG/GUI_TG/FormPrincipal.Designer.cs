@@ -583,7 +583,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 440);
+            this.mStripData.Size = new System.Drawing.Size(175, 459);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -608,22 +608,22 @@
             this.tsmiOpenFileData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenFileData.Name = "tsmiOpenFileData";
             this.tsmiOpenFileData.Size = new System.Drawing.Size(170, 36);
-            this.tsmiOpenFileData.Text = "Abrir archivo de datos";
+            this.tsmiOpenFileData.Text = "Abrir";
             this.tsmiOpenFileData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiDataOpenLocal
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiDataOpenLocal.Text = "Abrir";
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Text = "Abrir localmente";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
             // tsmiDataOpenWebService
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -1511,9 +1511,9 @@
             this.lbFileMeanProvede.AutoSize = true;
             this.lbFileMeanProvede.Location = new System.Drawing.Point(15, 22);
             this.lbFileMeanProvede.Name = "lbFileMeanProvede";
-            this.lbFileMeanProvede.Size = new System.Drawing.Size(43, 13);
+            this.lbFileMeanProvede.Size = new System.Drawing.Size(76, 13);
             this.lbFileMeanProvede.TabIndex = 0;
-            this.lbFileMeanProvede.Text = "Archivo";
+            this.lbFileMeanProvede.Text = "Archivo fuente";
             // 
             // mStripMeans
             // 
@@ -1546,22 +1546,22 @@
             this.tsmiOpenMeans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiOpenMeans.Name = "tsmiOpenMeans";
             this.tsmiOpenMeans.Size = new System.Drawing.Size(182, 36);
-            this.tsmiOpenMeans.Text = "Abrir archivo de medias";
+            this.tsmiOpenMeans.Text = "Abrir";
             this.tsmiOpenMeans.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tsmiMeansOpenLocal
             // 
             this.tsmiMeansOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiMeansOpenLocal.Name = "tsmiMeansOpenLocal";
-            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiMeansOpenLocal.Text = "Abrir";
+            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenLocal.Text = "Abrir localmente";
             this.tsmiMeansOpenLocal.Click += new System.EventHandler(this.tsmiMeansOpenLocal_Click);
             // 
             // tsmiMeansOpenWebService
             // 
             this.tsmiMeansOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiMeansOpenWebService.Name = "tsmiMeansOpenWebService";
-            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiMeansOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiMeansOpenWebService.Click += new System.EventHandler(this.tsmiMeansOpenWebService_Click);
             // 
@@ -2806,9 +2806,9 @@
             this.lbFileAnalysisProvede.AutoSize = true;
             this.lbFileAnalysisProvede.Location = new System.Drawing.Point(14, 20);
             this.lbFileAnalysisProvede.Name = "lbFileAnalysisProvede";
-            this.lbFileAnalysisProvede.Size = new System.Drawing.Size(43, 13);
+            this.lbFileAnalysisProvede.Size = new System.Drawing.Size(76, 13);
             this.lbFileAnalysisProvede.TabIndex = 6;
-            this.lbFileAnalysisProvede.Text = "Archivo";
+            this.lbFileAnalysisProvede.Text = "Archivo fuente";
             // 
             // mStripAnalysis
             // 
@@ -2865,15 +2865,15 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiAnalysisOpenLocal.Text = "Abrir";
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenLocal.Text = "Abrir localmente";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
             // tsmiAnalysisOpenWebService
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
