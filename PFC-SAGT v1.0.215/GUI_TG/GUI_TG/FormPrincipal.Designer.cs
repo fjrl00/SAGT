@@ -199,10 +199,10 @@
             this.dgvExAnalysisEditSSq = new DataGridViewEx.DataGridViewEx();
             this.dgvExAnalysis_FacetEditSsq = new DataGridViewEx.DataGridViewEx();
             this.tabPageAnalysisSSQ = new System.Windows.Forms.TabPage();
-            this.dgvExAnalysisSSq = new DataGridViewEx.DataGridViewEx();
-            this.dgvExAnalysisSourceOfVarSsq = new DataGridViewEx.DataGridViewEx();
             this.lbAnalysisTotalDF = new System.Windows.Forms.Label();
             this.lbAnalysisTotalSsq = new System.Windows.Forms.Label();
+            this.dgvExAnalysisSSq = new DataGridViewEx.DataGridViewEx();
+            this.dgvExAnalysisSourceOfVarSsq = new DataGridViewEx.DataGridViewEx();
             this.lbAnalysisTotal = new System.Windows.Forms.Label();
             this.tabPageAnalysisG_P = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelGParameters = new System.Windows.Forms.TableLayoutPanel();
@@ -615,7 +615,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -623,7 +623,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -1593,7 +1593,7 @@
             // 
             this.tsmiMeansSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiMeansSavedLocal.Name = "tsmiMeansSavedLocal";
-            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(206, 26);
+            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(202, 22);
             this.tsmiMeansSavedLocal.Text = "Guardar";
             this.tsmiMeansSavedLocal.Click += new System.EventHandler(this.tsmiMeansSavedLocal_Click);
             // 
@@ -1601,7 +1601,7 @@
             // 
             this.tsmiMeansSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiMeansSavedWebService.Name = "tsmiMeansSavedWebService";
-            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(206, 26);
+            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(202, 22);
             this.tsmiMeansSavedWebService.Text = "Guardar en servicio Web";
             this.tsmiMeansSavedWebService.Click += new System.EventHandler(this.tsmiMeansSavedWebService_Click);
             // 
@@ -2028,10 +2028,10 @@
             // tabPageAnalysisSSQ
             // 
             this.tabPageAnalysisSSQ.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
-            this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSSq);
-            this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSourceOfVarSsq);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotalDF);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotalSsq);
+            this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSSq);
+            this.tabPageAnalysisSSQ.Controls.Add(this.dgvExAnalysisSourceOfVarSsq);
             this.tabPageAnalysisSSQ.Controls.Add(this.lbAnalysisTotal);
             this.tabPageAnalysisSSQ.Location = new System.Drawing.Point(4, 22);
             this.tabPageAnalysisSSQ.Name = "tabPageAnalysisSSQ";
@@ -2040,6 +2040,30 @@
             this.tabPageAnalysisSSQ.TabIndex = 1;
             this.tabPageAnalysisSSQ.Text = "Suma de cuadrados";
             this.tabPageAnalysisSSQ.UseVisualStyleBackColor = true;
+            // 
+            // lbAnalysisTotalDF
+            // 
+            this.lbAnalysisTotalDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbAnalysisTotalDF.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lbAnalysisTotalDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbAnalysisTotalDF.Location = new System.Drawing.Point(214, 414);
+            this.lbAnalysisTotalDF.Name = "lbAnalysisTotalDF";
+            this.lbAnalysisTotalDF.Size = new System.Drawing.Size(100, 13);
+            this.lbAnalysisTotalDF.TabIndex = 13;
+            this.lbAnalysisTotalDF.Text = "lbAnalysisTotalDF";
+            this.lbAnalysisTotalDF.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbAnalysisTotalSsq
+            // 
+            this.lbAnalysisTotalSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbAnalysisTotalSsq.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lbAnalysisTotalSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbAnalysisTotalSsq.Location = new System.Drawing.Point(54, 414);
+            this.lbAnalysisTotalSsq.Name = "lbAnalysisTotalSsq";
+            this.lbAnalysisTotalSsq.Size = new System.Drawing.Size(160, 13);
+            this.lbAnalysisTotalSsq.TabIndex = 12;
+            this.lbAnalysisTotalSsq.Text = "lbAnalysisTotalSsq";
+            this.lbAnalysisTotalSsq.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dgvExAnalysisSSq
             // 
@@ -2085,8 +2109,9 @@
             this.dgvExAnalysisSSq.RowHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvExAnalysisSSq.RowHeadersVisible = false;
             this.dgvExAnalysisSSq.RowHeadersWidth = 50;
-            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(542, 215);
+            this.dgvExAnalysisSSq.Size = new System.Drawing.Size(542, 233);
             this.dgvExAnalysisSSq.TabIndex = 15;
+            this.dgvExAnalysisSSq.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExAnalysisSSq_CellClick);
             // 
             // dgvExAnalysisSourceOfVarSsq
             // 
@@ -2134,36 +2159,12 @@
             this.dgvExAnalysisSourceOfVarSsq.Size = new System.Drawing.Size(542, 146);
             this.dgvExAnalysisSourceOfVarSsq.TabIndex = 14;
             // 
-            // lbAnalysisTotalDF
-            // 
-            this.lbAnalysisTotalDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbAnalysisTotalDF.AutoSize = true;
-            this.lbAnalysisTotalDF.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lbAnalysisTotalDF.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalDF.Location = new System.Drawing.Point(281, 414);
-            this.lbAnalysisTotalDF.Name = "lbAnalysisTotalDF";
-            this.lbAnalysisTotalDF.Size = new System.Drawing.Size(124, 13);
-            this.lbAnalysisTotalDF.TabIndex = 13;
-            this.lbAnalysisTotalDF.Text = "lbAnalysisTotalDF";
-            // 
-            // lbAnalysisTotalSsq
-            // 
-            this.lbAnalysisTotalSsq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbAnalysisTotalSsq.AutoSize = true;
-            this.lbAnalysisTotalSsq.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lbAnalysisTotalSsq.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotalSsq.Location = new System.Drawing.Point(148, 414);
-            this.lbAnalysisTotalSsq.Name = "lbAnalysisTotalSsq";
-            this.lbAnalysisTotalSsq.Size = new System.Drawing.Size(130, 13);
-            this.lbAnalysisTotalSsq.TabIndex = 12;
-            this.lbAnalysisTotalSsq.Text = "lbAnalysisTotalSsq";
-            // 
             // lbAnalysisTotal
             // 
             this.lbAnalysisTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAnalysisTotal.AutoSize = true;
             this.lbAnalysisTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbAnalysisTotal.Location = new System.Drawing.Point(17, 414);
+            this.lbAnalysisTotal.Location = new System.Drawing.Point(14, 414);
             this.lbAnalysisTotal.Name = "lbAnalysisTotal";
             this.lbAnalysisTotal.Size = new System.Drawing.Size(34, 13);
             this.lbAnalysisTotal.TabIndex = 11;
@@ -2864,7 +2865,7 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenLocal.Text = "Abrir";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
@@ -2872,7 +2873,7 @@
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
@@ -2904,7 +2905,7 @@
             // 
             this.tsmiAnalysisSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiAnalysisSavedLocal.Name = "tsmiAnalysisSavedLocal";
-            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(206, 26);
+            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(202, 22);
             this.tsmiAnalysisSavedLocal.Text = "Guardar";
             this.tsmiAnalysisSavedLocal.Click += new System.EventHandler(this.tsmiAnalysisSavedLocal_Click);
             // 
@@ -2912,7 +2913,7 @@
             // 
             this.tsmiAnalysisvedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiAnalysisvedWebService.Name = "tsmiAnalysisvedWebService";
-            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(206, 26);
+            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(202, 22);
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 

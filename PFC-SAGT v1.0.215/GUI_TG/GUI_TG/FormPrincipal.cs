@@ -13,6 +13,7 @@
  */
 using ConfigCFG;
 using ConnectLibrary;
+using DataGridViewEx;
 using MultiFacetData;
 using ProjectMeans;
 using ProjectSSQ;
@@ -2433,5 +2434,14 @@ namespace GUI_GT
 
 
         #endregion Botones del tapPage Proyectos
+
+        private void dgvExAnalysisSSq_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            int width = dgvExAnalysisSSq.Columns[e.ColumnIndex].Width;
+            Console.WriteLine(width);
+        }
     } // end public partial class FormPrincipal : Form
 } // end namespace GUI_TG

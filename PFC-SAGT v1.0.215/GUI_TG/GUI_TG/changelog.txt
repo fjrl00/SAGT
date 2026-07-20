@@ -24,6 +24,7 @@ OTHER BUGFIXES
 - Solved bug where omitting a facet nested in another facet would trigger an exception when generating means
 - Solved bug where duplicated error screens could be created when generating nested facets
 - Solved bug where changing language after loading and unloading Sums Of Squares data would cause an exception
+- Solved bug where the CSV importer would fail to correctly interpret decimal numbers in Spanish locale (and other decimal comma-using locales)
 - Overhauled how the app works in different culture settings, bugs that would've been triggered regarding handling text data in certain cultures like Turkish have been solved.
 - Solved various minor bugs throughout the app related to handling null values
 - Solved bug where the user preference for the decimal separator "," would be ignored in the table of observations
@@ -42,7 +43,6 @@ OTHER BUGFIXES
 - Solved bug where printing the Analysis section's report would instead try to print the report of the rest of the app
 - Solved various minor bugs in the printing output (missing text that was intended to be printed, miscalculated table widths on certain occasions, wrong margins at the top of the page on certain occasions)
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
-- Solved bug where the CSV importer would fail to correctly interpret decimal numbers in Spanish locale (and other decimal comma-using locales)
 - Solved bug where trying to select or copy sections of tables in non-conventional ways (selecting a few corners manually with control-clicking, shift-clicking starting from bottom, etc) could result in an exception
 
 OPTIMIZATION
@@ -97,6 +97,7 @@ UI
 - "Export" items in the data section's menu have been grouped into one.
 - Fixed Data->Facets->Description field not going back to ReadOnly mode after creating a new Data section
 - New graphics added for various new buttons/features
+- Corrected the alignment of the labels in the Sum of squares tab, which tended to not match their corresponding column at all when their numbers grew sufficiently big
 - Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring keys and values sometimes needlessly and irrevocably.
 - Removed the Measurement Design info from the Sum of Squares tab, as it's irrelevant to that tab. Replaced with the source file
 - Saving from any tab is now permitted so long as any tab has loaded data
