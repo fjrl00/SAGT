@@ -18,14 +18,12 @@ using AuxMathCalcGT;
 using ImportEduGSsq;
 using MultiFacetData;
 using ProjectSSQ;
-using Sagt;
 using SsqPY;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing; // se usa para las propiedades de la cabecera de columna (color,fuente,etc)
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace GUI_GT
@@ -40,8 +38,6 @@ namespace GUI_GT
 
         private ListFacets listFacetsAnalysis = null; // lista de facetas que se emplea para el analisis
         private List<string> llFacetsAnalysis; // Lista
-        // private List<TableG_Study_Percent> listAnalysisG_Parameters;
-        private Analysis_and_G_Study anl_tAnalysis_G_study_opt; // variable con las tablas de análisis con la que se trabaja actualmente
         private Analysis_and_G_Study anl_tAnalysis_G_study_opt_Old; // variable antigua, para permitir deshacer cambios.
 
 
@@ -76,9 +72,9 @@ namespace GUI_GT
         private void tsmiActionNewFileAnalysisSSQ_Click(object sender, EventArgs e)
         {
             // First: confirmation screen triggers in case there's analysis data loaded. If the user cancels, we stop the method execution and do not lose the data.
-            if (this.anl_tAnalysis_G_study_opt != null)
+            if (sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                if (this.anl_tAnalysis_G_study_opt.TableAnalysisVariance() != null)
+                if (sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance() != null)
                 {
                     DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
 
@@ -138,7 +134,7 @@ namespace GUI_GT
             // si tenemos más de una faceta entonces pasamos a editarlas
             if (t >= 2)
             {
-                this.anl_tAnalysis_G_study_opt_Old = this.anl_tAnalysis_G_study_opt; // guardamos los datos por si deseamos cancelar
+                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study(); // guardamos los datos por si deseamos cancelar
                 CleanerDataGridViewExFacets(this.dGridViewExAnalysis_TableFacet);
                 this.dGridViewExAnalysis_TableFacet.NumeroFilas = t;
                 enableEditingFacetAnalysis();
@@ -386,9 +382,9 @@ namespace GUI_GT
         private void Aux_EditSsqValues(ListFacets listFacetsAnalysis)
         {
             // Introducimos los valores antiguos de la suma de cuadrados
-            TableAnalysisOfVariance tb = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
+            TableAnalysisOfVariance tb = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance();
             List<string> lKeys = tb.SourcesOfVar();
-            TableG_Study_Percent tableG = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent();
+            TableG_Study_Percent tableG = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent();
             // Mostramos el diseño de medida en los textBox
             ShowMeDesignInAnalysisTextBoxs(tableG.LfDifferentiation(), tableG.LfInstrumentation());
             /* Insertamos las facetas en la tabla de facetas de la pestaña de edición se 
@@ -448,10 +444,10 @@ namespace GUI_GT
             /* Si estamos en el modo edición entonces la lista de fuentes de variación será la 
              * perteneciente a la tabla de análisis faceta de análisis será
              */
-            if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
+            if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
-                llFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().SourcesOfVar();
+                listFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
+                llFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().SourcesOfVar();
             }
 
             Dictionary<string, double?> ssq = new Dictionary<string, double?>();
@@ -506,10 +502,10 @@ namespace GUI_GT
                     case (DialogResult.OK):
                         // almacenamos el fichero
 
-                        if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
+                        if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
                         {
                             // Si estamos en el modo edición entonces calculamos
-                            this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt.UpdateSsq(ssq);
+                            sagtElements.GetAnalysis_and_G_Study().UpdateSsq(ssq);
                         }
                         else
                         {
@@ -523,16 +519,16 @@ namespace GUI_GT
                             ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                             // Actualizamos la variable global de análisis con los nuevos valores
-                            this.anl_tAnalysis_G_study_opt = new Analysis_and_G_Study(tbAnalysisVar, gp);
+                            sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tbAnalysisVar, gp));
                         }
 
                         DateTime date = DateTime.Now;
-                        this.anl_tAnalysis_G_study_opt.SetDateTime(date);
-                        this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(saveDialog.FileName);
+                        sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
+                        sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(saveDialog.FileName);
                         // guardamos el fichero
-                        this.anl_tAnalysis_G_study_opt.WritingFileAnalysisSSQ(saveDialog.FileName);
+                        sagtElements.GetAnalysis_and_G_Study().WritingFileAnalysisSSQ(saveDialog.FileName);
                         // Mostramos los datos
-                        LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, saveDialog.FileName.ToString());
+                        LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), saveDialog.FileName.ToString());
 
                         // Ocultamos el tabPage de editar suma de cuadrados y mostramos los restantes
                         disableEditingFacetAnalysis();
@@ -579,7 +575,7 @@ namespace GUI_GT
         private void tsmiActionOpenAnalysis_Click()
         {
             DialogResult res = DialogResult.OK;
-            if (this.anl_tAnalysis_G_study_opt != null)
+            if (sagtElements.GetAnalysis_and_G_Study() != null)
             {
                 res = ShowMessageDialog(titleConfirm, txtConfirmClose);
             }
@@ -624,15 +620,15 @@ namespace GUI_GT
             try
             {
                 Analysis_and_G_Study tb_aux = ProjectSSQ.Analysis_and_G_Study.ReadingFileAnalysisSSQ(path);
-                if (this.anl_tAnalysis_G_study_opt != null)
+                if (sagtElements.GetAnalysis_and_G_Study() != null)
                 {
                     // Limpiamos todas las tablas
                     cleanerAllTabPageAnalysis();
                 }
-                this.anl_tAnalysis_G_study_opt = tb_aux;
+                sagtElements.SetAnalysis_and_G_Study(tb_aux);
                 // Cargamos los datos en los datagridView
                 // LoadAllDataInDataGridViewEx_SSQOptions();
-                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, path);
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), path);
             }
             catch (Analysis_and_G_Study_Exception e)
             {
@@ -648,45 +644,6 @@ namespace GUI_GT
                 ShowMessageErrorOK("Error LoadAnalysisFile(string path): " + ex.Message);
             }
         }// end LoadAnalysisFile
-
-
-
-        /* Descripción:
-         *  Se ejecuta cuando se pulsa sobre Guardar en el menú vertical de Análisis. Muestra el cuadro
-         *  de dialogo para seleccionar el archivo en el que se va a guardar las tablas de análisis.
-         */
-        private void tsmiActionAnalysis_Save_Click()
-        {
-            // DialogResult res = DialogResult.OK;
-            // TableAnalysisOfVariance tb = this.tAnalysis_tG_Study_Opt.TableAnalysisVariance();
-            if (this.anl_tAnalysis_G_study_opt == null)
-            {
-                // si no tenemos lista de medias lanzamos un mensaje de error
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                // Preguntamos al usuario por el archivo
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    saveDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                saveDialog.DefaultExt = "anls";
-                string fileAnalysisFilter = "Analysis file" + FILTER_ANALYSIS_FILTER;
-                saveDialog.Filter = fileAnalysisFilter;
-                saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
-                saveDialog.AddExtension = true;
-                if (saveDialog.ShowDialog() == DialogResult.OK)
-                {
-                    this.anl_tAnalysis_G_study_opt.WritingFileAnalysisSSQ(saveDialog.FileName);
-                    // Mostramos un mensaje indicando que se ha salvado
-                    ShowMessageInfo(txtTheDataIsSaved, titleSaved);
-                }
-            }
-        }
 
 
         /* Descripción:
@@ -827,10 +784,10 @@ namespace GUI_GT
             // Restauramos el valor anterior si lo había
             if (this.anl_tAnalysis_G_study_opt_Old != null)
             {
-                this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt_Old;
+                sagtElements.SetAnalysis_and_G_Study(this.anl_tAnalysis_G_study_opt_Old);
                 // Cargamos los valores antiguos
-                string nameFile = this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation();
-                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, nameFile);
+                string nameFile = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
                 // Ponemos el valor antiguo a null para ahorra memoria
                 this.anl_tAnalysis_G_study_opt_Old = null;
             }
@@ -871,7 +828,7 @@ namespace GUI_GT
             ClearDataGridViewEx(dgvAnalysisResumOpt);
             // ponemos las variables globales a null
             this.listFacetsAnalysis = null;
-            this.anl_tAnalysis_G_study_opt = null;
+            sagtElements.SetAnalysis_and_G_Study(null);
         }// end cleanerAllTabPageAnalysis()
 
 
@@ -880,9 +837,9 @@ namespace GUI_GT
          */
         private void tsmiActionCloseAnalysis_Click(object sender, EventArgs e)
         {
-            if (this.anl_tAnalysis_G_study_opt != null)
+            if (sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                TableAnalysisOfVariance tableAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
+                TableAnalysisOfVariance tableAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance();
                 if (tableAnalysis != null)
                 {
                     DialogResult res = ShowMessageDialog(titleConfirm, txtConfirmClose);
@@ -999,10 +956,10 @@ namespace GUI_GT
                 if (tAnalysis_tG_Study_Opt != null)
                 {
                     DateTime date = DateTime.Now;
-                    this.anl_tAnalysis_G_study_opt = tAnalysis_tG_Study_Opt;
-                    this.anl_tAnalysis_G_study_opt.SetDateTime(date);
-                    this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(path);
-                    LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, path);
+                    sagtElements.SetAnalysis_and_G_Study(tAnalysis_tG_Study_Opt);
+                    sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
+                    sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(path);
+                    LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), path);
                 }
             }
             catch (SSqPY_Exception)
@@ -1018,7 +975,7 @@ namespace GUI_GT
          */
         private void tsmiActionAnalysisExportExcel_Click(object sender, EventArgs e)
         {
-            if (this.anl_tAnalysis_G_study_opt == null)
+            if (sagtElements.GetAnalysis_and_G_Study() == null)
             {
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -1137,9 +1094,9 @@ namespace GUI_GT
                                 Dictionary<string, double?> dicSSq = AnalysisSsqEduG.ImportSsq_File(openDialog.FileName);
                                 // Tomamos los datos en el mismo orden 
                                 List<string> ldesign = this.llFacetsAnalysis;
-                                if (this.anl_tAnalysis_G_study_opt != null)
+                                if (sagtElements.GetAnalysis_and_G_Study() != null)
                                 {
-                                    TableAnalysisOfVariance tableAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
+                                    TableAnalysisOfVariance tableAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance();
                                     ListFacets lf = tableAnalysis.ListFacets();
                                     ldesign = lf.CombinationStringWithoutRepetition();
                                 }
@@ -1214,11 +1171,11 @@ namespace GUI_GT
         private void btActionImportAnalysisVCA_Click()
         {
             // Si estamos en el modo edición entonces actualizamos estos valores temporales
-            if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
+            if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
-                analysisSourceOfVarDiff = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfDifferentiation();
-                analysisSourceOfVarInst = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfInstrumentation();
+                listFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
+                analysisSourceOfVarDiff = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfDifferentiation();
+                analysisSourceOfVarInst = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfInstrumentation();
             }
 
             // Select VCA CSV
@@ -1267,12 +1224,12 @@ namespace GUI_GT
 
                 analysis.WritingFileAnalysisSSQ(saveDialog.FileName);
 
-                anl_tAnalysis_G_study_opt = analysis;
+                sagtElements.SetAnalysis_and_G_Study(analysis);
 
                 ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                 LoadAllDataGridWithDataAnalysis(
-                    anl_tAnalysis_G_study_opt,
+                    sagtElements.GetAnalysis_and_G_Study(),
                     saveDialog.FileName);
 
                 disableEditingFacetAnalysis();
@@ -1291,11 +1248,11 @@ namespace GUI_GT
         private void btActionImportAnalysisSAS_Click()
         {
             // Si estamos en el modo edición entonces actualizamos estos valores temporales
-            if (this.disableTopLeftButtons && this.anl_tAnalysis_G_study_opt != null)
+            if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                listFacetsAnalysis = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
-                analysisSourceOfVarDiff = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfDifferentiation();
-                analysisSourceOfVarInst = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfInstrumentation();
+                listFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
+                analysisSourceOfVarDiff = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfDifferentiation();
+                analysisSourceOfVarInst = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfInstrumentation();
             }
 
             // Select SAS .LST (also give option for .txt)
@@ -1347,12 +1304,12 @@ namespace GUI_GT
 
                 analysis.WritingFileAnalysisSSQ(saveDialog.FileName);
 
-                anl_tAnalysis_G_study_opt = analysis;
+                sagtElements.SetAnalysis_and_G_Study(analysis);
 
                 ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
                 LoadAllDataGridWithDataAnalysis(
-                    anl_tAnalysis_G_study_opt,
+                    sagtElements.GetAnalysis_and_G_Study(),
                     saveDialog.FileName);
 
                 disableEditingFacetAnalysis();
@@ -1364,58 +1321,13 @@ namespace GUI_GT
         }
 
 
-        /* Descripción:
-         *  Toma el objeto de Tabla de análisis de la opción suma de cuadrados y realiza una copia en 
-         *  profundidad que luego se mostrará en la opción de análisis.
-         */
-        private void tsmiActionSSqToAnalysis_Click()
-        {
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt == null)
-            {
-                // si no tenemos lista de medias lanzamos un mensaje de error
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                bool bCreateAnalysis = true;
-                // Comprobamos si hay un objeto abierto en la opción de analisis
-                if (this.anl_tAnalysis_G_study_opt != null)
-                {
-                    // informamos y preguntamos confirmación
-                    DialogResult res2 = ShowMessageDialog(titleConfirm, txtConfirmClearMeans);
-
-                    if (res2 == DialogResult.Cancel)
-                    {
-                        bCreateAnalysis = false;
-                    }
-                }
-                // Si es true copiamos y mostramos
-                if (bCreateAnalysis)
-                {
-                    this.anl_tAnalysis_G_study_opt = this.sagtElements.CopyTablesOfAnalysis();
-                    string nameFile = this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation();
-                    this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFile);
-                    LoadAllDataGridWithDataAnalysis(anl_tAnalysis_G_study_opt, nameFile);
-                    // Asignamos la pestaña
-                    ExcludeTabPages();
-                    this.tabPageAnalysis.Parent = this.tabControlOptions;
-                    // Restauramos los colores
-                    this.RestoreColorMenu(this.mStripMain);
-                    // Asignamos el nuevo color
-                    this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
-                }
-            }
-        }// end tsmiActionSSqToAnalysis_Click
-
-
 
         /* Descripción:
          *  Edita las facetas de las tablas de sumas de cuadrados para la opción análisis.
          */
         private void tsmiActionAnalysisEditFacets_Click()
         {
-            if (this.anl_tAnalysis_G_study_opt == null)
+            if (sagtElements.GetAnalysis_and_G_Study() == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -1430,11 +1342,11 @@ namespace GUI_GT
                     tabPage.Parent = null;
                 }
 
-                this.anl_tAnalysis_G_study_opt_Old = this.anl_tAnalysis_G_study_opt; // Guardamos la tabla de análisis actual por si deshacemos los cambios
+                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study(); // Guardamos la tabla de análisis actual por si deshacemos los cambios
 
                 //Cargamos los datos de las facetas en el dataGrid
                 CleanerDataGridViewExFacets(dGridViewExAnalysis_TableFacet); // limpiamos el datagrid de facetas
-                ListFacets lf = this.anl_tAnalysis_G_study_opt.GetListFacets(); // retomamos la lista de facetas
+                ListFacets lf = sagtElements.GetAnalysis_and_G_Study().GetListFacets(); // retomamos la lista de facetas
                 LoadListFacetInDataGridView(lf, dGridViewExAnalysis_TableFacet, false, true); // cargamos la lista de facetas en el datagrid
                 // Permitimos la edición de las columnas
                 int nCol = dGridViewExAnalysis_TableFacet.ColumnCount;
@@ -1461,8 +1373,8 @@ namespace GUI_GT
          */
         private void btActionAcept_Click()
         {
-            string nameFileDataCreation = this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation();
-            DateTime dateCreation = this.anl_tAnalysis_G_study_opt.GetDateTime();
+            string nameFileDataCreation = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
+            DateTime dateCreation = sagtElements.GetAnalysis_and_G_Study().GetDateTime();
 
             try
             {
@@ -1470,23 +1382,23 @@ namespace GUI_GT
                 ListFacets newLf = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
 
                 // Actualizar la lista actual con los valores de la nueva
-                ListFacets oldLf = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets();
+                ListFacets oldLf = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
                 newLf = oldLf.RemplaceListFacets(newLf);
 
                 // generar la tabla de análisis partiendo de la suma de cuadrados anterior
                 // actualizar los valores de optimización
-                this.anl_tAnalysis_G_study_opt = this.anl_tAnalysis_G_study_opt.ReplaceListOfFacet(newLf);
+                sagtElements.GetAnalysis_and_G_Study().ReplaceListOfFacet(newLf);
                 //********************************************************************************
                 string namePrueba = this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation();
                 //********************************************************************************
-                this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation());
-                // this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFileDataCreation);
-                this.anl_tAnalysis_G_study_opt.SetDateTime(this.anl_tAnalysis_G_study_opt_Old.GetDateTime());
-                //this.anl_tAnalysis_G_study_opt.SetDateTime(dateCreation);
+                sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation());
+                // sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFileDataCreation);
+                sagtElements.GetAnalysis_and_G_Study().SetDateTime(this.anl_tAnalysis_G_study_opt_Old.GetDateTime());
+                //sagtElements.GetAnalysis_and_G_Study().SetDateTime(dateCreation);
                 this.anl_tAnalysis_G_study_opt_Old = null;
 
                 // cargar los valores nuevos.
-                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation());
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
 
                 // Restauramos las pestañas y salimos del modo edición
                 disableEditingFacetAnalysis();
@@ -1511,7 +1423,7 @@ namespace GUI_GT
          */
         private void tsmiActionAnalysisEditSsq_Click()
         {
-            if (this.anl_tAnalysis_G_study_opt == null)
+            if (sagtElements.GetAnalysis_and_G_Study() == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -1522,14 +1434,14 @@ namespace GUI_GT
                  * Soló la suma de cuadrados no las fuentes de variación.
                  */
                 // asignamos para tener la posibilidad de deshacer los cambios.
-                this.anl_tAnalysis_G_study_opt_Old = this.anl_tAnalysis_G_study_opt;
+                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study();
                 // Ocultamos los tabPage
                 // Ocultamos las pestañas
                 foreach (TabPage tabPage in this.tabControlAnalysisSSQ.TabPages)
                 {
                     tabPage.Parent = null;
                 }
-                Aux_EditSsqValues(this.anl_tAnalysis_G_study_opt.TableAnalysisVariance().ListFacets());
+                Aux_EditSsqValues(sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets());
             }
         }// end tsmiActionAnalysisEditSsq_Click
 
@@ -1539,7 +1451,7 @@ namespace GUI_GT
          */
         private void tsmiActionChangeModel_Click()
         {
-            if (this.anl_tAnalysis_G_study_opt == null)
+            if (sagtElements.GetAnalysis_and_G_Study() == null)
             {//begin if (*1*)
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -1547,11 +1459,11 @@ namespace GUI_GT
             {
                 // Avisamos de que se perdera información si no se ha guardado
                 // Lista de facetas de Instrumentación y diferenciación
-                analysisSourceOfVarDiff = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfDifferentiation();
-                analysisSourceOfVarInst = this.anl_tAnalysis_G_study_opt.TableG_Study_Percent().LfInstrumentation();
+                analysisSourceOfVarDiff = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfDifferentiation();
+                analysisSourceOfVarInst = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfInstrumentation();
                 // mostramos la ventana de selección de diseño
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, this.anl_tAnalysis_G_study_opt.GetListFacets(), cfgApli.GetConfigLanguage());
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, sagtElements.GetAnalysis_and_G_Study().GetListFacets(), cfgApli.GetConfigLanguage());
                 bool salir = false; // variable de control del bucle
 
                 do
@@ -1571,12 +1483,12 @@ namespace GUI_GT
                                 // analysisSourceOfVarDiff;
                                 // analysisSourceOfVarInst;
                                 // si se ha seleccionado aceptar aplicamos los cambios
-                                string nameFile = this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation();
-                                TableAnalysisOfVariance tbAnalysisOfVar = this.anl_tAnalysis_G_study_opt.TableAnalysisVariance();
+                                string nameFile = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
+                                TableAnalysisOfVariance tbAnalysisOfVar = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance();
                                 TableG_Study_Percent tb_G_study_percent = new TableG_Study_Percent(analysisSourceOfVarDiff, analysisSourceOfVarInst, tbAnalysisOfVar);
-                                this.anl_tAnalysis_G_study_opt = new Analysis_and_G_Study(tbAnalysisOfVar, tb_G_study_percent);
-                                this.anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFile);
-                                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, nameFile);
+                                sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tbAnalysisOfVar, tb_G_study_percent));
+                                sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFile);
+                                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
                                 salir = true;
 
                             }
@@ -1729,7 +1641,7 @@ namespace GUI_GT
                 {
                     // dGridViewExOptimizationResum.Columns[0].HeaderText = name_resum;
                     // Entonces pintamos la tabla de resumen de nuevo
-                    LoadDataGridViewExOptimizationResum(this.anl_tAnalysis_G_study_opt,
+                    LoadDataGridViewExOptimizationResum(sagtElements.GetAnalysis_and_G_Study(),
                         this.dgvAnalysisResumOpt);
                 }
 

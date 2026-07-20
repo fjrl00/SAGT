@@ -406,11 +406,10 @@ namespace GUI_GT
             // Limpiamos todas las tablas de sumas de cuadrados
             cleanerAllTabPageAnalysis();
             // Cargamos los elementos de tablas de análisis
-            this.anl_tAnalysis_G_study_opt = sagtElements.GetAnalysis_and_G_Study();
-            if (this.anl_tAnalysis_G_study_opt != null)
+            if (sagtElements.GetAnalysis_and_G_Study() != null)
             {
                 // Cargamos los datos de las tablas de las tablas de análisis de varianza
-                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, fileNameData);
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), fileNameData);
 
                 ExcludeTabPages();
                 // Restauramos los colores
@@ -859,7 +858,7 @@ namespace GUI_GT
          */
         private void saveFileData(SagtFile sagtElements)
         {
-            if (sagtElements.GetMultiFacetsObs() == null && this.anl_tAnalysis_G_study_opt == null)
+            if (sagtElements.GetMultiFacetsObs() == null)
             {
                 ShowMessageErrorOK(errorNoTableObs);
             }

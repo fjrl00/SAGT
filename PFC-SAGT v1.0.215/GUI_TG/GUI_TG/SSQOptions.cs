@@ -101,27 +101,6 @@ namespace GUI_GT
         #endregion Variables relaccionadas con la opción SSQ
 
 
-
-        /* Descripción:
-         *  Salva los datos los datos de las tablas de sumas de cuadrados en un archivo de SAGT.
-         */
-        private void tsmiActionSSQSave_Click(object sender, EventArgs e)
-        {
-            // DialogResult res = DialogResult.OK;
-            // TableAnalysisOfVariance tb = this.tAnalysis_tG_Study_Opt.TableAnalysisVariance();
-            Analysis_and_G_Study tAnalysis_tG_Study_Opt = this.sagtElements.GetAnalysis_and_G_Study();
-            if (tAnalysis_tG_Study_Opt == null)
-            {
-                // si no tenemos lista de medias lanzamos un mensaje de error
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                SaveFileSagt(this.sagtElements);
-            }
-        }// end private void tsmiActionSSQSave_Click
-
-
         /*
          * Descripción:
          *  Calcula los datos de la estimación de la suma de cuadrados del elemento mutifaceta 
@@ -199,19 +178,17 @@ namespace GUI_GT
                                     // Inicializamos la lista de G_Parámetros de Optimización
                                     List<G_ParametersOptimization> listG_ParametersOpt = new List<G_ParametersOptimization>();
 
-                                    anl_tAnalysis_G_study_opt = new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt);
+                                    sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt));
 
                                     // Guardamos los datos referentes a la creación de la suma de cuadrados
                                     string nameFile = multiFacets.NameFileObs();
-                                    anl_tAnalysis_G_study_opt.SetNameFileDataCreation(nameFile);
+                                    sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFile);
 
                                     DateTime date = DateTime.Now;
-                                    anl_tAnalysis_G_study_opt.SetDateTime(date);
-                                    // Actualizamos los datos
-                                    this.sagtElements.SetAnalysis_and_G_Study(anl_tAnalysis_G_study_opt);
+                                    sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
 
                                     // Mostramos todos los datos en los dataGridView
-                                    LoadAllDataGridWithDataAnalysis(anl_tAnalysis_G_study_opt, nameFile);
+                                    LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
 
                                     // mostramos el tabPage de suma de cuadrados
                                     ExcludeTabPages();
@@ -807,143 +784,6 @@ namespace GUI_GT
             return retVal;
 
         }// end AddSignificanceLevel
-
-
-        /* Descripción:
-         *  Método auxiliar. Obtiene la nueva lista de facetas con los niveles introducidos 
-         *  por el usuario para su optimización.
-         */
-        private ListFacets Aux_ReadNewListFacets(Analysis_and_G_Study tablesOfAnalysisG)
-        {
-            TransLibrary.Language lang = this.LanguageActually();
-            ListFacets sourceOfVarInstrumentation = tablesOfAnalysisG.TableG_Study_Percent().LfInstrumentation();
-            ListFacets sourceOfDifferentiation = tablesOfAnalysisG.TableG_Study_Percent().LfDifferentiation();
-            FormAddSignificanceLevels formAddSign = new FormAddSignificanceLevels(lang, this.dicMeans, sourceOfVarInstrumentation, sourceOfDifferentiation);
-
-            // lista de facetas que contedra tanto las facetas de instrumentación como de diferenciación.
-            ListFacets newlf = new ListFacets();// valor de retorno
-
-            bool salir = false;
-            do
-            {// (*1*)
-                DialogResult res = formAddSign.ShowDialog();
-                switch (res)
-                {//switch (*1*)
-                    case (DialogResult.Cancel): salir = true; break;
-                    case (DialogResult.OK):
-                        // Para factas de intrumentación
-                        int numInstFacets = sourceOfVarInstrumentation.Count();
-                        ListFacets lfInst = sourceOfVarInstrumentation;
-                        // Para facetas de diferenciación
-                        int numDiffFacets = sourceOfDifferentiation.Count();
-                        ListFacets lfDiff = sourceOfDifferentiation;
-
-                        // data gridviewEx con las facetas de instrumentación
-                        DataGridViewEx.DataGridViewEx dgvExAddInstLevelSign = formAddSign.DataGridViewExAddInstrumentationLevels();
-                        // data gridViewEx con las facetas de diferenciación
-                        DataGridViewEx.DataGridViewEx dgvExAddDiffLevelSign = formAddSign.DataGridViewExAddDifferentiationLevels();
-
-                        bool correct = true;
-                        try
-                        {
-                            // Verificamos que esten correctamente las facetas de instrumentación
-                            for (int i = 0; i < numInstFacets && correct; i++)
-                            {
-                                DataGridViewRow my_row = dgvExAddInstLevelSign.Rows[i];
-                                int level = int.Parse(my_row.Cells[3].Value.ToString());
-                                int size = Facet.readSizeOfUniverse(my_row.Cells[4].Value.ToString());
-                                // Facet f = lfInst.FacetInPos(i);
-                                if (level > size)
-                                {// (*2*)
-                                    correct = false;
-                                    ShowMessageErrorOK(errorOverUniverse);
-                                }//end if (*2*)
-
-                            }
-
-                            // Verificamos que esten correctamente las facetas de diferenciación
-                            for (int i = 0; i < numDiffFacets && correct; i++)
-                            {
-                                DataGridViewRow my_row = dgvExAddDiffLevelSign.Rows[i];
-                                int level = int.Parse(my_row.Cells[1].Value.ToString());
-                                int newSize = Facet.readSizeOfUniverse(my_row.Cells[3].Value.ToString());
-                                // Facet f = lfDiff.FacetInPos(i);
-                                if (level > newSize)
-                                {// (*3*)
-                                    correct = false;
-                                    ShowMessageErrorOK(errorOverUniverse);
-                                }
-
-                            }//end if (*3*)
-
-                        }
-                        catch (FormatException)
-                        {
-                            // Se produjo la excepción al obtener el nivel de la faceta
-                            ShowMessageErrorOK(errorLevelFormat);
-                            correct = false;
-                        }
-
-                        if (correct)
-                        {// (*4*)
-
-                            /* Creamos una lista de facetas de instrumentación con los datos introducidos 
-                             * por el usuario.
-                             */
-                            ListFacets newLevelListInstFacets = new ListFacets();
-                            int numCol = dgvExAddInstLevelSign.Columns.Count - 1;
-                            for (int i = 0; i < numInstFacets; i++)
-                            {
-                                Facet f = lfInst.FacetInPos(i);
-                                string name = f.Name();
-                                // el nuevo nivel se obtiene de la tabla
-                                int level = int.Parse(dgvExAddInstLevelSign.Rows[i].Cells[numCol - 1].Value.ToString());
-                                int sizeUni = Facet.readSizeOfUniverse(dgvExAddInstLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                string comment = f.Comment();
-                                string design = f.ListFacetDesign();
-                                Facet auxF = new Facet(name, level, comment, sizeUni, design);
-                                newLevelListInstFacets.Add(auxF);
-                                newlf.Add(auxF);
-                            }
-
-                            /* Creamos una lista de facetas de diferenciación con los datos introducidos 
-                             * por el usuario.
-                             */
-                            ListFacets newLevelListDiffFacets = new ListFacets();
-                            numCol = dgvExAddDiffLevelSign.Columns.Count - 1;
-                            for (int i = 0; i < numDiffFacets; i++)
-                            {
-                                Facet f = lfDiff.FacetInPos(i);
-                                string name = f.Name();
-                                // el nuevo nivel se obtiene de la tabla
-                                int level = f.Level();
-                                // int sizeUni = int.Parse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                int sizeUni = Facet.readSizeOfUniverse(dgvExAddDiffLevelSign.Rows[i].Cells[numCol].Value.ToString());
-                                string comment = f.Comment();
-                                string design = f.ListFacetDesign();
-                                Facet auxF = new Facet(name, level, comment, sizeUni, design);
-                                newLevelListDiffFacets.Add(auxF);
-                                newlf.Add(auxF);
-                            }
-
-                            /* Tenemos que ordenar la lista de facetas newlf en el mismo orden que la original
-                             * para luego no tener problemas para encontrar los datos */
-                            TableAnalysisOfVariance tableAnalysis = tablesOfAnalysisG.TableAnalysisVariance();
-
-                            /* Reordeno la nueva lista de facetas para que tenga en mismo orden que la original ya que de otro
-                             * modo obtendréamos errores al mostrar los datos en la Tabla de resumen (opción de optimización).
-                             */
-                            ListFacets originalLF = tableAnalysis.ListFacets(); // lista de facetas original
-                            newlf = originalLF.SortByListFacets(newlf); // nueva lista de facetas ordenada
-
-                            salir = true;
-
-                        }// end if (*4*)
-                        break;
-                }//end switch (*1*)
-            } while (!salir);// (*1*)
-            return newlf;
-        }// end Aux_ReadNewListFacets
 
 
         /*

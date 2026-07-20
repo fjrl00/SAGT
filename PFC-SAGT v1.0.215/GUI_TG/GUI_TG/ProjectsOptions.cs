@@ -618,7 +618,7 @@ namespace GUI_GT
                     int id_user = 0;
                     // Obtenemos el identificador de proyecto
                     int id_project = activeProject.GetPK_Project(); // Identificador de proyecto
-                    SaveFileAnalysisWedService(this.anl_tAnalysis_G_study_opt, id_project, id_user);
+                    SaveFileAnalysisWedService(sagtElements.GetAnalysis_and_G_Study(), id_project, id_user);
                 }
                 else
                 {
@@ -915,10 +915,10 @@ namespace GUI_GT
                             else if (TypeFile.anls.Equals(typeFile))
                             {
                                 DataSet[] array_ds_analysis = sagtWS_Client.Return_AnalysisFile(pk_file);
-                                this.anl_tAnalysis_G_study_opt = ProjectSSQ.Analysis_and_G_Study.ListDataSet2Analysis_and_G_Study(array_ds_analysis);
+                                sagtElements.SetAnalysis_and_G_Study(ProjectSSQ.Analysis_and_G_Study.ListDataSet2Analysis_and_G_Study(array_ds_analysis));
 
                                 // Cargamos el fichero de análisis
-                                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, fileNameData);
+                                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), fileNameData);
                             }
                             break;
                     }

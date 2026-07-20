@@ -1292,9 +1292,9 @@ namespace GUI_GT
                 listOfTableMeansToTabPageMeans(listMeans);
             }
             // Refrescamos los datos de la opción de análisis
-            if (anl_tAnalysis_G_study_opt != null)
+            if (sagtElements.GetAnalysis_and_G_Study() != null)
             {
-                LoadAllDataGridWithDataAnalysis(this.anl_tAnalysis_G_study_opt, this.anl_tAnalysis_G_study_opt.GetNameFileDataCreation());
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
             }
         }// RefreshDataInAllData
 
@@ -1903,7 +1903,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisvedWebService_Click(object sender, EventArgs e)
         {
-            if ((this.anl_tAnalysis_G_study_opt == null))
+            if (sagtElements.GetAnalysis_and_G_Study() == null)
             {
                 ShowMessageErrorOK(errorNoSSQ);
             }
@@ -1949,7 +1949,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysis_AddLevelSign_Click(object sender, EventArgs e)
         {
-            tsmiActionAnalysis_AddLevelSign_Click(this.anl_tAnalysis_G_study_opt);
+            tsmiActionAnalysis_AddLevelSign_Click(sagtElements.GetAnalysis_and_G_Study());
         }
 
 
@@ -1959,7 +1959,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisChartOptimization_Click(object sender, EventArgs e)
         {
-            ShowMeTheGraphics(this.anl_tAnalysis_G_study_opt);
+            ShowMeTheGraphics(sagtElements.GetAnalysis_and_G_Study());
         }
 
 
@@ -1968,7 +1968,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisChartCoefGAbs_Click(object sender, EventArgs e)
         {
-            tsmiActionChartCoefGAbs_Click(this.anl_tAnalysis_G_study_opt);
+            tsmiActionChartCoefGAbs_Click(sagtElements.GetAnalysis_and_G_Study());
         }
 
 
@@ -1977,7 +1977,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisChartCoefGRel_Click(object sender, EventArgs e)
         {
-            tsmiActionChartCoefGRel_Click(this.anl_tAnalysis_G_study_opt);
+            tsmiActionChartCoefGRel_Click(sagtElements.GetAnalysis_and_G_Study());
         }
 
 
@@ -1996,7 +1996,7 @@ namespace GUI_GT
         private void tsmiAnalysis_ExportSquares_Click(object sender, EventArgs e)
         {
             // Mandamos las tabla de análisis de varianza como parámetro del método
-            tsmiAction_SSq_ExportSquares_Click(this.anl_tAnalysis_G_study_opt);
+            tsmiAction_SSq_ExportSquares_Click(sagtElements.GetAnalysis_and_G_Study());
         }
 
 
@@ -2147,7 +2147,7 @@ namespace GUI_GT
         private void btAnalysisEditComment_Click(object sender, EventArgs e)
         {
             // Llama al método que se encuetra en la clase parcial AnalysisOptions.cs
-            btActionAnalysisEditComment_Click(this.anl_tAnalysis_G_study_opt);
+            btActionAnalysisEditComment_Click(sagtElements.GetAnalysis_and_G_Study());
         }
 
 

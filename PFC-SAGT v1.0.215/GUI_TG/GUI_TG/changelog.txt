@@ -33,7 +33,7 @@ OTHER BUGFIXES
 - Solved bug(s) where you would be locked out of creating new sums of squares in Analysis under certain circunstances
 - Solved bug where the app incorrectly believed it was editing Analysis data instead of creating it whenever Analysis data was already loaded
 - Solved bug where cancelling creating new Data would not properly dispose of the facet data remains and make the app believe there was facet data loaded
-- Solved bug where Analysis->New sum of squares' table for inputting sum of squares would have its headers and rows unproperly initialized
+- Solved bug where Analysis->New sum of squares' table for inputting sum of squares would have its headers and rows improperly initialized
 - Solved oversight where the user was allowed to edit the content of the cells of Sum of Squares->Optimization->Facets table
 - Solved bug where the user's selected workspace would be ignored and replaced with a generic one in some contexts
 - Fixed adding nestings in mixed facets in the analysis section being impossible
