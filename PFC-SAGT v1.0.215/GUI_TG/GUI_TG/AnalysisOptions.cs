@@ -478,63 +478,38 @@ namespace GUI_GT
 
             if (correct)
             {
-
-                /* La suma de cuadrados se ha leido correctamente. abrimos una ventana de dialogo para
-                 * preguntar al usuario donde desea almacenar los datos.
-                 */
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
+                // Step 1: Assemble new analysis
+                if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
                 {
-                    saveDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
+                    // Si estamos en el modo edición entonces calculamos
+                    sagtElements.GetAnalysis_and_G_Study().UpdateSsq(ssq);
                 }
-
-                saveDialog.DefaultExt = "anls";
-                string fileAnalysisFilter = "Analysis file" + FILTER_ANALYSIS_FILTER;
-                saveDialog.Filter = fileAnalysisFilter;
-                saveDialog.OverwritePrompt = true; // muestra advertencia si el fichero ya existe
-                saveDialog.AddExtension = true;
-                DialogResult res = saveDialog.ShowDialog();
-                switch (res)
+                else
                 {
-                    case (DialogResult.Cancel):
-                        break;
-                    case (DialogResult.OK):
-                        // almacenamos el fichero
+                    // Creamos el objeto tabla de análisis varianza
+                    TableAnalysisOfVariance tbAnalysisVar = new TableAnalysisOfVariance(listFacetsAnalysis, ssq);
 
-                        if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
-                        {
-                            // Si estamos en el modo edición entonces calculamos
-                            sagtElements.GetAnalysis_and_G_Study().UpdateSsq(ssq);
-                        }
-                        else
-                        {
-                            // Creamos el objeto tabla de análisis varianza
-                            TableAnalysisOfVariance tbAnalysisVar = new TableAnalysisOfVariance(listFacetsAnalysis, ssq);
+                    // Creamos el objeto de tabla de G-Parámetros
+                    TableG_Study_Percent gp = new TableG_Study_Percent(analysisSourceOfVarDiff, analysisSourceOfVarInst, tbAnalysisVar);
 
-                            // Creamos el objeto de tabla de G-Parámetros
-                            TableG_Study_Percent gp = new TableG_Study_Percent(analysisSourceOfVarDiff, analysisSourceOfVarInst, tbAnalysisVar);
+                    // Cargamos los datos en los textBox
+                    ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
-                            // Cargamos los datos en los textBox
-                            ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
+                    // Actualizamos la variable global de análisis con los nuevos valores
+                    sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tbAnalysisVar, gp));
+                }
+                DateTime date = DateTime.Now;
+                sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
 
-                            // Actualizamos la variable global de análisis con los nuevos valores
-                            sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tbAnalysisVar, gp));
-                        }
+                // Step 2: Save to file
+                SaveFileSagt(this.sagtElements);
 
-                        DateTime date = DateTime.Now;
-                        sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
-                        sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(saveDialog.FileName);
-                        // guardamos el fichero
-                        sagtElements.GetAnalysis_and_G_Study().WritingFileAnalysisSSQ(saveDialog.FileName);
-                        // Mostramos los datos
-                        LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), saveDialog.FileName.ToString());
-
-                        // Ocultamos el tabPage de editar suma de cuadrados y mostramos los restantes
-                        disableEditingFacetAnalysis();
-
-                        break;
-                }// end switch  
+                // Step 3: Update UI
+                // Mostramos los datos
+                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
+                
+                // Ocultamos el tabPage de editar suma de cuadrados y mostramos los restantes
+                disableEditingFacetAnalysis();
             }// end if
         }// end btActionSaveAnalysisSsq_Click
 

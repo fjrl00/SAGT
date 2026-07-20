@@ -617,7 +617,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -625,7 +625,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -657,7 +657,7 @@
             // 
             this.tsmiDataSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiDataSavedLocal.Name = "tsmiDataSavedLocal";
-            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataSavedLocal.Size = new System.Drawing.Size(129, 22);
             this.tsmiDataSavedLocal.Text = "Guardar";
             this.tsmiDataSavedLocal.Click += new System.EventHandler(this.tsmiDataSavedLocal_Click);
             // 
@@ -665,7 +665,7 @@
             // 
             this.tsmiDataSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiDataSavedWebService.Name = "tsmiDataSavedWebService";
-            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(184, 26);
+            this.tsmiDataSavedWebService.Size = new System.Drawing.Size(129, 22);
             this.tsmiDataSavedWebService.Text = "Guardado ";
             this.tsmiDataSavedWebService.Click += new System.EventHandler(this.tsmiDataSavedWebService_Click);
             // 
@@ -1595,7 +1595,7 @@
             // 
             this.tsmiMeansSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiMeansSavedLocal.Name = "tsmiMeansSavedLocal";
-            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(206, 26);
+            this.tsmiMeansSavedLocal.Size = new System.Drawing.Size(202, 22);
             this.tsmiMeansSavedLocal.Text = "Guardar";
             this.tsmiMeansSavedLocal.Click += new System.EventHandler(this.tsmiMeansSavedLocal_Click);
             // 
@@ -1603,7 +1603,7 @@
             // 
             this.tsmiMeansSavedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiMeansSavedWebService.Name = "tsmiMeansSavedWebService";
-            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(206, 26);
+            this.tsmiMeansSavedWebService.Size = new System.Drawing.Size(202, 22);
             this.tsmiMeansSavedWebService.Text = "Guardar en servicio Web";
             this.tsmiMeansSavedWebService.Click += new System.EventHandler(this.tsmiMeansSavedWebService_Click);
             // 
@@ -2856,7 +2856,7 @@
             this.mStripAnalysis.MaximumSize = new System.Drawing.Size(187, 505);
             this.mStripAnalysis.Name = "mStripAnalysis";
             this.mStripAnalysis.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripAnalysis.Size = new System.Drawing.Size(187, 490);
+            this.mStripAnalysis.Size = new System.Drawing.Size(187, 471);
             this.mStripAnalysis.TabIndex = 1;
             this.mStripAnalysis.Text = "menuStrip1";
             // 
@@ -2888,7 +2888,7 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
             this.tsmiAnalysisOpenLocal.Text = "Abrir";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
@@ -2896,7 +2896,7 @@
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
@@ -2928,7 +2928,7 @@
             // 
             this.tsmiAnalysisSavedLocal.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_h22x22;
             this.tsmiAnalysisSavedLocal.Name = "tsmiAnalysisSavedLocal";
-            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(206, 26);
+            this.tsmiAnalysisSavedLocal.Size = new System.Drawing.Size(202, 22);
             this.tsmiAnalysisSavedLocal.Text = "Guardar";
             this.tsmiAnalysisSavedLocal.Click += new System.EventHandler(this.tsmiAnalysisSavedLocal_Click);
             // 
@@ -2936,7 +2936,7 @@
             // 
             this.tsmiAnalysisvedWebService.Image = global::GUI_GT.Properties.Resources.Connect_48x48;
             this.tsmiAnalysisvedWebService.Name = "tsmiAnalysisvedWebService";
-            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(206, 26);
+            this.tsmiAnalysisvedWebService.Size = new System.Drawing.Size(202, 22);
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 

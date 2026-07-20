@@ -261,19 +261,30 @@ namespace ProjectSSQ
             ListFacets differentiation = this.tableG_Study_Percent.LfDifferentiation();
             ListFacets instrumentation = this.tableG_Study_Percent.LfInstrumentation();
             TableG_Study_Percent TableG = new TableG_Study_Percent(differentiation, instrumentation, tb);
-            // Obtenemos la lista de G-Parámetros actualizada
-            List<G_ParametersOptimization> l_Gp = new List<G_ParametersOptimization>();
-            Analysis_and_G_Study anal_and_G_Stududy = new Analysis_and_G_Study(tb, TableG);
+
+            // Guardamos los niveles de optimización actuales antes de sobreescribir las tablas del objeto,
+            // ya que Calc_G_ParametersOptimización necesita usar las tablas YA actualizadas.
             int numGP_Op = this.listG_P_Optimization.Count;
+            List<ListFacets> oldLevels = new List<ListFacets>();
             for (int i = 0; i < numGP_Op; i++)
             {
-                ListFacets lf_Opt_level = this.listG_P_Optimization[i].G_ListFacets();
-                G_ParametersOptimization upDateGp = anal_and_G_Stududy.Calc_G_ParametersOptimización(lf_Opt_level);
-                l_Gp.Add(upDateGp);
+                oldLevels.Add(this.listG_P_Optimization[i].G_ListFacets());
             }
 
-            // Devolvemos el objeto actualizado
-            return new Analysis_and_G_Study(tb, TableG, l_Gp);
+            // Actualizamos las tablas del propio objeto (en lugar de crear uno nuevo)
+            this.tableAnalysisVariance = tb;
+            this.tableG_Study_Percent = TableG;
+
+            // Recalculamos la lista de G-Parámetros de optimización con las tablas ya actualizadas
+            List<G_ParametersOptimization> l_Gp = new List<G_ParametersOptimization>();
+            for (int i = 0; i < numGP_Op; i++)
+            {
+                G_ParametersOptimization upDateGp = this.Calc_G_ParametersOptimización(oldLevels[i]);
+                l_Gp.Add(upDateGp);
+            }
+            this.listG_P_Optimization = l_Gp;
+
+            return this;
 
         }// end UpdateSsq
 
@@ -409,13 +420,19 @@ namespace ProjectSSQ
 
             TableG_Study_Percent tableG_study = new TableG_Study_Percent(newLfDiff, newLfInst, tableAnalysis);
 
+            // Guardamos la lista de G-Parámetros actual antes de sobreescribir las tablas del objeto,
+            // ya que Calc_G_ParametersOptimización necesita usar las tablas YA actualizadas.
+            List<G_ParametersOptimization> oldListG_P = this.listG_P_Optimization;
+
+            // Actualizamos las tablas del propio objeto (en lugar de crear uno nuevo)
+            this.tableAnalysisVariance = tableAnalysis;
+            this.tableG_Study_Percent = tableG_study;
 
             List<G_ParametersOptimization> newList_gp = new List<G_ParametersOptimization>();
-            Analysis_and_G_Study newAnalysis_and_G_Study = new Analysis_and_G_Study(tableAnalysis, tableG_study, newList_gp);
-            n = this.listG_P_Optimization.Count;
+            n = oldListG_P.Count;
             for (int i = 0; i < n; i++)
             {
-                G_ParametersOptimization gp = this.listG_P_Optimization[i];
+                G_ParametersOptimization gp = oldListG_P[i];
                 ListFacets lf_Of_levels = gp.G_ListFacets();
                 ListFacets newG_ListFacets = new ListFacets();
                 int numFacets = lf_Of_levels.Count();
@@ -426,13 +443,13 @@ namespace ProjectSSQ
                     newG_ListFacets.Add(new Facet(f_new.Name(), f_old.Level(), f_new.Comment(), f_old.SizeOfUniverse(), f_new.Omit()));
                 }
 
-                G_ParametersOptimization newGp = newAnalysis_and_G_Study.Calc_G_ParametersOptimización(newG_ListFacets);
+                G_ParametersOptimization newGp = this.Calc_G_ParametersOptimización(newG_ListFacets);
                 newList_gp.Add(newGp);
             }
 
-            Analysis_and_G_Study retVal = new Analysis_and_G_Study(tableAnalysis, tableG_study, newList_gp);
-            retVal.SetTextComment(this.GetTextComment());
-            return retVal;
+            this.listG_P_Optimization = newList_gp;
+
+            return this;
 
         }// end ReplaceListOfFacet
 

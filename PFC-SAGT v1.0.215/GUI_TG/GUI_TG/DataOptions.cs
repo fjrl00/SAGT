@@ -403,10 +403,14 @@ namespace GUI_GT
                 // seleccionamos el tabPage datos
                 tabPageMeans.Parent = this.tabControlOptions;
             }
-            // Limpiamos todas las tablas de sumas de cuadrados
-            cleanerAllTabPageAnalysis();
             // Cargamos los elementos de tablas de análisis
-            if (sagtElements.GetAnalysis_and_G_Study() != null)
+            Analysis_and_G_Study tAnalysis_tG_Study_Opt = sagtElements.GetAnalysis_and_G_Study();
+            if (tAnalysis_tG_Study_Opt == null)
+            {
+                // Limpiamos los tabPage de sumas de cuadrados
+                cleanerAllTabPageAnalysis();
+            }
+            else
             {
                 // Cargamos los datos de las tablas de las tablas de análisis de varianza
                 LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), fileNameData);
@@ -858,9 +862,9 @@ namespace GUI_GT
          */
         private void saveFileData(SagtFile sagtElements)
         {
-            if (sagtElements.GetMultiFacetsObs() == null)
+            if (sagtElements.GetMultiFacetsObs() == null && sagtElements.GetListMeans() == null && sagtElements.GetAnalysis_and_G_Study() == null)
             {
-                ShowMessageErrorOK(errorNoTableObs);
+                ShowMessageErrorOK(errorEmpty);
             }
             else
             {

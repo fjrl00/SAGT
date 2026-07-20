@@ -32,6 +32,7 @@ namespace GUI_GT
         private string errorMinNumFacet = "El número de facetas ha de ser como mínimo 2.";
         private string errorMessageTraslation = "Se produjo un error al traducir:";
         private string errorNoTableObs = "No se ha creado la tabla de observaciones.";
+        private string errorEmpty = "No se han cargado datos.";
         private string errorVarTableObs = "Error: uno o más varibles observadas no contiene datos numéricos.";
         private string errorNoNumFacet = "No ha especificado el número de facetas.";
         private string errorOverUniverse = "El tamaño del nivel es mayor que el universo.";
@@ -135,6 +136,8 @@ namespace GUI_GT
                 errorMessageTraslation = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorNoTableObs";
                 errorNoTableObs = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorEmpty";
+                errorEmpty = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorNoNumFacet";
                 errorNoNumFacet = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "errorOverUniverse";
