@@ -693,11 +693,11 @@ namespace MultiFacetData
 
 
         /* Descripción:
-         *  Devuelve la lista de facetas de sustituir los nombres y los comentarios por la lista de facetas
+         *  Devuelve la lista de facetas de sustituir los nombres y resto de parametros por la lista de facetas
          *  que se pasa como parámetros en el mismo orden.
-         * NOTA: Los nombres se sustituyen los diseños se mantienen.
+         *  Los nombres se sustituyen, los diseños se mantienen.
          * Parámetros:
-         *      ListFacets lf: Lista de facetas que contiene los nombres y los comentarios por los que se
+         *      ListFacets lf: Lista de facetas que contiene los nombres y resto de parametros por los que se
          *              va a remplazar.
          */
         public ListFacets RemplaceListFacets(ListFacets lf)
@@ -718,10 +718,12 @@ namespace MultiFacetData
                 lf_retval = lf_retval.ReplaceNameFacet(f_old_name.Name(), f_new_name.Name());
             }
 
-            // Ahora sustituimos los comentarios
+            // Ahora sustituimos el resto
             for (int i = 0; i < n; i++)
             {
                 lf_retval.FacetInPos(i).Comment(lf.FacetInPos(i).Comment());
+                lf_retval.FacetInPos(i).Level(lf.FacetInPos(i).Level());
+                lf_retval.FacetInPos(i).SizeOfUniverse(lf.FacetInPos(i).SizeOfUniverse());
             }
 
             return lf_retval;

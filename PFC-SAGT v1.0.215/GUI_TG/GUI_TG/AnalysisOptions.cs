@@ -165,9 +165,6 @@ namespace GUI_GT
          */
         private void enableAnalysisButtonsFacets(ProvisionOfFacets provision)
         {
-            // El botón Aceptar estará oculto ya que este solo se mostrará al editar las facetas
-            btAcept.Enabled = false;
-            btAcept.Visible = false;
             // El botón generar tabla de análisis estará visible
             btEditSumOfSquaresOnAnalisys.Enabled = true;
             btEditSumOfSquaresOnAnalisys.Visible = true;
@@ -204,9 +201,6 @@ namespace GUI_GT
             // Botón generar tabla de observaciones oculto
             btEditSumOfSquaresOnAnalisys.Enabled = false;
             btEditSumOfSquaresOnAnalisys.Visible = false;
-            // Botón aceptar visible
-            btAcept.Enabled = true;
-            btAcept.Visible = true;
         }
 
 
@@ -336,6 +330,7 @@ namespace GUI_GT
             LoadListFacetInDataGridView(listFacetsAnalysis, dgvExAnalysis_FacetEditSsq);
             // Abilitamos el modo edición
             enableEditingSSqAnalysis();
+            tabPageAnalysisEditingSSq.Text = tabPageAnalysisSSQ.Text; // Cambiar texto a "Suma de cuadrados"
 
             // Optenemos la lista de combinaciones sin repetición de la lista de facetas
             this.llFacetsAnalysis = listFacetsAnalysis.CombinationStringWithoutRepetition();
@@ -387,9 +382,6 @@ namespace GUI_GT
             TableG_Study_Percent tableG = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent();
             // Mostramos el diseño de medida en los textBox
             ShowMeDesignInAnalysisTextBoxs(tableG.LfDifferentiation(), tableG.LfInstrumentation());
-            /* Insertamos las facetas en la tabla de facetas de la pestaña de edición se 
-             * suma de cuadrados */
-            LoadListFacetInDataGridView(listFacetsAnalysis, dgvExAnalysis_FacetEditSsq);
             // Abilitamos el modo edición
             enableEditingSSqAnalysis();
 
@@ -441,8 +433,7 @@ namespace GUI_GT
          */
         private void btActionSaveAnalysisSsq_Click(object sender, EventArgs e)
         {
-            /* Si estamos en el modo edición entonces la lista de fuentes de variación será la 
-             * perteneciente a la tabla de análisis faceta de análisis será
+            /* Si estamos en el modo edición entonces la lista de fuentes serán la perteneciente a la tabla de análisis
              */
             if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
             {
@@ -481,8 +472,11 @@ namespace GUI_GT
                 // Step 1: Assemble new analysis
                 if (this.disableTopLeftButtons && sagtElements.GetAnalysis_and_G_Study() != null)
                 {
-                    // Si estamos en el modo edición entonces calculamos
+                    // NOTE: Messy and unoptimized code
+                    // Si estamos en el modo edición entonces primero actualizamos ssq
                     sagtElements.GetAnalysis_and_G_Study().UpdateSsq(ssq);
+                    // Y después, guardamos los datos de la tabla de facetas
+                    AnalysisUpdateFacets();
                 }
                 else
                 {
@@ -705,17 +699,6 @@ namespace GUI_GT
             this.lbAnalysisCoef_G_Rel.Text = ConvertNum.DecimalToString(gParameter.CoefG_Rel(), numOfDecimal, puntoDecimal);
             this.lbAnalysisCoef_G_Abs.Text = ConvertNum.DecimalToString(gParameter.CoefG_Abs(), numOfDecimal, puntoDecimal);
 
-        }
-
-
-        /* Descripción:
-         *  Cancela la operación de editar las facetas y restaura el programa al estado original.
-         */
-        private void btActionCancelEditFacetOnAnalysis_Click(object sender, EventArgs e)
-        {
-            this.anl_tAnalysis_G_study_opt_Old = null;
-            this.lf_nestings = null;
-            disableEditingFacetAnalysis();
         }
 
 
@@ -1294,57 +1277,10 @@ namespace GUI_GT
         }
 
 
-
         /* Descripción:
-         *  Edita las facetas de las tablas de sumas de cuadrados para la opción análisis.
+         *  Soporte para la edición de facetas en Análisis
          */
-        private void tsmiActionAnalysisEditFacets_Click()
-        {
-            if (sagtElements.GetAnalysis_and_G_Study() == null)
-            {//begin if (*1*)
-                ShowMessageErrorOK(errorNoSSQ);
-            }
-            else
-            {
-                this.disableTopLeftButtons = true; // Ponemos el modo edición a true
-                this.mStripAnalysis.Enabled = false; // Inhabilitamos el menú vertical de Análisis
-
-                // Ocultamos las pestañas
-                foreach (TabPage tabPage in this.tabControlAnalysisSSQ.TabPages)
-                {
-                    tabPage.Parent = null;
-                }
-
-                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study(); // Guardamos la tabla de análisis actual por si deshacemos los cambios
-
-                //Cargamos los datos de las facetas en el dataGrid
-                CleanerDataGridViewExFacets(dGridViewExAnalysis_TableFacet); // limpiamos el datagrid de facetas
-                ListFacets lf = sagtElements.GetAnalysis_and_G_Study().GetListFacets(); // retomamos la lista de facetas
-                LoadListFacetInDataGridView(lf, dGridViewExAnalysis_TableFacet, false, true); // cargamos la lista de facetas en el datagrid
-                // Permitimos la edición de las columnas
-                int nCol = dGridViewExAnalysis_TableFacet.ColumnCount;
-                for (int i = 0; i < nCol; i++)
-                {
-                    dGridViewExAnalysis_TableFacet.Columns[i].ReadOnly = false;
-                }
-
-                dGridViewExAnalysis_TableFacet.Columns[1].ReadOnly = true; // columna de niveles
-                dGridViewExAnalysis_TableFacet.Columns[2].ReadOnly = true; // columna de tamaño del universo
-
-                // Mostramos los botones de aceptar y cancelar y ocultamos el resto.
-                enableAnalysisButtonsEditFacets();
-                // Mostramos solo la pestaña de facetas
-                this.tabPageAnalysisFacetas.Parent = this.tabControlAnalysisSSQ;
-            }// end if
-        }// end tsmiActionAnalysisEditFacets_Click
-
-
-        /* Descripción:
-         *  Lanza la operación cuando se aceptan los cambios introducidos en la edición de facetas.
-         *  Este llama a su vez al método btActionAcept_Click de la 
-         *  clase parcial AnalysisOptions.cs
-         */
-        private void btActionAcept_Click()
+        private void AnalysisUpdateFacets()
         {
             string nameFileDataCreation = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
             DateTime dateCreation = sagtElements.GetAnalysis_and_G_Study().GetDateTime();
@@ -1352,7 +1288,7 @@ namespace GUI_GT
             try
             {
                 // Leer las facetas;
-                ListFacets newLf = dgvExToListFacets(this.dGridViewExAnalysis_TableFacet);
+                ListFacets newLf = dgvExToListFacets(this.dgvExAnalysis_FacetEditSsq);
 
                 // Actualizar la lista actual con los valores de la nueva
                 ListFacets oldLf = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
@@ -1373,8 +1309,11 @@ namespace GUI_GT
                 // cargar los valores nuevos.
                 LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
 
-                // Restauramos las pestañas y salimos del modo edición
-                disableEditingFacetAnalysis();
+                // Restauramos ReadOnly
+                for (int i = 0; i < dgvExAnalysis_FacetEditSsq.ColumnCount; i++)
+                {
+                    dgvExAnalysis_FacetEditSsq.Columns[i].ReadOnly = true;
+                }
             }
             catch (ListFacetsException)
             {
@@ -1402,7 +1341,18 @@ namespace GUI_GT
             }
             else
             {
-                enableEditingSSqAnalysis();
+                /* EDITING FACETS */
+                CleanerDataGridViewExFacets(dgvExAnalysis_FacetEditSsq); // limpiamos dgv
+                LoadListFacetInDataGridView(
+                    sagtElements.GetAnalysis_and_G_Study().GetListFacets(),
+                    dgvExAnalysis_FacetEditSsq, false, true); // cargamos la lista de facetas en el datagrid (versión nombres)
+                // Permitimos la edición de las columnas
+                for (int i = 0; i < dgvExAnalysis_FacetEditSsq.ColumnCount; i++)
+                {
+                    dgvExAnalysis_FacetEditSsq.Columns[i].ReadOnly = false;
+                }
+
+                /* EDITING SSQ */
                 /* Mostramos el tabPage de edición con las suma de cuadrados editables.
                  * Soló la suma de cuadrados no las fuentes de variación.
                  */
@@ -1414,6 +1364,7 @@ namespace GUI_GT
                 {
                     tabPage.Parent = null;
                 }
+                tabPageAnalysisEditingSSq.Text = this.btAnalysisEditComment.Text;   // Change tab text to "Editar"
                 Aux_EditSsqValues(sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets());
             }
         }// end tsmiActionAnalysisEditSsq_Click
@@ -1513,13 +1464,8 @@ namespace GUI_GT
                 this.btAnalysis_RemoveNesting.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.btEditSumOfSquaresOnAnalisys.Name.ToString();
                 this.btEditSumOfSquaresOnAnalisys.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Botón aceptar edición de facetas
-                name = this.btAcept.Name.ToString();
-                this.btAcept.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Botón cancelar edición de facetas
-                name = this.btCancelEditFacetOnAnalysis.Name.ToString();
-                this.btCancelEditFacetOnAnalysis.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Botón cancelar de tabPage de edición de suma de cuadrados
+                name = this.btCancelEditSsq.Name.ToString();
                 this.btCancelEditSsq.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Botón Guardar de tabPage de edición de suma de cuadrados
                 name = this.btSaveAnalysisSsq.Name.ToString();

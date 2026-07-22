@@ -1834,7 +1834,6 @@ namespace GUI_GT
          *  - Abrir (tsmiOpenAnalysis_Click)
          *  - Importar (tsmiImportAnalysis_Click)
          *  - Guardar (tsmiAnalysis_Save_Click)
-         *  - Editar facetas (tsmiAnalysisEditFacets_Click)
          *  - Cambiar modelo (tsmiChangeModel_Click)
          *  - Editar cuadrados (tsmiAnalysisEditSsq_Click)
          *  - Niveles de optimización (tsmiAnalysis_AddLevelSign_Click)
@@ -1912,16 +1911,6 @@ namespace GUI_GT
             {
                 tsmiActionAnalysisSavedWebService_Click();
             }
-        }
-
-
-        /* Descripción:
-         *  Llama al método que se encarga de editar las facetas de la suma de cuadrados de
-         *  la opción análisis.
-         */
-        private void tsmiAnalysisEditFacets_Click(object sender, EventArgs e)
-        {
-            tsmiActionAnalysisEditFacets_Click();
         }
 
 
@@ -2076,27 +2065,6 @@ namespace GUI_GT
         private void btEditSumOfSquaresOnAnalisys_Click(object sender, EventArgs e)
         {
             btActionEditSumOfSquaresOnAnalisys_Click();
-        }
-
-
-        /* Descripción:
-         *  Lanza la operación cuando se aceptan los cambios de la edición de facetas.
-         *  Este llama a su vez al método btActionAcept_Click de la 
-         *  clase parcial AnalysisOptions.cs
-         */
-        private void btAcept_Click(object sender, EventArgs e)
-        {
-            btActionAcept_Click();
-        }
-
-
-        /* Descripción:
-         *  Se activa al pulsar cancelar del tabPageFacets de la opción Análisis. Este llama a su vez al
-         *  método btActionCancelEditFacetOnAnalysis_Click de la clase parcial AnalysisOptions.cs
-         */
-        private void btCancelEditFacetOnAnalysis_Click(object sender, EventArgs e)
-        {
-            btActionCancelEditFacetOnAnalysis_Click(sender, e);
         }
 
 

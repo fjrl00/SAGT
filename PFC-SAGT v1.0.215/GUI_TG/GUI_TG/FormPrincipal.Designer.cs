@@ -184,10 +184,8 @@
             this.tabPageAnalysis = new System.Windows.Forms.TabPage();
             this.tabControlAnalysisSSQ = new System.Windows.Forms.TabControl();
             this.tabPageAnalysisFacetas = new System.Windows.Forms.TabPage();
-            this.btAcept = new System.Windows.Forms.Button();
             this.btAnalysis_RemoveNesting = new System.Windows.Forms.Button();
             this.btAnalysis_NestingFacet = new System.Windows.Forms.Button();
-            this.btCancelEditFacetOnAnalysis = new System.Windows.Forms.Button();
             this.dGridViewExAnalysis_TableFacet = new DataGridViewEx.DataGridViewEx();
             this.btEditSumOfSquaresOnAnalisys = new System.Windows.Forms.Button();
             this.tabPageAnalysisEditingSSq = new System.Windows.Forms.TabPage();
@@ -256,7 +254,6 @@
             this.tsmiAnalysis_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisSavedLocal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisvedWebService = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiAnalysisEditFacets = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiChangeModel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisEditSsq = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysis_AddLevelSign = new System.Windows.Forms.ToolStripMenuItem();
@@ -583,7 +580,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 459);
+            this.mStripData.Size = new System.Drawing.Size(175, 440);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -615,7 +612,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenLocal.Text = "Abrir localmente";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -623,7 +620,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -1553,7 +1550,7 @@
             // 
             this.tsmiMeansOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiMeansOpenLocal.Name = "tsmiMeansOpenLocal";
-            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiMeansOpenLocal.Text = "Abrir localmente";
             this.tsmiMeansOpenLocal.Click += new System.EventHandler(this.tsmiMeansOpenLocal_Click);
             // 
@@ -1561,7 +1558,7 @@
             // 
             this.tsmiMeansOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiMeansOpenWebService.Name = "tsmiMeansOpenWebService";
-            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiMeansOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiMeansOpenWebService.Click += new System.EventHandler(this.tsmiMeansOpenWebService_Click);
             // 
@@ -1710,10 +1707,8 @@
             // tabPageAnalysisFacetas
             // 
             this.tabPageAnalysisFacetas.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
-            this.tabPageAnalysisFacetas.Controls.Add(this.btAcept);
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_RemoveNesting);
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_NestingFacet);
-            this.tabPageAnalysisFacetas.Controls.Add(this.btCancelEditFacetOnAnalysis);
             this.tabPageAnalysisFacetas.Controls.Add(this.dGridViewExAnalysis_TableFacet);
             this.tabPageAnalysisFacetas.Controls.Add(this.btEditSumOfSquaresOnAnalisys);
             this.tabPageAnalysisFacetas.Location = new System.Drawing.Point(4, 22);
@@ -1723,20 +1718,6 @@
             this.tabPageAnalysisFacetas.TabIndex = 0;
             this.tabPageAnalysisFacetas.Text = "Facetas";
             this.tabPageAnalysisFacetas.UseVisualStyleBackColor = true;
-            // 
-            // btAcept
-            // 
-            this.btAcept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAcept.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
-            this.btAcept.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btAcept.Location = new System.Drawing.Point(361, 389);
-            this.btAcept.Name = "btAcept";
-            this.btAcept.Size = new System.Drawing.Size(96, 48);
-            this.btAcept.TabIndex = 20;
-            this.btAcept.Text = "Aceptar";
-            this.btAcept.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btAcept.UseVisualStyleBackColor = true;
-            this.btAcept.Click += new System.EventHandler(this.btAcept_Click);
             // 
             // btAnalysis_RemoveNesting
             // 
@@ -1763,19 +1744,6 @@
             this.btAnalysis_NestingFacet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btAnalysis_NestingFacet.UseVisualStyleBackColor = true;
             this.btAnalysis_NestingFacet.Click += new System.EventHandler(this.btAnalysis_NestingFacet_Click);
-            // 
-            // btCancelEditFacetOnAnalysis
-            // 
-            this.btCancelEditFacetOnAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelEditFacetOnAnalysis.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
-            this.btCancelEditFacetOnAnalysis.Location = new System.Drawing.Point(464, 389);
-            this.btCancelEditFacetOnAnalysis.Name = "btCancelEditFacetOnAnalysis";
-            this.btCancelEditFacetOnAnalysis.Size = new System.Drawing.Size(96, 48);
-            this.btCancelEditFacetOnAnalysis.TabIndex = 3;
-            this.btCancelEditFacetOnAnalysis.Text = "Cancelar";
-            this.btCancelEditFacetOnAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btCancelEditFacetOnAnalysis.UseVisualStyleBackColor = true;
-            this.btCancelEditFacetOnAnalysis.Click += new System.EventHandler(this.btCancelEditFacetOnAnalysis_Click);
             // 
             // dGridViewExAnalysis_TableFacet
             // 
@@ -2819,7 +2787,6 @@
             this.tsmiOpenAnalysis,
             this.tsmiImportAnalysis,
             this.tsmiAnalysis_Save,
-            this.tsmiAnalysisEditFacets,
             this.tsmiChangeModel,
             this.tsmiAnalysisEditSsq,
             this.tsmiAnalysis_AddLevelSign,
@@ -2833,7 +2800,7 @@
             this.mStripAnalysis.MaximumSize = new System.Drawing.Size(187, 505);
             this.mStripAnalysis.Name = "mStripAnalysis";
             this.mStripAnalysis.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripAnalysis.Size = new System.Drawing.Size(187, 471);
+            this.mStripAnalysis.Size = new System.Drawing.Size(187, 454);
             this.mStripAnalysis.TabIndex = 1;
             this.mStripAnalysis.Text = "menuStrip1";
             // 
@@ -2865,7 +2832,7 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenLocal.Text = "Abrir localmente";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
@@ -2873,7 +2840,7 @@
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
@@ -2917,17 +2884,6 @@
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 
-            // tsmiAnalysisEditFacets
-            // 
-            this.tsmiAnalysisEditFacets.Image = global::GUI_GT.Properties.Resources.Datos_Facets_Pencil_h32;
-            this.tsmiAnalysisEditFacets.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmiAnalysisEditFacets.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmiAnalysisEditFacets.Name = "tsmiAnalysisEditFacets";
-            this.tsmiAnalysisEditFacets.Size = new System.Drawing.Size(182, 36);
-            this.tsmiAnalysisEditFacets.Text = "Editar Facetas";
-            this.tsmiAnalysisEditFacets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmiAnalysisEditFacets.Click += new System.EventHandler(this.tsmiAnalysisEditFacets_Click);
-            // 
             // tsmiChangeModel
             // 
             this.tsmiChangeModel.Image = global::GUI_GT.Properties.Resources.Cambiar_Diseño_h32;
@@ -2946,7 +2902,7 @@
             this.tsmiAnalysisEditSsq.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysisEditSsq.Name = "tsmiAnalysisEditSsq";
             this.tsmiAnalysisEditSsq.Size = new System.Drawing.Size(182, 36);
-            this.tsmiAnalysisEditSsq.Text = "Editar cuadrados";
+            this.tsmiAnalysisEditSsq.Text = "Editar";
             this.tsmiAnalysisEditSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditSsq.Click += new System.EventHandler(this.tsmiAnalysisEditSsq_Click);
             // 
@@ -3435,7 +3391,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMeansClose;
         private System.Windows.Forms.TabControl tabControlAnalysisSSQ;
         private System.Windows.Forms.TabPage tabPageAnalysisFacetas;
-        private System.Windows.Forms.Button btCancelEditFacetOnAnalysis;
         private DataGridViewEx.DataGridViewEx dGridViewExAnalysis_TableFacet;
         private System.Windows.Forms.Button btEditSumOfSquaresOnAnalisys;
         private System.Windows.Forms.TabPage tabPageAnalysisEditingSSq;
@@ -3551,9 +3506,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMeansPdfExport;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisWordExport;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisPdfExport;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisEditFacets;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisEditSsq;
-        private System.Windows.Forms.Button btAcept;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisChartOptimization;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisChartCoefGAbs;
         private System.Windows.Forms.ToolStripMenuItem tsmiAnalysisChartCoefGRel;
