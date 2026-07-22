@@ -1278,9 +1278,6 @@ namespace GUI_GT
          */
         private void AnalysisUpdateFacets()
         {
-            string nameFileDataCreation = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
-            DateTime dateCreation = sagtElements.GetAnalysis_and_G_Study().GetDateTime();
-
             try
             {
                 // Leer las facetas;

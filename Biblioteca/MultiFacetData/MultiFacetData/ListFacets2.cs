@@ -1003,7 +1003,36 @@ namespace MultiFacetData
             return retVal;
         }
 
+        public void removeAllSkipLevels()
+        {
+            int n = this.Count();
+            for (int i = 0; i < n; i++)
+            {
+                this.FacetInPos(i).RemoveAllSkipLevels();
+            }
+        }
 
+        /* Descripción:
+         *  Este ListFacets se asume como la versión original de uno cuyos niveles han sido cambiados (lf_new).
+         *  Se ponen los niveles que fueron eliminados en lf_new como niveles omitidos en este ListFacets.
+         *  Se asume que este ListFacets y lf_old tienen sus facetas correspondientes en el mismo orden, aún si los nombres cambiaron.
+         */
+        public void applyLevelLowering(ListFacets lf_new)
+        {
+            int n = this.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet f1 = lf_new.FacetInPos(i);
+                Facet f2 = this.FacetInPos(i);
+                if (f1.Level() < f2.Level())
+                {
+                    for (int j = f1.Level() + 1; j <= f2.Level(); j++)
+                    {
+                        f2.SetSkipLevels(j);
+                    }
+                }
+            }
+        }
 
         #region Operaciones para definir el anidamiento de facetas
         /*=================================================================================================

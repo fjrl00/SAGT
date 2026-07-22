@@ -24,6 +24,7 @@ namespace MultiFacetData
         /*=================================================================================================
          * Métodos de consulta
          *=================================================================================================*/
+        void SetListFacets(ListFacets lf);
         // Devuelve el dato de la medición que se encuentra en la fila row.
         double? ObsData(int row);
         // Devuelve el dato que se encuentra en la tabla de frecuancias en la fila row, columna col.
@@ -56,6 +57,7 @@ namespace MultiFacetData
         void RestoreIndexes(int skipLevel, int col);
         // Elimina las filas donde se encuentre el nivel actual para la columna especificada.
         void SkipLevels(ListFacets lf);
+        void IncreaseLevels(ListFacets newListFacets);
         // Deep clone
         ObsTable Clone();
 

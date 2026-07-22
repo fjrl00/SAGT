@@ -132,17 +132,17 @@ namespace GUI_GT
                     ListFacets lf = actual_lf;
 
                     // crearemos la ventana y le pasamos como argumento el objeto multifaceta
-                    if (actual_lf.Count() != withoutOmit_lf.Count())
+                    if (actual_lf.Count() != withoutOmit_lf.Count())    // Si hay facetas (y posiblemente niveles) omitidos, nos ocupamos de ambas cosas
                     {
                         lf = withoutOmit_lf; // asignación de las facetas no omitidas
                         multiFacets = multiFacets.OmitFacetInDataTable();
                     }
-                    else if (lf.HasSkipLevels())
+                    else if (lf.HasSkipLevels())    // Si hay solo niveles omitidos, nos ocupamos de solo eso
                     {
                         multiFacets = multiFacets.SkipIndexLevelFacetInDataTable();
                     }
 
-                    // aplicamos la eliminación de niveles
+                    // Arreglamos índices después de la omisión de niveles
                     multiFacets = multiFacets.RestoreIndexLevelFacetInDataTable();
 
                     // Primero debemos preguntarle al usuario por el diseño de medida.

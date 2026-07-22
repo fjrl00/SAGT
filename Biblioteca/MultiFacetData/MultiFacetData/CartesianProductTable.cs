@@ -181,9 +181,82 @@ namespace MultiFacetData
             }
         }
 
+        /*
+         * Descripción:
+         *  Aumenta los niveles de las facetas de esta tabla a los nuevos niveles
+         *  especificados en newListFacets (que debe contener las mismas facetas,
+         *  en el mismo orden, pero con niveles mayores o iguales a los actuales).
+         *  
+         *  Se reconstruye la tabla de producto cartesiano al completo en base a los
+         *  nuevos niveles. Las filas ya existentes conservan sus columnas extra 
+         *  (dato, medias, etc.), ya que su índice de fila en la tabla nueva se 
+         *  calcula directamente a partir de sus valores de facetas y los nuevos 
+         *  niveles. Las filas nuevas -aquellas que involucran algún nivel de faceta 
+         *  que no existía previamente- quedan con las columnas extra a null, igual 
+         *  que si la tabla se acabase de inicializar.
+         *  
+         *  Parámetros:
+         *      ListFacets newListFacets: Lista con las mismas facetas y mismo orden
+         *                                 que la actual, pero con niveles aumentados.
+         *  Excepciones:
+         *      Lanza una CPTException si newListFacets no tiene el mismo número de
+         *      facetas que la lista actual, o si algún nuevo nivel es menor que el
+         *      nivel actual correspondiente.
+         */
+        public void IncreaseLevels(ListFacets newListFacets)
+        {
+            int numFacets = this.listF.Count();
+
+            if (newListFacets.Count() != numFacets)
+            {
+                throw CPTException("La nueva lista de facetas no tiene el mismo número de facetas que la actual");
+            }
+
+            int[] oldLevels = this.listF.levelOfFacets();
+            int[] newLevels = newListFacets.levelOfFacets();
+
+            for (int i = 0; i < numFacets; i++)
+            {
+                if (newLevels[i] < oldLevels[i])
+                {
+                    throw CPTException("Los nuevos niveles deben ser mayores o iguales a los niveles actuales");
+                }
+            }
+
+            int extraCols = this.TableColumns() - numFacets;
+            int[] newIndexRepeats = IndexRepeats(newLevels);
+
+            // Tabla nueva: facetas ya rellenas, columnas extra a null (comportamiento de IniIndexSubTable)
+            List<List<double?>> newMatrix = IniIndexSubTable(newListFacets, extraCols);
+
+            // Volcamos cada fila antigua en su posición correspondiente de la tabla nueva
+            foreach (List<double?> oldRow in this.matrix)
+            {
+                int newIndex = 0;
+                for (int i = 0; i < numFacets; i++)
+                {
+                    newIndex += newIndexRepeats[i] * ((int)oldRow[i] - 1);
+                }
+
+                List<double?> newRow = newMatrix[newIndex];
+                for (int col = numFacets; col < oldRow.Count; col++)
+                {
+                    newRow[col] = oldRow[col];
+                }
+            }
+
+            this.matrix = newMatrix;
+            this.listF = newListFacets;
+        }
+
         #endregion SkipLevels methods
 
         #region Getters and Setters
+
+        public void SetListFacets(ListFacets lf)
+        {
+            this.listF = lf;
+        }
 
         /*
          * Descripción:

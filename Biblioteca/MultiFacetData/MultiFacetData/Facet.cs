@@ -338,6 +338,11 @@ namespace MultiFacetData
             }
         }
 
+        public void RemoveAllSkipLevels()
+        {
+            this.skipLevels.Clear();
+        }
+
 
         /* Descripción:
          *  Devuelve una lista ordenada (en orden descendende) con los niveles que se

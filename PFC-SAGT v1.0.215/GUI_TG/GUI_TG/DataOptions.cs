@@ -1518,16 +1518,12 @@ namespace GUI_GT
                 //Cargamos los datos de las facetas en la tabla
                 CleanerDataGridViewExFacets(dGridViewExDataEditFacets);
                 LoadListFacetInDataGridView(multiFacets.ListFacets(), dGridViewExDataEditFacets, false, true);
-                // ocultamos la columna que no podemos modificar, es decir la de los niveles
-                dGridViewExDataEditFacets.Columns[IND_LEVEL].Visible = false;
-                // Permitimos la modificación del resto de columnas.
+                // Permitimos la modificación de columnas.
                 int nCol = dGridViewExDataEditFacets.ColumnCount;
                 for (int i = 0; i < nCol; i++)
                 {
                     dGridViewExDataEditFacets.Columns[i].ReadOnly = false;
                 }
-                dGridViewExDataEditFacets.Columns[IND_LEVEL].ReadOnly = true;
-                // dGridViewExDataEditFacets.ReadOnly = false;
 
             }// end if(*1*)
         }// end private void tsmiActionData_EditFacets_Click
@@ -1558,8 +1554,7 @@ namespace GUI_GT
                 string newDescription = tbEditFacetDescription.Text;
 
                 string pathfile = multiFacets.NameFileObs();
-                MultiFacetsObs newMultiFacet = new MultiFacetsObs(lf, multiFacets.ObservationTable(), pathfile, newDescription,
-                    this.richTextBoxDataComment.Text);
+                MultiFacetsObs newMultiFacet = multiFacets.ApplyLevelChanges(lf);
 
                 // Actualizamos las tablas de facetas
                 //=================================== 
@@ -1567,8 +1562,8 @@ namespace GUI_GT
                 // Actualizamos el campo descripción.
                 tbDescription.Text = newMultiFacet.DescriptionFile();
 
-                // Escribimos la cabecera de la tabla de observaciones ya que los datos no han cambiado
-                LoadHeadersInObsTable(newMultiFacet, dataGridViewExObsTable);
+                // Actualizamos tabla de observaciones
+                loadDataInTabPageObsTable(newMultiFacet, this.checkBoxHideNulls.Checked);
                 // asignamos el nuevo objeto multifaceta
                 this.sagtElements.SetMultiFacetsObs(newMultiFacet);
                 this.sagtElements.WritingSagtFile(pathfile);

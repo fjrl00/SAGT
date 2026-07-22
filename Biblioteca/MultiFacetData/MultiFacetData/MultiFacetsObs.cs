@@ -372,6 +372,29 @@ namespace MultiFacetData
             }
         }// end AuxSkipLevelFacetInDataTable
 
+        /* Descripción:
+         *  Ejecuta los cambios de niveles en la lista de facetas que se pasa como parámetro sobre la tabla de observaciones.
+         *  Se permiten cambios de nombre en la nueva lista, pero el orden debe mantenerse.
+         */
+        public MultiFacetsObs ApplyLevelChanges(ListFacets lf_new)
+        {
+            MultiFacetsObs retVal = this.Clone();
+
+            //BAJAR NIVELES
+            retVal.listFacets.removeAllSkipLevels();                    // quitamos los skip de esta
+            retVal.ListFacets().applyLevelLowering(lf_new);
+            retVal = retVal.SkipIndexLevelFacetInDataTable();           // eliminar de la tabla
+            retVal = retVal.RestoreIndexLevelFacetInDataTable();        // arreglar índices de tabla, sustraer skips+bajar niveles de esta lista de facetas
+
+            //SUBIR NIVELES
+            retVal.ObservationTable().SetListFacets(retVal.listFacets);
+            retVal.ObservationTable().IncreaseLevels(lf_new);
+
+            retVal.ListFacets(lf_new);
+
+            return retVal;
+        }
+
         #endregion Métodos para la eliminación de niveles de una tabla de observaciones
 
 

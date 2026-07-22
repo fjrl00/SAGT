@@ -105,7 +105,8 @@ UI
 
 NEW FEATURES
 
-- Facet nestings can now be edited in the Data section after having been created/imported
+- Facet nestings can now be edited in the Data section after having been created/imported, instead of being irrevocably removed when editing facets
+- Facets' levels can now be edited in the Data section
 - Editing in the Analysis section has been overhauled
 - CSV dateset importer overhauled to accept essentially any valid csv dataset from any source
 - CSV dataset exporter added
