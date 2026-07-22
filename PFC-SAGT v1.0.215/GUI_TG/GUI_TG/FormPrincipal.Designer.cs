@@ -613,15 +613,15 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiDataOpenLocal.Text = "Abrir localmente";
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
             // tsmiDataOpenWebService
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -672,7 +672,7 @@
             this.tsmiData_EditFacets.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiData_EditFacets.Name = "tsmiData_EditFacets";
             this.tsmiData_EditFacets.Size = new System.Drawing.Size(170, 36);
-            this.tsmiData_EditFacets.Text = "Editar Facetas";
+            this.tsmiData_EditFacets.Text = "Editar facetas";
             this.tsmiData_EditFacets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiData_EditFacets.Click += new System.EventHandler(this.tsmiData_EditFacets_Click);
             // 
@@ -1551,15 +1551,15 @@
             // 
             this.tsmiMeansOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiMeansOpenLocal.Name = "tsmiMeansOpenLocal";
-            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiMeansOpenLocal.Text = "Abrir localmente";
+            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenLocal.Text = "Abrir";
             this.tsmiMeansOpenLocal.Click += new System.EventHandler(this.tsmiMeansOpenLocal_Click);
             // 
             // tsmiMeansOpenWebService
             // 
             this.tsmiMeansOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiMeansOpenWebService.Name = "tsmiMeansOpenWebService";
-            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiMeansOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiMeansOpenWebService.Click += new System.EventHandler(this.tsmiMeansOpenWebService_Click);
             // 
@@ -2802,8 +2802,8 @@
             this.tsmiOpenAnalysis,
             this.tsmiImportAnalysis,
             this.tsmiAnalysis_Save,
-            this.tsmiChangeModel,
             this.tsmiAnalysisEditSsq,
+            this.tsmiChangeModel,
             this.tsmiAnalysis_AddLevelSign,
             this.tsmiAnalysis_Graphs,
             this.tsmiAnalysisExportExcel,
@@ -2847,15 +2847,15 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
-            this.tsmiAnalysisOpenLocal.Text = "Abrir localmente";
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenLocal.Text = "Abrir";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
             // tsmiAnalysisOpenWebService
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
@@ -2988,7 +2988,7 @@
             this.tsmiAnalysis_ExportSquares.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_ExportSquares.Name = "tsmiAnalysis_ExportSquares";
             this.tsmiAnalysis_ExportSquares.Size = new System.Drawing.Size(182, 36);
-            this.tsmiAnalysis_ExportSquares.Text = "Exportar Cuadrados";
+            this.tsmiAnalysis_ExportSquares.Text = "Exportar cuadrados";
             this.tsmiAnalysis_ExportSquares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_ExportSquares.Click += new System.EventHandler(this.tsmiAnalysis_ExportSquares_Click);
             // 
