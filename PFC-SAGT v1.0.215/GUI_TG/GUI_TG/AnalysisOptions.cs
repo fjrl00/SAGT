@@ -38,7 +38,6 @@ namespace GUI_GT
 
         private ListFacets listFacetsAnalysis = null; // lista de facetas que se emplea para el analisis
         private List<string> llFacetsAnalysis; // Lista
-        private Analysis_and_G_Study anl_tAnalysis_G_study_opt_Old; // variable antigua, para permitir deshacer cambios.
 
 
         /*
@@ -134,7 +133,6 @@ namespace GUI_GT
             // si tenemos más de una faceta entonces pasamos a editarlas
             if (t >= 2)
             {
-                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study(); // guardamos los datos por si deseamos cancelar
                 CleanerDataGridViewExFacets(this.dGridViewExAnalysis_TableFacet);
                 this.dGridViewExAnalysis_TableFacet.NumeroFilas = t;
                 enableEditingFacetAnalysis();
@@ -703,6 +701,16 @@ namespace GUI_GT
 
 
         /* Descripción:
+         *  Cancela la operación de editar las facetas y restaura el programa al estado original.
+         */
+        private void btActionCancelEditFacetOnAnalysis_Click(object sender, EventArgs e)
+        {
+            this.lf_nestings = null;
+            disableEditingFacetAnalysis();
+        }
+
+
+        /* Descripción:
          *  Restaura el estado de los elementos necesarios tras la edición de las facetas de la Oción Ananlisis.
          */
         private void disableEditingFacetAnalysis()
@@ -736,18 +744,6 @@ namespace GUI_GT
             this.disableTopLeftButtons = false;
             // Activamos el menú de acciones de Análisis
             this.mStripAnalysis.Enabled = true;
-            // limpiamos todos los campos de Análisis
-            cleanerAllTabPageAnalysis();
-            // Restauramos el valor anterior si lo había
-            if (this.anl_tAnalysis_G_study_opt_Old != null)
-            {
-                sagtElements.SetAnalysis_and_G_Study(this.anl_tAnalysis_G_study_opt_Old);
-                // Cargamos los valores antiguos
-                string nameFile = sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation();
-                LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
-                // Ponemos el valor antiguo a null para ahorra memoria
-                this.anl_tAnalysis_G_study_opt_Old = null;
-            }
         }
 
 
@@ -1298,13 +1294,8 @@ namespace GUI_GT
                 // actualizar los valores de optimización
                 sagtElements.GetAnalysis_and_G_Study().ReplaceListOfFacet(newLf);
                 //********************************************************************************
-                string namePrueba = this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation();
-                //********************************************************************************
-                sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(this.anl_tAnalysis_G_study_opt_Old.GetNameFileDataCreation());
-                // sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFileDataCreation);
-                sagtElements.GetAnalysis_and_G_Study().SetDateTime(this.anl_tAnalysis_G_study_opt_Old.GetDateTime());
-                //sagtElements.GetAnalysis_and_G_Study().SetDateTime(dateCreation);
-                this.anl_tAnalysis_G_study_opt_Old = null;
+                sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
+                sagtElements.GetAnalysis_and_G_Study().SetDateTime(sagtElements.GetAnalysis_and_G_Study().GetDateTime());
 
                 // cargar los valores nuevos.
                 LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
@@ -1356,8 +1347,6 @@ namespace GUI_GT
                 /* Mostramos el tabPage de edición con las suma de cuadrados editables.
                  * Soló la suma de cuadrados no las fuentes de variación.
                  */
-                // asignamos para tener la posibilidad de deshacer los cambios.
-                this.anl_tAnalysis_G_study_opt_Old = sagtElements.GetAnalysis_and_G_Study();
                 // Ocultamos los tabPage
                 // Ocultamos las pestañas
                 foreach (TabPage tabPage in this.tabControlAnalysisSSQ.TabPages)

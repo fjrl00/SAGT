@@ -2069,6 +2069,16 @@ namespace GUI_GT
 
 
         /* Descripción:
+         *  Se activa al pulsar cancelar del tabPageFacets de la opción Análisis. Este llama a su vez al
+         *  método btActionCancelEditFacetOnAnalysis_Click de la clase parcial AnalysisOptions.cs
+         */
+        private void btCancelEditFacetOnAnalysis_Click(object sender, EventArgs e)
+        {
+            btActionCancelEditFacetOnAnalysis_Click(sender, e);
+        }
+
+
+        /* Descripción:
          *  Se activa al pulsar el botón de importar suma de cuadrados en la edición de sumas 
          *  de cuadrados de la opción análisis.
          */

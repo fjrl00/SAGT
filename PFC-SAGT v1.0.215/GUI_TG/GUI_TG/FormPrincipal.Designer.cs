@@ -186,6 +186,7 @@
             this.tabPageAnalysisFacetas = new System.Windows.Forms.TabPage();
             this.btAnalysis_RemoveNesting = new System.Windows.Forms.Button();
             this.btAnalysis_NestingFacet = new System.Windows.Forms.Button();
+            this.btCancelEditFacetOnAnalysis = new System.Windows.Forms.Button();
             this.dGridViewExAnalysis_TableFacet = new DataGridViewEx.DataGridViewEx();
             this.btEditSumOfSquaresOnAnalisys = new System.Windows.Forms.Button();
             this.tabPageAnalysisEditingSSq = new System.Windows.Forms.TabPage();
@@ -1709,6 +1710,7 @@
             this.tabPageAnalysisFacetas.BackgroundImage = global::GUI_GT.Properties.Resources.Fondo;
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_RemoveNesting);
             this.tabPageAnalysisFacetas.Controls.Add(this.btAnalysis_NestingFacet);
+            this.tabPageAnalysisFacetas.Controls.Add(this.btCancelEditFacetOnAnalysis);
             this.tabPageAnalysisFacetas.Controls.Add(this.dGridViewExAnalysis_TableFacet);
             this.tabPageAnalysisFacetas.Controls.Add(this.btEditSumOfSquaresOnAnalisys);
             this.tabPageAnalysisFacetas.Location = new System.Drawing.Point(4, 22);
@@ -1744,6 +1746,19 @@
             this.btAnalysis_NestingFacet.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btAnalysis_NestingFacet.UseVisualStyleBackColor = true;
             this.btAnalysis_NestingFacet.Click += new System.EventHandler(this.btAnalysis_NestingFacet_Click);
+            // 
+            // btCancelEditFacetOnAnalysis
+            // 
+            this.btCancelEditFacetOnAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCancelEditFacetOnAnalysis.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
+            this.btCancelEditFacetOnAnalysis.Location = new System.Drawing.Point(464, 389);
+            this.btCancelEditFacetOnAnalysis.Name = "btCancelEditFacetOnAnalysis";
+            this.btCancelEditFacetOnAnalysis.Size = new System.Drawing.Size(96, 48);
+            this.btCancelEditFacetOnAnalysis.TabIndex = 3;
+            this.btCancelEditFacetOnAnalysis.Text = "Cancelar";
+            this.btCancelEditFacetOnAnalysis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCancelEditFacetOnAnalysis.UseVisualStyleBackColor = true;
+            this.btCancelEditFacetOnAnalysis.Click += new System.EventHandler(this.btCancelEditFacetOnAnalysis_Click);
             // 
             // dGridViewExAnalysis_TableFacet
             // 
@@ -3391,6 +3406,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMeansClose;
         private System.Windows.Forms.TabControl tabControlAnalysisSSQ;
         private System.Windows.Forms.TabPage tabPageAnalysisFacetas;
+        private System.Windows.Forms.Button btCancelEditFacetOnAnalysis;
         private DataGridViewEx.DataGridViewEx dGridViewExAnalysis_TableFacet;
         private System.Windows.Forms.Button btEditSumOfSquaresOnAnalisys;
         private System.Windows.Forms.TabPage tabPageAnalysisEditingSSq;
