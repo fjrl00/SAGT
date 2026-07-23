@@ -255,8 +255,8 @@
             this.tsmiAnalysis_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisSavedLocal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisvedWebService = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiChangeModel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisEditSsq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiChangeModel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysis_AddLevelSign = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysis_Graphs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAnalysisChartOptimization = new System.Windows.Forms.ToolStripMenuItem();
@@ -581,7 +581,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 440);
+            this.mStripData.Size = new System.Drawing.Size(175, 459);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -613,7 +613,7 @@
             // 
             this.tsmiDataOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiDataOpenLocal.Name = "tsmiDataOpenLocal";
-            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenLocal.Text = "Abrir";
             this.tsmiDataOpenLocal.Click += new System.EventHandler(this.tsmiDataOpenLocal_Click);
             // 
@@ -621,7 +621,7 @@
             // 
             this.tsmiDataOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiDataOpenWebService.Name = "tsmiDataOpenWebService";
-            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiDataOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiDataOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiDataOpenWebService.Click += new System.EventHandler(this.tsmiDataOpenWebService_Click);
             // 
@@ -711,12 +711,12 @@
             // 
             // tsmiDataToSSQ
             // 
-            this.tsmiDataToSSQ.Image = global::GUI_GT.Properties.Resources.genenerateSSQ_h32;
+            this.tsmiDataToSSQ.Image = global::GUI_GT.Properties.Resources.projects_gest_v2_5_32;
             this.tsmiDataToSSQ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataToSSQ.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataToSSQ.Name = "tsmiDataToSSQ";
             this.tsmiDataToSSQ.Size = new System.Drawing.Size(170, 36);
-            this.tsmiDataToSSQ.Text = "Suma de cuadrados";
+            this.tsmiDataToSSQ.Text = "Analizar";
             this.tsmiDataToSSQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataToSSQ.Click += new System.EventHandler(this.tsmiDataToSSQ_Click);
             // 
@@ -1551,7 +1551,7 @@
             // 
             this.tsmiMeansOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiMeansOpenLocal.Name = "tsmiMeansOpenLocal";
-            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiMeansOpenLocal.Text = "Abrir";
             this.tsmiMeansOpenLocal.Click += new System.EventHandler(this.tsmiMeansOpenLocal_Click);
             // 
@@ -1559,7 +1559,7 @@
             // 
             this.tsmiMeansOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiMeansOpenWebService.Name = "tsmiMeansOpenWebService";
-            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiMeansOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiMeansOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiMeansOpenWebService.Click += new System.EventHandler(this.tsmiMeansOpenWebService_Click);
             // 
@@ -2815,7 +2815,7 @@
             this.mStripAnalysis.MaximumSize = new System.Drawing.Size(187, 505);
             this.mStripAnalysis.Name = "mStripAnalysis";
             this.mStripAnalysis.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripAnalysis.Size = new System.Drawing.Size(187, 454);
+            this.mStripAnalysis.Size = new System.Drawing.Size(187, 435);
             this.mStripAnalysis.TabIndex = 1;
             this.mStripAnalysis.Text = "menuStrip1";
             // 
@@ -2847,7 +2847,7 @@
             // 
             this.tsmiAnalysisOpenLocal.Image = global::GUI_GT.Properties.Resources.Dossiers_lecteurs_CD;
             this.tsmiAnalysisOpenLocal.Name = "tsmiAnalysisOpenLocal";
-            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenLocal.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenLocal.Text = "Abrir";
             this.tsmiAnalysisOpenLocal.Click += new System.EventHandler(this.tsmiAnalysisOpenLocal_Click);
             // 
@@ -2855,7 +2855,7 @@
             // 
             this.tsmiAnalysisOpenWebService.Image = global::GUI_GT.Properties.Resources.Folder_net_h128;
             this.tsmiAnalysisOpenWebService.Name = "tsmiAnalysisOpenWebService";
-            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(208, 26);
+            this.tsmiAnalysisOpenWebService.Size = new System.Drawing.Size(204, 22);
             this.tsmiAnalysisOpenWebService.Text = "Abrir desde servicio Web";
             this.tsmiAnalysisOpenWebService.Click += new System.EventHandler(this.tsmiAnalysisOpenWebService_Click);
             // 
@@ -2899,17 +2899,6 @@
             this.tsmiAnalysisvedWebService.Text = "Guardar en servicio Web";
             this.tsmiAnalysisvedWebService.Click += new System.EventHandler(this.tsmiAnalysisvedWebService_Click);
             // 
-            // tsmiChangeModel
-            // 
-            this.tsmiChangeModel.Image = global::GUI_GT.Properties.Resources.Cambiar_Diseño_h32;
-            this.tsmiChangeModel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmiChangeModel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmiChangeModel.Name = "tsmiChangeModel";
-            this.tsmiChangeModel.Size = new System.Drawing.Size(182, 36);
-            this.tsmiChangeModel.Text = "Cambiar modelo";
-            this.tsmiChangeModel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tsmiChangeModel.Click += new System.EventHandler(this.tsmiChangeModel_Click);
-            // 
             // tsmiAnalysisEditSsq
             // 
             this.tsmiAnalysisEditSsq.Image = global::GUI_GT.Properties.Resources.Editar_datos_v1_h32;
@@ -2920,6 +2909,17 @@
             this.tsmiAnalysisEditSsq.Text = "Editar";
             this.tsmiAnalysisEditSsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysisEditSsq.Click += new System.EventHandler(this.tsmiAnalysisEditSsq_Click);
+            // 
+            // tsmiChangeModel
+            // 
+            this.tsmiChangeModel.Image = global::GUI_GT.Properties.Resources.Cambiar_Diseño_h32;
+            this.tsmiChangeModel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmiChangeModel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmiChangeModel.Name = "tsmiChangeModel";
+            this.tsmiChangeModel.Size = new System.Drawing.Size(182, 36);
+            this.tsmiChangeModel.Text = "Cambiar modelo";
+            this.tsmiChangeModel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsmiChangeModel.Click += new System.EventHandler(this.tsmiChangeModel_Click);
             // 
             // tsmiAnalysis_AddLevelSign
             // 
