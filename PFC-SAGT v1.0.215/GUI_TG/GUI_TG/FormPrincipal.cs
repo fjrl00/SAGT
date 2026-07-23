@@ -1373,7 +1373,7 @@ namespace GUI_GT
          */
         private void tsmiDataSavedLocal_Click(object sender, EventArgs e)
         {
-            saveFileData(this.sagtElements);
+            saveFileMenu(this.sagtElements);
         }
 
 
@@ -1715,7 +1715,7 @@ namespace GUI_GT
          */
         private void tsmiMeansSavedLocal_Click(object sender, EventArgs e)
         {
-            saveFileData(this.sagtElements);
+            saveFileMenu(this.sagtElements);
         }
 
 
@@ -1894,7 +1894,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisSavedLocal_Click(object sender, EventArgs e)
         {
-            saveFileData(this.sagtElements);
+            saveFileMenu(this.sagtElements);
         }
 
 

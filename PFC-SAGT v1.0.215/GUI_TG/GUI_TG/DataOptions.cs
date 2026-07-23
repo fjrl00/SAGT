@@ -829,7 +829,7 @@ namespace GUI_GT
             if (this.readDataGridViewExObsTableAndSaveInMultiObsTable())
             {
                 // luego guardo los datos en un archivo
-                saveFileData(this.sagtElements);
+                SaveFileButton(this.sagtElements);
 
                 // this.dataGridViewExFacets.ReadOnly = true;
                 int n = this.dataGridViewExFacets.Columns.Count;
@@ -857,26 +857,37 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Pregunta al usuario donde quiere almacenar la información, si la respuesta es afirmativa, se 
-         *  guardan los dato en un fichero.
+         *  Acción de guardar del menú de la izquierda.
+         *  Muestra un error si no hay datos en ningún lado.
+         *  Se guardan todas las pestañas sin preguntar.
          */
-        private void saveFileData(SagtFile sagtElements)
+        private void saveFileMenu(SagtFile sagtElements)
         {
-            if (sagtElements.GetMultiFacetsObs() == null && sagtElements.GetListMeans() == null && sagtElements.GetAnalysis_and_G_Study() == null)
+            ReadColumnOmit(sagtElements, this.dataGridViewExFacets);    // actualiza los valores omit de la lista de facetas
+            MultiFacetsObs tData = sagtElements.GetMultiFacetsObs();
+            ListMeans lMeans = sagtElements.GetListMeans();
+            Analysis_and_G_Study tAnalysis = sagtElements.GetAnalysis_and_G_Study();
+
+            if (tData == null && lMeans == null && tAnalysis == null)
             {
                 ShowMessageErrorOK(errorEmpty);
+                return;
             }
-            else
-            {
-                SaveFileSagt(sagtElements);
-            }
-        }// end saveFileData
+
+            SagtFile sagtElementsSave = new SagtFile(tData, lMeans, tAnalysis);
+            // Habrimos la ventana de dialogo y guardamos
+            System.Windows.Forms.DialogResult resulDialog = DialogAndSaveSagtFile(sagtElementsSave);
+
+            btGenerateTableObsDisables();
+        }
 
 
         /* Descripción:
-         *  Operación auxiliar. Seleccionamos los datos y los guardamos en un fichero Sagt
+         *  Acción de guardar de las creaciones/ediciones de datos.
+         *  Permite seleccionar que pestañas se quieren guardar.
+         *  Cancelar la operación resulta en ningún archivo guardándose, pero se carga en el workspace igualmente.
          */
-        private void SaveFileSagt(SagtFile sagtElements)
+        private void SaveFileButton(SagtFile sagtElements)
         {
             bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de observaciones
             bool bMean = !(sagtElements.GetListMeans() == null); // pestaña de tablas de medias
@@ -934,7 +945,7 @@ namespace GUI_GT
                         break;
                 }// end switch
             } while (!salir);
-        }// end SaveFileSagt()
+        }
 
 
         /* Descripción: 

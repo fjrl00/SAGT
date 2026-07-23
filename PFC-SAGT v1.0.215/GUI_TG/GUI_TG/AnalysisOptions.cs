@@ -494,7 +494,7 @@ namespace GUI_GT
                 sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
 
                 // Step 2: Save to file
-                SaveFileSagt(this.sagtElements);
+                SaveFileButton(this.sagtElements);
 
                 // Step 3: Update UI
                 // Mostramos los datos
