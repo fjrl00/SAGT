@@ -129,6 +129,22 @@ namespace GUI_GT
         }
 
 
+        private void btClean_Click(object sender, EventArgs e)
+        {
+            int indFacet = this.cBoxSelectFacet.SelectedIndex;
+            Facet f = this.listFacets.FacetInPos(indFacet);
+
+            for (int i = 0; i < checkedListBoxSelectShipLevels.Items.Count; i++)
+            {
+                if (checkedListBoxSelectShipLevels.GetItemChecked(i))
+                {
+                    f.SetSkipLevels(i + 1);
+                    checkedListBoxSelectShipLevels.SetItemChecked(i, false);
+                }
+            }
+        }
+
+
         #region Traducción de la ventana
         /*======================================================================================
          * Traducción de la ventana
@@ -156,6 +172,8 @@ namespace GUI_GT
                 // Traducimos el boton cancelar
                 name = this.btCancel.Name.ToString();
                 this.btCancel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = this.btClean.Name.ToString();
+                this.btClean.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Traducimos etiquetas
                 name = this.lbSelectFacet.Name.ToString();
@@ -172,7 +190,5 @@ namespace GUI_GT
 
 
         #endregion Traducción de la ventana
-
-
     }// end public partial class FormOmitLevelFacet
 }// end namespace GUI_TG

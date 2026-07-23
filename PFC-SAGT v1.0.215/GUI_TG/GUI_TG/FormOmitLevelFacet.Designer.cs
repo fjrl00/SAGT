@@ -35,12 +35,13 @@
             this.lbSelectSkipLevels = new System.Windows.Forms.Label();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
+            this.btClean = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cBoxSelectFacet
             // 
-            this.cBoxSelectFacet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cBoxSelectFacet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cBoxSelectFacet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxSelectFacet.FormattingEnabled = true;
             this.cBoxSelectFacet.Location = new System.Drawing.Point(21, 33);
@@ -51,8 +52,8 @@
             // 
             // lbSelectFacet
             // 
-            this.lbSelectFacet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbSelectFacet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelectFacet.AutoSize = true;
             this.lbSelectFacet.Location = new System.Drawing.Point(21, 14);
             this.lbSelectFacet.Name = "lbSelectFacet";
@@ -62,9 +63,9 @@
             // 
             // checkedListBoxSelectShipLevels
             // 
-            this.checkedListBoxSelectShipLevels.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxSelectShipLevels.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBoxSelectShipLevels.CheckOnClick = true;
             this.checkedListBoxSelectShipLevels.FormattingEnabled = true;
             this.checkedListBoxSelectShipLevels.Location = new System.Drawing.Point(21, 93);
@@ -75,8 +76,8 @@
             // 
             // lbSelectSkipLevels
             // 
-            this.lbSelectSkipLevels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbSelectSkipLevels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbSelectSkipLevels.AutoSize = true;
             this.lbSelectSkipLevels.Location = new System.Drawing.Point(24, 74);
             this.lbSelectSkipLevels.Name = "lbSelectSkipLevels";
@@ -91,9 +92,9 @@
             this.btOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
             this.btOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btOk.Location = new System.Drawing.Point(46, 307);
+            this.btOk.Location = new System.Drawing.Point(106, 307);
             this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(92, 32);
+            this.btOk.Size = new System.Drawing.Size(80, 32);
             this.btOk.TabIndex = 109;
             this.btOk.Text = "Aceptar";
             this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -106,13 +107,28 @@
             this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
             this.btCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btCancel.Location = new System.Drawing.Point(156, 307);
+            this.btCancel.Location = new System.Drawing.Point(192, 307);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(92, 32);
+            this.btCancel.Size = new System.Drawing.Size(80, 32);
             this.btCancel.TabIndex = 108;
             this.btCancel.Text = "Cancelar";
             this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btCancel.UseVisualStyleBackColor = true;
+            // 
+            // btClean
+            // 
+            this.btClean.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btClean.Image = global::GUI_GT.Properties.Resources.broom_22x22;
+            this.btClean.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btClean.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btClean.Location = new System.Drawing.Point(21, 307);
+            this.btClean.Name = "btClean";
+            this.btClean.Size = new System.Drawing.Size(79, 32);
+            this.btClean.TabIndex = 110;
+            this.btClean.Text = "Limpiar";
+            this.btClean.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btClean.UseVisualStyleBackColor = true;
+            this.btClean.Click += new System.EventHandler(this.btClean_Click);
             // 
             // FormOmitLevelFacet
             // 
@@ -121,6 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(294, 351);
+            this.Controls.Add(this.btClean);
             this.Controls.Add(this.btOk);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.lbSelectSkipLevels);
@@ -147,5 +164,6 @@
         private System.Windows.Forms.Label lbSelectSkipLevels;
         private System.Windows.Forms.Button btOk;
         private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.Button btClean;
     }
 }

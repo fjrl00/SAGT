@@ -169,6 +169,9 @@
   <data name="icon-password_40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-password_40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Barra de about of" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Barra de about of.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="projects_gest_v2.5_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\projects_gest_v2.5_48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,14 +262,17 @@
   <data name="button_cancel h22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_cancel h22x22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Barra de about of" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Barra de about of.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="importcsv_h20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\importcsv_h20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Excel Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel Document.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="genenerateSSQ_h32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\genenerateSSQ_h32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="importlst_h20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\importlst_h20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AVX_ICONS USERS FOLDER_h40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AVX_ICONS USERS FOLDER_h40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -294,9 +300,6 @@
   </data>
   <data name="AQUA ICONS FILE GENERIC DOCUMENT 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AQUA ICONS FILE GENERIC DOCUMENT 1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="importcsv_h20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\importcsv_h20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Adobe_v2_h32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Adobe_v2_h32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -445,7 +448,7 @@
   <data name="HelpIcon_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HelpIcon_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="importlst_h20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\importlst_h20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="broom_22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\broom_22x22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
