@@ -381,16 +381,18 @@ namespace MultiFacetData
             MultiFacetsObs retVal = this.Clone();
 
             //BAJAR NIVELES
-            retVal.listFacets.removeAllSkipLevels();                    // quitamos los skip de esta
+            retVal.ListFacets().removeAllSkipLevels();                    // quitamos los skip de esta
             retVal.ListFacets().applyLevelLowering(lf_new);
             retVal = retVal.SkipIndexLevelFacetInDataTable();           // eliminar de la tabla
             retVal = retVal.RestoreIndexLevelFacetInDataTable();        // arreglar índices de tabla, sustraer skips+bajar niveles de esta lista de facetas
 
             //SUBIR NIVELES
-            retVal.ObservationTable().SetListFacets(retVal.listFacets);
+            retVal.ObservationTable().SetListFacets(retVal.ListFacets());
             retVal.ObservationTable().IncreaseLevels(lf_new);
 
             retVal.ListFacets(lf_new);
+            retVal.ListFacets().removeGhostSkipLevels();
+
 
             return retVal;
         }

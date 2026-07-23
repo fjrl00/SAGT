@@ -1550,6 +1550,9 @@ namespace GUI_GT
 
             if (lf != null) // si los datos son correctos...
             {
+                // Import back the SkipLevels from the previous version
+                lf.importSkipLevels(multiFacets.ListFacets());
+
                 // Recuperamos las facetas modificadas de la tabla y la descripción
                 string newDescription = tbEditFacetDescription.Text;
 
@@ -1915,7 +1918,6 @@ namespace GUI_GT
             try
             {
                 valret = dgvExToListFacets(dgv);
-                // this.multiFacets = new MultiFacetsObs(lf, "no name", tbDescription.Text);
             }
             catch (MultiFacetObsException multFactEx)
             {

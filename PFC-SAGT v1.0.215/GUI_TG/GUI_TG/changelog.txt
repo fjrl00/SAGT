@@ -99,9 +99,10 @@ UI
 - New graphics added for various new buttons/features
 - Corrected the alignment of the labels in the Sum of squares tab, which tended to not match their corresponding column at all when their numbers grew sufficiently big
 - Overhauled the alignment of the labels in the G-Parameters tab, making way better use of space and avoiding obscuring keys and values sometimes needlessly and irrevocably.
-- Removed the Measurement Design info from the Sum of Squares tab, as it's irrelevant to that tab. Replaced with the source file
+- Removed the Measurement Design info from the Sum of Squares tab, as it's irrelevant to that tab.
 - Saving from any tab is now permitted so long as any tab has loaded data
 - Increased mini-toolstrip menu size for better readability
+- Editing facets in the Data section no longer resets skipped levels
 
 NEW FEATURES
 

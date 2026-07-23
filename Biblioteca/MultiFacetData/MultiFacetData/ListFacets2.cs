@@ -1034,6 +1034,42 @@ namespace MultiFacetData
             }
         }
 
+        /* Descripción:
+         *  Importa los SkipLevels de la lista de facetas que se pasa como parámetro. 
+         *  Se asume que ambas listas tienen las facetas correspondientes en el mismo orden aún si los nombres han cambiado.
+         */
+        public void importSkipLevels(ListFacets lf)
+        {
+            int n = this.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet f1 = lf.FacetInPos(i);
+                Facet f2 = this.FacetInPos(i);
+                List<int> lSkipLevels = f1.ListSkipLevels();
+                int m = lSkipLevels.Count;
+                for (int j = 0; j < m; j++)
+                {
+                    f2.SetSkipLevels(lSkipLevels[j]);
+                }
+            }
+        }
+
+        public void removeGhostSkipLevels()
+        {
+            int n = this.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = this.FacetInPos(i);
+                foreach (int skipLevel in f.ListSkipLevels())
+                {
+                    if (skipLevel > f.Level())
+                    {
+                        f.SetSkipLevels(skipLevel);
+                    }
+                }
+            }
+        }
+
         #region Operaciones para definir el anidamiento de facetas
         /*=================================================================================================
          * Métodos para definir el anidamiento de facetas
