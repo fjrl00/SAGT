@@ -33,11 +33,11 @@
             this.checkBoxSelectTableMeans = new System.Windows.Forms.CheckBox();
             this.checkBoxSelectSSQ = new System.Windows.Forms.CheckBox();
             this.lbSavesText = new System.Windows.Forms.Label();
+            this.lbNameFile = new System.Windows.Forms.Label();
+            this.tbNameFile = new System.Windows.Forms.TextBox();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.pictureBoxHeader = new System.Windows.Forms.PictureBox();
-            this.lbNameFile = new System.Windows.Forms.Label();
-            this.tbNameFile = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.checkBoxSelectSSQ.Size = new System.Drawing.Size(506, 17);
             this.checkBoxSelectSSQ.TabIndex = 112;
             this.checkBoxSelectSSQ.Text = "Sumas de cuadrados, Tabla de análisis de varianza, Tabla de G-Parámetros y Nivele" +
-                "s de optimización";
+    "s de optimización";
             this.checkBoxSelectSSQ.UseVisualStyleBackColor = true;
             // 
             // lbSavesText
@@ -82,45 +82,6 @@
             this.lbSavesText.Size = new System.Drawing.Size(398, 24);
             this.lbSavesText.TabIndex = 113;
             this.lbSavesText.Text = "Seleccione los elementos que desee guardar:";
-            // 
-            // btOk
-            // 
-            this.btOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btOk.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
-            this.btOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btOk.Location = new System.Drawing.Point(390, 254);
-            this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(92, 32);
-            this.btOk.TabIndex = 109;
-            this.btOk.Text = "Aceptar";
-            this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btOk.UseVisualStyleBackColor = true;
-            // 
-            // btCancel
-            // 
-            this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
-            this.btCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btCancel.Location = new System.Drawing.Point(500, 254);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(92, 32);
-            this.btCancel.TabIndex = 108;
-            this.btCancel.Text = "Cancelar";
-            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btCancel.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxHeader
-            // 
-            this.pictureBoxHeader.Image = global::GUI_GT.Properties.Resources.barra_de_guardado;
-            this.pictureBoxHeader.Location = new System.Drawing.Point(-2, 0);
-            this.pictureBoxHeader.Name = "pictureBoxHeader";
-            this.pictureBoxHeader.Size = new System.Drawing.Size(614, 90);
-            this.pictureBoxHeader.TabIndex = 114;
-            this.pictureBoxHeader.TabStop = false;
             // 
             // lbNameFile
             // 
@@ -137,6 +98,45 @@
             this.tbNameFile.Name = "tbNameFile";
             this.tbNameFile.Size = new System.Drawing.Size(447, 20);
             this.tbNameFile.TabIndex = 116;
+            // 
+            // btOk
+            // 
+            this.btOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btOk.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_Yes;
+            this.btOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btOk.Location = new System.Drawing.Point(390, 254);
+            this.btOk.Name = "btOk";
+            this.btOk.Size = new System.Drawing.Size(92, 32);
+            this.btOk.TabIndex = 109;
+            this.btOk.Text = "Guardar";
+            this.btOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btOk.UseVisualStyleBackColor = true;
+            // 
+            // btCancel
+            // 
+            this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.Image = global::GUI_GT.Properties.Resources.Floppy_Disk_No;
+            this.btCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btCancel.Location = new System.Drawing.Point(500, 254);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(92, 32);
+            this.btCancel.TabIndex = 108;
+            this.btCancel.Text = "Omitir";
+            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCancel.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxHeader
+            // 
+            this.pictureBoxHeader.Image = global::GUI_GT.Properties.Resources.barra_de_guardado;
+            this.pictureBoxHeader.Location = new System.Drawing.Point(-2, 0);
+            this.pictureBoxHeader.Name = "pictureBoxHeader";
+            this.pictureBoxHeader.Size = new System.Drawing.Size(614, 90);
+            this.pictureBoxHeader.TabIndex = 114;
+            this.pictureBoxHeader.TabStop = false;
             // 
             // FormSelectSaves
             // 

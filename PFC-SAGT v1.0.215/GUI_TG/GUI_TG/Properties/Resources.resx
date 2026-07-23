@@ -214,8 +214,11 @@
   <data name="Icono sumatori_x2_v2.5_h48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icono sumatori_x2_v2.5_h48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="circle_green_h24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\circle_green_h24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Floppy Disk Yes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floppy Disk Yes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuration Settings 22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuration Settings 22x22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AVX_ICONS FOLDER 2_h40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AVX_ICONS FOLDER 2_h40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,8 +232,8 @@
   <data name="Export_h32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Export_h32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Configuration Settings 22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Configuration Settings 22x22.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="barra para importar ssq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barra para importar ssq.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barra para importar normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barra para importar normal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -255,6 +258,9 @@
   </data>
   <data name="file_x_means_h321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file_x_means_h321.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="barra para importar obs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barra para importar obs.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AVX_ICONS FOLDER ORANGE_h40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AVX_ICONS FOLDER ORANGE_h40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -295,8 +301,8 @@
   <data name="barra para importar ficheros edug" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barra para importar ficheros edug.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="barra para importar obs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\barra para importar obs.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="broom_22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\broom_22x22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AQUA ICONS FILE GENERIC DOCUMENT 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AQUA ICONS FILE GENERIC DOCUMENT 1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -370,9 +376,6 @@
   <data name="user_female_search_h40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_female_search_h40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="barra para importar ssq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\barra para importar ssq.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Dossiers lecteurs CD" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dossiers lecteurs CD.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -390,6 +393,9 @@
   </data>
   <data name="AVX_ICONS FOLDER BLUE_h40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AVX_ICONS FOLDER BLUE_h40.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle_green_h24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle_green_h24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barra para importar excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barra para importar excel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -448,7 +454,7 @@
   <data name="HelpIcon_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HelpIcon_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="broom_22x22" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\broom_22x22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Floppy Disk No" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floppy Disk No.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

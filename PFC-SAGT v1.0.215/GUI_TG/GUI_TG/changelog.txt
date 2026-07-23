@@ -104,6 +104,8 @@ UI
 - Increased mini-toolstrip menu size for better readability
 - Editing facets in the Data section no longer resets skipped levels
 - Saving from the toolstrip menu no longer asks what sections of the workspace to save
+- Saving editing facets in Data section now asks where to save rather than automatically saving in the present filename
+- Updated labeling and icons in FormSelectSaves to better communicate that cancelling only cancels the process of saving, not of creating/editing
 
 NEW FEATURES
 

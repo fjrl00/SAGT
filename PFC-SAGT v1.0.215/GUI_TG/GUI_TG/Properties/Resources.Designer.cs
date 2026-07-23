@@ -803,6 +803,26 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Floppy_Disk_No {
+            get {
+                object obj = ResourceManager.GetObject("Floppy Disk No", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Floppy_Disk_Yes {
+            get {
+                object obj = ResourceManager.GetObject("Floppy Disk Yes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Folder_net_h128 {
             get {
                 object obj = ResourceManager.GetObject("Folder net h128", resourceCulture);

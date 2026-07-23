@@ -829,7 +829,7 @@ namespace GUI_GT
             if (this.readDataGridViewExObsTableAndSaveInMultiObsTable())
             {
                 // luego guardo los datos en un archivo
-                SaveFileButton(this.sagtElements);
+                saveFileButton(this.sagtElements);
 
                 // this.dataGridViewExFacets.ReadOnly = true;
                 int n = this.dataGridViewExFacets.Columns.Count;
@@ -887,7 +887,7 @@ namespace GUI_GT
          *  Permite seleccionar que pestañas se quieren guardar.
          *  Cancelar la operación resulta en ningún archivo guardándose, pero se carga en el workspace igualmente.
          */
-        private void SaveFileButton(SagtFile sagtElements)
+        private void saveFileButton(SagtFile sagtElements)
         {
             bool bData = !(sagtElements.GetMultiFacetsObs() == null); // pestaña de tabla de observaciones
             bool bMean = !(sagtElements.GetListMeans() == null); // pestaña de tablas de medias
@@ -1567,8 +1567,8 @@ namespace GUI_GT
                 // Recuperamos las facetas modificadas de la tabla y la descripción
                 string newDescription = tbEditFacetDescription.Text;
 
-                string pathfile = multiFacets.NameFileObs();
                 MultiFacetsObs newMultiFacet = multiFacets.ApplyLevelChanges(lf);
+                newMultiFacet.DescriptionFile(newDescription);
 
                 // Actualizamos las tablas de facetas
                 //=================================== 
@@ -1580,7 +1580,7 @@ namespace GUI_GT
                 loadDataInTabPageObsTable(newMultiFacet, this.checkBoxHideNulls.Checked);
                 // asignamos el nuevo objeto multifaceta
                 this.sagtElements.SetMultiFacetsObs(newMultiFacet);
-                this.sagtElements.WritingSagtFile(pathfile);
+                saveFileButton(this.sagtElements);
                 // "Cerramos" la edición mediante el siguiente método
                 btActionDataEditFacetsCancel_Click();
             }
