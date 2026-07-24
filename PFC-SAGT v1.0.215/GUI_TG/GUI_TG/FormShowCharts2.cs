@@ -68,7 +68,8 @@ namespace GUI_GT
         private string name_resum = "Nombre de los valores";
         private string resum = "Resumen";
 
-        // private string noData = "N/A";
+        private const double IMAGE_ASPECT_RATIO = 560.0 / 473.0;
+        private const double LEGEND_WIDTH_PCT = 30.0;
 
 
         /*********************************************************************************************
@@ -77,6 +78,8 @@ namespace GUI_GT
         public FormShowCharts2()
         {
             InitializeComponent();
+            SetupChartLayout();
+            SetupFormulaAnnotation();
         }
 
 
@@ -94,6 +97,47 @@ namespace GUI_GT
             CreatedChartsPoints(tAnalysis_GStudy_Opt, pBegin, pEnd, increment);
             LoadDataGridViewExOptimizationResum(list_of_list_g_parameters[0], dgvExOptDatas);
             InitComboBoxSelectFacet(facetsSelected);
+        }
+
+        private void SetupChartLayout()
+        {
+            chartCoef_G.ChartAreas[0].Position.Auto = false;
+            chartCoef_G.ChartAreas[0].Position.X = 0;
+            chartCoef_G.ChartAreas[0].Position.Y = 0;
+            chartCoef_G.ChartAreas[0].Position.Width = (float)(100 - LEGEND_WIDTH_PCT);
+            chartCoef_G.ChartAreas[0].Position.Height = 100;
+        }
+
+        private void SetupFormulaAnnotation()
+        {
+            chartCoef_G.Images.Add(new NamedImage("formulaImage", Properties.Resources.GnnK));
+
+            var annotation = new ImageAnnotation();
+            annotation.Name = "formulaAnnotation";
+            annotation.Image = "formulaImage";
+            annotation.IsSizeAlwaysRelative = true;
+            annotation.LineWidth = 0;
+            chartCoef_G.Annotations.Add(annotation);
+
+            UpdateAnnotationSizeAndPosition();
+            chartCoef_G.Resize += (s, e) => UpdateAnnotationSizeAndPosition();
+        }
+
+        private void UpdateAnnotationSizeAndPosition()
+        {
+            var annotation = chartCoef_G.Annotations.FindByName("formulaAnnotation") as ImageAnnotation;
+            if (annotation == null) return;
+
+            double margin = 1.0;
+            double annotationWidthPct = LEGEND_WIDTH_PCT - 2 * margin;
+            double widthPx  = annotationWidthPct / 100.0 * chartCoef_G.Width;
+            double heightPx = widthPx / IMAGE_ASPECT_RATIO;
+            double heightPct = heightPx / chartCoef_G.Height * 100.0;
+
+            annotation.Width  = annotationWidthPct;
+            annotation.Height = heightPct;
+            annotation.X = 100 - LEGEND_WIDTH_PCT + margin;
+            annotation.Y = 100 - heightPct - margin;
         }
 
 
@@ -169,7 +213,7 @@ namespace GUI_GT
                 double[] xs = facetListInt.Select(n => (double)n).ToArray();
                 double[] ys = list_gP.Select(g => coef(g)).ToArray();
 
-                // Fit G(n) = G∞ * n / (n + K)
+                // Fit G(n) = Gmax * n / (n + K)
                 var fitResult = new LevenbergMarquardtMinimizer().FindMinimum(
                     ObjectiveFunction.NonlinearModel(
                         (p, xv) =>
@@ -189,7 +233,7 @@ namespace GUI_GT
                 int dec = cfg.GetNumberOfDecimals();
                 string sep = cfg.GetDecimalSeparator();
                 chartCoef_G.Series[f.Name()].LegendText =
-                    $"{f.Name()} | G∞={ConvertNum.DecimalToString(Ginf, dec, sep)}, K={ConvertNum.DecimalToString(K, dec, sep)}";
+                    $"{f.Name()}\n Gmax={ConvertNum.DecimalToString(Ginf, dec, sep)}, K={ConvertNum.DecimalToString(K, dec, sep)}";
 
                 chartCoef_G.ApplyPaletteColors();
                 string fitSeriesName = f.Name() + "_fit";

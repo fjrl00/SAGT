@@ -873,6 +873,16 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GnnK {
+            get {
+                object obj = ResourceManager.GetObject("GnnK", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap graph_svg_bar_med {
             get {
                 object obj = ResourceManager.GetObject("graph.svg_bar.med", resourceCulture);

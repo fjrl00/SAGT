@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,9 +40,9 @@
             this.btSaveChartImage = new System.Windows.Forms.Button();
             this.chartCoef_G = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPageResum = new System.Windows.Forms.TabPage();
-            this.dgvExOptDatas = new DataGridViewEx.DataGridViewEx();
-            this.cBoxSelectFacet = new System.Windows.Forms.ComboBox();
             this.lbSelectFacet = new System.Windows.Forms.Label();
+            this.cBoxSelectFacet = new System.Windows.Forms.ComboBox();
+            this.dgvExOptDatas = new DataGridViewEx.DataGridViewEx();
             this.tabControl1.SuspendLayout();
             this.tabPageChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartCoef_G)).BeginInit();
@@ -117,6 +118,25 @@
             this.tabPageResum.Text = "Datos";
             this.tabPageResum.UseVisualStyleBackColor = true;
             // 
+            // lbSelectFacet
+            // 
+            this.lbSelectFacet.AutoSize = true;
+            this.lbSelectFacet.Location = new System.Drawing.Point(172, 361);
+            this.lbSelectFacet.Name = "lbSelectFacet";
+            this.lbSelectFacet.Size = new System.Drawing.Size(40, 13);
+            this.lbSelectFacet.TabIndex = 2;
+            this.lbSelectFacet.Text = "Faceta";
+            // 
+            // cBoxSelectFacet
+            // 
+            this.cBoxSelectFacet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxSelectFacet.FormattingEnabled = true;
+            this.cBoxSelectFacet.Location = new System.Drawing.Point(240, 357);
+            this.cBoxSelectFacet.Name = "cBoxSelectFacet";
+            this.cBoxSelectFacet.Size = new System.Drawing.Size(271, 21);
+            this.cBoxSelectFacet.TabIndex = 1;
+            this.cBoxSelectFacet.SelectedIndexChanged += new System.EventHandler(this.cBoxSelectFacet_SelectedIndexChanged);
+            // 
             // dgvExOptDatas
             // 
             this.dgvExOptDatas.AllowUserToAddRows = false;
@@ -154,25 +174,6 @@
             this.dgvExOptDatas.RowHeadersWidth = 50;
             this.dgvExOptDatas.Size = new System.Drawing.Size(667, 325);
             this.dgvExOptDatas.TabIndex = 0;
-            // 
-            // cBoxSelectFacet
-            // 
-            this.cBoxSelectFacet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBoxSelectFacet.FormattingEnabled = true;
-            this.cBoxSelectFacet.Location = new System.Drawing.Point(240, 357);
-            this.cBoxSelectFacet.Name = "cBoxSelectFacet";
-            this.cBoxSelectFacet.Size = new System.Drawing.Size(271, 21);
-            this.cBoxSelectFacet.TabIndex = 1;
-            this.cBoxSelectFacet.SelectedIndexChanged += new System.EventHandler(this.cBoxSelectFacet_SelectedIndexChanged);
-            // 
-            // lbSelectFacet
-            // 
-            this.lbSelectFacet.AutoSize = true;
-            this.lbSelectFacet.Location = new System.Drawing.Point(172, 361);
-            this.lbSelectFacet.Name = "lbSelectFacet";
-            this.lbSelectFacet.Size = new System.Drawing.Size(40, 13);
-            this.lbSelectFacet.TabIndex = 2;
-            this.lbSelectFacet.Text = "Faceta";
             // 
             // FormShowCharts2
             // 

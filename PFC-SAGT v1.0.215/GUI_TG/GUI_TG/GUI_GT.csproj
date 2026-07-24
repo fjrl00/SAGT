@@ -808,6 +808,7 @@
     <Content Include="Manual\PDF\Manual SAGT español.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\GnnK.png" />
     <None Include="Resources\Floppy Disk No.png" />
     <None Include="Resources\Floppy Disk Yes.png" />
     <None Include="Resources\broom_22x22.png" />
