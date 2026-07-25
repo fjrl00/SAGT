@@ -534,48 +534,6 @@ namespace GUI_GT
         }// LoadAllDataGridWithDataAnalysis
 
 
-        /* Descipción:
-         *  Se ejecuta cuando se pulsa sobre abrir en el menú vertical de Análisis. Muestra el cuadro
-         *  de dialogo para seleccionar el archivo que se va a abrir.
-         */
-        private void tsmiActionOpenAnalysis_Click()
-        {
-            DialogResult res = DialogResult.OK;
-            if (sagtElements.GetAnalysis_and_G_Study() != null)
-            {
-                res = ShowMessageDialog(titleConfirm, txtConfirmClose);
-            }
-            if (res == DialogResult.OK)
-            {
-                OpenFileDialog openDialog = new OpenFileDialog();
-
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
-                {
-                    openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
-
-                string fileFilter = (
-                    this.sagtFiles + FILTER_SAGT_FILE +
-                    "Legacy Analysis File" + FILTER_ANALYSIS_FILTER + "|" + 
-                    this.allFiles + FILTER_ALL_FILE);
-                openDialog.Filter = fileFilter;
-
-                if (openDialog.ShowDialog() == DialogResult.OK)
-                {
-                    switch (System.IO.Path.GetExtension(openDialog.FileName).ToLowerInvariant())
-                    {
-                        case ".anls":
-                            LoadAnalysisFile(openDialog.FileName);
-                            break;
-                        default:
-                            loadFileSagt(openDialog.FileName);
-                            break;
-                    }
-                }
-            }
-        }// end tsmiActionOpenAnalysis_Click
-
-
         /* Descripción:
          *  Carga los datos de un fichero de analisis en  mostrando los datos al usuario
          * Parámetros:

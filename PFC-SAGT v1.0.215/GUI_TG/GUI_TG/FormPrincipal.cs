@@ -340,6 +340,15 @@ namespace GUI_GT
             }
         }// end LoadConfigCFG
 
+        // Helper function to stop ghost clicks from OpenFileDialog from triggering menu buttons
+        private void SetMenusEnabled(bool enabled)
+        {
+            mStripMain.Enabled = enabled;
+            mStripData.Enabled = enabled;
+            mStripMeans.Enabled = enabled;
+            mStripAnalysis.Enabled = enabled;
+        }
+
         /*
          * Descripción:
          *  Muestra una pantalla de carga, y devuelve la referencia a ella para que posteriormente se pueda cerrar.
@@ -459,29 +468,52 @@ namespace GUI_GT
             if (res != DialogResult.OK)
                 return;
 
-            using (OpenFileDialog openDialog = new OpenFileDialog())
+            SetMenusEnabled(false);
+            try
             {
-                if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
+                using (OpenFileDialog openDialog = new OpenFileDialog())
                 {
-                    openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
-                }
+                    if (Directory.Exists(this.cfgApli.Get_Path_Workspace()))
+                    {
+                        openDialog.InitialDirectory = this.cfgApli.Get_Path_Workspace();
+                    }
 
-                string fileFilter = (this.sagtFiles + FILTER_SAGT_FILE + this.allFiles + FILTER_ALL_FILE);
-                openDialog.Filter = fileFilter;
+                    string fileFilter = (
+                        this.sagtFiles + FILTER_SAGT_FILE +
+                        "Legacy Analysis File" + FILTER_ANALYSIS_FILTER + "|" + 
+                        this.allFiles + FILTER_ALL_FILE);
+                    openDialog.Filter = fileFilter;
 
-                if (openDialog.ShowDialog() == DialogResult.OK)
-                {
-                    this.checkBoxHideNulls.Enabled = false;
-                    this.checkBoxHideNulls.Checked = false;
-                    this.checkBoxHideNulls.Enabled = true;
+                    if (openDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        this.checkBoxHideNulls.Enabled = false;
+                        this.checkBoxHideNulls.Checked = false;
+                        this.checkBoxHideNulls.Enabled = true;
 
-                    loadFileSagt(openDialog.FileName);
+                        switch (System.IO.Path.GetExtension(openDialog.FileName).ToLowerInvariant())
+                        {
+                            case ".anls":
+                                LoadAnalysisFile(openDialog.FileName);
+                                break;
+                            default:
+                                loadFileSagt(openDialog.FileName);
+                                break;
+                        }
 
-                    // nos posicionamos en los tabPage iniciales.
-                    tabControlData.SelectedIndex = 0;
-                    tabControlAnalysisSSQ.SelectedIndex = 0;
+                        // nos posicionamos en los tabPage iniciales.
+                        tabControlData.SelectedIndex = 0;
+                        tabControlAnalysisSSQ.SelectedIndex = 0;
+                    }
                 }
             }
+            finally
+            {
+                // Menus are still disabled here, so flush any pending input
+                // (like a leftover ghost mouse-up) — it lands on nothing.
+                Application.DoEvents();
+                SetMenusEnabled(true);
+            }
+            
         }
 
 
@@ -1864,7 +1896,7 @@ namespace GUI_GT
          */
         private void tsmiAnalysisOpenLocal_Click(object sender, EventArgs e)
         {
-            tsmiActionOpenAnalysis_Click();
+            OpenSagtFile();
         }
 
 

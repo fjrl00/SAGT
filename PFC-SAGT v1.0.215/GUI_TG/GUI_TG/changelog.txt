@@ -44,6 +44,7 @@ OTHER BUGFIXES
 - Solved various minor bugs in the printing output (missing text that was intended to be printed, miscalculated table widths on certain occasions, wrong margins at the top of the page on certain occasions)
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
 - Solved bug where trying to select or copy sections of tables in non-conventional ways (selecting a few corners manually with control-clicking, shift-clicking starting from bottom, etc) could result in an exception
+- Solved bug where double-clicking a file in OpenFileDialog to select it resulted in the second click also applying to whichever menu button stood directly behind it
 
 OPTIMIZATION
 
@@ -76,6 +77,7 @@ OTHERS
 - Overhauled error feedback when reading or writing files
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
+- use of .anls files has been deprecated, files in the future are to be saved purely as .sagt
 
 UI
 
