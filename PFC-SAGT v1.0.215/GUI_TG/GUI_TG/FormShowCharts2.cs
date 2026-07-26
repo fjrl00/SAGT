@@ -78,8 +78,6 @@ namespace GUI_GT
         public FormShowCharts2()
         {
             InitializeComponent();
-            SetupChartLayout();
-            SetupFormulaAnnotation();
         }
 
 
@@ -87,6 +85,9 @@ namespace GUI_GT
             bool abs, string t, int pBegin, int pEnd, int increment)
             : this()
         {
+            SetupChartLayout(pBegin, pEnd, increment);
+            SetupFormulaAnnotation();
+
             this.cfg = cfg;
             this.workspace = cfg.Get_Path_Workspace();
             this.titulo = t;
@@ -99,13 +100,31 @@ namespace GUI_GT
             InitComboBoxSelectFacet(facetsSelected);
         }
 
-        private void SetupChartLayout()
+        private void SetupChartLayout(int pBegin, int pEnd, int increment)
         {
+            //image area configuration
             chartCoef_G.ChartAreas[0].Position.Auto = false;
             chartCoef_G.ChartAreas[0].Position.X = 0;
             chartCoef_G.ChartAreas[0].Position.Y = 0;
             chartCoef_G.ChartAreas[0].Position.Width = (float)(100 - LEGEND_WIDTH_PCT);
             chartCoef_G.ChartAreas[0].Position.Height = 100;
+
+            // X axis labelling configuration
+            var axisX = chartCoef_G.ChartAreas[0].AxisX;
+            axisX.LabelStyle.Format = "0";
+            axisX.Minimum = pBegin;
+            axisX.Maximum = pEnd;
+
+            // one tick per real data point, thinned out if there would be too many
+            int span = pEnd - pBegin;
+            int step = increment;
+            const int maxLabels = 10;
+            while (span / step > maxLabels) 
+                step += increment;
+
+            axisX.Interval = step;
+            axisX.IntervalOffset = 0;
+            axisX.IntervalType = DateTimeIntervalType.Number;
         }
 
         private void SetupFormulaAnnotation()
@@ -188,16 +207,12 @@ namespace GUI_GT
                     list_gP.Add(estimateGP);
 
                     int numDecimal = cfg.GetNumberOfDecimals();
+                    double d;
                     if (abs)
-                    {
-                        double d = Math.Round((double)estimateGP.CoefG_Abs(), numDecimal, MidpointRounding.AwayFromZero);
-                        introducirSerie(j, d, f.Name(), facetListInt[j]);
-                    }
+                        d = Math.Round((double)estimateGP.CoefG_Abs(), numDecimal, MidpointRounding.AwayFromZero);
                     else
-                    {
-                        double d = Math.Round((double)estimateGP.CoefG_Rel(), numDecimal, MidpointRounding.AwayFromZero);
-                        introducirSerie(j, d, f.Name(), facetListInt[j]);
-                    }
+                        d = Math.Round((double)estimateGP.CoefG_Rel(), numDecimal, MidpointRounding.AwayFromZero);
+                    introducirSerie(facetListInt[j], d, f.Name());
                 }
                 // guardamos la lista
                 list_of_list_g_parameters.Add(list_gP);
@@ -249,28 +264,33 @@ namespace GUI_GT
                 int fitPointCount = nPoints * 5;
                 for (int m = 0; m < fitPointCount; m++)
                 {
-                    double fracIndex = m * (nPoints - 1.0) / (fitPointCount - 1.0);
-                    double nx = xs[0] + fracIndex * (xs[xs.Length - 1] - xs[0]) / (nPoints - 1.0);
-                    DataPoint dp = new DataPoint(fracIndex, (Ginf * nx) / (nx + K));
-                    dp.AxisLabel = m % 5 == 0 ? ((int)Math.Round(nx)).ToString() : "";
-                    chartCoef_G.Series[fitSeriesName].Points.Add(dp);
+                    double nx = xs[0] + m * (xs[xs.Length - 1] - xs[0]) / (fitPointCount - 1.0);
+                    chartCoef_G.Series[fitSeriesName].Points.Add(new DataPoint(nx, (Ginf * nx) / (nx + K)));
                 }
             }
 
+            RaisePointSeriesAboveFitLines();
         }// end private void CreatedCharts5Points
 
-
-
-        private void introducirSerie(int pos, double valor, string serie, int label)
+        // Used to ensure that the point series are drawn above the fitted lines, so that their labels are not occluded.
+        private void RaisePointSeriesAboveFitLines()
         {
-            double v = 0.0;
-            if (!double.IsNaN(valor))
-            {
-                v = valor;
-            }
-            DataPoint dataP = new DataPoint(pos, v);
-            this.chartCoef_G.Series[serie].Points.Add(dataP);
-            this.chartCoef_G.Series[serie].Points[pos].AxisLabel = label.ToString();
+            var fitSeries = chartCoef_G.Series
+                .Where(s => s.ChartType == SeriesChartType.Line)
+                .ToList();
+            var pointSeries = chartCoef_G.Series
+                .Where(s => s.ChartType == SeriesChartType.Point)
+                .ToList();
+
+            chartCoef_G.Series.Clear();
+            foreach (var s in fitSeries) chartCoef_G.Series.Add(s);   // bottom
+            foreach (var s in pointSeries) chartCoef_G.Series.Add(s); // top — labels now render last
+        }
+
+        private void introducirSerie(double xValue, double valor, string serie)
+        {
+            double v = double.IsNaN(valor) ? 0.0 : valor;
+            chartCoef_G.Series[serie].Points.Add(new DataPoint(xValue, v));
         }
 
 
