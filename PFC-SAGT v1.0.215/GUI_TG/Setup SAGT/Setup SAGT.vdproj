@@ -813,6 +813,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B467DA9260118F914B642FB6F09450CF"
+        "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B548693A65274E4F8A9409194379C505"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -857,18 +863,6 @@
         {
         "MsmKey" = "8:_C7C40C74F2F5AE4A90BAE3FAA9E9FD07"
         "OwnerKey" = "8:_1EFFEC82DF6E8F8FA27E0BFBEA0C1A9B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCF104C731D07C732C1CD022AE52337F"
-        "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCF104C731D07C732C1CD022AE52337F"
-        "OwnerKey" = "8:_158AE60BFEF68B0B575136D94B5C25D9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1072,7 +1066,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CCF104C731D07C732C1CD022AE52337F"
+        "OwnerKey" = "8:_B467DA9260118F914B642FB6F09450CF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2904,6 +2898,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B467DA9260118F914B642FB6F09450CF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B467DA9260118F914B642FB6F09450CF"
+                    {
+                    "Name" = "8:MathNet.Numerics.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MathNet.Numerics.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_92D4345E910641959579F5AD96895363"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B548693A65274E4F8A9409194379C505"
             {
             "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\lang\\formSelectCSVColumns.txt"
@@ -2998,37 +3023,6 @@
                     }
                 }
             "SourcePath" = "8:BouncyCastle.Cryptography.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_92D4345E910641959579F5AD96895363"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CCF104C731D07C732C1CD022AE52337F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MathNet.Numerics, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CCF104C731D07C732C1CD022AE52337F"
-                    {
-                    "Name" = "8:MathNet.Numerics.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MathNet.Numerics.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_92D4345E910641959579F5AD96895363"
@@ -3377,29 +3371,6 @@
                 "Verbs"
                 {
                     "{95C0C507-CBF0-42B8-B119-07219E384A4A}:_4BF7E39A6707476BBCA3B94CA3C051CA"
-                    {
-                    "Command" = "8:&Open"
-                    "Verb" = "8:open"
-                    "Arguments" = "8:\"%1\""
-                    "Order" = "3:0"
-                    }
-                }
-            }
-            "{5EB83D71-FA18-4901-BE56-DE22E13CC478}:_AA36460451F14B89BA58B230AE366238"
-            {
-            "Name" = "8:SAGT Analysis File"
-            "Description" = "8:SAGT Analysis File"
-            "Extensions" = "8:.anls"
-            "MIME" = "8:"
-            "Icon" = "8:_E64945F237054781912E43D3F229AFA8"
-            "IconIndex" = "3:0"
-                "Command"
-                {
-                "Command" = "8:_07A13145387246DCB081B05008C6DE22"
-                }
-                "Verbs"
-                {
-                    "{95C0C507-CBF0-42B8-B119-07219E384A4A}:_71EBACB97489438EAD6FC5C17728C688"
                     {
                     "Command" = "8:&Open"
                     "Verb" = "8:open"
