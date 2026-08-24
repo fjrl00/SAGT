@@ -31,20 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMeasurDesign));
             this.listBoxSourceDiff = new System.Windows.Forms.ListBox();
             this.listBoxSourceInst = new System.Windows.Forms.ListBox();
-            this.btOK = new System.Windows.Forms.Button();
-            this.btCancel = new System.Windows.Forms.Button();
             this.lbMeasurementDesign = new System.Windows.Forms.Label();
             this.tbMeasurementDesign = new System.Windows.Forms.TextBox();
             this.lbDiff_Facets = new System.Windows.Forms.Label();
             this.lbInstr_Facets = new System.Windows.Forms.Label();
+            this.btOK = new System.Windows.Forms.Button();
+            this.btCancel = new System.Windows.Forms.Button();
+            this.btVCA = new System.Windows.Forms.Button();
             this.btMoveRight = new System.Windows.Forms.Button();
             this.btMoveLeft = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxSourceDiff
             // 
-            this.listBoxSourceDiff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBoxSourceDiff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxSourceDiff.FormattingEnabled = true;
             this.listBoxSourceDiff.Location = new System.Drawing.Point(26, 100);
             this.listBoxSourceDiff.Name = "listBoxSourceDiff";
@@ -53,41 +54,13 @@
             // 
             // listBoxSourceInst
             // 
-            this.listBoxSourceInst.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxSourceInst.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxSourceInst.FormattingEnabled = true;
             this.listBoxSourceInst.Location = new System.Drawing.Point(340, 100);
             this.listBoxSourceInst.Name = "listBoxSourceInst";
             this.listBoxSourceInst.Size = new System.Drawing.Size(193, 212);
             this.listBoxSourceInst.TabIndex = 1;
-            // 
-            // btOK
-            // 
-            this.btOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btOK.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
-            this.btOK.Location = new System.Drawing.Point(179, 336);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(92, 32);
-            this.btOK.TabIndex = 2;
-            this.btOK.Text = "Aceptar";
-            this.btOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
-            // 
-            // btCancel
-            // 
-            this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
-            this.btCancel.Location = new System.Drawing.Point(288, 336);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(92, 32);
-            this.btCancel.TabIndex = 3;
-            this.btCancel.Text = "Cancelar";
-            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btCancel.UseVisualStyleBackColor = true;
-            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // lbMeasurementDesign
             // 
@@ -100,8 +73,8 @@
             // 
             // tbMeasurementDesign
             // 
-            this.tbMeasurementDesign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbMeasurementDesign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMeasurementDesign.BackColor = System.Drawing.Color.White;
             this.tbMeasurementDesign.Location = new System.Drawing.Point(26, 29);
             this.tbMeasurementDesign.Name = "tbMeasurementDesign";
@@ -127,6 +100,48 @@
             this.lbInstr_Facets.Size = new System.Drawing.Size(138, 13);
             this.lbInstr_Facets.TabIndex = 7;
             this.lbInstr_Facets.Text = "Facetas de Instrumentación";
+            // 
+            // btOK
+            // 
+            this.btOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btOK.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
+            this.btOK.Location = new System.Drawing.Point(135, 334);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(92, 35);
+            this.btOK.TabIndex = 2;
+            this.btOK.Text = "Aceptar";
+            this.btOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
+            this.btCancel.Location = new System.Drawing.Point(233, 334);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(92, 35);
+            this.btCancel.TabIndex = 3;
+            this.btCancel.Text = "Cancelar";
+            this.btCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
+            // 
+            // btVCA
+            // 
+            this.btVCA.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btVCA.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btVCA.Image = global::GUI_GT.Properties.Resources.Rlogo_1;
+            this.btVCA.Location = new System.Drawing.Point(331, 334);
+            this.btVCA.Name = "btVCA";
+            this.btVCA.Size = new System.Drawing.Size(92, 35);
+            this.btVCA.TabIndex = 10;
+            this.btVCA.Text = "Analizar con VCA";
+            this.btVCA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btVCA.UseVisualStyleBackColor = true;
+            this.btVCA.Click += new System.EventHandler(this.btVCA_Click);
             // 
             // btMoveRight
             // 
@@ -162,6 +177,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(558, 381);
+            this.Controls.Add(this.btVCA);
             this.Controls.Add(this.btMoveRight);
             this.Controls.Add(this.btMoveLeft);
             this.Controls.Add(this.lbInstr_Facets);
@@ -195,5 +211,6 @@
         private System.Windows.Forms.Label lbInstr_Facets;
         private System.Windows.Forms.Button btMoveLeft;
         private System.Windows.Forms.Button btMoveRight;
+        private System.Windows.Forms.Button btVCA;
     }
 }

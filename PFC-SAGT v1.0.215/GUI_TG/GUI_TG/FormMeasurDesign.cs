@@ -12,6 +12,7 @@
  * 
  */
 using MultiFacetData;
+using ProjectSSQ;
 using System;
 using System.Windows.Forms;
 
@@ -193,13 +194,7 @@ namespace GUI_GT
          */
         private void btCancel_Click(object sender, EventArgs e)
         {
-            /*
-            foreach(Facet f in this.lfLeft)
-            {
-                this.lfLeft.Remove(f);
-            }
-             */
-            // this.Close();
+            // Relevant code in SSQQOptions.EstimationPlan
         }
 
 
@@ -213,6 +208,12 @@ namespace GUI_GT
             // Relevant code in SSQQOptions.EstimationPlan
         }
 
+        private void btVCA_Click(object sender, EventArgs e)
+        {
+            double result = RRunner.RunExample();
+
+            MessageBox.Show("The answer is: " + result);
+        }
 
         /* Descripción:
          *  Devuelve el número de facetas definidas como facetas dependientes (Facetas a la izquierda de 
@@ -261,6 +262,9 @@ namespace GUI_GT
                 // Traducimos el boton cancelar
                 name = this.btCancel.Name.ToString();
                 this.btCancel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                // Traducimos el boton VCA
+                name = this.btVCA.Name.ToString();
+                this.btVCA.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Traducimos el boton mover a la izquierda
                 name = this.btMoveLeft.Name.ToString();
                 this.btMoveLeft.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
@@ -289,6 +293,5 @@ namespace GUI_GT
         }
 
         #endregion Tradución de la ventana FormMeasurDesign
-
     }// end public partial class FormMeasurDesign : Form
 } // end namespace GUI_TG

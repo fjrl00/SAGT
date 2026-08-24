@@ -58,6 +58,7 @@
     <Compile Include="Analysis_and_G_Study_Exception.cs" />
     <Compile Include="ErrorVar.cs" />
     <Compile Include="ListOfTerms.cs" />
+    <Compile Include="RRunner.cs" />
     <Compile Include="TableG_Study.cs" />
     <Compile Include="TableG_StudyException.cs" />
     <Compile Include="G_ParametersOptimization.cs" />

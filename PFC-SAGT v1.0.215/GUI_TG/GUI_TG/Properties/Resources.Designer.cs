@@ -1093,6 +1093,16 @@ namespace GUI_GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Rlogo_1 {
+            get {
+                object obj = ResourceManager.GetObject("Rlogo-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sin_nombre2 {
             get {
                 object obj = ResourceManager.GetObject("Sin nombre2", resourceCulture);
