@@ -30,27 +30,6 @@ namespace ProjectSSQ
                 "renv",
                 "activate.R");
 
-            if (!Directory.Exists(rProjectPath))
-            {
-                throw new DirectoryNotFoundException(
-                    "The application's R project directory could not be found:\n\n" +
-                    rProjectPath);
-            }
-
-            if (!File.Exists(lockFilePath))
-            {
-                throw new FileNotFoundException(
-                    "The R environment lockfile could not be found:\n\n" +
-                    lockFilePath);
-            }
-
-            if (!File.Exists(renvActivatePath))
-            {
-                throw new FileNotFoundException(
-                    "The renv activation script could not be found:\n\n" +
-                    renvActivatePath);
-            }
-
             // ------------------------------------------------------------
             // 2. Make sure Rscript.exe is available
             // ------------------------------------------------------------
@@ -78,6 +57,10 @@ namespace ProjectSSQ
                     workingDirectory,
                     "script.R");
 
+                string outputPath = Path.Combine(
+                    workingDirectory,
+                    "output.txt");
+
                 // --------------------------------------------------------
                 // 4. Create dynamic input
                 // --------------------------------------------------------
@@ -102,16 +85,17 @@ namespace ProjectSSQ
                 // 7. Execute the generated R script
                 // --------------------------------------------------------
 
-                string output = RunRScript(
+                RunRScript(
                     scriptPath,
                     csvPath,
+                    outputPath,
                     rProjectPath);
 
                 // --------------------------------------------------------
-                // 8. Read result
+                // 8. Read result from output.txt
                 // --------------------------------------------------------
 
-                return double.Parse(output.Trim(), CultureInfo.InvariantCulture);
+                return ReadResult(outputPath);
             }
             finally
             {
@@ -175,7 +159,7 @@ namespace ProjectSSQ
 
 
         private static void RestoreRenvEnvironment(
-    string rProjectPath)
+            string rProjectPath)
         {
             ProcessStartInfo startInfo =
                 new ProcessStartInfo();
@@ -284,11 +268,12 @@ library(VCA)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-if (length(args) < 1) {{
-    stop(""No CSV path was supplied to the R script."")
+if (length(args) < 2) {{
+    stop(""Expected two arguments: CSV path and output path."")
 }}
 
 csvPath <- args[1]
+outputPath <- args[2]
 
 # ------------------------------------------------------------
 # Read input
@@ -303,10 +288,18 @@ data <- read.csv(csvPath)
 result <- sum(data$column1)
 
 # ------------------------------------------------------------
-# Return result to C#
+# Write result for C#
 # ------------------------------------------------------------
 
-cat(result)
+writeLines(
+    format(
+        result,
+        digits = 17,
+        scientific = FALSE,
+        trim = TRUE
+    ),
+    outputPath
+)
 ";
 
             File.WriteAllText(
@@ -316,9 +309,10 @@ cat(result)
         }
 
 
-        private static string RunRScript(
+        private static void RunRScript(
             string scriptPath,
             string csvPath,
+            string outputPath,
             string rProjectPath)
         {
             ProcessStartInfo startInfo =
@@ -333,7 +327,9 @@ cat(result)
                 "--vanilla " +
                 QuoteArgument(scriptPath) +
                 " " +
-                QuoteArgument(csvPath);
+                QuoteArgument(csvPath) +
+                " " +
+                QuoteArgument(outputPath);
 
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -378,8 +374,42 @@ cat(result)
                         error);
                 }
 
-                return output;
+                // stdout/stderr are now diagnostic only.
+                // The actual calculation result is read from output.txt.
             }
+        }
+
+
+        private static double ReadResult(
+            string outputPath)
+        {
+            if (!File.Exists(outputPath))
+            {
+                throw new Exception(
+                    "R completed successfully but did not create " +
+                    "the expected output file:\n\n" +
+                    outputPath);
+            }
+
+            string resultText =
+                File.ReadAllText(
+                    outputPath,
+                    Encoding.UTF8).Trim();
+
+            double result;
+
+            if (!double.TryParse(
+                    resultText,
+                    NumberStyles.Float,
+                    CultureInfo.InvariantCulture,
+                    out result))
+            {
+                throw new Exception(
+                    "R produced an invalid numerical result:\n\n" +
+                    resultText);
+            }
+
+            return result;
         }
 
 
