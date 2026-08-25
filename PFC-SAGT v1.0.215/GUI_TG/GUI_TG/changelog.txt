@@ -109,6 +109,7 @@ UI
 - Saving editing facets in Data section now asks where to save rather than automatically saving in the present filename
 - Updated labeling and icons in FormSelectSaves to better communicate that cancelling only cancels the process of saving, not of creating/editing
 - X axis labelling in graphs improved, specially when there's many datapoints
+- Fixed height of vertical menu items not being consistent
 
 NEW FEATURES
 
