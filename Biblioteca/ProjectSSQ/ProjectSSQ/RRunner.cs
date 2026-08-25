@@ -128,7 +128,7 @@ namespace ProjectSSQ
          *  al formato usado por la librería VCA (nombres de facetas separados por ':').
          *  Las fuentes de variación se ordenan de menos facetas implicadas a más.
          */
-        private static string BuildVcaModel(ListFacets listFacets)
+        internal static string BuildVcaModel(ListFacets listFacets)
         {
             List<string> designs = listFacets.CombinationStringWithoutRepetition();
 

@@ -1121,8 +1121,8 @@ namespace GUI_GT
                 if (Directory.Exists(cfgApli.Get_Path_Workspace()))
                     saveDialog.InitialDirectory = cfgApli.Get_Path_Workspace();
 
-                saveDialog.DefaultExt = "anls";
-                saveDialog.Filter = "Analysis file" + FILTER_ANALYSIS_FILTER;
+                saveDialog.DefaultExt = DEFAULT_EXT_SAGT;
+                saveDialog.Filter = "sagt file" + FILTER_SAGT_FILE + FILTER_ALL_FILE;
                 saveDialog.AddExtension = true;
                 saveDialog.OverwritePrompt = true;
 

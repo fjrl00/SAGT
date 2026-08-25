@@ -45,7 +45,7 @@ namespace Tests
             {
                 var window = app.GetMainWindow(automation);
 
-                var openFileData = window.FindFirstDescendant(cf => cf.ByText("Abrir archivo de datos"))?.AsMenuItem();
+                var openFileData = window.FindFirstDescendant(cf => cf.ByText("Abrir"))?.AsMenuItem();
                 openFileData.Click();
 
                 var openLocal = openFileData.FindFirstDescendant(cf => cf.ByText("Abrir"))?.AsMenuItem();

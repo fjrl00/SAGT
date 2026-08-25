@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ImportCSVTests.cs" />
     <Compile Include="IntegrationTests.cs" />
+    <Compile Include="RRunnerTests.cs" />
     <Compile Include="TableTests.cs" />
     <Compile Include="ReadingAndWritingTests.cs" />
     <Compile Include="StatisticsTests.cs" />
