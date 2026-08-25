@@ -2007,6 +2007,7 @@
             this.dgvExAnalysis_FacetEditSsq.RowHeadersWidth = 50;
             this.dgvExAnalysis_FacetEditSsq.Size = new System.Drawing.Size(542, 146);
             this.dgvExAnalysis_FacetEditSsq.TabIndex = 18;
+            this.dgvExAnalysis_FacetEditSsq.KeyPressEditorCelda += new DataGridViewEx.EditorCeldaKeyPress(this.dgvExAnalysis_FacetEditSsq_KeyPressEditorCelda);
             // 
             // tabPageAnalysisSSQ
             // 

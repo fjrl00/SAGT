@@ -2230,6 +2230,11 @@ namespace GUI_GT
             EditionDataGridViewExFacets(this.dGridViewExDataEditFacets, sender, e);
         }
 
+        private void dgvExAnalysis_FacetEditSsq_KeyPressEditorCelda(object sender, KeyPressEventArgs e)
+        {
+            EditionDataGridViewExFacets(this.dgvExAnalysis_FacetEditSsq, sender, e);
+        }
+
 
         /* Descripción:
          *  Realiza el proceso de control sobre la escritura de la columna Tamaño del universo para
