@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using MultiFacetData;
 
 namespace ProjectSSQ
 {
@@ -11,7 +13,12 @@ namespace ProjectSSQ
     {
         private const string RProjectFolderName = "RSetup";
 
-        public static double RunExample()
+
+        /// <summary>
+        /// Runs a G-Theory ANOVA analysis (via the R library VCA) on the observation table of the
+        /// given multi-facet observations object, and returns the resulting TableAnalysisOfVariance.
+        /// </summary>
+        public static TableAnalysisOfVariance RunVcaAnova(MultiFacetsObs mfo)
         {
             // ------------------------------------------------------------
             // 1. Locate the bundled R project
@@ -20,15 +27,6 @@ namespace ProjectSSQ
             string rProjectPath = Path.Combine(
                 AppContext.BaseDirectory,
                 RProjectFolderName);
-
-            string lockFilePath = Path.Combine(
-                rProjectPath,
-                "renv.lock");
-
-            string renvActivatePath = Path.Combine(
-                rProjectPath,
-                "renv",
-                "activate.R");
 
             // ------------------------------------------------------------
             // 2. Make sure Rscript.exe is available
@@ -51,51 +49,58 @@ namespace ProjectSSQ
             {
                 string csvPath = Path.Combine(
                     workingDirectory,
-                    "data.csv");
+                    "obsTable.csv");
 
                 string scriptPath = Path.Combine(
                     workingDirectory,
-                    "script.R");
+                    "anovaVCA.R");
 
                 string outputPath = Path.Combine(
                     workingDirectory,
-                    "output.txt");
+                    "output.csv");
 
                 // --------------------------------------------------------
-                // 4. Create dynamic input
+                // 4. Generate the dataset as a CSV of the observation table
                 // --------------------------------------------------------
 
-                CreateExampleCsv(csvPath);
+                mfo.WritingFileObsTableCsv(csvPath);
 
                 // --------------------------------------------------------
-                // 5. Create dynamic R script
+                // 5. Build the anovaVCA model (right-hand side of the formula)
                 // --------------------------------------------------------
 
-                CreateExampleRScript(
+                string model = BuildVcaModel(mfo.ListFacets());
+
+                // --------------------------------------------------------
+                // 6. Create the R script for the ANOVA analysis
+                // --------------------------------------------------------
+
+                CreateVcaAnovaRScript(
                     scriptPath,
                     rProjectPath);
 
                 // --------------------------------------------------------
-                // 6. Restore the renv environment
+                // 7. Restore the renv environment
                 // --------------------------------------------------------
 
                 RestoreRenvEnvironment(rProjectPath);
 
                 // --------------------------------------------------------
-                // 7. Execute the generated R script
+                // 8. Execute the generated R script
                 // --------------------------------------------------------
 
                 RunRScript(
                     scriptPath,
                     csvPath,
                     outputPath,
-                    rProjectPath);
+                    rProjectPath,
+                    model);
 
                 // --------------------------------------------------------
-                // 8. Read result from output.txt
+                // 9. Build the TableAnalysisOfVariance from the VCA output
                 // --------------------------------------------------------
 
-                return ReadResult(outputPath);
+                return new TableAnalysisOfVariance(mfo.ListFacets(), outputPath, true);
             }
             finally
             {
@@ -116,6 +121,131 @@ namespace ProjectSSQ
             }
         }
 
+
+        /* Descripción:
+         *  Construye el lado derecho de la fórmula de anovaVCA (p. ej. "O + I + C + O:I + O:C + I:C + O:I:C")
+         *  a partir de la lista de facetas, traduciendo el formato interno de diseños (con corchetes y ':')
+         *  al formato usado por la librería VCA (nombres de facetas separados por ':').
+         *  Las fuentes de variación se ordenan de menos facetas implicadas a más.
+         */
+        private static string BuildVcaModel(ListFacets listFacets)
+        {
+            List<string> designs = listFacets.CombinationStringWithoutRepetition();
+
+            List<string> orderedDesigns = designs
+                .OrderBy(d => CountFacetsInDesign(d))
+                .ToList();
+
+            List<string> vcaTerms = orderedDesigns
+                .Select(d => TranslateDesignToVcaTerm(listFacets, d))
+                .ToList();
+
+            return string.Join(" + ", vcaTerms);
+        }
+
+
+        /* Descripción:
+         *  Cuenta el número de facetas implicadas en un diseño (formato con corchetes y ':').
+         */
+        private static int CountFacetsInDesign(string design)
+        {
+            char[] delimeterChars = { '[', ']', ':' };
+            return design
+                .Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries)
+                .Length;
+        }
+
+
+        /* Descripción:
+         *  Traduce un diseño (formato con corchetes y ':', p.ej. "[O]:[I][C]") al término
+         *  correspondiente en notación de la librería VCA (p.ej. "O:I:C"), manteniendo el orden
+         *  en el que las facetas aparecen en la lista de facetas original.
+         */
+        private static string TranslateDesignToVcaTerm(ListFacets listFacets, string design)
+        {
+            char[] delimeterChars = { '[', ']', ':' };
+            HashSet<string> namesInDesign = new HashSet<string>(
+                design.Split(delimeterChars, StringSplitOptions.RemoveEmptyEntries));
+
+            List<string> orderedNames = new List<string>();
+            int n = listFacets.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet f = listFacets.FacetInPos(i);
+                if (namesInDesign.Contains(f.Name()))
+                {
+                    orderedNames.Add(f.Name());
+                }
+            }
+
+            return string.Join(":", orderedNames);
+        }
+
+
+        private static void CreateVcaAnovaRScript(
+            string scriptPath,
+            string rProjectPath)
+        {
+            string projectPathForR =
+                rProjectPath.Replace("\\", "/");
+
+            string script = $@"
+# ------------------------------------------------------------
+# Load the application's isolated renv environment
+# ------------------------------------------------------------
+
+renv::load(
+    project = ""{EscapeRString(projectPathForR)}"",
+    quiet = TRUE
+)
+
+# ------------------------------------------------------------
+# Load required packages
+# ------------------------------------------------------------
+
+library(VCA)
+
+# ------------------------------------------------------------
+# Read command-line arguments
+# ------------------------------------------------------------
+
+args <- commandArgs(trailingOnly = TRUE)
+
+if (length(args) < 3) {{
+    stop(""Expected three arguments: CSV path, output path and model."")
+}}
+
+csvPath <- args[1]
+outputPath <- args[2]
+model <- args[3]
+
+# ------------------------------------------------------------
+# Read input
+# ------------------------------------------------------------
+
+dat <- read.csv(csvPath)
+
+# ------------------------------------------------------------
+# ANOVA analysis with VCA
+# ------------------------------------------------------------
+
+fit <- anovaVCA(
+    as.formula(paste(""Measurement.Variable ~"", model)),
+    Data = dat
+)
+
+# ------------------------------------------------------------
+# Write result for C#
+# ------------------------------------------------------------
+
+write.csv(fit$aov.tab, outputPath)
+";
+
+            File.WriteAllText(
+                scriptPath,
+                script,
+                new UTF8Encoding(false));
+        }
 
         private static void EnsureRscriptAvailable()
         {
@@ -212,108 +342,12 @@ namespace ProjectSSQ
         }
 
 
-        private static void CreateExampleCsv(
-            string csvPath)
-        {
-            Random random = new Random();
-
-            int value1 = random.Next(1, 11);
-            int value2 = random.Next(1, 11);
-
-            using (StreamWriter writer =
-                   new StreamWriter(
-                       csvPath,
-                       false,
-                       new UTF8Encoding(false)))
-            {
-                writer.WriteLine("column1");
-
-                writer.WriteLine(
-                    value1.ToString(
-                        CultureInfo.InvariantCulture));
-
-                writer.WriteLine(
-                    value2.ToString(
-                        CultureInfo.InvariantCulture));
-            }
-        }
-
-
-        private static void CreateExampleRScript(
-            string scriptPath,
-            string rProjectPath)
-        {
-            string projectPathForR =
-                rProjectPath.Replace("\\", "/");
-
-            string script = $@"
-# ------------------------------------------------------------
-# Load the application's isolated renv environment
-# ------------------------------------------------------------
-
-renv::load(
-    project = ""{EscapeRString(projectPathForR)}"",
-    quiet = TRUE
-)
-
-# ------------------------------------------------------------
-# Load required packages
-# ------------------------------------------------------------
-
-library(VCA)
-
-# ------------------------------------------------------------
-# Read command-line arguments
-# ------------------------------------------------------------
-
-args <- commandArgs(trailingOnly = TRUE)
-
-if (length(args) < 2) {{
-    stop(""Expected two arguments: CSV path and output path."")
-}}
-
-csvPath <- args[1]
-outputPath <- args[2]
-
-# ------------------------------------------------------------
-# Read input
-# ------------------------------------------------------------
-
-data <- read.csv(csvPath)
-
-# ------------------------------------------------------------
-# Example calculation
-# ------------------------------------------------------------
-
-result <- sum(data$column1)
-
-# ------------------------------------------------------------
-# Write result for C#
-# ------------------------------------------------------------
-
-writeLines(
-    format(
-        result,
-        digits = 17,
-        scientific = FALSE,
-        trim = TRUE
-    ),
-    outputPath
-)
-";
-
-            File.WriteAllText(
-                scriptPath,
-                script,
-                new UTF8Encoding(false));
-        }
-
-
         private static void RunRScript(
             string scriptPath,
             string csvPath,
             string outputPath,
-            string rProjectPath)
+            string rProjectPath,
+            string extraArgument)
         {
             ProcessStartInfo startInfo =
                 new ProcessStartInfo();
@@ -330,6 +364,13 @@ writeLines(
                 QuoteArgument(csvPath) +
                 " " +
                 QuoteArgument(outputPath);
+
+            if (extraArgument != null)
+            {
+                startInfo.Arguments +=
+                    " " +
+                    QuoteArgument(extraArgument);
+            }
 
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -375,41 +416,7 @@ writeLines(
                 }
 
                 // stdout/stderr are now diagnostic only.
-                // The actual calculation result is read from output.txt.
             }
-        }
-
-
-        private static double ReadResult(
-            string outputPath)
-        {
-            if (!File.Exists(outputPath))
-            {
-                throw new Exception(
-                    "R completed successfully but did not create " +
-                    "the expected output file:\n\n" +
-                    outputPath);
-            }
-
-            string resultText =
-                File.ReadAllText(
-                    outputPath,
-                    Encoding.UTF8).Trim();
-
-            double result;
-
-            if (!double.TryParse(
-                    resultText,
-                    NumberStyles.Float,
-                    CultureInfo.InvariantCulture,
-                    out result))
-            {
-                throw new Exception(
-                    "R produced an invalid numerical result:\n\n" +
-                    resultText);
-            }
-
-            return result;
         }
 
 

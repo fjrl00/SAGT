@@ -166,39 +166,61 @@ namespace GUI_GT
                                 {
                                     FormWaiting fw = ShowLoadingScreen(msgLoading);
 
-                                    salir = true;
                                     // Mostramos el diseño de medida en el textBox de los tabPage de suma de cuadrados
                                     // ShowMeDessingInTextBoxs(sourceOfDifferentiation, sourceOfInstrumentation);
 
-                                    bool zero = this.cfgApli.GetNull_to_Zero();
+                                    TableAnalysisOfVariance tableAnalysis = null;
 
-                                    TableAnalysisOfVariance tableAnalysis = new TableAnalysisOfVariance(multiFacets, zero);
-                                    TableG_Study_Percent tableG_Study = new TableG_Study_Percent(sourceOfDifferentiation, sourceOfInstrumentation, tableAnalysis);
+                                    if (formMeasurDesign.UseVCA)
+                                    {
+                                        // Análisis de varianza mediante la librería VCA de R
+                                        try
+                                        {
+                                            tableAnalysis = RRunner.RunVcaAnova(multiFacets);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            CloseLoadingScreen(fw);
+                                            ShowMessageErrorOK(txtCvaError + "\n\n" + ex.Message);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        bool zero = this.cfgApli.GetNull_to_Zero();
+                                        tableAnalysis = new TableAnalysisOfVariance(multiFacets, zero);
+                                    }
 
-                                    // Inicializamos la lista de G_Parámetros de Optimización
-                                    List<G_ParametersOptimization> listG_ParametersOpt = new List<G_ParametersOptimization>();
+                                    if (tableAnalysis != null)
+                                    {
+                                        salir = true;
 
-                                    sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt));
+                                        TableG_Study_Percent tableG_Study = new TableG_Study_Percent(sourceOfDifferentiation, sourceOfInstrumentation, tableAnalysis);
 
-                                    // Guardamos los datos referentes a la creación de la suma de cuadrados
-                                    string nameFile = multiFacets.NameFileObs();
-                                    sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFile);
+                                        // Inicializamos la lista de G_Parámetros de Optimización
+                                        List<G_ParametersOptimization> listG_ParametersOpt = new List<G_ParametersOptimization>();
 
-                                    DateTime date = DateTime.Now;
-                                    sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
+                                        sagtElements.SetAnalysis_and_G_Study(new Analysis_and_G_Study(tableAnalysis, tableG_Study, listG_ParametersOpt));
 
-                                    // Mostramos todos los datos en los dataGridView
-                                    LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
+                                        // Guardamos los datos referentes a la creación de la suma de cuadrados
+                                        string nameFile = multiFacets.NameFileObs();
+                                        sagtElements.GetAnalysis_and_G_Study().SetNameFileDataCreation(nameFile);
 
-                                    // mostramos el tabPage de suma de cuadrados
-                                    ExcludeTabPages();
-                                    this.tabPageAnalysis.Parent = this.tabControlOptions;
-                                    // Restauramos los colores
-                                    this.RestoreColorMenu(this.mStripMain);
-                                    // Asignamos el nuevo color
-                                    this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
+                                        DateTime date = DateTime.Now;
+                                        sagtElements.GetAnalysis_and_G_Study().SetDateTime(date);
 
-                                    CloseLoadingScreen(fw);
+                                        // Mostramos todos los datos en los dataGridView
+                                        LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), nameFile);
+
+                                        // mostramos el tabPage de suma de cuadrados
+                                        ExcludeTabPages();
+                                        this.tabPageAnalysis.Parent = this.tabControlOptions;
+                                        // Restauramos los colores
+                                        this.RestoreColorMenu(this.mStripMain);
+                                        // Asignamos el nuevo color
+                                        this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
+
+                                        CloseLoadingScreen(fw);
+                                    }
                                 }
                                 break;
                         }// end switch

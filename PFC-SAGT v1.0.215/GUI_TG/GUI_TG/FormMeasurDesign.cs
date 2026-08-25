@@ -12,7 +12,6 @@
  * 
  */
 using MultiFacetData;
-using ProjectSSQ;
 using System;
 using System.Windows.Forms;
 
@@ -36,6 +35,8 @@ namespace GUI_GT
         ListFacets lfDiff; // lista de facetas de diferenciación, en principio la lista vacia
         ListFacets lfInst; // lista de facetas de instrumentación, en principio la original
         ListFacets lfParent; // lista de facetas original
+        // Indica si se ha pulsado btVCA (frente a btOK), es decir, si el análisis debe realizarse mediante la librería VCA de R
+        public bool UseVCA = false;
         // Mensages (String)
         // Este mensage se muestra si no se han seleccionado las fuentes de variación de manera correcta
         private string txtMessageNoSourceOfDiff = "No hay una fuente dependiente seleccionada";
@@ -205,14 +206,19 @@ namespace GUI_GT
          */
         private void btOK_Click(object sender, EventArgs e)
         {
-            // Relevant code in SSQQOptions.EstimationPlan
+            this.UseVCA = false;
+            // Rest of relevant code in SSQQOptions.EstimationPlan
         }
 
+        /*
+         * Descripción:
+         *  Igual que btOK_Click, pero indicando que el análisis de varianza debe realizarse
+         *  mediante la librería VCA de R en lugar del método de cálculo propio.
+         */
         private void btVCA_Click(object sender, EventArgs e)
         {
-            double result = RRunner.RunExample();
-
-            MessageBox.Show("The answer is: " + result);
+            this.UseVCA = true;
+            // Rest of relevant code in SSQQOptions.EstimationPlan
         }
 
         /* Descripción:
