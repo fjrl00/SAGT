@@ -18,17 +18,6 @@ namespace GUI_GT
 {
     public partial class FormAboutOf : Form
     {
-        /*=================================================================================================
-         * Variables
-         *=================================================================================================*/
-
-        // Información que se mostrara en la ventana
-        string version = "Versión:";
-        string student = "Francisco Jesús Ramos Pérez";
-        string projectDirector = "Dr. Don Antonio Hernández Mendo";
-        //string academicDirector = "Dr. Don José Luis Pastrana Brincones";
-        string methodologicalAdviser = "Dr. Don Ángel Blanco Villaseñor";
-
 
         /*=================================================================================================
          * Constructores
@@ -48,9 +37,8 @@ namespace GUI_GT
         public FormAboutOf(TransLibrary.Language lang, string nameFileTrans, string version)
             : this()
         {
-            this.version = version; // introducimos el valor de la versión del programa en la variable
             this.traslationElementsAboutOf(lang, nameFileTrans); // traducimos los textos
-            this.cocatStringLabel(); // Cotatenamos los textos traducidos con los nombres
+            lbVersion.Text += version;
         }
 
 
@@ -88,9 +76,6 @@ namespace GUI_GT
                 // Traducimos la etiqueta de director de proyecto
                 name = lbProjectDirector.Name.ToString();
                 lbProjectDirector.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                // Traducimos la etiqueta de director academico de proyecto
-                // name = lbAcademicDirector.Name.ToString();
-                // lbAcademicDirector.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // traducimos la etiqueta de Asesor Metodológico
                 name = lbMethodologicalAdviser.Name.ToString();
                 lbMethodologicalAdviser.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
@@ -107,29 +92,6 @@ namespace GUI_GT
                 MessageBox.Show(lEx.Message + " Se produjo un error al traducir " + name);
             }
         }// end traslationElementsAboutOf
-
-
-        /*
-         * Descripción:
-         *  Concatena las etiquetas con las variables de nombre y número de la versión.
-         */
-        private void cocatStringLabel()
-        {
-
-            // Concatenamos los textos con los nombres
-            //========================================
-
-            // Cocatenamos la cadena con el número de la versión
-            lbVersion.Text += ": " + version;
-            // Concatenamos la cadena del alumno
-            lbAlumName.Text += ": " + student;
-            // Concatenamos la cadena del director
-            lbProjectDirector.Text += ": " + projectDirector;
-            // Concatenamos la cadena de director academico
-            // lbAcademicDirector.Text += ": " + academicDirector;
-            // Concatenamos la cdena de Asesor metodológico
-            lbMethodologicalAdviser.Text += ": " + methodologicalAdviser;
-        }
 
 
         /*

@@ -26,21 +26,12 @@ namespace GUI_GT
         public FormSplashScreen(string version)
             : this()
         {
-            int pos = version.LastIndexOf('.');
-            string textVersion = version.Remove(pos);
-            pos = textVersion.LastIndexOf('.');
-            textVersion = textVersion.Remove(pos);
-            textVersion = textVersion.Replace("build", "");
-
-            char[] charDelimiters = { ' ' };
-            string[] arrayWords = textVersion.Split(charDelimiters, StringSplitOptions.RemoveEmptyEntries);
-            this.lbVersion.Text = this.lbVersion.Text + "1.0." + arrayWords[1];
+            this.lbVersion.Text = this.lbVersion.Text + version;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }

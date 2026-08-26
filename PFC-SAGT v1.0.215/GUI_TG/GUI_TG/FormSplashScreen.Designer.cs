@@ -37,6 +37,7 @@
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timerSplashSecreen
@@ -86,12 +87,20 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label2.Name = "label2";
             // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Name = "label3";
+            // 
             // FormSplashScreen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::GUI_GT.Properties.Resources.splashScreen3;
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbVersion);
@@ -119,5 +128,6 @@
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

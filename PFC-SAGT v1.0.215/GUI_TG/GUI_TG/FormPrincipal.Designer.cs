@@ -581,7 +581,7 @@
             this.mStripData.MaximumSize = new System.Drawing.Size(175, 0);
             this.mStripData.Name = "mStripData";
             this.mStripData.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripData.Size = new System.Drawing.Size(175, 459);
+            this.mStripData.Size = new System.Drawing.Size(175, 438);
             this.mStripData.TabIndex = 2;
             this.mStripData.Text = "menuStrip1";
             // 
@@ -693,7 +693,7 @@
             this.tsmiDataOmitLevels.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataOmitLevels.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiDataOmitLevels.Name = "tsmiDataOmitLevels";
-            this.tsmiDataOmitLevels.Size = new System.Drawing.Size(170, 38);
+            this.tsmiDataOmitLevels.Size = new System.Drawing.Size(170, 36);
             this.tsmiDataOmitLevels.Text = "Omitir niveles";
             this.tsmiDataOmitLevels.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiDataOmitLevels.Click += new System.EventHandler(this.tsmiDataOmitLevels_Click);
@@ -951,19 +951,19 @@
             this.tbFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFileName.BackColor = System.Drawing.SystemColors.Window;
-            this.tbFileName.Location = new System.Drawing.Point(82, 10);
+            this.tbFileName.Location = new System.Drawing.Point(89, 10);
             this.tbFileName.Name = "tbFileName";
             this.tbFileName.ReadOnly = true;
-            this.tbFileName.Size = new System.Drawing.Size(479, 20);
+            this.tbFileName.Size = new System.Drawing.Size(472, 20);
             this.tbFileName.TabIndex = 11;
             // 
             // tbDescription
             // 
             this.tbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDescription.Location = new System.Drawing.Point(82, 40);
+            this.tbDescription.Location = new System.Drawing.Point(89, 40);
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(479, 20);
+            this.tbDescription.Size = new System.Drawing.Size(472, 20);
             this.tbDescription.TabIndex = 10;
             // 
             // lbCommentsData
@@ -2816,7 +2816,7 @@
             this.mStripAnalysis.MaximumSize = new System.Drawing.Size(187, 505);
             this.mStripAnalysis.Name = "mStripAnalysis";
             this.mStripAnalysis.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mStripAnalysis.Size = new System.Drawing.Size(187, 435);
+            this.mStripAnalysis.Size = new System.Drawing.Size(187, 438);
             this.mStripAnalysis.TabIndex = 1;
             this.mStripAnalysis.Text = "menuStrip1";
             // 
@@ -2943,7 +2943,7 @@
             this.tsmiAnalysis_Graphs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiAnalysis_Graphs.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmiAnalysis_Graphs.Name = "tsmiAnalysis_Graphs";
-            this.tsmiAnalysis_Graphs.Size = new System.Drawing.Size(182, 33);
+            this.tsmiAnalysis_Graphs.Size = new System.Drawing.Size(182, 36);
             this.tsmiAnalysis_Graphs.Text = "Gráficos";
             this.tsmiAnalysis_Graphs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 

@@ -35,7 +35,7 @@ namespace GUI_GT
     public partial class FormPrincipal : Form
     {
         // Versión del programa
-        string version = "v1.0 build 215.0.4";
+        string version = "v2.0";
         string version2 = " ";
 
 

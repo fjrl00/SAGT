@@ -32,7 +32,7 @@ namespace GUI_GT
         // Constantes
         const string FILE_STRING_REPORT = "reports.txt"; // fichero que contiene las traducciónes del informe
         const string SAGT = "SAGT ";
-        const string NAME_STUDENT = "Francisco Jesús Ramos Pérez";
+        const string NAME_STUDENT = "Francisco Jesús Ramos Pérez, Fernando Jesús Ruano Linares";
         const string NAME_PROJECT_DIRECTOR = "Dr. Don Antonio Hernández Mendo";
         const string NAME_ACADEMIC_DIRECTOR = "Dr. Don José Luis Pastrana Brincones";
         const string UNIV_UMA = "Universidad de Málaga";
