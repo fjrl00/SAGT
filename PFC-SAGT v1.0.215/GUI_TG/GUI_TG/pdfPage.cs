@@ -131,6 +131,9 @@ namespace myApp.ns.pages
             //Center the table on the page
             footerTbl.HorizontalAlignment = Element.ALIGN_CENTER;
 
+            // Developer/directors column 80%, page number column 20%
+            footerTbl.SetWidths(new float[] { 4f, 1f });
+
             Paragraph para = new Paragraph(developer, footer);
 
             //add a carriage return

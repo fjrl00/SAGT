@@ -69,12 +69,21 @@ namespace GUI_GT
                             {
                                 FormWaiting fw = ShowLoadingScreen(msgLoading);
 
-                                WriterSagtWordDocument(saveDialog.FileName);
-                                salir = true;
+                                try
+                                {
+                                    WriterSagtWordDocument(saveDialog.FileName);
+                                    salir = true;
 
-                                Process.Start(saveDialog.FileName);
-
-                                CloseLoadingScreen(fw);
+                                    Process.Start(saveDialog.FileName);
+                                }
+                                catch (Exception ex)
+                                {
+                                    ShowMessageErrorOK(ex.Message, "", MessageBoxIcon.Error);
+                                }
+                                finally
+                                {
+                                    CloseLoadingScreen(fw);
+                                }
                             }
                         }
                         else
@@ -93,6 +102,8 @@ namespace GUI_GT
          */
         private void WriterSagtWordDocument(string outputPath)
         {
+            TranslateReportElements();
+
             Font fontTableReport = new Font(this.cfgApli.GetTableFontFamily(), this.cfgApli.GetTableFontSize());
 
             // Crear documento Word
@@ -241,7 +252,7 @@ namespace GUI_GT
 
             // "Page "
             CT_R ctR1 = ctP.AddNewR();
-            ctR1.AddNewT().Value = "Página ";
+            ctR1.AddNewT().Value = pag + " ";
             CT_RPr rPr1 = ctR1.AddNewRPr();
             rPr1.AddNewSz().val = (ulong)(this.fontFootersAndHeaders.Size * 2);
 
@@ -256,7 +267,7 @@ namespace GUI_GT
 
             // " of "
             CT_R ctR2 = ctP.AddNewR();
-            ctR2.AddNewT().Value = " de ";
+            ctR2.AddNewT().Value = " " + wordPageOfSeparator + " ";
             CT_RPr rPr2 = ctR2.AddNewRPr();
             rPr2.AddNewSz().val = (ulong)(this.fontFootersAndHeaders.Size * 2);
 

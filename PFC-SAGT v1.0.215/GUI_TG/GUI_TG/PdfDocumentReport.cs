@@ -110,6 +110,8 @@ namespace GUI_GT
         {
             try
             {
+                TranslateReportElements();
+
                 // Document doc = new Document(PageSize.A4.Rotate(), 10, 10, 10, 10);
                 Document doc = new Document(PageSize.A4, 50, 50, 60, 60);
                 // Margenes: izquierdo, derecho, superior e inferior

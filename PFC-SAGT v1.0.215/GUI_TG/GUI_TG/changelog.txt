@@ -68,7 +68,7 @@ LOCALIZATION
 - Other numerous fixes to the English and French localizations
 - Completely overhauled previous machine-translated Portuguese localization
 - Some Spanish typos fixed
-- Some previously untranslated text throughout the app has been translated
+- Some previously untranslated text throughout the app has been translated, word/pdf/printed reports in particular
 - Some missing text added
 
 OTHERS

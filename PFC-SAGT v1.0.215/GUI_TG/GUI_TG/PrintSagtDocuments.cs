@@ -52,6 +52,7 @@ namespace GUI_GT
 
         // Titulos de los informes
         string issuanceOfReport = "Emisión de informe";
+        string wordPageOfSeparator = "de";
         string titleDataReport = "Informe de tabla de observaciones";
         string titleMeansReport = "Informe de tablas de medias";
         string titleSsqReport = "Informe de análisis de varianzas";
@@ -201,8 +202,7 @@ namespace GUI_GT
             try
             {
                 fw = ShowLoadingScreen(msgLoading);
-                traslationElementsReports(this.cfgApli.GetConfigLanguage(),
-                    Application.StartupPath + LANG_PATH + FILE_STRING_REPORT);
+                TranslateReportElements();
 
                 strFormat = new StringFormat();
                 strFormat.Alignment = StringAlignment.Near;
@@ -1150,6 +1150,19 @@ namespace GUI_GT
          * Parámetros:
          *      TransLibrary.Language lang: Idioma al que vamos a traducir los elementos de la ventana.
          */
+        /* Descripción:
+         *  Traduce los elementos de los informes (PDF, Word e impresión) al idioma configurado
+         *  actualmente en la aplicación. Debe llamarse antes de generar cualquier informe, ya que
+         *  antes solo se invocaba desde la impresión GDI y los informes en PDF/Word se generaban
+         *  siempre con las etiquetas en su valor por defecto (español).
+         */
+        private void TranslateReportElements()
+        {
+            traslationElementsReports(this.cfgApli.GetConfigLanguage(),
+                Application.StartupPath + LANG_PATH + FILE_STRING_REPORT);
+        }// end TranslateReportElements
+
+
         private void traslationElementsReports(TransLibrary.Language lang, string pathFileTrans)
         {
             TransLibrary.ReadFileTrans dic = new TransLibrary.ReadFileTrans(pathFileTrans);
@@ -1192,6 +1205,12 @@ namespace GUI_GT
                 // Traducimos la etiqueta tabla
                 name = "stringTable";
                 stringTable = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                // Traducimos la etiqueta de emisión de informe
+                name = "issuanceOfReport";
+                issuanceOfReport = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                // Traducimos el separador "de" usado en "Página X de Y" (informe Word)
+                name = "wordPageOfSeparator";
+                wordPageOfSeparator = dic.labelTraslation(name).GetTranslation(lang).ToString();
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
