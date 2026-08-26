@@ -1499,7 +1499,10 @@ namespace GUI_GT
 
 
                 // Actuamos sobre el dGridViewExOptimizationResum
-                if (this.dgvAnalysisResumOpt.ColumnCount != 0)
+                // NOTA: a diferencia de los dgvEx anteriores, aquí no basta con comprobar ColumnCount, ya
+                // que su contenido traducible vive en las celdas (no solo en la cabecera), y por tanto
+                // requiere repintar la tabla entera a partir de los datos de análisis actuales.
+                if (sagtElements.GetAnalysis_and_G_Study() != null)
                 {
                     // dGridViewExOptimizationResum.Columns[0].HeaderText = name_resum;
                     // Entonces pintamos la tabla de resumen de nuevo

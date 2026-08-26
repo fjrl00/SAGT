@@ -45,6 +45,7 @@ OTHER BUGFIXES
 - Solved oversight where the user was allowed to make graphs of just one datapoint so long as beginning+increment was higher than ending
 - Solved bug where trying to select or copy sections of tables in non-conventional ways (selecting a few corners manually with control-clicking, shift-clicking starting from bottom, etc) could result in an exception
 - Solved bug where double-clicking a file in OpenFileDialog to select it resulted in the second click also applying to whichever menu button stood directly behind it
+- Solved bug where closing Analysis data would lead to exceptions whenever language was changed
 
 OPTIMIZATION
 
