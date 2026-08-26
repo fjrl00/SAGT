@@ -113,6 +113,7 @@ UI
 - Fixed height of vertical menu items not being consistent
 - Improved format in About SAGT screen
 - The user is no longer allowed to click buttons in the Measurement design form that would result in an error, they're grayed out when appropriate instead
+- Workspace selector interface modernized
 
 NEW FEATURES
 

@@ -220,3 +220,15 @@ es=Seleccionar espacio de trabajo
 en=Select workspace
 fr=Sélectionner l'espace de travail
 po=Selecionar espaço de trabalho
+
+[errorWorkspaceInvalidPath]
+es=La ruta indicada no es válida
+en=The specified path is not valid
+fr=Le chemin indiqué n'est pas valide
+po=O caminho indicado não é válido
+
+[questionCreateWorkspaceDir]
+es=El directorio indicado no existe. ¿Desea crearlo?
+en=The specified directory does not exist. Do you want to create it?
+fr=Le répertoire indiqué n'existe pas. Voulez-vous le créer ?
+po=O diretório indicado não existe. Deseja criá-lo?

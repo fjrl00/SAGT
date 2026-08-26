@@ -606,7 +606,7 @@
             this.tbPath_Workspace.BackColor = System.Drawing.SystemColors.Window;
             this.tbPath_Workspace.Location = new System.Drawing.Point(19, 51);
             this.tbPath_Workspace.Name = "tbPath_Workspace";
-            this.tbPath_Workspace.ReadOnly = true;
+            this.tbPath_Workspace.ReadOnly = false;
             this.tbPath_Workspace.Size = new System.Drawing.Size(533, 20);
             this.tbPath_Workspace.TabIndex = 2;
             // 

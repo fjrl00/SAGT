@@ -14,6 +14,7 @@
  *      Ventana con las opciones de configuración.
  */
 using ConfigCFG;
+using Ookii.Dialogs.WinForms;
 using System;
 using System.Drawing;
 using System.Drawing.Text; // para poder usar InstalledFontCollection
@@ -45,6 +46,8 @@ namespace GUI_GT
         private string toolTipText = "Haga doble clic para seleccionar el color.";
         private string errorFileInUse = "El fichero está en uso";
         private string messageRemoveFile = "Se han eliminado las contraseñas";
+        private string errorWorkspaceInvalidPath = "La ruta indicada no es válida";
+        private string questionCreateWorkspaceDir = "El directorio indicado no existe. ¿Desea crearlo?";
         private string pathManual;
         private string defaultWorkspace;
         string filepass;
@@ -420,8 +423,55 @@ namespace GUI_GT
          */
         private void btOk_Click(object sender, EventArgs e)
         {
+            if (!ValidateWorkspacePath())
+            {
+                // Path inválido (o el usuario ha rechazado crear el directorio): mantenemos la ventana abierta.
+                this.DialogResult = DialogResult.None;
+            }
             // Relevant code in FormPrincipal.tsmiSettings_Click
         }// end btOk_Click
+
+
+        /* Descripción:
+         *  Comprueba que la ruta introducida en tbPath_Workspace sea un directorio válido. Admite rutas
+         *  pegadas entre comillas (p.ej. "Copiar como ruta de acceso" del Explorador de Windows). Si el
+         *  directorio no existe, se ofrece la posibilidad de crearlo.
+         * Devuelve:
+         *  true si la ruta es (o pasa a ser) un directorio válido; false en caso contrario.
+         */
+        private bool ValidateWorkspacePath()
+        {
+            string path = this.tbPath_Workspace.Text.Trim().Trim('"');
+            this.tbPath_Workspace.Text = path;
+
+            if (Directory.Exists(path))
+            {
+                return true;
+            }
+
+            if (!Path.IsPathRooted(path))
+            {
+                MessageBox.Show(errorWorkspaceInvalidPath, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
+            }
+
+            DialogResult res = MessageBox.Show(questionCreateWorkspaceDir, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                    return true;
+                }
+                catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException || ex is ArgumentException || ex is NotSupportedException)
+                {
+                    MessageBox.Show(errorWorkspaceInvalidPath + ": " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
+            }
+
+            return false;
+        }// end ValidateWorkspacePath
 
 
         /* Descripción:
@@ -543,8 +593,18 @@ namespace GUI_GT
          */
         private void btSelectWorkspace_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fb_dialog = new FolderBrowserDialog();
-            DialogResult res = fb_dialog.ShowDialog();
+            VistaFolderBrowserDialog fb_dialog = new VistaFolderBrowserDialog();
+            fb_dialog.Description = this.btSelectWorkspace.Text;
+            fb_dialog.UseDescriptionForTitle = true;
+
+            // Partimos del directorio ya escrito en el textBox (si es válido), en lugar de empezar
+            // siempre desde la carpeta por defecto del diálogo.
+            string currentPath = this.tbPath_Workspace.Text.Trim().Trim('"');
+            if (Directory.Exists(currentPath))
+            {
+                fb_dialog.SelectedPath = currentPath;
+            }
+            DialogResult res = fb_dialog.ShowDialog(this);
             if (res.Equals(DialogResult.OK))
             {
                 this.tbPath_Workspace.Text = fb_dialog.SelectedPath;
@@ -794,6 +854,10 @@ namespace GUI_GT
                 errorFileInUse = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "messageRemoveFile";
                 messageRemoveFile = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "errorWorkspaceInvalidPath";
+                errorWorkspaceInvalidPath = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "questionCreateWorkspaceDir";
+                questionCreateWorkspaceDir = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
             }
             catch (TransLibrary.LabelTranslationException lEx)
