@@ -51,15 +51,3 @@ es=Facetas de Instrumentación
 en=Facets of Instrumentation
 fr=Facettes d'instrumentation
 po=Facetas de instrumentação
-
-[txtMessageNoSourceOfDiff]
-es=No hay una fuente de diferenciación seleccionada
-en=There is no source of differentiation selected
-fr=Aucune source de différenciation n'est sélectionnée
-po=Nenhuma fonte de diferenciação foi selecionada
-
-[txtMessageNoSourceOfInst]
-es=No hay una fuente de instrumentación seleccionada
-en=There is No instrumentation source selected
-fr=Aucune source d'instrumentation n'est sélectionnée
-po=Nenhuma fonte de instrumentação foi selecionada

@@ -106,7 +106,7 @@
             this.btOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btOK.Image = global::GUI_GT.Properties.Resources.button_ok_h22x22;
-            this.btOK.Location = new System.Drawing.Point(135, 334);
+            this.btOK.Location = new System.Drawing.Point(179, 334);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(92, 35);
             this.btOK.TabIndex = 2;
@@ -120,7 +120,7 @@
             this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Image = global::GUI_GT.Properties.Resources.button_cancel_h22x22;
-            this.btCancel.Location = new System.Drawing.Point(233, 334);
+            this.btCancel.Location = new System.Drawing.Point(288, 334);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(92, 35);
             this.btCancel.TabIndex = 3;
@@ -134,7 +134,7 @@
             this.btVCA.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btVCA.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btVCA.Image = global::GUI_GT.Properties.Resources.Rlogo_1;
-            this.btVCA.Location = new System.Drawing.Point(331, 334);
+            this.btVCA.Location = new System.Drawing.Point(441, 334);
             this.btVCA.Name = "btVCA";
             this.btVCA.Size = new System.Drawing.Size(92, 35);
             this.btVCA.TabIndex = 10;

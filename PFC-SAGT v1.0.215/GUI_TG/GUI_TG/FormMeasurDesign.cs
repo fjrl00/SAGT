@@ -37,10 +37,6 @@ namespace GUI_GT
         ListFacets lfParent; // lista de facetas original
         // Indica si se ha pulsado btVCA (frente a btOK), es decir, si el análisis debe realizarse mediante la librería VCA de R
         public bool UseVCA = false;
-        // Mensages (String)
-        // Este mensage se muestra si no se han seleccionado las fuentes de variación de manera correcta
-        private string txtMessageNoSourceOfDiff = "No hay una fuente dependiente seleccionada";
-        private string txtMessageNoSourceOfInst = "No hay una fuente de instrumentación seleccionada";
 
 
         /*=================================================================================
@@ -57,12 +53,19 @@ namespace GUI_GT
          * Descripción:
          *  Constructor. Inicializa las variables que contiene la lista de facetas (fuentes de
          *  variciación) facetas de diferenciación e instrumentación.
+         * Parámetros:
+         *  bool showVCA: indica si debe mostrarse el botón de análisis mediante la librería VCA de R.
+         *      Solo tiene sentido en el contexto de la creación inicial de la suma de cuadrados
+         *      (SSQOptions.EstimationPlan), no al editar un modelo ya existente.
          */
-        public FormMeasurDesign(ListFacets lfDiff, ListFacets lfInst, ListFacets lfParent, TransLibrary.Language lang)
+        public FormMeasurDesign(ListFacets lfDiff, ListFacets lfInst, ListFacets lfParent, TransLibrary.Language lang,
+            bool showVCA)
         {
             InitializeComponent();
             // traducimos
             this.traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
+
+            this.btVCA.Visible = showVCA;
 
             // asignamos las fuentes de variación
             this.lfDiff = lfDiff;
@@ -77,9 +80,14 @@ namespace GUI_GT
             }
             this.lfParent = lfParent;
 
+            // Conectamos los eventos que el diseñador dejó sin asignar
+            listBoxSourceDiff.SelectedIndexChanged += listBoxSourceDiff_SelectedIndexChanged;
+            listBoxSourceInst.SelectedIndexChanged += listBoxSourceInst_SelectedIndexChanged;
+
             LoadSourceOfInstListBox();
             this.listBoxSourceInst.SetSelected(0, true);
             WriteSourceOfVarInTextBox();
+            RefreshButtonStates();
         }
 
 
@@ -143,23 +151,22 @@ namespace GUI_GT
                 {
                     // mientras haya elementos en el listBox selecionaremos el primero
                     this.listBoxSourceInst.SetSelected(0, true);
+                    this.listBoxSourceInst.Focus();
                 }
                 else
                 {
                     // si no hay elementos en el listBox seleccionaremos los del otro listBox
                     this.listBoxSourceDiff.SetSelected(0, true);
+                    this.listBoxSourceDiff.Focus();
                 }
             }
-            else
-            {
-                MessageBox.Show(txtMessageNoSourceOfInst, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
 
+            RefreshButtonStates();
         }
 
 
         /* Descripción:
-         *  Mueve la faceta seleccionada del listBos de fuentes de diferenciación al listBox de 
+         *  Mueve la faceta seleccionada del listBos de fuentes de diferenciación al listBox de
          *  fuentes de instrumentación.
          */
         private void btMoveRight_Click(object sender, EventArgs e)
@@ -175,17 +182,38 @@ namespace GUI_GT
                 {
                     // mientras haya elementos en el listBox selecionaremos el primero
                     this.listBoxSourceDiff.SetSelected(0, true);
+                    this.listBoxSourceDiff.Focus();
                 }
                 else
                 {
                     // si no hay elementos en el listBox seleccionaremos los del otro listBox
                     this.listBoxSourceInst.SetSelected(0, true);
+                    this.listBoxSourceInst.Focus();
                 }
             }
-            else
-            {
-                MessageBox.Show(txtMessageNoSourceOfDiff, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
+
+            RefreshButtonStates();
+        }
+
+
+        /* Descripción:
+         *  Actualiza el estado (habilitado/deshabilitado) de los botones de mover en función de si hay
+         *  algún elemento seleccionado en el listBox de origen correspondiente.
+         */
+        private void listBoxSourceDiff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshButtonStates();
+        }
+
+        private void listBoxSourceInst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshButtonStates();
+        }
+
+        private void RefreshButtonStates()
+        {
+            btMoveLeft.Enabled = listBoxSourceInst.SelectedIndex >= 0;
+            btMoveRight.Enabled = listBoxSourceDiff.SelectedIndex >= 0;
         }
 
 
@@ -285,12 +313,6 @@ namespace GUI_GT
                 this.lbInstr_Facets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbDiff_Facets.Name.ToString();
                 this.lbDiff_Facets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
-
-                // traducimos los tres mensages
-                name = "txtMessageNoSourceOfDiff";
-                this.txtMessageNoSourceOfDiff = dic.labelTraslation(name).GetTranslation(lang).ToString();
-                name = "txtMessageNoSourceOfInst";
-                this.txtMessageNoSourceOfInst = dic.labelTraslation(name).GetTranslation(lang).ToString();
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {

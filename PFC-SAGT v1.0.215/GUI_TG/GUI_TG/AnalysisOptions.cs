@@ -263,7 +263,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Lee los datatos de las facetas de la tabla de análisis y muestra la tabla de suma de 
+         *  Lee los datos de las facetas de la tabla de análisis y muestra la tabla de suma de 
          *  cuadrados para que estos puedan ser introducidos por el usuario.
          */
         private void btActionEditSumOfSquaresOnAnalisys_Click()
@@ -287,7 +287,7 @@ namespace GUI_GT
                 this.analysisSourceOfVarDiff = new ListFacets();
                 this.analysisSourceOfVarInst = new ListFacets();
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage());
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage(), showVCA: false);
                 bool salir = false; // variable de control del bucle
 
                 do
@@ -1331,7 +1331,7 @@ namespace GUI_GT
                 analysisSourceOfVarInst = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfInstrumentation();
                 // mostramos la ventana de selección de diseño
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, sagtElements.GetAnalysis_and_G_Study().GetListFacets(), cfgApli.GetConfigLanguage());
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, sagtElements.GetAnalysis_and_G_Study().GetListFacets(), cfgApli.GetConfigLanguage(), showVCA: false);
                 bool salir = false; // variable de control del bucle
 
                 do

@@ -112,6 +112,7 @@ UI
 - X axis labelling in graphs improved, specially when there's many datapoints
 - Fixed height of vertical menu items not being consistent
 - Improved format in About SAGT screen
+- The user is no longer allowed to click buttons in the Measurement design form that would result in an error, they're grayed out when appropriate instead
 
 NEW FEATURES
 
@@ -133,4 +134,4 @@ KNOWN ISSUES
 - Treatment of unbalanced designs is allowed. However, calculations for them are not accurate at all.
 - Various minor bugs seemingly native to WinForms, like AutoEllipsis not triggering correctly, or column widths not being properly resized when resizing the app's screen.
 
-Last updated: 19/07/2026
+Last updated: 29/08/2026
