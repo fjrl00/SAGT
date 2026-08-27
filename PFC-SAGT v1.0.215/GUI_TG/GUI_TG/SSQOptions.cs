@@ -894,7 +894,7 @@ namespace GUI_GT
             {
                 ShowMessageErrorOK(errorNoSSQ);
             }
-            else if (this.formShowCharts == null)
+            else
             {
                 TableG_Study_Percent tableG_Study = tAnalysis_tG_Study_Opt.TableG_Study_Percent();
                 TransLibrary.Language lang = this.LanguageActually();
