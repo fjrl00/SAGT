@@ -217,6 +217,16 @@ namespace ProjectSSQ
 
 
         /* Descripción:
+         *  Elimina todos los niveles de optimización añadidos, dejando la lista de parámetros de
+         *  optimización vacía (estado anterior a cualquier "Añadir nivel de significación").
+         */
+        public void ClearG_Parameters()
+        {
+            this.listG_P_Optimization.Clear();
+        }
+
+
+        /* Descripción:
          *  Devuelve el nombre del fichero que contiene las tablas de observaciones.
          */
         public void SetNameFileDataCreation(string nameFile)

@@ -247,6 +247,16 @@ namespace GUI_GT
             // Relevant code found in SSQQOptions.AddSignificanceLevel
         }// private void btOk_Click(object sender, EventArgs e)
 
+        /*
+         * Descripción:
+         *  Cierra la ventana con DialogResult.Abort, indicando al llamante que debe eliminarse
+         *  toda la lista de niveles de optimización añadidos (en lugar de añadir uno nuevo).
+         *  Relevant code found in SSQQOptions.AddSignificanceLevel
+         */
+        private void btClean_Click(object sender, EventArgs e)
+        {
+        }
+
         /* Descripción:
          *  Devuelve el dataGridViewEx con las Facetas de instrumentación.
          */
@@ -298,6 +308,8 @@ namespace GUI_GT
                 // Traducimos el boton cancelar
                 name = this.btCancel.Name.ToString();
                 this.btCancel.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                name = this.btClean.Name.ToString();
+                this.btClean.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 // Traducimos la cabeceras de las columnas
                 name = "stringName";
                 stringName = dic.labelTraslation(name).GetTranslation(lang).ToString();

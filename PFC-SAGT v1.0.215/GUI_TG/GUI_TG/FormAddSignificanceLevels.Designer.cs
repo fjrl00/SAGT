@@ -42,6 +42,7 @@
             this.dgvExDiffFacts = new DataGridViewEx.DataGridViewEx();
             this.lbInstr_Facets = new System.Windows.Forms.Label();
             this.lbDiff_Facets = new System.Windows.Forms.Label();
+            this.btClean = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExInstFacts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExDiffFacts)).BeginInit();
             this.SuspendLayout();
@@ -80,9 +81,9 @@
             this.dgvExInstFacts.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dgvExInstFacts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvExInstFacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvExInstFacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExInstFacts.BackgroundColor = System.Drawing.Color.White;
             this.dgvExInstFacts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExInstFacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -120,8 +121,8 @@
             this.dgvExDiffFacts.AllowUserToResizeRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dgvExDiffFacts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvExDiffFacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvExDiffFacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvExDiffFacts.BackgroundColor = System.Drawing.Color.White;
             this.dgvExDiffFacts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvExDiffFacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -171,6 +172,22 @@
             this.lbDiff_Facets.TabIndex = 6;
             this.lbDiff_Facets.Text = "Facetas de diferenciación";
             // 
+            // btClean
+            //
+            this.btClean.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btClean.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btClean.Image = global::GUI_GT.Properties.Resources.broom_22x22;
+            this.btClean.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btClean.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btClean.Location = new System.Drawing.Point(590, 355);
+            this.btClean.Name = "btClean";
+            this.btClean.Size = new System.Drawing.Size(79, 32);
+            this.btClean.TabIndex = 111;
+            this.btClean.Text = "Limpiar";
+            this.btClean.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btClean.UseVisualStyleBackColor = true;
+            this.btClean.Click += new System.EventHandler(this.btClean_Click);
+            // 
             // FormAddSignificanceLevels
             // 
             this.AcceptButton = this.btOk;
@@ -178,6 +195,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(682, 395);
+            this.Controls.Add(this.btClean);
             this.Controls.Add(this.lbDiff_Facets);
             this.Controls.Add(this.lbInstr_Facets);
             this.Controls.Add(this.dgvExDiffFacts);
@@ -202,5 +220,6 @@
         private DataGridViewEx.DataGridViewEx dgvExDiffFacts;
         private System.Windows.Forms.Label lbInstr_Facets;
         private System.Windows.Forms.Label lbDiff_Facets;
+        private System.Windows.Forms.Button btClean;
     }
 }

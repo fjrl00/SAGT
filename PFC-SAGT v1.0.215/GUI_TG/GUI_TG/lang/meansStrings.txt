@@ -107,10 +107,10 @@ fr=Date de création
 po=Data de criação
 
 [Medias]
-es=Medias
-en=Means
-fr=Moyennes
-po=Médias
+es=Media
+en=Mean
+fr=Moyenne
+po=Média
 
 [Varianza]
 es=Varianza

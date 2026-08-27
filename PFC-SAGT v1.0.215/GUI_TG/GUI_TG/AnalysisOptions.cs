@@ -584,11 +584,21 @@ namespace GUI_GT
             }
             else
             {
-                G_ParametersOptimization newG_ParametersOpt = AddSignificanceLevel(anl_tAnalysis_G_study_opt);
+                G_ParametersOptimization newG_ParametersOpt = AddSignificanceLevel(anl_tAnalysis_G_study_opt, out bool cleanRequested);
+
+                if (cleanRequested)
+                {
+                    // Se ha pulsado "Limpiar": eliminamos todos los niveles de optimización añadidos y
+                    // repintamos la tabla resumen para que refleje el estado original (sin columnas extra).
+                    anl_tAnalysis_G_study_opt.ClearG_Parameters();
+
+                    this.tabControlAnalysisSSQ.SelectedIndex = 2; // El dos se corresponde con el tabPabge optimización
+                    LoadDataGridViewExOptimizationResum(anl_tAnalysis_G_study_opt, this.dgvAnalysisResumOpt);
+                }
                 /* Si se ha devuelto null es que se ha cancelado la operación
                  * si no es null lo incorporaremos a la tabla de parámetros de optimización
                  */
-                if (newG_ParametersOpt != null)
+                else if (newG_ParametersOpt != null)
                 {
                     anl_tAnalysis_G_study_opt.AddG_Parameter(newG_ParametersOpt);
 

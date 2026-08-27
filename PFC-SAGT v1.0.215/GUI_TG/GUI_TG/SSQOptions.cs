@@ -635,10 +635,14 @@ namespace GUI_GT
          * Parámetros:
          *  Analysis_and_G_Study tablesOfAnalysisG: El objeto que contiene las tablas de análisis, G-Parámetros
          *  y optimización.
+         *  out bool cleanRequested: se pone a true si el usuario ha pulsado "Limpiar" en lugar de "Aceptar",
+         *      indicando que hay que vaciar la lista de niveles de optimización añadidos hasta ahora, en
+         *      vez de añadir uno nuevo.
          */
-        private G_ParametersOptimization AddSignificanceLevel(Analysis_and_G_Study tablesOfAnalysisG)
+        private G_ParametersOptimization AddSignificanceLevel(Analysis_and_G_Study tablesOfAnalysisG, out bool cleanRequested)
         {
             G_ParametersOptimization retVal = null; // valor de retorno
+            cleanRequested = false;
 
             TransLibrary.Language lang = this.LanguageActually();
             // Lista de facetas de instrumentación original
@@ -656,6 +660,12 @@ namespace GUI_GT
                 {//switch (*1*)
                     case (DialogResult.Cancel): salir = true; break;
                     // Hemos cancelado la operación y salimos del bucle
+                    case (DialogResult.Abort):
+                        // Se ha pulsado "Limpiar": salimos indicando que hay que vaciar la lista de
+                        // niveles de optimización, sin añadir ningún nuevo G_ParametersOptimization.
+                        cleanRequested = true;
+                        salir = true;
+                        break;
                     case (DialogResult.OK):
                         // Para facetas de instrumentación
                         int numInstFacets = lfInst.Count();

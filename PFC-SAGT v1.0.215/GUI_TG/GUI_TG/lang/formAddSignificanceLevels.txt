@@ -59,3 +59,9 @@ es=Nuevo tamaño del universo
 en=New size of universe
 fr=Nouvelle taille de l'univers
 po=Novo tamanho do universo
+
+[btClean]
+es=Limpiar
+en=Clean
+fr=Nettoyer
+po=Limpar
