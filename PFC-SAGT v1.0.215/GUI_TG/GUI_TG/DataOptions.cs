@@ -2339,9 +2339,11 @@ namespace GUI_GT
                 // Traducimos el botón de anidar facetas
                 name = btNestingFacet.Name.ToString();
                 btNestingFacet.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                btNestingFacetEdit.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 name = btRemoveNesting.Name.ToString();
                 btRemoveNesting.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+                btRemoveNestingEdit.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
                 // Traducimos el botón de generar tabla de observaciones
                 name = btGenerateTableObs.Name.ToString();

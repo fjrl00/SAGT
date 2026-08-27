@@ -124,6 +124,9 @@ namespace GUI_GT
                 name = this.lbPassword.Name.ToString();
                 this.lbPassword.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
 
+                name = this.linkLbForgottenPass.Name.ToString();
+                this.linkLbForgottenPass.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {
