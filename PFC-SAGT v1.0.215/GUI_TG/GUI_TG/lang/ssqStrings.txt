@@ -162,10 +162,10 @@ fr=Graphique Coef G Rel
 po=Gráfico Coef G Rel
 
 [sourceOfVarString]
-es=Fuentes de variación
-en=Sources of variation
-fr=Sources de variation
-po=Fontes de variação
+es=Fuente de variación
+en=Source of variation
+fr=Source de variation
+po=Fonte de variação
 
 [ssqString]
 es=Suma de cuadrados
@@ -192,13 +192,13 @@ fr=Aléatoire
 po=Aleatório
 
 [mixCompString]
-es=Mixtos
+es=Mixto
 en=Mixed
 fr=Mixtes
-po=Mistos
+po=Misto
 
 [correctedComp]
-es=Corregidos
+es=Corregido
 en=Corrected
 fr=Corrigé
 po=Corrigido

@@ -47,6 +47,7 @@ OTHER BUGFIXES
 - Solved bug where double-clicking a file in OpenFileDialog to select it resulted in the second click also applying to whichever menu button stood directly behind it
 - Solved bug where closing Analysis data would lead to exceptions whenever language was changed
 - Solved bug where the user was forbidden from creating Chart Coef G graphs whenever a Chart optimization form was open
+- Solved bug where if the user tried to proceed without saving when creating a new Data section, they would be rendered unable to edit facets
 
 OPTIMIZATION
 
@@ -72,6 +73,8 @@ LOCALIZATION
 - Some Spanish typos fixed
 - Some previously untranslated text throughout the app has been translated, word/pdf/printed reports in particular
 - Some missing text added
+- Tables now have all their headers in singular (as all our cells contain only one value) instead of plural sometimes
+- Manuals created for English, Portuguese and French
 
 OTHERS
 

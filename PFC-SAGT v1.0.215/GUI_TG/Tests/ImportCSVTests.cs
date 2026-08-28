@@ -270,7 +270,7 @@ namespace Tests
         [Fact]
         public void ImportCSV_IgnoredMeasurementVariable_IsNotUsed()
         {
-            string csv = "a,b,y,z\n1,1,10,100\n1,2,20,200\n2,1,30,300\n2,2,40,400";
+            string csv = "a,b,y,z\n1,1,10,100\n1,2,20,100\n2,1,30,100\n2,2,40,100";
             string path = CreateTempCsvFile(csv);
 
             MultiFacetsObs mfo = ImportCSV.ImportCSV_to_MultiFacetsObs(

@@ -163,9 +163,9 @@ po=Arquivo
 
 [lbCommentsData]
 es=Descripción
-en=Comments
-fr=Commentaires
-po=Comentários
+en=Description
+fr=Description
+po=Descrição
 
 [measurementVariable]
 es=Variable de medida
@@ -174,16 +174,16 @@ fr=Variable de mesure
 po=Variável de medida
 
 [nameColFacet]
-es=Nombres
-en=Names
-fr=Noms
-po=Nomes
+es=Nombre
+en=Name
+fr=Nom
+po=Nome
 
 [nameColLevel]
-es=Niveles
-en=Levels
-fr=Niveaux
-po=Níveis
+es=Nivel
+en=Level
+fr=Niveau
+po=Nível
 
 [nameColSizeOfUniverse]
 es=Tamaño del universo
@@ -193,9 +193,9 @@ po=Tamanho do universo
 
 [nameColComment]
 es=Descripción
-en=Comments
-fr=Commentaires
-po=Comentários
+en=Description
+fr=Description
+po=Descrição
 
 [nameColOmit]
 es=Omitir

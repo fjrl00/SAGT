@@ -30,16 +30,16 @@ po=Cancelar
 
 
 [stringName]
-es=Nombres
-en=Names
-fr=Noms
-po=Nomes
+es=Nombre
+en=Name
+fr=Nom
+po=Nome
 
 [stringLevel]
-es=Niveles
-en=Levels
-fr=Niveaux
-po=Níveis
+es=Nivel
+en=Level
+fr=Niveau
+po=Nível
 
 [stringSize]
 es=Tamaño del universo
