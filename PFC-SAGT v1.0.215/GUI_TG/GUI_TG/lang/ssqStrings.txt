@@ -276,16 +276,16 @@ fr=Coefficient G absolu
 po=Coeficiente G absoluto
 
 [relat_err_var]
-es=Error relativo
-en=Relative Error
-fr=Erreur relative
-po=Erro relativo
+es=Varianza del Error Relativo
+en=Relative Error Variance
+fr=Variance de l'erreur relative
+po=Variância do Erro Relativo
 
 [absol_err_var]
-es=Error absoluto
-en=Absolute Error
-fr=Erreur absolue
-po=Erro absoluto
+es=Varianza del Error Absoluto
+en=Absolute Error Variance
+fr=Variance de l'erreur absolue
+po=Variância do Erro Absoluto
 
 [stand_relat_err]
 es=Error estándar de medición relativo
