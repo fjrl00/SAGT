@@ -44,3 +44,9 @@ TestResults/
 # Visual Studio 2015/2017/2019/2022 cache/options directory
 .vs/
 .Rproj.user
+
+# Bundled R runtime and materialized renv package library (see RRunner.cs / RSetup).
+# These are large binary blobs assembled on a maintainer's machine per the bundling
+# instructions, not source, so they aren't checked into version control.
+PFC-SAGT v1.0.215/GUI_TG/GUI_TG/R/
+PFC-SAGT v1.0.215/GUI_TG/GUI_TG/RSetup/renv/library/

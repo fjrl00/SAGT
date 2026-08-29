@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MultiFacetData
 {
@@ -33,6 +34,12 @@ namespace MultiFacetData
         const string END_FACET = "</facet>";
         const string BEGIN_SKIP_LEVELS = "<skip_levels>";
         const string END_SKIP_LEVELS = "</skip_levels>";
+
+        // El nombre de una faceta se usa tal cual como nombre de columna/término en las fórmulas R
+        // generadas por RRunner, así que se restringe a un juego de caracteres seguro (letras, dígitos
+        // y espacios), excluyendo cualquier carácter con significado sintáctico en R o en el propio
+        // formato de diseño de facetas ('[', ']', ':').
+        private static readonly Regex VALID_NAME_PATTERN = new Regex(@"^[\p{L}0-9 ]+$", RegexOptions.Compiled);
 
         /*=================================================================================
          * Variables de instancia
@@ -57,11 +64,8 @@ namespace MultiFacetData
 
         public Facet(string name, int level)
         {
-            if (String.IsNullOrEmpty(name))
-            {
-                throw new FacetException("La faceta no tiene nombre.");
-            }
-            else if (level < 1)
+            ValidateName(name);
+            if (level < 1)
             {
                 throw new FacetException("Faceta tiene que tener un nivel positivo (mayor que cero)");
             }
@@ -238,6 +242,23 @@ namespace MultiFacetData
             this.omit = omit;
         }
 
+
+        /* Descripción:
+         *  Comprueba que el nombre de la faceta es válido: no vacío y compuesto únicamente por
+         *  letras, dígitos y espacios. Lanza FacetException si no lo es.
+         */
+        private static void ValidateName(string name)
+        {
+            if (String.IsNullOrEmpty(name))
+            {
+                throw new FacetException("La faceta no tiene nombre.");
+            }
+            if (!VALID_NAME_PATTERN.IsMatch(name))
+            {
+                throw new FacetException("El nombre de la faceta solo puede contener letras, dígitos y espacios.");
+            }
+        }
+
         #endregion Constructores
 
 
@@ -261,10 +282,7 @@ namespace MultiFacetData
          */
         public void Name(string name)
         {
-            if (String.IsNullOrEmpty(name))
-            {
-                throw new FacetException("La faceta no tiene nombre.");
-            }
+            ValidateName(name);
             string oldname = this.name;
             this.name = name;
             this.list_facets_design = this.list_facets_design.Replace("[" + oldname + "]", "[" + name + "]");

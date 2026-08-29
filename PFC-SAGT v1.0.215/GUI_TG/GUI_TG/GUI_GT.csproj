@@ -489,16 +489,13 @@
     <Compile Include="TabPageMeansEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Content Include="RSetup\renv.lock">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RSetup\renv\activate.R">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RSetup\renv\settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RSetup\dependencies.R">
+    <!--
+      RSetup: the renv project (lockfile + pre-populated project library). Wildcarded because a
+      materialized renv library contains thousands of package files that can't be listed by hand;
+      RStudio-local clutter (.Rproj.user, .Rhistory, the .Rproj file itself) is excluded since it's
+      neither needed at runtime nor meant to be redistributed.
+    -->
+    <Content Include="RSetup\**\*.*" Exclude="RSetup\.Rproj.user\**\*.*;RSetup\.Rhistory;RSetup\*.Rproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Web References\MenPasWS\Reference.map">
