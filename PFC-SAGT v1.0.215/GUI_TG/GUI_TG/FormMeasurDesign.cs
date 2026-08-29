@@ -27,6 +27,7 @@ namespace GUI_GT
         const string STRING_TEXT = "formMeasurDesign.txt";
         const string LANG_PATH = "\\lang\\";
 
+        private string txtConfirmClearOptimizationLevels = "Se perderán los niveles de optimización calculados. ¿Desea continuar?";
 
         /*=================================================================================
          * Variables
@@ -37,6 +38,11 @@ namespace GUI_GT
         ListFacets lfParent; // lista de facetas original
         // Indica si se ha pulsado btVCA (frente a btOK), es decir, si el análisis debe realizarse mediante la librería VCA de R
         public bool UseVCA = false;
+        // Indica si aceptar el diseño actual vaciaría niveles de optimización ya calculados de un
+        // análisis existente (ver AnalysisOptions.tsmiActionChangeModel_Click); si es true, btOK pedirá
+        // confirmación antes de cerrar el diálogo. No aplica a la creación de un análisis nuevo.
+        private readonly bool confirmOptimizationLevelsLoss;
+        
 
 
         /*=================================================================================
@@ -57,15 +63,20 @@ namespace GUI_GT
          *  bool showVCA: indica si debe mostrarse el botón de análisis mediante la librería VCA de R.
          *      Solo tiene sentido en el contexto de la creación inicial de la suma de cuadrados
          *      (SSQOptions.EstimationPlan), no al editar un modelo ya existente.
+         *  bool confirmOptimizationLevelsLoss: indica si aceptar el diseño actual vaciaría niveles de
+         *      optimización ya calculados de un análisis existente. Solo tiene sentido al cambiar el
+         *      modelo de un análisis ya existente (AnalysisOptions.tsmiActionChangeModel_Click), no al
+         *      crear un análisis nuevo, donde nunca hay niveles de optimización que perder.
          */
         public FormMeasurDesign(ListFacets lfDiff, ListFacets lfInst, ListFacets lfParent, TransLibrary.Language lang,
-            bool showVCA)
+            bool showVCA, bool confirmOptimizationLevelsLoss)
         {
             InitializeComponent();
             // traducimos
             this.traslationElements(lang, Application.StartupPath + LANG_PATH + STRING_TEXT);
 
             this.btVCA.Visible = showVCA;
+            this.confirmOptimizationLevelsLoss = confirmOptimizationLevelsLoss;
 
             // asignamos las fuentes de variación
             this.lfDiff = lfDiff;
@@ -234,6 +245,22 @@ namespace GUI_GT
          */
         private void btOK_Click(object sender, EventArgs e)
         {
+            if (this.confirmOptimizationLevelsLoss)
+            {
+                DialogResult resConfirm = MessageBox.Show(
+                    this.txtConfirmClearOptimizationLevels,
+                    "",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question);
+
+                if (resConfirm != DialogResult.OK)
+                {
+                    // No cerramos el diálogo: dejamos que el usuario reconsidere el diseño o cancele.
+                    this.DialogResult = DialogResult.None;
+                    return;
+                }
+            }
+
             this.UseVCA = false;
             // Rest of relevant code in SSQQOptions.EstimationPlan
         }
@@ -313,6 +340,10 @@ namespace GUI_GT
                 this.lbInstr_Facets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
                 name = this.lbDiff_Facets.Name.ToString();
                 this.lbDiff_Facets.Text = dic.labelTraslation(name).GetTranslation(lang).ToString();
+
+                // traducimos el mensage de aviso de pérdida de niveles de optimización
+                name = "txtConfirmClearOptimizationLevels";
+                this.txtConfirmClearOptimizationLevels = dic.labelTraslation(name).GetTranslation(lang).ToString();
             }
             catch (TransLibrary.LabelTranslationException lEx)
             {

@@ -51,3 +51,9 @@ es=Facetas de Instrumentación
 en=Facets of Instrumentation
 fr=Facettes d'instrumentation
 po=Facetas de instrumentação
+
+[txtConfirmClearOptimizationLevels]
+es=Se perderán los niveles de optimización calculados. ¿Desea continuar?
+en=You'll lose the calculated optimization levels. Do you want to continue?
+fr=Vous perdrez les niveaux d'optimisation calculés. Voulez-vous continuer ?
+po=Você perderá os níveis de otimização calculados. Deseja continuar?

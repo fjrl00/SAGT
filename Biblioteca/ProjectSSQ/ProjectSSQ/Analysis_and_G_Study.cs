@@ -468,9 +468,6 @@ namespace ProjectSSQ
                         Facet f_old = lf_Of_levels.FacetInPos(j);
                         int posInOldFullList = lf.IndexOf(f_old);
                         Facet f_new = newLf.FacetInPos(posInOldFullList);
-                        // Usamos el diseño (anidamiento/cruce) de f_new: reconstruir la faceta sin él
-                        // (como se hacía antes) la deja anidada solo a nivel superior, lo que rompe
-                        // CombinationStringWithoutRepetition() más adelante para facetas anidadas.
                         newG_ListFacets.Add(new Facet(f_new.Name(), f_old.Level(), f_new.Comment(), f_old.SizeOfUniverse(), f_new.ListFacetDesign(), f_new.Omit()));
                     }
 

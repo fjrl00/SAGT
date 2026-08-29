@@ -237,7 +237,7 @@ namespace GUI_GT
             string labelResum = resum;
             if (pos != 0)
             {
-                labelResum = resum + " " + pos;
+                labelResum = resum + " " + (pos+1);
             }
             this.chartG_Parameters.Series[serie].Points[pos].AxisLabel = labelResum;
             // Muestra el resuldo encima de la barra

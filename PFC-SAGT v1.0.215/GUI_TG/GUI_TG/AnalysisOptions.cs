@@ -287,7 +287,7 @@ namespace GUI_GT
                 this.analysisSourceOfVarDiff = new ListFacets();
                 this.analysisSourceOfVarInst = new ListFacets();
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage(), showVCA: false);
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, listFacetsAnalysis, cfgApli.GetConfigLanguage(), showVCA: false, confirmOptimizationLevelsLoss: false);
                 bool salir = false; // variable de control del bucle
 
                 do
@@ -1337,13 +1337,13 @@ namespace GUI_GT
             }
             else
             {
-                // Avisamos de que se perdera información si no se ha guardado
                 // Lista de facetas de Instrumentación y diferenciación
                 analysisSourceOfVarDiff = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfDifferentiation();
                 analysisSourceOfVarInst = sagtElements.GetAnalysis_and_G_Study().TableG_Study_Percent().LfInstrumentation();
                 // mostramos la ventana de selección de diseño
                 // Creamos la ventana para introducir el diseño de medida
-                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, sagtElements.GetAnalysis_and_G_Study().GetListFacets(), cfgApli.GetConfigLanguage(), showVCA: false);
+                bool hasOptimizationLevels = sagtElements.GetAnalysis_and_G_Study().ListG_P_Optimization().Count > 0;   // Cambiar el modelo reconstruye Analysis_and_G_Study desde cero (ver más abajo), lo que vacía los niveles de optimización ya calculados: avisamos si los hay.
+                FormMeasurDesign formMeasurDesign = new FormMeasurDesign(analysisSourceOfVarDiff, analysisSourceOfVarInst, sagtElements.GetAnalysis_and_G_Study().GetListFacets(), cfgApli.GetConfigLanguage(), showVCA: false, confirmOptimizationLevelsLoss: hasOptimizationLevels);
                 bool salir = false; // variable de control del bucle
 
                 do

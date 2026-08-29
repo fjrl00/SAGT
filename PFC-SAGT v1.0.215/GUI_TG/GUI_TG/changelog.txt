@@ -119,6 +119,8 @@ UI
 - Improved format in About SAGT screen
 - The user is no longer allowed to click buttons in the Measurement design form that would result in an error, they're grayed out when appropriate instead
 - Workspace selector interface modernized
+- Fixed labels in Chart optimization not matching with the ones in the Optimization tab
+- Appropriate warning is now given regarding actions that would wipe out Optimization Levels data in the Analysis section
 
 NEW FEATURES
 
