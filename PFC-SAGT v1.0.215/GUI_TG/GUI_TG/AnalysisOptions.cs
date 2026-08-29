@@ -1125,32 +1125,18 @@ namespace GUI_GT
                 Analysis_and_G_Study analysis =
                     new Analysis_and_G_Study(tbAnalysisVar, gp);
 
-                // Ask where to save
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(cfgApli.Get_Path_Workspace()))
-                    saveDialog.InitialDirectory = cfgApli.Get_Path_Workspace();
-
-                saveDialog.DefaultExt = DEFAULT_EXT_SAGT;
-                saveDialog.Filter = "sagt file" + FILTER_SAGT_FILE + FILTER_ALL_FILE;
-                saveDialog.AddExtension = true;
-                saveDialog.OverwritePrompt = true;
-
-                if (saveDialog.ShowDialog() != DialogResult.OK)
-                    return;
-
                 analysis.SetDateTime(DateTime.Now);
-                analysis.SetNameFileDataCreation(saveDialog.FileName);
-
-                analysis.WritingFileAnalysisSSQ(saveDialog.FileName);
 
                 sagtElements.SetAnalysis_and_G_Study(analysis);
 
                 ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
+                // Save to file
+                saveFileButton(this.sagtElements);
+
                 LoadAllDataGridWithDataAnalysis(
                     sagtElements.GetAnalysis_and_G_Study(),
-                    saveDialog.FileName);
+                    sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
 
                 disableEditingFacetAnalysis();
             }
@@ -1205,32 +1191,18 @@ namespace GUI_GT
                 Analysis_and_G_Study analysis =
                     new Analysis_and_G_Study(tbAnalysisVar, gp);
 
-                // Ask where to save
-                SaveFileDialog saveDialog = new SaveFileDialog();
-
-                if (Directory.Exists(cfgApli.Get_Path_Workspace()))
-                    saveDialog.InitialDirectory = cfgApli.Get_Path_Workspace();
-
-                saveDialog.DefaultExt = "anls";
-                saveDialog.Filter = "Analysis file" + FILTER_ANALYSIS_FILTER;
-                saveDialog.AddExtension = true;
-                saveDialog.OverwritePrompt = true;
-
-                if (saveDialog.ShowDialog() != DialogResult.OK)
-                    return;
-
                 analysis.SetDateTime(DateTime.Now);
-                analysis.SetNameFileDataCreation(saveDialog.FileName);
-
-                analysis.WritingFileAnalysisSSQ(saveDialog.FileName);
 
                 sagtElements.SetAnalysis_and_G_Study(analysis);
 
                 ShowMeDesignInAnalysisTextBoxs(gp.LfDifferentiation(), gp.LfInstrumentation());
 
+                // Save to file
+                saveFileButton(this.sagtElements);
+
                 LoadAllDataGridWithDataAnalysis(
                     sagtElements.GetAnalysis_and_G_Study(),
-                    saveDialog.FileName);
+                    sagtElements.GetAnalysis_and_G_Study().GetNameFileDataCreation());
 
                 disableEditingFacetAnalysis();
             }
