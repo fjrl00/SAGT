@@ -298,6 +298,12 @@ en=You'll lose the means if you haven't saved them. Do you want to continue?
 fr=Vous avez perdu les moyennes si vous ne les avez pas sauvegardées. Voulez-vous continuer ?
 po=Você perdeu as médias se não as salvou. Deseja continuar?
 
+[txtConfirmClearOptimizationLevels]
+es=Se perderán los niveles de optimización calculados. ¿Desea continuar?
+en=You'll lose the calculated optimization levels. Do you want to continue?
+fr=Vous perdrez les niveaux d'optimisation calculés. Voulez-vous continuer ?
+po=Você perderá os níveis de otimização calculados. Deseja continuar?
+
 [txtConfirmBuildNesting]
 es=No podrá seguir editando las facetas hasta que el proceso finalice. ¿Desea continuar?
 en=You won't be able to continue editing the facets until the process finishes. Do you want to continue?

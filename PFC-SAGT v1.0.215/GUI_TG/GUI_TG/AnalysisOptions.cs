@@ -437,6 +437,36 @@ namespace GUI_GT
             {
                 listFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
                 llFacetsAnalysis = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().SourcesOfVar();
+
+                // Editar el nivel o el tamaño de universo de una faceta invalida los niveles de
+                // optimización ya calculados (ver Analysis_and_G_Study.ReplaceListOfFacet); un cambio
+                // de nombre o comentario no. Avisamos solo cuando la edición pendiente realmente los
+                // vaciaría, no simplemente porque existan niveles calculados.
+                if (sagtElements.GetAnalysis_and_G_Study().ListG_P_Optimization().Count > 0)
+                {
+                    bool wouldClear = false;
+                    try
+                    {
+                        ListFacets pendingLf = dgvExToListFacets(this.dgvExAnalysis_FacetEditSsq);
+                        ListFacets oldLf = sagtElements.GetAnalysis_and_G_Study().TableAnalysisVariance().ListFacets();
+                        pendingLf = oldLf.RemplaceListFacets(pendingLf);
+                        wouldClear = sagtElements.GetAnalysis_and_G_Study().WouldClearOptimizationLevels(pendingLf);
+                    }
+                    catch
+                    {
+                        // Si la tabla de edición no se puede leer todavía (p.ej. nombres duplicados),
+                        // dejamos que AnalysisUpdateFacets() reporte el error más adelante como siempre.
+                    }
+
+                    if (wouldClear)
+                    {
+                        DialogResult resConfirm = ShowMessageDialog(titleConfirm, txtConfirmClearOptimizationLevels);
+                        if (resConfirm != DialogResult.OK)
+                        {
+                            return;
+                        }
+                    }
+                }
             }
 
             Dictionary<string, double?> ssq = new Dictionary<string, double?>();

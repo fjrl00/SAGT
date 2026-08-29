@@ -104,6 +104,7 @@ namespace GUI_GT
         private string txtConfirmSaveWedService = "Esta operación puede tardar varios minutos. ¿Desea continuar?";
         private string txtMessageNoSelected = "No hay seleccionado ningún elemento"; // Mensage de que no ha seleccionado ningún elemento del checkedListBox.
         private string txtConfirmClearMeans = "Se perderán las medias si no las ha guardado. ¿Desea continuar?";
+        private string txtConfirmClearOptimizationLevels = "Se perderán los niveles de optimización calculados. ¿Desea continuar?";
         private string txtTheDatasIsLoaded = "Los datos han sido cargados";
 
 
@@ -236,6 +237,8 @@ namespace GUI_GT
                 // traducimos los textos de la ventana de confirmación para el caso de que exista medias creadas previamente
                 name = "txtConfirmClearMeans";
                 this.txtConfirmClearMeans = dicError.labelTraslation(name).GetTranslation(lang).ToString();
+                name = "txtConfirmClearOptimizationLevels";
+                this.txtConfirmClearOptimizationLevels = dicError.labelTraslation(name).GetTranslation(lang).ToString();
                 name = "txtConfirmBuildNesting";
                 txtConfirmBuildNesting = dicError.labelTraslation(name).GetTranslation(lang).ToString();
 

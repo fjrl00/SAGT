@@ -408,6 +408,10 @@ namespace ProjectSSQ
 
             ListFacets lf = this.tableAnalysisVariance.ListFacets();
 
+            // Comprobamos si algún nivel o tamaño de universo ha cambiado respecto a la lista anterior
+            // (los cambios de nombre/comentario no invalidan los parámetros de optimización ya calculados).
+            bool levelsOrUniverseChanged = HasLevelOrUniverseChanged(lf, newLf);
+
             ListFacets lfDiff = this.tableG_Study_Percent.LfDifferentiation();
             int n = lfDiff.Count();
 
@@ -438,30 +442,83 @@ namespace ProjectSSQ
             this.tableAnalysisVariance = tableAnalysis;
             this.tableG_Study_Percent = tableG_study;
 
-            List<G_ParametersOptimization> newList_gp = new List<G_ParametersOptimization>();
-            n = oldListG_P.Count;
-            for (int i = 0; i < n; i++)
+            if (levelsOrUniverseChanged)
             {
-                G_ParametersOptimization gp = oldListG_P[i];
-                ListFacets lf_Of_levels = gp.G_ListFacets();
-                ListFacets newG_ListFacets = new ListFacets();
-                int numFacets = lf_Of_levels.Count();
-                for (int j = 0; j < numFacets; j++)
+                // Los niveles de optimización ya calculados se apoyaban en componentes de varianza
+                // que han quedado obsoletos por el cambio de nivel/universo: se descartan en lugar
+                // de recalcularse
+                this.listG_P_Optimization = new List<G_ParametersOptimization>();
+            }
+            else
+            {
+                List<G_ParametersOptimization> newList_gp = new List<G_ParametersOptimization>();
+                n = oldListG_P.Count;
+                for (int i = 0; i < n; i++)
                 {
-                    Facet f_new = newLf.FacetInPos(j);
-                    Facet f_old = lf_Of_levels.FacetInPos(j);
-                    newG_ListFacets.Add(new Facet(f_new.Name(), f_old.Level(), f_new.Comment(), f_old.SizeOfUniverse(), f_new.Omit()));
+                    G_ParametersOptimization gp = oldListG_P[i];
+                    // gp.G_ListFacets() está en orden diferenciación+instrumentación, que no tiene
+                    // por qué coincidir con el orden de lf/newLf: cada faceta se busca por posición
+                    // en la lista antigua (lf) para encontrar su correspondiente en newLf, en lugar
+                    // de asumir que ambas listas comparten el mismo orden.
+                    ListFacets lf_Of_levels = gp.G_ListFacets();
+                    ListFacets newG_ListFacets = new ListFacets();
+                    int numFacets = lf_Of_levels.Count();
+                    for (int j = 0; j < numFacets; j++)
+                    {
+                        Facet f_old = lf_Of_levels.FacetInPos(j);
+                        int posInOldFullList = lf.IndexOf(f_old);
+                        Facet f_new = newLf.FacetInPos(posInOldFullList);
+                        // Usamos el diseño (anidamiento/cruce) de f_new: reconstruir la faceta sin él
+                        // (como se hacía antes) la deja anidada solo a nivel superior, lo que rompe
+                        // CombinationStringWithoutRepetition() más adelante para facetas anidadas.
+                        newG_ListFacets.Add(new Facet(f_new.Name(), f_old.Level(), f_new.Comment(), f_old.SizeOfUniverse(), f_new.ListFacetDesign(), f_new.Omit()));
+                    }
+
+                    G_ParametersOptimization newGp = this.Calc_G_ParametersOptimización(newG_ListFacets);
+                    newList_gp.Add(newGp);
                 }
 
-                G_ParametersOptimization newGp = this.Calc_G_ParametersOptimización(newG_ListFacets);
-                newList_gp.Add(newGp);
+                this.listG_P_Optimization = newList_gp;
             }
-
-            this.listG_P_Optimization = newList_gp;
 
             return this;
 
         }// end ReplaceListOfFacet
+
+
+        /* Descripción:
+         *  Devuelve true si, al aplicar ReplaceListOfFacet con la lista de facetas que se pasa como
+         *  parámetro, se vaciarían los niveles de optimización ya calculados (es decir, si algún
+         *  nivel o tamaño de universo cambia respecto al actual). Pensado para que la UI pueda avisar
+         *  al usuario antes de aplicar la edición, sin necesidad de aplicarla primero.
+         */
+        public bool WouldClearOptimizationLevels(ListFacets newLf)
+        {
+            return HasLevelOrUniverseChanged(this.tableAnalysisVariance.ListFacets(), newLf);
+        }
+
+
+        /* Descripción:
+         *  Devuelve true si el nivel o el tamaño del universo de alguna faceta difiere entre las dos
+         *  listas (comparando por posición). No tiene en cuenta cambios de nombre ni de comentario.
+         * @Precondición:
+         *  Ambas listas deben tener el mismo número de facetas y en el mismo orden (misma precondición
+         *  que ReplaceListOfFacet).
+         */
+        private static bool HasLevelOrUniverseChanged(ListFacets oldLf, ListFacets newLf)
+        {
+            int n = oldLf.Count();
+            for (int i = 0; i < n; i++)
+            {
+                Facet fOld = oldLf.FacetInPos(i);
+                Facet fNew = newLf.FacetInPos(i);
+                if (fOld.Level() != fNew.Level() || fOld.SizeOfUniverse() != fNew.SizeOfUniverse())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         #endregion Remplazar lista de facetas
 
