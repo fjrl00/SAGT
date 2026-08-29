@@ -93,10 +93,7 @@ namespace ProjectSSQ
                 {
                     ListFacets lf = totalFacets.ListDesignFacets(key);
 
-                    if (lTSSQ.MixedComp(key) < 0)      //if less than 0, we directly interpret it as 0 and skip the computation
-                        absError = 0.0;
-                    else
-                        absError = CalcDStudyVarComp(ldesign, key, lTSSQ, totalFacets, differentiation, lf);
+                    absError = CalcDStudyVarComp(ldesign, key, lTSSQ, totalFacets, differentiation, lf);
 
                     if (lf.ContainsAnyOf(differentiation)) // Only calculate relative error if the design contains any differentiation facets
                         relError = absError;
@@ -359,6 +356,14 @@ namespace ProjectSSQ
             }
 
             retVal = retVal * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
+
+            // The components come in as the analysis of variance table estimated them, negatives included, because the
+            // sum above needs them whole in order to cancel out properly. It is here, once we already have the D study
+            // component, that we apply the usual criterion and interpret a negative variance as a 0.
+            if ((retVal != null) && (double)retVal < 0)
+            {
+                retVal = 0;
+            }
 
             return retVal;
         }

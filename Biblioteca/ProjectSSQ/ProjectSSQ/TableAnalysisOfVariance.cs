@@ -287,7 +287,9 @@ namespace ProjectSSQ
 
 
         /* Descripción:
-         *  Constructor. Le pasamos como argumento la suma de cuadrados y las componentes: aleatorias
+         *  Constructor del importador de GT E 2.0.
+         *  
+         *  Le pasamos como argumento la suma de cuadrados y las componentes: aleatorias
          *  mixtas y corregidas.
          */
         public TableAnalysisOfVariance(ListFacets listF, Dictionary<string, double?> ssq,
@@ -723,8 +725,15 @@ namespace ProjectSSQ
             if (this.listFacets.HasAllFacetsSizeInfinite())
             {
                 /* todas las facetas tienen tamaño de universo infinito y no es necesario calcularlas
-                 * basta con que la igualesmos con las aleatorias. */
-                this.mixedComp = this.randomComp;
+                 * basta con que la igualesmos con las aleatorias.
+                 * Note we copy them over one by one rather than assigning the dictionary itself, so that both
+                 * columns stay independent of each other. */
+                int num = this.ldesigns.Count;
+                for (int j = 0; j < num; j++)
+                {
+                    string design = this.ldesigns[j];
+                    this.mixedComp.Add(design, this.randomComp[design]);
+                }
             }
             else
             {
