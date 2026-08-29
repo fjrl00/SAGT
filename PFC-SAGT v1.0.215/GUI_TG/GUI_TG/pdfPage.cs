@@ -137,10 +137,12 @@ namespace myApp.ns.pages
             Paragraph para = new Paragraph(developer, footer);
 
             //add a carriage return
-            para.Add(Environment.NewLine);
-            para.Add(projectDirector);
-            para.Add(Environment.NewLine);
-            para.Add(academicDirector);
+            // Nota: Paragraph hereda de List<IElement>, por lo que hay que envolver el texto
+            // en Chunk (la fuente es la misma que la del párrafo, para no alterar el aspecto).
+            para.Add(new Chunk(Environment.NewLine, footer));
+            para.Add(new Chunk(projectDirector, footer));
+            para.Add(new Chunk(Environment.NewLine, footer));
+            para.Add(new Chunk(academicDirector, footer));
 
             //create a cell instance to hold the text
             PdfPCell cell = new PdfPCell(para);

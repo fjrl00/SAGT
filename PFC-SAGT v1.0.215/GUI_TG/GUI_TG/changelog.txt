@@ -84,6 +84,7 @@ OTHERS
 - Overhauled error feedback when importing and exporting Excel documents
 - Changed default settings: null will no longer be interpreted as zero by default, graphs will have their data points represented as diamonds and their value at the top
 - use of .anls files has been deprecated, files in the future are to be saved purely as .sagt
+- Licensing documents fixed and updated, see 'Contrato de licencia.rtf' for further information
 
 UI
 
@@ -121,6 +122,7 @@ UI
 - Workspace selector interface modernized
 - Fixed labels in Chart optimization not matching with the ones in the Optimization tab
 - Appropriate warning is now given regarding actions that would wipe out Optimization Levels data in the Analysis section
+- Lightened overly dark table colors in PDF reports to become more in line with the DOCX reports
 
 NEW FEATURES
 

@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ProjectSSQ")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TOSHIBA")]
+[assembly: AssemblyCompany("Universidad de Málaga")]
 [assembly: AssemblyProduct("ProjectSSQ")]
-[assembly: AssemblyCopyright("Copyright © TOSHIBA 2010")]
+[assembly: AssemblyCopyright("Copyright © 2010-2026 Universidad de Málaga")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

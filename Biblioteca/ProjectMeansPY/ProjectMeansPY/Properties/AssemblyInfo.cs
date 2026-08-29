@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ProjectMeansPY")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TOSHIBA")]
+[assembly: AssemblyCompany("Universidad de Málaga")]
 [assembly: AssemblyProduct("ProjectMeansPY")]
-[assembly: AssemblyCopyright("Copyright © TOSHIBA 2011")]
+[assembly: AssemblyCopyright("Copyright © 2011-2026 Universidad de Málaga")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

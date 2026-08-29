@@ -1,0 +1,291 @@
+================================================================================
+SAGT - AVISOS SOBRE COMPONENTES DE TERCEROS
+SAGT - THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
+================================================================================
+
+Ultima actualizacion: agosto de 2026.
+Aplicable a: SAGT (GUI_TG.exe) y a todos los componentes distribuidos junto a el.
+
+Este archivo se proporciona para dar cumplimiento a las obligaciones de
+atribucion y de puesta a disposicion del codigo fuente que imponen las licencias
+de los componentes de terceros incluidos en SAGT.
+
+IMPORTANTE: las licencias de los componentes aqui relacionados prevalecen,
+respecto de cada uno de ellos, sobre cualquier otro termino que acompane a SAGT.
+Nada de lo dispuesto en "Contrato de licencia.rtf" limita ni condiciona los
+derechos que dichas licencias conceden al usuario.
+
+--------------------------------------------------------------------------------
+INDICE
+--------------------------------------------------------------------------------
+  A. Entorno estadistico R y paquetes de R (GPL-2.0 y otras)
+  B. Bibliotecas .NET enlazadas
+  C. Componentes de origen no determinado
+  D. Oferta de codigo fuente (GPL / LGPL)
+  E. Textos de licencia
+
+
+================================================================================
+A. ENTORNO ESTADISTICO R Y PAQUETES DE R
+================================================================================
+
+SAGT distribuye e instala una copia del entorno estadistico R. SAGT no
+incorpora ni enlaza codigo de R: lo invoca como proceso independiente
+(Rscript.exe) mediante argumentos de linea de comandos. R se distribuye por
+tanto como obra agregada, en los terminos del art. 2 de la GPL-2.0.
+
+  R 4.5.2
+  Copyright (C) 2025 The R Foundation for Statistical Computing
+  Licencia: GPL-2.0 (GNU General Public License, version 2)
+  https://www.r-project.org/
+  Texto de la licencia: incluido en la instalacion, en R\COPYING
+
+Paquetes de R distribuidos con la aplicacion (biblioteca base, carpeta
+R\library):
+
+  Paquete        Licencia                  Titular / referencia
+  -------------  ------------------------  ----------------------------------
+  KernSmooth     Unlimited                 M. P. Wand
+  MASS           GPL-2 | GPL-3             B. Ripley et al.
+  Matrix         GPL (>= 2) | file LICENCE D. Bates, M. Maechler et al.
+  boot           Unlimited                 A. Canty, B. Ripley
+  class          GPL-2 | GPL-3             B. Ripley, W. Venables
+  cluster        GPL (>= 2)                M. Maechler et al.
+  codetools      GPL                       L. Tierney
+  foreign        GPL (>= 2)                R Core Team
+  lattice        GPL (>= 2)                D. Sarkar
+  mgcv           GPL (>= 2)                S. Wood
+  nlme           GPL (>= 2)                J. Pinheiro, D. Bates et al.
+  nnet           GPL-2 | GPL-3             B. Ripley, W. Venables
+  rpart          GPL-2 | GPL-3             T. Therneau, B. Atkinson
+  spatial        GPL-2 | GPL-3             B. Ripley
+  survival       LGPL (>= 2)               T. Therneau
+  renv           MIT                       Posit Software, PBC
+
+Paquetes de R instalados en el proyecto renv (carpeta RSetup):
+
+  Paquete        Licencia                  Titular / referencia
+  -------------  ------------------------  ----------------------------------
+  Rcpp           GPL (>= 2)                D. Eddelbuettel, R. Francois et al.
+  RcppEigen      GPL (>= 2) | file LICENSE D. Bates, D. Eddelbuettel et al.
+  Rdpack         GPL (>= 2)                G. Boshnakov
+  VCA            GPL (>= 3)                A. Schuetzenmeister et al.
+  lme4           GPL (>= 2)                D. Bates, M. Maechler, B. Bolker
+  minqa          GPL-2                     K. M. Mullen et al.
+  nloptr         LGPL (>= 3)               S. G. Johnson, J. Ypma
+  numDeriv       GPL-2                     P. Gilbert, R. Varadhan
+  rbibutils      GPL-2                     G. Boshnakov
+  reformulas     GPL-3                     B. Bolker
+  renv           MIT                       Posit Software, PBC
+
+Cada paquete conserva, en su carpeta de instalacion, sus archivos DESCRIPTION
+y, cuando procede, LICENSE o LICENCE, con la informacion completa de titularidad
+y licencia.
+
+El paquete Matrix incorpora codigo de SuiteSparse (CHOLMOD, METIS), con sus
+propios avisos de licencia en R\library\Matrix\doc\SuiteSparse\. La
+distribucion de R incluye ademas Tcl/Tk y la extension BWidget
+(R\Tcl\lib\BWidget\LICENSE.txt), la biblioteca KaTeX
+(R\doc\html\katex\LICENSE) y la familia tipografica Roboto
+(R\library\grDevices\fonts\Roboto\LICENSE.txt).
+
+
+================================================================================
+B. BIBLIOTECAS .NET ENLAZADAS
+================================================================================
+
+Los siguientes componentes se distribuyen como ensamblados independientes y son
+enlazados dinamicamente por SAGT.
+
+--- Licencia LGPL-2.0 -----------------------------------------------------------
+
+  iTextSharp.LGPLv2.Core 3.8.5
+  Basado en iTextSharp 4.1.6, Copyright (C) 1999-2009 Bruno Lowagie,
+  Paulo Soares et al. Adaptacion .NET: Vahid Nasiri (VahidN) y colaboradores.
+  Licencia: LGPL-2.0-only
+  https://github.com/VahidN/iTextSharp.LGPLv2.Core
+
+--- Licencia LGPL-3.0 -----------------------------------------------------------
+
+  NSax 1.0.2
+  Licencia: LGPL-3.0-only
+
+--- Licencia Apache-2.0 ---------------------------------------------------------
+
+  NPOI 2.7.5
+  Copyright (C) The Apache Software Foundation; puerto .NET: Tony Qu y
+  colaboradores. https://github.com/nissl-lab/npoi
+
+  SixLabors.Fonts 1.0.1
+  SixLabors.ImageSharp 2.1.11
+  Copyright (C) Six Labors. https://github.com/SixLabors
+
+--- Licencia BSD-3-Clause -------------------------------------------------------
+
+  Ookii.Dialogs.WinForms 4.0.0
+  Copyright (C) Sven Groot. https://github.com/ookii-dialogs
+
+--- Licencia MIT ----------------------------------------------------------------
+
+  BouncyCastle.Cryptography 2.7.0
+    Copyright (C) 2000-2025 The Legion of the Bouncy Castle Inc.
+  Enums.NET 5.0.0
+    Copyright (C) Tyler Brinkley
+  ExtendedNumerics.BigDecimal 2025.1001.2.129
+    Copyright (C) Adam White y colaboradores
+  MathNet.Numerics 5.0.0 / MathNet.Numerics.Signed 5.0.0
+    Copyright (C) 2002-2022 Math.NET
+  Microsoft.CSharp 4.7.0
+  Microsoft.IO.RecyclableMemoryStream 3.0.1
+  System.Buffers 4.6.1
+  System.Memory 4.6.3
+  System.Numerics.Vectors 4.6.1
+  System.Resources.Extensions 6.0.0
+  System.Runtime.CompilerServices.Unsafe 6.1.2
+  System.Security.Cryptography.Xml 8.0.2
+  System.Text.Encoding.CodePages 5.0.0
+  System.Threading.Tasks.Extensions 4.5.2
+    Copyright (C) .NET Foundation y colaboradores
+  SharpZipLib 1.4.2
+    Copyright (C) 2000-2022 SharpZipLib Contributors
+  SkiaSharp 4.151.1 (y SkiaSharp.NativeAssets.Win32)
+    Copyright (C) Microsoft Corporation y colaboradores.
+    Incorpora la biblioteca nativa Skia, Copyright (C) Google Inc.,
+    distribuida bajo licencia BSD-3-Clause. https://skia.org/
+  ZString 2.6.0
+    Copyright (C) Cysharp, Inc.
+
+
+================================================================================
+C. COMPONENTES DE ORIGEN NO DETERMINADO
+================================================================================
+
+  DataGridViewEx 1.0.0.18025 (DataGridViewEx.dll)
+
+  Este ensamblado se incorporo al proyecto en sus primeras versiones y no ha
+  sido posible determinar con certeza su autoria ni su licencia. Se relaciona
+  aqui por transparencia. Cualquier titular de derechos sobre este componente
+  que desee su retirada o su correcta atribucion puede dirigirse a los
+  responsables de SAGT.
+
+
+================================================================================
+D. OFERTA DE CODIGO FUENTE (GPL / LGPL)
+================================================================================
+
+SAGT distribuye en forma binaria componentes sujetos a las licencias GPL-2.0,
+LGPL-2.0 y LGPL-3.0. En cumplimiento del art. 3 de la GPL-2.0, del art. 6 de la
+LGPL-3.0 y de las disposiciones equivalentes de la LGPL-2.0, se hace constar lo
+siguiente:
+
+1. El codigo fuente completo y correspondiente de R 4.5.2 y de los paquetes de
+   R relacionados en la seccion A puede obtenerse en:
+
+     R:        https://cran.r-project.org/src/base/R-4/R-4.5.2.tar.gz
+     Paquetes: https://cran.r-project.org/src/contrib/
+               (y https://cran.r-project.org/src/contrib/Archive/ para las
+               versiones concretas aqui distribuidas)
+
+2. El codigo fuente de iTextSharp.LGPLv2.Core 3.8.5 puede obtenerse en:
+
+     https://github.com/VahidN/iTextSharp.LGPLv2.Core
+
+3. El codigo fuente de NSax 1.0.2 puede obtenerse a traves del paquete NuGet
+   correspondiente y de su repositorio de origen.
+
+4. Con independencia de lo anterior, los responsables de SAGT se comprometen,
+   durante un periodo de TRES (3) AÑOS a partir de la fecha de distribucion de
+   esta version, a proporcionar a cualquier tercero que lo solicite una copia
+   completa en soporte legible por maquina del codigo fuente correspondiente a
+   los componentes citados, por un precio no superior al coste material de
+   realizar la distribucion.
+
+   Las solicitudes pueden dirigirse a los responsables de SAGT en la
+   Universidad de Malaga.
+
+Las versiones exactas de todos los componentes distribuidos figuran en las
+secciones A y B de este documento.
+
+
+================================================================================
+E. TEXTOS DE LICENCIA
+================================================================================
+
+Las licencias extensas (Apache-2.0, GPL-2.0, LGPL-2.0 y LGPL-3.0) se incluyen
+como archivos independientes en la subcarpeta "licenses" de la instalacion:
+
+    licenses\Apache-2.0.txt
+    licenses\GPL-2.0.txt        (vease tambien R\COPYING)
+    licenses\LGPL-2.0.txt
+    licenses\LGPL-3.0.txt
+
+Sus textos oficiales estan disponibles en:
+
+    Apache-2.0  https://www.apache.org/licenses/LICENSE-2.0
+    GPL-2.0     https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+    LGPL-2.0    https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html
+    LGPL-3.0    https://www.gnu.org/licenses/lgpl-3.0.html
+
+A continuacion se reproducen integramente las licencias breves.
+
+
+--------------------------------------------------------------------------------
+LICENCIA MIT (The MIT License)
+--------------------------------------------------------------------------------
+Aplicable a los componentes relacionados bajo "Licencia MIT" en la seccion B,
+con sus respectivos avisos de copyright.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+--------------------------------------------------------------------------------
+LICENCIA BSD DE 3 CLAUSULAS (BSD 3-Clause "New" or "Revised" License)
+--------------------------------------------------------------------------------
+Aplicable a Ookii.Dialogs.WinForms y a la biblioteca nativa Skia, con sus
+respectivos avisos de copyright.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

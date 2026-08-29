@@ -150,11 +150,11 @@ namespace GUI_GT
             // Fuente que se empleará en las tablas de documento PDF
             iTextSharp.text.Font fontTableReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTableFontFamily(),
-                this.cfgApli.GetTableFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+                this.cfgApli.GetTableFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.Black);
             // Fuente que se empleará en las textos de documento PDF
             iTextSharp.text.Font fontTextReport =
                 iTextSharp.text.FontFactory.GetFont(this.cfgApli.GetTextFontFamily(),
-                this.cfgApli.GetTextFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+                this.cfgApli.GetTextFontSize(), iTextSharp.text.Font.NORMAL, BaseColor.Black);
 
             // Linea de emisión del informe
             PdfPTable data = FechaDeEmision(fontTextReport);
@@ -320,7 +320,7 @@ namespace GUI_GT
             for (int i = 0; i < numCol; i++)
             {
                 PdfPCell cell = new PdfPCell(new Phrase(dataGridView.Columns[i].HeaderText, fontTable));
-                cell.BackgroundColor = BaseColor.GRAY; // new BaseColor(0, 150, 0);
+                cell.BackgroundColor = new BaseColor(0xA9, 0xA9, 0xA9); // gris oscuro
                 datatable.AddCell(cell);
             }
 
@@ -340,7 +340,7 @@ namespace GUI_GT
                     PdfPCell cell = new PdfPCell(new Phrase(phrase, fontTable));
                     if (shadingRows && (i % 2 == 1))
                     {
-                        cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                        cell.BackgroundColor = new BaseColor(0xD3, 0xD3, 0xD3); // gris claro
                     }
                     datatable.AddCell(cell);
                 }

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TestConfigCFG")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TOSHIBA")]
+[assembly: AssemblyCompany("Universidad de Málaga")]
 [assembly: AssemblyProduct("TestConfigCFG")]
-[assembly: AssemblyCopyright("Copyright © TOSHIBA 2012")]
+[assembly: AssemblyCopyright("Copyright © 2012-2026 Universidad de Málaga")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

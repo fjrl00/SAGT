@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConnectLibrary")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TOSHIBA")]
+[assembly: AssemblyCompany("Universidad de Málaga")]
 [assembly: AssemblyProduct("ConnectLibrary")]
-[assembly: AssemblyCopyright("Copyright © TOSHIBA 2012")]
+[assembly: AssemblyCopyright("Copyright © 2012-2026 Universidad de Málaga")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
