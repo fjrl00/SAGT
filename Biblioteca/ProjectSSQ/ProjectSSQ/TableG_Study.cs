@@ -64,24 +64,21 @@ namespace ProjectSSQ
         {
             List<string> llf_diff_cwr = differentiation.CombinationStringWithoutRepetition();
 
-            // We officially take the differentiation variance to be the corrected variance component, and consider negative variance components to be 0.
+            ListFacets totalFacets = this.lfDifferentiation.Concatenate(this.lfInstrumentation);
+            List<string> ldesign = lTSSQ.ListFacets().CombinationStringWithoutRepetition(); // We would kinda prefer to also use totalFacets here to present the designs in that order? But we would need to change code around in order to achieve that
+
+            // Differentiation variances:
             int n = llf_diff_cwr.Count;
             for (int i = 0; i < n; i++)
             {
                 string key = llf_diff_cwr[i];
-                double? tVar = lTSSQ.CorrectedComp(key);
-                if ((tVar != null) && (double)tVar < 0)
-                {
-                    tVar = 0;
-                }
-                differentiationVar.Add(key, tVar);
+                ListFacets lf = totalFacets.ListDesignFacets(key);
+
+                differentiationVar.Add(key, CalcDStudyVarComp(ldesign, key, lTSSQ, totalFacets, differentiation, lf));
             }
 
-            ListFacets totalFacets = this.lfDifferentiation.Concatenate(this.lfInstrumentation);
-            List<string> ldesign = lTSSQ.ListFacets().CombinationStringWithoutRepetition(); // We would kinda prefer to also use totalFacets here to present the designs in that order? But we would need to change code around in order to achieve that
 
-
-            // Now we calculate error variances
+            // Error variances:
             n = ldesign.Count;
             for (int i = 0; i < n; i++)
             {
@@ -324,14 +321,21 @@ namespace ProjectSSQ
          *  Calcula el componente de varianza del D estudio 
          *  Fuente: Brennan (2001) 5.1.1 (5.6)
          *  
-         * lTSSQ contiene los antiguos datos
-         * totalFacets contiene los nuevos
+         *  lTSSQ contiene los antiguos datos
+         *  totalFacets contiene los nuevos
          *  
-         * lTSSQ.MixedComp(key) * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();  // Simplified version only valid for universe size staying unchanged
+         *  lTSSQ.CorrectedComp(key) * C / d;  // Simplified version only valid for universe size staying unchanged
          */
         private double? CalcDStudyVarComp(List<string> ldesign, string key, TableAnalysisOfVariance lTSSQ, ListFacets totalFacets, ListFacets differentiation, ListFacets lf)
         {
             ListFacets primaryLf = totalFacets.ListDesignPrimaryFacets(key);
+
+            // According to the theory: "d = 1 for an effect which is equal to the object of measurement, and otherwise, d = the product of the new sample sizes for all facets in the effect that aren't the object of measurement"
+            // lf.SubstractFacets(differentiation) alone can't establish that this is an object of measurement, for example, for P being object of measurement, I not, and P being nested inside I (P:I is an object of measurement, but substract just P and we get I)
+            bool isDifferentiationSource = differentiation.ContainsList(primaryLf);
+            double d = isDifferentiationSource ? 1 : lf.SubstractFacets(differentiation).MultOfLevels();
+
+            double C = primaryLf.FPCFactor(differentiation);
 
             double? retVal = 0;
 
@@ -349,13 +353,15 @@ namespace ProjectSSQ
 
                     if(pi != 0) // i.e. pi didn't come up infinite, in which case we'dd add 0
                     {
-                        retVal = retVal + lTSSQ.MixedComp(key_aux) * K / pi;
+                        // Corrected rather than mixed components because this also serves the differentiation sources, which is
+                        // where the two differ. Elsewhere the choice is immaterial: they only part ways for an all-fixed source,
+                        // and such a source has C == 0 anyway (a fixed facet has level == universe, so (u - l) / (u - 1) == 0).
+                        retVal = retVal + lTSSQ.CorrectedComp(key_aux) * K / pi;
                     }
-                    
                 }
             }
 
-            retVal = retVal * primaryLf.FPCFactor(differentiation) / lf.SubstractFacets(differentiation).MultOfLevels();
+            retVal = retVal * C / d;
 
             // The components come in as the analysis of variance table estimated them, negatives included, because the
             // sum above needs them whole in order to cancel out properly. It is here, once we already have the D study

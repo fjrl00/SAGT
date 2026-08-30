@@ -565,7 +565,7 @@ namespace GUI_GT
 
 
         /* Descripción:
-         *  Carga los datos de un fichero de analisis en  mostrando los datos al usuario
+         *  Carga los datos de un fichero .anls
          * Parámetros:
          *  String path: El nombre del archivo.
          */
@@ -583,6 +583,12 @@ namespace GUI_GT
                 // Cargamos los datos en los datagridView
                 // LoadAllDataInDataGridViewEx_SSQOptions();
                 LoadAllDataGridWithDataAnalysis(sagtElements.GetAnalysis_and_G_Study(), path);
+
+                // Nos posicionamos en el tabPage de análisis
+                ExcludeTabPages();
+                this.RestoreColorMenu(this.mStripMain);
+                this.tsmiAnalysis.BackColor = System.Drawing.SystemColors.Highlight;
+                tabPageAnalysis.Parent = this.tabControlOptions;
             }
             catch (Analysis_and_G_Study_Exception e)
             {
