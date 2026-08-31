@@ -101,10 +101,10 @@ fr=Paramètres
 po=Configurações
 
 [tsmiIndex]
-es=Índice
-en=Index
-fr=Indice
-po=Índice
+es=Manual
+en=Manual
+fr=Manuel
+po=Manual
 
 [tsmiAboutOf]
 es=Acerca de SAGT

@@ -56,9 +56,6 @@ namespace GUI_GT
 
         // string sagt_initial_directory = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\" + SAGT_DIR + "\\" + WORKSPACE_DIR;
 
-        // fichero de ayuda chm
-        private string manual_file_chm = "Ayuda SAGT.chm";
-
         // Constantes referentes a los archivos de idiomas
         const string MENU_OPTIONS = "idioma_menu.txt"; // etiquetas del menú principal
         const string USER_STRING = "userStrings.txt"; // etiquetas de la opción usuarios
@@ -1184,7 +1181,7 @@ namespace GUI_GT
         {
             int oldNumberOfDecimals = cfgApli.GetNumberOfDecimals(); // número antiguo de decimales
             string oldDecimalSeparator = cfgApli.GetDecimalSeparator(); // separador decimal antiguo
-            string pathManual = Application.StartupPath + MANUAL_PATH + manual_file_chm;
+            string pathManual = GetManualFilePath();
 
             string pathDocuments = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filepass = pathDocuments + "\\" + SAGT_DIR + "\\" + PassUsers.FILE_USER_PASS;
@@ -1291,8 +1288,36 @@ namespace GUI_GT
          */
         public void ShowWindowsHelp()
         {
-            string pathManual = Application.StartupPath + MANUAL_PATH + manual_file_chm;
-            Help.ShowHelp(this, pathManual);
+            Process.Start(GetManualFilePath());
+        }
+
+        /*
+         * Descripción:
+         *  Devuelve la ruta al manual en PDF correspondiente al idioma actualmente
+         *  seleccionado en la aplicación.
+         */
+        private string GetManualFilePath()
+        {
+            string manual_file_pdf;
+
+            switch (cfgApli.GetConfigLanguage())
+            {
+                case Language.spanish:
+                    manual_file_pdf = "Manual SAGT v2.0 - Español.pdf";
+                    break;
+                case Language.french:
+                    manual_file_pdf = "Manual SAGT v2.0 - Français.pdf";
+                    break;
+                case Language.portuguese:
+                    manual_file_pdf = "Manual SAGT v2.0 - Português.pdf";
+                    break;
+                case Language.english:
+                default:
+                    manual_file_pdf = "Manual SAGT v2.0 - English.pdf";
+                    break;
+            }
+
+            return Application.StartupPath + MANUAL_PATH + manual_file_pdf;
         }
 
         #endregion Selección de opciones del submenú Ayuda

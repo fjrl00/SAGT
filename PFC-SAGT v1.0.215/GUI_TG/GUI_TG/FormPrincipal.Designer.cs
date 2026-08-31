@@ -519,14 +519,14 @@
             this.tsmiIndex.Image = global::GUI_GT.Properties.Resources.file_help_h128;
             this.tsmiIndex.Name = "tsmiIndex";
             this.tsmiIndex.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.tsmiIndex.Size = new System.Drawing.Size(158, 22);
-            this.tsmiIndex.Text = "Índice";
+            this.tsmiIndex.Size = new System.Drawing.Size(184, 26);
+            this.tsmiIndex.Text = "Manual";
             this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
             // 
             // tsmiAboutOf
             // 
             this.tsmiAboutOf.Name = "tsmiAboutOf";
-            this.tsmiAboutOf.Size = new System.Drawing.Size(158, 22);
+            this.tsmiAboutOf.Size = new System.Drawing.Size(184, 26);
             this.tsmiAboutOf.Text = "Acerca de SAGT";
             this.tsmiAboutOf.Click += new System.EventHandler(this.tsmiAboutOf_Click);
             // 

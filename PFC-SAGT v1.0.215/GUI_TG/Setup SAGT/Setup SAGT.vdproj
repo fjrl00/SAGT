@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0051BBA75E3F4DCC8AA0A3F9205E97FE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_005340AA698D4DE4BCF0ECB5CF0D7223"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1144,6 +1150,12 @@
         "Entry"
         {
         "MsmKey" = "8:_07BB5034A7284D57BB6FA2D52B29AEBD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_07BCA2B544E14FE595403C5457537E97"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -8925,6 +8937,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3C96DBAAF7174741AB0EC0975578B115"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3C9C8243994E49279E2F3DB0749EDC18"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -10564,6 +10582,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4705CE0010DE41FFAE5A6D43A6771E05"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4707175364584F9888F6BBD4CEE8CF88"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -13623,12 +13647,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5A6DF01742764F81A1DEB6800532B006"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5A6E57F0A2994424B31189B9F723CAAB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -14314,6 +14332,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5E8666992E6F4C02A30AF51BCBC11D9C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5E869FA393ED4CC7822B9665DAD204D5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -19077,6 +19101,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7EDED9F3D32749CD94867401336370E2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7EE133C5F6B84EB49D8189629C49E051"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -23698,6 +23728,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9CC6AD9C71E346329713CFFDF09AB13D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9CCAFC99A2C74C55824699A8D38CFA07"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -29277,6 +29313,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C00A57D16E2C4D88B9774256CBAB093F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C00AA479BA474F45B50F9F896952DF25"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -32740,12 +32782,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D805BF69E22341758A093D9F10B77595"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D8288B10DCAD4C678145A42FE37E631A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39219,6 +39255,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0051BBA75E3F4DCC8AA0A3F9205E97FE"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Español.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Español.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_442D49ABC9D749079C1321A0FDDBCC0D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_005340AA698D4DE4BCF0ECB5CF0D7223"
             {
             "SourcePath" = "8:..\\GUI_TG\\RSetup\\renv\\library\\windows\\R-4.5\\x86_64-w64-mingw32\\Rcpp\\include\\Rcpp\\traits\\get_na.h"
@@ -42856,6 +42912,26 @@
             "TargetName" = "8:grDevices.mo"
             "Tag" = "8:"
             "Folder" = "8:_0D1BDEE3E8DB415B9D4E5DD88271EB3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_07BCA2B544E14FE595403C5457537E97"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Español.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Español.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_08EB844FAAD04229AA58017581B380D4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -68635,6 +68711,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C96DBAAF7174741AB0EC0975578B115"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Français.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Français.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_442D49ABC9D749079C1321A0FDDBCC0D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C9C8243994E49279E2F3DB0749EDC18"
             {
             "SourcePath" = "8:..\\GUI_TG\\R\\library\\survival\\doc\\survival.R"
@@ -74012,6 +74108,26 @@
             "TargetName" = "8:Kigali"
             "Tag" = "8:"
             "Folder" = "8:_9C04EF15C672430CB49E328B9B22C641"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4707175364584F9888F6BBD4CEE8CF88"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - English.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - English.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_442D49ABC9D749079C1321A0FDDBCC0D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -84159,26 +84275,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A6DF01742764F81A1DEB6800532B006"
-            {
-            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\Manual\\Ayuda SAGT.chm"
-            "TargetName" = "8:Ayuda SAGT.chm"
-            "Tag" = "8:"
-            "Folder" = "8:_F887171A3D05411A8A7F30A1F0479E1F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A6E57F0A2994424B31189B9F723CAAB"
             {
             "SourcePath" = "8:..\\GUI_TG\\R\\Tcl\\lib\\tcl8.6\\tzdata\\Africa\\Banjul"
@@ -86465,6 +86561,26 @@
             "TargetName" = "8:KaTeX_Size3-Regular.woff"
             "Tag" = "8:"
             "Folder" = "8:_362B6371AE0446F398A5DC0354389092"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E869FA393ED4CC7822B9665DAD204D5"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Português.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Português.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_442D49ABC9D749079C1321A0FDDBCC0D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -102254,6 +102370,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EDED9F3D32749CD94867401336370E2"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Português.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Português.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_08EB844FAAD04229AA58017581B380D4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EE133C5F6B84EB49D8189629C49E051"
             {
             "SourcePath" = "8:..\\GUI_TG\\RSetup\\renv\\library\\windows\\R-4.5\\x86_64-w64-mingw32\\RcppEigen\\include\\Eigen\\src\\Core\\functors\\BinaryFunctors.h"
@@ -117337,6 +117473,26 @@
             "TargetName" = "8:pois.h"
             "Tag" = "8:"
             "Folder" = "8:_E36D8516F48B421888B915E250B91F5B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CCAFC99A2C74C55824699A8D38CFA07"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - English.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - English.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_08EB844FAAD04229AA58017581B380D4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -135497,6 +135653,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C00A57D16E2C4D88B9774256CBAB093F"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\Manual\\Manual SAGT v2.0 - Français.pdf"
+            "TargetName" = "8:Manual SAGT v2.0 - Français.pdf"
+            "Tag" = "8:"
+            "Folder" = "8:_08EB844FAAD04229AA58017581B380D4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C00AA479BA474F45B50F9F896952DF25"
             {
             "SourcePath" = "8:..\\GUI_TG\\R\\share\\zoneinfo\\Europe\\Kirov"
@@ -147043,26 +147219,6 @@
             "TargetName" = "8:MatrixCwiseBinaryOps.h"
             "Tag" = "8:"
             "Folder" = "8:_6FA568ED941044B7BB756548B3CB8DBE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8288B10DCAD4C678145A42FE37E631A"
-            {
-            "SourcePath" = "8:..\\GUI_TG\\bin\\Debug\\Manual\\PDF\\Manual SAGT español.pdf"
-            "TargetName" = "8:Manual SAGT español.pdf"
-            "Tag" = "8:"
-            "Folder" = "8:_9EA4CF5217C245048DFED5362478F1A0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -167202,6 +167358,17 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_442D49ABC9D749079C1321A0FDDBCC0D"
+                    {
+                    "Name" = "8:Manual"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_18A4693F36AA4BD284E73DAABBA0D423"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_46E063E637DA4E93BCCB62891576146F"
                     {
                     "Name" = "8:icons"
@@ -177608,28 +177775,6 @@
                             }
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F887171A3D05411A8A7F30A1F0479E1F"
-                    {
-                    "Name" = "8:Manual"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_69C948BA59264DDAADE5749B07974A28"
-                        "Folders"
-                        {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_9EA4CF5217C245048DFED5362478F1A0"
-                            {
-                            "Name" = "8:PDF"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_1C2F14FCC5A540C4931FBA08B31A5BB6"
-                                "Folders"
-                                {
-                                }
-                            }
-                        }
-                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_954F2CAC87484E7F8E7D47BF350C7204"
@@ -177806,20 +177951,6 @@
             "Folder" = "8:_954F2CAC87484E7F8E7D47BF350C7204"
             "WorkingFolder" = "8:_92D4345E910641959579F5AD96895363"
             "Icon" = "8:_89BF614C12784DEB861C3D3BC625D7DA"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A32E27770A2446739C029C989B9C4790"
-            {
-            "Name" = "8:Manual SAGT español"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_D8288B10DCAD4C678145A42FE37E631A"
-            "Folder" = "8:_08EB844FAAD04229AA58017581B380D4"
-            "WorkingFolder" = "8:_9EA4CF5217C245048DFED5362478F1A0"
-            "Icon" = "8:_A83AFF486EFB436A901C4802633E8534"
             "Feature" = "8:"
             }
         }
