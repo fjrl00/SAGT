@@ -50,6 +50,7 @@ OTHER BUGFIXES
 - Solved bug where closing Analysis data would lead to exceptions whenever language was changed
 - Solved bug where the user was forbidden from creating Chart Coef G graphs whenever a Chart optimization form was open
 - Solved bug where if the user tried to proceed without saving when creating a new Data section, they would be rendered unable to edit facets
+- Solved bug where relative and absolute SEM were swapped out in the online functionality
 
 OPTIMIZATION
 

@@ -1097,8 +1097,8 @@ namespace ConnectLibrary
             double coef_g_abs = gp.CoefG_Abs();
             double total_abs_error_var = gp.TotalAbsErrorVar();
             double total_rel_error_var = gp.TotalRelErrorVar();
-            double error_rel_stand_dev = gp.ErrorAbsStandDev();
-            double error_abs_stand_dev = gp.ErrorRelStandDev();
+            double error_rel_stand_dev = gp.ErrorRelStandDev();
+            double error_abs_stand_dev = gp.ErrorAbsStandDev();
             double target_stand_dev = gp.TargetStandDev();
 
             // Insertamos en la tabla TbAnalysisOfVariance
