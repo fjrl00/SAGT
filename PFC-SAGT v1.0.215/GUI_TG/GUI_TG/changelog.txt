@@ -77,7 +77,7 @@ LOCALIZATION
 - Some Spanish typos fixed
 - Some previously untranslated text throughout the app has been translated, word/pdf/printed reports in particular
 - Some missing text added
-- Tables now have all their headers in singular (as all our cells contain only one value) instead of plural sometimes
+- Tables now have all their headers in singular (as all our cells contain only one value) instead of plural sometimes. Exception only in Means tables.
 - Manuals created for English, Portuguese and French
 
 OTHERS
