@@ -278,7 +278,7 @@ namespace GUI_GT
                         {
                             ShowMessageErrorOK(errorMinNumFacet);
                         }
-                        if (ImportCSV.isTextVariable(formSelectCSVColumns.SelectedDependent, path))
+                        else if (ImportCSV.isTextVariable(formSelectCSVColumns.SelectedDependent, path))
                         {
                             ShowMessageErrorOK(errorDependentIsText);
                         }
