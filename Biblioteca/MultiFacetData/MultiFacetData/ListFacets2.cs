@@ -224,8 +224,6 @@ namespace MultiFacetData
         /*
          * Descripción:
          *  Applies the Finite Population Correction (FPC) factor to the error variance of a design.
-         *  We use (u - l) / (u - 1) as it's what's most appropriate since the variance components are calculated from N-1, not N
-         *  This is despite sources like Brennan using 1-l/u, which is incorrect.
          *  
          * Parámetros:
          *      ListFacets de este objeto: es asumido que es la lista de facetas del diseño del que queremos calcular (su contribución a) la varianza del error.
@@ -246,7 +244,7 @@ namespace MultiFacetData
                     {
                         double l = f.Level();
                         double u = f.SizeOfUniverse();
-                        retVal = retVal * ((u - l) / (u - 1));
+                        retVal = retVal * (1-l/u);
                     }
                 }
             }
