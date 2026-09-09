@@ -55,6 +55,8 @@ OTHER BUGFIXES
 - Fixed Data->Facets->Description field not going back to ReadOnly mode after creating a new Data section
 - Fixed labels in Chart optimization not matching with the ones in the Optimization tab
 - Solved "Printing page X of document" form appearing hidden behind the main form
+- Fixed Word report footers' page numbers being malformed
+- Solved bug where trying to edit Analysis' facets after using the Optimization Levels functionality would result in an exception
 
 OPTIMIZATION
 
