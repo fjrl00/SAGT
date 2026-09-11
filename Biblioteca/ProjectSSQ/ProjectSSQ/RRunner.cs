@@ -305,7 +305,8 @@ dat <- read.csv(csvPath)
 
 fit <- anovaVCA(
     as.formula(paste(""Measurement.Variable ~"", model)),
-    Data = dat
+    Data = dat,
+    quiet = TRUE
 )
 
 # ------------------------------------------------------------
