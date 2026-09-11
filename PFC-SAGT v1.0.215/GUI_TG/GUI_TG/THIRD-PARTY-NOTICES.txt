@@ -3,7 +3,7 @@ SAGT - AVISOS SOBRE COMPONENTES DE TERCEROS
 SAGT - THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 ================================================================================
 
-Ultima actualizacion: agosto de 2026.
+Ultima actualizacion: septiembre de 2026.
 Aplicable a: SAGT (GUI_TG.exe) y a todos los componentes distribuidos junto a el.
 
 Este archivo se proporciona para dar cumplimiento a las obligaciones de
@@ -20,7 +20,7 @@ INDICE
 --------------------------------------------------------------------------------
   A. Entorno estadistico R y paquetes de R (GPL-2.0 y otras)
   B. Bibliotecas .NET enlazadas
-  C. Componentes de origen no determinado
+  C. Componentes con condiciones de uso propias
   D. Oferta de codigo fuente (GPL / LGPL)
   E. Textos de licencia
 
@@ -157,16 +157,21 @@ enlazados dinamicamente por SAGT.
 
 
 ================================================================================
-C. COMPONENTES DE ORIGEN NO DETERMINADO
+C. COMPONENTES CON CONDICIONES DE USO PROPIAS
 ================================================================================
 
   DataGridViewEx 1.0.0.18025 (DataGridViewEx.dll)
+  Copyright (C) Pedro Vicente Rosero Montaño
+  Fuente original: http://www.pedrov.info/descargas.html
+  (sitio ya no accesible; se conserva una copia de la pagina de descarga en el
+  en licenses\DataGridViewEx.html)
 
-  Este ensamblado se incorporo al proyecto en sus primeras versiones y no ha
-  sido posible determinar con certeza su autoria ni su licencia. Se relaciona
-  aqui por transparencia. Cualquier titular de derechos sobre este componente
-  que desee su retirada o su correcta atribucion puede dirigirse a los
-  responsables de SAGT.
+  El autor distribuye este componente de forma gratuita, prohibe su
+  comercializacion y autoriza su inclusion en sitios web con el "reconocimiento
+  explicito de la fuente original y de su autor". SAGT lo redistribuye en esas
+  mismas condiciones: de forma gratuita, sin fines comerciales y con el
+  reconocimiento que constituye este apartado. En consecuencia, SAGT no puede
+  redistribuirse con fines comerciales mientras incluya este componente.
 
 
 ================================================================================
@@ -204,7 +209,7 @@ siguiente:
    Universidad de Malaga.
 
 Las versiones exactas de todos los componentes distribuidos figuran en las
-secciones A y B de este documento.
+secciones A, B y C de este documento.
 
 
 ================================================================================
