@@ -23,6 +23,7 @@ OTHER BUGFIXES
 - Added safeguard to stop the possibility of exceptions and catastrophic errors spawning uncloseable loading screens that can only be removed from the task manager, which happened during multiple of these bugs
 - Solved importing and exporting Excel files not working in modern PC's
 - Solved bug where differentiation and instrumentation facets wouldn't be imported correctly in Excel
+- Solved bug where SAGT Excel exportations would sometimes fail to be closed after being imported back, not allowing them to be be opened in Excel until app is closed
 - Solved a bug where putting facets of differentiation and instrumentation in certain orders could trigger an exception
 - Solved bug where omitting a facet nested in another facet would trigger an exception when generating means
 - Solved bug where duplicated error screens could be created when generating nested facets
