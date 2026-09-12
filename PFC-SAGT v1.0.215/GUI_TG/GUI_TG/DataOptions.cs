@@ -858,27 +858,18 @@ namespace GUI_GT
 
         /* Descripción:
          *  Acción de guardar del menú de la izquierda.
-         *  Muestra un error si no hay datos en ningún lado.
-         *  Se guardan todas las pestañas sin preguntar.
+         *  Muestra un error si no hay datos en ningún lado; si no, permite elegir qué pestañas guardar.
          */
         private void saveFileMenu(SagtFile sagtElements)
         {
-            ReadColumnOmit(sagtElements, this.dataGridViewExFacets);    // actualiza los valores omit de la lista de facetas
-            MultiFacetsObs tData = sagtElements.GetMultiFacetsObs();
-            ListMeans lMeans = sagtElements.GetListMeans();
-            Analysis_and_G_Study tAnalysis = sagtElements.GetAnalysis_and_G_Study();
-
-            if (tData == null && lMeans == null && tAnalysis == null)
+            if (sagtElements.GetMultiFacetsObs() == null && sagtElements.GetListMeans() == null && sagtElements.GetAnalysis_and_G_Study() == null)
             {
                 ShowMessageErrorOK(errorEmpty);
-                return;
             }
-
-            SagtFile sagtElementsSave = new SagtFile(tData, lMeans, tAnalysis);
-            // Habrimos la ventana de dialogo y guardamos
-            System.Windows.Forms.DialogResult resulDialog = DialogAndSaveSagtFile(sagtElementsSave);
-
-            btGenerateTableObsDisables();
+            else
+            {
+                saveFileButton(sagtElements);
+            }
         }
 
 
