@@ -6237,6 +6237,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_28D96E03BE2D49A0AFE6B2A14230FC50"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_28F104AE8637FC8A4AC32E132C0394B0"
         "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
         "MsmSig" = "8:_UNDEFINED"
@@ -38836,6 +38842,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4C25BFC099CD02B53D33A6944ABDC5F1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_07A13145387246DCB081B05008C6DE22"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39047,12 +39059,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3AA6E695EAFE29A9241D47A1441B4679"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4C25BFC099CD02B53D33A6944ABDC5F1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -59673,6 +59679,26 @@
             "TargetName" = "8:Ciudad_Juarez"
             "Tag" = "8:"
             "Folder" = "8:_B6C2EFD79E144DB681E73241E3A8ED07"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_28D96E03BE2D49A0AFE6B2A14230FC50"
+            {
+            "SourcePath" = "8:..\\GUI_TG\\licenses\\DataGridViewEx.html"
+            "TargetName" = "8:DataGridViewEx.html"
+            "Tag" = "8:"
+            "Folder" = "8:_4ABEC5C4A2CD4BB486F61F9EABCD04C8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -177805,7 +177831,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SAGT v2.0"
         "ProductCode" = "8:{50A5AA13-9C6F-4BA7-B0CF-C6BAD05791FC}"
-        "PackageCode" = "8:{8BA7AD59-AD13-4779-8EB4-E5801CDDD1BF}"
+        "PackageCode" = "8:{F0E9089A-39C0-484B-A49A-779A791FE407}"
         "UpgradeCode" = "8:{C23BE02D-D1D7-46AB-843E-8479F68E8639}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

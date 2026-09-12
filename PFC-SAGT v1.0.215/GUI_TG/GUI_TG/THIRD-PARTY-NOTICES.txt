@@ -163,7 +163,7 @@ C. COMPONENTES CON CONDICIONES DE USO PROPIAS
   DataGridViewEx 1.0.0.18025 (DataGridViewEx.dll)
   Copyright (C) Pedro Vicente Rosero Montaño
   Fuente original: http://www.pedrov.info/descargas.html
-  (sitio ya no accesible; se conserva una copia de la pagina de descarga en el
+  (sitio ya no accesible; se conserva una copia de la pagina de descarga 
   en licenses\DataGridViewEx.html)
 
   El autor distribuye este componente de forma gratuita, prohibe su
